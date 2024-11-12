@@ -1,0 +1,312 @@
+-- CREATE DATABASE IF NOT EXISTS ffb_main;
+
+-- USE ffb_main;
+
+/*
+ * TABLES
+ */
+CREATE TABLE IF NOT EXISTS fandoms (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS authors (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS languages (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    abbreviation VARCHAR(2) NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS tags (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS characters (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    fandom_id INT(10) UNSIGNED NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL,
+    FOREIGN KEY (fandom_id) REFERENCES fandoms(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS relations (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS relations_characters (
+    relation_id INT(10) UNSIGNED,
+    character_id INT(10) UNSIGNED,
+    PRIMARY KEY (relation_id, character_id),
+    FOREIGN KEY (relation_id) REFERENCES relations(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fanfictions (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    author_id INT(10) UNSIGNED NOT NULL,
+    rating INT(2) NOT NULL,
+    description TEXT NOT NULL,
+    language_id INT(10) UNSIGNED NOT NULL,
+    note INT(2),
+    evaluation TEXT,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL,
+    FOREIGN KEY (author_id) REFERENCES authors(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (language_id) REFERENCES languages(id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fanfictions_fandoms (
+    fanfiction_id INT(10) UNSIGNED,
+    fandom_id INT(10) UNSIGNED,
+    PRIMARY KEY (fanfiction_id, fandom_id),
+    FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (fandom_id) REFERENCES fandoms(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fanfictions_relations (
+    fanfiction_id INT(10) UNSIGNED,
+    relation_id INT(10) UNSIGNED,
+    PRIMARY KEY (fanfiction_id, relation_id),
+    FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (relation_id) REFERENCES relations(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fanfictions_characters (
+    fanfiction_id INT(10) UNSIGNED,
+    character_id INT(10) UNSIGNED,
+    PRIMARY KEY (fanfiction_id, character_id),
+    FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS fanfictions_tags (
+    fanfiction_id INT(10) UNSIGNED,
+    tag_id INT(10) UNSIGNED,
+    PRIMARY KEY (fanfiction_id, tag_id),
+    FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS links (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    url VARCHAR(255) NOT NULL,
+    fanfiction_id INT(10) UNSIGNED NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS series (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    note INT(2),
+    evaluation TEXT,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS series_fanfictions (
+    series_id INT(10) UNSIGNED,
+    fanfiction_id INT(10) UNSIGNED,
+    ranking INT(2) NOT NULL,
+    PRIMARY KEY (series_id, fanfiction_id),
+    FOREIGN KEY (series_id) REFERENCES series(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN NOT NULL,
+    birthday DATETIME NOT NULL,
+    creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    delete_date DATETIME DEFAULT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS users_actions (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(10) UNSIGNED NOT NULL,
+    type_action INT(2) NOT NULL, -- CREATION, UPDATE, DELETE, RESTORE, REMOVE
+    datetime_action DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+    object_action VARCHAR(25) NOT NULL,
+    id_action INT(10) UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE 
+) ENGINE=InnoDB;
+
+/*
+ * VIEWS DATA
+ */
+
+CREATE OR REPLACE VIEW v_d_characters AS (
+    SELECT c.id as id, c.name as name, f.id as fandom_id, f.name as fandom, c.creation_date as creation_date, c.update_date as update_date, c.delete_date as delete_date
+    FROM characters c
+    INNER JOIN fandoms f ON f.id = c.fandom_id
+);
+
+CREATE OR REPLACE VIEW v_d_relations AS (
+    SELECT r.id as id, r.name as name, c.id as character_id, c.name as character_name, r.creation_date as creation_date, r.update_date as update_date, r.delete_date as delete_date
+    FROM relations r
+    INNER JOIN relations_characters rc ON rc.relation_id = r.id
+    INNER JOIN characters c ON c.id = rc.character_id
+);
+
+CREATE OR REPLACE VIEW v_d_fanfictions AS (
+    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, f.rating, f.description, l.id as language_id, l.name as language, f.note as note, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
+    FROM `fanfictions` f
+    INNER JOIN authors a ON a.id = f.author_id
+    INNER JOIN languages l on l.id = f.language_id
+);
+
+CREATE OR REPLACE VIEW v_d_crossovers AS (
+    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, f.rating, f.description, l.id as language_id, l.name as language, f.note as note, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
+    FROM fanfictions f
+    INNER JOIN authors a ON a.id = f.author_id
+    INNER JOIN languages l on l.id = f.language_id
+    WHERE  f.id IN(
+        SELECT f1.id
+        FROM fanfictions f1
+        INNER JOIN fanfictions_fandoms fnf ON fnf.fanfiction_id = f1.id
+        GROUP BY f1.id
+        HAVING COUNT(fnf.fandom_id) > 1
+    )
+);
+
+CREATE OR REPLACE VIEW v_f_fandoms AS (
+    SELECT f.id as id, f.name as name, ff.name as fanfiction, ff.id as identifier
+    FROM `fanfictions_fandoms` fnf
+    INNER JOIN fanfictions ff ON ff.id = fnf.fanfiction_id
+    INNER JOIN fandoms f ON f.id = fnf.fandom_id
+);
+
+CREATE OR REPLACE VIEW v_f_relations AS (
+    SELECT r.id as id, r.name as name, ff.name as fanfiction, ff.id as identifier
+    FROM `fanfictions_relations` fnr
+    INNER JOIN fanfictions ff ON ff.id = fnr.fanfiction_id
+    INNER JOIN relations r ON r.id = fnr.relation_id
+);
+
+CREATE OR REPLACE VIEW v_f_characters AS (
+    SELECT c.id as id, c.name as name, ff.name as fanfiction, ff.id as identifier
+    FROM `fanfictions_characters` fnc
+    INNER JOIN fanfictions ff ON ff.id = fnc.fanfiction_id
+    INNER JOIN characters c ON c.id = fnc.character_id
+);
+
+CREATE OR REPLACE VIEW v_f_tags AS (
+    SELECT t.id as id, t.name as name, ff.name as fanfiction, ff.id as identifier
+    FROM `fanfictions_tags` fnt
+    INNER JOIN fanfictions ff ON ff.id = fnt.fanfiction_id
+    INNER JOIN tags t ON t.id = fnt.tag_id
+);
+
+CREATE OR REPLACE VIEW v_s_fanfictions AS (
+    SELECT ff.id as id, ff.name as name, ff.rating as rating, sf.ranking as ranking, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+);
+
+CREATE OR REPLACE VIEW v_s_authors AS (
+    SELECT DISTINCT a.id as id, a.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN authors a ON a.id = ff.author_id
+);
+
+CREATE OR REPLACE VIEW v_s_languages AS (
+    SELECT DISTINCT l.id as id, l.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN languages l ON l.id = ff.language_id
+);
+
+CREATE OR REPLACE VIEW v_s_fandoms AS (
+    SELECT DISTINCT f.id as id, f.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN fanfictions_fandoms fnf ON fnf.fanfiction_id = ff.id
+    INNER JOIN fandoms f ON f.id = fnf.fandom_id
+);
+
+CREATE OR REPLACE VIEW v_s_relations AS (
+    SELECT DISTINCT r.id as id, r.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN fanfictions_relations fnr ON fnr.fanfiction_id = ff.id
+    INNER JOIN relations r ON r.id = fnr.relation_id
+);
+
+CREATE OR REPLACE VIEW v_s_characters AS (
+    SELECT DISTINCT c.id as id, c.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN fanfictions_characters fnc ON fnc.fanfiction_id = ff.id
+    INNER JOIN characters c ON c.id = fnc.character_id
+);
+
+CREATE OR REPLACE VIEW v_s_tags AS (
+    SELECT DISTINCT t.id as id, t.name as name, s.name as series, s.id as identifier
+    FROM `series_fanfictions` sf
+    INNER JOIN series s ON s.id = sf.series_id
+    INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN fanfictions_tags fnt ON fnt.fanfiction_id = ff.id
+    INNER JOIN tags t ON t.id = fnt.tag_id
+);
+
+/*
+ * VIEWS STATS
+ */
+
+CREATE OR REPLACE VIEW s_f_characters AS (
+    SELECT f.id as id, f.name AS fandom, COUNT(c.id) AS nb_characters
+    FROM `characters` c 
+    INNER JOIN `fandoms` f ON f.id = c.fandom_id
+    GROUP BY  fandom_id
+);
+
+CREATE OR REPLACE VIEW s_f_relations AS (
+    SELECT fandom_id as id, fandom_name as fandom, COUNT(relation_id) as nb_relations
+    FROM (
+            SELECT DISTINCT rc.relation_id, f.id as fandom_id, f.name as fandom_name
+            FROM fandoms f
+                INNER JOIN `characters` c ON c.fandom_id = f.id
+                INNER JOIN `relations_characters` rc ON rc.character_id = c.id
+        ) AS T1
+    GROUP BY fandom_id
+);
