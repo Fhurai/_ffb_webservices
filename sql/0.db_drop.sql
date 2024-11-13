@@ -68,4 +68,8 @@ DROP TABLE IF EXISTS authors;
 
 DROP TABLE IF EXISTS fandoms;
 
+DROP TABLE IF EXISTS scores;
+
+DROP TABLE IF EXISTS ratings;
+
 -- DROP DATABASE ffb_main;

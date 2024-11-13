@@ -3,6 +3,34 @@
 -- USE ffb_main;
 
 /*
+ * PARAMETERS TABLES (no dates)
+ */
+CREATE TABLE IF NOT EXISTS ratings (
+    id INT(10) UNSIGNED PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+INSERT INTO `ratings` (`id`,`name`)
+VALUES ("0", "K / 3"),
+("1", "K+ / 7"),
+("2", "T / 12"),
+("3", "M / 16"),
+("4", "MA / 18");
+
+CREATE TABLE IF NOT EXISTS scores (
+    id INT(10) UNSIGNED PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+INSERT INTO `scores` (`id`,`name`)
+VALUES ("0", "Unacceptable"),
+("1", "Poor"),
+("2", "Needs improvement"),
+("3", "Acceptable"),
+("4", "Good"),
+("5", "Excellent");
+
+/*
  * TABLES
  */
 CREATE TABLE IF NOT EXISTS fandoms (
@@ -69,16 +97,18 @@ CREATE TABLE IF NOT EXISTS fanfictions (
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     author_id INT(10) UNSIGNED NOT NULL,
-    rating INT(2) NOT NULL,
+    rating_id INT(2) UNSIGNED NOT NULL,
     description TEXT NOT NULL,
     language_id INT(10) UNSIGNED NOT NULL,
-    note INT(2),
+    score_id INT(2) UNSIGNED,
     evaluation TEXT,
     creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     delete_date DATETIME DEFAULT NULL,
     FOREIGN KEY (author_id) REFERENCES authors(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (language_id) REFERENCES languages(id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (language_id) REFERENCES languages(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (rating_id) REFERENCES ratings(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (score_id) REFERENCES scores(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS fanfictions_fandoms (
@@ -126,11 +156,12 @@ CREATE TABLE IF NOT EXISTS series (
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
-    note INT(2),
+    score_id INT(2) UNSIGNED,
     evaluation TEXT,
     creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-    delete_date DATETIME DEFAULT NULL
+    delete_date DATETIME DEFAULT NULL,
+    FOREIGN KEY (score_id) REFERENCES scores(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS series_fanfictions (
@@ -182,17 +213,21 @@ CREATE OR REPLACE VIEW v_d_relations AS (
 );
 
 CREATE OR REPLACE VIEW v_d_fanfictions AS (
-    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, f.rating, f.description, l.id as language_id, l.name as language, f.note as note, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
+    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, r.id as rating_id, r.name as rating, f.description, l.id as language_id, l.name as language, s.id as score_id, s.name as score, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
     FROM `fanfictions` f
     INNER JOIN authors a ON a.id = f.author_id
     INNER JOIN languages l on l.id = f.language_id
+    INNER JOIN ratings r on r.id = f.rating_id
+    LEFT JOIN scores s on s.id = f.score_id
 );
 
 CREATE OR REPLACE VIEW v_d_crossovers AS (
-    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, f.rating, f.description, l.id as language_id, l.name as language, f.note as note, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
+    SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, r.id as rating_id, r.name as rating, f.description, l.id as language_id, l.name as language, s.id as score_id, s.name as score, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
     FROM fanfictions f
     INNER JOIN authors a ON a.id = f.author_id
     INNER JOIN languages l on l.id = f.language_id
+    INNER JOIN ratings r on r.id = f.rating_id
+    LEFT JOIN scores s on s.id = f.score_id
     WHERE  f.id IN(
         SELECT f1.id
         FROM fanfictions f1
@@ -231,10 +266,11 @@ CREATE OR REPLACE VIEW v_f_tags AS (
 );
 
 CREATE OR REPLACE VIEW v_s_fanfictions AS (
-    SELECT ff.id as id, ff.name as name, ff.rating as rating, sf.ranking as ranking, s.name as series, s.id as identifier
+    SELECT ff.id as id, ff.name as name, r.name as rating, sf.ranking as ranking, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
     INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
+    INNER JOIN ratings r ON r.id = ff.rating_id
 );
 
 CREATE OR REPLACE VIEW v_s_authors AS (
