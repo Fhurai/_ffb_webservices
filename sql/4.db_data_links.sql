@@ -61,7 +61,51 @@ SELECT "https://www.fanfiction.net/s/13336008/1/", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://www.fanfiction.net/s/13761265/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Spira's Revenge" AND a.name = "M'jai"
 UNION
-SELECT "https://archiveofourown.org/works/1029121/chapters/2049512", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion";
+SELECT "https://archiveofourown.org/works/1029121/chapters/2049512", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion"
+UNION
+SELECT "https://archiveofourown.org/works/10506063", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10391232", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394559", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394589", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Second String" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10860894", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Family" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394610", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Rules" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12216330", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12199704", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Family Time" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394628", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10864125", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394706", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12258987", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10506039", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10864611", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/9710111", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Outsider" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/11917491", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/14171427", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/1078686", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot"
+UNION
+SELECT "https://archiveofourown.org/works/1087458", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy"
+UNION
+SELECT "https://archiveofourown.org/works/1129793", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy"
+UNION
+SELECT "https://archiveofourown.org/works/117609", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)"
+UNION
+SELECT "https://archiveofourown.org/works/117626", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)";
 
 /*
  * Fanfictions fandoms
@@ -128,7 +172,51 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Spira's Revenge" AND a.name = "M'jai" AND f.name = "Final Fantasy X / X-2"
 UNION
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "No Rules" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Family Time" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)" AND f.name = "Harry Potter - Wizarding World";
 
 /*
  * Fanfictions relations
@@ -173,7 +261,77 @@ SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id
 UNION
 SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND r.name = "Ginevra 'Ginny' Weasley / Hermione Granger"
 UNION
-SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND r.name = "Harry Potter / Hermione Granger";
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND r.name = "Harry Potter / Hermione Granger"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / OMC"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND r.name = "Alicia Spinnet / Ginevra 'Ginny' Weasley"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "No Rules" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "No Rules" AND a.name = "Phoenixgal" AND r.name = "Dean Thomas / Ginevra 'Ginny' Weasley"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / OMC"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Family Time" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / OFC"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND r.name = "Albus Severus Potter / Scorpius Malfoy"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND r.name = "Albus Severus Potter / Scorpius Malfoy"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / Neville Longbottom"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / Neville Longbottom"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter / OFC"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND r.name = "Albus Severus Potter / Scorpius Malfoy"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / Neville Longbottom"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND r.name = "Harry Potter / OFC"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND r.name = "Hermione Granger / Ronald 'Ron' Weasley"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot" AND r.name = "Harry Potter / Nymphadora Tonks"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND r.name = "Harry Potter / Pansy Parkinson"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND r.name = "Harry Potter / Pansy Parkinson"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND r.name = "Draco Malfoy / Pansy Parkinson"
+UNION
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)" AND r.name = "Harry Potter / Hermione Granger"
+UNION -- Hermione Granger/Harry Potter
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)" AND r.name = "Harry Potter / Hermione Granger";
 
 /*
  * Fanfictions characters
@@ -334,7 +492,210 @@ SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHER
 UNION
 SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
 UNION
-SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood"  AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "George Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Arthur Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alicia Spinnet"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "William 'Bill' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Edward 'Teddy' Lupin"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Second String" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Perceval 'Percy' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Molly Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Sirius Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "No Rules" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "No Rules" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family Time" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family Time" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Family Time" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Charles 'Charlie' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Sirius Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Albus Severus Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Luna Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dudley Dursley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Scorpius Malfoy"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Albus Severus Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Parvati Patil"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Scorpius Malfoy"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Albus Severus Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Sirius Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Luna Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kreacher"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "George Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Sirius Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Albus Severus Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Outsider" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Albus Severus Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Sirius Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Luna Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Roxanne Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "George Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Scorpius Malfoy"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Arthur Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nymphadora Tonks"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Pansy Parkinson"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dean Thomas"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Seamus Finnigan"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley"  AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Draco Malfoy"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter"  AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff,  characters c, authors a, fandoms f WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Pansy Parkinson"  AND f.name = "Harry Potter - Wizarding World"
+UNION/************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION/************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+;
 
 /*
  * Fanfictions tags
@@ -483,4 +844,70 @@ SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.a
 UNION
 SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND t.name = "Multi" AND a.name = "Allyrion"
 UNION
-SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND t.name = "Lesbian / Yuri" AND a.name = "Allyrion";
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND t.name = "Lesbian / Yuri" AND a.name = "Allyrion"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Mixed Up Dreams" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Lost in Muggle London" AND t.name = "Angst" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Lost in Muggle London" AND t.name = "Hurt | Comfort" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Lost in Muggle London" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Second String" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Second String" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Family" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "No Rules" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "No Rules" AND t.name = "Angst" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Muggle Relations" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Family Time" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Family Time" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Lucky Kids" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Expanding Bed Charms" AND t.name = "Hurt | Comfort" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Expanding Bed Charms" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Not a Phase" AND t.name = "Friendship" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Not a Phase" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Awkward Lunch" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND t.name = "Friendship" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Outsider" AND t.name = "Angst" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Outsider" AND t.name = "Hurt | Comfort" AND a.name = "Phoenixgal"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Outsider" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Greek Holiday" AND t.name = "Sexual content" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND t.name = "Family" AND a.name = "Phoenixgal"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Best and the Brightest" AND t.name = "Sexual content" AND a.name = "Tjs_whatnot"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Fancy That" AND t.name = "Sexual content" AND a.name = "Scarletladyy"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Fancy That" AND t.name = "Post-canon" AND a.name = "Scarletladyy"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "From One Good Time To Another" AND t.name = "Sexual content" AND a.name = "Scarletladyy"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Grey Haven" AND t.name = "AU" AND a.name = "QuidditchMom (eibbil_one)"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Red Dress" AND t.name = "AU" AND a.name = "QuidditchMom (eibbil_one)";

@@ -7,7 +7,8 @@ DELETE FROM `series`;
 INSERT INTO `series` (`name`, `description`) 
 VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim to Edge."),
 ("All Bets Are Off", "FFX cast into a college AU with Tidus as the sport star and Yuna as the closet student."),
-("Spira series", "Sin and Vegnagun are no more, Tidus and Yuna have to discover what he is now.")
+("Spira series", "Sin and Vegnagun are no more, Tidus and Yuna have to discover what he is now."),
+("Scenes from a Life", "A series of days in Ginny and Harry's relationship spanning the years. Portrays Ginny and Harry as having an eventual happy marriage that's polyamorous, but not before a good amount of angst.")
 ;
 
 /*
@@ -47,4 +48,38 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION
 SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Spira series" AND f.name = "Spira's Sphere" AND a.name = "M'jai"
 UNION
-SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Spira series" AND f.name = "Spira's Revenge" AND a.name = "M'jai";
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Spira series" AND f.name = "Spira's Revenge" AND a.name = "M'jai"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Mixed Up Dreams" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Lost in Muggle London" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Second String" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Family" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "No Rules" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Muggle Relations" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Family Time" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Lucky Kids" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Expanding Bed Charms" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Not a Phase" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Awkward Lunch" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Outsider" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "Greek Holiday" AND a.name = "Phoenixgal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Scenes from a Life" AND f.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal";

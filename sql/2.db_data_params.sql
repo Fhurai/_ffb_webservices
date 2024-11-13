@@ -362,6 +362,10 @@ UNION
 SELECT "Bartemius Crouch Jr.", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Garrick Ollivander", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION
+SELECT "OMC", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION
+SELECT "OFC", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION /************************************************************************************************************************************/
 SELECT "Shepard (F)", `id` from `fandoms` WHERE `name` = "Mass Effect"
 UNION 
@@ -823,6 +827,17 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Lucius Malfoy / Narcissa Black Malfoy"),
 ("Cedric Diggory / Cho Chang"),
 ("Arthur Weasley / Molly Weasley"),
+("Harry Potter / OMC"),
+("Alicia Spinnet / Ginevra 'Ginny' Weasley"),
+("Dean Thomas / Ginevra 'Ginny' Weasley"),
+("Ginevra 'Ginny' Weasley / OFC"),
+("Albus Severus Potter / Scorpius Malfoy"),
+("Harry Potter / Neville Longbottom"),
+("Ginevra 'Ginny' Weasley / Harry Potter / OFC"),
+("Harry Potter / OFC"),
+("Harry Potter / Nymphadora Tonks"),
+("Harry Potter / Pansy Parkinson"),
+("Draco Malfoy / Pansy Parkinson"),
 /************************************************************************************************************************************/
 ("Liara T'Soni / Shepard (F)"),
 ("Aria T'Loak / Councilor Tevos"),
@@ -953,6 +968,52 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Arthur Weasley / Molly Weasley" AND c.`name` = "Arthur Weasley"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Arthur Weasley / Molly Weasley" AND c.`name` = "Molly Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / OMC" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / OMC" AND c.`name` = "OMC"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / Ginevra 'Ginny' Weasley" AND c.`name` = "Alicia Spinnet"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / Ginevra 'Ginny' Weasley" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Dean Thomas / Ginevra 'Ginny' Weasley" AND c.`name` = "Dean Thomas"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Dean Thomas / Ginevra 'Ginny' Weasley" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / OFC" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / OFC" AND c.`name` = "OFC"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Albus Severus Potter / Scorpius Malfoy" AND c.`name` = "Albus Severus Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Albus Severus Potter / Scorpius Malfoy" AND c.`name` = "Scorpius Malfoy"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Neville Longbottom" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Neville Longbottom" AND c.`name` = "Neville Longbottom"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / OFC" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / OFC" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / OFC" AND c.`name` = "OFC"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / OFC" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / OFC" AND c.`name` = "OFC"
+UNION
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Nymphadora Tonks" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Nymphadora Tonks" AND c.`name` = "Nymphadora Tonks"
+UNION
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Pansy Parkinson" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
+UNION
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Draco Malfoy / Pansy Parkinson" AND c.`name` = "Draco Malfoy"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Draco Malfoy / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Shepard (F)" AND c.`name` = "Liara T'Soni"
 UNION 
