@@ -2,8 +2,11 @@
 
 /*
  * Authors
+ * NOTE - INSERT empty author for abandoned accounts 
  */
 DELETE FROM `authors`;
+INSERT INTO `authors`(`id`, `name`, `creation_date`, `update_date`, `delete_date`) VALUES (1,'','1970-01-01','1970-01-01', NULL);
+
 INSERT INTO `authors` (`name`) 
 VALUES ("Jayf"),
 ("Ariaojou"),
@@ -183,4 +186,12 @@ FROM `authors` a, `languages` l WHERE a.name="QuidditchMom (eibbil_one)" AND l.n
 UNION
 SELECT "The Red Dress" as name, a.id as author_id, 3 as rating, "Hermione in a red dress, Harry in denial. Here's what happens when the two mix." as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="QuidditchMom (eibbil_one)" AND l.name="English"
-;
+UNION
+SELECT "Up Against the Wall" as name, a.id as author_id, 3 as rating, "Absence makes Harry a bit desperate for Hermione." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="QuidditchMom (eibbil_one)" AND l.name="English"
+UNION
+SELECT "Caught" as name, a.id as author_id, 3 as rating, "Harry comes home early from a business trip and gets a bit of a surprise" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="QuidditchMom (eibbil_one)" AND l.name="English"
+UNION
+SELECT "Parkinson's Knickers (Or Lack Thereof)" as name, a.id as author_id, 4 as rating, "Harry always knew the monthly budget meetings were boring, but he didn't realize just how boring until Pansy Parkinson offered to show him something a little more interesting." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English";

@@ -1,0 +1,12 @@
+DROP VIEW IF EXISTS stats_fandoms_characters;
+DROP VIEW IF EXISTS stats_fandoms_relations;
+DROP VIEW IF EXISTS stats_relations_characters;
+DROP VIEW IF EXISTS stats_users_actions;
+DROP VIEW IF EXISTS stats_authors_fanfictions;
+DROP VIEW IF EXISTS stats_languages_fanfictions;
+DROP VIEW IF EXISTS stats_ratings_fanfictions;
+DROP VIEW IF EXISTS stats_fandoms_fanfictions;
+DROP VIEW IF EXISTS stats_relations_fanfictions;
+DROP VIEW IF EXISTS stats_characters_fanfictions;
+DROP VIEW IF EXISTS stats_tags_fanfictions;
+DROP VIEW IF EXISTS stats_series_fanfictions;

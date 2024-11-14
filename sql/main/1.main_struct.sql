@@ -1,7 +1,3 @@
--- CREATE DATABASE IF NOT EXISTS ffb_main;
-
--- USE ffb_main;
-
 /*
  * PARAMETERS TABLES (no dates)
  */
@@ -185,34 +181,47 @@ CREATE TABLE IF NOT EXISTS users (
     delete_date DATETIME DEFAULT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS actions (
+    id INT(10) UNSIGNED PRIMARY KEY,
+    name VARCHAR(10)
+) ENGINE=InnoDB;
+
+INSERT INTO `actions`(`id`, `name`)
+VALUES ("1", "CREATION"),
+("2", "UPDATE"),
+("3", "DELETE"),
+("4", "RESTORE"),
+("5", "REMOVE");
+
 CREATE TABLE IF NOT EXISTS users_actions (
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT(10) UNSIGNED NOT NULL,
-    type_action INT(2) NOT NULL, -- CREATION, UPDATE, DELETE, RESTORE, REMOVE
+    type_action INT(10) UNSIGNED NOT NULL, 
     datetime_action DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     object_action VARCHAR(25) NOT NULL,
     id_action INT(10) UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (type_action) REFERENCES actions(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 /*
  * VIEWS DATA
  */
 
-CREATE OR REPLACE VIEW v_d_characters AS (
+CREATE OR REPLACE VIEW view_data_characters AS (
     SELECT c.id as id, c.name as name, f.id as fandom_id, f.name as fandom, c.creation_date as creation_date, c.update_date as update_date, c.delete_date as delete_date
     FROM characters c
     INNER JOIN fandoms f ON f.id = c.fandom_id
 );
 
-CREATE OR REPLACE VIEW v_d_relations AS (
+CREATE OR REPLACE VIEW view_data_relations AS (
     SELECT r.id as id, r.name as name, c.id as character_id, c.name as character_name, r.creation_date as creation_date, r.update_date as update_date, r.delete_date as delete_date
     FROM relations r
     INNER JOIN relations_characters rc ON rc.relation_id = r.id
     INNER JOIN characters c ON c.id = rc.character_id
 );
 
-CREATE OR REPLACE VIEW v_d_fanfictions AS (
+CREATE OR REPLACE VIEW view_data_fanfictions AS (
     SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, r.id as rating_id, r.name as rating, f.description, l.id as language_id, l.name as language, s.id as score_id, s.name as score, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
     FROM `fanfictions` f
     INNER JOIN authors a ON a.id = f.author_id
@@ -221,7 +230,7 @@ CREATE OR REPLACE VIEW v_d_fanfictions AS (
     LEFT JOIN scores s on s.id = f.score_id
 );
 
-CREATE OR REPLACE VIEW v_d_crossovers AS (
+CREATE OR REPLACE VIEW view_data_crossovers AS (
     SELECT f.id as id, f.name as name, a.id as author_id, a.name as author, r.id as rating_id, r.name as rating, f.description, l.id as language_id, l.name as language, s.id as score_id, s.name as score, f.evaluation as evaluation, f.creation_date as creation_date, f.update_date as update_date, f.delete_date as delete_date
     FROM fanfictions f
     INNER JOIN authors a ON a.id = f.author_id
@@ -237,35 +246,35 @@ CREATE OR REPLACE VIEW v_d_crossovers AS (
     )
 );
 
-CREATE OR REPLACE VIEW v_f_fandoms AS (
+CREATE OR REPLACE VIEW view_fanfictions_fandoms AS (
     SELECT f.id as id, f.name as name, ff.name as fanfiction, ff.id as identifier
     FROM `fanfictions_fandoms` fnf
     INNER JOIN fanfictions ff ON ff.id = fnf.fanfiction_id
     INNER JOIN fandoms f ON f.id = fnf.fandom_id
 );
 
-CREATE OR REPLACE VIEW v_f_relations AS (
+CREATE OR REPLACE VIEW view_fanfictions_relations AS (
     SELECT r.id as id, r.name as name, ff.name as fanfiction, ff.id as identifier
     FROM `fanfictions_relations` fnr
     INNER JOIN fanfictions ff ON ff.id = fnr.fanfiction_id
     INNER JOIN relations r ON r.id = fnr.relation_id
 );
 
-CREATE OR REPLACE VIEW v_f_characters AS (
+CREATE OR REPLACE VIEW view_fanfictions_characters AS (
     SELECT c.id as id, c.name as name, ff.name as fanfiction, ff.id as identifier
     FROM `fanfictions_characters` fnc
     INNER JOIN fanfictions ff ON ff.id = fnc.fanfiction_id
     INNER JOIN characters c ON c.id = fnc.character_id
 );
 
-CREATE OR REPLACE VIEW v_f_tags AS (
+CREATE OR REPLACE VIEW view_fanfictions_tags AS (
     SELECT t.id as id, t.name as name, ff.name as fanfiction, ff.id as identifier
     FROM `fanfictions_tags` fnt
     INNER JOIN fanfictions ff ON ff.id = fnt.fanfiction_id
     INNER JOIN tags t ON t.id = fnt.tag_id
 );
 
-CREATE OR REPLACE VIEW v_s_fanfictions AS (
+CREATE OR REPLACE VIEW view_series_fanfictions AS (
     SELECT ff.id as id, ff.name as name, r.name as rating, sf.ranking as ranking, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -273,7 +282,7 @@ CREATE OR REPLACE VIEW v_s_fanfictions AS (
     INNER JOIN ratings r ON r.id = ff.rating_id
 );
 
-CREATE OR REPLACE VIEW v_s_authors AS (
+CREATE OR REPLACE VIEW view_series_authors AS (
     SELECT DISTINCT a.id as id, a.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -281,7 +290,7 @@ CREATE OR REPLACE VIEW v_s_authors AS (
     INNER JOIN authors a ON a.id = ff.author_id
 );
 
-CREATE OR REPLACE VIEW v_s_languages AS (
+CREATE OR REPLACE VIEW view_series_languages AS (
     SELECT DISTINCT l.id as id, l.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -289,7 +298,7 @@ CREATE OR REPLACE VIEW v_s_languages AS (
     INNER JOIN languages l ON l.id = ff.language_id
 );
 
-CREATE OR REPLACE VIEW v_s_fandoms AS (
+CREATE OR REPLACE VIEW view_series_fandoms AS (
     SELECT DISTINCT f.id as id, f.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -298,7 +307,7 @@ CREATE OR REPLACE VIEW v_s_fandoms AS (
     INNER JOIN fandoms f ON f.id = fnf.fandom_id
 );
 
-CREATE OR REPLACE VIEW v_s_relations AS (
+CREATE OR REPLACE VIEW view_series_relations AS (
     SELECT DISTINCT r.id as id, r.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -307,7 +316,7 @@ CREATE OR REPLACE VIEW v_s_relations AS (
     INNER JOIN relations r ON r.id = fnr.relation_id
 );
 
-CREATE OR REPLACE VIEW v_s_characters AS (
+CREATE OR REPLACE VIEW view_series_characters AS (
     SELECT DISTINCT c.id as id, c.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
@@ -316,33 +325,11 @@ CREATE OR REPLACE VIEW v_s_characters AS (
     INNER JOIN characters c ON c.id = fnc.character_id
 );
 
-CREATE OR REPLACE VIEW v_s_tags AS (
+CREATE OR REPLACE VIEW view_series_tags AS (
     SELECT DISTINCT t.id as id, t.name as name, s.name as series, s.id as identifier
     FROM `series_fanfictions` sf
     INNER JOIN series s ON s.id = sf.series_id
     INNER JOIN fanfictions ff ON ff.id = sf.fanfiction_id
     INNER JOIN fanfictions_tags fnt ON fnt.fanfiction_id = ff.id
     INNER JOIN tags t ON t.id = fnt.tag_id
-);
-
-/*
- * VIEWS STATS
- */
-
-CREATE OR REPLACE VIEW s_f_characters AS (
-    SELECT f.id as id, f.name AS fandom, COUNT(c.id) AS nb_characters
-    FROM `characters` c 
-    INNER JOIN `fandoms` f ON f.id = c.fandom_id
-    GROUP BY  fandom_id
-);
-
-CREATE OR REPLACE VIEW s_f_relations AS (
-    SELECT fandom_id as id, fandom_name as fandom, COUNT(relation_id) as nb_relations
-    FROM (
-            SELECT DISTINCT rc.relation_id, f.id as fandom_id, f.name as fandom_name
-            FROM fandoms f
-                INNER JOIN `characters` c ON c.fandom_id = f.id
-                INNER JOIN `relations_characters` rc ON rc.character_id = c.id
-        ) AS T1
-    GROUP BY fandom_id
 );
