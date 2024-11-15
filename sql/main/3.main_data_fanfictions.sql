@@ -14,19 +14,24 @@ VALUES ("Allyrion"),
 ("Cj Spencer"),
 ("Clio_jlh"),
 ("Eric Michael Kline"),
+("Hollywoodland"),
 ("IAltoSax"),
 ("Inell"),
 ("Jayf"),
 ("Jm1681"),
 ("Jumper712"),
 ("Kabal42"),
+("Lightofdaye"),
 ("Lokifan"),
+("MayorHaggar"),
 ("Me413"),
 ("M'jai"),
 ("Nataku's Wrath"),
 ("Phoenixgal"),
+("Pottermum"),
 ("Previouslysane (altar_boy)"),
 ("QuidditchMom (eibbil_one)"),
+("Romaine"),
 ("RosaCalavera"),
 ("Sarcastrow"),
 ("Scarletladyy"),
@@ -253,4 +258,22 @@ SELECT "Normal" as name, a.id as author_id, 3 as rating, "A fractured mind can't
 FROM `authors` a, `languages` l WHERE a.name="RosaCalavera" AND l.name="English"
 UNION
 SELECT "Horny at Hogwarts" as name, a.id as author_id, 4 as rating, "Right first off this is basically pure smut. Teenagers stuck at school for most of the year, of course they're going to end up having sex. This is my story of those sexual encounters. Fourth year onwards only. Don't know how this will turn out. Chapter lengths with vary greatly. So just read and review" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Jumper712" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Jumper712" AND l.name="English"
+UNION
+SELECT "Clueless" as name, a.id as author_id, 3 as rating, "Harry and Ginny. Best friends and Room mates. Everyone can see that they are perfect for each other. It's a pity they are both Clueless." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "The Metamorph Bet" as name, a.id as author_id, 4 as rating, "The contest is over, and Harry has won. Now it's time for Tonks to pay up, whether he wants her to or not." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MayorHaggar" AND l.name="English"
+UNION
+SELECT "The Shagging Spot" as name, a.id as author_id, 4 as rating, "Fred and George discover a hidden alcove inside Hogwarts that's perfect for two things: shagging and watching." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hollywoodland" AND l.name="English"
+UNION
+SELECT "The Encore" as name, a.id as author_id, 4 as rating, "Anticipating a repeat of the threesome show they witnessed the week before, George and Fred bring along a couple of friends who like to watch." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hollywoodland" AND l.name="English"
+UNION
+SELECT "The Minister's Affair" as name, a.id as author_id, 4 as rating, "Members of two families keep one secret to the very end." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Romaine" AND l.name="English"
+UNION
+SELECT "Favours & Benefits" as name, a.id as author_id, 4 as rating, "Parvati really hates feeling like a third wheel, so when Lavender wants her to go out with her and Neville, Parvati begs Harry to come too." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English";

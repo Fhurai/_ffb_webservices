@@ -10,7 +10,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Spira series", "Sin and Vegnagun are no more, Tidus and Yuna have to discover what he is now."),
 ("Scenes from a Life", "A series of days in Ginny and Harry's relationship spanning the years. Portrays Ginny and Harry as having an eventual happy marriage that's polyamorous, but not before a good amount of angst."),
 ("Hermione in Authority", "Wherein Pansy keeps running into trouble, and Hermione is only too happy to take advantage of the fact that she has the upper hand."),
-("Teenage girlhood: power dynamics and messy friendship and sex", "The Daphne/Pansy porn");
+("Teenage girlhood: power dynamics and messy friendship and sex", "The Daphne/Pansy porn"),
+("Voyeurism for Fun and Profit", "The other Weasley Twins business....");
 
 /*
  * Series fanfictions
@@ -93,4 +94,8 @@ SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Teenage girlhood: power dynamics and messy friendship and sex" AND f.name = "Walkies" AND a.name = "Lokifan"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Teenage girlhood: power dynamics and messy friendship and sex" AND f.name = "You Did Say ""Anything""" AND a.name = "Lokifan";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Teenage girlhood: power dynamics and messy friendship and sex" AND f.name = "You Did Say ""Anything""" AND a.name = "Lokifan"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Shagging Spot" AND f.name = "Walkies" AND a.name = "hollywoodland"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Encore" AND f.name = "You Did Say ""Anything""" AND a.name = "hollywoodland";

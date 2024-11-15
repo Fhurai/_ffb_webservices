@@ -856,6 +856,14 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Harry Potter / Lily Evans Potter"),
 ("Angelina Johnson / Harry Potter"),
 ("Cho Chang / Harry Potter"),
+("Angelina Johnson / Frederick 'Fred' Weasley"),
+("Lavender Brown / Parvati Patil"),
+("Cormac McLaggen / Lavender Brown / Parvati Patil"),
+("Alicia Spinnet / Angelina Johnson"),
+("Alicia Spinnet / George Weasley"),
+("Astoria Greengrass / Harry Potter"),
+("Astoria Greengrass / Draco Malfoy"),
+("Harry Potter / Parvati Patil"),
 /************************************************************************************************************************************/
 ("Liara T'Soni / Shepard (F)"),
 ("Aria T'Loak / Councilor Tevos"),
@@ -1047,7 +1055,7 @@ SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Laven
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Pansy Parkinson" AND c.`name` = "Hermione Granger"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Pansy Parkinson" AND c.`name` = "Hermione Granger"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Hermione Granger" AND c.`name` = "Cho Chang"
 UNION 
@@ -1104,6 +1112,40 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Harry Potter" AND c.`name` = "Cho Chang"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Angelina Johnson / Frederick 'Fred' Weasley" AND c.`name` = "Angelina Johnson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Angelina Johnson / Frederick 'Fred' Weasley" AND c.`name` = "Frederick 'Fred' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Lavender Brown / Parvati Patil" AND c.`name` = "Lavender Brown"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Lavender Brown / Parvati Patil" AND c.`name` = "Parvati Patil"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cormac McLaggen / Lavender Brown / Parvati Patil" AND c.`name` = "Lavender Brown"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cormac McLaggen / Lavender Brown / Parvati Patil" AND c.`name` = "Parvati Patil"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cormac McLaggen / Lavender Brown / Parvati Patil" AND c.`name` = "Cormac McLaggen"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / Angelina Johnson" AND c.`name` = "Alicia Spinnet"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / Angelina Johnson" AND c.`name` = "Angelina Johnson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / George Weasley" AND c.`name` = "Alicia Spinnet"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alicia Spinnet / George Weasley" AND c.`name` = "George Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Harry Potter" AND c.`name` = "Astoria Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Draco Malfoy" AND c.`name` = "Astoria Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Draco Malfoy" AND c.`name` = "Draco Malfoy"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Parvati Patil" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Parvati Patil" AND c.`name` = "Parvati Patil"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Shepard (F)" AND c.`name` = "Liara T'Soni"
 UNION 

@@ -144,7 +144,19 @@ SELECT "https://archiveofourown.org/works/237011", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://archiveofourown.org/works/2441465", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Normal" AND a.name = "RosaCalavera"
 UNION
-SELECT "https://archiveofourown.org/works/2689190/chapters/6016817", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712";
+SELECT "https://archiveofourown.org/works/2689190/chapters/6016817", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712"
+UNION
+SELECT "https://archiveofourown.org/works/2748764/chapters/6161819", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Clueless" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/2783978", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar"
+UNION
+SELECT "https://archiveofourown.org/works/305912", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland"
+UNION
+SELECT "https://archiveofourown.org/works/305913", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland"
+UNION
+SELECT "https://archiveofourown.org/works/3084182", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine"
+UNION
+SELECT "https://archiveofourown.org/works/3153056", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye";
 
 /*
  * Fanfictions fandoms
@@ -294,7 +306,19 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION -- Harry Potter - J. K. Rowling
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Normal" AND a.name = "RosaCalavera" AND f.name = "Harry Potter - Wizarding World"
 UNION -- Harry Potter - J. K. Rowling
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Clueless" AND a.name = "Pottermum" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter - J. K. Rowling
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND f.name = "Harry Potter - Wizarding World";
 
 /*
  * Fanfictions relations
@@ -464,7 +488,35 @@ SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id
 UNION -- Angelina Johnson/Harry Potter
 SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712" AND r.name = "Angelina Johnson / Harry Potter"
 UNION -- Cho Chang/Harry Potter
-SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712" AND r.name = "Cho Chang / Harry Potter";
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712" AND r.name = "Cho Chang / Harry Potter"
+UNION -- Harry Potter/Ginny Weasley
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Clueless" AND a.name = "Pottermum" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION -- Harry Potter/Nymphadora Tonks
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar" AND r.name = "Harry Potter / Nymphadora Tonks"
+UNION -- Angelina Johnson/Fred Weasley
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND r.name = "Angelina Johnson / Frederick 'Fred' Weasley"
+UNION -- Lavender Brown/Parvati Patil
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND r.name = "Lavender Brown / Parvati Patil"
+UNION -- Lavender Brown/Parvati Patil/Cormac McLaggen
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND r.name = "Cormac McLaggen / Lavender Brown / Parvati Patil"
+UNION -- Angelina Johnson/Fred Weasley
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND r.name = "Angelina Johnson / Frederick 'Fred' Weasley"
+UNION -- Alicia Spinnet/George Weasley
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND r.name = "Alicia Spinnet / George Weasley"
+UNION -- Angelina Johnson/Alicia Spinnet
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND r.name = "Alicia Spinnet / Angelina Johnson"
+UNION -- Lavender Brown/Parvati Patil
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND r.name = "Lavender Brown / Parvati Patil"
+UNION -- Lavender Brown/Parvati Patil/Cormac McLaggen
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND r.name = "Cormac McLaggen / Lavender Brown / Parvati Patil"
+UNION -- Astoria Greengrass/Harry Potter
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND r.name = "Astoria Greengrass / Harry Potter"
+UNION -- Harry Potter/Ginny Weasley
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION -- Astoria Greengrass/Draco Malfoy
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND r.name = "Astoria Greengrass / Draco Malfoy"
+UNION -- Parvati Patil/Harry Potter
+SELECT ff.id, r.id FROM relations r, fanfictions ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND r.name = "Harry Potter / Parvati Patil";
 
 /*
  * Fanfictions characters
@@ -954,7 +1006,47 @@ SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE
 UNION /************************************************************************************************************************************/
 SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Normal" AND a.name = "RosaCalavera" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
 UNION -- 
-SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Normal" AND a.name = "RosaCalavera" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans Potter" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Normal" AND a.name = "RosaCalavera" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Nymphadora Tonks
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nymphadora Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Frederick 'Fred' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- George Weasley
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "George Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Lavender Brown
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lavender Brown" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Parvati Patil
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Parvati Patil" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Cormac McLaggen
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cormac McLaggen" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Angelina Johnson" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Alicia Spinnet
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alicia Spinnet" AND f.name = "Harry Potter - Wizarding World"
+UNION -- George Weasley
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "George Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Fred Weasley
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Frederick 'Fred' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Lavender Brown
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lavender Brown" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Parvati Patil
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Parvati Patil" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Cormac McLaggen
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Encore" AND a.name = "Hollywoodland" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cormac McLaggen" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Astoria Greengrass
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Astoria Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Parvati Patil
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Parvati Patil" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Lavender Brown
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lavender Brown" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Neville Longbottom
+SELECT ff.id, c.id FROM fanfictions ff, characters c, authors a, fandoms f WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom" AND f.name = "Harry Potter - Wizarding World";
 
 /*
  * Fanfictions tags
@@ -1256,4 +1348,32 @@ SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.a
 UNION
 SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Normal" AND t.name = "Sexual content" AND a.name = "RosaCalavera"
 UNION /************************************************************************************************************************************/
-SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Horny at Hogwarts" AND t.name = "Sexual content" AND a.name = "Jumper712";
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Horny at Hogwarts" AND t.name = "Sexual content" AND a.name = "Jumper712"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Clueless" AND t.name = "Romance" AND a.name = "Pottermum"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Metamorph Bet" AND t.name = "Sexual content" AND a.name = "MayorHaggar"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND t.name = "Pwp" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND t.name = "Sexual content" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND t.name = "Lesbian / Yuri" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND t.name = "Multi" AND a.name = "Hollywoodland"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Encore" AND t.name = "Pwp" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Encore" AND t.name = "Sexual content" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Encore" AND t.name = "Lesbian / Yuri" AND a.name = "Hollywoodland"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Encore" AND t.name = "Multi" AND a.name = "Hollywoodland"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Minister's Affair" AND t.name = "Sexual content" AND a.name = "Romaine"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "The Minister's Affair" AND t.name = "Romance" AND a.name = "Romaine"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Favours & Benefits" AND t.name = "Sexual content" AND a.name = "Lightofdaye"
+UNION
+SELECT ff.id, t.id FROM tags t, fanfictions ff INNER JOIN authors a on a.id=ff.author_id WHERE ff.name = "Favours & Benefits" AND t.name = "Romance" AND a.name = "Lightofdaye";
