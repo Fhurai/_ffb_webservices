@@ -8,24 +8,35 @@ DELETE FROM `authors`;
 INSERT INTO `authors`(`id`, `name`, `creation_date`, `update_date`, `delete_date`) VALUES (1,'','1970-01-01','1970-01-01', NULL);
 
 INSERT INTO `authors` (`name`) 
-VALUES ("Jayf"),
+VALUES ("Allyrion"),
 ("Ariaojou"),
-("Jm1681"),
+("AuntieL"),
 ("Cj Spencer"),
+("Clio_jlh"),
 ("Eric Michael Kline"),
-("Me413"),
-("Somebody's Nightmare"),
-("Senigata"),
-("Nataku's Wrath"),
-("VeryBerry96"),
 ("IAltoSax"),
-("Selphie800"),
+("Inell"),
+("Jayf"),
+("Jm1681"),
+("Jumper712"),
+("Kabal42"),
+("Lokifan"),
+("Me413"),
 ("M'jai"),
-("Allyrion"),
+("Nataku's Wrath"),
 ("Phoenixgal"),
-("Tjs_whatnot"),
+("Previouslysane (altar_boy)"),
+("QuidditchMom (eibbil_one)"),
+("RosaCalavera"),
+("Sarcastrow"),
 ("Scarletladyy"),
-("QuidditchMom (eibbil_one)");
+("Selphie800"),
+("Senigata"),
+("Somebody's Nightmare"),
+("Tjs_whatnot"),
+("Twisted_Mind"),
+("VeryBerry96"),
+("Woldy");
 
 
 /*
@@ -194,4 +205,52 @@ SELECT "Caught" as name, a.id as author_id, 3 as rating, "Harry comes home early
 FROM `authors` a, `languages` l WHERE a.name="QuidditchMom (eibbil_one)" AND l.name="English"
 UNION
 SELECT "Parkinson's Knickers (Or Lack Thereof)" as name, a.id as author_id, 4 as rating, "Harry always knew the monthly budget meetings were boring, but he didn't realize just how boring until Pansy Parkinson offered to show him something a little more interesting." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Quid Pro Quo" as name, a.id as author_id, 4 as rating, "“So it's blackmail then?” he asked, licking his lips. She dropped her gaze, the corners of her lips twisting into a wicked smile. “Generally speaking, I prefer the term extortion.”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Games Without Frontiers" as name, a.id as author_id, 4 as rating, "An exercise in Auror training holds some pleasant surprises for Harry and Tonks." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kabal42" AND l.name="English"
+UNION
+SELECT "All's Fair" as name, a.id as author_id, 4 as rating, "The Life of the Auror Seamus Finnigan. Some sex, a little quidditch, some sex, fight some death eaters, some sex, Just your average day. Updating! And now we continue with Seamus and his true love as they find their way in a brave new world of love and dragons." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sarcastrow" AND l.name="English"
+UNION
+SELECT "Another Kind of Lesson" as name, a.id as author_id, 4 as rating, "When Pansy thinks herself the perfect Slytherin, it's up to Hermione to teach her that rules do, in fact, apply to her." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Twisted_Mind" AND l.name="English"
+UNION
+SELECT "Another Kind of Teacher" as name, a.id as author_id, 4 as rating, "After Pansy's last lesson, she finds herself a willing student, but soon learns that what she seeks is not always what she will find . . ." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Twisted_Mind" AND l.name="English"
+UNION
+SELECT "Another Kind of Punishment" as name, a.id as author_id, 4 as rating, "It's been years since Pansy learned those lessons from Hermione, but she's not done learning yet." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Twisted_Mind" AND l.name="English"
+UNION
+SELECT "Walkies" as name, a.id as author_id, 4 as rating, "Pansy hates it when Daphne makes her crawl on all fours through the Common Room." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lokifan" AND l.name="English"
+UNION
+SELECT "You Did Say ""Anything""" as name, a.id as author_id, 4 as rating, "Pansy chose not to come if it meant doing it in the Slytherin common room. The next day, Daphne makes her pay." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lokifan" AND l.name="English"
+UNION
+SELECT "Playing Games" as name, a.id as author_id, 3 as rating, "She doesn’t want to make it an easy victory" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Inell" AND l.name="English"
+UNION
+SELECT "Just Ask" as name, a.id as author_id, 4 as rating, "Pure smut, responding to a request on tumblr from kelshawke who said that they couldn't find any queerplatonic Harry/Luna so I decided to write a little smut! It's very tidbit, I hope you enjoy!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Previouslysane (altar_boy)" AND l.name="English"
+UNION
+SELECT "The Challenges of Remote Subbing" as name, a.id as author_id, 3 as rating, "Hermione learns that subbing outside of the bedroom can be very challenging." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AuntieL" AND l.name="English"
+UNION
+SELECT "Pretty From Behind" as name, a.id as author_id, 4 as rating, "It was all Harry's fault, of course. He was the one with the gorgeous arse. Hermione just couldn't help herself." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Clio_jlh" AND l.name="English"
+UNION
+SELECT "Bliss" as name, a.id as author_id, 4 as rating, "Hermione goes to a sex club on multiple occasions and learns something new about herself every visit" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Inell" AND l.name="English"
+UNION
+SELECT "That'll Show Them" as name, a.id as author_id, 4 as rating, "She leaned in to kiss Pansy again, slowly, possessively. Her hand curled in the small of Pansy's back, and she hoped that anybody who didn't like it would choke." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Woldy" AND l.name="English"
+UNION
+SELECT "Normal" as name, a.id as author_id, 3 as rating, "A fractured mind can't distinguish between right or wrong." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RosaCalavera" AND l.name="English"
+UNION
+SELECT "Horny at Hogwarts" as name, a.id as author_id, 4 as rating, "Right first off this is basically pure smut. Teenagers stuck at school for most of the year, of course they're going to end up having sex. This is my story of those sexual encounters. Fourth year onwards only. Don't know how this will turn out. Chapter lengths with vary greatly. So just read and review" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jumper712" AND l.name="English";
