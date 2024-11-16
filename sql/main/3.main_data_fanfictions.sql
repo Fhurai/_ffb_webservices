@@ -9,22 +9,30 @@ INSERT INTO `authors`(`id`, `name`, `creation_date`, `update_date`, `delete_date
 
 INSERT INTO `authors` (`name`) 
 VALUES ("Allyrion"),
+("Argenterie"),
 ("Ariaojou"),
 ("AuntieL"),
 ("Cj Spencer"),
 ("Clio_jlh"),
+("DepravedDevil"),
 ("Eric Michael Kline"),
+("Emmagrant01"),
 ("Hollywoodland"),
+("HPTrio"),
 ("IAltoSax"),
 ("Inell"),
 ("Jayf"),
 ("Jm1681"),
 ("Jumper712"),
 ("Kabal42"),
+("Leggo My Lego Harry Potter (Runic_Purple_Panda)"),
 ("Lightofdaye"),
+("Likebunnies"),
 ("Lokifan"),
+("MargaretSexyMum"),
 ("MayorHaggar"),
 ("Me413"),
+("Megamatt09"),
 ("M'jai"),
 ("Nataku's Wrath"),
 ("Phoenixgal"),
@@ -33,15 +41,24 @@ VALUES ("Allyrion"),
 ("QuidditchMom (eibbil_one)"),
 ("Romaine"),
 ("RosaCalavera"),
+("RZZMG"),
+("Sarah1281"),
 ("Sarcastrow"),
 ("Scarletladyy"),
 ("Selphie800"),
 ("Senigata"),
 ("Somebody's Nightmare"),
+("Star54kar"),
+("TableForThree_Archivist"),
+("Thatsarockfact55"),
+("ThatsRealMagic"),
 ("Tjs_whatnot"),
+("Tryslora"),
 ("Twisted_Mind"),
 ("VeryBerry96"),
-("Woldy");
+("WerewolfWarriro"),
+("Woldy"),
+("Zephyr_Fauchelevent");
 
 
 /*
@@ -276,4 +293,344 @@ SELECT "The Minister's Affair" as name, a.id as author_id, 4 as rating, "Members
 FROM `authors` a, `languages` l WHERE a.name="Romaine" AND l.name="English"
 UNION
 SELECT "Favours & Benefits" as name, a.id as author_id, 4 as rating, "Parvati really hates feeling like a third wheel, so when Lavender wants her to go out with her and Neville, Parvati begs Harry to come too." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English"
+UNION
+SELECT "This Christmas" as name, a.id as author_id, 4 as rating, "It’s Christmas Eve at the Ministry party when Lavender begs help from Neville. Last year her heart was broken; maybe this year he can help make everything better!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tryslora" AND l.name="English"
+UNION
+SELECT "The Stockings Were Hung by the Chimney With Care" as name, a.id as author_id, 4 as rating, "Ginny decides to do some holiday decorating with Harry." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Star54kar" AND l.name="English"
+UNION
+SELECT "Stress Relief" as name, a.id as author_id, 4 as rating, "Not being removed that far from her teenage years gives Tonks a perfect perspective into how to deal with Harry's broodiness. And she could use some tension relief herself to be fair." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Megamatt09" AND l.name="English"
+UNION
+SELECT "A Very Happy Mother's Day" as name, a.id as author_id, 4 as rating, "Breakfast in bed was nice. Dessert was better." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Megamatt09" AND l.name="English"
+UNION
+SELECT "Property of Potter" as name, a.id as author_id, 4 as rating, "Ginny is not happy about Fleur not knowing who she belongs to, so she endeavors to correct that problem." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Megamatt09" AND l.name="English"
+UNION
+SELECT "The One Blessing of a Curse" as name, a.id as author_id, 4 as rating, "Being almost a werewolf comes with some extra-hairy irritations. While magic might be one answer to the problem, Lavender has learned that sometimes getting in and doing it the Muggle way is better." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tryslora" AND l.name="English"
+UNION
+SELECT "Stress Relief" as name, a.id as author_id, 4 as rating, "Bill and Fleur teach Hermione a new method for stress relief" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Inell" AND l.name="English"
+UNION
+SELECT "The Weasley Witches Collective" as name, a.id as author_id, 4 as rating, "The females of the Weasley and Delacour families get to know each other much better in advance of Fleur's coming marriage to Bill. Their lesbian orgy is interrupted by Rita Skeeter who is punished for her indiscretion." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MargaretSexyMum" AND l.name="English"
+UNION
+SELECT "Bad Day (Or How to Get Hermione to Stop Worrying And Enjoy Sex While On The Clock)" as name, a.id as author_id, 4 as rating, "Harry devises a way for Hermione to stop having a bad day at work." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "First Times" as name, a.id as author_id, 2 as rating, "Ginny realises how much she and her daughter are alike. Second in my Lily Luna stories" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "Eros & Psyche" as name, a.id as author_id, 4 as rating, "It's the end of 7th year at Hogwarts when the Slytherins make a bold move: to challenge the Gryffindors to play EROS & PSYCHE, a scandalous magical card game with a mysterious, dark history." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RZZMG" AND l.name="English"
+UNION
+SELECT "Birthday Wishes" as name, a.id as author_id, 4 as rating, "Harry asks his lover what he wants for his birthday. His answer will change their lives." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "I wasn't thinking about you, again." as name, a.id as author_id, 4 as rating, "For her whole life, she thinks: she has bled, and bled, and bled. And the war is over now. She holds Ron in her arms, night after night, and she thinks, in her heart. She thinks, “I am not thinking about you.” Harry." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Argenterie" AND l.name="English"
+UNION
+SELECT "Euphemism is a perfectly good word" as name, a.id as author_id, 3 as rating, "Innuendo's, entendres and euphemisms? You'll find them all here." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "That Need" as name, a.id as author_id, 4 as rating, "Sometimes people have needs they can't satisfy alone. Sometimes that need requires help from friends." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="HPTrio" AND l.name="English"
+UNION
+SELECT "Seekers of Love" as name, a.id as author_id, 2 as rating, "Harry wakes up to find names tattooed on his wrists. Shenanigans ensue." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Thatsarockfact55" AND l.name="English"
+UNION
+SELECT "I'm Sure!" as name, a.id as author_id, 4 as rating, "Padma always wants to try new things" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English"
+UNION
+SELECT "Fly Away" as name, a.id as author_id, 4 as rating, "On her 17th birthday, Hermione gets a special invitation from Harry. " as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Likebunnies" AND l.name="English"
+UNION
+SELECT "Uninhibited: Nymphadora" as name, a.id as author_id, 4 as rating, "Now that he has taken his revenge on the Dursleys, Harry is going after people he wants, instead of ulterior motives compelling him to fuck them. First up is Nymphadora Tonks, after they make the trip to Grimmauld Place. The woman drags Harry into her bedroom, instead of allowing him to join Ron in their room, and Harry is all to happy to oblige her." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DepravedDevil" AND l.name="English"
+UNION
+SELECT "Dominating Daphne" as name, a.id as author_id, 4 as rating, "Daphne whimpered when Master nipped at her ear. 'Good ... but we're not done with your punishment yet, are we' EWE" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatsRealMagic" AND l.name="English"
+UNION
+SELECT "Daphne Dominates" as name, a.id as author_id, 4 as rating, "Mornings were always her favourite time to exercise her own control over him. EWE" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatsRealMagic" AND l.name="English"
+UNION
+SELECT "Daytime Domination" as name, a.id as author_id, 4 as rating, "'The only thought running through Daphne's sex fogged brain was that she needed her boyfriend and she needed him right. Now.' EWE" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatsRealMagic" AND l.name="English"
+UNION
+SELECT "Ginny's Need" as name, a.id as author_id, 4 as rating, "Ginny's team has just won the Quidditch Champions. A girl has to celebrate, right?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "The Bet" as name, a.id as author_id, 4 as rating, "Bill and Fleur play a game with Harry." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Emmagrant01" AND l.name="English"
+UNION
+SELECT "Sustenance." as name, a.id as author_id, 3 as rating, "My take on Harry and Ginny's first time. Tender, touching and humorous." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "Ginny's Appetite" as name, a.id as author_id, 3 as rating, "Ginny has a big appetite. Hey, she's a Weasley!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English"
+UNION
+SELECT "Dinner, Date...Draco?" as name, a.id as author_id, 3 as rating, "Harry and Narcissa's night out is interrupted by an uninvited and unwelcome guest." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MayorHaggar" AND l.name="English"
+UNION
+SELECT "When the Magic Stops Working" as name, a.id as author_id, 4 as rating, "It begins with the end. Magic isn't working anymore. Both in Otter's Ridge, where the Aurors are tasked with finding out why magic has simple disappeared in places and from people, and in the relationships that surround Harry. He isn't sure where to look to find Magic again, and when he does seek it out, finds it in unexpected places, and with unexpected consequences. It will take all of those around him to sort through and bring the magic back to life." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tryslora" AND l.name="English"
+UNION
+SELECT "Broom Cupboard Encounters" as name, a.id as author_id, 4 as rating, "Slughorn's Christmas Party was Luna's first ever date; how was she supposed to know that she wasn't expected to finish it off by giving herself to her partner for the evening?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Harry Potter and his luscious Butt" as name, a.id as author_id, 4 as rating, "Hermione happens upon Harry and his girlfriend getting it on. And then opens up his arse, as well as an entire new world for him. WARNING - Sub!Harry" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WerewolfWarriro" AND l.name="English"
+UNION
+SELECT "The Hogwarts Renewal Program" as name, a.id as author_id, 2 as rating, "Dumbledore always had faith in Snape, until Harry Potter pointed several things out to him. Dumbledore hatches a plan to see if Snape is as bad as rumors say. *~*The prologue and first chapter of this story were previously posted on Fanfiction.net, but the story was left there uncompleted. Even if you read the chapters posted there, please reread the whole story. It has been revised, edited, and completed since then.*~*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leggo My Lego Harry Potter (Runic_Purple_Panda)" AND l.name="English"
+UNION
+SELECT "Tit for Tat" as name, a.id as author_id, 4 as rating, "Hermione has a new cause, and Ron can’t help but think that this is going to be Big Trouble." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Inell" AND l.name="English"
+UNION
+SELECT "A Vampire Legacy; the story" as name, a.id as author_id, 3 as rating, "We all know now that Alucard was Vlad Tepes, Prince of Wallachia before becoming Dracula. We know he's the oldest warmonger to walk the face of the earth. What we didn't know, was if he still has descendants living among humanity. What if the Hellsing organization was called to get rid of vampires who decided to nest on Privet Drive? ABANDONED/UP FOR ADOPTION. POSSIBLE REWRITE IN THE FUTURE." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Zephyr_Fauchelevent" AND l.name="English"
+UNION
+SELECT "Saving the Savior" as name, a.id as author_id, 2 as rating, "The Potter Trust Vault has many protections. Too bad Lucius Malfoy didn't know. *~*The prologue and first two chapters of this story were previously posted on Fanfiction.net, but the story was left there uncompleted. Even if you read the chapters posted there, please reread the whole story. It has been revised, edited, and completed since then.*~*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leggo My Lego Harry Potter (Runic_Purple_Panda)" AND l.name="English"
+UNION
+SELECT "The Last Time" as name, a.id as author_id, 4 as rating, "Harry wants a special present for his birthday-he wants to watch Ron and Hermione. He's shocked when they ask him to join in." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TableForThree_Archivist" AND l.name="English"
+UNION
+SELECT "No Thank You" as name, a.id as author_id, 4 as rating, "What if the Dursley family had taken the more practical route of treating Harry kindly in order to keep him away from magic? What if it worked? What if he wants nothing to do with the wizarding world and Dumbledore has to solve his own problems for once?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sarah1281" AND l.name="English";
+
+/*
+ * Link
+ * NOTE Links to fanfictions
+ */
+DELETE FROM `links`;
+INSERT INTO `links`(`url`, `fanfiction_id`) 
+SELECT "https://archiveofourown.org/works/7746940/chapters/17662930", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dancing Dragonflies" AND a.name = "Jayf"
+UNION
+SELECT "https://www.fanfiction.net/s/11171160/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Necessary" AND a.name = "Ariaojou"
+UNION
+SELECT "https://www.fanfiction.net/s/11171789/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Life in the New World" AND a.name = "Jm1681"
+UNION
+SELECT "https://www.fanfiction.net/s/11423880/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "We'll not die!" AND a.name = "Cj Spencer"
+UNION
+SELECT "https://www.fanfiction.net/s/12885248/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Cross Ange: The Knight of Hilda" AND a.name = "Eric Michael Kline"
+UNION
+SELECT "https://www.fanfiction.net/s/13678532/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Comeback Kid" AND a.name = "Somebody's Nightmare"
+UNION
+SELECT "https://www.fanfiction.net/s/14077257/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Lost Love Letters of Cloud Strife" AND a.name = "Somebody's Nightmare"
+UNION
+SELECT "https://www.fanfiction.net/s/14078396/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Waiting" AND a.name = "Me413"
+UNION
+SELECT "https://www.fanfiction.net/s/13330614/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Innocent Feelings" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13330619/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Journey of a Barmaid" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13396980/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Emerald Dream" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13417712/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Golden Respite" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13423308/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lost Heart" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13428455/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fractured Mind" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13447581/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Starlight" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/13330623/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Post Crisis" AND a.name = "Senigata"
+UNION
+SELECT "https://www.fanfiction.net/s/3054771/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Gunslinger" AND a.name = "Nataku's Wrath"
+UNION
+SELECT "https://www.fanfiction.net/s/8487603/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Final Fantasy: Guardians" AND a.name = "VeryBerry96"
+UNION
+SELECT "https://www.fanfiction.net/s/7823214/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Twist in Fate" AND a.name = "IAltoSax"
+UNION
+SELECT "https://www.fanfiction.net/s/5096318/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Final Fantasy X: All Bets Are Off" AND a.name = "Selphie800"
+UNION
+SELECT "https://www.fanfiction.net/s/5195185/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "All Bets Are Off: The Sequel" AND a.name = "Selphie800"
+UNION
+SELECT "https://www.fanfiction.net/s/6844081/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "FFX: All Bets Are Off 3: Tidus & Yuna Forever" AND a.name = "Selphie800"
+UNION
+SELECT "https://www.fanfiction.net/s/9661091/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "FFX: All Bets Are Off 4: For the Love of Tidus" AND a.name = "Selphie800"
+UNION
+SELECT "https://www.fanfiction.net/s/10804886/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "All Bets Are Off V: The Conclusion" AND a.name = "Selphie800"
+UNION
+SELECT "https://www.fanfiction.net/s/13490272/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Neo-Genesis" AND a.name = "M'jai"
+UNION
+SELECT "https://www.fanfiction.net/s/13265491/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Spira's Dream" AND a.name = "M'jai"
+UNION
+SELECT "https://www.fanfiction.net/s/13336008/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Spira's Sphere" AND a.name = "M'jai"
+UNION
+SELECT "https://www.fanfiction.net/s/13761265/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Spira's Revenge" AND a.name = "M'jai"
+UNION
+SELECT "https://archiveofourown.org/works/1029121/chapters/2049512", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The More the Merrier" AND a.name = "Allyrion"
+UNION
+SELECT "https://archiveofourown.org/works/10506063", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mixed Up Dreams" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10391232", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lost in Muggle London" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394559", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Perils of Too Much Calming Potion" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394589", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Second String" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10860894", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Family" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394610", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Rules" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12216330", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Muggle Relations" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12199704", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Family Time" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394628", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lucky Kids" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10864125", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Expanding Bed Charms" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10394706", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Not a Phase" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/12258987", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Awkward Lunch" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10506039", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "At the Hogsnock Baths" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/10864611", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Perfect Gingerbread Men" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/9710111", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Outsider" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/11917491", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Greek Holiday" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/14171427", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Daily Prophet Is Still a Gossip Rag" AND a.name = "Phoenixgal"
+UNION
+SELECT "https://archiveofourown.org/works/1078686", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Best and the Brightest" AND a.name = "Tjs_whatnot"
+UNION
+SELECT "https://archiveofourown.org/works/1087458", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fancy That" AND a.name = "Scarletladyy"
+UNION
+SELECT "https://archiveofourown.org/works/1129793", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From One Good Time To Another" AND a.name = "Scarletladyy"
+UNION
+SELECT "https://archiveofourown.org/works/117609", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Grey Haven" AND a.name = "QuidditchMom (eibbil_one)"
+UNION
+SELECT "https://archiveofourown.org/works/117626", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Red Dress" AND a.name = "QuidditchMom (eibbil_one)"
+UNION
+SELECT "https://archiveofourown.org/works/117627", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Up Against the Wall" AND a.name = "QuidditchMom (eibbil_one)"
+UNION
+SELECT "https://archiveofourown.org/works/117632", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Caught" AND a.name = "QuidditchMom (eibbil_one)"
+UNION
+SELECT "https://archiveofourown.org/works/1179394", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Parkinson's Knickers (Or Lack Thereof)" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/1183749", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Quid Pro Quo" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/136800", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Games Without Frontiers" AND a.name = "Kabal42"
+UNION
+SELECT "https://archiveofourown.org/works/1522337/chapters/3219140", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "All's Fair" AND a.name = "Sarcastrow"
+UNION
+SELECT "https://archiveofourown.org/works/1603226", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Another Kind of Lesson" AND a.name = "Twisted_Mind"
+UNION
+SELECT "https://archiveofourown.org/works/1603265", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Another Kind of Teacher" AND a.name = "Twisted_Mind"
+UNION
+SELECT "https://archiveofourown.org/works/1603409", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Another Kind of Punishment" AND a.name = "Twisted_Mind"
+UNION
+SELECT "https://archiveofourown.org/works/2057250", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Walkies" AND a.name = "Lokifan"
+UNION
+SELECT "https://archiveofourown.org/works/5929906", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You Did Say ""Anything""" AND a.name = "Lokifan"
+UNION
+SELECT "https://archiveofourown.org/works/2159955", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Playing Games" AND a.name = "Inell"
+UNION
+SELECT "https://archiveofourown.org/works/2223129", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Ask" AND a.name = "Previouslysane (altar_boy)"
+UNION
+SELECT "https://archiveofourown.org/works/228014", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Challenges of Remote Subbing" AND a.name = "AuntieL"
+UNION
+SELECT "https://archiveofourown.org/works/23223", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Pretty From Behind" AND a.name = "Clio_jlh"
+UNION
+SELECT "https://archiveofourown.org/works/2330375", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bliss" AND a.name = "Inell"
+UNION
+SELECT "https://archiveofourown.org/works/237011", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "That'll Show Them" AND a.name = "Woldy"
+UNION
+SELECT "https://archiveofourown.org/works/2441465", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Normal" AND a.name = "RosaCalavera"
+UNION
+SELECT "https://archiveofourown.org/works/2689190/chapters/6016817", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Horny at Hogwarts" AND a.name = "Jumper712"
+UNION
+SELECT "https://archiveofourown.org/works/2748764/chapters/6161819", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Clueless" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/2783978", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Metamorph Bet" AND a.name = "MayorHaggar"
+UNION
+SELECT "https://archiveofourown.org/works/305912", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Shagging Spot" AND a.name = "Hollywoodland"
+UNION
+SELECT "https://archiveofourown.org/works/305913", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Encore" AND a.name = "Hollywoodland"
+UNION
+SELECT "https://archiveofourown.org/works/3084182", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Minister's Affair" AND a.name = "Romaine"
+UNION
+SELECT "https://archiveofourown.org/works/3153056", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Favours & Benefits" AND a.name = "Lightofdaye"
+UNION
+SELECT "https://archiveofourown.org/works/1140315", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "This Christmas" AND a.name = "Tryslora"
+UNION
+SELECT "http://archiveofourown.org/works/133672", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Stockings Were Hung by the Chimney With Care" AND a.name = "Star54kar"
+UNION
+SELECT "https://archiveofourown.org/works/1494676", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Stress Relief" AND a.name = "Megamatt09"
+UNION
+SELECT "https://archiveofourown.org/works/1594001", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Very Happy Mother's Day" AND a.name = "Megamatt09"
+UNION
+SELECT "https://archiveofourown.org/works/1681298/chapters/3572561", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Property of Potter" AND a.name = "Megamatt09"
+UNION
+SELECT "https://archiveofourown.org/works/218355", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The One Blessing of a Curse" AND a.name = "Tryslora"
+UNION
+SELECT "https://archiveofourown.org/works/2266149", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Stress Relief" AND a.name = "Inell"
+UNION
+SELECT "https://archiveofourown.org/works/2508476", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Weasley Witches Collective" AND a.name = "MargaretSexyMum"
+UNION
+SELECT "https://archiveofourown.org/works/287895", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bad Day (Or How to Get Hermione to Stop Worrying And Enjoy Sex While On The Clock)" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/3244520", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "First Times" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/3316826/chapters/7247597", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Eros & Psyche" AND a.name = "RZZMG"
+UNION
+SELECT "https://archiveofourown.org/works/3319946/chapters/7254968", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Birthday Wishes" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/3552710/chapters/7823180", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I wasn't thinking about you, again." AND a.name = "Argenterie"
+UNION
+SELECT "https://archiveofourown.org/works/3664839", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Euphemism is a perfectly good word" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/386831/chapters/633840", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "That Need" AND a.name = "HPTrio"
+UNION
+SELECT "https://archiveofourown.org/works/3869599/chapters/8647621", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Seekers of Love" AND a.name = "Thatsarockfact55"
+UNION
+SELECT "https://archiveofourown.org/works/3940219", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I'm Sure!" AND a.name = "Lightofdaye"
+UNION
+SELECT "https://archiveofourown.org/works/4009669", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fly Away" AND a.name = "Likebunnies"
+UNION
+SELECT "https://archiveofourown.org/works/4060003", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Uninhibited: Nymphadora" AND a.name = "DepravedDevil"
+UNION
+SELECT "https://archiveofourown.org/works/3387680", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dominating Daphne" AND a.name = "ThatsRealMagic"
+UNION
+SELECT "https://archiveofourown.org/works/4081549", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Daphne Dominates" AND a.name = "ThatsRealMagic"
+UNION
+SELECT "https://archiveofourown.org/works/7030750", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Daytime Domination" AND a.name = "ThatsRealMagic"
+UNION
+SELECT "https://archiveofourown.org/works/4104787", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry's Need" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/4111189", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ginny's Need" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/4244874", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Bet" AND a.name = "Emmagrant01"
+UNION
+SELECT "https://archiveofourown.org/works/4261107/chapters/9645003", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sustenance." AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/4295556", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ginny's Appetite" AND a.name = "Pottermum"
+UNION
+SELECT "https://archiveofourown.org/works/4314258", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dinner, Date...Draco?" AND a.name = "MayorHaggar"
+UNION
+SELECT "https://archiveofourown.org/works/434599/chapters/737881", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dinner, Date...Draco?" AND a.name = "Tryslora"
+UNION
+SELECT "https://archiveofourown.org/works/4361342/chapters/9895154", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Broom Cupboard Encounters" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/4413446/chapters/10024109", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and his luscious Butt" AND a.name = "WerewolfWarriro"
+UNION
+SELECT "https://archiveofourown.org/works/4417412/chapters/10035245", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Hogwarts Renewal Program" AND a.name = "Leggo My Lego Harry Potter (Runic_Purple_Panda)"
+UNION
+SELECT "https://archiveofourown.org/works/4429739", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Tit for Tat" AND a.name = "Inell"
+UNION
+SELECT "https://archiveofourown.org/works/4576842/chapters/10424151", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Vampire Legacy; the story" AND a.name = "Zephyr_Fauchelevent"
+UNION
+SELECT "https://archiveofourown.org/works/4580109/chapters/10431903", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Saving the Savior" AND a.name = "Leggo My Lego Harry Potter (Runic_Purple_Panda)"
+UNION
+SELECT "https://archiveofourown.org/works/4636959", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Last Time" AND a.name = "TableForThree_Archivist"
+UNION
+SELECT "https://archiveofourown.org/works/4694069", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Thank You" AND a.name = "Sarah1281";
