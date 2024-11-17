@@ -57,9 +57,8 @@ VALUES ("Romance", "Story is about or mentions bit of romance between two or mor
 ("Post-canon", "Story takes place after the original timeline of the universe."),
 ("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children."),
 ("Next Generation", "Story takes place while the children of canon heroes are at the current age of their parents."),
-("Hetero / straight", "Story is about or mentions a relationship between a man and a woman."),
-("Gay / Yaoi", "Story is about or mentions a relationship between two men."),
-("Lesbian / Yuri", "Story is about or mentions a relationship between two women."),
+("Gay | Yaoi", "Story is about or mentions a relationship between two men."),
+("Lesbian | Yuri", "Story is about or mentions a relationship between two women."),
 ("Multi", "Story is about or mentions a relationship between more than two characters."),
 ("Harem", "Story is about or mentions a relationship between a character and multiple other characters without another relationship."),
 ("Mecha", "Story is about or mentions mecha / robots."),
@@ -896,6 +895,20 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Harry Potter / Susan Bones"),
 ("Amelia Bones / Sirius Black"),
 ("Hermione Granger / Neville Longbottom"),
+("Nymphadora Tonks / Remus Lupin / Sirius Black"),
+("Lavender Brown / Ronald 'Ron' Weasley"),
+("Gabrielle Delacour / Harry Potter"),
+("Fleur Delacour / Gabrielle Delacour / Harry Potter"),
+("Fleur Delacour / Gabrielle Delacour"),
+("Daphne Greengrass / Neville Longbottom"),
+("Neville Longbottom / Pansy Parkinson"),
+("Neville Longbottom / Tracey Davis"),
+("Daphne Greengrass / Pansy Parkinson / Tracey Davis"),
+("Cho Chang / Katie Bell"),
+("Harry Potter / Katie Bell"),
+("Hermione Granger / Parvati Patil"),
+("Hermione Granger / Lavender Brown"),
+("Ginevra 'Ginny' Weasley / Lavender Brown"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -1305,6 +1318,68 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Neville Longbottom" AND c.`name` = "Hermione Granger"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Neville Longbottom" AND c.`name` = "Neville Longbottom"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Nymphadora Tonks / Remus Lupin / Sirius Black" AND c.`name` = "Nymphadora Tonks"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Nymphadora Tonks / Remus Lupin / Sirius Black" AND c.`name` = "Remus Lupin"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Nymphadora Tonks / Remus Lupin / Sirius Black" AND c.`name` = "Sirius Black"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Lavender Brown / Ronald 'Ron' Weasley" AND c.`name` = "Lavender Brown"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Lavender Brown / Ronald 'Ron' Weasley" AND c.`name` = "Ronald 'Ron' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Gabrielle Delacour / Harry Potter" AND c.`name` = "Gabrielle Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Gabrielle Delacour / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Gabrielle Delacour / Harry Potter" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Gabrielle Delacour / Harry Potter" AND c.`name` = "Gabrielle Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Gabrielle Delacour / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Gabrielle Delacour" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Gabrielle Delacour" AND c.`name` = "Gabrielle Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Neville Longbottom" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Neville Longbottom" AND c.`name` = "Neville Longbottom"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Neville Longbottom / Pansy Parkinson" AND c.`name` = "Neville Longbottom"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Neville Longbottom / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Neville Longbottom / Tracey Davis" AND c.`name` = "Neville Longbottom"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Neville Longbottom / Tracey Davis" AND c.`name` = "Tracey Davis"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Pansy Parkinson / Tracey Davis" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Pansy Parkinson / Tracey Davis" AND c.`name` = "Pansy Parkinson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Pansy Parkinson / Tracey Davis" AND c.`name` = "Tracey Davis"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Katie Bell" AND c.`name` = "Cho Chang"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Katie Bell" AND c.`name` = "Katie Bell"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Katie Bell" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Katie Bell" AND c.`name` = "Katie Bell"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Parvati Patil" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Parvati Patil" AND c.`name` = "Parvati Patil"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Lavender Brown" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Lavender Brown" AND c.`name` = "Lavender Brown"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Lavender Brown" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Lavender Brown" AND c.`name` = "Lavender Brown"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 

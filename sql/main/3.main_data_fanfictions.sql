@@ -8,27 +8,41 @@ DELETE FROM `authors`;
 INSERT INTO `authors`(`id`, `name`, `creation_date`, `update_date`, `delete_date`) VALUES (1,'','1970-01-01','1970-01-01', NULL);
 
 INSERT INTO `authors` (`name`) 
-VALUES ("Allyrion"),
+VALUES ("Abigail89"),
+("Aceofdiamonds"),
+("Allyrion"),
 ("Argenterie"),
 ("Ariaojou"),
 ("AuntieL"),
+("Charleybradburies"),
 ("Cj Spencer"),
 ("Clio_jlh"),
 ("DepravedDevil"),
+("Dirtyuncle"),
 ("Eric Michael Kline"),
 ("Emmagrant01"),
+("Flipflop_diva"),
+("Fluffybookfaerie"),
+("Harby"),
+("Heyitsamorette (AmoretteHD)"),
 ("Hollywoodland"),
+("Holyfant"),
 ("HPTrio"),
 ("IAltoSax"),
+("Icicle"),
 ("Inell"),
+("Iwant2baweasley (becboobear)"),
 ("Jayf"),
 ("Jm1681"),
 ("Jumper712"),
 ("Kabal42"),
+("Lamp23"),
 ("Leggo My Lego Harry Potter (Runic_Purple_Panda)"),
+("Leviathan0999"),
 ("Lightofdaye"),
 ("Likebunnies"),
 ("Lokifan"),
+("Luvscharlie"),
 ("MargaretSexyMum"),
 ("MayorHaggar"),
 ("Me413"),
@@ -40,6 +54,7 @@ VALUES ("Allyrion"),
 ("Previouslysane (altar_boy)"),
 ("QuidditchMom (eibbil_one)"),
 ("Romaine"),
+("Ronslady23"),
 ("RosaCalavera"),
 ("RZZMG"),
 ("Sarah1281"),
@@ -47,18 +62,24 @@ VALUES ("Allyrion"),
 ("Scarletladyy"),
 ("Selphie800"),
 ("Senigata"),
+("Sheltie1987"),
+("Smutty_claus"),
 ("Somebody's Nightmare"),
 ("Star54kar"),
 ("TableForThree_Archivist"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
 ("Tjs_whatnot"),
+("Torino10154"),
 ("Tryslora"),
 ("Twisted_Mind"),
+("Ufohnoparty (why_didnt_i_get_any_soup)"),
 ("VeryBerry96"),
 ("WerewolfWarriro"),
 ("Woldy"),
-("Zephyr_Fauchelevent");
+("Zakhro"),
+("Zephyr_Fauchelevent"),
+("Zoelily");
 
 
 /*
@@ -401,7 +422,94 @@ SELECT "The Last Time" as name, a.id as author_id, 4 as rating, "Harry wants a s
 FROM `authors` a, `languages` l WHERE a.name="TableForThree_Archivist" AND l.name="English"
 UNION
 SELECT "No Thank You" as name, a.id as author_id, 4 as rating, "What if the Dursley family had taken the more practical route of treating Harry kindly in order to keep him away from magic? What if it worked? What if he wants nothing to do with the wizarding world and Dumbledore has to solve his own problems for once?" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Sarah1281" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Sarah1281" AND l.name="English"
+UNION
+SELECT "Rouse the Dead" as name, a.id as author_id, 4 as rating, "For sdk" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Torino10154" AND l.name="English"
+UNION
+SELECT "Healing" as name, a.id as author_id, 2 as rating, "Upon finding Harry Potter outside Borgin and Burkes, Madam Poppy Pomfrey discovers something sinister is going on. *~*The prologue of this story was previously posted on Fanfiction.net, but the story was left there uncompleted. Even if you read the chapter posted there, please reread the whole story. It has been revised, edited, and completed since then.*~*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leggo My Lego Harry Potter (Runic_Purple_Panda)" AND l.name="English"
+UNION
+SELECT "Office Fun" as name, a.id as author_id, 4 as rating, "Harry discovers the joys of office loving." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ronslady23" AND l.name="English"
+UNION
+SELECT "Reward" as name, a.id as author_id, 4 as rating, "On a particular day, Harry receives a call that his long time best friend is passed out on a bar. Like the dutiful friend he is, Harry carries Ron to his home. But now, he wants reward. What reward is it? Of course Hermione and Rose. Together." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Zakhro" AND l.name="English"
+UNION
+SELECT """Harry Potter and the Unbreakable Bond""" as name, a.id as author_id, 4 as rating, "When Hermione uses ancient magic to save Harry and Ron, the trio's lives are changed - forever!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leviathan0999" AND l.name="English"
+UNION
+SELECT "I'm Worried About Harry" as name, a.id as author_id, 4 as rating, "Someone has to help Harry lift his bad mood, and Hermione is going to be the one, and not for totally selfless reasons because have you seen Harry? He's gorgeous. And he's hers. And Ron is gorgeous and hers. And she wants to fuck both of them, basically. That should really be the summary. Hermione wants to fuck them both. So she does." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Heyitsamorette (AmoretteHD)" AND l.name="English"
+UNION
+SELECT "Before the Wedding" as name, a.id as author_id, 4 as rating, "Vaguely related to a post on tumblr describing bi!Harry talking about how attractive all the Weasley siblings are. And then I just thought...damn Bill/Harry/Fleur would be awesome." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ufohnoparty (why_didnt_i_get_any_soup)" AND l.name="English"
+UNION
+SELECT "Roman Holiday" as name, a.id as author_id, 4 as rating, "Times are different now." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Charleybradburies" AND l.name="English"
+UNION
+SELECT "Goblin Warfare" as name, a.id as author_id, 2 as rating, "Flitwick stumbles upon Harry a few days after the Goblet of Fire spits out his name. *~*The prologue of this story were previously posted on Fanfiction.net, but the story was left there uncompleted. Even if you read the chapter posted there, please reread the whole story. It has been revised, edited, and completed since then.*~*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leggo My Lego Harry Potter (Runic_Purple_Panda)" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Veela Sisters" as name, a.id as author_id, 4 as rating, "Harry Potter goes on a beach vacation with his fiancée Fleur Delacour. Fleur's younger sister Gabrielle wheedles her way into coming along." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dirtyuncle" AND l.name="English"
+UNION
+SELECT "Christmas Holiday" as name, a.id as author_id, 3 as rating, "Home for the holidays, Harry and Ginny finally find their moment alone." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Quiet" as name, a.id as author_id, 4 as rating, "She was always the quiet one, until she's in bed with him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English"
+UNION
+SELECT "Falling Through Clouds" as name, a.id as author_id, 4 as rating, "As soon as Ron stepped back into the life that he and Hermione had been sharing, inside that tent, that intimate capsule, their only protection – something inside Harry clicked back into its rightful place." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Holyfant" AND l.name="English"
+UNION
+SELECT "Private Party in the Conservatory" as name, a.id as author_id, 4 as rating, "Daphne Greengrass brings her boyfriend, Neville Longbottom, with her to a Slytherin party at the Zabini's manor. He's about to find out just what happens at a Slytherin party after everyone starts drinking." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Iwant2baweasley (becboobear)" AND l.name="English"
+UNION
+SELECT "Christmas Cheer" as name, a.id as author_id, 4 as rating, "Four years after the Battle of Hogwarts, Harry finally seems to be having all the fun he deserves. But, will this Christmas bring problems or simply more joy?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Smutty_claus" AND l.name="English"
+UNION
+SELECT "Slytherin Games (Remix of Snakes)" as name, a.id as author_id, 4 as rating, "Pansy had always hated Daphne Greengrass." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Icicle" AND l.name="English"
+UNION
+SELECT "Anonymous Signs" as name, a.id as author_id, 4 as rating, "The Trio gives up the Wizarding world. For the day. Because there are just some things that wizards can't find in the Wizarding world." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Abigail89" AND l.name="English"
+UNION
+SELECT "my heart is holding on to you" as name, a.id as author_id, 4 as rating, "six kisses in katie’s life, growing in significance over time" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aceofdiamonds" AND l.name="English"
+UNION
+SELECT "Candy Cane Obsessed Freak" as name, a.id as author_id, 4 as rating, "Hermione loves candy canes" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Luvscharlie" AND l.name="English"
+UNION
+SELECT "Female Transfiguration 101" as name, a.id as author_id, 4 as rating, "Hermione has found a new book in the library that seems to have some very interesting spells, what happens when she and Ginny test their effects together." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lamp23" AND l.name="English"
+UNION
+SELECT "Bedtime" as name, a.id as author_id, 4 as rating, "Harry's working too hard." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Holyfant" AND l.name="English"
+UNION
+SELECT "Tea with the Headmistress" as name, a.id as author_id, 1 as rating, "Halfway through Harry's first year at Hogwarts, a very much alive James and Lily pop in to check in on him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fluffybookfaerie" AND l.name="English"
+UNION
+SELECT "Fire" as name, a.id as author_id, 4 as rating, "Parvati wanted the binding ceremony to be perfect. A little magic goes a long way." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Zoelily" AND l.name="English"
+UNION
+SELECT "Accio Ballgag!" as name, a.id as author_id, 4 as rating, "Fast-forward, ten years later. Mistress Hermione is so proud of her little Harry! She knew this was exactly how things were supposed to happen right from the start. She's sometimes slightly dysfunctional, just a little possessive, but still adorable..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Harby" AND l.name="English"
+UNION
+SELECT "Christmas Bells are Ringing" as name, a.id as author_id, 4 as rating, "It's bad enough that he's being forced to spend the holidays away from home and his closest friends, but constantly being in such close proximity to the woman of his dreams is nothing short of torture." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MayorHaggar" AND l.name="English"
+UNION
+SELECT "For This One Day" as name, a.id as author_id, 4 as rating, "He was the last person she expected to wake up in bed with. But the problem is, where do they go from here?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Flipflop_diva" AND l.name="English"
+UNION
+SELECT "A Birthday Gift" as name, a.id as author_id, 4 as rating, "Victoire's Birthday is here and Fleur wants to give her the best present she could." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Zakhro" AND l.name="English"
+UNION
+SELECT "A Night in the Lioness' Den" as name, a.id as author_id, 4 as rating, "What happens one night in the girl's Dorms of the noble Lions." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sheltie1987" AND l.name="English"
+UNION
+SELECT "Trouble, with a Capital T" as name, a.id as author_id, 2 as rating, "She was fun, smart and sassy. She was trouble, with a capital T!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pottermum" AND l.name="English";
 
 /*
  * Link
@@ -633,4 +741,62 @@ SELECT "https://archiveofourown.org/works/4580109/chapters/10431903", ff.id FROM
 UNION
 SELECT "https://archiveofourown.org/works/4636959", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Last Time" AND a.name = "TableForThree_Archivist"
 UNION
-SELECT "https://archiveofourown.org/works/4694069", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Thank You" AND a.name = "Sarah1281";
+SELECT "https://archiveofourown.org/works/4694069", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Thank You" AND a.name = "Sarah1281"
+UNION
+SELECT "https://archiveofourown.org/works/4714073", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Rouse the Dead" AND a.name = "Torino10154"
+UNION
+SELECT "https://archiveofourown.org/works/4736876/chapters/10825904", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Healing" AND a.name = "Leggo My Lego Harry Potter (Runic_Purple_Panda)"
+UNION
+SELECT "https://archiveofourown.org/works/474197/chapters/822358", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Office Fun" AND a.name = "Ronslady23"
+UNION
+SELECT "https://archiveofourown.org/works/4749380", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reward" AND a.name = "Zakhro"
+UNION
+SELECT "https://archiveofourown.org/works/4749584/chapters/10857227", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = """Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999"
+UNION
+SELECT "https://archiveofourown.org/works/4815533", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I'm Worried About Harry" AND a.name = "Heyitsamorette (AmoretteHD)"
+UNION
+SELECT "https://archiveofourown.org/works/4915315", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Before the Wedding" AND a.name = "Ufohnoparty (why_didnt_i_get_any_soup)"
+UNION
+SELECT "https://archiveofourown.org/works/4972744", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Roman Holiday" AND a.name = "Charleybradburies"
+UNION
+SELECT "https://archiveofourown.org/works/4973755/chapters/11423518", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Goblin Warfare" AND a.name = "Leggo My Lego Harry Potter (Runic_Purple_Panda)"
+UNION
+SELECT "https://archiveofourown.org/works/4979758/chapters/11437501", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Veela Sisters" AND a.name = "Dirtyuncle"
+UNION
+SELECT "https://archiveofourown.org/works/5230337", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Christmas Holiday" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/5256011", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Quiet" AND a.name = "Lightofdaye"
+UNION
+SELECT "https://archiveofourown.org/works/533693", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Falling Through Clouds" AND a.name = "Holyfant"
+UNION
+SELECT "https://archiveofourown.org/works/5414423", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Private Party in the Conservatory" AND a.name = "Iwant2baweasley (becboobear)"
+UNION
+SELECT "https://archiveofourown.org/works/5423630", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Christmas Cheer" AND a.name = "Smutty_claus"
+UNION
+SELECT "https://archiveofourown.org/works/542943", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Slytherin Games (Remix of Snakes)" AND a.name = "Icicle"
+UNION
+SELECT "https://archiveofourown.org/works/544129", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Anonymous Signs" AND a.name = "Abigail89"
+UNION
+SELECT "https://archiveofourown.org/works/5443523", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "my heart is holding on to you" AND a.name = "Aceofdiamonds"
+UNION
+SELECT "https://archiveofourown.org/works/5479661", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Candy Cane Obsessed Freak" AND a.name = "Luvscharlie"
+UNION
+SELECT "https://archiveofourown.org/works/5548187/chapters/12796865", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Female Transfiguration 101" AND a.name = "Lamp23"
+UNION
+SELECT "https://archiveofourown.org/works/5560825", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bedtime" AND a.name = "Holyfant"
+UNION
+SELECT "https://archiveofourown.org/works/5588080", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Tea with the Headmistress" AND a.name = "Fluffybookfaerie"
+UNION
+SELECT "https://archiveofourown.org/works/5690038", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fire" AND a.name = "Zoelily"
+UNION
+SELECT "https://archiveofourown.org/works/5690041/chapters/13106431", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Accio Ballgag!" AND a.name = "Harby"
+UNION
+SELECT "https://archiveofourown.org/works/5743573", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Christmas Bells are Ringing" AND a.name = "MayorHaggar"
+UNION
+SELECT "https://archiveofourown.org/works/5746036", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For This One Day" AND a.name = "Flipflop_diva"
+UNION
+SELECT "https://archiveofourown.org/works/5769400", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Birthday Gift" AND a.name = "Zakhro"
+UNION
+SELECT "https://archiveofourown.org/works/5853172", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Night in the Lioness' Den" AND a.name = "Sheltie1987"
+UNION
+SELECT "https://archiveofourown.org/works/5974891/chapters/13730596", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Trouble, with a Capital T" AND a.name = "Pottermum";
