@@ -36,6 +36,14 @@ CREATE OR REPLACE VIEW stats_authors_fanfictions AS (
     GROUP BY author_id
 );
 
+CREATE OR REPLACE VIEW stats_authors_ratings_fanfictions AS (
+    SELECT a.id AS id, a.name AS name, COUNT(f.id) AS nb_fanfictions, r.name AS rating, r.id AS identifier
+    FROM `ffb_main`.`authors` a
+    INNER JOIN `ffb_main`.`fanfictions` f ON f.author_id = a.id
+    INNER JOIN `ffb_main`.`ratings` r ON r.id = f.rating_id
+    GROUP BY f.author_id, f.rating_id
+);
+
 CREATE OR REPLACE VIEW stats_languages_fanfictions AS (
     SELECT l.id as id, l.name as author, count(f.id) as nb_fanfictions 
     FROM `ffb_main`.`languages` l 
