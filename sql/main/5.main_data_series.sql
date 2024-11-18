@@ -12,7 +12,9 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Hermione in Authority", "Wherein Pansy keeps running into trouble, and Hermione is only too happy to take advantage of the fact that she has the upper hand."),
 ("Teenage girlhood: power dynamics and messy friendship and sex", "The Daphne/Pansy porn"),
 ("Voyeurism for Fun and Profit", "The other Weasley Twins business...."),
-("The Domination Series", "A collection of short stories about Harry Potter and Daphne Greengrass' burgeoning relationship.");
+("The Domination Series", "A collection of short stories about Harry Potter and Daphne Greengrass' burgeoning relationship."),
+("Contrast in Love", "A series of post war angsty, smutty, personal problem filled one shots. Pairings include: Harry Potter x Pansy Parkinson, Draco Malfoy x Hermione Granger, Blaise Zabini x Luna Lovegood, Ron Weasley x Daphne Greengrass, Neville Longbottom x Tracey Davis because I need some more rare pairs in my life. 2/5 complete."),
+("The Boy Who Wanted Her Stories", "");
 
 /*
  * Series fanfictions
@@ -105,4 +107,12 @@ SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION
 SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Domination Series" AND f.name = "Daphne Dominates" AND a.name = "ThatsRealMagic"
 UNION
-SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Domination Series" AND f.name = "Daytime Domination" AND a.name = "ThatsRealMagic";
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Domination Series" AND f.name = "Daytime Domination" AND a.name = "ThatsRealMagic"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Contrast in Love" AND f.name = "Restorative" AND a.name = ""
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Contrast in Love" AND f.name = "Addictive" AND a.name = ""
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Wanted Her Stories" AND f.name = "The Boy Who Wanted Her" AND a.name = "likebunnies"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Wanted Her Stories" AND f.name = "The Boy Who Was Hers" AND a.name = "likebunnies";
