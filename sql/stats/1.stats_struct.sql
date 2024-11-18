@@ -75,7 +75,7 @@ CREATE OR REPLACE VIEW stats_relations_fanfictions AS (
 );
 
 CREATE OR REPLACE VIEW stats_characters_fanfictions AS (
-    SELECT c.id as id, c.name as relation, f.name as fandom, count(ff.id) as nb_fanfictions 
+    SELECT c.id as id, c.name as characters, f.name as fandom, count(ff.id) as nb_fanfictions 
     FROM `ffb_main`.`characters` c
     INNER JOIN `ffb_main`.`fanfictions_characters` fnc ON fnc.character_id = c.id
     INNER JOIN `ffb_main`.`fanfictions` ff on ff.id = fnc.fanfiction_id
