@@ -11,6 +11,7 @@ INSERT INTO `authors` (`name`)
 VALUES ("Abigail89"),
 ("Aceofdiamonds"),
 ("Allyrion"),
+("Alyndra"),
 ("Ap_aelfwine"),
 ("Argenterie"),
 ("Ariaojou"),
@@ -46,6 +47,7 @@ VALUES ("Abigail89"),
 ("Leviathan0999"),
 ("Lightofdaye"),
 ("Likebunnies"),
+("Lily_pearl (lilyandjoey)"),
 ("Lokifan"),
 ("LRThunder"),
 ("Luvsanime02"),
@@ -54,6 +56,7 @@ VALUES ("Abigail89"),
 ("MayorHaggar"),
 ("Me413"),
 ("Megamatt09"),
+("Musyc"),
 ("M'jai"),
 ("Nataku's Wrath"),
 ("NidoranDuran"),
@@ -92,6 +95,7 @@ VALUES ("Abigail89"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
 ("VanessaWolfie"),
 ("VeryBerry96"),
+("Voxangelus"),
 ("Walgesang"),
 ("Wendings"),
 ("WerewolfWarriro"),
@@ -630,7 +634,19 @@ SELECT "A Chance Meeting" as name, a.id as author_id, 4 as rating, "" as descrip
 FROM `authors` a, `languages` l WHERE a.name="Starstruck1986" AND l.name="English"
 UNION
 SELECT "You're my what?" as name, a.id as author_id, 4 as rating, "Halfway through his fourth year Harry wakes up to a surprise." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Starstruck1986" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Starstruck1986" AND l.name="English"
+UNION
+SELECT "Not On His List" as name, a.id as author_id, 4 as rating, "As much as he wanted it, Harry didn't dare to put this on his Christmas list. Pansy got it for him anyway." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Musyc" AND l.name="English"
+UNION
+SELECT "An Unexpected Source of Wisdom" as name, a.id as author_id, 4 as rating, "Lavender and Parvati plant a very interesting idea in the Trio's heads." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Alyndra" AND l.name="English"
+UNION
+SELECT "Troika" as name, a.id as author_id, 4 as rating, "Hermione finds that her life is more complicated, more confusing and a lot more fun than she ever thought it would be." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lily_pearl (lilyandjoey)" AND l.name="English"
+UNION
+SELECT "Subservient Housewives and other Mythical Creatures" as name, a.id as author_id, 4 as rating, "From the outside, Susan looks like a doting, subservient housewife to her busy Auror husband. The outside would be very surprised at what goes on behind closed doors." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Voxangelus" AND l.name="English";
 
 /*
  * Link
@@ -988,4 +1004,12 @@ SELECT "https://archiveofourown.org/works/9857489", ff.id FROM fanfictions ff IN
 UNION
 SELECT "https://deluded-musings.fanficauthors.net/A_Chance_Meeting/Harry/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Chance Meeting" AND a.name = "Clell65619"
 UNION
-SELECT "https://ficwad.com/story/121391", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You're my what?" AND a.name = "Scruffy1";
+SELECT "https://ficwad.com/story/121391", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You're my what?" AND a.name = "Scruffy1"
+UNION
+SELECT "https://archiveofourown.org/works/631287", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Not On His List" AND a.name = "Musyc"
+UNION
+SELECT "https://archiveofourown.org/works/7816444", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "An Unexpected Source of Wisdom" AND a.name = "Alyndra"
+UNION
+SELECT "https://archiveofourown.org/works/86489", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Troika" AND a.name = "Lily_pearl (lilyandjoey)"
+UNION
+SELECT "https://archiveofourown.org/works/86489", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Subservient Housewives and other Mythical Creatures" AND a.name = "Voxangelus";

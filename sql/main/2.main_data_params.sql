@@ -922,6 +922,7 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Gabrielle Delacour / Ginevra 'Ginny' Weasley / Harry Potter"),
 ("Gabrielle Delacour / Ginevra 'Ginny' Weasley"),
 ("Daphne Greengrass / Draco Malfoy / Pansy Parkinson"),
+("Hermione Granger / Padma Patil"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -1465,6 +1466,10 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Draco Malfoy / Pansy Parkinson" AND c.`name` = "Draco Malfoy"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Draco Malfoy / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Padma Patil" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Padma Patil" AND c.`name` = "Padma Patil"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 
