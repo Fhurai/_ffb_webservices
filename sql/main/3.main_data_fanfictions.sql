@@ -15,6 +15,7 @@ VALUES ("Abigail89"),
 ("Ap_aelfwine"),
 ("Argenterie"),
 ("Ariaojou"),
+("Aspionage"),
 ("AuntieL"),
 ("BananasPyjamas"),
 ("Browser13"),
@@ -23,9 +24,11 @@ VALUES ("Abigail89"),
 ("Cj Spencer"),
 ("Clell65619"),
 ("Clio_jlh"),
+("Daeneryske"),
 ("DepravedDevil"),
 ("Dime"),
 ("Dirtyuncle"),
+("Divagonzo"),
 ("Dorothea_Greengrass"),
 ("Emmagrant01"),
 ("Eric Michael Kline"),
@@ -33,6 +36,7 @@ VALUES ("Abigail89"),
 ("Farbautidottir"),
 ("FanfictionWriter101"),
 ("Femmeslyth"),
+("Fightfortherightsofhouseelves"),
 ("Flipflop_diva"),
 ("Fluffybookfaerie"),
 ("Gracerene"),
@@ -59,6 +63,7 @@ VALUES ("Abigail89"),
 ("Likebunnies"),
 ("Lily_pearl (lilyandjoey)"),
 ("Lokifan"),
+("Lomonaaeren"),
 ("Lostonplatform934"),
 ("LRThunder"),
 ("LuanMao"),
@@ -70,6 +75,7 @@ VALUES ("Abigail89"),
 ("MayorHaggar"),
 ("Me413"),
 ("Megamatt09"),
+("MimiAliceYorke"),
 ("Missmusicluver"),
 ("Musyc"),
 ("M'jai"),
@@ -82,6 +88,7 @@ VALUES ("Abigail89"),
 ("Phoenixgal"),
 ("Pommedeplume"),
 ("Pottermum"),
+("PotterSmut12"),
 ("Previouslysane (altar_boy)"),
 ("Prime_Blue"),
 ("QuarantineClean"),
@@ -98,6 +105,7 @@ VALUES ("Abigail89"),
 ("SazzyLJ"),
 ("Scarletladyy"),
 ("Scruffy1"),
+("SeaFeudJagger"),
 ("Selphie800"),
 ("Senigata"),
 ("Sheltie1987"),
@@ -105,25 +113,30 @@ VALUES ("Abigail89"),
 ("Snowblind12"),
 ("Somebody's Nightmare"),
 ("Songquake"),
+("SuperMegaAwesomeNinja"),
 ("Star54kar"),
+("Stardust_Warrior"),
 ("Starstruck1986"),
 ("TableForThree_Archivist"),
 ("TarnishedArmour"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
 ("Thewaywedo33"),
+("The_Lost_Nyctophiliac"),
 ("Tjs_whatnot"),
 ("Torino10154"),
 ("Tryslora"),
 ("Twisted_Mind"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
 ("VanessaWolfie"),
+("VelvetInferno"),
 ("VeryBerry96"),
 ("Voxangelus"),
 ("Walgesang"),
 ("Wendings"),
 ("WerewolfWarriro"),
 ("Woldy"),
+("Wyrdeen"),
 ("Zakhro"),
 ("Zephyr_Fauchelevent"),
 ("Zoelily");
@@ -822,8 +835,68 @@ UNION
 SELECT "Flower Power" as name, a.id as author_id, 4 as rating, "Fleur has a foolproof plan to win the Triwizard Tournament: fuck the competition so hard that they won't be able to complete. It's working well until she finds out just what Harry's packing. Will she be able to handle him? Of course not." as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="Browser13" AND l.name="English"
 UNION
-SELECT "The Life and Times of Edward Lupin (permanently discontinued)" as name, a.id as author_id, 1 as rating, "Harry Potter wasn't the only orphan of war. Edward Remus "Teddy" Lupin was used to being different. He knew most kids couldn't hear their friends breathe during hide and seek, or make their legs longer when they couldn't reach cookies on a higher shelf. And, of course, most kids have parents. Having lived a fairly sheltered life with his grandmother, he didn't have much in the way of friends his age. Now he is heading off to Hogwarts, without his best friend Victoire, he finds himself woefully unprepared for the world of friendships, lessons and, in some cases, unfair judgements. Turns out, real life isn't as perfect as his books told him..." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Luna_Weasley03" AND l.name="English";
+SELECT "The Life and Times of Edward Lupin (permanently discontinued)" as name, a.id as author_id, 1 as rating, "Harry Potter wasn't the only orphan of war. Edward Remus ""Teddy"" Lupin was used to being different. He knew most kids couldn't hear their friends breathe during hide and seek, or make their legs longer when they couldn't reach cookies on a higher shelf. And, of course, most kids have parents. Having lived a fairly sheltered life with his grandmother, he didn't have much in the way of friends his age. Now he is heading off to Hogwarts, without his best friend Victoire, he finds himself woefully unprepared for the world of friendships, lessons and, in some cases, unfair judgements. Turns out, real life isn't as perfect as his books told him..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Luna_Weasley03" AND l.name="English"
+UNION
+SELECT "The Bite Of Darkness" as name, a.id as author_id, 3 as rating, "The debacle of the International Quidditch tournament leaves Sebastian Delacour in a state of un-rest as his eldest daughter embarks on the journey of fame and fortune. What is a father to do when his child possesses the spirit of a bear and the stubbornness of a mule? The goblins lead him to a young man, who for all intents and purposes should not exist." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="The_Lost_Nyctophiliac" AND l.name="English"
+UNION
+SELECT "Homunculus to the Life" as name, a.id as author_id, 3 as rating, "In a conversation with Dumbledore’s portrait after the battle at Hogwarts, Harry finds out that he is and always has been a homunculus—a substitute body made to carry the Horcrux so that little Harry Potter, who lies asleep as a baby under powerful charms, wouldn’t have to. Harry struggles to process the news, the fallout, and the discovery that he might disintegrate at any moment." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lomonaaeren" AND l.name="English"
+UNION
+SELECT "Community Board: Looking for Companionship" as name, a.id as author_id, 4 as rating, "During Harry's final year at Hogwarts Headmistress McGonagall puts a community board connected to all the common rooms. In an effort to eliminate house rivalries it was meant to connect students from different houses. Instead girls who are broke from the war are using it as a way to sell themselves. Harry was just looking for a friend but comes out with a new hobby." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="PotterSmut12" AND l.name="English"
+UNION
+SELECT "Always Read the Instructions" as name, a.id as author_id, 4 as rating, "Ginny comes up with a solution to the problem of Harry shagging her to the point of exhaustion. Bbut when he goes to use it while she's showering with her teammates after practice, she realizes she REALLY should have read the instruction manual." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MayorHaggar" AND l.name="English"
+UNION
+SELECT "Harry Potter: After the Battle" as name, a.id as author_id, 4 as rating, "After the Battle of Hogwarts, Harry Potter struggles to put his life back together, to embrace a world he didn’t think he’d be able to see, from beginning Auror training and enduring a scathing, unauthorized biography by none other than Rita Skeeter, to salvaging his relationship with Ginny Weasley. Without the guidance of leaders like Albus Dumbledore, Remus Lupin, or even Severus Snape, and freed from the weighty task of defeating Lord Voldemort, Harry is faced with the most querulous mystery to date: himself." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Daeneryske" AND l.name="English"
+UNION
+SELECT "Substitute My Coke for Gin" as name, a.id as author_id, 4 as rating, "A secret from Harry’s schooldays stirs up trouble during his engagement to Ginny." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lightofdaye" AND l.name="English"
+UNION
+SELECT "Red Right Hand" as name, a.id as author_id, 4 as rating, "What could possibly go wrong if one stupidly decides to sleep with his prime (and only) suspect in a murder case? No less when the suspect just happens to be your best mate's sister." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fightfortherightsofhouseelves" AND l.name="English"
+UNION
+SELECT "Negotiate" as name, a.id as author_id, 4 as rating, "Lily Luna comes to her Mum to ask about a particular piece of jewellery she saw in old photographs and asks her mum a delicate question." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Divagonzo" AND l.name="English"
+UNION
+SELECT "Where The Grass Is Greener" as name, a.id as author_id, 4 as rating, "After the war, ideologies are questioned, priorities changed, and relationships cycled through like the ever-changing seasons. Harry, perhaps for the first time in his life, can just live and experience what it means to simply be another person – or as much as he can be, considering his name and fame. Co-authored with StellaStarMagic" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SeaFeudJagger" AND l.name="English"
+UNION
+SELECT "Apex Predator" as name, a.id as author_id, 4 as rating, "Fleur invites Harry to lunch to 'thank him' for rescuing her sister in the second task. Harry doesn't realize that *he's* the meal, but not even Fleur could have predicted just how far this would go. Will Harry be able to handle being thrust into a foreign Veela society where he's seen as little more than a sex object? Will that Veela society be able to handle Harry Potter?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="VelvetInferno" AND l.name="English"
+UNION
+SELECT "Society Fair" as name, a.id as author_id, 1 as rating, "Newly appointed to the Wizengamot, Harry is shocked by how truly archaic things are. Can he join forces with the only person who actually cares about the world they live in, to be able to change their society for the better or will he be blocked at every turn. Political AU fic, eventually HP/DG." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MimiAliceYorke" AND l.name="English"
+UNION
+SELECT "Harry Potter and The Truth or Dare?" as name, a.id as author_id, 4 as rating, "I know, truth or dare ... it's a bit of a cliche. There is nothing overly original or inventive here, but that doesn't mean it can't be fun. " as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SuperMegaAwesomeNinja" AND l.name="English"
+UNION
+SELECT "Panacea" as name, a.id as author_id, 4 as rating, "Sequel to Novocaine. The initial foundation has been laid, but there is still a lot more to do. Harry and Daphne navigate their relationship, and new and old challenges in their quest to rebuild the wizarding world." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Stardust_Warrior" AND l.name="English"
+UNION
+SELECT "Novocaine" as name, a.id as author_id, 3 as rating, "After the end of the war, Harry has a meeting in Gringotts that changes his life. Given a unique opportunity to rebuild the world, he takes it upon himself to restore what was once lost to the wizarding world, while falling for a charming witch at the same time." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Stardust_Warrior" AND l.name="English"
+UNION
+SELECT "A Long-Awaited Letter" as name, a.id as author_id, 1 as rating, """I Told You! Potters always end up in Gryffindor, it's in our blood!"" Wanting to prank the sneakiest Slytherin was a good idea. At least, that's what Harry thought... Post-War One-shot, HP/DG" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Wyrdeen" AND l.name="English"
+UNION
+SELECT "Born As The Seventh Month Dies" as name, a.id as author_id, 2 as rating, "After being abandoned at the Dursleys for eight years, Harry Potter isn't quick to forgive his parents - particularly since he has to share them with the self-absorbed Boy-Who-Lived, Oliver Potter. Will the Potter family be able to mend after years apart, or are some wounds just too deep to heal? Series now complete!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aspionage" AND l.name="English"
+UNION
+SELECT "Neither Can Live While The Other Survives" as name, a.id as author_id, 2 as rating, "After his first year back in the Wizarding World, Harry has started to rebuild a tenuous relationship with his parents and is headed off to Hogwarts. Of course, his time at school will be far from peaceful. Being the twin brother of the Boy-Who-Lived is never easy, especially when everyone thinks you’re a Squib. Filled with the burning desire to prove himself, Harry decides to carve a place for himself in a world where he seems destined to be forgotten. Sequel to Born As The Seventh Month Dies." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aspionage" AND l.name="English"
+UNION
+SELECT "Those Who Have Thrice Defied Him" as name, a.id as author_id, 2 as rating, "Things at Hogwarts are rarely peaceful - Harry knows that all too well. His Boy-Who-Lived brother, Oliver Potter, is constantly being dragged into all sorts of life-threatening situations, so after three years of constant danger it’s not that surprising when Oliver’s name is pulled out of the Goblet of Fire. It is shocking, however, when Harry’s name comes out right after it. As Harry and Oliver try to figure out a way to cope in such a dangerous tournament, a darker threat looms at the edges. And with that threat lies a bigger question - why would someone put Harry’s name in? And how will Harry and his family cope with the answer? Sequel to Neither Can Live While The Other Survives." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aspionage" AND l.name="English"
+UNION
+SELECT "Power The Dark Lord Knows Not" as name, a.id as author_id, 2 as rating, "Voldemort is dead, but he’s not going to stay that way. As the Order of the Phoenix frantically try to destroy Voldemort’s Horcruxes before he’s resurrected once more, a reluctant Harry and his brother are shuttled off to Hogwarts for their fifth year. Here, they’ll face more challenges than just Voldemort - namely one Dolores Umbridge and her smear campaign. Even if half of Hogwarts doesn’t believe that Harry’s the Boy-Who-Lived, he certainly knows it - and so do the Death Eaters. And Harry’s getting ready to earn his title and fight. Sequel to Those Who Have Thrice Defied Him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aspionage" AND l.name="English"
+UNION
+SELECT "The Two Brothers" as name, a.id as author_id, 2 as rating, "A series of oneshots from the perspective of Oliver Potter, twin brother of Harry Potter and the Boy-Who-Lived. At least, he thinks he’s the Boy-Who-Lived. Note:This fic takes place within the Sybillance universe, so you probably want to read those fics first or this won’t make much sense." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aspionage" AND l.name="English";
 
 /*
  * Link
@@ -1293,4 +1366,44 @@ SELECT "https://archiveofourown.org/works/25232911/chapters/61164553", ff.id FRO
 UNION
 SELECT "https://archiveofourown.org/works/26093692/chapters/63470257", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Flower Power" AND a.name = "Browser13"
 UNION
-SELECT "https://archiveofourown.org/works/27225694/chapters/66506383", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "The Life and Times of Edward Lupin (permanently discontinued)" AND a.name = "Luna_Weasley03";
+SELECT "https://archiveofourown.org/works/27225694/chapters/66506383", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "The Life and Times of Edward Lupin (permanently discontinued)" AND a.name = "Luna_Weasley03"
+UNION
+SELECT "https://archiveofourown.org/works/27400327/chapters/66967450", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "The Bite Of Darkness" AND a.name = "The_Lost_Nyctophiliac"
+UNION
+SELECT "https://archiveofourown.org/works/27889183/chapters/68290969", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Homunculus to the Life" AND a.name = "Lomonaaeren"
+UNION
+SELECT "https://archiveofourown.org/works/28347624/chapters/69453531", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Community Board: Looking for Companionship" AND a.name = "PotterSmut12"
+UNION
+SELECT "https://archiveofourown.org/works/28433856", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Always Read the Instructions" AND a.name = "MayorHaggar"
+UNION
+SELECT "https://archiveofourown.org/works/29219277/chapters/71743737", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Harry Potter: After the Battle" AND a.name = "Daeneryske"
+UNION
+SELECT "https://archiveofourown.org/works/293941", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Substitute My Coke for Gin" AND a.name = "Lightofdaye"
+UNION
+SELECT "https://archiveofourown.org/works/32094475/chapters/79509322", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Red Right Hand" AND a.name = "Fightfortherightsofhouseelves"
+UNION
+SELECT "https://archiveofourown.org/works/32219680", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Negotiate" AND a.name = "Divagonzo"
+UNION
+SELECT "https://archiveofourown.org/works/32366140/chapters/80240368", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Where The Grass Is Greener" AND a.name = "SeaFeudJagger"
+UNION
+SELECT "https://archiveofourown.org/works/33823474/chapters/84087325", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Apex Predator" AND a.name = "VelvetInferno"
+UNION
+SELECT "https://archiveofourown.org/works/35148202/chapters/87567922", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Society Fair" AND a.name = "MimiAliceYorke"
+UNION
+SELECT "https://archiveofourown.org/works/35531416", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and The Truth or Dare?" AND a.name = "SuperMegaAwesomeNinja"
+UNION
+SELECT "https://archiveofourown.org/works/35567194/chapters/88667866", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Panacea" AND a.name = "Stardust_Warrior"
+UNION
+SELECT "https://archiveofourown.org/works/15537897", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Novocaine" AND a.name = "Stardust_Warrior"
+UNION
+SELECT "https://archiveofourown.org/works/36254587", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "A Long-Awaited Letter" AND a.name = "Wyrdeen"
+UNION
+SELECT "https://archiveofourown.org/works/36571042/chapters/91210051", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Born As The Seventh Month Dies" AND a.name = "Aspionage"
+UNION
+SELECT "https://archiveofourown.org/works/38149387", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Neither Can Live While The Other Survives" AND a.name = "Aspionage"
+UNION
+SELECT "https://archiveofourown.org/works/40916982", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Those Who Have Thrice Defied Him" AND a.name = "Aspionage"
+UNION
+SELECT "https://archiveofourown.org/works/43264206", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Power The Dark Lord Knows Not" AND a.name = "Aspionage"
+UNION
+SELECT "https://archiveofourown.org/works/39769491", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "The Two Brothers" AND a.name = "Aspionage";

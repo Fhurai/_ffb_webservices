@@ -1,3 +1,9 @@
 Coté back
 1. A l'insertion, vérification que toutes les relations sont dans l'ordre alphabétique et si elles le sont, vérification que la relation n'existe pas déjà en base.
 2. Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
+
+Coté outils
+1. Character checker
+2. Relation checker
+3. Link checker
+4. Fanfiction checker (titre + auteur)

@@ -20,7 +20,9 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Revel", "The third part of the Triplicity series, as well as the spin-off works resulting from events in Revel(ations)"),
 ("We Three Seekers", ""),
 ("Southampton",""),
-("The Importance Of Intent Collection","");
+("The Importance Of Intent Collection",""),
+("Novocaine", ""),
+("Sybillance","Born As The Seventh Month Dies: Pre-Hogwarts. Neither Can Live While The Other Survives: 1st-3rd year. Those Who Have Thrice Defied Him: 4th year. Power The Dark Lord Knows Not: 5th year. The Two Brothers: A oneshot series from Ollie's point of view encompassing the whole series.");
 
 /*
  * Series fanfictions
@@ -171,4 +173,18 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Importance Of Intent Collection" AND f.name = "Daphne Greengrass and the Importance Of Intent" AND a.name = "PetrificusSomewhatus"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Importance Of Intent Collection" AND f.name = "The Importance Of Intent: After The Credits" AND a.name = "PetrificusSomewhatus";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Importance Of Intent Collection" AND f.name = "The Importance Of Intent: After The Credits" AND a.name = "PetrificusSomewhatus"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Novocaine" AND f.name = "Novocaine" AND a.name = "Stardust_Warrior"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Novocaine" AND f.name = "Panacea" AND a.name = "Stardust_Warrior"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "Born As The Seventh Month Dies" AND a.name = "Aspionage"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "Neither Can Live While The Other Survives" AND a.name = "Aspionage"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "Those Who Have Thrice Defied Him" AND a.name = "Aspionage"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "Power The Dark Lord Knows Not" AND a.name = "Aspionage"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "The Two Brothers" AND a.name = "Aspionage";
