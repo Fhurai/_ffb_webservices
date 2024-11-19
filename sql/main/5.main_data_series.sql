@@ -14,7 +14,13 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Voyeurism for Fun and Profit", "The other Weasley Twins business...."),
 ("The Domination Series", "A collection of short stories about Harry Potter and Daphne Greengrass' burgeoning relationship."),
 ("Contrast in Love", "A series of post war angsty, smutty, personal problem filled one shots. Pairings include: Harry Potter x Pansy Parkinson, Draco Malfoy x Hermione Granger, Blaise Zabini x Luna Lovegood, Ron Weasley x Daphne Greengrass, Neville Longbottom x Tracey Davis because I need some more rare pairs in my life. 2/5 complete."),
-("The Boy Who Wanted Her Stories", "");
+("The Boy Who Wanted Her Stories", ""),
+("The Boy Who Lived and The Girl Who Topped", "The ongoing tales of the sex life and love life of Ginevra Weasley and Harry Potter."),
+("Triplicity", ""),
+("Revel", "The third part of the Triplicity series, as well as the spin-off works resulting from events in Revel(ations)"),
+("We Three Seekers", ""),
+("Southampton",""),
+("The Importance Of Intent Collection","");
 
 /*
  * Series fanfictions
@@ -115,4 +121,54 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Wanted Her Stories" AND f.name = "The Boy Who Wanted Her" AND a.name = "likebunnies"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Wanted Her Stories" AND f.name = "The Boy Who Was Hers" AND a.name = "likebunnies";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Wanted Her Stories" AND f.name = "The Boy Who Was Hers" AND a.name = "likebunnies"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "A Memorable Farewell" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Yearning Hearts" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Open to Love" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Things to Do in Berlin (When You're Bored)" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Normal Things" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "The Girl Who Topped" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 7 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Sort of Friends and Lovers" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 8 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Various Climaxes" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 9 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Luna's Desires" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "The Art of Being Slytherin" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 11 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Welcome to the Family" AND a.name = "pommedeplume"
+UNION
+SELECT s.id, f.id, 12 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Boy Who Lived and The Girl Who Topped" AND f.name = "Open Doors" AND a.name = "pommedeplume"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Triplicity" AND f.name = "Best Behaviour" AND a.name = "Idleside"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Triplicity" AND f.name = "The World's a Stage" AND a.name = "Idleside"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Triplicity" AND f.name = "(Revel)ations" AND a.name = "Idleside"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Triplicity" AND f.name = "Blood and Bones" AND a.name = "Idleside"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Revel" AND f.name = "(Revel)ations" AND a.name = "Idleside"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Revel" AND f.name = "Helping Hands" AND a.name = "Idleside"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Revel" AND f.name = "Cosmopolitan" AND a.name = "Idleside"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "We Three Seekers" AND f.name = "We Three Seekers" AND a.name = "Farbautidottir"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "We Three Seekers" AND f.name = "Best Friends, Always" AND a.name = "Farbautidottir"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Southampton" AND f.name = "From Southampton to New York and Beyond" AND a.name = "Dorothea_Greengrass"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Southampton" AND f.name = "Memorial Week" AND a.name = "Dorothea_Greengrass"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Importance Of Intent Collection" AND f.name = "Daphne Greengrass and the Importance Of Intent" AND a.name = "PetrificusSomewhatus"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Importance Of Intent Collection" AND f.name = "The Importance Of Intent: After The Credits" AND a.name = "PetrificusSomewhatus";
