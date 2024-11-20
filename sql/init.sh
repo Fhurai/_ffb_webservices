@@ -13,10 +13,19 @@ echo "3 >"
 mysql --login-path=client --default-character-set=utf8  ffb_main < main/3.main_data_fanfictions.sql
 echo "done"
 echo "4 >"
-mysql --login-path=client --default-character-set=utf8  ffb_main < main/4.main_data_links.sql
+mysql --login-path=client --default-character-set=utf8  ffb_main < main/4.main_data_fanfictions_fandoms.sql
 echo "done"
 echo "5 >"
-mysql --login-path=client --default-character-set=utf8  ffb_main < main/5.main_data_series.sql
+mysql --login-path=client --default-character-set=utf8  ffb_main < main/5.main_data_fanfictions_relations.sql
+echo "done"
+echo "6 >"
+mysql --login-path=client --default-character-set=utf8  ffb_main < main/6.main_data_fanfictions_characters.sql
+echo "done"
+echo "7 >"
+mysql --login-path=client --default-character-set=utf8  ffb_main < main/7.main_data_fanfictions_tags.sql
+echo "done"
+echo "8 >"
+mysql --login-path=client --default-character-set=utf8  ffb_main < main/8.main_data_series.sql
 echo "done"
 
 echo "stats :"
