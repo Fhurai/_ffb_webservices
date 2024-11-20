@@ -1495,4 +1495,14 @@ SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.i
 UNION
 SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Ménage à Quatre" AND t.name = "Lesbian | Yuri" AND a.name = "Methos (Methos2523)"
 UNION /************************************************************************************************************************************/
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Brumous" AND t.name = "Fluff" AND a.name = "SeriouslySam";
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Brumous" AND t.name = "Fluff" AND a.name = "SeriouslySam"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Needs" AND t.name = "Romance" AND a.name = "Litfreak89"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Her Goodbye" AND t.name = "Romance" AND a.name = "Disappearing Boy"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Her Goodbye" AND t.name = "One-shot" AND a.name = "Disappearing Boy"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Bath and Bed" AND t.name = "Romance" AND a.name = "Tommigoesfroging"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Bath and Bed" AND t.name = "One-shot" AND a.name = "Tommigoesfroging";

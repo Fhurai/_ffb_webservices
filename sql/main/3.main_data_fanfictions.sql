@@ -30,6 +30,7 @@ VALUES ("Abigail89"),
 ("DepravedDevil"),
 ("Dime"),
 ("Dirtyuncle"),
+("Disappearing Boy"),
 ("Divagonzo"),
 ("Dorothea_Greengrass"),
 ("Emmagrant01"),
@@ -69,6 +70,7 @@ VALUES ("Abigail89"),
 ("Liiilyevans"),
 ("Likebunnies"),
 ("Lily_pearl (lilyandjoey)"),
+("Litfreak89"),
 ("Littlepuff04"),
 ("Lokifan"),
 ("Lomonaaeren"),
@@ -143,6 +145,7 @@ VALUES ("Abigail89"),
 ("Thewaywedo33"),
 ("The_Lost_Nyctophiliac"),
 ("Tjs_whatnot"),
+("Tommigoesfroging"),
 ("Torino10154"),
 ("Triage"),
 ("Tryslora"),
@@ -993,7 +996,16 @@ SELECT "Ménage à Quatre" as name, a.id as author_id, 4 as rating, "Hogwarts is
 FROM `authors` a, `languages` l WHERE a.name="Methos (Methos2523)" AND l.name="English"
 UNION
 SELECT "Brumous" as name, a.id as author_id, 3 as rating, "A mirror remembered. Such a subtle thing, yet also very potent. A butterfly flaps its wings and one small difference, one small action, causes an endless ripple of effects. Harry Potter and Sirius Black discover the true meaning of family as the world tilts on its axis." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="SeriouslySam" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="SeriouslySam" AND l.name="English"
+UNION
+SELECT "Needs" as name, a.id as author_id, 3 as rating, "Harry discovers that he needs Hermione much more than he originally thought..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Litfreak89" AND l.name="English"
+UNION
+SELECT "Her Goodbye" as name, a.id as author_id, 3 as rating, "Harry and Fleur get together the night before they leave Hogwarts in GoF. Rated M for sex." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Disappearing Boy" AND l.name="English"
+UNION
+SELECT "Bath and Bed" as name, a.id as author_id, 3 as rating, "Sometimes after a long days work all you need is some TLC. Harry and Ginny Lemon" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tommigoesfroging" AND l.name="English";
 
 /*
  * Link
@@ -1553,4 +1565,10 @@ SELECT "https://archiveofourown.org/works/37666063", ff.id FROM `fanfictions` ff
 UNION
 SELECT "https://archiveofourown.org/works/41199063/chapters/103281897", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)"
 UNION
-SELECT "https://archiveofourown.org/works/42882966/chapters/107733519", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Brumous" AND a.name = "SeriouslySam";
+SELECT "https://archiveofourown.org/works/42882966/chapters/107733519", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Brumous" AND a.name = "SeriouslySam"
+UNION
+SELECT "https://www.fanfiction.net/s/10000862/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Needs" AND a.name = "Litfreak89"
+UNION
+SELECT "https://www.fanfiction.net/s/10017016/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Her Goodbye" AND a.name = "Disappearing Boy"
+UNION
+SELECT "https://www.fanfiction.net/s/10055357/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging";
