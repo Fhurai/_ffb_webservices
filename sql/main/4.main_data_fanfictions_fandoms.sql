@@ -576,4 +576,28 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION -- Harry Potter
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her Goodbye" AND a.name = "Disappearing Boy" AND f.name = "Harry Potter - Wizarding World"
 UNION -- Harry Potter
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Homework with Hermione" AND a.name = "Airam06" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Prefects Bath" AND a.name = "123irish" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Library Princess" AND a.name = "Frenchhornbook" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Dirty games" AND a.name = "Noctus Noxia" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Courtesan" AND a.name = "HeartsIgnite" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Godfather Neville" AND a.name = "TsyberRhaegal" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reciprocation is key" AND a.name = "TsyberRhaegal" AND f.name = "Harry Potter - Wizarding World";

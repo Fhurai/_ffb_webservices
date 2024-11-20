@@ -1021,6 +1021,8 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Katie Bell"),
 ("Sirius Black / OFC"),
 ("Sirius Black / Marlene McKinnon"),
+("Bellatrix Black Lestrange / Hermione Granger"),
+("Fleur Delacour / Harry Potter / Nymphadora Tonks"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -1894,6 +1896,16 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sirius Black / Marlene McKinnon" AND c.`name` = "Sirius Black"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sirius Black / Marlene McKinnon" AND c.`name` = "Marlene McKinnon"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Bellatrix Black Lestrange / Hermione Granger" AND c.`name` = "Bellatrix Black Lestrange"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Bellatrix Black Lestrange / Hermione Granger" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Nymphadora Tonks" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Nymphadora Tonks" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Nymphadora Tonks" AND c.`name` = "Nymphadora Tonks"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 

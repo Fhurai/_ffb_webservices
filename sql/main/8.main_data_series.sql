@@ -22,7 +22,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Southampton",""),
 ("The Importance Of Intent Collection",""),
 ("Novocaine", ""),
-("Sybillance","Born As The Seventh Month Dies: Pre-Hogwarts. Neither Can Live While The Other Survives: 1st-3rd year. Those Who Have Thrice Defied Him: 4th year. Power The Dark Lord Knows Not: 5th year. The Two Brothers: A oneshot series from Ollie's point of view encompassing the whole series.");
+("Sybillance","Born As The Seventh Month Dies: Pre-Hogwarts. Neither Can Live While The Other Survives: 1st-3rd year. Those Who Have Thrice Defied Him: 4th year. Power The Dark Lord Knows Not: 5th year. The Two Brothers: A oneshot series from Ollie's point of view encompassing the whole series."),
+("From Feral to Domesticated","Hermione with the Black Sisters.");
 
 /*
  * Series fanfictions
@@ -187,4 +188,14 @@ SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION
 SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "Power The Dark Lord Knows Not" AND a.name = "Aspionage"
 UNION
-SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "The Two Brothers" AND a.name = "Aspionage";
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Sybillance" AND f.name = "The Two Brothers" AND a.name = "Aspionage"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "From Feral to Domesticated" AND f.name = "Feral" AND a.name = "TsyberRhaegal"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "From Feral to Domesticated" AND f.name = "Domesticated" AND a.name = "TsyberRhaegal"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "From Feral to Domesticated" AND f.name = "Godfather Neville" AND a.name = "TsyberRhaegal"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "From Feral to Domesticated" AND f.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "From Feral to Domesticated" AND f.name = "Reciprocation is key" AND a.name = "TsyberRhaegal";

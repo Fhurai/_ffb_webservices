@@ -1161,4 +1161,8 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION 
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
 UNION 
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION 
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Dirty games" AND a.name = "Noctus Noxia" AND r.name = "Bellatrix Black Lestrange / Hermione Granger"
+UNION 
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos" AND r.name = "Fleur Delacour / Harry Potter / Nymphadora Tonks";

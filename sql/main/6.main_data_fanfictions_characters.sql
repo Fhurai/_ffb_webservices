@@ -2633,4 +2633,70 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION /************************************************************************************************************************************/
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
 UNION -- Ginny W.
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Homework with Hermione" AND a.name = "Airam06" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Homework with Hermione" AND a.name = "Airam06" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the Prefects Bath" AND a.name = "123irish" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ginny W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the Prefects Bath" AND a.name = "123irish" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Library Princess" AND a.name = "Frenchhornbook" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "" AND f.name = "Pansy Parkinson"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ginny W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Gabrielle D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Gabrielle Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Dirty games" AND a.name = "Noctus Noxia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bellatrix Black Lestrange" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Dirty games" AND a.name = "Noctus Noxia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Courtesan" AND a.name = "HeartsIgnite" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Pansy P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Courtesan" AND a.name = "HeartsIgnite" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Pansy Parkinson" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Fleur D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fleur Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION -- N. Tonks]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nymphadora Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bellatrix Black Lestrange" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Andromeda T.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Andromeda Black Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Narcissa Black Malfoy" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Bellatrix L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bellatrix Black Lestrange" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Narcissa Black Malfoy" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Andromeda T.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Andromeda Black Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Godfather Neville" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Bellatrix L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Godfather Neville" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bellatrix Black Lestrange" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Neville L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Godfather Neville" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Bellatrix L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bellatrix Black Lestrange" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Narcissa Black Malfoy" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Andromeda T.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Andromeda Black Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Reciprocation is key" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "" AND f.name = "Hermione Granger"
+UNION -- Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Reciprocation is key" AND a.name = "TsyberRhaegal" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "" AND f.name = "Narcissa Black Malfoy";

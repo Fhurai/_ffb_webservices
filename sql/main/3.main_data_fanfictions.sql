@@ -8,8 +8,11 @@ DELETE FROM `authors`;
 INSERT INTO `authors`(`id`, `name`, `creation_date`, `update_date`, `delete_date`) VALUES (1,'','1970-01-01','1970-01-01', NULL);
 
 INSERT INTO `authors` (`name`) 
-VALUES ("Abigail89"),
+VALUES 
+("123irish"),
+("Abigail89"),
 ("Aceofdiamonds"),
+("Airam06"),
 ("Allyrion"),
 ("Alyndra"),
 ("Ap_aelfwine"),
@@ -21,6 +24,7 @@ VALUES ("Abigail89"),
 ("BananasPyjamas"),
 ("Browser13"),
 ("Ch4"),
+("ChampionOfKratos"),
 ("Charleybradburies"),
 ("Chazpure"),
 ("Cj Spencer"),
@@ -42,11 +46,14 @@ VALUES ("Abigail89"),
 ("Fightfortherightsofhouseelves"),
 ("Flipflop_diva"),
 ("Fluffybookfaerie"),
+("Frenchhornbook"),
 ("Gracerene"),
 ("GreenhouseThree"),
 ("Ghostoflinny"),
+("Hallows Seeker"),
 ("Harby"),
 ("HarryGinnyTonks"),
+("HeartsIgnite"),
 ("Heyitsamorette (AmoretteHD)"),
 ("Hollidayparty"),
 ("Hollywoodland"),
@@ -94,6 +101,7 @@ VALUES ("Abigail89"),
 ("Nataku's Wrath"),
 ("NidoranDuran"),
 ("Nixrocket"),
+("Noctus Noxia"),
 ("Oakel"),
 ("Olivieblake"),
 ("Pelespen"),
@@ -149,6 +157,7 @@ VALUES ("Abigail89"),
 ("Torino10154"),
 ("Triage"),
 ("Tryslora"),
+("TsyberRhaegal"),
 ("Twisted_Mind"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
 ("VanessaWolfie"),
@@ -1005,7 +1014,43 @@ SELECT "Her Goodbye" as name, a.id as author_id, 3 as rating, "Harry and Fleur g
 FROM `authors` a, `languages` l WHERE a.name="Disappearing Boy" AND l.name="English"
 UNION
 SELECT "Bath and Bed" as name, a.id as author_id, 3 as rating, "Sometimes after a long days work all you need is some TLC. Harry and Ginny Lemon" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Tommigoesfroging" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Tommigoesfroging" AND l.name="English"
+UNION
+SELECT "Homework with Hermione" as name, a.id as author_id, 3 as rating, "Hermione is feeling a little jealous of Ron's relationship with Lavender, and decides to "release some tension" with Harry one night in the common room. Pure smutty smut, so rated M. Hermione/Harry." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Airam06" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Prefects Bath" as name, a.id as author_id, 3 as rating, "Harry uses the prefects bath to relax, he falls asleep and is awakened as the door opens." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="123irish" AND l.name="English"
+UNION
+SELECT "Library Princess" as name, a.id as author_id, 3 as rating, "Pansy stalks Hermione in the library one night and a steamy scene ensues. Femslash. Femmeslash. Girl on Girl. Language. Bondage. BDSM." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Frenchhornbook" AND l.name="English"
+UNION
+SELECT "Emerald Coven" as name, a.id as author_id, 3 as rating, "Harry, still coming to terms with the reality of his destiny, and only just beginning to understand his greatest foe finds himself the unintended recipient of a magical bond between himself and one Gabrielle Delacour. An epic AU story beginning in the middle of sixth year, follows harry as one dramatic event leads him down a spiral path of debauchery and discovery." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hallows Seeker" AND l.name="English"
+UNION
+SELECT "Dirty games" as name, a.id as author_id, 3 as rating, "my first oneshot/Bellamione: Hermione visits Bellatrix in an old house to have some fun with her." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Noctus Noxia" AND l.name="English"
+UNION
+SELECT "The Courtesan" as name, a.id as author_id, 3 as rating, "Pansy Parkinson is a whore. At least by society's standards. Harry/Pansy. One-shot. Not fluffy. Originally written for the 2008 pphpficexchange at LiveJournal; gift for yinepu." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="HeartsIgnite" AND l.name="English"
+UNION
+SELECT "Enjoy the Fireworks" as name, a.id as author_id, 3 as rating, "At the apparent 'wedding' of Bill Weasley and Fleur Delacour Harry finally steps out and reveals his knowledge of the betrayals along with a few other secrets to boot, all that's left to do is sit back and enjoy the fireworks. WARNING: Lemons (don't like then don't read), and this fic is (I think) bordering the line between PWP and SWS" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ChampionOfKratos" AND l.name="English"
+UNION
+SELECT "Feral" as name, a.id as author_id, 3 as rating, "Hermione isn't exactly the innocent little girl she used to be and she knows that. Hermione isn't sure when it started. She knew that Bella had started it, but it was too late now. The four of them were bound together. And that's just the way Hermione wants it with the three Black sisters. Bellamione Andromione and Narcmione inside" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TsyberRhaegal" AND l.name="English"
+UNION
+SELECT "Domesticated" as name, a.id as author_id, 3 as rating, "Sequel to ""Feral,"" Hermione experiences domesticated life with her three beloved Black sisters and Bellatrix and Narcissa adapt to muggle pastimes. Bellamione, Andromione and Narcissmione. *Warning: OOCness*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TsyberRhaegal" AND l.name="English"
+UNION
+SELECT "Godfather Neville" as name, a.id as author_id, 3 as rating, "Forgiveness is hard. Very hard. Sometimes impossible, but that doesn't mean there can't be a second chance. Neville meets Hydra, Hermione and Bellatrix's daughter. Takes place before ""Voyeurism is such a strong word.""" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TsyberRhaegal" AND l.name="English"
+UNION
+SELECT "Voyeurism is such a strong word" as name, a.id as author_id, 3 as rating, "Voyeurism is such a strong word, isn't it? Bellatrix and Andromeda certainly don't think they can be blamed for wanting to see their Hermione writhe under Narcissa…..or on top of Narcissa, depending on what happens, you know? Rated M for a reason (but with a title like that, are you surprised?) Narcimione, masturbation and voyeurism ahead" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TsyberRhaegal" AND l.name="English"
+UNION
+SELECT "Reciprocation is key" as name, a.id as author_id, 3 as rating, ""If there's one thing I'm sure the Black family knows is that a lady is never to go unsatisfied and that reciprocation is key to a good relationship." Takes place literally the morning after "Voyeurism is such a strong word." Hermione pays Narcissa back for the quite...pleasurable experience the night before. Rated M for a reason." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TsyberRhaegal" AND l.name="English";
 
 /*
  * Link
@@ -1571,4 +1616,28 @@ SELECT "https://www.fanfiction.net/s/10000862/1/", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://www.fanfiction.net/s/10017016/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Her Goodbye" AND a.name = "Disappearing Boy"
 UNION
-SELECT "https://www.fanfiction.net/s/10055357/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging";
+SELECT "https://www.fanfiction.net/s/10055357/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bath and Bed" AND a.name = "Tommigoesfroging"
+UNION
+SELECT "https://www.fanfiction.net/s/10068858/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Homework with Hermione" AND a.name = "Airam06"
+UNION
+SELECT "https://www.fanfiction.net/s/10078222/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Prefects Bath" AND a.name = "123irish"
+UNION
+SELECT "https://www.fanfiction.net/s/10080569/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Library Princess" AND a.name = "Frenchhornbook"
+UNION
+SELECT "https://www.fanfiction.net/s/10127417/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Emerald Coven" AND a.name = "Hallows Seeker"
+UNION
+SELECT "https://www.fanfiction.net/s/10137129/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dirty games" AND a.name = "Noctus Noxia"
+UNION
+SELECT "https://www.fanfiction.net/s/10162319/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Courtesan" AND a.name = "HeartsIgnite"
+UNION
+SELECT "https://www.fanfiction.net/s/10223224/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Enjoy the Fireworks" AND a.name = "ChampionOfKratos"
+UNION
+SELECT "https://www.fanfiction.net/s/10239105/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Feral" AND a.name = "TsyberRhaegal"
+UNION
+SELECT "https://www.fanfiction.net/s/10399804/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Domesticated" AND a.name = "TsyberRhaegal"
+UNION
+SELECT "https://www.fanfiction.net/s/10563852/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Godfather Neville" AND a.name = "TsyberRhaegal"
+UNION
+SELECT "https://www.fanfiction.net/s/10506443/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Voyeurism is such a strong word" AND a.name = "TsyberRhaegal"
+UNION
+SELECT "https://www.fanfiction.net/s/10583027/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reciprocation is key" AND a.name = "TsyberRhaegal";
