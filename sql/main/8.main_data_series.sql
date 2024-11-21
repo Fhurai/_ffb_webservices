@@ -27,7 +27,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Thrall or not Thrall", ""),
 ("Hermione's Little Whore", ""),
 ("A Bonding", ""),
-("The Prefect's Bathroom", "");
+("The Prefect's Bathroom", ""),
+("Dragon Chronicles", "");
 
 /*
  * Series fanfictions
@@ -223,9 +224,7 @@ UNION /*************************************************************************
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Prefect's Bathroom" AND f.name = "The Prefect's Bathroom" AND a.name = "MobBob"
 UNION
 SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Prefect's Bathroom" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Dragon Chronicles 1: Muggle-Raised Champion" AND f.name = "The Prefect's Bathroom" AND a.name = "MobBob"
 UNION
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "Romance" AND a.name = "Epeefencer"
-UNION
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "Family" AND a.name = "Epeefencer"
-UNION
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "One-shot" AND a.name = "Epeefencer";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Dragon Chronicles 2: Harry Potter, Dragon Whisperer" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob";

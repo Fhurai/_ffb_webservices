@@ -1041,6 +1041,7 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones"),
 ("Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones"),
+("Ronald 'Ron' Weasley / Tracey Davis"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -1998,6 +1999,10 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Harry Potter"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Susan Bones"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ronald 'Ron' Weasley / Tracey Davis" AND c.`name` = "Ronald 'Ron' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ronald 'Ron' Weasley / Tracey Davis" AND c.`name` = "Tracey Davis"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 
