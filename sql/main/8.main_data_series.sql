@@ -222,4 +222,10 @@ SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Prefect's Bathroom" AND f.name = "The Prefect's Bathroom" AND a.name = "MobBob"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Prefect's Bathroom" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Prefect's Bathroom" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "Romance" AND a.name = "Epeefencer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "Family" AND a.name = "Epeefencer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Happy Birthday Harry" AND t.name = "One-shot" AND a.name = "Epeefencer";
