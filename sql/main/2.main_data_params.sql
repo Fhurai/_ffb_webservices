@@ -13,7 +13,9 @@ VALUES ("Admin", "$2y$10$R3VHp4v5P1okSgInzICW8u/jUcbfufXzbiKqfegVW6gljo0iuwla6",
  */
 DELETE FROM `fandoms`;
 INSERT INTO `fandoms` (`name`) 
-VALUES ("クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon"), 
+VALUES 
+("Avengers"),
+("クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon"), 
 ("Final Fantasy VII"), 
 ("Final Fantasy X / X-2"), 
 ("Hellsing"), 
@@ -52,7 +54,9 @@ VALUES ("Romance", "Story is about or mentions bit of romance between two or mor
 ("Drama", "Story is about or mentions bit of dramatic relationship between two or more characters."),
 ("Hurt | Comfort", "Story is about or mentions the physical pain or emotional distress of one character, who is cared for by another character."),
 ("Humor", "Story is about or mentions humoristic parts to lighten the mood."),
-("Slices of life", "Story is about or mentions bits of everyday life"),
+("Slices of life", "Story is about or mentions bits of everyday life."),
+("Mystery", "Story is about or mentions bits about a mystery to explore or to unveil."),
+("Crime", "Story is about or mentions bits about solving a crime."),
 ("Pre-canon", "Story takes place before the original timeline of the universe."),
 ("Post-canon", "Story takes place after the original timeline of the universe."),
 ("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children."),
@@ -392,6 +396,10 @@ UNION
 SELECT "Demelza Robins", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Edward 'Ted' Tonks", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
+SELECT "Adrian Pucey", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
+SELECT "Salazar Slytherin", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION /************************************************************************************************************************************/
 SELECT "Integra Hellsing", `id` from `fandoms` WHERE `name` = "Hellsing"
 UNION 
@@ -1023,6 +1031,16 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Sirius Black / Marlene McKinnon"),
 ("Bellatrix Black Lestrange / Hermione Granger"),
 ("Fleur Delacour / Harry Potter / Nymphadora Tonks"),
+("Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger"),
+("Fleur Delacour / Hermione Granger / Ronald 'Ron' Weasley"),
+("Daphne Greengrass / Fleur Delacour / Harry Potter / Penelope Clearwater"),
+("Daphne Greengrass / Harry Potter / Hermione Granger"),
+("Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks"),
+("Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks"),
+("Harry Potter / Hermione Granger / Tracey Davis"),
+("Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones"),
+("Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones"),
+("Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -1906,6 +1924,80 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Nymphadora Tonks" AND c.`name` = "Harry Potter"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Nymphadora Tonks" AND c.`name` = "Nymphadora Tonks"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Hermione Granger / Ronald 'Ron' Weasley" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Hermione Granger / Ronald 'Ron' Weasley" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Hermione Granger / Ronald 'Ron' Weasley" AND c.`name` = "Ronald 'Ron' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Penelope Clearwater" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Penelope Clearwater" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Penelope Clearwater" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Penelope Clearwater" AND c.`name` = "Penelope Clearwater"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks" AND c.`name` = "Nymphadora Tonks"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks" AND c.`name` = "Luna Lovegood"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks" AND c.`name` = "Nymphadora Tonks"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Hermione Granger / Tracey Davis" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Hermione Granger / Tracey Davis" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Hermione Granger / Tracey Davis" AND c.`name` = "Tracey Davis"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Susan Bones"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley  / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Ginevra 'Ginny' Weasley "
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley  / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley  / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley  / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Susan Bones"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Daphne Greengrass "
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Fleur Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones" AND c.`name` = "Susan Bones"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 
