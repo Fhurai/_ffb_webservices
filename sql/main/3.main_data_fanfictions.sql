@@ -38,6 +38,7 @@ VALUES
 ("Caydus"),
 ("Ch4"),
 ("ChampionOfKratos"),
+("Charlennette"),
 ("Charleybradburies"),
 ("CharmHazel"),
 ("Chazpure"),
@@ -63,12 +64,14 @@ VALUES
 ("Elven Sorcerer"),
 ("Emmagrant01"),
 ("Emp. Elesar II"),
+("Enchantra35"),
 ("Epeefencer"),
 ("Eric Michael Kline"),
 ("Esama"),
 ("Farbautidottir"),
 ("FanfictionWriter101"),
 ("Fantasy1290"),
+("Fearful Porpentine"),
 ("Femmeslyth"),
 ("Fightfortherightsofhouseelves"),
 ("Flipflop_diva"),
@@ -93,6 +96,7 @@ VALUES
 ("Hollidayparty"),
 ("Hollywoodland"),
 ("Holyfant"),
+("Hpfangal"),
 ("HPTrio"),
 ("IAltoSax"),
 ("Icicle"),
@@ -141,6 +145,7 @@ VALUES
 ("Luna_Weasley03"),
 ("Luvsanime02"),
 ("Luvscharlie"),
+("Madrosewriting"),
 ("Magical_Worlds"),
 ("MargaretSexyMum"),
 ("Maraudersaffair"),
@@ -173,11 +178,13 @@ VALUES
 ("Olivieblake"),
 ("Ordinarily Prudent"),
 ("PassnPlay"),
+("Pebblysand"),
 ("Pelespen"),
 ("PetrificusSomewhatus"),
 ("Phoenixgal"),
 ("Pommedeplume"),
 ("Potterfamilysecret1"),
+("Potterlad81"),
 ("Pottermum"),
 ("PotterSexStories"),
 ("PotterSmut12"),
@@ -260,6 +267,7 @@ VALUES
 ("Triage"),
 ("Tryslora"),
 ("TsyberRhaegal"),
+("Tweety-src-clt9"),
 ("Twisted_Mind"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
 ("UpTheHill"),
@@ -273,7 +281,9 @@ VALUES
 ("WhitherWinds"),
 ("WokFriedIce"),
 ("Woldy"),
+("WolfgangNH"),
 ("Writerfreakssss"),
+("Writing Sins Not Tragedies"),
 ("Wyrdeen"),
 ("XDreamlessx"),
 ("Zakhro"),
@@ -1556,7 +1566,43 @@ SELECT "The Boy Who Lived, The Brightest Witch and The Boy Who Wasn't" as name, 
 FROM `authors` a, `languages` l WHERE a.name="Dragonfly117" AND l.name="English"
 UNION
 SELECT "River Deep, Mountain High" as name, a.id as author_id, 3 as rating, "Spin off from Averlovi's ""On A Night Like This - The Potter Chronicles "". While he went for the romance, I go for the drama. ;) Not every romance starts normally. How one faithful night in Harry's sixth year would be the first step in the rest of his life." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Dorothea_Greengrass" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Dorothea_Greengrass" AND l.name="English"
+UNION
+SELECT "Brontide" as name, a.id as author_id, 3 as rating, "Harry Potter's children always thought their father was untouchable, unbreakable. It only takes one second, one curse to change everything." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SeriouslySam" AND l.name="English"
+UNION
+SELECT "Need Protection?" as name, a.id as author_id, 3 as rating, "It's been five years since the end of the Second Wizarding War and Harry Potter finds himself digged deeply into his Auror career. There's a new threat Harry Potter is called to face while protecting his loved ones. Old and new friends by his side, old and new foes against him. What those enemies don't take into consideration is how far he's willing to go in order to protect her" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Enchantra35" AND l.name="English"
+UNION
+SELECT "Quidditch Tales" as name, a.id as author_id, 3 as rating, "Fifth year isn't going great for Harry until a teammate catches him hiding an injury. Katie Bell gets the ball rolling, but Harry's the one who picks it up. A few new friends can go a long way to fixing Harry's problems." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Potterlad81" AND l.name="English"
+UNION
+SELECT "The Lust of Gryffindors" as name, a.id as author_id, 3 as rating, "With the stress of the Tri-Wizard Tournament overwhelming him, Harry is introduced to a secret club in Gryffindor that might be the solution to all his problems. Warning: smut with plot. Begins in fourth year, with characters aged up a year. Rated M." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fearful Porpentine" AND l.name="English"
+UNION
+SELECT "By the Moon Light" as name, a.id as author_id, 3 as rating, "Harry and Luna are childhood friends. Follow how they grow and fall in love, with each other and a certain other witch. Harry is a year younger and not the Boy-Who-Lived. Neville is. That does not mean Harry can't become a Hero almost as great as the Great Neville Longbottom. M for violence and later years. Strong Harry later. Pairing: Harry/Luna/Astoria, Neville/Hermione" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WolfgangNH" AND l.name="English"
+UNION
+SELECT "Better Than Cake" as name, a.id as author_id, 3 as rating, "It's Harry's birthday and Hermione's gift is one-of-a-kind. One that will change the nature of their relationship; hopefully for the better." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Madrosewriting" AND l.name="English"
+UNION
+SELECT "Shagging Psychology" as name, a.id as author_id, 3 as rating, """Why aren't we shagging each other, 'Mione?"" when Harry accidentally asked that question, he expected a slap on the face. Instead, he was rejected through a series of psychological explanations he didn't understand. Hermione Granger may be brilliant, but Harry Potter never gives up. In a battle between science and love, who wins the game in matters of the heart?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tweety-src-clt9" AND l.name="English"
+UNION
+SELECT "Brothers" as name, a.id as author_id, 3 as rating, "Harrison Black protected his half-brother Harvey Potter that Halloween night. Harvey is the one with a scar on his head and dubbed the 'Boy-Who-Lived'. He has watched everyone fuss and be concerned about his brother; now Harry can't help but be resentful towards Harvey. Now, in his fifth year, Harry has to make sure that Harvey stays out of trouble. But that's harder than expected." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Writing Sins Not Tragedies" AND l.name="English"
+UNION
+SELECT "Castles" as name, a.id as author_id, 3 as rating, """To him, the spring of '98 is about sex and funerals."" A canon-compliant, post-war tale." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pebblysand" AND l.name="English"
+UNION
+SELECT "The Purpose of Wings" as name, a.id as author_id, 3 as rating, "The war may be over but Harry's fight continues. Caught between the duties of a war hero and fatherhood, Harry realizes that change demands sacrifice and the price may be more than he can bear. A story about the strength of family against intrigue, bigotry, plotting, and politics." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Charlennette" AND l.name="English"
+UNION
+SELECT "Through Shadows" as name, a.id as author_id, 3 as rating, "When Harry goes missing from Privet Drive without a single personal possession, the worst is assumed by all. Upon his rescue, Ginny and the others find that everything they thought they knew from the moment Harry returned from the maze with Cedric's body in his arms must be called into question. Will Harry be able to heal from a traumatic ordeal that has left scars too deep to see?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hpfangal" AND l.name="English"
+UNION
+SELECT "Harry Potter: Thinking like a Thief" as name, a.id as author_id, 3 as rating, "AU. Harry was not the good little lion people viewed him as. Growing up in an abusive home shaped him into someone who understood the art of disguise. His facade hid a cunning thief who discovered his powers at a young age, and the Triwizard Tournament had ruined several plans along the way. But he wants freedom." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TimeTraveller-1900" AND l.name="English";
 
 /*
  * Link
@@ -2422,4 +2468,28 @@ SELECT "https://www.fanfiction.net/s/13588668/1/", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://www.fanfiction.net/s/13596628/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Boy Who Lived, The Brightest Witch and The Boy Who Wasn't" AND a.name = "Dragonfly117"
 UNION
-SELECT "https://www.fanfiction.net/s/13601630/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "River Deep, Mountain High" AND a.name = "Dorothea_Greengrass";
+SELECT "https://www.fanfiction.net/s/13601630/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "River Deep, Mountain High" AND a.name = "Dorothea_Greengrass"
+UNION
+SELECT "https://www.fanfiction.net/s/13603112/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Brontide" AND a.name = "SeriouslySam"
+UNION
+SELECT "https://www.fanfiction.net/s/13629414/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Need Protection?" AND a.name = "Enchantra35"
+UNION
+SELECT "https://www.fanfiction.net/s/13643298/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Quidditch Tales" AND a.name = "Potterlad81"
+UNION
+SELECT "https://www.fanfiction.net/s/13644025/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Lust of Gryffindors" AND a.name = "Fearful Porpentine"
+UNION
+SELECT "https://www.fanfiction.net/s/13648145/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "By the Moon Light" AND a.name = "WolfgangNH"
+UNION
+SELECT "https://www.fanfiction.net/s/13658892/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Better Than Cake" AND a.name = "Madrosewriting"
+UNION
+SELECT "https://www.fanfiction.net/s/13677854/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Shagging Psychology" AND a.name = "Tweety-src-clt9"
+UNION
+SELECT "https://www.fanfiction.net/s/13695706/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Brothers" AND a.name = "Writing Sins Not Tragedies"
+UNION
+SELECT "https://www.fanfiction.net/s/13698439/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Castles" AND a.name = "Pebblysand"
+UNION
+SELECT "https://www.fanfiction.net/s/13745570/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Purpose of Wings" AND a.name = "Charlennette"
+UNION
+SELECT "https://www.fanfiction.net/s/13755703/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Through Shadows" AND a.name = "Hpfangal"
+UNION
+SELECT "https://www.fanfiction.net/s/13777811/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter: Thinking like a Thief" AND a.name = "TimeTraveller-1900";
