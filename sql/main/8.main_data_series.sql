@@ -28,7 +28,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Hermione's Little Whore", ""),
 ("A Bonding", ""),
 ("The Prefect's Bathroom", ""),
-("Dragon Chronicles", "");
+("Dragon Chronicles", ""),
+("Brothers", "");
 
 /*
  * Series fanfictions
@@ -227,4 +228,8 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Dragon Chronicles 1: Muggle-Raised Champion" AND f.name = "The Prefect's Bathroom" AND a.name = "MobBob"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Dragon Chronicles 2: Harry Potter, Dragon Whisperer" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Dragon Chronicles 2: Harry Potter, Dragon Whisperer" AND f.name = "Love Under the Invisibility Cloak" AND a.name = "MobBob"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Brothers" AND f.name = "Brothers" AND a.name = "Writing Sins Not Tragedies"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Brothers" AND f.name = "Brothers: The Second Chapter" AND a.name = "Writing Sins Not Tragedies";

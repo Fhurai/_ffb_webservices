@@ -892,4 +892,54 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION -- Harry Potter
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Through Shadows" AND a.name = "Hpfangal" AND f.name = "Harry Potter - Wizarding World"
 UNION -- Harry Potter
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter: Thinking like a Thief" AND a.name = "TimeTraveller-1900" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter: Thinking like a Thief" AND a.name = "TimeTraveller-1900" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Gabrielle's Most Joyous Noël" AND a.name = "CesareBorgiaWrites" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Learning from Lily" AND a.name = "Cyan93" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Taken and Forgotten" AND a.name = "Tismy 101" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lifetimes of July" AND a.name = "Vanderlustwords" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Entombed" AND a.name = "SeriouslySam" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Lost Year" AND a.name = "Kb0" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Different Type of Bond" AND a.name = "WolfgangNH" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A King's Path" AND a.name = "521-DREAM" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Brothers: The Second Chapter" AND a.name = "Writing Sins Not Tragedies" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Your Arse Is Mine!" AND a.name = "Thedirtymind" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Head Boy's Room" AND a.name = "Ducksonparade" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reflection - Part of Averlovi's The Potter Chronicles" AND a.name = "Dorothea Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Survivors" AND a.name = "OrionB15" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "An Avenger's Anguish" AND a.name = "Saliient91" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Petrichor" AND a.name = "SometimeWriter1" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Melting the Ice" AND a.name = "Theoneandonly99" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Stars Glow, Shadows Fall" AND a.name = "Proton6" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Focus of a Healer" AND a.name = "OfficeSloth" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moody's Blues" AND a.name = "Gryffinsdoor" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Hogwarts Lonely Hearts Club" AND a.name = "Th3Alchemist" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "How Silently She Sings" AND a.name = "Charlennette" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Pray For The Wicked" AND a.name = "Kapiushon" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Organic" AND a.name = "Akamoroti" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "To Catch A Killer" AND a.name = "PringlesTheWriter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry Potter
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Strange Case of Love" AND a.name = "Thedirtymind" AND f.name = "Harry Potter - Wizarding World";

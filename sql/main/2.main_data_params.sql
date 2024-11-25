@@ -400,6 +400,8 @@ UNION
 SELECT "Adrian Pucey", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Salazar Slytherin", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
+SELECT "Fay Dunbar", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION /************************************************************************************************************************************/
 SELECT "Integra Hellsing", `id` from `fandoms` WHERE `name` = "Hellsing"
 UNION 
