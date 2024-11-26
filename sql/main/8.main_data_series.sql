@@ -29,7 +29,9 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("A Bonding", ""),
 ("The Prefect's Bathroom", ""),
 ("Dragon Chronicles", ""),
-("Brothers", "");
+("Brothers", ""),
+("Family that Chooses You", ""),
+("A Taste of Magic", "");
 
 /*
  * Series fanfictions
@@ -232,4 +234,14 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Brothers" AND f.name = "Brothers" AND a.name = "Writing Sins Not Tragedies"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Brothers" AND f.name = "Brothers: The Second Chapter" AND a.name = "Writing Sins Not Tragedies";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Brothers" AND f.name = "Brothers: The Second Chapter" AND a.name = "Writing Sins Not Tragedies"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Family that Chooses You" AND f.name = "The Family that Chooses You" AND a.name = "WokFriedIce"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Family that Chooses You" AND f.name = "The Family that Heals" AND a.name = "WokFriedIce"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Family that Chooses You" AND f.name = "Extended Family" AND a.name = "WokFriedIce"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "A Taste of Magic" AND f.name = "A Taste of Magic" AND a.name = "WokFriedIce"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "A Taste of Magic" AND f.name = "Side Dishes" AND a.name = "WokFriedIce";

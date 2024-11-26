@@ -299,6 +299,8 @@ SELECT "Madam Hooch", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizardi
 UNION 
 SELECT "Albus Dumbledore", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
+SELECT "Gellert Grindelwald", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
 SELECT "Minerva McGonagall", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Filius Flitwick", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
@@ -402,6 +404,10 @@ UNION
 SELECT "Salazar Slytherin", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Fay Dunbar", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
+SELECT "Cassiopeia Black", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
+UNION 
+SELECT "Marietta Edgecomb", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION /************************************************************************************************************************************/
 SELECT "Integra Hellsing", `id` from `fandoms` WHERE `name` = "Hellsing"
 UNION 
@@ -1046,6 +1052,11 @@ VALUES ("Angelise Ikaruga Misurugi / Tusk"),
 ("Ronald 'Ron' Weasley / Tracey Davis"),
 ("Charles 'Charlie' Weasley / OFC"),
 ("Astoria Greengrass / Harry Potter / Luna Lovegood"),
+("Daphne Greengrass / Gabrielle Delacour / Harry Potter"),
+("Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Harry Potter"),
+("Harry Potter / Lavender Brown"),
+("Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger"),
+("Dudley Dursley / Pansy Parkinson"),
 /************************************************************************************************************************************/
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
@@ -2017,6 +2028,34 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Harry Potter / Luna Lovegood" AND c.`name` = "Harry Potter"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Astoria Greengrass / Harry Potter / Luna Lovegood" AND c.`name` = "Luna Lovegood"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Gabrielle Delacour / Harry Potter" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Gabrielle Delacour / Harry Potter" AND c.`name` = "Gabrielle Delacour"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Gabrielle Delacour / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter" AND c.`name` = "Daphne Greengrass"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Lavender Brown" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harry Potter / Lavender Brown" AND c.`name` = "Lavender Brown"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger" AND c.`name` = "Cho Chang"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger" AND c.`name` = "Hannah Abbott"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Dudley Dursley / Pansy Parkinson" AND c.`name` = "Dudley Dursley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Dudley Dursley / Pansy Parkinson" AND c.`name` = "Pansy Parkinson"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 

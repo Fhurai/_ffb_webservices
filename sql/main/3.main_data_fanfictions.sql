@@ -11,16 +11,25 @@ INSERT INTO `authors` (`name`)
 VALUES 
 ("123irish"),
 ("521-DREAM"),
+("9876grpc"),
 ("Abigail89"),
 ("Aceofdiamonds"),
+("ACI100"),
+("Aeyliana"),
 ("Airam06"),
 ("Akamoroti"),
-("AlexMurray11235"),
 ("Alex Moss"),
+("Alexandri"),
+("AlexMurray11235"),
 ("Allyrion"),
+("Alpha-The-Omega"),
+("Alwaysendwithakiss"),
 ("Alyndra"),
+("Anamatics"),
+("Anjie"),
 ("Antjex3"),
 ("Ap_aelfwine"),
+("AppoApples"),
 ("Argenterie"),
 ("Argo0"),
 ("Ariaojou"),
@@ -31,13 +40,24 @@ VALUES
 ("AuntieL"),
 ("Avain1991"),
 ("Averlovi"),
+("Aya8"),
+("Azaron"),
 ("BananasPyjamas"),
 ("Barelyeverthere"),
+("BeaumontRulz"),
 ("BHErotica"),
+("Birdwoman95"),
+("Bluezz-17"),
+("Bobmin356"),
+("Bor902"),
 ("Brennus"),
+("Brigrove"),
 ("Browser13"),
+("Butterfly Kisses 22"),
+("CampDBow"),
 ("Catstaff"),
 ("Caydus"),
+("CelesteMagnolia"),
 ("CesareBorgiaWrites"),
 ("Ch4"),
 ("ChampionOfKratos"),
@@ -50,13 +70,18 @@ VALUES
 ("Clell65619"),
 ("Clio_jlh"),
 ("Cloud Zen"),
+("Corwalch"),
 ("Crimson Darkness8"),
 ("Cyan93"),
 ("Daeneryske"),
 ("Dante 2K-25"),
+("DarkEagle69"),
 ("DarknessEnthroned"),
 ("Darkw01fie"),
+("Datbenik513"),
+("Deliver.me"),
 ("DepravedDevil"),
+("DerLaCroix"),
 ("Dime"),
 ("Dirtyuncle"),
 ("Disappearing Boy"),
@@ -65,24 +90,31 @@ VALUES
 ("Dorothea_Greengrass"),
 ("Dragonfly117"),
 ("DragonKingDragneel25"),
+("Dreetje"),
 ("Ducksonparade"),
+("Elliehigginbottom"),
 ("Elven Sorcerer"),
+("Elvenkendra"),
+("Ely-Baby"),
 ("Emmagrant01"),
 ("Emp. Elesar II"),
 ("Enchantra35"),
 ("Epeefencer"),
 ("Eric Michael Kline"),
 ("Esama"),
-("Farbautidottir"),
 ("FanfictionWriter101"),
 ("Fantasy1290"),
+("Farbautidottir"),
 ("Fearful Porpentine"),
 ("Femmeslyth"),
+("Feymist"),
 ("Fightfortherightsofhouseelves"),
 ("Flipflop_diva"),
 ("Flowerchild33"),
 ("Fluffybookfaerie"),
 ("Frenchhornbook"),
+("Fyreheart"),
+("GenkaiFan"),
 ("Ghostoflinny"),
 ("GleeGeneration23"),
 ("Golasgil Sindar"),
@@ -94,15 +126,21 @@ VALUES
 ("Hallows Seeker"),
 ("HannahFranziska"),
 ("Harby"),
+("Harmonyromionedramione"),
 ("Harry50"),
 ("HarryGinnyTonks"),
+("Hatebelow"),
 ("HeartsIgnite"),
+("HermiHugs"),
 ("HersByHisByHers"),
 ("Heyitsamorette (AmoretteHD)"),
 ("Hollidayparty"),
 ("Hollywoodland"),
 ("Holyfant"),
+("Hopefulled"),
+("HPfanfictioner66"),
 ("Hpfangal"),
+("Hphglover"),
 ("HPTrio"),
 ("IAltoSax"),
 ("Icicle"),
@@ -115,47 +153,60 @@ VALUES
 ("Irislafey"),
 ("Iwant2baweasley (becboobear)"),
 ("IWillGoWithYouHarry"),
+("James Spookie"),
 ("Jayf"),
+("Jedi Buttercup"),
+("Jesrod82"),
 ("JLvE"),
 ("Jm1681"),
 ("Johnprewett"),
+("Jojor99"),
 ("Jumper712"),
 ("JusticeRings"),
 ("Kabal42"),
 ("Kapiushon"),
 ("Karmealion"),
+("KatonRyu"),
 ("Kb0"),
 ("Kratos1989"),
+("La baguette"),
 ("LadiePhoenix007"),
 ("Ladyfun"),
 ("Lamp23"),
 ("Lana.HP"),
 ("LarkGarbedInPurpose"),
 ("LeadVonE"),
+("LegendDairy"),
 ("Leggo My Lego Harry Potter (Runic_Purple_Panda)"),
 ("LeQuin"),
 ("Leviathan0999"),
 ("Lightofdaye"),
 ("Liiilyevans"),
 ("Likebunnies"),
-("LilyevansJan30"),
 ("Lily_pearl (lilyandjoey)"),
+("LilyevansJan30"),
 ("Listen-to"),
 ("Litfreak89"),
 ("Littlepuff04"),
+("LJlashlarue"),
 ("Lokifan"),
 ("Lomonaaeren"),
+("Lord Akiyama"),
+("Lord Silvere"),
 ("LordVishnu"),
+("Lorixjake"),
 ("Lostonplatform934"),
 ("LRThunder"),
 ("LuanMao"),
 ("Luna_Weasley03"),
+("Lunalustgood"),
 ("Luvsanime02"),
 ("Luvscharlie"),
 ("Madrosewriting"),
 ("Magical_Worlds"),
-("MargaretSexyMum"),
+("Maia.maiestas"),
 ("Maraudersaffair"),
+("MargaretSexyMum"),
 ("Math'L"),
 ("MaybeMayba"),
 ("MayorHaggar"),
@@ -165,34 +216,45 @@ VALUES
 ("Messr. Wolfethorn"),
 ("Methos (Methos2523)"),
 ("Meyers1020"),
+("Michelle Moonshine"),
 ("Midnight17516"),
 ("MimiAliceYorke"),
+("Miscard"),
 ("Missmusicluver"),
+("M'jai"),
 ("MobBob"),
 ("Mr Norrell"),
 ("Murkatroyd"),
 ("Musyc"),
-("M'jai"),
+("My Dear Professor McGonagall"),
 ("Nataku's Wrath"),
+("Nauro"),
+("Nellark"),
 ("NickieButterfly"),
 ("NidoranDuran"),
 ("Nixrocket"),
 ("Noctus Noxia"),
+("NotAWriter1981"),
 ("NutPea16"),
 ("Nynayve"),
 ("Oakel"),
 ("OfficeSloth"),
 ("Offsides"),
 ("Olivieblake"),
+("Onecelestialbeing"),
 ("Ordinarily Prudent"),
 ("OrionB15"),
+("Orlandraopal29"),
+("Paladeus"),
 ("PassnPlay"),
 ("Pebblysand"),
 ("Pelespen"),
 ("PetrificusSomewhatus"),
+("Pettybureaucrat"),
 ("Phoenixgal"),
 ("Pommedeplume"),
 ("Potterfamilysecret1"),
+("PotterFanSteve"),
 ("Potterlad81"),
 ("Pottermum"),
 ("PotterSexStories"),
@@ -204,25 +266,31 @@ VALUES
 ("PringlesTheWriter"),
 ("ProfessorQuill"),
 ("Proton6"),
+("Pyrgus"),
 ("QuarantineClean"),
 ("QuidditchMom (eibbil_one)"),
+("R_Collins"),
 ("RAfan2421"),
 ("Ragdoll"),
 ("RagingCassowary"),
+("R-dude"),
 ("Red_jacobson"),
 ("Relena Mishima"),
 ("Rickey"),
+("RileyOR"),
 ("Rivia"),
+("RMWB"),
+("RobSt"),
 ("RockIll"),
 ("Romaine"),
+("Romantic Silence"),
 ("Ronslady23"),
 ("RosaCalavera"),
 ("Rouven Singer"),
 ("Rtnwriter"),
 ("RubySaintClaire"),
+("Rusty Weasley"),
 ("RZZMG"),
-("R_Collins"),
-("R-dude"),
 ("Saliient91"),
 ("Sarah1281"),
 ("Sarcastrow"),
@@ -237,10 +305,13 @@ VALUES
 ("Selphie800"),
 ("Senigata"),
 ("SeriouslySam"),
+("SeriousScribble"),
 ("ShadowsEmbrace13"),
 ("Shdwqueen"),
 ("Sheltie1987"),
 ("Shivam Jha"),
+("Sillimaure"),
+("Simon Flower"),
 ("Sinyk"),
 ("SkyHigh17"),
 ("Slimah"),
@@ -252,27 +323,37 @@ VALUES
 ("SometimeWriter1"),
 ("Songquake"),
 ("Sprinter1988"),
+("Sqwiz"),
 ("Star54kar"),
 ("Stardust_Warrior"),
 ("Stargon1"),
 ("Starstruck1986"),
+("Stick97"),
+("StrongHermione"),
+("Sugarbubbleslove"),
 ("SuperMegaAwesomeNinja"),
 ("Swat303810"),
 ("TableForThree_Archivist"),
+("Takao1160"),
 ("Takearisk"),
 ("TarnishedArmour"),
 ("Temporal Knight"),
 ("Th3Alchemist"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
+("The Metal Sage"),
+("The Purple Critic"),
+("The_Lost_Nyctophiliac"),
 ("TheBlack'sResurgence"),
 ("Thedirtymind"),
+("TheEndless7"),
 ("TheHallowsInMe31"),
-("The Metal Sage"),
+("TheLastZion"),
 ("Theoneandonly99"),
+("The-void of Emotions"),
 ("Thewaywedo33"),
 ("The-writer1988"),
-("The_Lost_Nyctophiliac"),
+("TigerGirl14"),
 ("TimeTraveller-1900"),
 ("Timunderwood9"),
 ("Tismy 101"),
@@ -287,13 +368,17 @@ VALUES
 ("Tweety-src-clt9"),
 ("Twisted_Mind"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
+("Unicornball"),
 ("UpTheHill"),
-("VanessaWolfie"),
 ("Vanderlustwords"),
+("VanessaWolfie"),
+("Vedros"),
 ("VelvetInferno"),
 ("VeryBerry96"),
+("Vox ad umbram sum"),
 ("Voxangelus"),
 ("Walgesang"),
+("WandaXmaximoff"),
 ("Wendings"),
 ("WerewolfWarriro"),
 ("WhitherWinds"),
@@ -1692,7 +1777,328 @@ SELECT "To Catch A Killer" as name, a.id as author_id, 3 as rating, """Little De
 FROM `authors` a, `languages` l WHERE a.name="PringlesTheWriter" AND l.name="English"
 UNION
 SELECT "The Strange Case of Love" as name, a.id as author_id, 3 as rating, "After the death of James Potter, a paranoid Lily isolated herself and Harry from the world, not trusting anyone but herself to keep her son safe. How will this strange family fare against the dangers of Hogwarts. Incest! Smut fic." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Thedirtymind" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Thedirtymind" AND l.name="English"
+UNION
+SELECT "Fire and Ice" as name, a.id as author_id, 3 as rating, "Fifth-year AU: A rebellious streak burns inside Harry as Umbridge descends on Hogwarts. Its raging flames burn unchecked until it is met by another, opposing force of equal strength. Harry/Daphne Winter One-Shot" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ACI100" AND l.name="English"
+UNION
+SELECT "The Family that Chooses You" as name, a.id as author_id, 3 as rating, "They say that you cannot choose your family, that you cannot help who you're related to. If you cannot depend on them, then you can depend on the family that chooses you. An alternate universe setting where a hurt Harry Potter is helped by the Gryffindor Quidditch Team. This story will eventually deviate from canon and focus more on fluff and characters. Check Chap 108 for ship." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WokFriedIce" AND l.name="English"
+UNION
+SELECT "The Family that Heals" as name, a.id as author_id, 3 as rating, "For some, they can never completely escape the past and like most things in life, can come up in the most unexpected way. Set years after the end of The Family that Chooses You, Harry will once more have to confront where he came from in a situation that is equal parts familiar and not. But he is not alone. A part of The Family that Chooses You series." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WokFriedIce" AND l.name="English"
+UNION
+SELECT "Extended Family" as name, a.id as author_id, 3 as rating, "The continuation of The Family that Chooses You. Chapters will explore moments others wanted to see as well as additional ideas that I might have, with some alternate universe chapters as well. Each chapter will say when it takes place roughly and those inspired by readers will be dedicated to them." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WokFriedIce" AND l.name="English"
+UNION
+SELECT "Fleur De Lis" as name, a.id as author_id, 3 as rating, "Harry Potter is 17 years old when the Triwizard Tournament comes to Britain. His brother, Justin Potter, may be the Boy-Who-Lived, but after his last four years of schooling the Potter Heir was already acclimating a legendary reputation. After saving the life of Fleur Delacour at the Quidditch World Cup, Harry begins to to gather allies in new places, and make his master proud." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="OrionB15" AND l.name="English"
+UNION
+SELECT "The Winding Road" as name, a.id as author_id, 3 as rating, "AU. Harry never attended Hogwarts. The war is over and he tries to find his place in a world that he no longer feels connected to. Told from the perspective of Ginny." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="NotAWriter1981" AND l.name="English"
+UNION
+SELECT "The Lion and The Lioness" as name, a.id as author_id, 3 as rating, "A chamber of secrets Au. Things change between that moment when Harry saved Ginny. Join for the ride as they battle enemies and more. Some mature content content warning at top of chapters. This is a soul bond Fic and pure Hinny!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TigerGirl14" AND l.name="English"
+UNION
+SELECT "Thrown Back" as name, a.id as author_id, 3 as rating, "Harry breaks the Elder Wand, and gets sent back in time. To 1976. With the power of the Elder Wand coursing through him, How will Harry change the future? Contains Harry/Lily pairing." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ProfessorQuill101" AND l.name="English"
+UNION
+SELECT "Call Me Edward" as name, a.id as author_id, 3 as rating, "11-year-old Teddy Lupin is planning a surprise for his godfather's 29th birthday when he accidentally toys with a Time-Turner. It sends him back in time to August 1997. Being unable to turn to his family - now in hiding - the Headmaster of Hogwarts is sent to collect him. Though Teddy is desperate to see and save his parents, Snape blocks him at every turn. Will Teddy save the day?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="CelesteMagnolia" AND l.name="English"
+UNION
+SELECT "A Dark Year" as name, a.id as author_id, 3 as rating, "Daphne Greengrass had a simple plan in mind when attending her final year at Hogwarts: Lay low and make it to the end of the year in one piece. Would she succeed? Or would she be pulled into something far more than she originally hoped for?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Alwaysendwithakiss" AND l.name="English"
+UNION
+SELECT "Kiss of Life" as name, a.id as author_id, 3 as rating, "He was their boy hero. How would they feel if he were kissed by dementors, even when they were buying the whole Boy Who Was Crazy schtick? Just how big would the fall out be? Rated M for language and situations." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Birdwoman95" AND l.name="English"
+UNION
+SELECT "On The Hunt" as name, a.id as author_id, 3 as rating, "He was meant to be a sacrifice. Someone who had to die for Voldemort to truly perish. However, what no one accounted for was the brilliance of a mother who loved her child beyond all else. Voldemort took his blood in the graveyard, but he had no idea he had strengthened his biggest enemy in ways he could've never imagined - one who was out for blood. Powerful!Harry/Daphne/Gabrielle" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Vedros" AND l.name="English"
+UNION
+SELECT "Reading HP - 1" as name, a.id as author_id, 3 as rating, "At the end of third year, a letter arrives with seven books. As friends and enemies alike gather to read the past, present and future, bonds will form and decisions will be made to change the future of the whole Wizarding World." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lorixjake" AND l.name="English"
+UNION
+SELECT "Agent Potter: The Wizard of WAND" as name, a.id as author_id, 3 as rating, "Two years after the Battle of Hogwarts, Auror Harry Potter gets an interesting job offer. Follow the Man-Who-Conquered in his journey of espionage and love while doing what he does best: Saving the world. Spy! Harry. Spy! Daphne. Haphne pairing. Disregards the canon epilogue." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="HPfanfictioner66" AND l.name="English"
+UNION
+SELECT "Daphne Greengrass and the Boy Who Lived" as name, a.id as author_id, 3 as rating, "Daphne Greengrass attends Hogwarts as just a regular Slytherin student...but then she befriends a certain Harry Potter, and her life completely stops being normal. Daphne x Harry x Ginny much later on, canon pairings besides. Heavily 'Stations of the Canon'" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="KatonRyu" AND l.name="English"
+UNION
+SELECT "The Delicate Art of Raising Thestrals" as name, a.id as author_id, 3 as rating, "Luna finds something, or rather someone she maybe shouldn't have in the Department of Mysteries. When she and Harry are inexplicably given a chance to redo the year, they decide to take their lives into their own hands. Fixing old mistakes and making new ones, the occupants of Hogwarts are not prepared for this dynamic duo nor all their little, and not so little,friends. TimeTravel" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AppoApples" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Ritual of Love's Memory" as name, a.id as author_id, 3 as rating, "After the horcrux hunt implodes leaving most of those Harry loves dead, he starts a new life with a few fellow survivors far away from wizarding Britain. But the discovery of an ancient ritual that promises to send a single memory back in time sparks hope that maybe things can change. AU featuring time travel with a twist. Rated Teen. Harry/Ginny. Weekly updates." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="CampDBow" AND l.name="English"
+UNION
+SELECT "Written in the Stars" as name, a.id as author_id, 3 as rating, "With Sirius locked in Azkaban for betraying the Potters, Albus Dumbledore sees no other choice but to place young Harry with his muggle relatives. Much to the headmaster's surprise, however, another lays claim to the boy and though he attempts to prevent it, Harry Potter will be raised by the last of his magical family, but not one bearing the Potter name... Durmstrang story" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TheBlack'sResurgence" AND l.name="English"
+UNION
+SELECT "Contractual Obligation" as name, a.id as author_id, 3 as rating, "That's right! Another Betrothal Contract fanfic! It's kind of like how there are so many Hallmark movies that have the same plotline, but we love them anyway. That being said, do you really need a summary? Just go ahead and read it. Fluffy. Rated for future chapters. AU." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LegendDairy" AND l.name="English"
+UNION
+SELECT "Never Silence A Lion's Roar" as name, a.id as author_id, 3 as rating, "When Dolores Umbridge exposes the existence of Dumbledore's Army, she and Fudge don't settle with letting Harry go unpunished. Dumbledore evades arrest but Harry isn't as lucky. Charged with sedition, Harry works with allies old and new to clear his name before Voldemort can use his situation to his advantage. His enemies learn soon that Gryffindors don't back down from a fight." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aeyliana" AND l.name="English"
+UNION
+SELECT "The Lost Horcrux" as name, a.id as author_id, 3 as rating, "Harry finally goes back to the house in Godric's Hollow when his plans for the future induce him to look for some of his parents' personal items. What he doesn't expect to find is a way to contact with Lily and James themselves. What happened the night they died that is allowing Harry a glimpse into his parents' lives? And does the answer mean something dangerous?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LilyevansJan30" AND l.name="English"
+UNION
+SELECT "A short life full of long years" as name, a.id as author_id, 3 as rating, """I've had enough trouble for a lifetime."" Harry's final words to Dumbledore's portrait were, unfortunately, quite far off from the truth. A mysterious soul bond grows between he and Ginny. The concept isn't ideal, but it can't be that bad, can it? Though Voldemort is gone, strange visions plague Harry's mind. Darkness remains. The trouble is, who or what is causing it?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RMWB" AND l.name="English"
+UNION
+SELECT "Harry Evans: Memoirs of a well-lived Death (SI)" as name, a.id as author_id, 3 as rating, "In a world where Lily Evans and James Potter never got the chance to be together, Harry Evans must walk the knife's edge in his bid for power and independence. The Wizarding World is dangerous and Hogwarts isn't any safer, but the mystery of his origins beckons like a siren and he must gain strength to face the uncertain future. SI/AU" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bor902" AND l.name="English"
+UNION
+SELECT "A Taste of Magic" as name, a.id as author_id, 3 as rating, "Magic is easy to see, to feel, to hear, to touch. The magic on the plate and the palate, however, is one that Magicals and Muggles alike can appreciate. Harry Potter will go on a journey to find the taste that he is looking for, and the magic that exists in meals made and meals shared. An AU slice-of-life story with an eventual pairing." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WokFriedIce" AND l.name="English"
+UNION
+SELECT "Intrinsicality" as name, a.id as author_id, 3 as rating, "Hermione Granger just wants to get through her fifth year with her sanity intact. Of course someone decided to throw a tournament instead. Oh, and she might have a crush on the Gryffindor seeker. A slice-of-life story in which Hermione finds love against the backdrop of the Triwizard Tournament, Neville is the Boy-Who-Lived, and Harry Potter is Gryffindor's aloof seeker." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RileyOR" AND l.name="English"
+UNION
+SELECT "We're Home" as name, a.id as author_id, 3 as rating, "Hermione is home. As is Harry." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hatebelow" AND l.name="English"
+UNION
+SELECT "Hatal Fart Attack" as name, a.id as author_id, 3 as rating, "This is in response to a plot bunnie on how to give Vernon Dursley a heart attack. Rating to be on safe side. This story is a one shot and complete." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Corwalch" AND l.name="English"
+UNION
+SELECT "Beautiful" as name, a.id as author_id, 3 as rating, "Eighteen year old Hermione Granger is unbearably uncomfortable with the way she looks, and it becomes up to Harry Potter, her best friend and boyfriend, to help her understand what true beauty is, and ultimately, allow her to think of herself as beautiful" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Michelle Moonshine" AND l.name="English"
+UNION
+SELECT "Parce que" as name, a.id as author_id, 3 as rating, "Hermione x Fleur, Oneshot, Fleur decides she wants Hermione and asks Ginny to help her get her. Will Hermione fall for this french seductress?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Feymist" AND l.name="English"
+UNION
+SELECT "Back Again, Harry?" as name, a.id as author_id, 3 as rating, "WIP. Harry makes a different choice in King's Cross and is given the double edged gift of a second chance. Time Travel AU, DH canon." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jedi Buttercup" AND l.name="English"
+UNION
+SELECT "The Harmony Bond" as name, a.id as author_id, 3 as rating, "AU - Harry is rescued from the Dursleys by the Grangers, but they first time they touch, both Harry and Hermione collapse unconscious. A Harry Hermione soul bond fic - will be romance LATER." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Brigrove" AND l.name="English"
+UNION
+SELECT "The Obligatory Marriage Law Fic" as name, a.id as author_id, 3 as rating, "Ginnys nuts? Hermione is pregnant, Ron is still poor and Harry's a hermit. What more can anyone ask for? H/G Hr/R" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bobmin356" AND l.name="English"
+UNION
+SELECT "Knowing Where to Look" as name, a.id as author_id, 3 as rating, "Meet Gawain Robards, Auror- This is the story of a man who had lost hope in the world, in humanity, in himself. And of his unexpected means of finding it again with some subtle help from the Boy Who Lived. But who is helping whom? A new POV of the Ministry reformation after the Battle of Hogwarts, tracking Harry's rather unusual assimilation into the Auror ranks. *Post-war canon" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="La baguette" AND l.name="English"
+UNION
+SELECT "Seduced by a Veela" as name, a.id as author_id, 3 as rating, "Hermione/Fleur pairing. Repost of the story for those of you that never got to see the end. Hope you enjoy!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hphglover" AND l.name="English"
+UNION
+SELECT "Ron's Howler" as name, a.id as author_id, 3 as rating, "Ron gets caught with a certain book. He gets a different sort of howler as payback. AU MAJOR General Ron Bashing! H/Multi" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Stick97" AND l.name="English"
+UNION
+SELECT "The Unmentionables?" as name, a.id as author_id, 3 as rating, "Harry is invited to a seminar on Halloween by Hermione. Harry/Multi" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Stick97" AND l.name="English"
+UNION
+SELECT "Delenda Est" as name, a.id as author_id, 3 as rating, "Harry is a prisoner, and Bellatrix has fallen from grace. The accidental activation of Bella's treasured heirloom results in another chance for Harry. It also gives him the opportunity to make the acquaintance of the young and enigmatic Bellatrix Black as they change the course of history." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lord Silvere" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Betrothal Contract" as name, a.id as author_id, 3 as rating, "It's been done, but here's my shot at the old Marriage Contract type story. Harry and Daphne Greengrass find out their parents put together a marriage contract when they were born, now they must deal with it." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="James Spookie" AND l.name="English"
+UNION
+SELECT "The Accidental Bond" as name, a.id as author_id, 3 as rating, "Harry finds that his ""saving people thing"" is a power of its own, capable of bonding single witches to him if their life is in mortal danger, with unusual results. H/multi" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kb0" AND l.name="English"
+UNION
+SELECT "Heart and Soul" as name, a.id as author_id, 3 as rating, "The Dementor attack on Harry during the summer after his fourth year leaves him on the verge of having his wand snapped. Unwilling to leave anything to chance, Sirius Black sets events into motion which will change Harry's life forever. HP/HG/FD" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sillimaure" AND l.name="English"
+UNION
+SELECT "Cold blood" as name, a.id as author_id, 3 as rating, "Sometimes, the tide of events really changes a person." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DerLaCroix" AND l.name="English"
+UNION
+SELECT "The Return of the Marauders" as name, a.id as author_id, 3 as rating, "James sacrificed himself to save his wife and son. Sirius took them into hiding and trained Harry the Marauders way. Neville became the BWL. That doesn't mean that he's the Chosen One. This is a AU story. Harry/Ginny MA Rating" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TheLastZion" AND l.name="English"
+UNION
+SELECT "To Become Whole Again" as name, a.id as author_id, 3 as rating, "Ginny accepted a temporary job in the US and Harry's not really happy with it. Not knowing how to figure out what's really going on, he locks himself up, until a bushy-haired witch takes on the impossible task to teach him how to eat with chopsticks." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Datbenik513" AND l.name="English"
+UNION
+SELECT "Fine Then!" as name, a.id as author_id, 3 as rating, "Harry is found guilty of Underage Magic at his trial after 4th year... what happens next?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Alpha-The-Omega" AND l.name="English"
+UNION
+SELECT "It's My Life" as name, a.id as author_id, 3 as rating, "After his second year, Harry begins to realize Hogwarts isn't everything it could be. Are there other options available? While the Hogwarts characters belong to JK Rowling, the story is obviously outside of canon." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fyreheart" AND l.name="English"
+UNION
+SELECT "BitterSweet Irony" as name, a.id as author_id, 3 as rating, "What happens when the one you love is forbidden by your entire world? *Hiatus, due to lack of inspiration, sorry, please bear with me and thank you for your patience* I have not abandoned this story I am still working on it. I will update soon." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sqwiz" AND l.name="English"
+UNION
+SELECT "Harry Potter After the War" as name, a.id as author_id, 3 as rating, "ATW takes up the Harry Potter story on the day after the end of the Battle of Hogwarts, and will continue the story through to the DH Epilogue, and probably beyond. Years One, Two, and Four are now Complete!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="PotterFanSteve" AND l.name="English"
+UNION
+SELECT "A Different Halloween" as name, a.id as author_id, 3 as rating, "Could a chance meeting change history? What would a different Halloween in 1981 mean for wizarding Britain?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RobSt" AND l.name="English"
+UNION
+SELECT "Lucky Harry" as name, a.id as author_id, 3 as rating, "An accident at the age of six turned out to be a lucky thing for Harry Potter. It could get him all the things he had ever dreamed about and many things that he could have never imagined; girls, adventure, a home, and love." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pyrgus" AND l.name="English"
+UNION
+SELECT "How to Cage My Own Angel" as name, a.id as author_id, 3 as rating, "Harry, Ron and Hermione were set to have a relaxing weekend catching up at the Burrow, until they walked into the kitchen there. Ginny and her mum were in tears and Mr. Weasley was stressed. What was wrong? How would it affect Harry?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jojor99" AND l.name="English"
+UNION
+SELECT "For the Best" as name, a.id as author_id, 3 as rating, "After Voldemort is defeated, everyone at the Burrow must find their own way to move forward. Harry is doing what he feels is best, but it's becoming clear that his best may not be what's needed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Deliver.me" AND l.name="English"
+UNION
+SELECT "Death's Doorbell" as name, a.id as author_id, 3 as rating, """Don't knock on death's door. Ring the bell and run. He hates that."" - H/Hr/L/ Sorta Tonks - Comedy, Slight Crack, Two omakes/shorts - Oneshot" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Paladeus" AND l.name="English"
+UNION
+SELECT "Quoth the Raven, Nevermore" as name, a.id as author_id, 3 as rating, "The Tower of London has a dark and bloody past both in the muggle and wizarding worlds. Besides being a prison, it also served as a sanctuary in times past, what if it became one yet again? -AU" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="GenkaiFan" AND l.name="English"
+UNION
+SELECT "From The Ashes Of Magic" as name, a.id as author_id, 3 as rating, "After his fifth year, Harry disappears without a trace. After weeks of uncertainty, Hermione is visited by Tonks who has all the answers to her friend's disappearance. What she learns, changes everything she knows. FEMHarry/Tonks. Check my poll for info" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dreetje" AND l.name="English"
+UNION
+SELECT "The Pureblood Princess" as name, a.id as author_id, 3 as rating, "Daphne Greengrass always had a plan. She liked being organized. But the Dark Lord's return at the end of her fifth year derailed everything, and now she must decide who will best help her find the life she always wanted." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TheEndless7" AND l.name="English"
+UNION
+SELECT "Harry Potter, Rise From Dust" as name, a.id as author_id, 3 as rating, "If Harry's baby brother, Daniel, is the Boy-Who-lived, then what of Harry? What is his role? Is he destined for greater? Or, is he to play a much bigger role in the future? Follow Canon's plot, with much bigger AU's plot as the story progresses." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bluezz-17" AND l.name="English"
+UNION
+SELECT "On Teenagers And Love" as name, a.id as author_id, 3 as rating, "On the surface, things are not always what they seem. Everything has taken on a far more serious tone as Hermione and Fleur attempt to navigate their constantly shifting relationship during Hermione's sixth year at Hogwarts. War is coming, and they can feel it in their bones. Fleur/Hermione!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Anamatics" AND l.name="English"
+UNION
+SELECT "For the Love of Ginny" as name, a.id as author_id, 3 as rating, "Ginny loves her brother and his fiancé, but their wedding is making her mental. She needs something to help keep her head on and gets more than she expected." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jesrod82" AND l.name="English"
+UNION
+SELECT "She Who Holds the Strings" as name, a.id as author_id, 3 as rating, "A twisted grin of satisfaction and victory settled over Hermione's profile as the darkened basement was riddled with her malevolent aura." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Romantic Silence" AND l.name="English"
+UNION
+SELECT "The Harry Potter Writers Circle" as name, a.id as author_id, 3 as rating, "Luna comes to Harry and Ginny with a most interesting proposal from the writing circle she's a member of. Harry/Ginny with a dash of Ginny/Luna and mention of past Harry/Luna. M for a reason" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pettybureaucrat" AND l.name="English"
+UNION
+SELECT "One Night" as name, a.id as author_id, 3 as rating, "Okay...he was going to kill the person who put him in this position...after giving that same person a hug for making him open his eyes Prompt for September 6th" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sugarbubbleslove" AND l.name="English"
+UNION
+SELECT "Nanny Wanted" as name, a.id as author_id, 3 as rating, "Set eight years after finishing their schooling, Hermione Granger answers an ad to be a Nanny for a High Society family. Working as a nanny for Harry Potter she learns that she is in danger of falling in love with not only his kids, but with Harry too." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Miscard" AND l.name="English"
+UNION
+SELECT "A Set Up Gone Wrong" as name, a.id as author_id, 3 as rating, "AU H/G fluff. Ron forces Ginny to go to a boring Department dinner to make up numbers. She realises it's a set up. Unfortunately for Ron, Ginny enjoys the company of a lovely black-haired man, not the man Ron wants her to talk to." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jojor99" AND l.name="English"
+UNION
+SELECT "No Regrets" as name, a.id as author_id, 3 as rating, "A month before her wedding to Harry, Ginny visists Pansy to end their affair. However, Pansy has other ideas, and wants to make the most of their limited time together. -ONE-SHOT- -PWP- -FEMMESLASH-" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WandaXmaximoff" AND l.name="English"
+UNION
+SELECT "The Autumn Swan" as name, a.id as author_id, 3 as rating, "Suppose Cho said yes to Harry asking her to the Yule Ball. What kind of relationship could they have developed? HPCC AU Reboot to ""Harry Potter and the Autumn Swan."" On indefinite hiatus." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lord Akiyama" AND l.name="English"
+UNION
+SELECT "Snake in the Chestnut" as name, a.id as author_id, 3 as rating, "A small girl caught in a river of Time, washes out in a time where her own parents do not know she exists. Even as her arrival muddles the flow of Time, the primal force has powerful defenses. Harry receives bits and pieces of the future, but is it going to help or hinder? Will Daphne manage to change her grim fate?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nauro" AND l.name="English"
+UNION
+SELECT "The Elusive Prince" as name, a.id as author_id, 3 as rating, "Lily alters her spell to drain the magic of voldemort instead of rebounding it. Magic becomes a very deep part of Harry's life from the very beginning. A story where Harry explores the wonders of magic, and everything that comes with it. AU/Non-canon" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="The Purple Critic" AND l.name="English"
+UNION
+SELECT "A Call to Arms" as name, a.id as author_id, 3 as rating, "What happened at Hogwarts when the Boy Who Lived disappeared?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="My Dear Professor McGonagall" AND l.name="English"
+UNION
+SELECT "Is this fate?" as name, a.id as author_id, 3 as rating, "After Ginny had rushed out of the room, Hermione sank down on her knees and stared blankly at the door. She's disgusted… we'll never be friends again. A silent tear escaped her eyes and rolled down her cheeks. She had never meant for this to come out. Ginny was never supposed to find out. Review please!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Elvenkendra" AND l.name="English"
+UNION
+SELECT "The Past Always Catches Up" as name, a.id as author_id, 3 as rating, "It's three years after the war and Ginny's lies and secrets during the wizarding war finally catch up with her. AU." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hopefulled" AND l.name="English"
+UNION
+SELECT "Unatoned" as name, a.id as author_id, 3 as rating, "Secrets of the war, a murder and a fatal attraction: After his victory over Voldemort, Harry became an Auror, and realised quickly that it wasn't at all like he had imagined. Disillusioned with the Ministry, he takes on a last case, but when he starts digging deeper, his life takes a sudden turn … AUish, Post-Hogwarts. HP/DG" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SeriousScribble" AND l.name="English"
+UNION
+SELECT "Coach Granger" as name, a.id as author_id, 3 as rating, "A superstar needs help to reach his potential. Not H-Hr ship." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LuanMao" AND l.name="English"
+UNION
+SELECT "Never Let Me Go" as name, a.id as author_id, 3 as rating, "Hermione ponders why she chose Ron instead of Harry and notices she made the wrong choice after a horrible night in her apartment. Takes place four years after Second Wizarding War excluding the prologue. Based on songs by Florence and the Machine." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Orlandraopal29" AND l.name="English"
+UNION
+SELECT "No Thinking Thing" as name, a.id as author_id, 3 as rating, "After an accidental yet passionate run in with Hermione, Harry wants to go further, but fear is holding Hermione back." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aya8" AND l.name="English"
+UNION
+SELECT "Passionate Interlude" as name, a.id as author_id, 3 as rating, "Harry and Hermione find themselves in a very 'intense' situation after their usual night of sitting by the fire and reading." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aya8" AND l.name="English"
+UNION
+SELECT "Dance Your Heart Out" as name, a.id as author_id, 3 as rating, "Hermione receives an invitation to attend the Delacour Ball. She has no idea why or who the Delacours' are. Curiosity gets the better of her and she decides to attend." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Butterfly Kisses 22" AND l.name="English"
+UNION
+SELECT "Plus One" as name, a.id as author_id, 3 as rating, "Hermione has a very hard message for Harry; she's pregnant. After a one night stand with her best friend. Absolutely not a good situation to be in! WARNING: smut" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Maia.maiestas" AND l.name="English"
+UNION
+SELECT "A Quidditch pitch and five Galleons" as name, a.id as author_id, 3 as rating, "Sixth-year romance blossoms between two people that aren't aware of denial being more than just a river in Egypt. Written for Dracoslittlewhorecrux." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Onecelestialbeing" AND l.name="English"
+UNION
+SELECT "A Roar and a Slither" as name, a.id as author_id, 3 as rating, "The Gryffindor Princess visits the Room of Requirement every night alone, until one night, when the Slytherin goddess shows up. PWP/lemony/one-shot." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lunalustgood" AND l.name="English"
+UNION
+SELECT "Stregati" as name, a.id as author_id, 3 as rating, "[One-shot.] Hermione and Harry are in Venice for a convention concerning magical law restrictions. Little do they know that the city holds a strong power on its visitors. For them, it all starts with a moonlight kiss and a Masquerade." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ely-Baby" AND l.name="English"
+UNION
+SELECT "Addiction" as name, a.id as author_id, 3 as rating, "Hermione didn't say anything, but didn't move back from her either, still glaring back at her. Neither woman moved for a second, before Ginny couldn't hold herself back any more. She'd been waiting for this moment for far too long now, and despite how strong her anger was, her love and lust were much stronger..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BeaumontRulz" AND l.name="English"
+UNION
+SELECT "Purple" as name, a.id as author_id, 3 as rating, "As soon as Pansy tells me ""Wear the pink skirt, babe"" with a wink and a smirk, I know what kind of night we'll have... (Femslash. Sex toys. First Person POV. Rated M; mature content and language.) Complete." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Unicornball" AND l.name="English"
+UNION
+SELECT "Touch Me" as name, a.id as author_id, 3 as rating, "Ginny's dissatisfaction with the state of their relationship leads to consequences Harry's not sure he's prepared for, but he discovers it's fun to find out. Originally written in 2009." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Alexandri" AND l.name="English"
+UNION
+SELECT "The List" as name, a.id as author_id, 3 as rating, "Hermione makes a promise to her mother, after restoring her memories, before heading back to Hogwarts for her 8th year. What did she promise? To act like the carefree teenager she never got to be and follow through on five things. Somehow she ropes Harry into adopting the list as well and they soon find out that love is quite complicated! It should make for an interesting year!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="9876grpc" AND l.name="English"
+UNION
+SELECT "Potter's Angels" as name, a.id as author_id, 3 as rating, "Dumbledore is Dark in this story. Harry finds out after the triwizard tournement who his real friends are. Tonks visits and they kiss, then Hermione shows up and let's him know what she wants, then there is Dobby and his menagerie of friends to spice up the mix. Did I mention the goblins wish to adopt him. This is a Harry/Tonks/Hermione/ Daphne/Astoria/ Luna story." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Takao1160" AND l.name="English"
+UNION
+SELECT "The Power of the Press" as name, a.id as author_id, 3 as rating, "Forewarned Harry makes his escape from Britain, leaving the tournament in shambles. Protected by family, Harry sets about to fulfill his destiny free from the bigotry and manipulation of others." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bobmin356" AND l.name="English"
+UNION
+SELECT "One-Ness" as name, a.id as author_id, 3 as rating, "Harry and Hermione are soul bound but Harry dies due to not being bound to his mate and so time is re-written. Even then the going is not smooth for them as they lose their magical core and are obliviated by the ministry. Good Dumbledore but his hands are tied due to Ministry. Good but misguided Ron and Ginny. A never before attempted kind of soul bond (Hopefully)." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="HermiHugs" AND l.name="English"
+UNION
+SELECT "Wizards Fall" as name, a.id as author_id, 3 as rating, "A different spin on the Potter Verse featuring a manipulative Dumbledore and an evil worse than Voldemort. A look at what could drive three people to destroy the Wizarding World." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bobmin356" AND l.name="English"
+UNION
+SELECT "In the Library" as name, a.id as author_id, 3 as rating, "Hermione goes to the library to look for a book. She doesn't find it. That may have been a spoiler. There may not be a plot. (Wink Wink)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Vox ad umbram sum" AND l.name="English"
+UNION
+SELECT "The Box" as name, a.id as author_id, 3 as rating, "Hermione brings home a box from the twins' shop and surprises Ginny with the contents of it. One-shot. Femmeslash. I suck at summaries." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SkyHigh17" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Four Heirs" as name, a.id as author_id, 3 as rating, "Merlin, not happy with how the future unravelled for the life of Harry Potter, intervenes early to set the course of history back on track. Implied Pairing Only. Smart!Harry Bash!AD Idiot!RW" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sinyk" AND l.name="English"
+UNION
+SELECT "Intervention" as name, a.id as author_id, 3 as rating, "Hermione and Ginny are tired of Harry brooding in the months following Voldemort's defeat. They perform an intervention. H/Hr/G" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Simon Flower" AND l.name="English"
+UNION
+SELECT "Temptation" as name, a.id as author_id, 3 as rating, "Hermione's honeymoon is everything she thought it might be." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Simon Flower" AND l.name="English"
+UNION
+SELECT "Working Late" as name, a.id as author_id, 3 as rating, "Hermione delights in surprising her husband and at the office is no exception." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Simon Flower" AND l.name="English"
+UNION
+SELECT "For The First Time" as name, a.id as author_id, 3 as rating, "In a world where muggle-born women are bought as slaves for the pleasure of wizards, Hermione did not have much to look forward to. That is until Prince Harry came along. AU fic. Rated M for later chapters." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Anjie" AND l.name="English"
+UNION
+SELECT "The ShampooDragon Seduction" as name, a.id as author_id, 3 as rating, "Cho is tired of wishing, and after losing to Gryffindor in Quidditch, she decides to take matters into her own hands. Ginny is frustrated at first, then surprised, then..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LJlashlarue" AND l.name="English"
+UNION
+SELECT "Discretion" as name, a.id as author_id, 3 as rating, "Love may indeed conquer all, but it sometimes breaks things as well. Fortunately it also sometimes puts them back together, even if in a different way. Written for Femmefest on LJ. Warnings: Infidelity, Femmesex" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LJlashlarue" AND l.name="English"
+UNION
+SELECT "Forgotten But Not Gone" as name, a.id as author_id, 3 as rating, "Harry is shocked when Hermione wakes up one morning and can't remember the last five years of her life. Hermione is shocked by how much has changed. Summary not good but the story is good, give it a chance. Dh compliant but not epilogue. Mentions past Ron/ Hermione and Harry/Ginny. Now Complete." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Harmonyromionedramione" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Stress Relieving Breakfast" as name, a.id as author_id, 3 as rating, "Harry was feeling rather down. However, his encounter with Cho and her feet under the house table at breakfast soon changes all of that... !Oneshot Rated M for a Reason" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="The-void of Emotions" AND l.name="English"
+UNION
+SELECT "The Perils of Prospective Pregnancy" as name, a.id as author_id, 3 as rating, "Everyone knows Hermione hates to fail at anything. How does Harry deal with her perception of the biggest failing of them all? Rated M for swearing and suggestive themes" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="StrongHermione" AND l.name="English"
+UNION
+SELECT "The Love of Your Life" as name, a.id as author_id, 3 as rating, "A 19 year old Harry Potter engaged to Ginny and thinks she is the love of his and only one for him. What happens when an accident causes him to go into the future and find out what it might be like if he was to choose someone else besides her as he goes through different futures with different girls had he made a different choice? Who will he choose?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fantasy1290" AND l.name="English"
+UNION
+SELECT "The Witchunters of London" as name, a.id as author_id, 3 as rating, "A date with a mysterious woman leads Chief Inspector Dursley to discover a string of crimes involving a secret society called Witchunters, rich Muggle men looking to have a beautiful witch of their own. He works with his cousin Harry, an Auror, to determine who the killer is and exactly who is in danger." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rusty Weasley" AND l.name="English"
+UNION
+SELECT "The Insta-Family Effect" as name, a.id as author_id, 3 as rating, "Two halves make a whole. And baby makes three. Is this enough? Or will they discover more? Prequel to Forgotten But Not Gone. Mentions of Ron/Hermione and past Harry/Ginny. Some mild Ron bashing." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Harmonyromionedramione" AND l.name="English"
+UNION
+SELECT "The Secret Desire" as name, a.id as author_id, 3 as rating, "Harry is up late one night as he can't sleep he goes to the room of requirement to get some relaxation. Quick sexy ONESHOT between Harry Potter and Daphne Greengrass. Let's find out if the Ice Queen is really cold once and for all. Perhaps the fiery passion of the boy who lived is enough to thaw her frozen heart." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DarkEagle69" AND l.name="English"
+UNION
+SELECT "Come Back and Haunt Me" as name, a.id as author_id, 3 as rating, """Yes, thank you. You've saved me from a load of embarrassment."" Ginny answered, as she righted herself and turned around. The man's hands were still close, making sure she didn't topple again. Her eyes travelled up those hands to his arms, to familiar looking shoulders that held a very familiar looking face. The face of a phantom. ""Harry?""" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Elliehigginbottom" AND l.name="English"
+UNION
+SELECT "Harry Potter and the Two Flowers" as name, a.id as author_id, 3 as rating, "The Triwizard is expanded to include duelling and quidditch tournaments. While the magical world prepares for the most exciting tournament in history, Voldemort is nearing resurrection and Harry Potter is in the middle of it all. A tale of adventure, action, comedy, veelas, dragons, love, lust and arcane magic. Harry and two veelas. Smart, Strong Harry. HP/FD/OFC" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Azaron" AND l.name="English"
+UNION
+SELECT "Alternative Rebirth" as name, a.id as author_id, 3 as rating, "31st October 1981: Lord Voldemort is dead. The world is full of chaos, fear and grief. James and Lily Potter, who ended this war, have a life to repair." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nellark" AND l.name="English";
 
 /*
  * Link
@@ -2232,6 +2638,8 @@ SELECT "https://archiveofourown.org/works/40329090", ff.id FROM `fanfictions` ff
 UNION
 SELECT "https://archiveofourown.org/works/40723836/chapters/102040119", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Old Love" AND a.name = "TheHallowsInMe31"
 UNION
+SELECT "https://www.fanfiction.net/s/14086521/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Old Love" AND a.name = "TheHallowsInMe31"
+UNION
 SELECT "https://archiveofourown.org/works/40929258", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Awakening" AND a.name = "Atrxx93"
 UNION
 SELECT "https://archiveofourown.org/works/41827137/chapters/104946732", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and The Revival of The Phoenix" AND a.name = "Prince_Asmo"
@@ -2263,6 +2671,8 @@ UNION
 SELECT "https://archiveofourown.org/works/37666063", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Four Times Harry Walked in on Ron and Hermione and One Time He Didn’t" AND a.name = "Liiilyevans"
 UNION
 SELECT "https://archiveofourown.org/works/41199063/chapters/103281897", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)"
+UNION
+SELECT "https://www.fanfiction.net/s/14126724/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ménage à Quatre" AND a.name = "Methos (Methos2523)"
 UNION
 SELECT "https://archiveofourown.org/works/42882966/chapters/107733519", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Brumous" AND a.name = "SeriouslySam"
 UNION
@@ -2634,4 +3044,220 @@ SELECT "https://www.fanfiction.net/s/13959733/1/", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://www.fanfiction.net/s/13968453/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "To Catch A Killer" AND a.name = "PringlesTheWriter"
 UNION
-SELECT "https://www.fanfiction.net/s/13974620/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Strange Case of Love" AND a.name = "Thedirtymind";
+SELECT "https://www.fanfiction.net/s/13974620/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Strange Case of Love" AND a.name = "Thedirtymind"
+UNION
+SELECT "https://www.fanfiction.net/s/14008865/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fire and Ice" AND a.name = "ACI100"
+UNION
+SELECT "https://www.fanfiction.net/s/14009079/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Family that Chooses You" AND a.name = "WokFriedIce"
+UNION
+SELECT "https://www.fanfiction.net/s/14376699/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Family that Heals" AND a.name = "WokFriedIce"
+UNION
+SELECT "https://www.fanfiction.net/s/14095037/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Extended Family" AND a.name = "WokFriedIce"
+UNION
+SELECT "https://www.fanfiction.net/s/14015303/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fleur De Lis" AND a.name = "OrionB15"
+UNION
+SELECT "https://www.fanfiction.net/s/14021440/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Winding Road" AND a.name = "NotAWriter1981"
+UNION
+SELECT "https://www.fanfiction.net/s/14023181/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Lion and The Lioness" AND a.name = "TigerGirl14"
+UNION
+SELECT "https://www.fanfiction.net/s/14063275/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Thrown Back" AND a.name = "ProfessorQuill101"
+UNION
+SELECT "https://www.fanfiction.net/s/14067197/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Call Me Edward" AND a.name = "CelesteMagnolia"
+UNION
+SELECT "https://www.fanfiction.net/s/14069135/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Dark Year" AND a.name = "Alwaysendwithakiss"
+UNION
+SELECT "https://www.fanfiction.net/s/14082940/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Kiss of Life" AND a.name = "Birdwoman95"
+UNION
+SELECT "https://www.fanfiction.net/s/14089409/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "On The Hunt" AND a.name = "Vedros"
+UNION
+SELECT "https://www.fanfiction.net/s/14090416/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reading HP - 1" AND a.name = "Lorixjake"
+UNION
+SELECT "https://www.fanfiction.net/s/14112995/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Agent Potter: The Wizard of WAND" AND a.name = "HPfanfictioner66"
+UNION
+SELECT "https://www.fanfiction.net/s/14127568/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Daphne Greengrass and the Boy Who Lived" AND a.name = "KatonRyu"
+UNION
+SELECT "https://www.fanfiction.net/s/14132466/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Delicate Art of Raising Thestrals" AND a.name = "AppoApples"
+UNION
+SELECT "https://www.fanfiction.net/s/14138583/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Ritual of Love's Memory" AND a.name = "CampDBow"
+UNION
+SELECT "https://www.fanfiction.net/s/14141345/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Written in the Stars" AND a.name = "TheBlack'sResurgence"
+UNION
+SELECT "https://www.fanfiction.net/s/14143530/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Contractual Obligation" AND a.name = "LegendDairy"
+UNION
+SELECT "https://www.fanfiction.net/s/14161374/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Never Silence A Lion's Roar" AND a.name = "Aeyliana"
+UNION
+SELECT "https://www.fanfiction.net/s/14172303/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Lost Horcrux" AND a.name = "LilyevansJan30"
+UNION
+SELECT "https://www.fanfiction.net/s/14181661/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A short life full of long years" AND a.name = "RMWB"
+UNION
+SELECT "https://www.fanfiction.net/s/14209011/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Evans: Memoirs of a well-lived Death (SI)" AND a.name = "Bor902"
+UNION
+SELECT "https://www.fanfiction.net/s/14225636/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Taste of Magic" AND a.name = "WokFriedIce"
+UNION
+SELECT "https://www.fanfiction.net/s/14375499/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Side Dishes" AND a.name = "WokFriedIce"
+UNION
+SELECT "https://www.fanfiction.net/s/14250826/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Intrinsicality" AND a.name = "RileyOR"
+UNION
+SELECT "https://www.fanfiction.net/s/2398208/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "We're Home" AND a.name = "Hatebelow"
+UNION
+SELECT "https://www.fanfiction.net/s/2814791/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Hatal Fart Attack" AND a.name = "Corwalch"
+UNION
+SELECT "https://www.fanfiction.net/s/3241821/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Beautiful" AND a.name = "Michelle Moonshine"
+UNION
+SELECT "https://www.fanfiction.net/s/3480452/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Parce que" AND a.name = "Feymist"
+UNION
+SELECT "https://www.fanfiction.net/s/3693052/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Back Again, Harry?" AND a.name = "Jedi Buttercup"
+UNION
+SELECT "https://www.fanfiction.net/s/4200568/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Harmony Bond" AND a.name = "Brigrove"
+UNION
+SELECT "https://www.fanfiction.net/s/4960536/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Obligatory Marriage Law Fic" AND a.name = "Bobmin356"
+UNION
+SELECT "https://www.fanfiction.net/s/5026437/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Knowing Where to Look" AND a.name = "La baguette"
+UNION
+SELECT "https://www.fanfiction.net/s/5291174/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Seduced by a Veela" AND a.name = "Hphglover"
+UNION
+SELECT "https://www.fanfiction.net/s/5443513/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ron's Howler" AND a.name = "Stick97"
+UNION
+SELECT "https://www.fanfiction.net/s/5456087/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Unmentionables?" AND a.name = "Stick97"
+UNION
+SELECT "https://www.fanfiction.net/s/5511855/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Delenda Est" AND a.name = "Lord Silvere"
+UNION
+SELECT "https://www.fanfiction.net/s/5598642/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Betrothal Contract" AND a.name = "James Spookie"
+UNION
+SELECT "https://www.fanfiction.net/s/5604382/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Accidental Bond" AND a.name = "Kb0"
+UNION
+SELECT "https://www.fanfiction.net/s/5681042/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Heart and Soul" AND a.name = "Sillimaure"
+UNION
+SELECT "https://www.fanfiction.net/s/5786099/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Cold blood" AND a.name = "DerLaCroix"
+UNION
+SELECT "https://www.fanfiction.net/s/5856625/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Return of the Marauders" AND a.name = "TheLastZion"
+UNION
+SELECT "https://www.fanfiction.net/s/5964699/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "To Become Whole Again" AND a.name = "Datbenik513"
+UNION
+SELECT "https://www.fanfiction.net/s/6153844/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fine Then!" AND a.name = "Alpha-The-Omega"
+UNION
+SELECT "https://www.fanfiction.net/s/6234089/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "It's My Life" AND a.name = "Fyreheart"
+UNION
+SELECT "https://www.fanfiction.net/s/6316983/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "BitterSweet Irony" AND a.name = "Sqwiz"
+UNION
+SELECT "https://www.fanfiction.net/s/6350739/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter After the War" AND a.name = "PotterFanSteve"
+UNION
+SELECT "https://www.fanfiction.net/s/6439871/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Different Halloween" AND a.name = "RobSt"
+UNION
+SELECT "https://www.fanfiction.net/s/6463116/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lucky Harry" AND a.name = "Pyrgus"
+UNION
+SELECT "https://www.fanfiction.net/s/6488853/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "How to Cage My Own Angel" AND a.name = "Jojor99"
+UNION
+SELECT "https://www.fanfiction.net/s/6580905/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For the Best" AND a.name = "Deliver.me"
+UNION
+SELECT "https://www.fanfiction.net/s/6583426/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Death's Doorbell" AND a.name = "Paladeus"
+UNION
+SELECT "https://www.fanfiction.net/s/6652537/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Quoth the Raven, Nevermore" AND a.name = "GenkaiFan"
+UNION
+SELECT "https://www.fanfiction.net/s/6720336/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From The Ashes Of Magic" AND a.name = "Dreetje"
+UNION
+SELECT "https://www.fanfiction.net/s/6943436/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Pureblood Princess" AND a.name = "TheEndless7"
+UNION
+SELECT "https://www.fanfiction.net/s/7017751/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter, Rise From Dust" AND a.name = "Bluezz-17"
+UNION
+SELECT "https://www.fanfiction.net/s/7169075/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "On Teenagers And Love" AND a.name = "Anamatics"
+UNION
+SELECT "https://www.fanfiction.net/s/7346328/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For the Love of Ginny" AND a.name = "Jesrod82"
+UNION
+SELECT "https://www.fanfiction.net/s/7348993/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "She Who Holds the Strings" AND a.name = "Romantic Silence"
+UNION
+SELECT "https://www.fanfiction.net/s/7353430/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Harry Potter Writers Circle" AND a.name = "Pettybureaucrat"
+UNION
+SELECT "https://www.fanfiction.net/s/7367964/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "One Night" AND a.name = "Sugarbubbleslove"
+UNION
+SELECT "https://www.fanfiction.net/s/7570508/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Nanny Wanted" AND a.name = "Miscard"
+UNION
+SELECT "https://www.fanfiction.net/s/7630045/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Set Up Gone Wrong" AND a.name = "Jojor99"
+UNION
+SELECT "https://www.fanfiction.net/s/7686593/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Regrets" AND a.name = "WandaXmaximoff"
+UNION
+SELECT "https://www.fanfiction.net/s/7869320/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Autumn Swan" AND a.name = "Lord Akiyama"
+UNION
+SELECT "https://www.fanfiction.net/s/7944938/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Snake in the Chestnut" AND a.name = "Nauro"
+UNION
+SELECT "https://www.fanfiction.net/s/8012926/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Elusive Prince" AND a.name = "The Purple Critic"
+UNION
+SELECT "https://www.fanfiction.net/s/8078750/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Call to Arms" AND a.name = "My Dear Professor McGonagall"
+UNION
+SELECT "https://www.fanfiction.net/s/8162304/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Is this fate?" AND a.name = "Elvenkendra"
+UNION
+SELECT "https://www.fanfiction.net/s/8163947/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Past Always Catches Up" AND a.name = "Hopefulled"
+UNION
+SELECT "https://www.fanfiction.net/s/8262940/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Unatoned" AND a.name = "SeriousScribble"
+UNION
+SELECT "https://www.fanfiction.net/s/8286766/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Coach Granger" AND a.name = "LuanMao"
+UNION
+SELECT "https://www.fanfiction.net/s/8302867/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Never Let Me Go" AND a.name = "Orlandraopal29"
+UNION
+SELECT "https://www.fanfiction.net/s/8402817/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Thinking Thing" AND a.name = "Aya8"
+UNION
+SELECT "https://www.fanfiction.net/s/8417279/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Passionate Interlude" AND a.name = "Aya8"
+UNION
+SELECT "https://www.fanfiction.net/s/8426703/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dance Your Heart Out" AND a.name = "Butterfly Kisses 22"
+UNION
+SELECT "https://www.fanfiction.net/s/8442684/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Plus One" AND a.name = "Maia.maiestas"
+UNION
+SELECT "https://www.fanfiction.net/s/8456881/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Quidditch pitch and five Galleons" AND a.name = "Onecelestialbeing"
+UNION
+SELECT "https://www.fanfiction.net/s/8461661/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Roar and a Slither" AND a.name = "Lunalustgood"
+UNION
+SELECT "https://www.fanfiction.net/s/8519426/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Stregati" AND a.name = "Ely-Baby"
+UNION
+SELECT "https://www.fanfiction.net/s/8510126/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Addiction" AND a.name = "BeaumontRulz"
+UNION
+SELECT "https://www.fanfiction.net/s/8492815/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Purple" AND a.name = "Unicornball"
+UNION
+SELECT "https://www.fanfiction.net/s/8519756/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Touch Me" AND a.name = "Alexandri"
+UNION
+SELECT "https://www.fanfiction.net/s/8658356/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The List" AND a.name = "9876grpc"
+UNION
+SELECT "https://www.fanfiction.net/s/8676981/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Potter's Angels" AND a.name = "Takao1160"
+UNION
+SELECT "https://www.fanfiction.net/s/8831374/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Power of the Press" AND a.name = "Bobmin356"
+UNION
+SELECT "https://www.fanfiction.net/s/8831767/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "One-Ness" AND a.name = "HermiHugs"
+UNION
+SELECT "https://www.fanfiction.net/s/8837257/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Wizards Fall" AND a.name = "Bobmin356"
+UNION
+SELECT "https://www.fanfiction.net/s/8907568/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "In the Library" AND a.name = "Vox ad umbram sum"
+UNION
+SELECT "https://www.fanfiction.net/s/8958966/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Box" AND a.name = "SkyHigh17"
+UNION
+SELECT "https://www.fanfiction.net/s/9048823/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Four Heirs" AND a.name = "Sinyk"
+UNION
+SELECT "https://www.fanfiction.net/s/9105787/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Intervention" AND a.name = "Simon Flower"
+UNION
+SELECT "https://www.fanfiction.net/s/9105809/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Temptation" AND a.name = "Simon Flower"
+UNION
+SELECT "https://www.fanfiction.net/s/9105849/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Working Late" AND a.name = "Simon Flower"
+UNION
+SELECT "https://www.fanfiction.net/s/9117979/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For The First Time" AND a.name = "Anjie"
+UNION
+SELECT "https://www.fanfiction.net/s/9121371/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The ShampooDragon Seduction" AND a.name = "LJlashlarue"
+UNION
+SELECT "https://www.fanfiction.net/s/9241926/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Discretion" AND a.name = "LJlashlarue"
+UNION
+SELECT "https://www.fanfiction.net/s/9367684/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Forgotten But Not Gone" AND a.name = "Harmonyromionedramione"
+UNION
+SELECT "https://www.fanfiction.net/s/9380229/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Stress Relieving Breakfast" AND a.name = "The-void of Emotions"
+UNION
+SELECT "https://www.fanfiction.net/s/9393879/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Perils of Prospective Pregnancy" AND a.name = "StrongHermione"
+UNION
+SELECT "https://www.fanfiction.net/s/9410697/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Love of Your Life" AND a.name = "Fantasy1290"
+UNION
+SELECT "https://www.fanfiction.net/s/9420988/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Witchunters of London" AND a.name = "Rusty Weasley"
+UNION
+SELECT "https://www.fanfiction.net/s/9430134/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Insta-Family Effect" AND a.name = "Harmonyromionedramione"
+UNION
+SELECT "https://www.fanfiction.net/s/9442758/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Secret Desire" AND a.name = "DarkEagle69"
+UNION
+SELECT "https://www.fanfiction.net/s/9450028/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Come Back and Haunt Me" AND a.name = "Elliehigginbottom"
+UNION
+SELECT "https://www.fanfiction.net/s/9453669/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Harry Potter and the Two Flowers" AND a.name = "Azaron"
+UNION
+SELECT "https://www.fanfiction.net/s/9470061/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Alternative Rebirth" AND a.name = "Nellark";

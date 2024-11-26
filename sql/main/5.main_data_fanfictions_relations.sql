@@ -1357,4 +1357,64 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION --
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Organic" AND a.name = "Akamoroti" AND r.name = "Daphne Greengrass / Harry Potter"
 UNION --
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Strange Case of Love" AND a.name = "Thedirtymind" AND r.name = "Harry Potter / Lily Evans Potter";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Strange Case of Love" AND a.name = "Thedirtymind" AND r.name = "Harry Potter / Lily Evans Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fire and Ice" AND a.name = "ACI100" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Family that Heals" AND a.name = "WokFriedIce" AND r.name = "Harry Potter / Katie Bell"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Extended Family" AND a.name = "WokFriedIce" AND r.name = "Harry Potter / Katie Bell"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fleur De Lis" AND a.name = "OrionB15" AND r.name = "Fleur Delacour / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Lion and The Lioness" AND a.name = "TigerGirl14" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Dark Year" AND a.name = "Alwaysendwithakiss" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Kiss of Life" AND a.name = "Birdwoman95" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "On The Hunt" AND a.name = "Vedros" AND r.name = "Daphne Greengrass / Gabrielle Delacour / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Daphne Greengrass and the Boy Who Lived" AND a.name = "KatonRyu" AND r.name = "Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Delicate Art of Raising Thestrals" AND a.name = "AppoApples" AND r.name = "Harry Potter / Luna Lovegood"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Ritual of Love's Memory" AND a.name = "CampDBow" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Contractual Obligation" AND a.name = "LegendDairy" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Never Silence A Lion's Roar" AND a.name = "Aeyliana" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Lost Horcrux" AND a.name = "LilyevansJan30" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Lost Horcrux" AND a.name = "LilyevansJan30" AND r.name = "James Potter / Lily Evans Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A short life full of long years" AND a.name = "RMWB" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Side Dishes" AND a.name = "WokFriedIce" AND r.name = "Harry Potter / Lavender Brown"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Intrinsicality" AND a.name = "RileyOR" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Betrothal Contract" AND a.name = "James Spookie" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Different Halloween" AND a.name = "RobSt" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "One Night" AND a.name = "Sugarbubbleslove" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Autumn Swan" AND a.name = "Lord Akiyama" AND r.name = "Cho Chang / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Snake in the Chestnut" AND a.name = "Nauro" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Stregati" AND a.name = "Ely-Baby" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Purple" AND a.name = "Unicornball" AND r.name = "Hermione Granger / Pansy Parkinson"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "One-Ness" AND a.name = "HermiHugs" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Love of Your Life" AND a.name = "Fantasy1290" AND r.name = "Cho Chang / Hannah Abbott / Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Witchunters of London" AND a.name = "Rusty Weasley" AND r.name = "Dudley Dursley / Pansy Parkinson"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Witchunters of London" AND a.name = "Rusty Weasley" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Two Flowers" AND a.name = "Azaron" AND r.name = "Fleur Delacour / Harry Potter";

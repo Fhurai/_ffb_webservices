@@ -19,7 +19,16 @@ CREATE OR REPLACE VIEW stats_fandoms_relations AS (
 CREATE OR REPLACE VIEW stats_relations_characters AS (
     SELECT r.id, r.name, count(rc.character_id) as nb_characters
     FROM `ffb_main`.`relations` r 
-    INNER JOIN `ffb_main`.`relations_characters` rc ON rc.relation_id = r.id GROUP BY r.id
+    INNER JOIN `ffb_main`.`relations_characters` rc ON rc.relation_id = r.id 
+    GROUP BY r.id
+);
+
+CREATE OR REPLACE VIEW stats_characters_relations AS (
+    SELECT c.id, c.name, count(r.id) as nb_relations
+    FROM  `ffb_main`.`characters` c
+    INNER JOIN `ffb_main`.`relations_characters` rc ON rc.character_id = c.id
+    INNER JOIN `ffb_main`.`relations` r ON r.id = rc.relation_id
+    GROUP BY c.id
 );
 
 CREATE OR REPLACE VIEW stats_users_actions AS (
@@ -97,4 +106,11 @@ CREATE OR REPLACE VIEW stats_series_fanfictions AS (
     INNER JOIN `ffb_main`.`series_fanfictions` sfn ON sfn.series_id = s.id
     INNER JOIN `ffb_main`.`fanfictions` ff on ff.id = sfn.fanfiction_id
     GROUP BY s.id
+);
+
+CREATE OR REPLACE VIEW stats_fanfictions_links AS (
+    SELECT ff.id as id, ff.name as name, COUNT(l.id) as nb_links
+    FROM `ffb_main`.`fanfictions` ff
+    INNER JOIN `ffb_main`.`links` l on l.fanfiction_id=ff.id
+    GROUP BY ff.id
 );
