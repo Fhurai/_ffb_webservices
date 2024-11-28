@@ -31,7 +31,10 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Dragon Chronicles", ""),
 ("Brothers", ""),
 ("Family that Chooses You", ""),
-("A Taste of Magic", "");
+("A Taste of Magic", ""),
+("I told him, Gaby. I told him that I loved you", ""),
+("Music and Mayhem", ""),
+("Saving NezzySeries", "");
 
 /*
  * Series fanfictions
@@ -244,4 +247,24 @@ SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "A Taste of Magic" AND f.name = "A Taste of Magic" AND a.name = "WokFriedIce"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "A Taste of Magic" AND f.name = "Side Dishes" AND a.name = "WokFriedIce";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "A Taste of Magic" AND f.name = "Side Dishes" AND a.name = "WokFriedIce"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "I told him, Gaby. I told him that I loved you" AND f.name = "I told him, Gaby I told him that I loved you" AND a.name = "Floaw"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "I told him, Gaby. I told him that I loved you" AND f.name = "How it all started" AND a.name = "Floaw"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "Check... and Mate" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "Moving On" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "Innocence Asunder" AND a.name = " Grace Kay (Drummerchick7)"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "A Very Merry Christmas Indeed" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Music and Mayhem" AND f.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Saving Nezzy" AND f.name = "Saving Nezzy" AND a.name = " BlueRaith"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Saving Nezzy" AND f.name = "Saving Sanity" AND a.name = "BlueRaith";

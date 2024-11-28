@@ -360,11 +360,11 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON 
 UNION -- Hermione Granger/Harry Potter/Ron Weasley
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Office Fun" AND a.name = "Ronslady23" AND r.name = "Harry Potter / Hermione Granger / Ronald 'Ron' Weasley"
 UNION -- Hermione Granger/Harry Potter/Ron Weasley
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = """Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Harry Potter / Hermione Granger / Ronald 'Ron' Weasley"
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Harry Potter - Wizarding World""Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Harry Potter / Hermione Granger / Ronald 'Ron' Weasley"
 UNION -- Arthur Weasley/Molly Weasley
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = """Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Arthur Weasley / Molly Weasley"
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Harry Potter - Wizarding World""Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Arthur Weasley / Molly Weasley"
 UNION -- Sirius Black/Remus Lupin/Nymphadora Tonks
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = """Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Nymphadora Tonks / Remus Lupin / Sirius Black"
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "Harry Potter - Wizarding World""Harry Potter and the Unbreakable Bond""" AND a.name = "Leviathan0999" AND r.name = "Nymphadora Tonks / Remus Lupin / Sirius Black"
 UNION -- Hermione Granger/Harry Potter/Ron Weasley
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN authors a ON a.id = ff.author_id WHERE ff.name = "I'm Worried About Harry" AND a.name = "Heyitsamorette (AmoretteHD)" AND r.name = "Harry Potter / Hermione Granger / Ronald 'Ron' Weasley"
 UNION -- Hermione Granger/Ron Weasley
@@ -1417,4 +1417,70 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION --
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Witchunters of London" AND a.name = "Rusty Weasley" AND r.name = "Ginevra 'Ginny' Weasley / Harry Potter"
 UNION --
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Two Flowers" AND a.name = "Azaron" AND r.name = "Fleur Delacour / Harry Potter";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the Two Flowers" AND a.name = "Azaron" AND r.name = "Fleur Delacour / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Harry Potter and the 11th Commandment" AND a.name = "Insert Valid Author Name" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Unexpected" AND a.name = "Sharp Angles" AND r.name = "Ginevra 'Ginny' Weasley / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Charlie's Child" AND a.name = "Harry50" AND r.name = "Charles 'Charlie' Weasley / Daphne Greengrass"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "What We're Fighting For" AND a.name = "James Spookie" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Pleasurable Jealousy" AND a.name = "A Love So Strong" AND r.name = "Harry Potter / Hermione Granger"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Legacy" AND a.name = "StorytellerSpW" AND r.name = "Daphne Greengrass / Harry Potter"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Welcome to Burlesque" AND a.name = "Abigail Belle" AND r.name = "Padma Patil / Pansy Parkinson"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Christmas FemSlash Special" AND a.name = "WhereTheBerriesBloom" AND r.name = "Hermione Granger / Narcissa Black Malfoy"
+UNION -- Samantha Traynor/Ashley Williams
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Very Merry Christmas Indeed" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Ashley Williams / Samantha Traynor"
+UNION -- Samantha Traynor/Ashley Williams
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Check... and Mate" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Ashley Williams / Samantha Traynor"
+UNION -- Samantha Traynor/Ashley Williams
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Ashley Williams / Samantha Traynor"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving On" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Kelly Chambers/Female Shepard
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving On" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Kelly Chambers / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Innocence Asunder" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Kelly Chambers/Female Shepard
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Innocence Asunder" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Kelly Chambers / Shepard (F)"
+UNION -- Kelly Chambers/Female Shepard
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Kelly Chambers / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Tomorrow" AND a.name = "Masserect" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Jack/Miranda
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND r.name = "Jack | Subject Zero / Miranda Lawson"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Hate It When She Does That" AND a.name = "Coolant" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Tevos/Aria T'Loak
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND r.name =" Aria T'Loak / Councilor Tevos"
+UNION -- Jack | Subject Zero/Miranda Lawson
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND r.name = "Jack | Subject Zero / Miranda Lawson"
+UNION -- Sha'ira/Ashley Williams
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND r.name = "Ashley Williams / Sha'ira"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Doctor's Prescription" AND a.name = "Lyaksandra" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Aethyta/Benezia
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND r.name = "Benezia T'Soni / Matriarch Aethyta"
+UNION -- Miranda Lawson & Original Female Character(s)
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Perfect Pet" AND a.name = "Raptor4d4" AND r.name = "Miranda Lawson / OFC"
+UNION -- Aethyta/Benezia
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND r.name = "Benezia T'Soni / Matriarch Aethyta"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Aethyta/Benezia
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND r.name = "Benezia T'Soni / Matriarch Aethyta";

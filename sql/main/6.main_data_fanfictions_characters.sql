@@ -4161,4 +4161,260 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION -- James P.
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Alternative Rebirth" AND a.name = "Nellark" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "James Potter" AND f.name = "Harry Potter - Wizarding World"
 UNION -- Lily Evans P.
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Alternative Rebirth" AND a.name = "Nellark" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans Potter" AND f.name = "Harry Potter - Wizarding World";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Alternative Rebirth" AND a.name = "Nellark" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the Nameless Man" AND a.name = "Brennus" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ginny W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the Nameless Man" AND a.name = "Brennus" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Susan B.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the Nameless Man" AND a.name = "Brennus" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Susan Bones" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Neville L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Success!" AND a.name = "FamousNoOne" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hannah A.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Success!" AND a.name = "FamousNoOne" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hannah Abbott" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Happy Birthday, Harry!" AND a.name = "Onyx Obsidian" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Happy Birthday, Harry!" AND a.name = "Onyx Obsidian" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Following Instinct" AND a.name = "GreenEvans" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Following Instinct" AND a.name = "GreenEvans" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Served Cold" AND a.name = "Harmonyromionedramione" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Served Cold" AND a.name = "Harmonyromionedramione" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the 11th Commandment" AND a.name = "Insert Valid Author Name" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.] Sirius B.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the 11th Commandment" AND a.name = "Insert Valid Author Name" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Daphne Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.] Sirius B.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry Potter and the 11th Commandment" AND a.name = "Insert Valid Author Name" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sirius Black" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Any Way You Want It" AND a.name = "KiyoFaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Any Way You Want It" AND a.name = "KiyoFaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ginny W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Any Way You Want It" AND a.name = "KiyoFaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Cho C.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Any Way You Want It" AND a.name = "KiyoFaye" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cho Chang" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry's Veela" AND a.name = "Colormonk" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Gabrielle D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry's Veela" AND a.name = "Colormonk" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Gabrielle Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Are Friends For?" AND a.name = "Moonglow21" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Are Friends For?" AND a.name = "Moonglow21" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Benefits" AND a.name = "Bl4ckC0bra" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Benefits" AND a.name = "Bl4ckC0bra" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Daphne Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mine" AND a.name = "LJlashlarue" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mine" AND a.name = "LJlashlarue" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Gabrielle Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Four Champions" AND a.name = "RandReborn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Cedric D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Four Champions" AND a.name = "RandReborn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cedric Diggory" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Fleur D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Four Champions" AND a.name = "RandReborn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fleur Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Viktor K.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Four Champions" AND a.name = "RandReborn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Viktor Krum" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Burning Love" AND a.name = "Uniquely Named" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Burning Love" AND a.name = "Uniquely Named" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Narcissa Black Malfoy" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry, Hermione and Lily" AND a.name = "Broomstick flyer" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry, Hermione and Lily" AND a.name = "Broomstick flyer" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Lily Evans P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Harry, Hermione and Lily" AND a.name = "Broomstick flyer" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Happy Birthday, Harry!" AND a.name = "Onyx Obsidian" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Happy Birthday, Harry!" AND a.name = "Onyx Obsidian" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unexpected" AND a.name = "Sharp Angles" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ginny W.]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unexpected" AND a.name = "Sharp Angles" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginevra 'Ginny' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Heirs of the Founders" AND a.name = "Animekitty2" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Heirs of the Founders" AND a.name = "Animekitty2" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Charlie W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Charlie's Child" AND a.name = "Harry50" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Charles 'Charlie' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Charlie's Child" AND a.name = "Harry50" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Daphne Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What We're Fighting For" AND a.name = "James Spookie" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.] Neville L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What We're Fighting For" AND a.name = "James Spookie" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.] Neville L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What We're Fighting For" AND a.name = "James Spookie" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Neville Longbottom" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Lavender B.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What We're Fighting For" AND a.name = "James Spookie" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lavender Brown" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Pleasurable Jealousy" AND a.name = "A Love So Strong" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Pleasurable Jealousy" AND a.name = "A Love So Strong" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Legacy" AND a.name = "StorytellerSpW" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.] Ron W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Legacy" AND a.name = "StorytellerSpW" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Daphne Greengrass" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Daphne G.] Ron W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Legacy" AND a.name = "StorytellerSpW" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Legacy" AND a.name = "StorytellerSpW" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Padma P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Welcome to Burlesque" AND a.name = "Abigail Belle" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Padma Patil" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Pansy P.] Luna L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Welcome to Burlesque" AND a.name = "Abigail Belle" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Pansy Parkinson" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Pansy P.] Luna L.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Welcome to Burlesque" AND a.name = "Abigail Belle" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Luna Lovegood" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Muggleborn Teacher" AND a.name = "White Angel of Auralon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- OC
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Muggleborn Teacher" AND a.name = "White Angel of Auralon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Arabella F.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Muggleborn Teacher" AND a.name = "White Angel of Auralon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Arabella Figg" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I told him, Gaby I told him that I loved you" AND a.name = "Floaw" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Gabrielle D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I told him, Gaby I told him that I loved you" AND a.name = "Floaw" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Gabrielle Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION -- [Narcissa M.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Christmas FemSlash Special" AND a.name = "WhereTheBerriesBloom" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Narcissa Black Malfoy" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.]
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Christmas FemSlash Special" AND a.name = "WhereTheBerriesBloom" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "How it all started" AND a.name = "Floaw" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Gabrielle D.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "How it all started" AND a.name = "Floaw" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Gabrielle Delacour" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Second Time Around" AND a.name = "ZilchNil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- N. Tonks
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Second Time Around" AND a.name = "ZilchNil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nymphadora Tonks" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Baby, It's Cold Outside" AND a.name = "Itakethewords" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Baby, It's Cold Outside" AND a.name = "Itakethewords" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Seasons of Change" AND a.name = "MPRose" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Ron W.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Seasons of Change" AND a.name = "MPRose" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ronald 'Ron' Weasley" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Seasons of Change" AND a.name = "MPRose" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Harry P.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "You and I Collide" AND a.name = "Scarlet-Angel-Blonde-Devil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Harry Potter" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Hermione G.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "You and I Collide" AND a.name = "Scarlet-Angel-Blonde-Devil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hermione Granger" AND f.name = "Harry Potter - Wizarding World"
+UNION -- Samantha Traynor
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Very Merry Christmas Indeed" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Samantha Traynor" AND f.name = "Mass Effect"
+UNION -- Ashley Williams
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Very Merry Christmas Indeed" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashley Williams" AND f.name = "Mass Effect"
+UNION -- Samantha Traynor
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Check... and Mate" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Samantha Traynor" AND f.name = "Mass Effect"
+UNION -- Ashley Williams
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Check... and Mate" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashley Williams" AND f.name = "Mass Effect"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Check... and Mate" AND t.name = "Romance" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Check... and Mate" AND t.name = "Sci-Fi" AND a.name = "Grace Kay (Drummerchick7)"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Check... and Mate" AND t.name = "One-shot" AND a.name = "Grace Kay (Drummerchick7)"
+UNION -- Ashley Williams
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashley Williams" AND f.name = "Mass Effect"
+UNION -- Samantha Traynor
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Samantha Traynor" AND f.name = "Mass Effect"
+UNION -- Female Shepard (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "That Which Matters Most" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Innocence Asunder" AND t.name = "One-shot" AND a.name = "Grace Kay (Drummerchick7)"
+UNION -- Kelly Chambers
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kelly Chambers" AND f.name = "Mass Effect"
+UNION -- Female Shepard (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Sharing" AND a.name = "Grace Kay (Drummerchick7)" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Female Shepard
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Tomorrow" AND a.name = "Masserect" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Tomorrow" AND a.name = "Masserect" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Jack | Subject Zero
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Jack | Subject Zero" AND f.name = "Mass Effect"
+UNION -- Miranda Lawson
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miranda Lawson" AND f.name = "Mass Effect"
+UNION -- Female Shepard
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "What Miranda Wants" AND a.name = "RaeDMagdon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Hate It When She Does That" AND a.name = "Coolant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Female Shepard
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Hate It When She Does That" AND a.name = "Coolant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Garrus Vakarian
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Hate It When She Does That" AND a.name = "Coolant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Garrus Vakarian" AND f.name = "Mass Effect"
+UNION -- Female Shepard
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Tevos
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Councilor Tevos" AND f.name = "Mass Effect"
+UNION -- Aria T'Loak
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Aria T'Loak" AND f.name = "Mass Effect"
+UNION -- Jack | Subject Zero
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Jack | Subject Zero" AND f.name = "Mass Effect"
+UNION -- Miranda Lawson
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miranda Lawson" AND f.name = "Mass Effect"
+UNION -- Sha'ira
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sha'ira" AND f.name = "Mass Effect"
+UNION -- Ashley Williams
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashley Williams" AND f.name = "Mass Effect"
+UNION -- Maya Brooks
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Maya Brooks" AND f.name = "Mass Effect"
+UNION -- Samantha Traynor
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Samantha Traynor" AND f.name = "Mass Effect"
+UNION -- Urdnot Wrex
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Urdnot Wrex" AND f.name = "Mass Effect"
+UNION -- Matriarch Aethyta
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matriarch Aethyta" AND f.name = "Mass Effect"
+UNION -- Matriarch Benezia
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Asari Nights" AND a.name = "Psychotic_cat17" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benezia T'Soni" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Doctor's Prescription" AND a.name = "Lyaksandra" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Female Shepard
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Doctor's Prescription" AND a.name = "Lyaksandra" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Female Shepard (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Jack | Subject Zero
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Jack | Subject Zero" AND f.name = "Mass Effect"
+UNION -- Aethyta (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matriarch Aethyta" AND f.name = "Mass Effect"
+UNION -- Benezia (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Life's a Catch" AND a.name = "Luthor" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benezia T'Soni" AND f.name = "Mass Effect"
+UNION -- Miranda Lawson
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Perfect Pet" AND a.name = "Raptor4d4" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miranda Lawson" AND f.name = "Mass Effect"
+UNION -- Brynn Cole
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Perfect Pet" AND a.name = "Raptor4d4" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Brynn Cole" AND f.name = "Mass Effect"
+UNION -- Original Asari Character(s)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Perfect Pet" AND a.name = "Raptor4d4" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC" AND f.name = "Mass Effect"
+UNION -- Aethyta (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matriarch Aethyta" AND f.name = "Mass Effect"
+UNION -- Benezia (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benezia T'Soni" AND f.name = "Mass Effect"
+UNION -- Female Shepard (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
+UNION -- Aethyta (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matriarch Aethyta" AND f.name = "Mass Effect"
+UNION -- Benezia (Mass Effect)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benezia T'Soni" AND f.name = "Mass Effect"
+UNION -- Liara T'Soni
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect";
