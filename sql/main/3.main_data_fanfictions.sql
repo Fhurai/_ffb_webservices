@@ -11,6 +11,7 @@ INSERT INTO `authors` (`name`)
 VALUES 
 ("123irish"),
 ("521-DREAM"),
+("5th Legion"),
 ("9876grpc"),
 ("A Love So Strong"),
 ("Abigail Belle"),
@@ -27,6 +28,8 @@ VALUES
 ("Alpha-The-Omega"),
 ("Alwaysendwithakiss"),
 ("Alyndra"),
+("AManAdrift"),
+("Amber Penglass"),
 ("Anamatics"),
 ("Animekitty2"),
 ("Anjie"),
@@ -117,6 +120,7 @@ VALUES
 ("Fearful Porpentine"),
 ("Femmeslyth"),
 ("Feymist"),
+("Fight-sister-fight"),
 ("Fightfortherightsofhouseelves"),
 ("Flipflop_diva"),
 ("Floaw"),
@@ -129,8 +133,8 @@ VALUES
 ("GleeGeneration23"),
 ("Golasgil Sindar"),
 ("Gouline971"),
-("Gracerene"),
 ("Grace Kay (Drummerchick7)"),
+("Gracerene"),
 ("GraeFoxx"),
 ("GreenEvans"),
 ("GreenhouseThree"),
@@ -226,6 +230,7 @@ VALUES
 ("Maraudersaffair"),
 ("MargaretSexyMum"),
 ("Masserect"),
+("Massfreak"),
 ("Math'L"),
 ("MaybeMayba"),
 ("MayorHaggar"),
@@ -255,6 +260,7 @@ VALUES
 ("Nixrocket"),
 ("Noctus Noxia"),
 ("NotAWriter1981"),
+("Nothinginreturn"),
 ("NutPea16"),
 ("Nynayve"),
 ("Oakel"),
@@ -274,6 +280,7 @@ VALUES
 ("Pettybureaucrat"),
 ("Phoenixgal"),
 ("Pommedeplume"),
+("Postmeat"),
 ("Potterfamilysecret1"),
 ("PotterFanSteve"),
 ("Potterlad81"),
@@ -301,6 +308,7 @@ VALUES
 ("Raptor4d4"),
 ("Red_jacobson"),
 ("Relena Mishima"),
+("Revan's Mask"),
 ("Rickey"),
 ("RileyOR"),
 ("Rivia"),
@@ -332,6 +340,7 @@ VALUES
 ("Senigata"),
 ("SeriouslySam"),
 ("SeriousScribble"),
+("ShadowBlazer"),
 ("ShadowsEmbrace13"),
 ("Sharp Angles"),
 ("Shdwqueen"),
@@ -349,6 +358,7 @@ VALUES
 ("Somebody's Nightmare"),
 ("SometimeWriter1"),
 ("Songquake"),
+("Spectre-058"),
 ("Sprinter1988"),
 ("Sqwiz"),
 ("Star54kar"),
@@ -365,6 +375,7 @@ VALUES
 ("Takao1160"),
 ("Takearisk"),
 ("TarnishedArmour"),
+("Tayg"),
 ("Temporal Knight"),
 ("Th3Alchemist"),
 ("Thatsarockfact55"),
@@ -380,6 +391,7 @@ VALUES
 ("TheHallowsInMe31"),
 ("TheLastZion"),
 ("Theoneandonly99"),
+("Thessian Shadow"),
 ("Thewaywedo33"),
 ("TigerGirl14"),
 ("TimeTraveller-1900"),
@@ -418,6 +430,7 @@ VALUES
 ("WolfgangNH"),
 ("Writerfreakssss"),
 ("Writing Sins Not Tragedies"),
+("Wyles77"),
 ("Wyrdeen"),
 ("XDreamlessx"),
 ("Zakhro"),
@@ -2264,8 +2277,56 @@ UNION
 SELECT "Saving Sanity" as name, a.id as author_id, 2 as rating, "An AU of Saving Nezzy, these are the tales, tribulations, and shenanigans of the T'Soni family if Aethyta and Benezia had not separated. Essentially a collection of family fluff pieces featuring a young Liara." as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="BlueRaith" AND l.name="English"
 UNION
-SELECT "Samantha's New Game" as name, a.id as author_id, 4 as rating, "Being assigned to the Normandy was one of the best and worst things to happen to Communications Specialist Samantha Traynor. She's helping to save the galaxy...but at the same time she is surrounded by some of the most beautiful women in the galaxy. Beautiful women she lusts after constantly but can never have. Jane Shepard...Liara T'Soni...Ashley Williams...even the perfect Miranda Lawson. All are beyond her reach. But are they? Samantha has developed a special "game" that can potentially let her bed any woman she wants! Will Samantha's dreams finally come true?" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Raptor4d4" AND l.name="English";
+SELECT "Samantha's New Game" as name, a.id as author_id, 4 as rating, "Being assigned to the Normandy was one of the best and worst things to happen to Communications Specialist Samantha Traynor. She's helping to save the galaxy...but at the same time she is surrounded by some of the most beautiful women in the galaxy. Beautiful women she lusts after constantly but can never have. Jane Shepard...Liara T'Soni...Ashley Williams...even the perfect Miranda Lawson. All are beyond her reach. But are they? Samantha has developed a special ""game"" that can potentially let her bed any woman she wants! Will Samantha's dreams finally come true?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptor4d4" AND l.name="English"
+UNION
+SELECT "The Apology" as name, a.id as author_id, 4 as rating, "Since Ashley's return to the Normandy, things have been tense between her and Liara. Liara has not forgiven her for pointing a gun at her girlfriend. Shepard finally has enough and arranges a sit-down between the three of them. Ashley wants forgiveness. But there is only one kind of apology Liara will accept..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptor4d4" AND l.name="English"
+UNION
+SELECT "Personal Growth" as name, a.id as author_id, 4 as rating, "It's a quiet party. The kind of party Miranda likes. She's never been one for throbbing bass that rattles the bones and poorly mixed drinks. Low music and conversation are more her style, and she's grateful that's the mood Shepard has chosen. The person she's conversing with, however, is something of a surprise." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RaeDMagdon" AND l.name="English"
+UNION
+SELECT "This Body Is Yours" as name, a.id as author_id, 3 as rating, "'Miranda's always been comfortable with casual sex. A way to relieve tension without getting tangled up in emotions. But when Jack rolls towards her and presses her face in the junction of Miranda's chest and her arm, she can't prevent herself from stroking the younger woman's head.'" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fight-sister-fight" AND l.name="English"
+UNION
+SELECT "Piano e Forte" as name, a.id as author_id, 3 as rating, "One-shot. After an overly eventful start to their shore leave, Liara and Shepard finally find the time for a quiet evening in. Better Angels 'verse, rated M for adult themes and some language." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Wyles77" AND l.name="English"
+UNION
+SELECT "Mass Effect: End of Days" as name, a.id as author_id, 3 as rating, "An ancient danger threatens the galaxy, unknown to all. A humanity which never discovered Prothean ruins, expanding through space on their own, emerges. Joined with the machines they created, hardened by war with a terrifying enemy, they read the writing on the wall. But will the galactic community already there listen to these newcomers, stirring up trouble everywhere they go?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Postmeat" AND l.name="English"
+UNION
+SELECT "Mass Effect: The Paths We Take (Discontinued)" as name, a.id as author_id, 3 as rating, "John Shepard is the best of the Alliance. Primed for a spot in the SPECTRE's, his life will quickly turn upside down when the secrets held on Eden Prime are revealed. Discontinued and being rewritten in a new story of the same name." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nothinginreturn" AND l.name="English"
+UNION
+SELECT "Breaking Point" as name, a.id as author_id, 3 as rating, "The destruction of Thessia has pushed Liara into a deep depression. Desperate to save her lover, Shepard is forced to resort to unusual measures, but will even that be enough?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Revan's Mask" AND l.name="English"
+UNION
+SELECT "Of Heartache and Second Chances" as name, a.id as author_id, 3 as rating, "Jack and Miranda tried to make a relationship work after the war but they failed miserably. Or did they? One woman impulsive and moody, the other cool and guarded, but both desperately in love with one another. What would a relationship between the two of them really be like, and could they ever really make it work. Good sex, Jacks mouth, hurt, healing, and fluff. Deemonef's Image." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Massfreak" AND l.name="English"
+UNION
+SELECT "Justified Means" as name, a.id as author_id, 3 as rating, "Restored to life by Cerberus, Commander Shepard attempts to salvage his plans to stop the Reapers, survive whatever Cerberus has planned for him, and build a harem of beautiful lovers. Takes place during Mass Effect 2 and is the first in a three book series that will conclude with the Reaper War." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Spectre-058" AND l.name="English"
+UNION
+SELECT "Project Delta" as name, a.id as author_id, 3 as rating, "She was not born into a normal life. She had no father to protect her, no mother to nurture her, no home to feel safe in, and no real chance at a future. Born in a lab, she was to be part of an experiment meant to change humanity into something new, to raise them to a new level of biological glory. Pain was her constant companion and suffering her faithful teacher. Covers Pre ME1" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="5th Legion" AND l.name="English"
+UNION
+SELECT "The Short Road Home" as name, a.id as author_id, 3 as rating, "Six months after the defeat of the Kett and the settling of the Milky Way peoples' new home, everyone's favorite asari freeloader interrupts Sara and Jaal's night off at his sister's wedding to let them know she found something that might be just a teensy eensy important...like a Prothean relic, locked inside a Remnant ruin that has not been touched in hundreds of years." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Amber Penglass" AND l.name="English"
+UNION
+SELECT "The Anti-Agathics War" as name, a.id as author_id, 3 as rating, "Fifty years after Commander Shepard was inducted into the Spectres, the galaxy discovers that the asari genetically modified themselves to have thousand-year lifespans, and are withholding scientific data that could do the same for the other races in the galaxy. Shepard, now the human member of the Council, gathers allies to try and prevent this revelation causing another war." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AManAdrift" AND l.name="English"
+UNION
+SELECT "Uncommon Bonds" as name, a.id as author_id, 3 as rating, "AU/Rated M/ FemShep-Liara. Follow the story of a young mercenary hired to protect the daughter of an Asari Matriarch while falling in love and dealing with their pasts. Will not follow standard ME storylines. Romance/Comfort/Angst/Fluff" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tayg" AND l.name="English"
+UNION
+SELECT "Seduction Theory" as name, a.id as author_id, 3 as rating, "Samantha Traynor thought she'd figured out the general formula for getting a girl. Step one: Lure her in. Step two: She's not sure. Something exciting happens. Step three: Success! So, why is Shepard not cooperating with her plans? Not related to Freud's theory. Very not related." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ShadowBlazer" AND l.name="English"
+UNION
+SELECT "From Ashes" as name, a.id as author_id, 3 as rating, "There was a time when they both thought all was well in the galaxy. That time has ended. A chance meeting between a soldier and a politician may change everything, but where will it lead them? In a galaxy ablaze, what will rise from the ashes?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Thessian Shadow" AND l.name="English"
+UNION
+SELECT "Better Angels: A Call to Arms" as name, a.id as author_id, 3 as rating, "A series of occasional one-shots depicting different crew members' arrivals aboard the Normandy/significant appearances round about the ME3 timeline. Shepard or Liara will feature in most of them in some fashion, hence the character filters. Rated for language." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Wyles77" AND l.name="English";
 
 /*
  * Link
@@ -3517,4 +3578,36 @@ SELECT "https://archiveofourown.org/works/1049349", ff.id FROM `fanfictions` ff 
 UNION
 SELECT "https://archiveofourown.org/works/5379707", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith"
 UNION
-SELECT "https://archiveofourown.org/works/5844856", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4";
+SELECT "https://archiveofourown.org/works/5844856", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4"
+UNION
+SELECT "https://archiveofourown.org/works/5975590", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "The Apology" AND a.name = "Raptor4d4"
+UNION
+SELECT "https://archiveofourown.org/works/7601722", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Personal Growth" AND a.name = "RaeDMagdon"
+UNION
+SELECT "https://www.fanfiction.net/s/12545730/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "This Body Is Yours" AND a.name = "Fight-sister-fight"
+UNION
+SELECT "https://www.fanfiction.net/s/10047322/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Piano e Forte" AND a.name = "Wyles77"
+UNION
+SELECT "https://www.fanfiction.net/s/11098732/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mass Effect: End of Days" AND a.name = "Postmeat"
+UNION
+SELECT "https://www.fanfiction.net/s/11338200/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mass Effect: The Paths We Take (Discontinued)" AND a.name = "Nothinginreturn"
+UNION
+SELECT "https://www.fanfiction.net/s/11470198/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Breaking Point" AND a.name = "Revan's Mask"
+UNION
+SELECT "https://www.fanfiction.net/s/11807472/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Of Heartache and Second Chances" AND a.name = "Massfreak"
+UNION
+SELECT "https://www.fanfiction.net/s/12254380/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Justified Means" AND a.name = "Spectre-058"
+UNION
+SELECT "https://www.fanfiction.net/s/12393836/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Project Delta" AND a.name = "5th Legion"
+UNION
+SELECT "https://www.fanfiction.net/s/12431273/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Short Road Home" AND a.name = "Amber Penglass"
+UNION
+SELECT "https://www.fanfiction.net/s/12597900/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Anti-Agathics War" AND a.name = "AManAdrift"
+UNION
+SELECT "https://www.fanfiction.net/s/8181860/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Uncommon Bonds" AND a.name = "Tayg"
+UNION
+SELECT "https://www.fanfiction.net/s/8356683/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Seduction Theory" AND a.name = "ShadowBlazer"
+UNION
+SELECT "https://www.fanfiction.net/s/9274962/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow"
+UNION
+SELECT "https://www.fanfiction.net/s/9753863/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77";

@@ -1483,4 +1483,28 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION -- Female Shepard/Liara T'Soni
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Nezzy" AND a.name = "BlueRaith" AND r.name = "Liara T'Soni / Shepard (F)"
 UNION -- Aethyta/Benezia
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND r.name = "Benezia T'Soni / Matriarch Aethyta";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND r.name = "Benezia T'Soni / Matriarch Aethyta"
+UNION -- Female Shepard/Samantha Traynor
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND r.name = "Samantha Traynor / Shepard (F)"
+UNION -- Samantha Traynor/Ashley Williams
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND r.name = "Ashley Williams / Samantha Traynor"
+UNION -- EDI/Samantha Traynor
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND r.name = "EDI / Samantha Traynor"
+UNION -- Miranda Lawson/Samantha Traynor
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND r.name = "Miranda Lawson / Samantha Traynor"
+UNION -- Samantha Traynor/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND r.name = "Liara T'Soni / Samantha Traynor"
+UNION -- Female Shepard/Liara T'Soni
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Apology" AND a.name = "Raptor4d4" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION -- Jack | Subject Zero/Miranda Lawson
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Personal Growth" AND a.name = "RaeDMagdon" AND r.name = "Jack | Subject Zero / Miranda Lawson"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Piano e Forte" AND a.name = "Wyles77" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mass Effect: The Paths We Take (Discontinued)" AND a.name = "Nothinginreturn" AND r.name = "Miranda Lawson / Shepard (M)"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Breaking Point" AND a.name = "Revan's Mask" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow" AND r.name = "Councilor Tevos / Shepard (F)"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND r.name = "Liara T'Soni / Shepard (F)";

@@ -1248,4 +1248,36 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION -- Mass Effect
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Saving Sanity" AND a.name = "BlueRaith" AND f.name = "Mass Effect"
 UNION -- Mass Effect
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND f.name = "";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Samantha's New Game" AND a.name = "Raptor4d4" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Apology" AND a.name = "Raptor4d4" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Personal Growth" AND a.name = "RaeDMagdon" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "This Body Is Yours" AND a.name = "Fight-sister-fight" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Piano e Forte" AND a.name = "Wyles77" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mass Effect: End of Days" AND a.name = "Postmeat" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mass Effect: The Paths We Take (Discontinued)" AND a.name = "Nothinginreturn" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Breaking Point" AND a.name = "Revan's Mask" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Of Heartache and Second Chances" AND a.name = "Massfreak" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Justified Means" AND a.name = "Spectre-058" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Project Delta" AND a.name = "5th Legion" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Short Road Home" AND a.name = "Amber Penglass" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Anti-Agathics War" AND a.name = "AManAdrift" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Uncommon Bonds" AND a.name = "Tayg" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Seduction Theory" AND a.name = "ShadowBlazer" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow" AND f.name = "Mass Effect"
+UNION -- Mass Effect
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND f.name = "Mass Effect";

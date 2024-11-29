@@ -507,6 +507,20 @@ UNION
 SELECT "Matriarch Aethyta", `id` from `fandoms` WHERE `name` = "Mass Effect"
 UNION 
 SELECT "Brynn Cole", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Shadow Broker", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Rachni Queen", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Hannah Shepard", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Scott Ryder", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Sara Ryder", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Pelessaria 'Peebee' B’Sayle", `id` from `fandoms` WHERE `name` = "Mass Effect"
+UNION 
+SELECT "Jaal Ama Darav", `id` from `fandoms` WHERE `name` = "Mass Effect"
 UNION /************************************************************************************************************************************/
 SELECT "Chigusa Nana", `id` from `fandoms` WHERE `name` = "ナナとカオル | Nana to Kaoru"
 UNION 
@@ -1073,14 +1087,20 @@ VALUES
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
 /************************************************************************************************************************************/
-("Liara T'Soni / Shepard (F)"),
 ("Aria T'Loak / Councilor Tevos"),
 ("Ashley Williams / Samantha Traynor"),
-("Kelly Chambers / Shepard (F)"),
-("Jack | Subject Zero / Miranda Lawson"),
 ("Ashley Williams / Sha'ira"),
 ("Benezia T'Soni / Matriarch Aethyta"),
+("Councilor Tevos / Shepard (F)"),
+("EDI / Samantha Traynor"),
+("Jack | Subject Zero / Miranda Lawson"),
+("Kelly Chambers / Shepard (F)"),
+("Liara T'Soni / Samantha Traynor"),
+("Liara T'Soni / Shepard (F)"),
 ("Miranda Lawson / OFC"),
+("Miranda Lawson / Samantha Traynor"),
+("Miranda Lawson / Shepard (M)"),
+("Samantha Traynor / Shepard (F)"),
 /************************************************************************************************************************************/
 ("Chigusa Nana / Sugimura Kaoru"),
 /************************************************************************************************************************************/
@@ -2124,6 +2144,30 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / OFC" AND c.`name` = "Miranda Lawson"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / OFC" AND c.`name` = "OFC"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Samantha Traynor / Shepard (F)" AND c.`name` = "Samantha Traynor"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Samantha Traynor / Shepard (F)" AND c.`name` = "Shepard (F)"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "EDI / Samantha Traynor" AND c.`name` = "EDI"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "EDI / Samantha Traynor" AND c.`name` = "Samantha Traynor"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / Samantha Traynor" AND c.`name` = "Miranda Lawson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / Samantha Traynor" AND c.`name` = "Samantha Traynor"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Samantha Traynor" AND c.`name` = "Liara T'Soni"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Samantha Traynor" AND c.`name` = "Samantha Traynor"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / Shepard (M)" AND c.`name` = "Miranda Lawson"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Miranda Lawson / Shepard (M)" AND c.`name` = "Shepard (M)"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Councilor Tevos / Shepard (F)" AND c.`name` = "Councilor Tevos"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Councilor Tevos / Shepard (F)" AND c.`name` = "Shepard (F)"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Chigusa Nana / Sugimura Kaoru" AND c.`name` = "Chigusa Nana"
 UNION 
