@@ -4513,4 +4513,16 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION /************************************************************************************************************************************/
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Liara T'Soni" AND f.name = "Mass Effect"
 UNION
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shepard (F)" AND f.name = "Mass Effect"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Catch" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Chigusa Nana" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Kaoru S.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Catch" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sugimura Kaoru" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Branded" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sugimura Kaoru" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Nana C.
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Branded" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Chigusa Nana" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Chigusa Nana" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sugimura Kaoru" AND f.name = "ナナとカオル | Nana to Kaoru";

@@ -14,6 +14,7 @@ VALUES
 ("5th Legion"),
 ("9876grpc"),
 ("A Love So Strong"),
+("A. LaRosa"),
 ("Abigail Belle"),
 ("Abigail89"),
 ("Aceofdiamonds"),
@@ -99,6 +100,7 @@ VALUES
 ("Divagonzo"),
 ("Dizzy - in - the - izzy"),
 ("Dorothea_Greengrass"),
+("Draco38"),
 ("Dragonfly117"),
 ("DragonKingDragneel25"),
 ("Dreetje"),
@@ -2326,7 +2328,19 @@ SELECT "From Ashes" as name, a.id as author_id, 3 as rating, "There was a time w
 FROM `authors` a, `languages` l WHERE a.name="Thessian Shadow" AND l.name="English"
 UNION
 SELECT "Better Angels: A Call to Arms" as name, a.id as author_id, 3 as rating, "A series of occasional one-shots depicting different crew members' arrivals aboard the Normandy/significant appearances round about the ME3 timeline. Shepard or Liara will feature in most of them in some fashion, hence the character filters. Rated for language." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Wyles77" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Wyles77" AND l.name="English"
+UNION
+SELECT "Catch" as name, a.id as author_id, 3 as rating, "Nana/Kaoru, one-shot. ""They stood half-clothed in the gym storage closet. No one had caught them thus far in their little hideaway, so they continued to defile it as their own."" Sequel to come. Review!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="A. LaRosa" AND l.name="English"
+UNION
+SELECT "Branded" as name, a.id as author_id, 3 as rating, "Nana/Kaoru, one-shot. ""He sat up, intending to give her a dirty look, but his eyes went straight to the bandage as the pieces fit together in his head."" Nana has a surprise for Kaoru, but what is it? Review!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="A. LaRosa" AND l.name="English"
+UNION
+SELECT "Mistress Nana" as name, a.id as author_id, 3 as rating, "Nana is fed up! How will she turn the table on her master? One Shot." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Draco38" AND l.name="English"
+UNION
+SELECT "Exhilaration" as name, a.id as author_id, 3 as rating, "Nana/Kaoru, multi-chapter. Even though Nana and Kaoru had been dating for a while, it was still hard for Kaoru to get her to do more ambitious breathers... until now. Review!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="A. LaRosa" AND l.name="English";
 
 /*
  * Link
@@ -3610,4 +3624,12 @@ SELECT "https://www.fanfiction.net/s/8356683/1/", ff.id FROM fanfictions ff INNE
 UNION
 SELECT "https://www.fanfiction.net/s/9274962/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow"
 UNION
-SELECT "https://www.fanfiction.net/s/9753863/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77";
+SELECT "https://www.fanfiction.net/s/9753863/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77"
+UNION
+SELECT "https://www.fanfiction.net/s/10614545/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Catch" AND a.name = "A. LaRosa"
+UNION
+SELECT "https://www.fanfiction.net/s/8790630/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Branded" AND a.name = "A. LaRosa"
+UNION
+SELECT "https://www.fanfiction.net/s/9229195/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mistress Nana" AND a.name = "Draco38"
+UNION
+SELECT "https://www.fanfiction.net/s/9725365/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa";

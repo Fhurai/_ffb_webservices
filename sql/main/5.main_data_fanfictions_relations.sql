@@ -1507,4 +1507,6 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION --
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow" AND r.name = "Councilor Tevos / Shepard (F)"
 UNION --
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND r.name = "Liara T'Soni / Shepard (F)";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND r.name = "Liara T'Soni / Shepard (F)"
+UNION --
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND r.name = "Chigusa Nana / Sugimura Kaoru";

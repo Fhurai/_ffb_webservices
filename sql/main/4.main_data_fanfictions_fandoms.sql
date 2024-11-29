@@ -1280,4 +1280,12 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION -- Mass Effect
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Ashes" AND a.name = "Thessian Shadow" AND f.name = "Mass Effect"
 UNION -- Mass Effect
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND f.name = "Mass Effect";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND f.name = "Mass Effect"
+UNION -- Nana to Kaoru/ナナとカオル
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Catch" AND a.name = "A. LaRosa" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Nana to Kaoru/ナナとカオル
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Branded" AND a.name = "A. LaRosa" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Nana to Kaoru/ナナとカオル
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mistress Nana" AND a.name = "Draco38" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Nana to Kaoru/ナナとカオル
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND f.name = "ナナとカオル | Nana to Kaoru";
