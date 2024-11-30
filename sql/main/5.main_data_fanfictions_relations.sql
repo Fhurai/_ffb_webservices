@@ -1509,4 +1509,24 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION --
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Better Angels: A Call to Arms" AND a.name = "Wyles77" AND r.name = "Liara T'Soni / Shepard (F)"
 UNION --
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND r.name = "Chigusa Nana / Sugimura Kaoru";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND r.name = "Chigusa Nana / Sugimura Kaoru"
+UNION -- 
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Eat You Up" AND a.name = "Thekatthatbarks" AND r.name = "Haruno Sakura / Yamanaka Ino"
+UNION -- Haruno Sakura/Yamanaka Ino
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND r.name = "Haruno Sakura / Yamanaka Ino"
+UNION -- Haruno Sakura/Uzumaki Naruto
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Honeymooners" AND a.name = "VampbaitInfinity" AND r.name = "Haruno Sakura / Uzumaki Naruto"
+UNION -- Haruno Sakura/Hyuuga Hinata
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Sakura / Hyuuga Hinata"
+UNION -- Haruno Sakura/Hyuuga Hinata/Uzumaki Naruto
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto"
+UNION -- Haruno Mebuki/Uzumaki Naruto
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Mebuki / Uzumaki Naruto"
+UNION -- Haruno Sakura/Haruno Mebuki/Uzumaki Naruto
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Sakura / Haruno Mebuki / Uzumaki Naruto"
+UNION -- Haruno Mebuki/Haruno Sakura
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Mebuki / Haruno Sakura"
+UNION -- Haruno Sakura/Uzumaki Naruto
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND r.name = "Haruno Sakura / Uzumaki Naruto"
+UNION -- Sakura Haruno/Mebuki Haruno
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND r.name = "Haruno Mebuki/Haruno Sakura";

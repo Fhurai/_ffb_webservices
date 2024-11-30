@@ -4525,4 +4525,38 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION /************************************************************************************************************************************/
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Chigusa Nana" AND f.name = "ナナとカオル | Nana to Kaoru"
 UNION /************************************************************************************************************************************/
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sugimura Kaoru" AND f.name = "ナナとカオル | Nana to Kaoru";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sugimura Kaoru" AND f.name = "ナナとカオル | Nana to Kaoru"
+UNION -- Haruno Sakura
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Eat You Up" AND a.name = "Thekatthatbarks" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- Yamanaka Ino
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Eat You Up" AND a.name = "Thekatthatbarks" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION -- Haruno Sakura
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- Yamanaka Ino
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION -- Mitarashi Anko
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mitarashi Anko" AND f.name = "Naruto"
+UNION -- Temari (Naruto)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sabaku no Temari" AND f.name = "Naruto"
+UNION -- Tenten (Naruto)
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tenten" AND f.name = "Naruto"
+UNION -- Hyuuga Hinata
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION -- Haruno Sakura
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Honeymooners" AND a.name = "VampbaitInfinity" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- Uzumaki Naruto
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Honeymooners" AND a.name = "VampbaitInfinity" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- Haruno Sakura
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- Haruno Mebuki
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Mebuki" AND f.name = "Naruto"
+UNION -- Uzumaki Naruto
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- Hyuuga Hinata
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION -- Sakura Haruno
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- Mebuki Haruno
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Mebuki" AND f.name = "Naruto"
+UNION -- Naruto Uzumaki
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto";

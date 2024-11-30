@@ -34,7 +34,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("A Taste of Magic", ""),
 ("I told him, Gaby. I told him that I loved you", ""),
 ("Music and Mayhem", ""),
-("Saving NezzySeries", "");
+("Saving NezzySeries", ""),
+("Mother/Daughter Love", "The collection of Mother/Daughter Love. Only three one-shots.");
 
 /*
  * Series fanfictions
@@ -267,4 +268,8 @@ SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Saving Nezzy" AND f.name = "Saving Nezzy" AND a.name = " BlueRaith"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Saving Nezzy" AND f.name = "Saving Sanity" AND a.name = "BlueRaith";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Saving Nezzy" AND f.name = "Saving Sanity" AND a.name = "BlueRaith"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Mother/Daughter LoveSeries" AND f.name = "Mother/Daughter LoveSeries" AND a.name = "McCrazy23"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Mother/Daughter LoveSeries" AND f.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23";

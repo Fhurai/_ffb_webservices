@@ -2,6 +2,8 @@ Coté back
 . A l'insertion, vérification que toutes les relations ont leurs personnages dans l'ordre alphabétique et si elles le sont, vérification que la relation n'existe pas déjà en base.
 . Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
 . Si tags contiennent "Sexual content" -> rating auto à 4.
+
+Coté front
 . Pouvoir rajouter un tag à la volée (ajout sexual content avec un +)
 
 Coté outils

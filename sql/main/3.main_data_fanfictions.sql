@@ -113,6 +113,7 @@ VALUES
 ("Emp. Elesar II"),
 ("Enchantra35"),
 ("Epeefencer"),
+("Epsilonics"),
 ("Eric Michael Kline"),
 ("Esama"),
 ("FamousNoOne"),
@@ -236,6 +237,7 @@ VALUES
 ("Math'L"),
 ("MaybeMayba"),
 ("MayorHaggar"),
+("McCrazy23"),
 ("Me413"),
 ("Medotcomslashme"),
 ("Megamatt09"),
@@ -391,6 +393,7 @@ VALUES
 ("Thedirtymind"),
 ("TheEndless7"),
 ("TheHallowsInMe31"),
+("Thekatthatbarks"),
 ("TheLastZion"),
 ("Theoneandonly99"),
 ("Thessian Shadow"),
@@ -413,6 +416,7 @@ VALUES
 ("Unicornball"),
 ("Uniquely Named"),
 ("UpTheHill"),
+("VampbaitInfinity"),
 ("Vanderlustwords"),
 ("VanessaWolfie"),
 ("Vedros"),
@@ -2340,7 +2344,22 @@ SELECT "Mistress Nana" as name, a.id as author_id, 3 as rating, "Nana is fed up!
 FROM `authors` a, `languages` l WHERE a.name="Draco38" AND l.name="English"
 UNION
 SELECT "Exhilaration" as name, a.id as author_id, 3 as rating, "Nana/Kaoru, multi-chapter. Even though Nana and Kaoru had been dating for a while, it was still hard for Kaoru to get her to do more ambitious breathers... until now. Review!" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="A. LaRosa" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="A. LaRosa" AND l.name="English"
+UNION
+SELECT "Eat You Up" as name, a.id as author_id, 3 as rating, "When Ino gets promoted to the director of T&I, Sakura gives her a little surprise." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Thekatthatbarks" AND l.name="English"
+UNION
+SELECT "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" as name, a.id as author_id, 4 as rating, "Sakura's just trying to study for this stupid bio exam and Ino insists instead on explicitly narrating any and all Relations she's had with the fairer sex (and damn does that make it hard to concentrate on mitochondria)." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Epsilonics" AND l.name="English"
+UNION
+SELECT "Honeymooners" as name, a.id as author_id, 4 as rating, "Newlyweds Naruto and Sakura Uzumaki are honeymooning at a small resort and plan to spend it...well, you'll just have to read it and find out. Naruto/Sakura NC-17" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="VampbaitInfinity" AND l.name="English"
+UNION
+SELECT "Mother/Daughter Love: Sequel One" as name, a.id as author_id, 4 as rating, "One sequel to Mother/Daughter Love. This one contains Hinata who is BBW. Lots of sex. Five Lemons with the shortest being less than 2,000 words long." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="McCrazy23" AND l.name="English"
+UNION
+SELECT "Mother/Daughter Love" as name, a.id as author_id, 4 as rating, "Mebuki teaching Sakura about sex. Sakura 'punishes' Mebuki later on." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="McCrazy23" AND l.name="English";
 
 /*
  * Link
@@ -3632,4 +3651,14 @@ SELECT "https://www.fanfiction.net/s/8790630/1/", ff.id FROM fanfictions ff INNE
 UNION
 SELECT "https://www.fanfiction.net/s/9229195/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mistress Nana" AND a.name = "Draco38"
 UNION
-SELECT "https://www.fanfiction.net/s/9725365/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa";
+SELECT "https://www.fanfiction.net/s/9725365/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Exhilaration" AND a.name = "A. LaRosa"
+UNION
+SELECT "https://archiveofourown.org/works/10326923", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Eat You Up" AND a.name = "Thekatthatbarks"
+UNION
+SELECT "https://archiveofourown.org/works/1092743", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics"
+UNION
+SELECT "https://archiveofourown.org/works/1100787", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Honeymooners" AND a.name = "VampbaitInfinity"
+UNION
+SELECT "https://archiveofourown.org/works/1123298", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23"
+UNION
+SELECT "https://archiveofourown.org/works/1043639", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23";
