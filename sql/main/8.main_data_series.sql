@@ -35,7 +35,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("I told him, Gaby. I told him that I loved you", ""),
 ("Music and Mayhem", ""),
 ("Saving NezzySeries", ""),
-("Mother/Daughter Love", "The collection of Mother/Daughter Love. Only three one-shots.");
+("Mother/Daughter Love", "The collection of Mother/Daughter Love. Only three one-shots."),
+("Just Like the Folks", "");
 
 /*
  * Series fanfictions
@@ -272,4 +273,44 @@ SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION /************************************************************************************************************************************/
 SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Mother/Daughter LoveSeries" AND f.name = "Mother/Daughter LoveSeries" AND a.name = "McCrazy23"
 UNION
-SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Mother/Daughter LoveSeries" AND f.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23";
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Mother/Daughter LoveSeries" AND f.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Pink Medical Kunoichi" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Violet Flower" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Red Flute Player" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Purple Snake" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Maroon Vixen" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 7 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Golden Firefly" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 8 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 9 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Russet Doctor" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Brown Hound" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 11 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 12 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Blue Origami Angel" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 13 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 14 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 15 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Crimson Healer" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 16 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Glacial Princess" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 17 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Carmine Queen" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 18 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 19 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 20 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak";

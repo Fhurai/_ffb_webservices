@@ -12,6 +12,7 @@ VALUES
 ("123irish"),
 ("521-DREAM"),
 ("5th Legion"),
+("6th_Street"),
 ("9876grpc"),
 ("A Love So Strong"),
 ("A. LaRosa"),
@@ -33,6 +34,7 @@ VALUES
 ("Amber Penglass"),
 ("Anamatics"),
 ("Animekitty2"),
+("AnimeLover4Life"),
 ("Anjie"),
 ("Antjex3"),
 ("Ap_aelfwine"),
@@ -43,6 +45,7 @@ VALUES
 ("Articcat621"),
 ("Aspionage"),
 ("AStrangeHopefulDreamer"),
+("AstroLatte"),
 ("Atrxx93"),
 ("AuntieL"),
 ("Avain1991"),
@@ -55,10 +58,12 @@ VALUES
 ("BHErotica"),
 ("Birdwoman95"),
 ("Bl4ckC0bra"),
+("Blossomdreams"),
 ("BlueRaith"),
 ("Bluezz-17"),
 ("Bobmin356"),
 ("Bor902"),
+("BountifullyBeautifullyBlessed"),
 ("Brennus"),
 ("Brigrove"),
 ("Broomstick flyer"),
@@ -115,7 +120,9 @@ VALUES
 ("Epeefencer"),
 ("Epsilonics"),
 ("Eric Michael Kline"),
+("Erokage37"),
 ("Esama"),
+("EvilFuzzy9"),
 ("FamousNoOne"),
 ("FanfictionWriter101"),
 ("Fantasy1290"),
@@ -141,6 +148,7 @@ VALUES
 ("GraeFoxx"),
 ("GreenEvans"),
 ("GreenhouseThree"),
+("Greentea815"),
 ("Gryffinsdoor"),
 ("Hallows Seeker"),
 ("HannahFranziska"),
@@ -153,6 +161,7 @@ VALUES
 ("HermiHugs"),
 ("HersByHisByHers"),
 ("Heyitsamorette (AmoretteHD)"),
+("Hobgoblin"),
 ("Hollidayparty"),
 ("Hollywoodland"),
 ("Holyfant"),
@@ -191,6 +200,8 @@ VALUES
 ("Kb0"),
 ("KiyoFaye"),
 ("Kratos1989"),
+("KuriQuinn"),
+("Kyuubi16"),
 ("La baguette"),
 ("LadiePhoenix007"),
 ("Ladyfun"),
@@ -261,6 +272,7 @@ VALUES
 ("Nellark"),
 ("NickieButterfly"),
 ("NidoranDuran"),
+("Night_Being"),
 ("Nixrocket"),
 ("Noctus Noxia"),
 ("NotAWriter1981"),
@@ -310,10 +322,12 @@ VALUES
 ("RagingCassowary"),
 ("RandReborn"),
 ("Raptor4d4"),
+("Raptorcloak"),
 ("Red_jacobson"),
 ("Relena Mishima"),
 ("Revan's Mask"),
 ("Rickey"),
+("Rikuren"),
 ("RileyOR"),
 ("Rivia"),
 ("RMWB"),
@@ -425,6 +439,7 @@ VALUES
 ("Vox ad umbram sum"),
 ("Voxangelus"),
 ("Walgesang"),
+("Walkingonempty"),
 ("WandaXmaximoff"),
 ("Wendings"),
 ("WerewolfWarriro"),
@@ -2359,7 +2374,124 @@ SELECT "Mother/Daughter Love: Sequel One" as name, a.id as author_id, 4 as ratin
 FROM `authors` a, `languages` l WHERE a.name="McCrazy23" AND l.name="English"
 UNION
 SELECT "Mother/Daughter Love" as name, a.id as author_id, 4 as rating, "Mebuki teaching Sakura about sex. Sakura 'punishes' Mebuki later on." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="McCrazy23" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="McCrazy23" AND l.name="English"
+UNION
+SELECT "Friends with Benefits" as name, a.id as author_id, 4 as rating, "Sakura is heartbroken from the fact that she and her team failed AGAIN to get Sasuke back. She's feeling miserable until Naruto comes out of the blue tells her a secret. A secret that only the two of them can know about. I don't own Naruto!!!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AnimeLover4Life" AND l.name="English"
+UNION
+SELECT "A Birthday Surprise" as name, a.id as author_id, 3 as rating, "It's Ino Yamanaka's birthday and everyone has seemed to forgotten. Naruto finds the distraught woman, and decides to help her celebrate her birthday. /Strictly NaruIno" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rikuren" AND l.name="English"
+UNION
+SELECT "Waterfall of Love" as name, a.id as author_id, 4 as rating, "Naruto has finally brought Sasuke back to the Hidden Leaf Village. On a day where he feels like going on a walk, he comes across a waterfall and finds Hinata in a nightgown. What will happen when the two meet. Got this idea off of the ending of Naruto Shippuden episode 21. I don't own Naruto!! Underage-Don't read under 21!!! (1st try at Naru/Hina. Crosses Fingers) Hints of Kiba/Hina and Sasu/Saku!!! (Little Bleach reference)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AnimeLover4Life" AND l.name="English"
+UNION
+SELECT "Warped" as name, a.id as author_id, 4 as rating, "Hinata can't sleep and her roommate, Naruto, is more than willing to help her out. Warning! This story is pure smut and contains both lemons and non-consensual situations. Enjoy!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BountifullyBeautifullyBlessed" AND l.name="English"
+UNION
+SELECT "Silver and Gold" as name, a.id as author_id, 4 as rating, "During Pein's seige, Hinata finally works up the courage to tell Naruto how she feels. Now if she could just tell him her OTHER secret..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Hobgoblin" AND l.name="English"
+UNION
+SELECT "Moonlight Sonata Antarctica" as name, a.id as author_id, 4 as rating, "Sakura and Ino prepare for a moonlight beach party, and run into an unexpected snag! Ino has contracted an STD that made her grow a twelve inch cock! Can Sakura take it all FOR SCIENCE? Or will she be forced to admit that Ino is just too big for her?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Follow The Leader" as name, a.id as author_id, 4 as rating, "Like a lot of things in their relationship, intimacy is not something either of them have much experience in. Luckily, they can lead each other." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AstroLatte" AND l.name="English"
+UNION
+SELECT "One Day in December" as name, a.id as author_id, 4 as rating, "On one very special night Ino pays a visit to one very special girl." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Night_Being" AND l.name="English"
+UNION
+SELECT "Accounts of Perversion and Obscenity" as name, a.id as author_id, 4 as rating, "Or, ""A Lewd New World: Gaiden"". A series of unconnected oneshots and side stories based in the setting of my only complete harem fic. [genderswap, smut, crack]" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="EvilFuzzy9" AND l.name="English"
+UNION
+SELECT "I Am NOT Going Through Puberty Again!" as name, a.id as author_id, 2 as rating, "Our heroes did not come from a future where everything has gone horribly wrong. They did not travel back in time to save the world from a bleak or miserable fate. As a matter of fact, all they want to do is find a way back home as soon as possible. A cracky, epilogue-compliant time travel fic. With added emphasis on CRACK. Seriously. Also has a TV Tropes page, which is just plain awesome." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="EvilFuzzy9" AND l.name="English"
+UNION
+SELECT "Naruto's Date" as name, a.id as author_id, 4 as rating, "Naruto and Hinata have a date in his apartment. After dessert, what besides the cinammon rolls Hinata brought does Naruto want for dessert? Lemon." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Boys And Their Toys" as name, a.id as author_id, 4 as rating, "“N-now wait just a minute!” he hissed under his breath. “I did not agree to that!”Ino felt a smirk play on her lips again.“Oh, but Naru,” she said, stressing the nickname she sometimes used for him, “You admitted to liking the plug and the vibrator, this isn’t that different.”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="6th_Street" AND l.name="English"
+UNION
+SELECT "Safe and sound" as name, a.id as author_id, 3 as rating, "Four fit better on Sakura's creaky bed than just one alone and remembering another." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Walkingonempty" AND l.name="English"
+UNION
+SELECT "A Few Extra Minutes" as name, a.id as author_id, 3 as rating, "Hinata and Naruto have a little fun before the kids come home" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Blossomdreams" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Pink Medical Kunoichi" as name, a.id as author_id, 4 as rating, "Naruto and Sakura play trivia games until she figures out a way to make the game itself spicier than normal. NarutoxSakura. For spazzgirl and RexBlazer1." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Violet Flower" as name, a.id as author_id, 4 as rating, "When Ino is depressed by Inoichi's death, Naruto does what he can to cheer her up and he does just that. Then, Ino proceeds to connect with him in a surprisingly, warm matter than amazes him in more than one way. NarutoxIno. AU." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Red Flute Player" as name, a.id as author_id, 4 as rating, "Naruto gives the imprisoned Tayuya a conjugal visit and finds she's very pleased to have him visit. NarutoxTayuya. For Sketchfan." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Purple Snake" as name, a.id as author_id, 4 as rating, "On a nice sunny day, Naruto finds Anko bathing in the public lake and she catches onto him, he is chased and captured by her. However, he receives a startling discovery from Anko and realizes her true intentions. NarutoxAnko." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" as name, a.id as author_id, 4 as rating, "After attending the Kage Summit, Naruto and his bodyguards find themselves stranded at a local inn by a temporary snowstorm. However, Gaara is also there and this allows Temari to catch up with Naruto. NarutoxTemari. For 3rd Anniversary of Blondes in Bed. For Sketchfan and DarkChild316. AU. Please R&R." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Maroon Vixen" as name, a.id as author_id, 4 as rating, "Naruto takes Fuka on a date to an annual festival in Konoha before returning home for the night so she can give him some special fireworks. NarutoxFuka. Please R&R." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Golden Firefly" as name, a.id as author_id, 4 as rating, "Koyuki recruits Naruto and Hotaru to battle ice monsters terrorizing her country and rewards them quite well in the form of a relaxing onsen. NarutoxHotaru. For Just Like the Folks 1st anniversary in 2014. Please R&R" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Mint Beetle" as name, a.id as author_id, 4 as rating, "When Naruto finds out that Fu has never been to a carnival in her life, he decides to take her to the traveling carnival in Konoha and make it a day to remember. NarutoxFu. Please R&R" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Russet Doctor" as name, a.id as author_id, 4 as rating, "Amaru visits Naruto on Christmas Eve and after they spend the holiday together by venturing Konoha, she has a special Christmas gift for him once he returns home. NarutoxAmaru. Please R&R" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Brown Hound" as name, a.id as author_id, 4 as rating, "Hana helps Naruto with his new puppies and they find they have a good knack for puppy care. Soon, they bond over the dogs and become more than helpful friends. NarutoxHana. For Sketchfan's birthday of 2015. Please R&R." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" as name, a.id as author_id, 4 as rating, "Naruto and Hinata spend Valentine's Day together for the first time before finding themselves battling a returned Toneri, who seeks the power of Naruto's Eternal Rinnegan for his devious purposes. NarutoxHinata. For Valentine's Day of 2-12. Please R&R." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Blue Origami Angel" as name, a.id as author_id, 4 as rating, "When Naruto finds a comatose Konan and revives her from a state of hypothermia, he visits her in the hospital and a stronger sense of friendship is born from their interactions. NarutoxKonan. For Just Like the Folks 2nd anniversary. AU. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" as name, a.id as author_id, 4 as rating, "Mei visits Naruto for his Hokage inaguration and once he's officially inaugurated, she helps him celebrate in her unique way of one Kage to another. NarutoxMei. For Naruto's birthday. AU. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" as name, a.id as author_id, 4 as rating, "Shizuka invites Naruto to Nadeshiko Village for a sparring match in which the award for winning is a free week to the spa and though he accepts, he is unaware that she has ulterior plans for them. NarutoxShizuka. For Sketchfan's birthday. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Crimson Healer" as name, a.id as author_id, 4 as rating, "Naruto and Karin are dispatched to retrieve a scroll containing a surprise location from rogue Grass Shinobi led by her former captor Zosui and a battle of vengeance breaks out. NarutoxKarin. AU. Uzumakicest. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Glacial Princess" as name, a.id as author_id, 4 as rating, "When Koyuki discovers a Chakra Armor army aiming to carry on Doto's wishes, she hires Naruto to dispatch this new army and save her land from pure chaos. NarutoxKoyuki. AU. For Just Like the Folks 3rd Anniversary. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Carmine Queen" as name, a.id as author_id, 4 as rating, "Naruto spends his vacation with his beloved Queen Sara in her kingdom of Rora and finds she has much in store for him to enjoy his trip. NarutoxSara. For Just Like the Folks 5th Anniversary. AU. Please R&R if enjoyed" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" as name, a.id as author_id, 4 as rating, "Sophomore Naruto finds himself being coached on springboard diving after school by his sharp senior Tsunade and finds out her softer side beneath her tough exterior. AU. NarutoxTsunade. Teen Tsunade. For both anniversaries of Just Like the Folks 6th and the original Naruto manga. Please R&R if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" as name, a.id as author_id, 4 as rating, "After a few close calls with their intimacy, the risk of getting caught in action inspires Naruto and Tenten to take their love live to more settings to test if they can keep up this new thrill. NaruTen. For 9th anniversary of Just Like the Folks and 20th anniversary of Naruto anime. AU. Please review if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" as name, a.id as author_id, 4 as rating, "In an alternate setting where Killer B helped a widowed Kushina raise Naruto, he conspires to pair him with Karui for some comedic kinks to remember and only question that remains if she'll take the bait. NarutoxKarui with minor BxKushina. For 9th anniversary of Just Like the Folks and 20th anniversary of Naruto anime. AU. Please review if enjoyed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
+UNION
+SELECT "A Seductress In Red" as name, a.id as author_id, 4 as rating, "Naruto returns from a mission and Ino has a few days off. They decide to go dancing, but like most of their dates that doesn't last long. Image by Chiishio of Deviantart. This is a tame version. The unrated version is on Yourfanfiction." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kyuubi16" AND l.name="English"
+UNION
+SELECT "New Rules" as name, a.id as author_id, 4 as rating, "Naruto's demanding work schedule is taking a toll on his relationships with Hinata and his children. How will Naruto heal the hurt?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Greentea815" AND l.name="English"
+UNION
+SELECT "Kitsune's Seduction" as name, a.id as author_id, 4 as rating, "Something has happened to naruto on his travles with jiraya, he has came back stronger and darker then when he left, with the ability to ensnare any woman in the world. How will naruto use this ability? Naruxharem, mostly one shots with a smidge of plot, may or may not be continued. lemon" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Erokage37" AND l.name="English"
+UNION
+SELECT "A False Assumption" as name, a.id as author_id, 4 as rating, "Naruto assumed that one day Sasuke and Sakura-chan would get together and leave him behind. He's wrong.Third in my When the Wind Blows series, and set about two months after A Little Closer." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Luvsanime02" AND l.name="English"
+UNION
+SELECT "Unplanned" as name, a.id as author_id, 2 as rating, "A month after the Chūnin Exams and the showdown with the final members of the Ootsutsuki family, Sakura discovers that she and Sasuke are due for an unexpected addition to the family. The discovery leads to a shift in dynamic for old generations and new." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="KuriQuinn" AND l.name="English";
 
 /*
  * Link
@@ -3661,4 +3793,82 @@ SELECT "https://archiveofourown.org/works/1100787", ff.id FROM `fanfictions` ff 
 UNION
 SELECT "https://archiveofourown.org/works/1123298", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Mother/Daughter Love: Sequel One" AND a.name = "McCrazy23"
 UNION
-SELECT "https://archiveofourown.org/works/1043639", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23";
+SELECT "https://archiveofourown.org/works/1043639", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23"
+UNION
+SELECT "https://archiveofourown.org/works/1246552", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Friends with Benefits" AND a.name = "AnimeLover4Life"
+UNION
+SELECT "https://archiveofourown.org/works/1696166", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "A Birthday Surprise" AND a.name = "Rikuren"
+UNION
+SELECT "https://archiveofourown.org/works/1732142", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life"
+UNION
+SELECT "https://archiveofourown.org/works/1745081/chapters/3726797", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Warped" AND a.name = "BountifullyBeautifullyBlessed"
+UNION
+SELECT "https://archiveofourown.org/works/190760", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Silver and Gold" AND a.name = "Hobgoblin"
+UNION
+SELECT "https://archiveofourown.org/works/2218164", ff.id FROM `fanfictions` ff INNER JOIN `authors` a ON a.id=ff.author_id WHERE ff.name = "Moonlight Sonata Antarctica" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/2649584", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Follow The Leader" AND a.name = "AstroLatte"
+UNION
+SELECT "https://archiveofourown.org/works/2851235", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "One Day in December" AND a.name = "Night_Being"
+UNION
+SELECT "https://archiveofourown.org/works/3328367", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9"
+UNION
+SELECT "https://archiveofourown.org/works/3334637", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I Am NOT Going Through Puberty Again!" AND a.name = "EvilFuzzy9"
+UNION
+SELECT "https://archiveofourown.org/works/3532109", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Naruto's Date" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/4316874", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Boys And Their Toys" AND a.name = "6th_Street"
+UNION
+SELECT "https://archiveofourown.org/works/4383887", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Safe and sound" AND a.name = "Walkingonempty"
+UNION
+SELECT "https://archiveofourown.org/works/4504308", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Few Extra Minutes" AND a.name = "Blossomdreams"
+UNION
+SELECT "https://archiveofourown.org/works/4710557", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Pink Medical Kunoichi" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/4710686", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Violet Flower" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/5282219", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Red Flute Player" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/5282249", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Purple Snake" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/5282288", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/5600569", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Maroon Vixen" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6062704", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Golden Firefly" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6063694", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6064039", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Russet Doctor" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6064282", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Brown Hound" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6064509", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6068449", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Blue Origami Angel" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6069058", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/6071749", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/7756801", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Crimson Healer" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/7936333", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Glacial Princess" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/15737391", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Carmine Queen" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/21060479", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/42052725", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/42052992", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak"
+UNION
+SELECT "https://archiveofourown.org/works/510377", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Seductress In Red" AND a.name = "Kyuubi16"
+UNION
+SELECT "https://archiveofourown.org/works/5591482", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "New Rules" AND a.name = "Greentea815"
+UNION
+SELECT "https://archiveofourown.org/works/5691055", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Kitsune's Seduction" AND a.name = "Erokage37"
+UNION
+SELECT "https://archiveofourown.org/works/6161905", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A False Assumption" AND a.name = "Luvsanime02"
+UNION
+SELECT "https://archiveofourown.org/works/7407499", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn";

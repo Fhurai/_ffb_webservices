@@ -4536,9 +4536,9 @@ UNION -- Yamanaka Ino
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
 UNION -- Mitarashi Anko
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mitarashi Anko" AND f.name = "Naruto"
-UNION -- Temari (Naruto)
+UNION -- Temari
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sabaku no Temari" AND f.name = "Naruto"
-UNION -- Tenten (Naruto)
+UNION -- Tenten
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tenten" AND f.name = "Naruto"
 UNION -- Hyuuga Hinata
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Wherein Ino Yamanaka Regales Sakura Haruno With Her Long List of Conquests" AND a.name = "Epsilonics" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
@@ -4559,4 +4559,274 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION -- Mebuki Haruno
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Mebuki" AND f.name = "Naruto"
 UNION -- Naruto Uzumaki
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Mother/Daughter Love" AND a.name = "McCrazy23" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- naruko uzumaki
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Friends with Benefits" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "" AND f.name = "Uzumaki Naruko"
+UNION -- Sakura H
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Friends with Benefits" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "" AND f.name = "Haruno Sakura"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Birthday Surprise" AND a.name = "Rikuren" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Birthday Surprise" AND a.name = "Rikuren" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Birthday Surprise" AND a.name = "Rikuren" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Akimichi Chouji" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Birthday Surprise" AND a.name = "Rikuren" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ko Hyuga" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hiashi" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hanabi" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiha Sasuke" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hatake Kakashi" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Naruto Uzumaki" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Waterfall of Love" AND a.name = "AnimeLover4Life" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Kushina" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Warped" AND a.name = "BountifullyBeautifullyBlessed" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Warped" AND a.name = "BountifullyBeautifullyBlessed" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Silver and Gold" AND a.name = "Hobgoblin" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Silver and Gold" AND a.name = "Hobgoblin" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moonlight Sonata Antarctica" AND a.name = "" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION -- 
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moonlight Sonata Antarctica" AND a.name = "" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Follow The Leader" AND a.name = "AstroLatte" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Naruto" AND f.name = "Hyuuga Hinata"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Follow The Leader" AND a.name = "AstroLatte" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "One Day in December" AND a.name = "Night_Being" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "One Day in December" AND a.name = "Night_Being" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Mebuki" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hokuto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kin Tsuchi" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mitarashi Anko" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Natsuhi" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ootsutsuki Kaguya" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Terumi Mei" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Kushina" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Accounts of Perversion and Obscenity" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Am NOT Going Through Puberty Again!" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Am NOT Going Through Puberty Again!" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Am NOT Going Through Puberty Again!" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiha Sasuke" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "I Am NOT Going Through Puberty Again!" AND a.name = "EvilFuzzy9" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Naruto's Date" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Naruto's Date" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Boys And Their Toys" AND a.name = "6th_Street" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Boys And Their Toys" AND a.name = "6th_Street" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Safe and sound" AND a.name = "Walkingonempty" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Safe and sound" AND a.name = "Walkingonempty" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Safe and sound" AND a.name = "Walkingonempty" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiha Sasuke" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Safe and sound" AND a.name = "Walkingonempty" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Few Extra Minutes" AND a.name = "Blossomdreams" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hinata Hyuuga" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Few Extra Minutes" AND a.name = "Blossomdreams" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Naruto Uzumaki" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Pink Medical Kunoichi" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Pink Medical Kunoichi" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Violet Flower" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Violet Flower" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Red Flute Player" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tayuya" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Red Flute Player" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Purple Snake" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mitarashi Anko" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Purple Snake" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sabaku no Gaara" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kinkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Samui" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sabaku no Temari" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Yellow Sand Sickle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Maroon Vixen" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fuka" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Maroon Vixen" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Golden Firefly" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hotaru" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Golden Firefly" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kazahana Koyuki | Fujikaze Yukie" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Golden Firefly" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fuu" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kinkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Mint Beetle" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Russet Doctor" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Amaru" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Russet Doctor" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Brown Hound" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Inuzuka Hana" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Brown Hound" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ootsutsuki Toneri" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Lavender Byakugan Hime" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Blue Origami Angel" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Konan" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Blue Origami Angel" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ginkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hatake Kakashi" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kinkaku" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Namikaze Minato" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Terumi Mei" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Kushina" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Hokage and the Auburn Mizukage" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shizuka" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tokiwa" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Black Nadeshiko Warrior" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Crimson Healer" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hatake Kakashi" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Crimson Healer" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Karin" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Crimson Healer" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Glacial Princess" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kazahana Koyuki | Fujikaze Yukie" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Glacial Princess" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Carmine Queen" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Queen Sara - Character" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Carmine Queen" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tsunade" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Jasmine Legendary Sucker" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tenten" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Karui" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Killer Bee" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Kushina" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Seductress In Red" AND a.name = "Kyuubi16" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Seductress In Red" AND a.name = "Kyuubi16" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "New Rules" AND a.name = "Greentea815" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "New Rules" AND a.name = "Greentea815" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Boruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "New Rules" AND a.name = "Greentea815" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Himawari" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "New Rules" AND a.name = "Greentea815" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A False Assumption" AND a.name = "Luvsanime02" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A False Assumption" AND a.name = "Luvsanime02" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiwa Sasuke" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A False Assumption" AND a.name = "Luvsanime02" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Haruno Sakura" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hatake Kakashi" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Karui" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Maito Gai" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nara Shikadai" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sai" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Temari" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiha Sarada" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uchiha Sasuke" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Bolt" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Himawari" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uzumaki Naruto" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Inojin" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Unplanned" AND a.name = "KuriQuinn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamato | Tenzou" AND f.name = "Naruto";

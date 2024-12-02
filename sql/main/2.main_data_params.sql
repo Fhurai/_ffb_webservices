@@ -6,7 +6,8 @@
 DELETE FROM `users`;
 INSERT INTO `users` (`username`,`password`,`email`,`is_admin`,`birthday`) 
 VALUES ("Admin", "$2y$10$R3VHp4v5P1okSgInzICW8u/jUcbfufXzbiKqfegVW6gljo0iuwla6", "kulu57@live.com", 1, "1970-01-01 00:00:01"), 
-("Fhurai", "$2y$10$B.KiKRiqYNSshmJXEWZJKuuf3g6pQVx0mNNjvf.udRMlS4hlmy3lq", "kulu57@gmail.com", 0, "1992-12-21 23:30:00");
+("Fhurai", "$2y$10$B.KiKRiqYNSshmJXEWZJKuuf3g6pQVx0mNNjvf.udRMlS4hlmy3lq", "kulu57@gmail.com", 0, "1992-12-21 23:30:00"),
+("Guest", "", "luku@free.fr", 0, CURRENT_TIMESTAMP);
 
 /*
  * Fandoms
@@ -673,6 +674,62 @@ UNION
 SELECT "Ichibi | Shukaku", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Mitarashi Anko", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Uzumaki Naruko", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Ko Hyuga", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Hyuuga Hiashi", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Hyuuga Hanabi", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Hokuto", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Kin Tsuchi", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Natsuhi", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Ootsutsuki Kaguya", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "OFC", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Terumi Mei", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Ginkaku", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Kinkaku", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Ootsutsuki Toneri", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Fuka", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Hotaru", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Fuu", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Amaru", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Inuzuka Hana", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Shizuka", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Karin", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Kazahana Koyuki | Fujikaze Yukie", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Queen Sara", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Uzumaki Boruto", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Uzumaki Himawari", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Yamato | Tenzou", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Yamanaka Inojin", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Uchiwa Sarada", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Nara Shikadai", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION /************************************************************************************************************************************/
 SELECT "Tracer | Lena Oxton", `id` from `fandoms` WHERE `name` = "Overwatch"
 UNION 
@@ -1121,7 +1178,29 @@ VALUES
 ("Haruno Mebuki / Uzumaki Naruto"),
 ("Haruno Sakura / Haruno Mebuki / Uzumaki Naruto"),
 ("Haruno Mebuki / Haruno Sakura"),
-("Haruno Sakura / Uzumaki Naruto"),
+("Haruno Sakura / Uzumaki Naruko"),
+("Uzumaki Naruto / Yamanaka Ino"),
+("Hyuuga Hinata / Yamanaka Ino"),
+("Haruno Sakura / Hyuga Hinata / Uchiha Sasuke / Uzumaki Naruto"),
+("Tayuya / Uzumaki Naruto"),
+("Mitarashi Anko / Uzumaki Naruto"),
+("Temari / Uzumaki Naruto"),
+("Fuka / Uzumaki Naruto"),
+("Hotaru / Uzumaki Naruto"),
+("Fuu / Uzumaki Naruto"),
+("Amaru / Uzumaki Naruto"),
+("Inuzuka Hana / Uzumaki Naruto"),
+("Konan / Uzumaki Naruto"),
+("Terumi Mei / Uzumaki Naruto"),
+("Shizuka / Uzumaki Naruto"),
+("Karin / Uzumaki Naruto"),
+("Kazahana Koyuki | Fujikaze Yukie / Uzumaki Naruto"),
+("Queen Sara / Uzumaki Naruto"),
+("Senju Tsunade / Uzumaki Naruto"),
+("Tenten / Uzumaki Naruto"),
+("Karui / Uzumaki Naruto"),
+("Killer Bee / Uzumaki Kushina"),
+("Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto"),
 /************************************************************************************************************************************/
 ("Tracer | Lena Oxton / Widowmaker | Amelie Lacroix"),
 /************************************************************************************************************************************/
@@ -2250,9 +2329,103 @@ SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harun
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Mebuki / Haruno Sakura" AND c.`name` = "Haruno Sakura"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uzumaki Naruko" AND c.`name` = "Haruno Sakura"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uzumaki Naruko" AND c.`name` = "Uzumaki Naruko"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Uzumaki Naruto / Yamanaka Ino" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Uzumaki Naruto / Yamanaka Ino" AND c.`name` = "Yamanaka Ino"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Yamanaka Ino" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Yamanaka Ino" AND c.`name` = "Yamanaka Ino"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiha Sasuke / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiha Sasuke / Uzumaki Naruto" AND c.`name` = "Hyuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiha Sasuke / Uzumaki Naruto" AND c.`name` = "Uchiha Sasuke"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiha Sasuke / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tayuya / Uzumaki Naruto" AND c.`name` = "Tayuya"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tayuya / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mitarashi Anko / Uzumaki Naruto" AND c.`name` = "Mitarashi Anko"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mitarashi Anko / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Temari / Uzumaki Naruto" AND c.`name` = "Temari"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Temari / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuka / Uzumaki Naruto" AND c.`name` = "Fuka"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuka / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Uzumaki Naruto" AND c.`name` = "Fuu"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Amaru / Uzumaki Naruto" AND c.`name` = "Amaru"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Amaru / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Inuzuka Hana / Uzumaki Naruto" AND c.`name` = "Inuzuka Hana"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Inuzuka Hana / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Konan / Uzumaki Naruto" AND c.`name` = "Konan"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Konan / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Terumi Mei / Uzumaki Naruto" AND c.`name` = "Terumi Mei"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Terumi Mei / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Shizuka / Uzumaki Naruto" AND c.`name` = "Shizuka"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Shizuka / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Karin / Uzumaki Naruto" AND c.`name` = "Karin"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Karin / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Kazahana Koyuki | Fujikaze Yukie / Uzumaki Naruto" AND c.`name` = "Kazahana Koyuki | Fujikaze Yukie"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Kazahana Koyuki | Fujikaze Yukie / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Queen Sara / Uzumaki Naruto" AND c.`name` = "Queen Sara"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Queen Sara / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Senju Tsunade / Uzumaki Naruto" AND c.`name` = "Senju Tsunade"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Senju Tsunade / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tenten / Uzumaki Naruto" AND c.`name` = "Tenten"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tenten / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Karui / Uzumaki Naruto" AND c.`name` = "Karui"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Karui / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Killer Bee / Uzumaki Kushina" AND c.`name` = "Killer Bee"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Killer Bee / Uzumaki Kushina" AND c.`name` = "Uzumaki Kushina"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hotaru / Uzumaki Naruto" AND c.`name` = "Hotaru"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hotaru / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uchiwa Sasuke"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Tracer | Lena Oxton"
 UNION 
