@@ -34,9 +34,10 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("A Taste of Magic", ""),
 ("I told him, Gaby. I told him that I loved you", ""),
 ("Music and Mayhem", ""),
-("Saving NezzySeries", ""),
+("Saving Nezzy", ""),
 ("Mother/Daughter Love", "The collection of Mother/Daughter Love. Only three one-shots."),
-("Just Like the Folks", "");
+("Just Like the Folks", ""),
+("Blondes in Bed", "");
 
 /*
  * Series fanfictions
@@ -313,4 +314,24 @@ SELECT s.id, f.id, 18 FROM series s, fanfictions f INNER JOIN authors a ON a.id=
 UNION
 SELECT s.id, f.id, 19 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Chestnut Weapons Minx" AND a.name = "Raptorcloak"
 UNION
-SELECT s.id, f.id, 20 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak";
+SELECT s.id, f.id, 20 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Just Like the Folks" AND f.name = "Just Like the Folks: The Orange Fox and the Chocolate Strawberry" AND a.name = "Raptorcloak"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Cloud" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Yellow Flash and The Golden Goddess" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Firefly Heiress" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: Two Leaves" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Sand" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Fox and The Cat" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 7 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and Two Clouds" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 8 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: Two Leaves and The Sand" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 9 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf, The Cloud, and The Firefly" AND a.name = "Raptorcloak"
+UNION
+SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Heavenly Harem" AND a.name = "Raptorcloak";
