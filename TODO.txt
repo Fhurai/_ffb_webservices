@@ -1,11 +1,38 @@
+** Fonctionalités **
+
 Coté back
 . A l'insertion, vérification que toutes les relations ont leurs personnages dans l'ordre alphabétique et si elles le sont, vérification que la relation n'existe pas déjà en base.
 . Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
 . Si tags contiennent "Sexual content" -> rating auto à 4.
 
 Coté front
-. Pouvoir rajouter un tag à la volée (ajout sexual content avec un +)
+. Pouvoir rajouter un tag à la volée (ajout avec un +, grouper les tags par "type" ?)
+. Pouvoir créer toutes les relations possibles de la liste des personnages (et ainsi permettre l'ajout à la volée)
+. Pouvoir lister toutes les fanfictions qui ont le même titre pour permettre le rajout de lien si elle se trouve aussi sur un autre site web.
+. Consultation des informations d'une fanfiction ou d'une série, même déconnecté (utilisateur "guest" ou webservice sans connexion ?).
 
 Coté outils
 . Vérification existence en bdd pour author, langage fandom, character, relation, tag, link, fanfiction [titre + auteur], series
 . Vérification aucun fanfiction a un lien inconnu pour author, character, relation -> Possible ?
+
+** Code **
+
+. Trois connexions différentes : une à la base de stats, une à la base de tests, une à la base de prod.
+. Reset bdd tests avant lancement tests
+    . Copie prod ou nouveau script pour init la base de tests ?
+. Planification des tests
+    . Test solo
+    . Suite de tests pour classe
+    . Enchainer les suites de tests (pas en meme temps pour éviter collisions).
+. Prévoir CORS bypass pour webservices.
+. Plan for CRUD
+    . Read (Object without associations, with simple associations, with every associations)
+    . Search ([Array conditions, String order, Array limit [start, count]])
+        . Voir si search() peut appeler search() d'une association.
+    . List (webservice appelle search() method ? Ou list() method ?)
+    . New (Empty object with id 0)
+    . Create (Object > Associations)
+    . Delete (Suppression logique, delete_date mis à CURRENT_DATE)
+    . Restore (delete_date mise à null)
+    . Remove (Suppression physique, nécessite l'objet d'avoir été delete précédemment)
+    . Update (Object > Links, jamais les objets associés)
