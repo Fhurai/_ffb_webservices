@@ -3369,4 +3369,276 @@ SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.i
 UNION
 SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Uzumaki Family Values" AND t.name = "One-shot" AND a.name = "EvilFuzzy9"
 UNION
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Uzumaki Family Values" AND t.name = "Sexual content" AND a.name = "EvilFuzzy9";
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Uzumaki Family Values" AND t.name = "Sexual content" AND a.name = "EvilFuzzy9"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto and Anko" AND t.name = "One-shot" AND a.name = "Steamy Naruto Writer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Master of Jiongu" AND t.name = "Adventure" AND a.name = "The Dark Dragon Emperor"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Master of Jiongu" AND t.name = "Romance" AND a.name = "The Dark Dragon Emperor"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Ninth Demon Lord: A Naruto Story" AND t.name = "Romance" AND a.name = "RyoshiMorino"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Ninth Demon Lord: A Naruto Story" AND t.name = "Supernatural" AND a.name = "RyoshiMorino"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naughty Naruto" AND t.name = "Romance" AND a.name = "Atsuzi Tano"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Red" AND t.name = "Romance" AND a.name = "DandelionDreaming"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Red" AND t.name = "One-shot" AND a.name = "DandelionDreaming"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Tone And Stroke" AND t.name = "Romance" AND a.name = "Timberwolfe"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Uzumaki Naruko: To the Victor, the Spoils V2" AND t.name = "Romance" AND a.name = "SeerKing"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Uzumaki Naruko: To the Victor, the Spoils V2" AND t.name = "Adventure" AND a.name = "SeerKing"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Futas' boy Naruto" AND t.name = "Romance" AND a.name = "Skanmp"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Futas' boy Naruto" AND t.name = "Hurt | Comfort" AND a.name = "Skanmp"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Transcending" AND t.name = "Adventure" AND a.name = "Snapers"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Transcending" AND t.name = "Friendship" AND a.name = "Snapers"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Our Bond" AND t.name = "Romance" AND a.name = "Spazzgirl"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Our Bond" AND t.name = "One-shot" AND a.name = "Spazzgirl"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Meet the Hyuga" AND t.name = "Adventure" AND a.name = "Solvdrage"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Meet the Hyuga" AND t.name = "Romance" AND a.name = "Solvdrage"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "More than enough (M-Rated version)" AND t.name = "Romance" AND a.name = "Petran"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "More than enough (M-Rated version)" AND t.name = "Humor" AND a.name = "Petran"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Life is Good" AND t.name = "Romance" AND a.name = "Lancecomwar"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Life is Good" AND t.name = "One-shot" AND a.name = "Lancecomwar"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto & Hinata Harem Hunters" AND t.name = "Romance" AND a.name = "MongolKahn"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Kinky Konoha" AND t.name = "Romance" AND a.name = "Crimson Red Ghost"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Kinky Konoha" AND t.name = "Adventure" AND a.name = "Crimson Red Ghost"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Rub it Out" AND t.name = "Humor" AND a.name = "MyUsedRomance"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Rub it Out" AND t.name = "Romance" AND a.name = "MyUsedRomance"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Rub it Out" AND t.name = "One-shot" AND a.name = "MyUsedRomance"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto's Weakness" AND t.name = "Romance" AND a.name = "Satoorihoya"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto's Weakness" AND t.name = "Drama" AND a.name = "Satoorihoya"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love Me Right" AND t.name = "Romance" AND a.name = "Tinyraver"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love Me Right" AND t.name = "Friendship" AND a.name = "Tinyraver"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Treatments for Ecstasy" AND t.name = "Romance" AND a.name = "Blackkitten23"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Diary of a White-Eyed Girl" AND t.name = "Romance" AND a.name = "Zaphi Nashii"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Diary of a White-Eyed Girl" AND t.name = "Drama" AND a.name = "Zaphi Nashii"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "In Charge" AND t.name = "Romance" AND a.name = "LovelyLori"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "In Charge" AND t.name = "One-shot" AND a.name = "LovelyLori"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Fun at Resort" AND t.name = "Romance" AND a.name = "Kairauchiha"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Fun at Resort" AND t.name = "One-shot" AND a.name = "Kairauchiha"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto's Birthday Treat" AND t.name = "Romance" AND a.name = "Thesaiyanjedi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto's Birthday Treat" AND t.name = "One-shot" AND a.name = "Thesaiyanjedi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Particles of Dust" AND t.name = "Romance" AND a.name = "Team Dragon Star"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Particles of Dust" AND t.name = "One-shot" AND a.name = "Team Dragon Star"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Hormone" AND t.name = "Romance" AND a.name = "Opkisofg"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Hormone" AND t.name = "One-shot" AND a.name = "Opkisofg"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "By Your Side (One Shot)" AND t.name = "Romance" AND a.name = "TMark260"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "By Your Side (One Shot)" AND t.name = "Hurt | Comfort" AND a.name = "TMark260"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Mom's Disappointment, Son's Enjoyment" AND t.name = "Romance" AND a.name = "Opkisofg"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Mom's Disappointment, Son's Enjoyment" AND t.name = "One-shot" AND a.name = "Opkisofg"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love In Bloom" AND t.name = "Romance" AND a.name = "GirlsAndTwirls"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love In Bloom" AND t.name = "Angst" AND a.name = "GirlsAndTwirls"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sister's Always Share REUPLOADED" AND t.name = "Romance" AND a.name = "The Four Crosses"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sister's Always Share REUPLOADED" AND t.name = "Humor" AND a.name = "The Four Crosses"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Loving Massage" AND t.name = "Romance" AND a.name = "Kanaelunmoon"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto: Re" AND t.name = "Fantasy" AND a.name = "Lord Winterman"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Ino's Revenge on Sakura" AND t.name = "Romance" AND a.name = "1Sakura-Haruno1"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Ino's Revenge on Sakura" AND t.name = "One-shot" AND a.name = "1Sakura-Haruno1"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Tale of Gallant Naruto" AND t.name = "Romance" AND a.name = "Super-Pervert Toad Sage"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Tale of Gallant Naruto" AND t.name = "Parody" AND a.name = "Super-Pervert Toad Sage"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Come In From The Rain" AND t.name = "Romance" AND a.name = "MrFanFictionFreak"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Shower Fun" AND t.name = "Romance" AND a.name = "Lagseeing1123"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Shower Fun" AND t.name = "One-shot" AND a.name = "Lagseeing1123"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "If I Could Do It Over" AND t.name = "Romance" AND a.name = "NarHina"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "If I Could Do It Over" AND t.name = "Drama" AND a.name = "NarHina"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Family Time" AND t.name = "Family" AND a.name = "NHlemonfan"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Family Time" AND t.name = "One-shot" AND a.name = "NHlemonfan"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "My Dear Weapons Mistress" AND t.name = "Romance" AND a.name = "TsukikoUchu"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "My Dear Weapons Mistress" AND t.name = "Humor" AND a.name = "TsukikoUchu"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Yajuu Sannin" AND t.name = "Adventure" AND a.name = "Shredjeep777"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Yajuu Sannin" AND t.name = "Friendship" AND a.name = "Shredjeep777"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Friendly Advice" AND t.name = "Romance" AND a.name = "Bucket of Holding"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Friendly Advice" AND t.name = "Friendship" AND a.name = "Bucket of Holding"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Friendly Advice" AND t.name = "One-shot" AND a.name = "Bucket of Holding"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Birthday Gift" AND t.name = "Romance" AND a.name = "Blossom-M"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Birthday Gift" AND t.name = "Family" AND a.name = "Blossom-M"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Birthday Gift" AND t.name = "One-shot" AND a.name = "Blossom-M"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sister in law, to sister in love!" AND t.name = "Romance" AND a.name = "Robin.exe"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sister in law, to sister in love!" AND t.name = "Drama" AND a.name = "Robin.exe"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sense of Duty" AND t.name = "Romance" AND a.name = "MelodySincerelySong"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sense of Duty" AND t.name = "Family" AND a.name = "MelodySincerelySong"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sense of Duty" AND t.name = "One-shot" AND a.name = "MelodySincerelySong"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "New Things" AND t.name = "Hurt" AND a.name = "LemonJuicer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "New Things" AND t.name = "Comfort" AND a.name = "LemonJuicer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "New Things" AND t.name = "Friendship" AND a.name = "LemonJuicer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "New Things" AND t.name = "One-shot" AND a.name = "LemonJuicer"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Lemonade" AND t.name = "Romance" AND a.name = "Cszimm"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Lemonade" AND t.name = "Humor" AND a.name = "Cszimm"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Within Interest" AND t.name = "Adventure" AND a.name = "Silent Songbird"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "More Than One Life" AND t.name = "Romance" AND a.name = "Its-Levioooosaa"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Thunder Clap" AND t.name = "Adventure" AND a.name = "Free Drinks"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Caged Bird" AND t.name = "Adventure" AND a.name = "Kagami1228"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Caged Bird" AND t.name = "Humor" AND a.name = "Kagami1228"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Home with the Uzumakis" AND t.name = "Romance" AND a.name = "TheKingofAnimeandManga"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Home with the Uzumakis" AND t.name = "One-shot" AND a.name = "TheKingofAnimeandManga"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "What happens in secret" AND t.name = "Mystery" AND a.name = "FanFictionBard2"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "What happens in secret" AND t.name = "Fantasy" AND a.name = "FanFictionBard2"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto Uzumaki Ero-Ninja" AND t.name = "Adventure" AND a.name = "Imperial-samaB"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto Uzumaki Ero-Ninja" AND t.name = "Romance" AND a.name = "Imperial-samaB"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Addict" AND t.name = "Romance" AND a.name = "BigE2955"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Addict" AND t.name = "Humor" AND a.name = "BigE2955"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Secrets of the Gentle Fist(ing)" AND t.name = "Humor" AND a.name = "TotoroX92"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Secrets of the Gentle Fist(ing)" AND t.name = "One-shot" AND a.name = "TotoroX92"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sensei-kun" AND t.name = "Romance" AND a.name = "Wanker - King of Wank Peasants"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Sensei-kun" AND t.name = "Humor" AND a.name = "Wanker - King of Wank Peasants"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Ripe Habanero" AND t.name = "Drama" AND a.name = "Raptorcloak"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Ripe Habanero" AND t.name = "Romance" AND a.name = "Raptorcloak"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Ripe Habanero" AND t.name = "One-shot" AND a.name = "Raptorcloak"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Yesterday Morning" AND t.name = "Romance" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Yesterday Morning" AND t.name = "Family" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Ninth" AND t.name = "Adventure" AND a.name = "Sulphur99"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Ninth" AND t.name = "Humor" AND a.name = "Sulphur99"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Harmless Attraction" AND t.name = "Drama" AND a.name = "DemonOfTheFridge"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Harmless Attraction" AND t.name = "Romance" AND a.name = "DemonOfTheFridge"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Unusual Lessons" AND t.name = "Friendship" AND a.name = "The Phantom Keeper"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Unusual Lessons" AND t.name = "Fantasy" AND a.name = "The Phantom Keeper"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Journal of Hope" AND t.name = "Adventure" AND a.name = "Masseffect-TxS"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Journal of Hope" AND t.name = "Supernatural" AND a.name = "Masseffect-TxS"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Always the quiet one" AND t.name = "One-shot" AND a.name = "DingyLilith"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Jinchuuriki's Brother" AND t.name = "Adventure" AND a.name = "Gogos14"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Jinchuuriki's Brother" AND t.name = "Family" AND a.name = "Gogos14"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Single Effect" AND t.name = "Romance" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Single Effect" AND t.name = "Drama" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love Is Not A Cage" AND t.name = "Romance" AND a.name = "NightOwl27"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Love Is Not A Cage" AND t.name = "Drama" AND a.name = "NightOwl27"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Red Thread" AND t.name = "Romance" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Red Thread" AND t.name = "Drama" AND a.name = "Midnight Rain19"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Better Beginning" AND t.name = "Adventure" AND a.name = "Thundos"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Legion of Naruto" AND t.name = "Adventure" AND a.name = "DarkWolfy"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Legion of Naruto" AND t.name = "Humor" AND a.name = "DarkWolfy"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto Femdom Stories" AND t.name = "Romance" AND a.name = "FetishFiend69"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Naruto Femdom Stories" AND t.name = "Hurt | Comfort" AND a.name = "FetishFiend69"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Orange Spark" AND t.name = "Adventure" AND a.name = "LC Namikaze"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Orange Spark" AND t.name = "Romance" AND a.name = "LC Namikaze"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Secrets and smiles" AND t.name = "Romance" AND a.name = "Sabersoul13"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Secrets and smiles" AND t.name = "Friendship" AND a.name = "Sabersoul13";

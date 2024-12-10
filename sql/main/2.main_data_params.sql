@@ -48,7 +48,8 @@ VALUES ("Français", "FR"),
  */
 DELETE FROM `tags`;
 INSERT INTO `tags` (`name`,`description`) 
-VALUES ("Romance", "Story is about or mentions bit of romance between two or more characters."),
+VALUES 
+("Romance", "Story is about or mentions bit of romance between two or more characters."),
 ("Adventure", "Story is about or mentions bit of aventure with rather violent actions."),
 ("Friendship", "Story is about or mentions bit of friendship between two or more characters."),
 ("Fluff", "Story is about or mentions feel-good pleasant moment between two or more characters."),
@@ -60,14 +61,19 @@ VALUES ("Romance", "Story is about or mentions bit of romance between two or mor
 ("Slices of life", "Story is about or mentions bits of everyday life."),
 ("Mystery", "Story is about or mentions bits about a mystery to explore or to unveil."),
 ("Crime", "Story is about or mentions bits about solving a crime."),
+("Supernatural", "Story is about or mentions bits about supernatural events."),
+("Fantasy", "Story is about or mentions buts about fantasy.")
+/************************************************************************************************************************************/
 ("Pre-canon", "Story takes place before the original timeline of the universe."),
 ("Post-canon", "Story takes place after the original timeline of the universe."),
 ("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children."),
 ("Next Generation", "Story takes place while the children of canon heroes are at the current age of their parents."),
+/************************************************************************************************************************************/
 ("Gay | Yaoi", "Story is about or mentions a relationship between two men."),
 ("Lesbian | Yuri", "Story is about or mentions a relationship between two women."),
 ("Multi", "Story is about or mentions a relationship between more than two characters."),
 ("Harem", "Story is about or mentions a relationship between a character and multiple other characters without another relationship."),
+/************************************************************************************************************************************/
 ("Mecha", "Story is about or mentions mecha / robots."),
 ("Dragons", "Story is about or mentions dragons."), 
 ("Vampires", "Story is about or mentions vampires."), 
@@ -771,6 +777,8 @@ UNION
 SELECT "Nii Yugito", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Matsuri", `id` from `fandoms` WHERE `name` = "Naruto"
+UNION 
+SELECT "Akamaru", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION /************************************************************************************************************************************/
 SELECT "Tracer | Lena Oxton", `id` from `fandoms` WHERE `name` = "Overwatch"
 UNION 
@@ -1207,6 +1215,9 @@ VALUES
 ("Akimichi Choji / Karui"),
 ("Amaru / Uzumaki Naruto"),
 ("Fuka / Uzumaki Naruto"),
+("Fuu / Hyuuga Hinata / Uzumaki Naruto / Tayuya"),
+("Fuu / Hyuuga Hinata / Uzumaki Naruto"),
+("Fuu / Tayuya"),
 ("Fuu / Uzumaki Naruto"),
 ("Haruno Mebuki / Haruno Sakura"),
 ("Haruno Mebuki / Uzumaki Naruto"),
@@ -1219,11 +1230,16 @@ VALUES
 ("Haruno Sakura / Uzumaki Naruko"),
 ("Haruno Sakura / Uzumaki Naruto"),
 ("Haruno Sakura / Yamanaka Ino"),
+("Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke"),
 ("Hotaru / Nii Yugito / Samui / Shion / Sabaku no Temari / Uzumaki Naruto / Yamanaka Ino"),
 ("Hotaru / Samui / Uzumaki Naruto"),
 ("Hotaru / Uzumaki Naruto"),
+("Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto / OFC"),
+("Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto"),
 ("Hyuuga Hanabi / Uzumaki Naruto"),
+("Hyuuga Hinata / Hyuuga Neji / Uzumaki Naruto"),
 ("Hyuuga Hinata / Shion / Uzumaki Naruto"),
+("Hyuuga Hinata / Tenten / Uzumaki Naruko / Yamanaka Ino"),
 ("Hyuuga Hinata / Uzumaki Naruko"),
 ("Hyuuga Hinata / Uzumaki Naruto / Yamanaka Ino"),
 ("Hyuuga Hinata / Uzumaki Naruto"),
@@ -1248,6 +1264,8 @@ VALUES
 ("Nii Yugito / Uzumaki Naruto"),
 ("Queen Sara / Uzumaki Naruto"),
 ("Sabaku no Temari / Tenten"),
+("Sabaku no Temari / Uzumaki Naruto / Yamanaka Ino"),
+("Sabaku no Temari / Uzumaki Naruto"),
 ("Sai / Uzumaki Naruto"),
 ("Sai / Yamanaka Ino"),
 ("Samui / Uzumaki Naruto"),
@@ -1255,8 +1273,6 @@ VALUES
 ("Senju Tsunade / Uzumaki Naruto"),
 ("Shizuka / Uzumaki Naruto"),
 ("Tayuya / Uzumaki Naruto"),
-("Sabaku no Temari / Uzumaki Naruto / Yamanaka Ino"),
-("Sabaku no Temari / Uzumaki Naruto"),
 ("Tenten / Uzumaki Naruto"),
 ("Tenten / Yamanaka Ino"),
 ("Terumi Mei / Uzumaki Naruto"),
@@ -1265,7 +1281,6 @@ VALUES
 ("Uchiwa Sasuke / Uzumaki Naruto"),
 ("Uzumaki Naruto / Kurenai Yuuhi"),
 ("Uzumaki Naruto / Yamanaka Ino"),
-("Fuu / Tayuya"),
 /************************************************************************************************************************************/
 ("Tracer | Lena Oxton / Widowmaker | Amelie Lacroix"),
 /************************************************************************************************************************************/
@@ -2609,6 +2624,56 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Tayuya" AND c.`name` = "Fuu"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Tayuya" AND c.`name` = "Tayuya"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Fuu"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto / Tayuya" AND c.`name` = "Fuu"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto / Tayuya" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto / Tayuya" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fuu / Hyuuga Hinata / Uzumaki Naruto / Tayuya" AND c.`name` = "Tayuya"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tenten / Uzumaki Naruko / Yamanaka Ino" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tenten / Uzumaki Naruko / Yamanaka Ino" AND c.`name` = "Tenten"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tenten / Uzumaki Naruko / Yamanaka Ino" AND c.`name` = "Uzumaki Naruko"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tenten / Uzumaki Naruko / Yamanaka Ino" AND c.`name` = "Yamanaka Ino"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto / OFC" AND c.`name` = "Hyuuga Hanabi"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto / OFC" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto / OFC" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto / OFC" AND c.`name` = "OFC"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Hyuuga Neji / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Hyuuga Neji / Uzumaki Naruto" AND c.`name` = "Hyuuga Neji"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Hyuuga Neji / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Hyuuga Hanabi"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hanabi / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke" AND c.`name` = "Hatake Kakashi"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke" AND c.`name` = "Haruno Sakura"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke" AND c.`name` = "Uchiwa Sasuke"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Tracer | Lena Oxton"
 UNION 
