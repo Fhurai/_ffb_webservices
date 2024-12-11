@@ -4,6 +4,10 @@ Coté back
 . A l'insertion, vérification que toutes les relations ont leurs personnages dans l'ordre alphabétique et si elles le sont, vérification que la relation n'existe pas déjà en base.
 . Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
 . Si tags contiennent "Sexual content" -> rating auto à 4.
+. Si un personnage, ayant des relations, est modifié alors toutes ses relations sont aussi modifiées pour faire correspondre le nouveau nom.
+. View avec toutes les fanfictions ayant le meme nom pour comparer les auteurs et savoir si l'auteur n'a pas deux pseudos différents sur deux sites.
+. Si user n'est pas admin, il peut seulement faire de la consultation.
+. Possibilité  de lier deux utilisateurs ensemble pour changer d'utilisateur (non-admin <-> admin en cas de modification à faire).
 
 Coté front
 . Pouvoir rajouter un tag à la volée (ajout avec un +, grouper les tags par "type" ?)
