@@ -28,6 +28,7 @@ VALUES
 ("Naruto"),
 ("Overwatch"),
 ("Parahumans Series - Wildbow"),
+("Smash Brothers Ultimate"),
 ("StarCraft"),
 ("Tales of Berseria"),
 ("Wiedźmin | The Witcher"),
@@ -47,45 +48,45 @@ VALUES ("Français", "FR"),
  * Tags
  */
 DELETE FROM `tags`;
-INSERT INTO `tags` (`name`,`description`) 
+INSERT INTO `tags` (`name`,`description`, `type_id`) 
 VALUES 
-("Romance", "Story is about or mentions bit of romance between two or more characters."),
-("Adventure", "Story is about or mentions bit of aventure with rather violent actions."),
-("Friendship", "Story is about or mentions bit of friendship between two or more characters."),
-("Fluff", "Story is about or mentions feel-good pleasant moment between two or more characters."),
-("Family", "Story is about or mentions bit of family relationship between two or more characters."),
-("Angst", "Story is about or mentions bit of deep anxiety or dread about the state of the world."),
-("Drama", "Story is about or mentions bit of dramatic relationship between two or more characters."),
-("Hurt | Comfort", "Story is about or mentions the physical pain or emotional distress of one character, who is cared for by another character."),
-("Humor", "Story is about or mentions humoristic parts to lighten the mood."),
-("Slices of life", "Story is about or mentions bits of everyday life."),
-("Mystery", "Story is about or mentions bits about a mystery to explore or to unveil."),
-("Crime", "Story is about or mentions bits about solving a crime."),
-("Supernatural", "Story is about or mentions bits about supernatural events."),
-("Fantasy", "Story is about or mentions buts about fantasy."),
+("Romance", "Story is about or mentions bit of romance between two or more characters.", "1"),
+("Adventure", "Story is about or mentions bit of aventure with rather violent actions.", "1"),
+("Friendship", "Story is about or mentions bit of friendship between two or more characters.", "1"),
+("Fluff", "Story is about or mentions feel-good pleasant moment between two or more characters.", "1"),
+("Family", "Story is about or mentions bit of family relationship between two or more characters.", "1"),
+("Angst", "Story is about or mentions bit of deep anxiety or dread about the state of the world.", "1"),
+("Drama", "Story is about or mentions bit of dramatic relationship between two or more characters.", "1"),
+("Hurt | Comfort", "Story is about or mentions the physical pain or emotional distress of one character, who is cared for by another character.", "1"),
+("Humor", "Story is about or mentions humoristic parts to lighten the mood.", "1"),
+("Slices of life", "Story is about or mentions bits of everyday life.", "1"),
+("Mystery", "Story is about or mentions bits about a mystery to explore or to unveil.", "1"),
+("Crime", "Story is about or mentions bits about solving a crime.", "1"),
+("Supernatural", "Story is about or mentions bits about supernatural events.", "1"),
+("Fantasy", "Story is about or mentions buts about fantasy.", "1"),
 /************************************************************************************************************************************/
-("Pre-canon", "Story takes place before the original timeline of the universe."),
-("Post-canon", "Story takes place after the original timeline of the universe."),
-("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children."),
-("Next Generation", "Story takes place while the children of canon heroes are at the current age of their parents."),
+("Pre-canon", "Story takes place before the original timeline of the universe.", "2"),
+("Post-canon", "Story takes place after the original timeline of the universe.", "2"),
+("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children.", "2"),
+("Next Generation", "Story takes place while the children of canon heroes are at the current age of their parents.", "2"),
 /************************************************************************************************************************************/
-("Gay | Yaoi", "Story is about or mentions a relationship between two men."),
-("Lesbian | Yuri", "Story is about or mentions a relationship between two women."),
-("Multi", "Story is about or mentions a relationship between more than two characters."),
-("Harem", "Story is about or mentions a relationship between a character and multiple other characters without another relationship."),
+("Gay | Yaoi", "Story is about or mentions a relationship between two men.", "3"),
+("Lesbian | Yuri", "Story is about or mentions a relationship between two women.", "3"),
+("Multi", "Story is about or mentions a relationship between more than two characters.", "3"),
+("Harem", "Story is about or mentions a relationship between a character and multiple other characters without another relationship.", "3"),
 /************************************************************************************************************************************/
-("Mecha", "Story is about or mentions mecha / robots."),
-("Dragons", "Story is about or mentions dragons."), 
-("Vampires", "Story is about or mentions vampires."), 
-("Pwp", "Porn without plot, story is about or mentions porn."), 
-("Sexual content", "Story is about or mentions sexual content."), 
-("Femdom", "Story is about or mentions female domination."), 
-("AU", "Alternative Universe, Story takes place in a different universe than the canon universe."), 
-("Time travel", "Story is about or mentions time travel."), 
-("Good", "A dark or evil character change allegiance to the hero side."), 
-("Dark", "A nice character makes questionable choices."), 
-("Evil", "A nice character change allegiance against the hero side."),
-("One-shot", "Story is one chapter only, not caring about the number of words.");
+("Mecha", "Story is about or mentions mecha / robots.", "4"),
+("Dragons", "Story is about or mentions dragons.", "4"), 
+("Vampires", "Story is about or mentions vampires.", "4"), 
+("Pwp", "Porn without plot, story is about or mentions porn.", "4"), 
+("Sexual content", "Story is about or mentions sexual content.", "4"), 
+("Femdom", "Story is about or mentions female domination.", "4"), 
+("AU", "Alternative Universe, Story takes place in a different universe than the canon universe.", "4"), 
+("Time travel", "Story is about or mentions time travel.", "4"), 
+("Good", "A dark or evil character change allegiance to become nice.", "4"), 
+("Dark", "A nice character makes questionable choices.", "4"), 
+("Evil", "A nice character change allegiance to become evil.", "4"),
+("One-shot", "Story is one chapter only, not caring about the number of words.", "4");
 
 /*
  * Characters
@@ -875,6 +876,8 @@ UNION
 SELECT "OFC", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "OMC", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
+UNION 
+SELECT "Ontos", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION /************************************************************************************************************************************/
 SELECT "Rex", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
@@ -921,6 +924,30 @@ UNION
 SELECT "Klaus", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
 SELECT "Pneuma", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Logos", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Lora", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Adel Orudou | Addam Origo", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Minochi | Cole | Minoth", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Nephel | Niall Ardanach", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Wadatsumi | Aegaeon", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Corrine", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Shiki | Adenine", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Newt", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "KOS-MOS", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Hibana | Crossette", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Suzaku | Roc", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION /************************************************************************************************************************************/
 SELECT "Mio", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
@@ -1335,6 +1362,12 @@ VALUES
 ("Homura | Pyra / Rex"),
 ("Niyah | Nia / Rex"),
 ("Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria"),
+("Hikari | Mythra / Homura | Pyra / Pneuma / Rex"),
+("Hikari | Mythra / Niyah | Nia"),
+("Homura | Pyra / Niyah | Nia"),
+("Hikari | Mythra / Homura | Pyra / Niyah | Nia"),
+("Meleph | Mòrag Ladair / Satahiko | Mikhail"),
+("Hikari | Mythra / Homura | Pyra / Rex"),
 /************************************************************************************************************************************/
 ("Mio / Noah"),
 ("Eunie / Taion"),
@@ -2797,6 +2830,38 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria" AND c.`name` = "Ozychlyrus Brounev Tantal | Zeke von Genbu"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria" AND c.`name` = "Saika | Pandoria"
+UNION
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex" AND c.`name` = "Hikari | Mythra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex" AND c.`name` = "Homura | Pyra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex" AND c.`name` = "Pneuma"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex" AND c.`name` = "Rex"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Niyah | Nia" AND c.`name` = "Hikari | Mythra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Niyah | Nia" AND c.`name` = "Rex"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Homura | Pyra / Niyah | Nia" AND c.`name` = "Homura | Pyra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Homura | Pyra / Niyah | Nia" AND c.`name` = "Niyah | Nia"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia" AND c.`name` = "Hikari | Mythra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia" AND c.`name` = "Homura | Pyra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia" AND c.`name` = "Niyah | Nia"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Meleph | Mòrag Ladair / Satahiko | Mikhail" AND c.`name` = "Meleph | Mòrag Ladair"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Meleph | Mòrag Ladair / Satahiko | Mikhail" AND c.`name` = "Satahiko | Mikhail"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Rex" AND c.`name` = "Hikari | Mythra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Rex" AND c.`name` = "Homura | Pyra"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Rex" AND c.`name` = "Rex"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Noah" AND c.`name` = "Mio"
 UNION 
