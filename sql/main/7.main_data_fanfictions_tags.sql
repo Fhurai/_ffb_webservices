@@ -3785,4 +3785,36 @@ SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.i
 UNION
 SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND t.name = "Hurt | Comfort" AND a.name = "The Assassin's Pen"
 UNION
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND t.name = "One-shot" AND a.name = "The Assassin's Pen";
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND t.name = "One-shot" AND a.name = "The Assassin's Pen"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Blonde" AND t.name = "Romance" AND a.name = "Rozteka"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Blonde" AND t.name = "Angst" AND a.name = "Rozteka"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Blonde" AND t.name = "One-shot" AND a.name = "Rozteka"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Cure for All Ills" AND t.name = "Romance" AND a.name = "Rozteka"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "A Cure for All Ills" AND t.name = "One-shot" AND a.name = "Rozteka"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Wedding Day" AND t.name = "One-shot" AND a.name = "Whip9063"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Do computers dream of electric armu?" AND t.name = "Humor" AND a.name = "Assbele"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Do computers dream of electric armu?" AND t.name = "One-shot" AND a.name = "Assbele"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Empress' Child" AND t.name = "Angst" AND a.name = "BagofChips"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Multi" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Fluff" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Angst" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Post-canon" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Sexual content" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "The Other Woman" AND t.name = "Romance" AND a.name = "ColdLuigi"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "From Beyond the Sky" AND t.name = "One-shot" AND a.name = "BagofChips";

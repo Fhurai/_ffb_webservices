@@ -1921,4 +1921,38 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND r.name = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg"
 UNION
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin" AND r.name = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin" AND r.name = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Cure for All Ills" AND a.name = "Rozteka" AND r.name = "Carna | Sharla / Reyn"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Cure for All Ills" AND a.name = "Rozteka" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Cure for All Ills" AND a.name = "Rozteka" AND r.name = "Dunban / Vanea"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Thoughts To A Friend" AND a.name = "FlashingFire" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Wedding Day" AND a.name = "Whip9063" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Carna | Sharla / Reyn"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Lanz / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Kagiroi | Glimmer / Nikol"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi" AND r.name = "Ethel / Kamunabi | Cammuravi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND r.name = "Carna | Sharla / Reyn";

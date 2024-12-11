@@ -52,6 +52,7 @@ VALUES
 ("AshleyTrecartin"),
 ("Aspionage"),
 ("Asriah"),
+("Assbele"),
 ("AStrangeHopefulDreamer"),
 ("AstroLatte"),
 ("Atrxx93"),
@@ -62,6 +63,7 @@ VALUES
 ("AxleBoost"),
 ("Aya8"),
 ("Azaron"),
+("BagofChips"),
 ("Balddog4"),
 ("BananasPyjamas"),
 ("Barelyeverthere"),
@@ -105,6 +107,7 @@ VALUES
 ("Clell65619"),
 ("Clio_jlh"),
 ("Cloud Zen"),
+("ColdLuigi"),
 ("Colormonk"),
 ("CompassOpposites"),
 ("Coolant"),
@@ -174,6 +177,7 @@ VALUES
 ("FieldDranzer"),
 ("Fight-sister-fight"),
 ("Fightfortherightsofhouseelves"),
+("FlashingFire"),
 ("Flipflop_diva"),
 ("Floaw"),
 ("Flowerchild33"),
@@ -432,6 +436,7 @@ VALUES
 ("RosaCalavera"),
 ("RosyPalms"),
 ("Rouven Singer"),
+("Rozteka"),
 ("Rtnwriter"),
 ("RubySaintClaire"),
 ("Rusty Weasley"),
@@ -583,6 +588,7 @@ VALUES
 ("Wendings"),
 ("WerewolfWarriro"),
 ("WhereTheBerriesBloom"),
+("Whip9063"),
 ("White Angel of Auralon"),
 ("WhiteWhiskey"),
 ("WhitherWinds"),
@@ -3002,13 +3008,13 @@ UNION
 SELECT "The Ripe Habanero" as name, a.id as author_id, 3 as rating, "When Kushina is revived by Naruto, life is better than ever for him until a certain incident will determine their future as parent and child or if they'll become more than that. AU. NarutoxKushinaxMeixSakuraxIno. Features nicer Sakura. For Forever United Never We Fall. Contains Uzumakicest; Don't Like, Don't Read. Please R&R if enjoyed." as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="Raptorcloak" AND l.name="English"
 UNION
-SELECT "Yesterday Morning" as name, a.id as author_id, 3 as rating, ""Um Dear, why is there a stadium in front of our house?" Naruto questioned, looking back to Hinata slowly. Perhaps Boruto had spiked his coffee and now he was seeing things, but then he saw what looked to be like his 12 year old self along with his old Team 7 staring at him widely in shock and realized that no, this isn't one of those bizarre dreams of his! Time Travel/Chūnin-Exams" as description, l.id as language_id
+SELECT "Yesterday Morning" as name, a.id as author_id, 3 as rating, """Um Dear, why is there a stadium in front of our house?"" Naruto questioned, looking back to Hinata slowly. Perhaps Boruto had spiked his coffee and now he was seeing things, but then he saw what looked to be like his 12 year old self along with his old Team 7 staring at him widely in shock and realized that no, this isn't one of those bizarre dreams of his! Time Travel/Chūnin-Exams" as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="Midnight Rain19" AND l.name="English"
 UNION
 SELECT "Ninth" as name, a.id as author_id, 3 as rating, "When Naruto stole the Scroll of Seals, he never thought he'd find a bejeweled necklace along with it. Neither did he think that it'd lead to having eight people screaming in his head from that day forward. If there's one thing he knows however, is that the Namikaze clan heads are an undeniably unique bunch." as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="Sulphur99" AND l.name="English"
 UNION
-SELECT "Harmless Attraction" as name, a.id as author_id, 3 as rating, "Hinata had an amazing one night stand with a stranger she met at a bar. Thinking she'd never see him again, fate has a funny way of handling her life. The man of her dreams has appeared before her as one of her students. How will she deal with her overly obsessive student? "M-Menma?" ""Actually teach, it's Naruto."" (Thriller/Drama/Romance/Dark)" as description, l.id as language_id
+SELECT "Harmless Attraction" as name, a.id as author_id, 3 as rating, "Hinata had an amazing one night stand with a stranger she met at a bar. Thinking she'd never see him again, fate has a funny way of handling her life. The man of her dreams has appeared before her as one of her students. How will she deal with her overly obsessive student? ""M-Menma?"" ""Actually teach, it's Naruto."" (Thriller/Drama/Romance/Dark)" as description, l.id as language_id
 FROM `authors` a, `languages` l WHERE a.name="DemonOfTheFridge" AND l.name="English"
 UNION
 SELECT "Unusual Lessons" as name, a.id as author_id, 3 as rating, "Naruto had the day off, he expected it was going to be filled with gorging on ramen or simply relaxing. Naruto never expected he was going to end up teaching two academy students his best jutsu, the Sexy Jutsu." as description, l.id as language_id
@@ -3153,7 +3159,31 @@ SELECT "Novigrad: An Interlude" as name, a.id as author_id, 2 as rating, "After 
 FROM `authors` a, `languages` l WHERE a.name="Crimson_Coin" AND l.name="English"
 UNION
 SELECT "Too Good to Last" as name, a.id as author_id, 3 as rating, "Yennefer met Geralt at Corvo Bianco and everything was supposed to be easy from there. But Yennefer has never been allowed to keep her happiness before. What makes this time different? One shot, Geralt/Yennefer. Angsty but not ultimately sad." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="The Assassin's Pen" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="The Assassin's Pen" AND l.name="English"
+UNION
+SELECT "Blonde" as name, a.id as author_id, 2 as rating, "(Set post-Xenoblade Chronicles, pre-Future Connected) Colony 9 is in full swing with celebrations. The stalls are selling delicious foods from across the two titans, the drink is flowing fizzy and fast, and it's impossible to not walk to the tune of the minstrels jubilant score.Among all the celebration, a participant wanders weary from her journey so far and with her head buzzing a bit too much." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "A Cure for All Ills" as name, a.id as author_id, 3 as rating, "(Set after Future Connected)With a baby on the way, Reyn has been pulling away a bit from Sharla, much to the medic's concern. When he struggles to communicate his worries to her, she enlists the help and support of her friends, all of whom have their own devleopments going on in their life.A story of changing priorities, reconsidering life choices, and how a future Founder came to be." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Thoughts To A Friend" as name, a.id as author_id, 1 as rating, "Here, when no one has need of him - and sometimes, he admits to himself, even when they do - Shulk sits on the humble bench that survived the collision of two worlds, looks out over the crumbling structures and running waters and glinting metal of his new home, and speaks to the air." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="FlashingFire" AND l.name="English"
+UNION
+SELECT "Wedding Day" as name, a.id as author_id, 1 as rating, "It is Shulk and Fiora's big day." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Whip9063" AND l.name="English"
+UNION
+SELECT "Do computers dream of electric armu?" as name, a.id as author_id, 2 as rating, "Galea's coworker, Klaus, was an absolute nightmare to work with.Her job at Aoidos could've been worse... maybe. At least she had the computer for company." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Assbele" AND l.name="English"
+UNION
+SELECT "The Empress' Child" as name, a.id as author_id, 2 as rating, "They say the Empress had a bastard child in secret.That's what they say, alright." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English"
+UNION
+SELECT "The Other Woman" as name, a.id as author_id, 4 as rating, "Six years to the day after Zanza's defeat, Shulk and Fiora announce their engagement. The Colony celebrates...but Melia can't let herself be happy for them. Her feelings for Shulk have never faded-and neither has her closeness with Fiora. Unwilling to do anything to come between the two people she loves most in the world, she resigns herself to a lifetime spent watching others be in love.And then Fiora comes to her, and makes a suggestion that changes Melia's life forever.OR: Your reminder that in Xenoblade Chronicles 1, High Entia monarchs are canonically polygamous." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ColdLuigi" AND l.name="English"
+UNION
+SELECT "From Beyond the Sky" as name, a.id as author_id, 2 as rating, """My heart is with you, forever and ever...""A lost soul is given a second chance at life. Shulk and Fiora are given a second chance as well." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English";
 
 /*
  * Link
@@ -4881,4 +4911,20 @@ SELECT "https://archiveofourown.org/works/7277230", ff.id FROM fanfictions ff IN
 UNION
 SELECT "https://archiveofourown.org/works/7510473", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin"
 UNION
-SELECT "https://www.fanfiction.net/s/12191730/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen";
+SELECT "https://www.fanfiction.net/s/12191730/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen"
+UNION
+SELECT "https://archiveofourown.org/works/41834484", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Blonde" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/47626684", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Cure for All Ills" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/47791300", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Thoughts To A Friend" AND a.name = "FlashingFire"
+UNION
+SELECT "https://archiveofourown.org/works/47967082", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Wedding Day" AND a.name = "Whip9063"
+UNION
+SELECT "https://archiveofourown.org/works/47999548", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Do computers dream of electric armu?" AND a.name = "Assbele"
+UNION
+SELECT "https://archiveofourown.org/works/48483721", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Empress' Child" AND a.name = "BagofChips"
+UNION
+SELECT "https://archiveofourown.org/works/55098811", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi"
+UNION
+SELECT "https://archiveofourown.org/works/55140421", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips";
