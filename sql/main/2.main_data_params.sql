@@ -813,6 +813,8 @@ UNION
 SELECT "Tychus Findlay", `id` from `fandoms` WHERE `name` = "Starcraft"
 UNION 
 SELECT "Samir Duran", `id` from `fandoms` WHERE `name` = "Starcraft"
+UNION 
+SELECT "Magistrate", `id` from `fandoms` WHERE `name` = "Starcraft"
 UNION /************************************************************************************************************************************/
 SELECT "Geralt z Rivii | Geralt of Rivia", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
 UNION 
@@ -835,6 +837,12 @@ UNION
 SELECT "Zoltan Chivay", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
 UNION 
 SELECT "Emiel Regis Rohellec Terzieff-Godefroy", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
+UNION 
+SELECT "Keira Metz", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
+UNION 
+SELECT "Morvran Voorhis", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
+UNION 
+SELECT "Triss Merigold", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
 UNION /************************************************************************************************************************************/
 SELECT "Shulk", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
@@ -1285,6 +1293,9 @@ VALUES
 ("Uzumaki Naruto / Yamanaka Ino"),
 /************************************************************************************************************************************/
 ("Tracer | Lena Oxton / Widowmaker | Amelie Lacroix"),
+/************************************************************************************************************************************/
+("James Raynor / Sarah Kerrigan"),
+("Magistrate / November 'Nova' Terra"),
 /************************************************************************************************************************************/
 ("Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg"),
 /************************************************************************************************************************************/
@@ -2696,6 +2707,14 @@ UNION /*************************************************************************
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Tracer | Lena Oxton"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Widowmaker | Amelie Lacroix"
+UNION /************************************************************************************************************************************/
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "James Raynor / Sarah Kerrigan" AND c.`name` = "James Raynor"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "James Raynor / Sarah Kerrigan" AND c.`name` = "Sarah Kerrigan"
+UNION
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Magistrate / November 'Nova' Terra" AND c.`name` = "Magistrate"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Magistrate / November 'Nova' Terra" AND c.`name` = "November 'Nova' Terra"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg" AND c.`name` = "Geralt z Rivii | Geralt of Rivia"
 UNION 
