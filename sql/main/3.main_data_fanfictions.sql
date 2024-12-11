@@ -111,6 +111,7 @@ VALUES
 ("Corwalch"),
 ("CountlessUntruths (KaliCephirot)"),
 ("Crazelegs12"),
+("Crimson_Coin"),
 ("Crimson Darkness8"),
 ("Crimson Red Ghost"),
 ("Cszimm"),
@@ -153,6 +154,7 @@ VALUES
 ("Ensou"),
 ("Epeefencer"),
 ("Epsilonics"),
+("Eravalefantasy"),
 ("Eric Michael Kline"),
 ("Erokage37"),
 ("EroPrincess"),
@@ -166,6 +168,7 @@ VALUES
 ("Farbautidottir"),
 ("Fearful Porpentine"),
 ("Femmeslyth"),
+("Fen_Assan"),
 ("FetishFiend69"),
 ("Feymist"),
 ("FieldDranzer"),
@@ -295,6 +298,7 @@ VALUES
 ("LovelyLori"),
 ("LRThunder"),
 ("LuanMao"),
+("Luddleston"),
 ("Luna_Weasley03"),
 ("Lunalustgood"),
 ("Luthor"),
@@ -305,6 +309,7 @@ VALUES
 ("Madrosewriting"),
 ("Magical_Worlds"),
 ("Maia.maiestas"),
+("Major Mike Powell III"),
 ("Mantis137"),
 ("Maraudersaffair"),
 ("MargaretSexyMum"),
@@ -508,6 +513,7 @@ VALUES
 ("Th3Alchemist"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
+("The Assassin's Pen"),
 ("The Dark Dragon Emperor"),
 ("The Four Crosses"),
 ("The Metal Sage"),
@@ -564,6 +570,7 @@ VALUES
 ("Vedros"),
 ("VelvetInferno"),
 ("VeryBerry96"),
+("Viralmysteries"),
 ("Vox ad umbram sum"),
 ("Voxangelus"),
 ("VulgarAssassin"),
@@ -572,6 +579,7 @@ VALUES
 ("WandaXmaximoff"),
 ("Wandering Wonderer"),
 ("Wanker - King of Wank Peasants"),
+("Warchief"),
 ("Wendings"),
 ("WerewolfWarriro"),
 ("WhereTheBerriesBloom"),
@@ -3118,7 +3126,34 @@ SELECT "Kings of Foreplay" as name, a.id as author_id, 3 as rating, "Because Sas
 FROM `authors` a, `languages` l WHERE a.name="SaveTheHero" AND l.name="English"
 UNION
 SELECT "Naruto Orange Typhoon" as name, a.id as author_id, 3 as rating, "Naruto leaves with Jiraiya for two and a half years. In the manga this means he gets dumber. Here it means things happen, maybe..." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Nashtalon" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Nashtalon" AND l.name="English"
+UNION
+SELECT "Willingly Snared in the Widow's Web" as name, a.id as author_id, 3 as rating, "Co-op With Kamen Rider Omega: the widow's web, the Widowmaker's web, which Tracer broke through and in which she lovingly snared herself after she made Widowmaker feel again, after making Amélie return. This is just another of many a rendezvous, rendezvous away from the battlefield. Just Amélie and Lena, Tracer and Widowmaker, reveling in their love. Read'n Enjoy!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Major Mike Powell III" AND l.name="English"
+UNION
+SELECT "When One Domino Falls" as name, a.id as author_id, 3 as rating, "All it takes to change history is one thing to fall differently. So what would happen if the battle of New Gettysburg was altered? What if the Commander was wary enough to buy some time? Follows the story of Starcraft from New Gettysburg right through to SC2 and beyond. Starcraft belongs to Blizzard. This AU is referred to in a co-authored story with Sharnorasian Empire." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Warchief" AND l.name="English"
+UNION
+SELECT "Moving On" as name, a.id as author_id, 3 as rating, "Set after the events of The Witcher 3: Wild Hunt. The story of Triss Merigold after the events of the last game. Massive spoilers of the books and all three games, especially TW3. Chapter 1 explains world setting after the game. Feedback is appreciated! Triss/OC" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Viralmysteries" AND l.name="English"
+UNION
+SELECT "En'leass*" as name, a.id as author_id, 4 as rating, "Geralt comes to Skellige looking for Ciri, but he will find Yennefer first, in more senses than one.An AU in which Geralt and Yennefer steal away together after they meet, allowing themselves simply to enjoy, even if for a little while. A bit of slightly adjusted in-game dialogue present. * En'leass - laced, tied (Elder Speech)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fen_Assan" AND l.name="English"
+UNION
+SELECT "Yours Truly" as name, a.id as author_id, 3 as rating, "A little epistolary fic experiment: while Geralt is busy doing Witcher work in Toussaint, he and Yennefer keep in touch by writing to each other. As Yen is not the only one missing Geralt, others join in the correspondence. Takes place during the events of Blood and Wine DLC. Chapters 1-4 contain insignificant spoilers for the DLC, with major spoilers in further chapters!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Fen_Assan" AND l.name="English"
+UNION
+SELECT "Like a Damn Princess" as name, a.id as author_id, 4 as rating, "Never let it be said that Geralt of Rivia was above begging—the one contingency of it happening, though, was that he was naked and at the mercy of one sorceress Yennefer. An extension of the Things that happened at Kaer Morhen." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Luddleston" AND l.name="English"
+UNION
+SELECT "The Wager" as name, a.id as author_id, 2 as rating, "The Wild Hunt and White Frost defeated, Geralt has a gift for Ciri. A wager between the two takes shape in White Orchard." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Eravalefantasy" AND l.name="English"
+UNION
+SELECT "Novigrad: An Interlude" as name, a.id as author_id, 2 as rating, "After endless days in the wilderness, Geralt returns to Novigrad to recover. A Yennefer/Geralt scene from Act III of The Witcher 3." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Crimson_Coin" AND l.name="English"
+UNION
+SELECT "Too Good to Last" as name, a.id as author_id, 3 as rating, "Yennefer met Geralt at Corvo Bianco and everything was supposed to be easy from there. But Yennefer has never been allowed to keep her happiness before. What makes this time different? One shot, Geralt/Yennefer. Angsty but not ultimately sad." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="The Assassin's Pen" AND l.name="English";
 
 /*
  * Link
@@ -4828,4 +4863,22 @@ SELECT "https://www.fanfiction.net/s/9530465/1/", ff.id FROM fanfictions ff INNE
 UNION
 SELECT "https://www.fanfiction.net/s/9755090/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Kings of Foreplay" AND a.name = "SaveTheHero"
 UNION
-SELECT "https://www.fanfiction.net/s/9838500/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon";
+SELECT "https://www.fanfiction.net/s/9838500/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon"
+UNION
+SELECT "https://www.fanfiction.net/s/11965148/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Willingly Snared in the Widow's Web" AND a.name = "Major Mike Powell III"
+UNION
+SELECT "https://www.fanfiction.net/s/10854777/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief"
+UNION
+SELECT "https://archiveofourown.org/works/4494777", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Moving On" AND a.name = "Viralmysteries"
+UNION
+SELECT "https://archiveofourown.org/works/6488848", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "En'leass*" AND a.name = "Fen_Assan"
+UNION
+SELECT "https://archiveofourown.org/works/7205006", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan"
+UNION
+SELECT "https://archiveofourown.org/works/7267852", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Like a Damn Princess" AND a.name = "Luddleston"
+UNION
+SELECT "https://archiveofourown.org/works/7277230", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy"
+UNION
+SELECT "https://archiveofourown.org/works/7510473", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin"
+UNION
+SELECT "https://www.fanfiction.net/s/12191730/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen";

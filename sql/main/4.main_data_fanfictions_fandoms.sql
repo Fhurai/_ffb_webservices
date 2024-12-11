@@ -1710,4 +1710,24 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Kings of Foreplay" AND a.name = "SaveTheHero" AND f.name = "Naruto"
 UNION
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon" AND f.name = "Naruto";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon" AND f.name = "Naruto"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Willingly Snared in the Widow's Web" AND a.name = "Major Mike Powell III" AND f.name = "Overwatch"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief" AND f.name = "StarCraft"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "En'leass*" AND a.name = "Fen_Assan" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Like a Damn Princess" AND a.name = "Luddleston" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Like a Damn Princess" AND a.name = "Luddleston" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen" AND f.name = "Witcher";

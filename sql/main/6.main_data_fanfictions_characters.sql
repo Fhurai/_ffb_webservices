@@ -5955,4 +5955,74 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hyuuga Hinata" AND f.name = "Naruto"
 UNION
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yamanaka Ino" AND f.name = "Naruto"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Willingly Snared in the Widow's Web" AND a.name = "Major Mike Powell III" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Widowmaker | Amelie Lacroix" AND f.name = "Overwatch"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Willingly Snared in the Widow's Web" AND a.name = "Major Mike Powell III" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tracer | Lena Oxton" AND f.name = "Overwatch"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = " James Raynor" AND f.name = "StarCraft"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sarah Kerrigan" AND f.name = "StarCraft"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Magistrate" AND f.name = "StarCraft"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "When One Domino Falls" AND a.name = "Warchief" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "November 'Nova' Terra " AND f.name = "StarCraft"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cirilla Fiona Elen Riannon" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eskel" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Keira Metz" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lambert" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Morvran Voorhis" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Philippa Eilhart" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Triss Merigold" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moving On" AND a.name = "Viralmysteries" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "En'leass*" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "En'leass*" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cirilla Fiona Elen Riannon" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Emiel Regis Rohellec Terzieff-Godefroy" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Jaskier | Dandelion" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Yours Truly" AND a.name = "Fen_Assan" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Zoltan Chivay" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Like a Damn Princess" AND a.name = "Luddleston" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Like a Damn Princess" AND a.name = "Luddleston" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Cirilla Fiona Elen Riannon" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eskel" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lambert" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Vesemir" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Wager" AND a.name = "Eravalefantasy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Novigrad: An Interlude" AND a.name = "Crimson_Coin" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = " Geralt z Rivii | Geralt of Rivia" AND f.name = "Wiedźmin | The Witcher"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Too Good to Last" AND a.name = "The Assassin's Pen" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yennefer z Vengerbergu | Yennefer of Vengerberg " AND f.name = "Wiedźmin | The Witcher";
