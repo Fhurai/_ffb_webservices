@@ -1955,4 +1955,144 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND r.name = "Fiorung | Fiora / Shulk"
 UNION
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND r.name = "Carna | Sharla / Reyn";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND r.name = "Carna | Sharla / Reyn"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Life Entwined" AND a.name = "" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Afterlife" AND a.name = "Vargras" AND r.name = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Afterstories" AND a.name = "Lord_Reinhardt" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Atonement" AND a.name = "Kiben007" AND r.name = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Shadows of Alrest" AND a.name = "Kiben007" AND r.name = "Niyah | Nia / Ozychlyrus Brounev Tantal | Zeke von Genbu"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place Called Home" AND a.name = "Darandus548" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place Called Home" AND a.name = "Darandus548" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place Called Home" AND a.name = "Darandus548" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Love in Low Orbit" AND a.name = "LotusRootsAndBambooShoots" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Love in Low Orbit" AND a.name = "LotusRootsAndBambooShoots" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Temptation of Rex" AND a.name = "LotusRootsAndBambooShoots" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "An Eternal History" AND a.name = "Seeker38" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "An Eternal History" AND a.name = "Seeker38" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Homura | Pyra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Hikari | Mythra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A King Amongst Paupers" AND a.name = "Mitternachtwuten" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A King Amongst Paupers" AND a.name = "Mitternachtwuten" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The One Where Nia (Eventually) Gets Something Nice" AND a.name = "Dragonbutts (Wayward_Dragon)" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The One Where Nia (Eventually) Gets Something Nice" AND a.name = "Dragonbutts (Wayward_Dragon)" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Useful" AND a.name = "Vogelimkafig120" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Useful" AND a.name = "Vogelimkafig120" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Titan Eater" AND a.name = "Sobakiin" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Soldier and the Thespian" AND a.name = "Defectzero" AND r.name = "Meleph | Mòrag Ladair / Satahiko | Mikhail"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Need a Healer" AND a.name = "TimeWillNowResume" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Need a Healer" AND a.name = "TimeWillNowResume" AND r.name = "Homura | Pyra & Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Nia telling her secret to Rex early" AND a.name = "Worswor" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "All Three Of Them" AND a.name = "InsideA14YearOldGirl" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The New World" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The New World" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The New World" AND a.name = "Kingcrustnip" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Heros Return" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Heros Return" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Settling In" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Settling In" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Beach!" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Beach!" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving In" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving In" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Let's Go for a Ride" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Will Always Be By Your Side" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Popcorn!" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Family" AND a.name = "Kingcrustnip" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Family" AND a.name = "Kingcrustnip" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where we came from" AND a.name = "BlazingSoul500" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where we came from" AND a.name = "BlazingSoul500" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The House That Rex Built" AND a.name = "Rozteka" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "They Talked Later" AND a.name = "Bcd_Xc" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "They Talked Later" AND a.name = "Bcd_Xc" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "They Talked Later" AND a.name = "Bcd_Xc" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Wake to See Your True Emancipation" AND a.name = "NidoranDuran" AND r.name = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "All of the Above" AND a.name = "Nopeisok" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her War" AND a.name = "PackerDragon" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You're The Greatest Gift I Could Ask For" AND a.name = "BlazingSoul500" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You're The Greatest Gift I Could Ask For" AND a.name = "BlazingSoul500" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You're The Greatest Gift I Could Ask For" AND a.name = "BlazingSoul500" AND r.name = "Hikari | Mythra / Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Hikari | Mythra / Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND r.name = "Homura | Pyra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Nia's Sundress Is Too Distracting!" AND a.name = "Mister_Phoenix" AND r.name = "Niyah | Nia / Rex";

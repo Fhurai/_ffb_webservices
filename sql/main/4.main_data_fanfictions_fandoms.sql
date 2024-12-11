@@ -1762,4 +1762,104 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND f.name = "Xenoblade Chronicles 1"
 UNION
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND f.name = "Xenoblade Chronicles 3";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Life Entwined" AND a.name = "" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Afterlife" AND a.name = "Vargras" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Afterstories" AND a.name = "Lord_Reinhardt" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Atonement" AND a.name = "Kiben007" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Shadows of Alrest" AND a.name = "Kiben007" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place Called Home" AND a.name = "Darandus548" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Love in Low Orbit" AND a.name = "LotusRootsAndBambooShoots" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Temptation of Rex" AND a.name = "LotusRootsAndBambooShoots" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fire Tempered" AND a.name = "LotusRootsAndBambooShoots" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "An Eternal History" AND a.name = "Seeker38" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "An Eternal History" AND a.name = "Seeker38" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A King Amongst Paupers" AND a.name = "Mitternachtwuten" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lost in Orbit" AND a.name = "MementoVive" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lost in Orbit" AND a.name = "MementoVive" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The One Where Nia (Eventually) Gets Something Nice" AND a.name = "Dragonbutts (Wayward_Dragon)" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Useful" AND a.name = "Vogelimkafig120" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Titan Eater" AND a.name = "Sobakiin" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "More Than Just a Memory" AND a.name = "Starsoarer" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Trinity: Awaken. Reconcile. Resurge." AND a.name = "Dragon_Falls" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Trinity: Awaken. Reconcile. Resurge." AND a.name = "Dragon_Falls" AND f.name = "Xenoblade Chronicles"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Soldier and the Thespian" AND a.name = "Defectzero" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Need a Healer" AND a.name = "TimeWillNowResume" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Nia telling her secret to Rex early" AND a.name = "Worswor" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "All Three Of Them" AND a.name = "InsideA14YearOldGirl" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "All Three Of Them" AND a.name = "InsideA14YearOldGirl" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Frontier" AND a.name = "Kingcrustnip" AND f.name = "Smash Brothers Ultimate"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Frontier" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The New World" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Heros Return" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Settling In" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Beach!" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Moving In" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Let's Go for a Ride" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I Will Always Be By Your Side" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Popcorn!" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Family" AND a.name = "Kingcrustnip" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where we came from" AND a.name = "BlazingSoul500" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The House That Rex Built" AND a.name = "Rozteka" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The House That Rex Built" AND a.name = "Rozteka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "They Talked Later" AND a.name = "Bcd_Xc" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Wake to See Your True Emancipation" AND a.name = "NidoranDuran" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "All of the Above" AND a.name = "Nopeisok" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her War" AND a.name = "PackerDragon" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You're The Greatest Gift I Could Ask For" AND a.name = "BlazingSoul500" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Nia's Sundress Is Too Distracting!" AND a.name = "Mister_Phoenix" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Early Morning Ramble" AND a.name = "UltraPop" AND f.name = "Xenoblade Chronicles 2";

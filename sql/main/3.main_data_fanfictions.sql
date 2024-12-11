@@ -67,12 +67,15 @@ VALUES
 ("Balddog4"),
 ("BananasPyjamas"),
 ("Barelyeverthere"),
+("Bcd_Xc"),
 ("BeaumontRulz"),
+("BEWD4133"),
 ("BHErotica"),
 ("BigE2955"),
 ("Birdwoman95"),
 ("Bl4ckC0bra"),
 ("Blackkitten23"),
+("BlazingSoul500"),
 ("Blossom-M"),
 ("Blossomdreams"),
 ("BlueRaith"),
@@ -123,11 +126,13 @@ VALUES
 ("Daeneryske"),
 ("DandelionDreaming"),
 ("Dante 2K-25"),
+("Darandus548"),
 ("DarkEagle69"),
 ("DarknessEnthroned"),
 ("Darkw01fie"),
 ("DarkWolfy"),
 ("Datbenik513"),
+("Defectzero"),
 ("Deliver.me"),
 ("DemonOfTheFridge"),
 ("DepravedDevil"),
@@ -142,6 +147,8 @@ VALUES
 ("Dizzy - in - the - izzy"),
 ("Dorothea_Greengrass"),
 ("Draco38"),
+("Dragonbutts (Wayward_Dragon)"),
+("Dragon_Falls"),
 ("Dragonfly117"),
 ("DragonKingDragneel25"),
 ("Dreetje"),
@@ -230,6 +237,7 @@ VALUES
 ("Imperial-samaB"),
 ("Inell"),
 ("Insert Valid Author Name"),
+("InsideA14YearOldGirl"),
 ("Insynchlikeharmony"),
 ("InTheMist032000"),
 ("Inwardtransience"),
@@ -259,6 +267,8 @@ VALUES
 ("KatonRyu"),
 ("Kb0"),
 ("KeumbangGoela"),
+("Kiben007"),
+("Kingcrustnip"),
 ("KiyoFaye"),
 ("KowaiCharacter"),
 ("Kratos1989"),
@@ -294,11 +304,13 @@ VALUES
 ("LolaTheSa"),
 ("Lomonaaeren"),
 ("Lord Akiyama"),
+("Lord_Reinhardt"),
 ("Lord Silvere"),
 ("Lord Winterman"),
 ("LordVishnu"),
 ("Lorixjake"),
 ("Lostonplatform934"),
+("LotusRootsAndBambooShoots"),
 ("LovelyLori"),
 ("LRThunder"),
 ("LuanMao"),
@@ -328,6 +340,7 @@ VALUES
 ("Medotcomslashme"),
 ("Megamatt09"),
 ("MelodySincerelySong"),
+("MementoVive"),
 ("Messr. Wolfethorn"),
 ("Methos (Methos2523)"),
 ("Meyers1020"),
@@ -337,6 +350,8 @@ VALUES
 ("MimiAliceYorke"),
 ("Miscard"),
 ("Missmusicluver"),
+("Mister_Phoenix"),
+("Mitternachtwuten"),
 ("MobBob"),
 ("MongolKahn"),
 ("Moonglow21"),
@@ -361,6 +376,7 @@ VALUES
 ("NightOwl27"),
 ("Nixrocket"),
 ("Noctus Noxia"),
+("Nopeisok"),
 ("NotAWriter1981"),
 ("Nothinginreturn"),
 ("NutPea16"),
@@ -376,6 +392,7 @@ VALUES
 ("Ordinarily Prudent"),
 ("OrionB15"),
 ("Orlandraopal29"),
+("PackerDragon"),
 ("Paladeus"),
 ("PassnPlay"),
 ("Pebblysand"),
@@ -457,6 +474,7 @@ VALUES
 ("ScribblingSteve"),
 ("Scruffy1"),
 ("SeaFeudJagger"),
+("Seeker38"),
 ("SeerKing"),
 ("SehunsBae37"),
 ("Selphie800"),
@@ -484,6 +502,7 @@ VALUES
 ("Snapers"),
 ("SniperJoe"),
 ("Snowblind12"),
+("Sobakiin"),
 ("Solvdrage"),
 ("Somebody's Nightmare"),
 ("SometimeWriter1"),
@@ -495,6 +514,7 @@ VALUES
 ("Star54kar"),
 ("Stardust_Warrior"),
 ("Stargon1"),
+("Starsoarer"),
 ("Starstruck1986"),
 ("Steamy Naruto Writer"),
 ("Stick97"),
@@ -515,6 +535,7 @@ VALUES
 ("Team Dragon Star"),
 ("Temporal Knight"),
 ("Tentendeservedbetter"),
+("TimeWillNowResume"),
 ("Th3Alchemist"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
@@ -566,16 +587,19 @@ VALUES
 ("Tweety-src-clt9"),
 ("Twisted_Mind"),
 ("Ufohnoparty (why_didnt_i_get_any_soup)"),
+("UltraPop"),
 ("Unicornball"),
 ("Uniquely Named"),
 ("UpTheHill"),
 ("VampbaitInfinity"),
 ("Vanderlustwords"),
 ("VanessaWolfie"),
+("Vargras"),
 ("Vedros"),
 ("VelvetInferno"),
 ("VeryBerry96"),
 ("Viralmysteries"),
+("Vogelimkafig120"),
 ("Vox ad umbram sum"),
 ("Voxangelus"),
 ("VulgarAssassin"),
@@ -596,6 +620,7 @@ VALUES
 ("Woldy"),
 ("WolfgangNH"),
 ("Wonderfuloz"),
+("Worswor"),
 ("Writerfreakssss"),
 ("Writing Sins Not Tragedies"),
 ("Wyles77"),
@@ -3183,7 +3208,136 @@ SELECT "The Other Woman" as name, a.id as author_id, 4 as rating, "Six years to 
 FROM `authors` a, `languages` l WHERE a.name="ColdLuigi" AND l.name="English"
 UNION
 SELECT "From Beyond the Sky" as name, a.id as author_id, 2 as rating, """My heart is with you, forever and ever...""A lost soul is given a second chance at life. Shulk and Fiora are given a second chance as well." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English"
+UNION
+SELECT "A Life Entwined" as name, a.id as author_id, 2 as rating, "He became the Driver of the Aegis, and his world suddenly turned upside down. A series of loosely interconnected one-shots focusing primarily on Rex and Pyra's growing relationship through the events of Xenoblade Chronicles 2. Will diverge very slightly from the canon story." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Afterlife" as name, a.id as author_id, 2 as rating, "As the Architect's final gift, the titans of Alrest came together to form Elysium, and both Mythra and Pyra were reunited with Rex.Of course, there might have been... one other little thing that snuck in as well." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Vargras" AND l.name="English"
+UNION
+SELECT "Xenoblade Chronicles 2: Afterstories" as name, a.id as author_id, 2 as rating, "A collection of one-shots mostly centered around Rex, Pyra and Mythra taking place after the main game." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lord_Reinhardt" AND l.name="English"
+UNION
+SELECT "Xenoblade Chronicles 2: Atonement" as name, a.id as author_id, 2 as rating, "Rex is a bitter salvager who sells weapon parts to make ends meet. Nia is a Driver with a past she's trying to put behind her. A chance encounter and a stroke of bad luck sets them on a journey with the world's most powerful Blade to a place no one's ever been. Rex doesn't think it exists, but for Nia it might be her only chance at redemption.A complete, top to bottom rewrite of every cutscene from Xenoblade Chronicles 2 and Torna: The Golden Country." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kiben007" AND l.name="English"
+UNION
+SELECT "Shadows of Alrest" as name, a.id as author_id, 3 as rating, "It had taken unthinkable sacrifice, but somehow, they had managed the impossible. With Malos dead, the Praetorium destroyed, and a new Elysium to call home, it seemed like the world had been given a second chance. But old habits die hard, and not everyone is willing to see the world change for the better. Even with the Aegis gone, the work of her companions is far from over." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kiben007" AND l.name="English"
+UNION
+SELECT "A Place Called Home" as name, a.id as author_id, 2 as rating, "A home is something she hasn't had for a long time. Though she knows she shouldn't, she can't help but hope to find a new one." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Darandus548" AND l.name="English"
+UNION
+SELECT "Love in Low Orbit" as name, a.id as author_id, 1 as rating, "Just before the final battle, Nia first reflects on how her thoughts on Rex have changed, before having one last moment alone with him, leading to an exchange she didn't expect." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LotusRootsAndBambooShoots" AND l.name="English"
+UNION
+SELECT "The Temptation of Rex" as name, a.id as author_id, 2 as rating, "Mythra and Pyra have a proposition for Rex in the Land of Morytha. Rex's answer to them may not be what they expect, but it might be what they need." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LotusRootsAndBambooShoots" AND l.name="English"
+UNION
+SELECT "Fire Tempered" as name, a.id as author_id, 1 as rating, "Rex visits Brighid with a question. She helps him see things from a Blade's point of view." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LotusRootsAndBambooShoots" AND l.name="English"
+UNION
+SELECT "An Eternal History" as name, a.id as author_id, 2 as rating, """Drivers dying, Titans dying, the Blade just keep on living through it all. It's a never-ending cycle. An eternal history."" One change in the far flung past piles endless changes upon each other. Four months before boy was fated to meet girl, that boy awakens a treasure beneath the Cloud Sea. Thus the flow of history begins to move again. What changes in the past led to these events and what will follow? Contains elements of XC1." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Seeker38" AND l.name="English"
+UNION
+SELECT "Aegis Dish" as name, a.id as author_id, 1 as rating, "Mythra cooks for her family! Leading to... results." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Steamedzing" AND l.name="English"
+UNION
+SELECT "A King Amongst Paupers" as name, a.id as author_id, 3 as rating, "Rex is just a regular human salvager working at Argentum. Or so it seems. An unfortunate turn of events will shake up his world and reveal his past...for better, or for worse. AU retelling of Xenoblade Chronicles 2. Rex x Pyra/Mythra. Rated Mature for some bloody, but not graphic, violence and mature themes." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Mitternachtwuten" AND l.name="English"
+UNION
+SELECT "Lost in Orbit" as name, a.id as author_id, 2 as rating, "XENOBLADE SPOILERS ABOUND!After Klaus initiated the program that was meant to save the human race, he is left alone in the world with nothing but a handful of angry scientists, a broken space station riddled with deadly monsters, and half a body.Klaus has never felt more alone in his life, but who is he to decide that the world should end now? If his initial ambition was to rebuild the universe, then he would not only be a fool, but a coward to abandon it.He will finish what he started. No matter the cost.He owes it to them, at the very least.A series of events following the fateful decision that Klaus made when he split the world in two." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MementoVive" AND l.name="English"
+UNION
+SELECT "The One Where Nia (Eventually) Gets Something Nice" as name, a.id as author_id, 4 as rating, "Nia is in heat. She is not enthused and at the end of her rope here.The Aegis has an idea." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dragonbutts (Wayward_Dragon)" AND l.name="English"
+UNION
+SELECT "Useful" as name, a.id as author_id, 4 as rating, "Rex and Nia have a private moment for themselves as Pyra and Mythra shop at the market in order to prep something up for breakfast. Both Driver and Blade decide to spend some 'quality time' as a result. NSFW" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Vogelimkafig120" AND l.name="English"
+UNION
+SELECT "Titan Eater" as name, a.id as author_id, 2 as rating, "A violation of the salvagers’ code leads to a devastating accident. An attempt to atone for his crime leads to a strange existence. He's sure he doesn't deserve the life he stole, but this young titan swears to continue the life of the boy he killed.His name is Rex. That’s what he tells everyone.Maybe one day, he’ll convince himself it’s the truth.(Rated M for violence, blood, and mature themes.)Crossposted on FFnet" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sobakiin" AND l.name="English"
+UNION
+SELECT "More Than Just a Memory" as name, a.id as author_id, 2 as rating, "Ten years after the fall of Torna, Jin was ready to move on, to burn his ties to the past.Until he started hearing Lora's voice in his head.But just how real is she?""I'm very real, thank you.""" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Starsoarer" AND l.name="English"
+UNION
+SELECT "Trinity: Awaken. Reconcile. Resurge." as name, a.id as author_id, 2 as rating, "Malos has a new driver – a scientist who survived the original experiment and wants to reform the Trinity Processor. She's managed to capture Ontos, but he's not too cooperative. And she's dangerous, so Malos is powerless to intervene as she tortures Ontos to download the data from his core.When Ontos escapes, Malos is determined to find him. Even if that means teaming up with Rex, Pyra and Mythra – and facing an old ghost from his past.Set post-XC2." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dragon_Falls" AND l.name="English"
+UNION
+SELECT "A Visit" as name, a.id as author_id, 2 as rating, "Rex, Pyra, Mythra, and Nia head on over to the local cemetery at Fonsett Village to deliver some wonderful news and to talk about their life since then. Happy 4 Year Anniversary of Xenoblade Chronicles 2!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Vogelimkafig120" AND l.name="English"
+UNION
+SELECT "The Soldier and the Thespian" as name, a.id as author_id, 3 as rating, "Mikhail is brought into custody after narrowly surviving the crash of the Marsanes. However, when he demands Mòrag as his Driver, she relucantly agrees, and things take an unexpected turn.After all, Mikhail doesn't ever foresee himself falling for her, nor does he expect his past to catch up with him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Defectzero" AND l.name="English"
+UNION
+SELECT "I Need a Healer" as name, a.id as author_id, 4 as rating, "After Rex was stabbed in the back, Nia (with nobody to witness, of course) uses her true capacity for healing to save him from death's door.After seeing Torna for what it really is, Nia and Dromarch find themselves on the run once more, except now from both the infamous organization of Torna and the Imperial Army itself. But this time, they're not running alone or without purpose: her companions seek to unlock Elysium for the rest of the world and save a slowly dying Alrest from its inevitable fate. And what did she have to gain from all this? Well... a whole lot more than she'd thought she'd ever get.(Basically a retelling of Xenoblade Chronicles 2 but it's a whole lot more Rex/Nia-centric)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TimeWillNowResume" AND l.name="English"
+UNION
+SELECT "Nia telling her secret to Rex early" as name, a.id as author_id, 2 as rating, "If Nia had told Rex her secret about being a Flesh eater shortly after reaching Garfont village, how would that talk between them play out?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Worswor" AND l.name="English"
+UNION
+SELECT "All Three Of Them" as name, a.id as author_id, 2 as rating, "Niall Ardanach receives news that Rex isn't going to the emperor's birthday party, for a very good reason." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="InsideA14YearOldGirl" AND l.name="English"
+UNION
+SELECT "New Frontier" as name, a.id as author_id, 1 as rating, "The Architect sends Pyra and Mythra one final message for the new world." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "The New World" as name, a.id as author_id, 2 as rating, "A slight re-wright of the Xenoblade 2 ending with more detail. The after math of what happens deeply affects Rex." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "The Heros Return" as name, a.id as author_id, 1 as rating, "Rex and friends have just arrived at New Elysium after the astonishing return of Pyra and Mythra. Follow them as they get their bearings after the whole ordeal, as well as have a good time together. Now, being reveered as heros, they are invited to come to a festival hosted in their honor at Mor Ardain to share what has happened.As well as spend some time together before their fare-wells." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Settling In" as name, a.id as author_id, 1 as rating, "Rex and the Aegises return home to Fonsett to start a new life as they settle in." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Beach!" as name, a.id as author_id, 2 as rating, "Rex, Pyra, and Mythra take a fun trip to the beach, fishing splashing, and even, a semi-date, if that's what you want to call it." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Moving In" as name, a.id as author_id, 2 as rating, "Rex and the Aegises, along with the unexpected help from Tora and Poppy, wrap up the final touches before moving in to their brand new home." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Let's Go for a Ride" as name, a.id as author_id, 2 as rating, "After remembering something she said back in Morytha, Mythra takes Rex out for a little ride, in her limousine of an artifice." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "I Will Always Be By Your Side" as name, a.id as author_id, 2 as rating, "Pyra has a nightmare about the final events at the World Tree. She begins to fear that the people she loves will abandon her.But that is farthest thing from Rex's mind." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Popcorn!" as name, a.id as author_id, 2 as rating, "Pyra figures out how to make popcorn and shows Rex. A nice bit of bonding time for the classic duo." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Family" as name, a.id as author_id, 2 as rating, "Pyra and Mythra are growing worried about their Driver, so they have a talk about actions that need to be done.""He doesn't say it, but he misses his mother terribly."" Corrines words ring through Pyra's head." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kingcrustnip" AND l.name="English"
+UNION
+SELECT "Where we came from" as name, a.id as author_id, 2 as rating, "Morag and Zeke ask Rex to come help them apprehend a group of bandits. What was meant to be a simple mission turns into something a little more for Rex. [THIS WORK IS DISCONTINUED] THIS WORK SHALL GO ON!!!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BlazingSoul500" AND l.name="English"
+UNION
+SELECT "The House That Rex Built" as name, a.id as author_id, 3 as rating, "(Set after XC2 and the DLC and before XC3)There's no rest for the Hero of Alrest. With his companions moving on, Rex has his own goals to accomplish and a life to adjust to in their changed world. At the heart of all of that are three women he couldn't imagine life without now.'The House That Rex Built' is a post-game continuation project linking Xenoblade 2 and 3 together. Expect romance, adventure, diplomacy, exploration, old friends, new faces, former foes and emerging enemies as the world of Alrest develops and changes after the final gift of the Architect." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "They Talked Later" as name, a.id as author_id, 2 as rating, "Awhile after the fight to save the world, the crew found their ways to their own corners of the world finding some purpose for their lives. All except for the party's resident healer. Who is struggling with some emotions that she thought she had gotten over." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bcd_Xc" AND l.name="English"
+UNION
+SELECT "Wake to See Your True Emancipation" as name, a.id as author_id, 4 as rating, "Pyra and Mythra are finally separated, and they can finally do what they've been waiting for the chance to: sharing Rex together. He just has to take them both and affirm how ready he is to have them. Anonymous commission." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="NidoranDuran" AND l.name="English"
+UNION
+SELECT "All of the Above" as name, a.id as author_id, 4 as rating, "Mythra got angry at a courier, and now seeks... solace with Rex, Pyra, and Nia. They go along swimmingly." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nopeisok" AND l.name="English"
+UNION
+SELECT "Her War" as name, a.id as author_id, 2 as rating, "After the renovation of Olethro Playhouse, Nia decides it's high time that she pays an old friend a visit." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="PackerDragon" AND l.name="English"
+UNION
+SELECT "You're The Greatest Gift I Could Ask For" as name, a.id as author_id, 1 as rating, "This is Rex, Pyra, and Mythra's first Christmas as a couple, and the girls set out to find him a gift but they struggle to find a gift." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BlazingSoul500" AND l.name="English"
+UNION
+SELECT "Lovemaking with a Leftherian" as name, a.id as author_id, 4 as rating, "Having found a place to belong and start a family together, Rex, Pyra, Nia, and Mythra finally take the ultimate step to forever cement their unbreakable bond as Driver and Blades and have the night of their lives doing so." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BEWD4133" AND l.name="English"
+UNION
+SELECT "Nia's Sundress Is Too Distracting!" as name, a.id as author_id, 4 as rating, "Nia won a new sundress from the victories at the Land of Challenges. Thinking it was cute, she decided there was no harm. Unfortunately, Rex finds it far too distracting." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Mister_Phoenix" AND l.name="English"
+UNION
+SELECT "The Early Morning Ramble" as name, a.id as author_id, 2 as rating, "“Maybe all three of us were just that, blind, stupid men, ruining everything in our wake.”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="UltraPop" AND l.name="English";
 
 /*
  * Link
@@ -4927,4 +5081,90 @@ SELECT "https://archiveofourown.org/works/48483721", ff.id FROM fanfictions ff I
 UNION
 SELECT "https://archiveofourown.org/works/55098811", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Other Woman" AND a.name = "ColdLuigi"
 UNION
-SELECT "https://archiveofourown.org/works/55140421", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips";
+SELECT "https://archiveofourown.org/works/55140421", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From Beyond the Sky" AND a.name = "BagofChips"
+UNION
+SELECT "https://archiveofourown.org/works/15966194", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Life Entwined" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/16455740", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Afterlife" AND a.name = "Vargras"
+UNION
+SELECT "https://archiveofourown.org/works/18208625", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Afterstories" AND a.name = "Lord_Reinhardt"
+UNION
+SELECT "https://archiveofourown.org/works/20704349", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Xenoblade Chronicles 2: Atonement" AND a.name = "Kiben007"
+UNION
+SELECT "https://archiveofourown.org/works/47433370", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Shadows of Alrest" AND a.name = "Kiben007"
+UNION
+SELECT "https://archiveofourown.org/works/21278165", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Place Called Home" AND a.name = "Darandus548"
+UNION
+SELECT "https://archiveofourown.org/works/25724617", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Love in Low Orbit" AND a.name = "LotusRootsAndBambooShoots"
+UNION
+SELECT "https://archiveofourown.org/works/25891957", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Temptation of Rex" AND a.name = "LotusRootsAndBambooShoots"
+UNION
+SELECT "https://archiveofourown.org/works/26117443", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fire Tempered" AND a.name = "LotusRootsAndBambooShoots"
+UNION
+SELECT "https://archiveofourown.org/works/26383627", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "An Eternal History" AND a.name = "Seeker38"
+UNION
+SELECT "https://archiveofourown.org/works/27162436", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Aegis Dish" AND a.name = "Steamedzing"
+UNION
+SELECT "https://archiveofourown.org/works/27540331", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A King Amongst Paupers" AND a.name = "Mitternachtwuten"
+UNION
+SELECT "https://archiveofourown.org/works/27584942", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lost in Orbit" AND a.name = "MementoVive"
+UNION
+SELECT "https://archiveofourown.org/works/30091398", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The One Where Nia (Eventually) Gets Something Nice" AND a.name = "Dragonbutts (Wayward_Dragon)"
+UNION
+SELECT "https://archiveofourown.org/works/32374969", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Useful" AND a.name = "Vogelimkafig120"
+UNION
+SELECT "https://archiveofourown.org/works/32600077", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Titan Eater" AND a.name = "Sobakiin"
+UNION
+SELECT "https://archiveofourown.org/works/32974432", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "More Than Just a Memory" AND a.name = "Starsoarer"
+UNION
+SELECT "https://archiveofourown.org/works/338199", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Trinity: Awaken. Reconcile. Resurge." AND a.name = "Dragon_Falls"
+UNION
+SELECT "https://archiveofourown.org/works/35440798", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Visit" AND a.name = "Vogelimkafig120"
+UNION
+SELECT "https://archiveofourown.org/works/35786062", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Soldier and the Thespian" AND a.name = "Defectzero"
+UNION
+SELECT "https://archiveofourown.org/works/39590778", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I Need a Healer" AND a.name = "TimeWillNowResume"
+UNION
+SELECT "https://archiveofourown.org/works/39618102", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Nia telling her secret to Rex early" AND a.name = "Worswor"
+UNION
+SELECT "https://archiveofourown.org/works/40533276", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "All Three Of Them" AND a.name = "InsideA14YearOldGirl"
+UNION
+SELECT "https://archiveofourown.org/works/40748469", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "New Frontier" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/40779627", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The New World" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/40805196", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Heros Return" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/41397900", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Settling In" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/41548305", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Beach!" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/41706702", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Moving In" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/42064593", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Let's Go for a Ride" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/42132369", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I Will Always Be By Your Side" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/42342768", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Popcorn!" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/53417689", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Family" AND a.name = "Kingcrustnip"
+UNION
+SELECT "https://archiveofourown.org/works/42227262", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Where we came from" AND a.name = "BlazingSoul500"
+UNION
+SELECT "https://archiveofourown.org/works/41070207", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The House That Rex Built" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/41286219", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "They Talked Later" AND a.name = "Bcd_Xc"
+UNION
+SELECT "https://archiveofourown.org/works/41748744", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Wake to See Your True Emancipation" AND a.name = "NidoranDuran"
+UNION
+SELECT "https://archiveofourown.org/works/43663731", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "All of the Above" AND a.name = "Nopeisok"
+UNION
+SELECT "https://archiveofourown.org/works/43776660", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Her War" AND a.name = "PackerDragon"
+UNION
+SELECT "https://archiveofourown.org/works/43852458", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You're The Greatest Gift I Could Ask For" AND a.name = "BlazingSoul500"
+UNION
+SELECT "https://archiveofourown.org/works/44350978", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Lovemaking with a Leftherian" AND a.name = "BEWD4133"
+UNION
+SELECT "https://archiveofourown.org/works/44927329", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Nia's Sundress Is Too Distracting!" AND a.name = "Mister_Phoenix"
+UNION
+SELECT "https://archiveofourown.org/works/45073303", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Early Morning Ramble" AND a.name = "UltraPop";

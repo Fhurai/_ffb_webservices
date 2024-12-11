@@ -37,7 +37,9 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("Saving Nezzy", ""),
 ("Mother/Daughter Love", "The collection of Mother/Daughter Love. Only three one-shots."),
 ("Just Like the Folks", ""),
-("Blondes in Bed", "");
+("Blondes in Bed", ""),
+("The Blades of Elysium", ""),
+("Adventures in New Alrest", "Join Rex and his friends in their adventures across New Alrest (and possibly further, later in the series). Multiple one-shots with minor story arcs. Maybe even a big one at some point. Notes: The main reason for me having all this in the same series is because for most of my Xenoblade 2 fics, the same head canon will apply, that way you don't get too confused with my lore.");
 
 /*
  * Series fanfictions
@@ -334,4 +336,31 @@ SELECT s.id, f.id, 8 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION
 SELECT s.id, f.id, 9 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf, The Cloud, and The Firefly" AND a.name = "Raptorcloak"
 UNION
-SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Heavenly Harem" AND a.name = "Raptorcloak";
+SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Blondes in Bed" AND f.name = "Blondes in Bed: The Leaf and The Heavenly Harem" AND a.name = "Raptorcloak"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Blades of Elysium" AND f.name = "Xenoblade Chronicles 2: Atonement" AND a.name = " kiben007"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "The Blades of Elysium" AND f.name = "Shadows of Alrest" AND a.name = "kiben007"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "New Frontier" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "The New World
+" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "The Heros Return" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Settling In" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Beach!" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Moving In" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 7 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Let's Go for a Ride" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 8 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "I Will Always Be By Your Side" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 9 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Popcorn!" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 10 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Family" AND a.name = "Kingcrustnip"
+UNION
+SELECT s.id, f.id, 11 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Adventures in New Alrest" AND f.name = "Where we came from" AND a.name = "BlazingSoul500";
