@@ -54,13 +54,26 @@ CREATE TABLE IF NOT EXISTS languages (
     delete_date DATETIME DEFAULT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS tag_types (
+    id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+INSERT INTO `tag_types` (`id`,`name`)
+VALUES ("1", "Genre"),
+("2", "Timeline"),
+("3", "Relationships"),
+("4", "Other");
+
 CREATE TABLE IF NOT EXISTS tags (
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT NOT NULL,
+    type_id INT(10) UNSIGNED NOT NULL,
     creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     update_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-    delete_date DATETIME DEFAULT NULL
+    delete_date DATETIME DEFAULT NULL,
+    FOREIGN KEY (type_id) REFERENCES tag_types(id) ON UPDATE CASCADE ON DELETE CASCADE 
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS characters (

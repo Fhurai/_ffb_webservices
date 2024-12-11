@@ -35,6 +35,7 @@ DROP TABLE IF EXISTS relations_characters;
 DROP TABLE IF EXISTS relations;
 DROP TABLE IF EXISTS characters;
 DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS tag_types;
 DROP TABLE IF EXISTS languages;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS fandoms;
