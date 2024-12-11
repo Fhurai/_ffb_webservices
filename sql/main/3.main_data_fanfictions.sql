@@ -14,6 +14,7 @@ VALUES
 ("521-DREAM"),
 ("5th Legion"),
 ("6th_Street"),
+("716799"),
 ("9876grpc"),
 ("A Love So Strong"),
 ("A. LaRosa"),
@@ -23,11 +24,13 @@ VALUES
 ("ACI100"),
 ("Aeyliana"),
 ("Airam06"),
+("Aisha12894"),
 ("Akamoroti"),
 ("Alex Moss"),
 ("Alexandri"),
 ("AlexMurray11235"),
 ("Allyrion"),
+("AlphaDelta1001"),
 ("Alpha-The-Omega"),
 ("Alwaysendwithakiss"),
 ("Alyndra"),
@@ -44,6 +47,7 @@ VALUES
 ("Argenterie"),
 ("Argo0"),
 ("Ariaojou"),
+("Armageddon Angel"),
 ("Articcat621"),
 ("AshleyTrecartin"),
 ("Aspionage"),
@@ -83,6 +87,7 @@ VALUES
 ("Brujx (FallingForKonoha)"),
 ("Bucket of Holding"),
 ("BunnyHoodlum"),
+("Bunji the wolf"),
 ("Butterfly Kisses 22"),
 ("CampDBow"),
 ("Catstaff"),
@@ -152,6 +157,7 @@ VALUES
 ("Erokage37"),
 ("EroPrincess"),
 ("Esama"),
+("Eternal Yujin"),
 ("EvilFuzzy9"),
 ("FamousNoOne"),
 ("FanFictionBard2"),
@@ -245,11 +251,13 @@ VALUES
 ("Karmealion"),
 ("KatonRyu"),
 ("Kb0"),
+("KeumbangGoela"),
 ("KiyoFaye"),
 ("KowaiCharacter"),
 ("Kratos1989"),
 ("KuriQuinn"),
 ("Kyuubi16"),
+("Kyuubi's Angel of Darkness"),
 ("La baguette"),
 ("LadiePhoenix007"),
 ("Ladyfun"),
@@ -333,6 +341,7 @@ VALUES
 ("Nacholant"),
 ("Naratu"),
 ("NarHina"),
+("Nashtalon"),
 ("Nataku's Wrath"),
 ("Nauro"),
 ("Nellark"),
@@ -350,6 +359,7 @@ VALUES
 ("Oakel"),
 ("OfficeSloth"),
 ("Offsides"),
+("OldAsHeck"),
 ("Olivieblake"),
 ("Onecelestialbeing"),
 ("Onyx Obsidian"),
@@ -374,6 +384,7 @@ VALUES
 ("Pottermum"),
 ("PotterSexStories"),
 ("PotterSmut12"),
+("Prefect Potter"),
 ("Previouslysane (altar_boy)"),
 ("Prime_Blue"),
 ("Primordial Vortex"),
@@ -399,11 +410,14 @@ VALUES
 ("Red_jacobson"),
 ("Relena Mishima"),
 ("Revan's Mask"),
+("Ricejames"),
 ("Rickey"),
 ("Rikuren"),
 ("RileyOR"),
+("River of the sand"),
 ("Rivia"),
 ("RMWB"),
+("Robertz"),
 ("Robin.exe"),
 ("RobSt"),
 ("RockIll"),
@@ -423,7 +437,9 @@ VALUES
 ("Saliient91"),
 ("Sarah1281"),
 ("Sarcastrow"),
+("SarthakBikramPanta"),
 ("Satoorihoya"),
+("SaveTheHero"),
 ("SazzyLJ"),
 ("Scarlet-Angel-Blonde-Devil"),
 ("Scarletladyy"),
@@ -483,6 +499,7 @@ VALUES
 ("TableForThree_Archivist"),
 ("Takao1160"),
 ("Takearisk"),
+("TakumaAngel"),
 ("TarnishedArmour"),
 ("Tayg"),
 ("Team Dragon Star"),
@@ -504,11 +521,13 @@ VALUES
 ("Thedirtymind"),
 ("TheDogSage"),
 ("TheEndless7"),
+("TheGreatHibiki"),
 ("TheHallowsInMe31"),
 ("TheInspector"),
 ("Thekatthatbarks"),
 ("TheKingofAnimeandManga"),
 ("TheLastZion"),
+("Thelow"),
 ("Theoneandonly99"),
 ("Thesaiyanjedi"),
 ("Thessian Shadow"),
@@ -551,6 +570,7 @@ VALUES
 ("Walgesang"),
 ("Walkingonempty"),
 ("WandaXmaximoff"),
+("Wandering Wonderer"),
 ("Wanker - King of Wank Peasants"),
 ("Wendings"),
 ("WerewolfWarriro"),
@@ -567,6 +587,7 @@ VALUES
 ("Wyles77"),
 ("Wyrdeen"),
 ("XDreamlessx"),
+("Yoshi 2.1"),
 ("Zakhro"),
 ("Zaphi Nashii"),
 ("ZebJeb"),
@@ -3019,7 +3040,85 @@ SELECT "Orange Spark" as name, a.id as author_id, 3 as rating, "Minato and Kushi
 FROM `authors` a, `languages` l WHERE a.name="LC Namikaze" AND l.name="English"
 UNION
 SELECT "Secrets and smiles" as name, a.id as author_id, 3 as rating, "A prank gone wrong ends with Naruto's secret being found out by the unlikeliest of his comrades. Learning to trust each other more, and discovering new feelings along the way, the two blondes can only hope that their stubbornness doesn't get in the way of the new bonds being formed. NarutoxIno." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="Sabersoul13" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="Sabersoul13" AND l.name="English"
+UNION
+SELECT "The Cycle of Hatred: A Naruto Insert" as name, a.id as author_id, 3 as rating, "They say you should dig two graves if you want to go looking for revenge... so, it's a good thing I've already died once because the delusional one-eyed fuck that railroaded my life is going six feet under, one way or another. Luckily for me, saving the world and revenge are just two sides of the same fucked up coin." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Eternal Yujin" AND l.name="English"
+UNION
+SELECT "The Sage Who Leapt Through Time" as name, a.id as author_id, 3 as rating, "There is no victory in being the last man standing. Wandering an empty world devoid of any life is hell. Naruto knows Kaguya is laughing at him from the moon, taunting him at his twisted victory. But Naruto had never been one to accept fate lying down. He's back and this time, he's going to save them all. After all, this is his tale. The Tale of the Sage Who Leapt Through Time." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SarthakBikramPanta" AND l.name="English"
+UNION
+SELECT "The Demon Shinobi of Konoha" as name, a.id as author_id, 3 as rating, "After the Kyubi attack a decision was made by the council to train a young blonde in secret. Ten years after the attack an Anbu took joined the ranks wearing a Kitsune mask to the disapproval of the entire village. Now twelve years later a hated Anbu wants to take on his own genin team and put the mask down. Smart/strong Naruto, not OP. NaruHina future. Others undecided." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Thelow" AND l.name="English"
+UNION
+SELECT "In Her Bed" as name, a.id as author_id, 3 as rating, "Naru x Hina Lemon.....Beware! Very Lemon...Plz Read...When Hinata is sick,Naruto must take care of Her.Sorry About my English Hehehehehehe......." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="KeumbangGoela" AND l.name="English"
+UNION
+SELECT "SugarSugar" as name, a.id as author_id, 3 as rating, "Hehehehehe....This is my third Lemon....Still Naru x Hina...After this story....maybe i will write about softlemon" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="KeumbangGoela" AND l.name="English"
+UNION
+SELECT "Steam and Sweat" as name, a.id as author_id, 3 as rating, "After winning gold-class passes to the most luxurious hot-springs in Konoha, Naruto now has to decide who he wants to bring with him? What misadventures and romance will happen when he decides to invite Sakura, Ino, Hinata and Ten-Ten! HAREM" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AlphaDelta1001" AND l.name="English"
+UNION
+SELECT "Memories" as name, a.id as author_id, 3 as rating, "Sakura asked Ino to use her clan jutsu to learn the secret of Naruto's solid henge transformations, and when she does, Ino learns just how fragile his world really is. Up For Adoption" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TheGreatHibiki" AND l.name="English"
+UNION
+SELECT "Instrumental" as name, a.id as author_id, 3 as rating, "Living in different worlds, two people are brought together by music...and a car accident. Rated M for adult themes." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Wandering Wonderer" AND l.name="English"
+UNION
+SELECT "In The Heat of The Moment" as name, a.id as author_id, 3 as rating, "AU. This is what happens when the SasuSaku in my head is interrupted by Naruto and this alternate universe version of Team 7 get down and dirty on a hot day. Rated M for a reason. It is NOT REMOTELY YAOI OR YURI. It also has a SasuSaku moment..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="River of the sand" AND l.name="English"
+UNION
+SELECT "Forgotten Prisoner" as name, a.id as author_id, 3 as rating, "The Chunin exam took place one year before but Konoha's ennemies were already there. As usual then? No, because nobody and especially not the young ANBU Uzumaki Naruto had ever though that the dead could raise again" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Robertz" AND l.name="English"
+UNION
+SELECT "Naruto's Valentine Day" as name, a.id as author_id, 3 as rating, "A Naruto Valentine Day Special, -Oneshot fic-" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Bunji the wolf" AND l.name="English"
+UNION
+SELECT "A Lucky Night of Love" as name, a.id as author_id, 3 as rating, "Naruto gets more than he bargained for when he arrives at Sakura's place for a surprise she has for him. Rated M for lemon. This is my first official Naruto fanfic. Be honest if you review it. Note: I just recently did some editing to fix a small mistake." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Yoshi 2.1" AND l.name="English"
+UNION
+SELECT "Fatal Attraction" as name, a.id as author_id, 3 as rating, "Hinata's life was simple. Yet all of that changed when she witnessed a most heinous crime, which caused her to be the subject of numerous threats on her life. She most now trust her life in the hands of a certain blonde haired blue eyed cop. Formerly titled as Witness Protection Agency." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aisha12894" AND l.name="English"
+UNION
+SELECT "Drifting" as name, a.id as author_id, 3 as rating, "Naruto is many things; troublesome, wild, unpredictable, adventurous, untamable, unique. But there's a benefit to being wild and unpredictable; no one has the faintest idea what you're going to do next. NarutoHarem" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AlphaDelta1001" AND l.name="English"
+UNION
+SELECT "Opportunities" as name, a.id as author_id, 3 as rating, "Naruto takes advantage of a particularly sexy opportunity. Little does he know, this opportunity leads to something more greater and better than he could ever imagine. NarutoxTsunade. NarutoxHarem. Rated M for a reason. Warnings inside." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Prefect Potter" AND l.name="English"
+UNION
+SELECT "The Impossible Car Dream" as name, a.id as author_id, 3 as rating, "Naruto always dreamed to own a car, a very specific car. And his dream is about to come true. He will get the chance to buy one, for one dollar. Naru/Hina with some heavy Minato B plot." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Armageddon Angel" AND l.name="English"
+UNION
+SELECT "And Time Again" as name, a.id as author_id, 3 as rating, "[Oneshot, TemaTen] ""Do you want me to leave?"" Temari said it in the same tone someone else might say, 'spread your legs', and Tenten knew she was lost." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="716799" AND l.name="English"
+UNION
+SELECT "No Oath, No Spell" as name, a.id as author_id, 3 as rating, "Determined to drag Sasuke back, Naruto looks to the future. Picks up after their fight at the Valley of the End. More information inside. Action/Adventure/Romance/Comedy/Awesomeness! (Main characters are probably going to be Naruto, Shikamaru, Tayuya, and the others, I'll decide along the way!)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ricejames" AND l.name="English"
+UNION
+SELECT "The Orange Bedroom" as name, a.id as author_id, 3 as rating, "Kushina would soon be able to sink her hands into her innocent prize, Haruno Sakura. To think all it took was a bedroom and mysteriously absent can of paint. M you hear? M! Written for ssvidel3" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Kyuubi's Angel of Darkness" AND l.name="English"
+UNION
+SELECT "Want Verus Need" as name, a.id as author_id, 3 as rating, "There's a difference between what you want versus what you need. Naruto realizes this as he thinks about Sakura and Hinata, the two women closest to him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Armageddon Angel" AND l.name="English"
+UNION
+SELECT "Sexually Frustrated" as name, a.id as author_id, 3 as rating, "Ino and Sakura are married and work as doctors, but due to their demanding jobs they are unable to consummate. Leaving them extremely horny. Futa. NSWF" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="OldAsHeck" AND l.name="English"
+UNION
+SELECT "Eternal Love" as name, a.id as author_id, 3 as rating, "Request: Two lovers share an eventful evening, with flashback of lust and love. This is Ino and her wife Hikari. Futa" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="OldAsHeck" AND l.name="English"
+UNION
+SELECT "Anko's Roses" as name, a.id as author_id, 3 as rating, "Anko was thought to be left for dead after her fight with Kabuto until Kakashi brings her back to Konoha alive. Acquaintances were all they had ever been, hardly speaking to one another unless they disagreed. Tragedy breeds friendship among comrades, and Kakashi extends that friendship toward Anko. Soon she begins to fall for him. Will Kakashi ever admit his own feelings for her?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="TakumaAngel" AND l.name="English"
+UNION
+SELECT "The Ties that Bind Us: A Naruto and Kushina Love Story" as name, a.id as author_id, 3 as rating, "Naruto and Kushina enjoy a night out on the town. One-Shot NarutoxKushina. This is an M rated story to don't read if you don't light adult situations between a mother and her son." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tonlor" AND l.name="English"
+UNION
+SELECT "Kings of Foreplay" as name, a.id as author_id, 3 as rating, "Because Sasuke and Naruto want the same Queen but she refuses to sleep with either of them." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SaveTheHero" AND l.name="English"
+UNION
+SELECT "Naruto Orange Typhoon" as name, a.id as author_id, 3 as rating, "Naruto leaves with Jiraiya for two and a half years. In the manga this means he gets dumber. Here it means things happen, maybe..." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nashtalon" AND l.name="English";
 
 /*
  * Link
@@ -4677,4 +4776,56 @@ SELECT "https://www.fanfiction.net/s/14229258/1/", ff.id FROM fanfictions ff INN
 UNION
 SELECT "https://www.fanfiction.net/s/14250785/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Orange Spark" AND a.name = "LC Namikaze"
 UNION
-SELECT "https://www.fanfiction.net/s/14276863/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Secrets and smiles" AND a.name = "Sabersoul13";
+SELECT "https://www.fanfiction.net/s/14276863/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Secrets and smiles" AND a.name = "Sabersoul13"
+UNION
+SELECT "https://www.fanfiction.net/s/14287050/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Cycle of Hatred: A Naruto Insert" AND a.name = "Eternal Yujin"
+UNION
+SELECT "https://www.fanfiction.net/s/14325553/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Sage Who Leapt Through Time" AND a.name = "SarthakBikramPanta"
+UNION
+SELECT "https://www.fanfiction.net/s/3554304/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Demon Shinobi of Konoha" AND a.name = "Thelow"
+UNION
+SELECT "https://www.fanfiction.net/s/3910846/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "In Her Bed" AND a.name = "KeumbangGoela"
+UNION
+SELECT "https://www.fanfiction.net/s/3938481/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "SugarSugar" AND a.name = "KeumbangGoela"
+UNION
+SELECT "https://www.fanfiction.net/s/4733137/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Steam and Sweat" AND a.name = "AlphaDelta1001"
+UNION
+SELECT "https://www.fanfiction.net/s/4865584/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Memories" AND a.name = "TheGreatHibiki"
+UNION
+SELECT "https://www.fanfiction.net/s/6690930/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Instrumental" AND a.name = "Wandering Wonderer"
+UNION
+SELECT "https://www.fanfiction.net/s/7385725/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "In The Heat of The Moment" AND a.name = "River of the sand"
+UNION
+SELECT "https://www.fanfiction.net/s/7645065/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Forgotten Prisoner" AND a.name = "Robertz"
+UNION
+SELECT "https://www.fanfiction.net/s/7837280/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Naruto's Valentine Day" AND a.name = "Bunji the wolf"
+UNION
+SELECT "https://www.fanfiction.net/s/8078002/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Lucky Night of Love" AND a.name = "Yoshi 2.1"
+UNION
+SELECT "https://www.fanfiction.net/s/8232313/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fatal Attraction" AND a.name = "Aisha12894"
+UNION
+SELECT "https://www.fanfiction.net/s/8833703/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Drifting" AND a.name = "AlphaDelta1001"
+UNION
+SELECT "https://www.fanfiction.net/s/8878002/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Opportunities" AND a.name = "Prefect Potter"
+UNION
+SELECT "https://www.fanfiction.net/s/8942675/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Impossible Car Dream" AND a.name = "Armageddon Angel"
+UNION
+SELECT "https://www.fanfiction.net/s/8970795/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "And Time Again" AND a.name = "716799"
+UNION
+SELECT "https://www.fanfiction.net/s/8977611/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Oath, No Spell" AND a.name = "Ricejames"
+UNION
+SELECT "https://www.fanfiction.net/s/9001354/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Orange Bedroom" AND a.name = "Kyuubi's Angel of Darkness"
+UNION
+SELECT "https://www.fanfiction.net/s/9282025/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Want Verus Need" AND a.name = "Armageddon Angel"
+UNION
+SELECT "https://www.fanfiction.net/s/9315693/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sexually Frustrated" AND a.name = "OldAsHeck"
+UNION
+SELECT "https://www.fanfiction.net/s/9461467/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Eternal Love" AND a.name = "OldAsHeck"
+UNION
+SELECT "https://www.fanfiction.net/s/9523303/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Anko's Roses" AND a.name = "TakumaAngel"
+UNION
+SELECT "https://www.fanfiction.net/s/9530465/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Ties that Bind Us: A Naruto and Kushina Love Story" AND a.name = "Tonlor"
+UNION
+SELECT "https://www.fanfiction.net/s/9755090/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Kings of Foreplay" AND a.name = "SaveTheHero"
+UNION
+SELECT "https://www.fanfiction.net/s/9838500/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Naruto Orange Typhoon" AND a.name = "Nashtalon";

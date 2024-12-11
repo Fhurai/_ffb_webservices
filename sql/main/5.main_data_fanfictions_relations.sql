@@ -1871,7 +1871,7 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Sense of Duty" AND a.name = "MelodySincerelySong" AND r.name = "Hyuuga Hinata / Uzumaki Naruto"
 UNION
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lemonade" AND a.name = "Cszimm" AND r.name = "Hatake Kakashi / Haruno Sakura / Uzumaki Naruto / Uchiwa Sasuke"
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Lemonade" AND a.name = "Cszimm" AND r.name = "Hatake Kakashi / Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto"
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "More Than One Life" AND a.name = "Its-Levioooosaa" AND r.name = "Hyuuga Hinata / Uzumaki Naruto"
 UNION
@@ -1895,4 +1895,14 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Legion of Naruto" AND a.name = "DarkWolfy" AND r.name = "Hyuuga Hinata / Tayuya / Uzumaki Naruto / Yamanaka Ino"
 UNION
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Secrets and smiles" AND a.name = "Sabersoul13" AND r.name = "Uzumaki Naruto / Yamanaka Ino";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Secrets and smiles" AND a.name = "Sabersoul13" AND r.name = "Uzumaki Naruto / Yamanaka Ino"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fatal Attraction" AND a.name = "Aisha12894" AND r.name = "Hyuuga Hinata / Uzumaki Naruto"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Impossible Car Dream" AND a.name = "Armageddon Angel" AND r.name = "Hyuuga Hinata / Uzumaki Naruto"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Want Verus Need" AND a.name = "Armageddon Angel" AND r.name = "Hyuuga Hinata / Uzumaki Naruto"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Anko's Roses" AND a.name = "TakumaAngel" AND r.name = "Hatake Kakashi / Mitarashi Anko"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Ties that Bind Us: A Naruto and Kushina Love Story" AND a.name = "Tonlor" AND r.name = "Uzumaki Kushina / Uzumaki Naruto";
