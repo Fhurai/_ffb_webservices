@@ -22,6 +22,7 @@ Coté outils
 ** Code **
 
 . Trois connexions différentes : une à la base de stats, une à la base de tests, une à la base de prod.
+. Identifiants bdd dans un fichier gitignored avec idenfiants des trois bdd dans un seul fichier.
 . Reset bdd tests avant lancement tests
     . Copie prod ou nouveau script pour init la base de tests ?
 . Planification des tests
