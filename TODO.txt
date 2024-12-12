@@ -5,7 +5,7 @@ Coté back
 . Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
 . Si tags contiennent "Sexual content" -> rating auto à 4.
 . Si un personnage, ayant des relations, est modifié alors toutes ses relations sont aussi modifiées pour faire correspondre le nouveau nom.
-. View avec toutes les fanfictions ayant le meme nom pour comparer les auteurs et savoir si l'auteur n'a pas deux pseudos différents sur deux sites.
+. View avec toutes les fanfictions ayant le meme nom pour comparer les auteurs et savoir si l'auteur n'a pas deux pseudos différents sur deux sites (UltraPop / Utra-Pop).
 . Si user n'est pas admin, il peut seulement faire de la consultation.
 . Possibilité  de lier deux utilisateurs ensemble pour changer d'utilisateur (non-admin <-> admin en cas de modification à faire).
 
@@ -21,6 +21,9 @@ Coté outils
 
 ** Code **
 
+. De base, seuls admin & guest de créés comme utilisateur. 
+    . Si un troisieme utilisateur manquant, redirection vers page de création d'un utilisateur.
+    . Admin reste pour avoir un accès sans avoir à demander un password à l'utilisateur distant.
 . Trois connexions différentes : une à la base de stats, une à la base de tests, une à la base de prod.
 . Identifiants bdd dans un fichier gitignored avec idenfiants des trois bdd dans un seul fichier.
 . Reset bdd tests avant lancement tests
