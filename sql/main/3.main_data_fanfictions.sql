@@ -20,6 +20,7 @@ VALUES
 ("A. LaRosa"),
 ("Abigail Belle"),
 ("Abigail89"),
+("AbyssalAriel"),
 ("Aceofdiamonds"),
 ("ACI100"),
 ("Aeyliana"),
@@ -195,6 +196,7 @@ VALUES
 ("FuFapper"),
 ("Fyreheart"),
 ("GalacticSaz"),
+("GayFlyFish"),
 ("GenkaiFan"),
 ("Ghostoflinny"),
 ("GirlsAndTwirls"),
@@ -234,6 +236,7 @@ VALUES
 ("Icicle"),
 ("Idleside"),
 ("Illjwamh"),
+("ImAgInAtE_404"),
 ("Imperial-samaB"),
 ("Inell"),
 ("Insert Valid Author Name"),
@@ -322,6 +325,7 @@ VALUES
 ("Luvscharlie"),
 ("Lyaksandra"),
 ("M'jai"),
+("MachineryField"),
 ("Madrosewriting"),
 ("Magical_Worlds"),
 ("Maia.maiestas"),
@@ -389,6 +393,7 @@ VALUES
 ("Onecelestialbeing"),
 ("Onyx Obsidian"),
 ("Opkisofg"),
+("Optional_adventure"),
 ("Ordinarily Prudent"),
 ("OrionB15"),
 ("Orlandraopal29"),
@@ -462,6 +467,7 @@ VALUES
 ("Sabersoul13"),
 ("Sakiku"),
 ("Saliient91"),
+("Sapphiria"),
 ("Sarah1281"),
 ("Sarcastrow"),
 ("SarthakBikramPanta"),
@@ -499,6 +505,7 @@ VALUES
 ("Slytherinenigma"),
 ("Smilelaughread"),
 ("Smutty_claus"),
+("SmutWizard"),
 ("Snapers"),
 ("SniperJoe"),
 ("Snowblind12"),
@@ -516,6 +523,7 @@ VALUES
 ("Stargon1"),
 ("Starsoarer"),
 ("Starstruck1986"),
+("SteamedZing"),
 ("Steamy Naruto Writer"),
 ("Stick97"),
 ("Stormwolf3710"),
@@ -3337,7 +3345,40 @@ SELECT "Nia's Sundress Is Too Distracting!" as name, a.id as author_id, 4 as rat
 FROM `authors` a, `languages` l WHERE a.name="Mister_Phoenix" AND l.name="English"
 UNION
 SELECT "The Early Morning Ramble" as name, a.id as author_id, 2 as rating, "“Maybe all three of us were just that, blind, stupid men, ruining everything in our wake.”" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="UltraPop" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="UltraPop" AND l.name="English"
+UNION
+SELECT "Mistress and Pet" as name, a.id as author_id, 4 as rating, "(Set in the years after Xenoblade Chronicles 2, and before Xenoblade Chronicles 3)With some time to themselves and the freedom to indulge, Pyra and Nia take the opportunity to relax, play, and indulge in some stress relief.They aren't playing Teachers and Doctors, though Nia does learn some interesting things about biology." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Where We Belong" as name, a.id as author_id, 1 as rating, "A series of very self indulgent oneshots surrounding Rex, Pyra, Mythra and Nia's family. Largely consisting of family fluff and some romance. There may be angstier ones added later on depending how I feel.---1. Everything Seems Calm and FreeMio wakes up only to find the intersection her parents had been waiting on had happened overnight...except she may have been asleep for longer than she had thought." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="GayFlyFish" AND l.name="English"
+UNION
+SELECT "Teaching Them a Thing or Three" as name, a.id as author_id, 4 as rating, "Keeping Pyra, Mythra, and Nia all satisfied is a full-time job... But somebody has to do it. Commissioned by Shadowskyrus." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SmutWizard" AND l.name="English"
+UNION
+SELECT "Masterpiece" as name, a.id as author_id, 4 as rating, "(Set in the years after Xenoblade Chronicles 2, and before Xenoblade Chronicles 3)A companion piece to Mistress and Pet.While Pyra and Nia play, Rex and Mythra are left to their own devices.Reflecting on her past and how open and accepting her husband has been, Mythra gets the courage to ask him to try something new." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Caught my sleepy star" as name, a.id as author_id, 1 as rating, "Rex falls asleep, forcing Pyra to face the ""Cat Owner's Dilemma.""Day 8 (Free/Throwback) of Xenoship Week." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tbat" AND l.name="English"
+UNION
+SELECT "Shard of the Aegis (Future Reborn)" as name, a.id as author_id, 2 as rating, "The world has ended and been born anew, many times over. Sometimes however, fragments of the past survive to be found by the next era.The Echell Family has endured countless cycles, ebbing in and out of history. Now they find themselves at the threshold once more, for in a world of magic without boundary, the life of one boy could change them all once more." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ImAgInAtE_404" AND l.name="English"
+UNION
+SELECT "Revising the Script" as name, a.id as author_id, 2 as rating, "Years ago the Holy Aegis of Light and Demonic Aegis of Dark fought and the golden country of Torna, along with two others, sunk beneath the Cloud Sea of Alrest.Years later, a mercenary looking to keep his people afloat finds once such Aegis, sleeping beneath the clouds. With a promise to her and the young salvager that led him to her to go to Elysium, he's soon going to have more to worry about than his mercenary band." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MachineryField" AND l.name="English"
+UNION
+SELECT "Cloudclear Candy" as name, a.id as author_id, 1 as rating, "The Echell family and their friends celebrate the day the clouds cleared away from Alrest: Cloudclear Day.On this day, they give one another gifts. Often, these gifts include choclit and sweets!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AbyssalAriel" AND l.name="English"
+UNION
+SELECT "Father Figure" as name, a.id as author_id, 2 as rating, "Life for the moment was calm. But it doesn't always stay that way.~~~Taking place a handful of years after the events of Xenoblade Chronicles 2, Rex and his girls get a joyful surprise, and break the news to all of their friends." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Optional_adventure" AND l.name="English"
+UNION
+SELECT "The Hidden Shield" as name, a.id as author_id, 2 as rating, "The Aegis War ended in the destruction of both Aegis'. Malos from Mythra's attacks and Mythra from her own guilt and fear. So when Malos reappeared and his counterpart not there to defeat him, Amalthus decides to make his own using the Core Crystal left to him by Addam. Despite the procedure working, the new Aegis vanishes in the dead of night leaving Alrest's fate up in the air.Years later a young salvager, looking for a way into Elysium, gets dragged into a world wide adventure by a wanted fugitive whilst hiding a few world shattering secrets of his own." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sapphiria" AND l.name="English"
+UNION
+SELECT "Returning the Favor" as name, a.id as author_id, 3 as rating, "Everyone has their doubts. For Xenoblade Ship Week 2022! For the prompt Routine/Hold! (Suicide tw/death tw for canonically dead characters)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SteamedZing" AND l.name="English";
 
 /*
  * Link
@@ -5167,4 +5208,28 @@ SELECT "https://archiveofourown.org/works/44350978", ff.id FROM fanfictions ff I
 UNION
 SELECT "https://archiveofourown.org/works/44927329", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Nia's Sundress Is Too Distracting!" AND a.name = "Mister_Phoenix"
 UNION
-SELECT "https://archiveofourown.org/works/45073303", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Early Morning Ramble" AND a.name = "UltraPop";
+SELECT "https://archiveofourown.org/works/45073303", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Early Morning Ramble" AND a.name = "UltraPop"
+UNION
+SELECT "https://www.fanfiction.net/s/14223991/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Early Morning Ramble" AND a.name = "UltraPop"
+UNION
+SELECT "https://archiveofourown.org/works/46357018", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mistress and Pet" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/47017402", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Where We Belong" AND a.name = "GayFlyFish"
+UNION
+SELECT "https://archiveofourown.org/works/47648785", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Teaching Them a Thing or Three" AND a.name = "SmutWizard"
+UNION
+SELECT "https://archiveofourown.org/works/47717293", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Masterpiece" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/47946859", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Caught my sleepy star" AND a.name = "Tbat"
+UNION
+SELECT "https://archiveofourown.org/works/48054406", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Shard of the Aegis (Future Reborn)" AND a.name = "ImAgInAtE_404"
+UNION
+SELECT "https://archiveofourown.org/works/48720088", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Revising the Script" AND a.name = "MachineryField"
+UNION
+SELECT "https://archiveofourown.org/works/52524979", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Cloudclear Candy" AND a.name = "AbyssalAriel"
+UNION
+SELECT "https://archiveofourown.org/works/52865002", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Father Figure" AND a.name = "Optional_adventure"
+UNION
+SELECT "https://archiveofourown.org/works/54185494", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Hidden Shield" AND a.name = "Sapphiria"
+UNION
+SELECT "https://www.fanfiction.net/s/14212133/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Returning the Favor" AND a.name = "SteamedZing";
