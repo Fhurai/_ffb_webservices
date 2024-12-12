@@ -188,6 +188,7 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     is_admin BOOLEAN NOT NULL,
+    is_local BOOLEAN NOT NULL,
     birthday DATETIME NOT NULL,
     view_nsfw BOOLEAN NOT NULL DEFAULT (false),
     creation_date DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
