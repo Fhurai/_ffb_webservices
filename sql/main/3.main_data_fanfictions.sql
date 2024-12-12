@@ -22,7 +22,9 @@ VALUES
 ("Abigail89"),
 ("AbyssalAriel"),
 ("Aceofdiamonds"),
+("AceStarChaser"),
 ("ACI100"),
+("Aegishammer13"),
 ("Aeyliana"),
 ("Airam06"),
 ("Aisha12894"),
@@ -30,9 +32,11 @@ VALUES
 ("Alex Moss"),
 ("Alexandri"),
 ("AlexMurray11235"),
+("AliceYouWereHere"),
 ("Allyrion"),
 ("AlphaDelta1001"),
 ("Alpha-The-Omega"),
+("Alucard45"),
 ("Alwaysendwithakiss"),
 ("Alyndra"),
 ("AManAdrift"),
@@ -42,9 +46,12 @@ VALUES
 ("Animekitty2"),
 ("AnimeLover4Life"),
 ("Anjie"),
+("Ansvel_Ashe"),
 ("Antjex3"),
 ("Ap_aelfwine"),
 ("AppoApples"),
+("ArchivalBerethNocta"),
+("Archsage"),
 ("Argenterie"),
 ("Argo0"),
 ("Ariaojou"),
@@ -96,6 +103,7 @@ VALUES
 ("Bunji the wolf"),
 ("Butterfly Kisses 22"),
 ("CampDBow"),
+("Captwaddledoo"),
 ("Catstaff"),
 ("Caydus"),
 ("CelesteMagnolia"),
@@ -111,6 +119,7 @@ VALUES
 ("Clell65619"),
 ("Clio_jlh"),
 ("Cloud Zen"),
+("Cold_Jolteon"),
 ("ColdLuigi"),
 ("Colormonk"),
 ("CompassOpposites"),
@@ -124,6 +133,7 @@ VALUES
 ("Cszimm"),
 ("Cyan93"),
 ("CyberXIII"),
+("Cythieus"),
 ("Daeneryske"),
 ("DandelionDreaming"),
 ("Dante 2K-25"),
@@ -139,6 +149,7 @@ VALUES
 ("DepravedDevil"),
 ("DerLaCroix"),
 ("DevilHeart435"),
+("DewitLater"),
 ("Dime"),
 ("DimiComi"),
 ("DingyLilith"),
@@ -153,8 +164,11 @@ VALUES
 ("Dragonfly117"),
 ("DragonKingDragneel25"),
 ("Dreetje"),
+("DredgenSoul"),
+("Dsw78"),
 ("Ducksonparade"),
 ("EcoBlade"),
+("Egildidnothingwrong (Lavider)"),
 ("Elliehigginbottom"),
 ("Elven Sorcerer"),
 ("Elvenkendra"),
@@ -170,7 +184,9 @@ VALUES
 ("Erokage37"),
 ("EroPrincess"),
 ("Esama"),
+("Essaysforbreakfast"),
 ("Eternal Yujin"),
+("EuphoricMother"),
 ("EvilFuzzy9"),
 ("FamousNoOne"),
 ("FanFictionBard2"),
@@ -180,11 +196,13 @@ VALUES
 ("Fearful Porpentine"),
 ("Femmeslyth"),
 ("Fen_Assan"),
+("Ferry5067"),
 ("FetishFiend69"),
 ("Feymist"),
 ("FieldDranzer"),
 ("Fight-sister-fight"),
 ("Fightfortherightsofhouseelves"),
+("FiliaSnowe"),
 ("FlashingFire"),
 ("Flipflop_diva"),
 ("Floaw"),
@@ -192,11 +210,13 @@ VALUES
 ("Fluffybookfaerie"),
 ("Free Drinks"),
 ("Frenchhornbook"),
+("Frozenbear09"),
 ("Froznx"),
 ("FuFapper"),
 ("Fyreheart"),
 ("GalacticSaz"),
 ("GayFlyFish"),
+("Gayzed"),
 ("GenkaiFan"),
 ("Ghostoflinny"),
 ("GirlsAndTwirls"),
@@ -221,6 +241,7 @@ VALUES
 ("HeartsIgnite"),
 ("HeavenHeaven"),
 ("HermiHugs"),
+("Heronsong"),
 ("HersByHisByHers"),
 ("Heyitsamorette (AmoretteHD)"),
 ("Hobgoblin"),
@@ -236,6 +257,7 @@ VALUES
 ("Icicle"),
 ("Idleside"),
 ("Illjwamh"),
+("Ilvidis"),
 ("ImAgInAtE_404"),
 ("Imperial-samaB"),
 ("Inell"),
@@ -253,6 +275,7 @@ VALUES
 ("James Spookie"),
 ("Jayf"),
 ("Jedi Buttercup"),
+("Jellijeans"),
 ("Jesrod82"),
 ("JLvE"),
 ("Jm1681"),
@@ -260,6 +283,7 @@ VALUES
 ("Jojor99"),
 ("Jumper712"),
 ("JusticeRings"),
+("Justicetom"),
 ("Kabal42"),
 ("Kagami1228"),
 ("Kairauchiha"),
@@ -276,6 +300,7 @@ VALUES
 ("KowaiCharacter"),
 ("Kratos1989"),
 ("KuriQuinn"),
+("KwIl"),
 ("Kyuubi16"),
 ("Kyuubi's Angel of Darkness"),
 ("La baguette"),
@@ -291,6 +316,7 @@ VALUES
 ("LegendDairy"),
 ("Leggo My Lego Harry Potter (Runic_Purple_Panda)"),
 ("LemonJuicer"),
+("Leonidskies"),
 ("LeQuin"),
 ("Leviathan0999"),
 ("Lightofdaye"),
@@ -298,6 +324,7 @@ VALUES
 ("Likebunnies"),
 ("Lily_pearl (lilyandjoey)"),
 ("LilyevansJan30"),
+("Lioninjawarloc"),
 ("LiquidPhazon"),
 ("Listen-to"),
 ("Litfreak89"),
@@ -318,12 +345,16 @@ VALUES
 ("LRThunder"),
 ("LuanMao"),
 ("Luddleston"),
+("Lumailia"),
 ("Luna_Weasley03"),
 ("Lunalustgood"),
+("LunarMelodia"),
 ("Luthor"),
 ("Luvsanime02"),
 ("Luvscharlie"),
 ("Lyaksandra"),
+("Lyre (Lyrecho)"),
+("Lyrecho"),
 ("M'jai"),
 ("MachineryField"),
 ("Madrosewriting"),
@@ -343,7 +374,10 @@ VALUES
 ("Me413"),
 ("Medotcomslashme"),
 ("Megamatt09"),
+("Melodramatic_Pretzel"),
 ("MelodySincerelySong"),
+("Meme_Engine"),
+("Mememan64"),
 ("MementoVive"),
 ("Messr. Wolfethorn"),
 ("Methos (Methos2523)"),
@@ -383,13 +417,16 @@ VALUES
 ("Nopeisok"),
 ("NotAWriter1981"),
 ("Nothinginreturn"),
+("Nth111"),
 ("NutPea16"),
 ("Nynayve"),
 ("Oakel"),
+("OathkeeperAlexis"),
 ("OfficeSloth"),
 ("Offsides"),
 ("OldAsHeck"),
 ("Olivieblake"),
+("Onaliiim"),
 ("Onecelestialbeing"),
 ("Onyx Obsidian"),
 ("Opkisofg"),
@@ -397,6 +434,7 @@ VALUES
 ("Ordinarily Prudent"),
 ("OrionB15"),
 ("Orlandraopal29"),
+("Pachipower"),
 ("PackerDragon"),
 ("Paladeus"),
 ("PassnPlay"),
@@ -407,6 +445,7 @@ VALUES
 ("Pettybureaucrat"),
 ("PhantomKeeperQazs"),
 ("Phoenixgal"),
+("Pocketcucco"),
 ("Pommedeplume"),
 ("Postmeat"),
 ("Potterfamilysecret1"),
@@ -431,12 +470,16 @@ VALUES
 ("R_Collins"),
 ("R-dude"),
 ("RaeDMagdon"),
+("Raelhorn"),
 ("RAfan2421"),
 ("Ragdoll"),
 ("RagingCassowary"),
+("Rainbowwing251"),
 ("RandReborn"),
 ("Raptor4d4"),
 ("Raptorcloak"),
+("Ratly"),
+("RavioxHilda"),
 ("Reading-Bennie"),
 ("Red_jacobson"),
 ("Relena Mishima"),
@@ -445,6 +488,7 @@ VALUES
 ("Rickey"),
 ("Rikuren"),
 ("RileyOR"),
+("RinOfTheStars"),
 ("River of the sand"),
 ("Rivia"),
 ("RMWB"),
@@ -456,6 +500,7 @@ VALUES
 ("Romantic Silence"),
 ("Ronslady23"),
 ("RosaCalavera"),
+("Rosifly"),
 ("RosyPalms"),
 ("Rouven Singer"),
 ("Rozteka"),
@@ -494,6 +539,7 @@ VALUES
 ("Sheltie1987"),
 ("Shivam Jha"),
 ("Shredjeep777"),
+("SilberFelx"),
 ("Silent Songbird"),
 ("Sillimaure"),
 ("Simon Flower"),
@@ -512,6 +558,7 @@ VALUES
 ("Sobakiin"),
 ("Solvdrage"),
 ("Somebody's Nightmare"),
+("SomeDatsunGuy"),
 ("SometimeWriter1"),
 ("Songquake"),
 ("Spazzgirl"),
@@ -519,6 +566,7 @@ VALUES
 ("Sprinter1988"),
 ("Sqwiz"),
 ("Star54kar"),
+("Starcrossedsky"),
 ("Stardust_Warrior"),
 ("Stargon1"),
 ("Starsoarer"),
@@ -528,12 +576,16 @@ VALUES
 ("Stick97"),
 ("Stormwolf3710"),
 ("StorytellerSpW"),
+("StrayedPath"),
 ("StrongHermione"),
 ("Sugarbubbleslove"),
 ("Sulphur99"),
 ("Super-Pervert Toad Sage"),
 ("SuperMegaAwesomeNinja"),
+("SuperNerd92"),
 ("Swat303810"),
+("Swordlegion"),
+("Sylvalum"),
 ("TableForThree_Archivist"),
 ("Takao1160"),
 ("Takearisk"),
@@ -547,6 +599,7 @@ VALUES
 ("Th3Alchemist"),
 ("Thatsarockfact55"),
 ("ThatsRealMagic"),
+("ThatWindingPath"),
 ("The Assassin's Pen"),
 ("The Dark Dragon Emperor"),
 ("The Four Crosses"),
@@ -589,7 +642,9 @@ VALUES
 ("Torino10154"),
 ("TotoroX92"),
 ("Triage"),
+("Trumai"),
 ("Tryslora"),
+("Tsukarine"),
 ("TsukikoUchu"),
 ("TsyberRhaegal"),
 ("Tweety-src-clt9"),
@@ -599,6 +654,7 @@ VALUES
 ("Unicornball"),
 ("Uniquely Named"),
 ("UpTheHill"),
+("ValorFennekin34"),
 ("VampbaitInfinity"),
 ("Vanderlustwords"),
 ("VanessaWolfie"),
@@ -624,17 +680,21 @@ VALUES
 ("White Angel of Auralon"),
 ("WhiteWhiskey"),
 ("WhitherWinds"),
+("WisteriaJD (JD2357)"),
 ("WokFriedIce"),
 ("Woldy"),
 ("WolfgangNH"),
 ("Wonderfuloz"),
 ("Worswor"),
 ("Writerfreakssss"),
+("WriterRenEllis"),
 ("Writing Sins Not Tragedies"),
 ("Wyles77"),
 ("Wyrdeen"),
 ("XDreamlessx"),
+("XSparklingRavenx"),
 ("Yoshi 2.1"),
+("ZAD_GX"),
 ("Zakhro"),
 ("Zaphi Nashii"),
 ("ZebJeb"),
@@ -3378,7 +3438,343 @@ SELECT "The Hidden Shield" as name, a.id as author_id, 2 as rating, "The Aegis W
 FROM `authors` a, `languages` l WHERE a.name="Sapphiria" AND l.name="English"
 UNION
 SELECT "Returning the Favor" as name, a.id as author_id, 3 as rating, "Everyone has their doubts. For Xenoblade Ship Week 2022! For the prompt Routine/Hold! (Suicide tw/death tw for canonically dead characters)" as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="SteamedZing" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="SteamedZing" AND l.name="English"
+UNION
+SELECT "Off-Seers Need a Good Laugh Too" as name, a.id as author_id, 1 as rating, "After Noah returns from his duties as an off-seer, Eunie and Lanz team up to tickle him as a way to distract him from all the deaths he'd seen that day." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rainbowwing251" AND l.name="English"
+UNION
+SELECT "Melt" as name, a.id as author_id, 4 as rating, "some spoilers from chapter 5. be courteous to others in the comments!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ilvidis" AND l.name="English"
+UNION
+SELECT "Forever After" as name, a.id as author_id, 3 as rating, "Shortly after they embark on their journey, Noah finds himself fascinated by the Agnian Offseer. Three months is not a long time to get to know somebody, but when you think about death for so long, is it so wrong to want to live for someone forever?A short, sweet romance in a world where few live long enough to ever find it." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Egildidnothingwrong (Lavider)" AND l.name="English"
+UNION
+SELECT "Dreams" as name, a.id as author_id, 1 as rating, "After their encounter with a phenomenon of nature unknown to them, Noah and Mio spend a bad time, and then, maybe, another just a bit better." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="" AND l.name="English"
+UNION
+SELECT "Do I Remember You?" as name, a.id as author_id, 1 as rating, "Set after the end credits scene - Mio and Noah find each other in their new lives, they slowly understand the feelings they have for each other are both their own and passed down from memories of another life" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="OathkeeperAlexis" AND l.name="English"
+UNION
+SELECT "A step away" as name, a.id as author_id, 2 as rating, "Massive spoilers for the final scene of chapter 5.It never had to be forever. Everything came to an end; it was what they made of the time they were given that mattered.M had known that all along.(Two interlinking scenes. M, and N, and the inherent toxicity of what they have become. Mio, and Noah, and the inherent hope of the future to come.)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="XSparklingRavenx" AND l.name="English"
+UNION
+SELECT "His Mio" as name, a.id as author_id, 1 as rating, "some spoilers for ch6, very fluffy self-indulgent fic." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ilvidis" AND l.name="English"
+UNION
+SELECT "Write it down or you'll forget" as name, a.id as author_id, 2 as rating, "If there's no record of it, how does anyone know what's real and what's not?----What if Taion knew about Mio and M from the beginning?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Starcrossedsky" AND l.name="English"
+UNION
+SELECT "Knowledge obtained" as name, a.id as author_id, 2 as rating, "the biology and sociology lesson they were given was very appreciatedthe emotional fallout, not so much |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Sunk Cost Fallacy" as name, a.id as author_id, 2 as rating, "One month is plenty of time for Mio to learn more about N." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatWindingPath" AND l.name="English"
+UNION
+SELECT "There is a handful of courage in my heart" as name, a.id as author_id, 2 as rating, "Mio, in the month between. Her grief, her love, her fear. |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Deathly loneliness attacks" as name, a.id as author_id, 1 as rating, "the weight of gold is a shining scam(eunie and her boys talk it out) |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Risk negation" as name, a.id as author_id, 2 as rating, "Gold Colonies don't have to fight.For the survivors of Colony 5, if nothing else, they can make that true. |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyrecho" AND l.name="English"
+UNION
+SELECT "Quick to their ends our candles burn until we're free" as name, a.id as author_id, 2 as rating, "Six weeks, two cells.Five people who thought Mio was going to die.(Plus the girl in the cell next door, who knows that she isn't.) |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Two souls once lost" as name, a.id as author_id, 2 as rating, "N, and the long shadow that hounds him, life after life.(Mio, and the boy that chose a future uncertain.) |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Eleven, eleven" as name, a.id as author_id, 2 as rating, "(make a wish) Mio, and the weight of knowledge - she's going to live. |Tumblr| |Twitter|" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lyre (Lyrecho)" AND l.name="English"
+UNION
+SELECT "Who, me?" as name, a.id as author_id, 1 as rating, "Conceptually, such a thing should not have an identity. Deprived of choice, Mio wonders." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Captwaddledoo" AND l.name="English"
+UNION
+SELECT "'Til We Find Ourselves, Again" as name, a.id as author_id, 4 as rating, "A series of chance encounters affords a new beginning.[XB3 ending spoilers - reader beware.]" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dsw78" AND l.name="English"
+UNION
+SELECT "Reunited" as name, a.id as author_id, 2 as rating, "Yet, despite how eerily similar they were to each other, the main thing that stuck out to Mio was the boy’s name. Noah.Where had she heard that name before? Contains rather massive spoilers for Xenoblade 3 due to the premise of this fic. Go beat the game if you care about spoilers and haven't already, ya goof!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RinOfTheStars" AND l.name="English"
+UNION
+SELECT "A Bonding of Two" as name, a.id as author_id, 1 as rating, "----*Spoilers*----Mio is drawn to Noah. She can't seem to help herself. Yet, when she hears about what Noah put himself through while separated, so close to her homecoming, she knows that he must feel the same for her. A girl can only hope. Mio watched Noah lean back against a tree while he stood, looking up at the sky. Being drawn to him, like a moth to the fire, she got up and slowly walked toward him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="EuphoricMother" AND l.name="English"
+UNION
+SELECT "Know thy enemy" as name, a.id as author_id, 1 as rating, "Kind Noah, who plays for every husk regardless of nation - contrasted with brutal, cold, unfeeling N. Taion can't quite add them up.“I guess I can understand N,” says Noah. “Does that scare you?”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sylvalum" AND l.name="English"
+UNION
+SELECT "Memories of what we could have been" as name, a.id as author_id, 1 as rating, "Aionios and everyone in it is reincarnated in separate worlds without flame clocks or terms, the slate wiped clean. But nothing is ever truly forgotten, now, is it?Or the time each of Ouroboros remembered someone they never met, and yet once were inseparable with." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Archsage" AND l.name="English"
+UNION
+SELECT "Sundancer" as name, a.id as author_id, 2 as rating, "[Spoilers spanning the entirety of Xenoblade 3, and bits of 2 as well.]Every visit to the theatre, she saw her own lives replayed, and therein watched a flower. A flower which begins in dirt, and blossoms into beauty. And then, she watched the flower beginning the cycle anew from the cradle. Mio watched that clock rewind back to the start, the sandglass steal back those seconds, her own body slipping back to the beginning, time after time.(A scattering of moments of eternity, exploring a trans reading of Mio and one she is precious to.)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WisteriaJD (JD2357)" AND l.name="English"
+UNION
+SELECT "A lot can happen between now and never" as name, a.id as author_id, 4 as rating, "He doesn't think he could ever get used to the feeling of her fingers grazing his skin like this, tracing shapeless patterns and carving her love into him. It's warm, she's always warm, and like this, when the two of them are so close they might as well be fused together, it's almost like being burned. (Noah gladly lets her scorch him.)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Swordlegion" AND l.name="English"
+UNION
+SELECT "How they used to Love" as name, a.id as author_id, 4 as rating, "A Xenoblade Chronicles 3 Short Story inspired by a story crucial cutscene during Chapter 5. This piece of work is intended for a mature audience and depicts a romantic sexual relationship between two major characters in the story; Noah and Mio. All characters involved in the story are depicted and interpreted as 18 years or older." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ArchivalBerethNocta" AND l.name="English"
+UNION
+SELECT "Just a Night In Camp" as name, a.id as author_id, 1 as rating, "The group gathers at camp where Mio, Taion and Sena watch Noah, Eunie and Lanz with a kind of envious interest in their close friendship. Deciding to join them, they learn that they are a bit closer in ways they hadn't even imagined.Written for a friend that wanted a short of just an evening at the camp, and the interaction of the group.“Oi!” Lanz exclaimed as Eunie slammed her hand against him. “You can’t just do that because you don’t wanna hear the sparkin’ truth!”“I can, and I did, didn’t I,” Eunie pointed out. “Come on, Noah, you know he was over the top with that little dig about me and Taion.”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="EuphoricMother" AND l.name="English"
+UNION
+SELECT "Where We Don't Belong" as name, a.id as author_id, 2 as rating, "When the worlds of Keves and Agnus began to split apart once more upon Z’s defeat, they each intended to return to their prior states. But after a sudden freeze in each, a lingering voice is forced to restore a backup of the worlds… so far back that the man who created them yet lived.Though all should return to normal if the events of each play out identically, the backup is found to be corrupted. The voice finds no major world-threatening issues and proceeds anyway, but perhaps that was a poor choice of words.As Noah wakes up in Colony 9, with the Sword of the End by his bedside, and Mio wakes up in Torigoth, only a few changes have occurred to the two worlds in the grand scheme of things. But though relatively few in number to the thousands of lives in each world, each life that persisted from the endless now was anything but unimportant.After all, two very important journeys were about to begin.*A for-fun post-ending rerun of the plots of Xenoblade 1 and 2 with Xenoblade 3's characters present, and new plot connections along the way.*" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DewitLater" AND l.name="English"
+UNION
+SELECT "Our Hopes and Dreams" as name, a.id as author_id, 4 as rating, "In which two bound souls experience a miracle. Spoilers for the beginning of chapter 6. Please read the notes for more information." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Heronsong" AND l.name="English"
+UNION
+SELECT "For Want of a Dry Wing" as name, a.id as author_id, 2 as rating, "On a seemingly normal day at the Argentum Trade Guild, the winds of fate blow in mysterious ways. A girl who very much does NOT belong on the Titan, or anywhere else in the world of Alrest, appears on the pier, unconscious, and is found by a Leftherian salvager whose destiny is to save the world. With the odd additions to her head, the girl can very easily be mistaken for a Blade, yet she lacks a Core Crystal, apparently having exchanged it for an extremely colorful vocabulary. Boy was always intended to meet girl, but not one this sassy.Or, in which Eunie loses SAN points as she fumbles across the strange world of Alrest and tries to find a way back to the future, and Rex loses SAN points because Eunie is as Eunie does." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AliceYouWereHere" AND l.name="English"
+UNION
+SELECT "The Clock Strikes Six" as name, a.id as author_id, 2 as rating, "The clock strikes six, and N finds himself surprisingly alive." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatWindingPath" AND l.name="English"
+UNION
+SELECT "A Quiet, Empty Moment" as name, a.id as author_id, 4 as rating, "After waking him from a nightmare, Mio comforts Noah with her presence" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Cold_Jolteon" AND l.name="English"
+UNION
+SELECT "The Queen's Orders" as name, a.id as author_id, 1 as rating, "A non-canon one-shot where Melia talks with Alvis about what is happening in the world.Spoilers for Xenoblade 3 since ending events of the game are discussed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dragon_Falls" AND l.name="English"
+UNION
+SELECT "From the Cradle to the Grave (and back again)" as name, a.id as author_id, 1 as rating, """How many times?"" From within the City's Module Warehouse, standing in the alien light of a thousand silent cradles, Noah and Mio meet eyes.""How many times do you think we've been born, Mio?""" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rosifly" AND l.name="English"
+UNION
+SELECT "Her Mimi" as name, a.id as author_id, 3 as rating, "Spoilers up to chapter 6, maybe 7 at some point, I'm not sure yet.After the events at Agnus Castle, Sena must come to terms with her feelings, even if she doesn't fully understand them yet. Luckily for her, she has good friends to support her through it." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Melodramatic_Pretzel" AND l.name="English"
+UNION
+SELECT "And eat it too" as name, a.id as author_id, 2 as rating, "This is not an off-seeing. This is not the end.It's a new beginning.And, like every new beginning, it comes into the world with nothing to its name but uncertainty and the love of those who came before. With tears, and joy, and just a touch of screaming." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Starcrossedsky" AND l.name="English"
+UNION
+SELECT "What Comes Next" as name, a.id as author_id, 2 as rating, "“You’re conflicted,” he surmised. His voice turned soft. “Because of M?” Queen’s fluffy ears, but he knew her so well. Before advancing on Origin, Noah and Mio talk about N, the task that lies ahead, and decisions of the past." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Leonidskies" AND l.name="English"
+UNION
+SELECT "You Got Any Babies?" as name, a.id as author_id, 2 as rating, "Noah and Mio have a baby with the rest of the group waiting in the maternity ward to see them. Eunie and Taion take one look at this child and go “I want one.”" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="RavioxHilda" AND l.name="English"
+UNION
+SELECT "Our Feelings Will Never Change" as name, a.id as author_id, 1 as rating, "After the worlds separated some memories lingered, short and fragmented but still there, with the worlds rejoined what memories will a single glance bring out." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Aegishammer13" AND l.name="English"
+UNION
+SELECT "Reimagination" as name, a.id as author_id, 3 as rating, "Life is lived in a new world.[XB3 ending spoilers. Reader beware!]" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Dsw78" AND l.name="English"
+UNION
+SELECT "Whatever It Is, With You" as name, a.id as author_id, 4 as rating, "Noah and Mio have some moments together to explore their relationship and then some. Given the circumstances, it's complicated.**Spoilers for all of XC3**" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ratly" AND l.name="English"
+UNION
+SELECT "Long or Short" as name, a.id as author_id, 2 as rating, "Eunie pressures Noah to answer a very important question." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Meme_Engine" AND l.name="English"
+UNION
+SELECT "I am the only lonely casualty" as name, a.id as author_id, 2 as rating, "There is always a choice. To give up, or to keep going.(M was never a real Mio, not within her own mind.)(And in the end, isn't it her opinion that matters - not his?)Through the ages of eternity, she persisted." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Starcrossedsky" AND l.name="English"
+UNION
+SELECT "A Promise of Morning Dew" as name, a.id as author_id, 2 as rating, "The day of the eclipse has left its mark on Ouroboros, Noah especially.Luckily, they still have each other.Contains heavy spoilers for Xenoblade Chronicles 3" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="MementoVive" AND l.name="English"
+UNION
+SELECT "A Place To Be Alive" as name, a.id as author_id, 3 as rating, "SPOILERS FOR THE ENTIRE MAIN STORY AS WELL AS ALL HERO AND ASCENSION QUESTS!An exploration of the dynamics of all members of Ouroboros with each other.Each chapter will focus on one pairing in a Missing Scene style for the scenes during canon, and feature a few post-canon scenes." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SilberFelx" AND l.name="English"
+UNION
+SELECT "A Strange Feeling" as name, a.id as author_id, 4 as rating, "Noah copes with the consequences of a beach day with Mio.Then, Mio deals with her own set of problems after getting a bit too curious." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ratly" AND l.name="English"
+UNION
+SELECT "It Was Right On The Tip Of My Tongue" as name, a.id as author_id, 2 as rating, "Taion blinks at him, then decides to just ignore this statement completely, which, fair. Zeke opens his mouth to reply something heroic and then -Something happens.Or rather, something doesn’t happen.All of the something (whether or not it happened) occurs in the space of a second. If Zeke wasn’t a Blade Eater with unusual sensitivity to ether, he probably wouldn’t have noticed. Even so, it’s hard to describe. It’s like - a momentary surge in the air around him that’s gone as soon as it appeared. Leaving him with the fainest sense of deja vu. Like he’s been here before. Or as if he’s forgotten something important." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SuperNerd92" AND l.name="English"
+UNION
+SELECT "Not Mine" as name, a.id as author_id, 2 as rating, "(Set at the beginning of Chapter 6) It’s semantics, really, but that’s the only beacon Noah feels he can follow to keep him straying from the path.The team are back in the City after their ordeal, but there's still some fallout and issues to deal with." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Momentary Weakness" as name, a.id as author_id, 1 as rating, "(Set at the Beginning of Chapter 7 with Post-Game Quest Spoilers) Being seen as royalty means there are a lot of things you cannot or should not do in public or private.Even the Queen of Agnus can have a moment of weakness and expose the deepest chink in her armour to someone in the hopes of just a little understanding." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Resemblances" as name, a.id as author_id, 3 as rating, "(Set during Chapter 7) The more time you spend with someone, the more things you start to notice.The Queen of Agnus cannot but adventure with Ouroboros, and Ouroboros cannot help but notice as things fall into place in their minds as they pick up on those mannerisms and resemblances." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "None, Then Three" as name, a.id as author_id, 1 as rating, "(Set during Chapter 7 of Xenoblade 3, with flashbacks to between Xenoblade 2 and 3)Mio has questions that only the Queen of Agnus can answer. With this in mind, she and the party set off towards the Cloudkeep as one of Ouroboros seeks the question to why they're here in the world." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "The Talk" as name, a.id as author_id, 3 as rating, "(Set during Chapter 7) While camping during a supply run, Noah's doom comes for him: The Queen of Agnus approaches for the chat he's dreaded.After so many revelations changed their world during their journey, what more could shake him to his core?[Now updated with Bonus #1 - Nia Explains It Some: Noah and Eunie are curious about some aspects of the Queen's relationship. They get some answers.][Now updated with Bonus #2 - Etiquette: Mio and the Queen spend some quality time together and cover important issues.][Now updated with Bonus #3 - Love Confessions: Visiting the Place of Heroes Past, Ouroboros find out some more information about the Queen's previous adventures, and Sena asks some important questions.]" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Fledglings" as name, a.id as author_id, 2 as rating, "(Set just after the finale of XC3 and after XC2) The last day of Aionios comes to a close, and the remaining half of Ouroboros jump out of now and into next, not knowing if they'll soar or fall.What lies in store for the Agnian quartet after all is said and done? This is the beginning of one possible answer." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Endless Strength" as name, a.id as author_id, 3 as rating, "(Set after Xenoblade Chronicles 2 and 3) With the Intersection over, it's time to pick up the pieces in Alrest.In the eight(+5!?) part conclusion of 'Momentary Weakness' we take a look at a possible future for the family and friends of the once Agnian Off-seer, Mio.This series ties into other works of mine, such as 'The House That Rex Built' and alludes to events in the past coming up in the future of that fic." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "For my part this is all I need" as name, a.id as author_id, 1 as rating, "After the events of chapter 5/6 Noah cannot sleep and is comforted by the only person who can" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lioninjawarloc" AND l.name="English"
+UNION
+SELECT "This goodbye is not the end" as name, a.id as author_id, 1 as rating, "There are gaps, between the worlds, so long intertwined that they can never truly be separate. Interlinking is when two worlds become one, brought together in harmony. And even though they never should have met, even two universes would struggle to tear apart their bond - a connection that persisted until the end, one so strong neither death nor time could break it." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Justicetom" AND l.name="English"
+UNION
+SELECT "Catching up for our past lives" as name, a.id as author_id, 4 as rating, "“Of all the places you could stare, it’s at my back? While I’m wearing this shirt, too…”Taion clears his throat. “Where should I look, then?”Eunie hints to Taion that she wants to try sex. If he doesn't notice, she'll just have to be bolder.(He doesn't notice.)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Tsukarine" AND l.name="English"
+UNION
+SELECT "Sleepy Time with Noah and Mio" as name, a.id as author_id, 1 as rating, "Title is explanatory, nuff said." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="FiliaSnowe" AND l.name="English"
+UNION
+SELECT "Instruments of Rebirth" as name, a.id as author_id, 1 as rating, "Getting the band back together for one last stand against the end of the worlds.AKA: POSTGAME COPE. SPOILERS FOR THE WHOLE GAME." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lumailia" AND l.name="English"
+UNION
+SELECT "You're Here; That's More Than Enough" as name, a.id as author_id, 4 as rating, "It's been a week since the Eclipse, and Noah's prepared for yet another sleepless night. But maybe he doesn't have to be alone this time." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ansvel_Ashe" AND l.name="English"
+UNION
+SELECT "Duet" as name, a.id as author_id, 2 as rating, "Noah has always liked music. Term after term, battlefield after battlefield, he played the off-seeing melodies. But it takes a certain someone to remind him why he picked up the flute in the first place and where he wants to take his music next." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Essaysforbreakfast" AND l.name="English"
+UNION
+SELECT "Forever Interlinked Futures" as name, a.id as author_id, 1 as rating, """Still, even if we're worlds apart, ... I swear I won't...""""I won't let go. Not ever. I'll always be with you.""""Our feelings... forever interlinked.""Xenoblade Chronicles 3 Epilogue" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ValorFennekin34" AND l.name="English"
+UNION
+SELECT "Sotto Voce" as name, a.id as author_id, 4 as rating, "" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Hand in Hand" as name, a.id as author_id, 2 as rating, "With the help of Origin, the world's of Alrest and Bionis began to merge to create a new world called Aionios. Unbeknown to all, ghosts from the old world will haunt the new.Will the heroes off the next generation be able to save those of the past, the present, and the future? (Post Xenoblade Chronicles 3 Epilogue)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="StrayedPath" AND l.name="English"
+UNION
+SELECT "The Consequences of Indirect Kissing" as name, a.id as author_id, 4 as rating, "Miyabi has been living in the City for a while now, learning much about how humans are truly meant to live.This includes learning why thinking about two certain individuals makes her feel so dizzy.When they return, she decides to act." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="KwIl" AND l.name="English"
+UNION
+SELECT "May Our Voices Reach, In Time" as name, a.id as author_id, 4 as rating, "Eight-year-old Noah has a loving family, great friends, a kind mentor, and a special someone he talks to every night. But one important day triggers an eruption of chaos in the young boy's life, and he must ask himself if the pain and hardship life has in store is a fair price to pay for an unknown reward. More importantly, does he want to find out?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ansvel_Ashe" AND l.name="English"
+UNION
+SELECT "Driver and (Artificial) Blade" as name, a.id as author_id, 1 as rating, "As the Ouroboros party finish fighting a strong monster together with the mechanical girl Ino, another discussion about what Ino is and her abilities begins again." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Worswor" AND l.name="English"
+UNION
+SELECT "Promises are meant to be kept" as name, a.id as author_id, 1 as rating, "Two worlds cleft in Twain, reborn in a stagnant and dying world, cleft again to be reborn properly. At the epicenter lies the interlinking of both worlds. *if this ever gets removed it’s because it’s getting reworked, cause I feel like I can do this better." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Frozenbear09" AND l.name="English"
+UNION
+SELECT "Noah and the Name Game" as name, a.id as author_id, 1 as rating, "One time when Noah comes up with a bad name, one time when Noah comes up with a good name, and one time when Noah doesn't even get the chance." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English"
+UNION
+SELECT "Ad Tertium / Upon the Third" as name, a.id as author_id, 2 as rating, "Aionios, a world of constant war between Keves and Agnus where both nations must kill each other for ether and to fill up their flame clocks to that they can continue living. However, not everything is as simple as it seems. During a major mission that they didn’t receive much info on, the Kevesi gang of Noah, Eunie and Lanz encounters a group of only two Agnian special forces soldiers that they team up with, alongside a mysterious girl from an equally mysterious city. And who awaits for them in the city?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DredgenSoul" AND l.name="English"
+UNION
+SELECT "Traitor in the Mirror" as name, a.id as author_id, 2 as rating, "There is blood on Noah’s hands, aching for revenge. He can’t clean it off. His face- looking back at him in the mirror, is wrong. Not him, not him, not him.Noah struggles with recognizing himself after the events of Agnus Castle. One day, his fear gets the best of him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pachipower" AND l.name="English"
+UNION
+SELECT "Miyabi In The Middle" as name, a.id as author_id, 4 as rating, "From the moment her eyes were open to love, she’d wanted to kiss her best friend.What Miyabi didn’t expect was that she’d be kissing Mio’s boyfriend as well…(Or, Noah and Mio shower their fellow off-seer in the affection she deserves)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LunarMelodia" AND l.name="English"
+UNION
+SELECT "Breaking the Miyabunnit" as name, a.id as author_id, 4 as rating, "Ouroboros want to give Miyabi a Fraternal Badge, but accessories are locked until NG+Fortunately, Noah has an idea for how he might remove Miyabi’s Bunnit Choker…" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LunarMelodia" AND l.name="English"
+UNION
+SELECT "Mio's Guide to Child Birth" as name, a.id as author_id, 1 as rating, "(Set during the girls talk about Mios hair)Long hair, short hair. It should had been an easy decision. Let Eunie and Sena take care of her hair and be done with it. But why was such a simple act making her feel so conflicted?Mio struggles with the memories that M gave her. Countless lives of fighting and strive taking their toll to the point that even such a simple thing as hair can feel like to much. As Mio avoids her team, Eunie and Sena take it onto their own hands to get to the bottom of whats wrong with their friend. And may learn more then they bargained for in the process." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Alucard45" AND l.name="English"
+UNION
+SELECT "No Nut Noah-vember" as name, a.id as author_id, 4 as rating, "Mio and Noah decided to play a special game this November, and she's not making it easy. He can hold on just one more day, she assures him." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AbyssalAriel" AND l.name="English"
+UNION
+SELECT "A Bridge Between Worlds" as name, a.id as author_id, 1 as rating, "The worlds have split apart once more, but the desire for connection lingers. What will become of the Ouroboros children, as well as the other people of their worlds, who long to reunite with those on the other side? As memories of Aionios awaken, who shall be held accountable for the sorrow suffered there?Post-ending of XB3. Something to help tide us over till the story DLC releases!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WriterRenEllis" AND l.name="English"
+UNION
+SELECT "Fast Travel to Flavour City" as name, a.id as author_id, 4 as rating, "(Set after Chapter 6)Sena, Ouroboros’ Ogre and Agnian attacker, was experiencing something of a cartographic crisis and it was all Ghondor’s fault. No matter how many people she asked, or the amount of maps she had checked, she just couldn’t discern the location of Flavour City.Ghondor Vandham is a foodie. Everything good is 'Flavour City', and everything bad, well, there's a reason why Sena's friends never wanted her to inherit her sweary mouth. When Sena tries and fails to locate this mythical, mouthwatering metropolis she asks a question that leads to a new discovery and an answer to a question she had been contemplating for longer than she even knew the question existed." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Healers' Fate" as name, a.id as author_id, 2 as rating, "Do you think you were ever Ouroboros before? Did we ever meet in a past life, or were we just pulled in by Noah and Mio’s gravity?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="SomeDatsunGuy" AND l.name="English"
+UNION
+SELECT "The Potato Eyes of Spudding Justice" as name, a.id as author_id, 1 as rating, "(Set after Xenoblade 2 and 3)Zeke Von Genbu, Bringer of Chaos is a helpful sort of fella. And when it comes to helping his chum Rex's kids achieve their truest potential there's nothing he won't do. Theft of advanced technology? That's just borrowing teaching tools. Making use of things possibly, probably, maybe destined for the trash? That's just good citizenship.Plus Pandoria is away and he is really, really, really bored.Contains spoilers for my work 'Endless Strength'." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Too Much Information" as name, a.id as author_id, 3 as rating, "During a sleepover, Mio has a rather personal conversation with her boyfriend from the other world. A conversation her older sister has to suffer through." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AbyssalAriel" AND l.name="English"
+UNION
+SELECT "The simple rites of undead war-girls" as name, a.id as author_id, 2 as rating, "He's the one circle she just can't break.AKA: After a harrowing month, Mio and Noah talk it out. MAJOR SPOILERS FOR ALL OF CHAPTER 5 + THE START OF CHAPTER 6." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Lumailia" AND l.name="English"
+UNION
+SELECT "New Moon [Hiatus]" as name, a.id as author_id, 2 as rating, "The events of Agnus Castle leave Moebius N stranded with Ouroboros.He sinks into the void as his wounds heal, plotting to drag Noah and Mio down with him.But what will he do when they instead reach in to pull him out?" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LunarMelodia" AND l.name="English"
+UNION
+SELECT "The City and Alexandria" as name, a.id as author_id, 3 as rating, "*First Time Writer**Spoilers for the entirety of XC3, including the ending!*In the closing days of the war against Moebius, the illustrious Commander of Colony Iota and her loyal lieutenant makes their first trip to the mysterious ""City"" to assist in the coordination of the war effort. What she finds out over the course of one long and arduous day will forever change how she views the world and everyone in it as she learns the truth about the world, about babies, and about herself.Meanwhile, Monica Vandham contends with an investigation into a mysterious entity which has infiltrated the City and she doesn't know if its friend or foe.EDIT:This story was conceived and written before any information about Future Redeemed was known, so a handful of detail have made this story into something of an AU. Bonus Chapter #3 is a partial re-write of the core story to better fit in with the post-Future Redeemed canon, though it's still somewhat doing its own thing." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raelhorn" AND l.name="English"
+UNION
+SELECT "Letters To Our Son" as name, a.id as author_id, 2 as rating, "Their lives would end at the close of their tenth term, but their son’s would go on.At least this way they could keep their promise, and be with him in spirit throughout his life." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="LunarMelodia" AND l.name="English"
+UNION
+SELECT "In Another Life" as name, a.id as author_id, 2 as rating, "In another life, they might have had everything. In another world. In another time and place.The team attempt to forge a new way of life in Aionios. Set during the time of N and M. Chapter One: Taion and Eunie learn that there's no time to waste. Chapter Two: Sena keeps a promise. Chapter Three: N chooses which of two roads to walk." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WriterRenEllis" AND l.name="English"
+UNION
+SELECT "Reunion" as name, a.id as author_id, 1 as rating, "Major spoilers. Melia and Nia have one chance to meet face-to-face, and properly this time." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Pocketcucco" AND l.name="English"
+UNION
+SELECT "Tea Leaves and Fourtune Clovers" as name, a.id as author_id, 2 as rating, "A collection of related Eunie/Taion stories set during and after Xenoblade Chronicles 3." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="WriterRenEllis" AND l.name="English"
+UNION
+SELECT "A chat between the Monado's Heir and Master Driver" as name, a.id as author_id, 1 as rating, "Shulk and Rex have a conversation about their post-adventure lives.Spoilers for essentially the entirety of Xenoblade Chronicles 1, 2, and 3. Partially revised on 5/2/23" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nopeisok" AND l.name="English"
+UNION
+SELECT "Her Majesty's Masquerade" as name, a.id as author_id, 3 as rating, "The threats of Zanza and the Fog King being dealt with, Her Imperial Majesty Melia Antiqua struggles to carve out a life for herself and her family. As the question of heirs and inevitable succession loom, she desires to never subject another to the gilded cage that was her own childhood. All the while, the twin worlds slowly but steadily list towards mutual annihilation.An exploration of the events between Future Connected and Xenoblade Chronicles 3, from the perspective of those living on the remains of the Bionis.Companion piece to my other work, 'The City and Alexandria', looking at how one particular revelation towards the end of that story came to be." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raelhorn" AND l.name="English"
+UNION
+SELECT "Walking Forward, Looking Back" as name, a.id as author_id, 1 as rating, "(SPOILERS FOR XENOBLADE CHRONICLES 3'S ENTIRE STORY AND POSTGAME)In which Melia reminisces upon times long gone, and Ouroboros learns more about the history of their world.(Oneshot)" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="AceStarChaser" AND l.name="English"
+UNION
+SELECT "A Mother's Love and a Queen's Regret" as name, a.id as author_id, 2 as rating, "With the final battle against Moebius on the horizon, Nia enjoys one final campout with her newfound friends, thinking back to the companions she has lost and those who still remain." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BEWD4133" AND l.name="English"
+UNION
+SELECT "Mirror Mirror" as name, a.id as author_id, 2 as rating, "Noah didn't come out of the events of the eclipse unscathed. Nobody could have." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ThatWindingPath" AND l.name="English"
+UNION
+SELECT "For When The Dawn Comes Again" as name, a.id as author_id, 2 as rating, """𝘖𝘶𝘳 𝘴𝘰𝘯𝘨𝘴, 𝘵𝘩𝘦 𝘴𝘰𝘯𝘨𝘴 𝘸𝘦 𝘱𝘭𝘢𝘺,"" 𝘕𝘰𝘢𝘩 𝘣𝘦𝘨𝘢𝘯, ""𝘵𝘩𝘦𝘺 𝘧𝘪𝘵 𝘵𝘰𝘨𝘦𝘵𝘩𝘦𝘳, 𝘵𝘩𝘦𝘺 𝘦𝘮𝘱𝘰𝘸𝘦𝘳 𝘵𝘩𝘦 𝘰𝘵𝘩𝘦𝘳, 𝘢𝘯𝘥 𝘪𝘧 𝘵𝘩𝘢𝘵 𝘪𝘴𝘯'𝘵 𝘱𝘳𝘰𝘰𝘧 𝘵𝘩𝘢𝘵 𝘸𝘦 𝘴𝘩𝘰𝘶𝘭𝘥 𝘣𝘦 𝘰𝘯 𝘵𝘩𝘦 𝘴𝘢𝘮𝘦 𝘴𝘪𝘥𝘦, 𝘵𝘩𝘦𝘯 𝘐 𝘥𝘰𝘯'𝘵 𝘬𝘯𝘰𝘸 𝘸𝘩𝘢𝘵 𝘪𝘴.""<※>After Origin did its job, all seemed well, except for the one girl who woke to feelings of anguish and loss, something she had no right to have within her heart.And a boy who awoke to a sword, eager to just continue his day-to-day life, even if a tall man with blonde hair and an odd sword sought to make the boy's life his business.Or;In which things aren't complete as they seem, but maybe all the better for it.Or or;In which Dredgen says: ""FUCK IT ALL I DON'T NEED SLEEP"" and write's the fluff that we all so desperately need." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="DredgenSoul" AND l.name="English"
+UNION
+SELECT "The Queen in the Memorial Hall" as name, a.id as author_id, 3 as rating, "The Queen of Keves reminiscences in the Memorial Hall before a familiar statue, only to be accosted by the last living member of House Reid. Then the sight of a familiar keepsake sends her down memory lane, to that of her own family.Takes place during late Chapter 7 / post-game of XC3." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raelhorn" AND l.name="English"
+UNION
+SELECT "Show and Tell" as name, a.id as author_id, 1 as rating, "(Set between XC2 and XC3) A Salvager's equipment is all that stands between success and failure. Well, all that stood between it. Now there's little more to do than show and tell, but if Rex is lucky, maybe his audience might give him some feedback." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Life goes on" as name, a.id as author_id, 2 as rating, "A heart still beating against all odds. A heart full of love, vigour, youth—yet nonetheless doomed to fall silent and still upon the striking of the clock of mortality." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Gayzed" AND l.name="English"
+UNION
+SELECT "The Father, The Son, and the Rubber Duck" as name, a.id as author_id, 2 as rating, "(Set after Xenoblade 1 and 2, before Xenoblade 3) Out of the many things that Shulk had made, he was most proud of the one in front of him that very moment. A little story, expanded from a prompt about seeing something from the perspective of a rubber duck. A moment of time with Shulk and Crys, one of Shulk and Fiora, and then inspiration from another world gets Shulk doing one of the things he never thought he'd do:Explaining the Origin project to something in possession of a rubber squeaker." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Riki Is Bestest Grampypon!" as name, a.id as author_id, 1 as rating, "Littlepon of friends love grampypon Riki, everybody know!" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English"
+UNION
+SELECT "Remember We Were Partners in Crime" as name, a.id as author_id, 3 as rating, "Over the past 12 years the memories of Aionios have returned for those where were there at the bitter end and communication between the two halves of the world was reestablished. After years of dreaming of their reunion, Eunie takes the first opportunity she can to see Taion.She travels through the Conduit via a new method that is still being figured out and though it is barely tested her greatest fear is that she will find a Taion she doesn't recognize or who doesn't feel the same as her. At the same time, Noah wrestles with a secret he has kept from Mio and Lanz grows closer to Mio's sister, Glimmer.Their reunion is cut short when the fallout from changes to the world of Alrest catch up to them and a foe thought to be long dead reappears. released in celebration of the final wave of Xenoblade Chronicles 3 DLC" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Cythieus" AND l.name="English"
+UNION
+SELECT "Unforeseen Reunion" as name, a.id as author_id, 1 as rating, "And thus, Salvager met Queen." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Whip9063" AND l.name="English"
+UNION
+SELECT "Broken Gauntlet (SPOILERS FOR XC3FR)" as name, a.id as author_id, 1 as rating, "Uh-oh! Noah’s Gauntlet isn’t working as intended! With a visit to the Queen of Agnus, she figures out the problem.Seriously, Play Future Redeemed, this is big spoiler territory." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Mememan64" AND l.name="English"
+UNION
+SELECT "Aionios' Strongest!" as name, a.id as author_id, 2 as rating, "Rex and Shulk have spent the last few days with the Ourorborus group, getting to know them and helping in their battle against Moebius ever since the Archsage summoned the two of them, though today both the swordfighter Noah, along with the zephyr Mio speak their mind to each of the two liberators." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Trumai" AND l.name="English"
+UNION
+SELECT "New Life" as name, a.id as author_id, 1 as rating, "based off the cut scene ""torn apart""noah and mios hopes and dreams become their son, ghondor, as they face the trials of parenthood" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Onaliiim" AND l.name="English"
+UNION
+SELECT "New Feelings" as name, a.id as author_id, 4 as rating, "Kite and Juniper meet up in the City, and this causes a realisation to occur." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nopeisok" AND l.name="English"
+UNION
+SELECT "His Best Work's Done in the Bath" as name, a.id as author_id, 3 as rating, "(Set After Xenoblade Chronicles: Future Connected)As the people of Bionis work on Origin, Shulk finds himself in the bathtub asking questions of his son Crys' rubber duck, Ducky. Sometimes, a Duck doesn't do as a sounding board, and you need someone with a particular set of skills.Sometimes, other skills get you in a predicament." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Rozteka" AND l.name="English"
+UNION
+SELECT "Ciao Papa" as name, a.id as author_id, 2 as rating, "Ciao papa, mio papaTime has come to say farewell" as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="BagofChips" AND l.name="English"
+UNION
+SELECT "Melancholy Milton and Mythra" as name, a.id as author_id, 1 as rating, "Her son got hurt in a monster attack, and ran to hide from everyone in their house. Mythra decides to help him by telling him about her past." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nopeisok" AND l.name="English"
+UNION
+SELECT "Memories of a distant, near world" as name, a.id as author_id, 1 as rating, "Some simple questions, some intricate answers.Sena's curiosity about the world that surrounds her gives Melia an opportunity to reminisce about the distant past, about beloved friends, long gone... And Lanz receives an unforgettable gift." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Nth111" AND l.name="English"
+UNION
+SELECT "Looking up from Beneath the Ripples" as name, a.id as author_id, 2 as rating, "Future Redeemed Spoilers!After the loss of his arm, Shulk deals with the challenges that come with it. Main focus on the inner party relations and support. Starts after the first confrontation with Na’el and N at the end of chapter 3." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Ferry5067" AND l.name="English"
+UNION
+SELECT "Across time and space" as name, a.id as author_id, 1 as rating, "The first time Shulk seeks him, his heart stops.He looks so much like Fiora it’s jarring. His hair color, the shape of his eyes, the cut of his jaw; Shulk’s mouth runs dry and his stump aches and his chest feels like it’s about to burst, but there’s also Alvis—some form of Alvis, at least—and Matthew and two giant Ferronises right in front of him that need to be taken care of first. There’s so much happening. Shulk’s head hurts. The Ferronises charge up and Shulk watches as he runs in front of Glimmer and he feels like he’s going to die." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Jellijeans" AND l.name="English"
+UNION
+SELECT "Birdsong" as name, a.id as author_id, 1 as rating, "The enormity of what Glimmer and Nikol were given is slowly starting to become clear, thus becoming even harder to understand. What Matthew and A did, freeing them. And what Rex did… She wouldn’t even have called the man a friend, and he gave her-It’s too big to name." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Sylvalum" AND l.name="English"
+UNION
+SELECT "Full of Beans" as name, a.id as author_id, 2 as rating, "Just before departing to the Black Mountains, the Liberators and their allies wake up to find out that Matthew has once again overslept.What they don't know is that he's full of beans and inside an enclosed tent.And someone has to wake him up." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Raelhorn" AND l.name="English"
+UNION
+SELECT "Memories of the Stoutheart and the Queen" as name, a.id as author_id, 2 as rating, "Nia and Rex reunite in Aionios and they recall and share a few memories with the Ouroboros." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="ZAD_GX" AND l.name="English";
 
 /*
  * Link
@@ -5232,4 +5628,228 @@ SELECT "https://archiveofourown.org/works/52865002", ff.id FROM fanfictions ff I
 UNION
 SELECT "https://archiveofourown.org/works/54185494", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Hidden Shield" AND a.name = "Sapphiria"
 UNION
-SELECT "https://www.fanfiction.net/s/14212133/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Returning the Favor" AND a.name = "SteamedZing";
+SELECT "https://www.fanfiction.net/s/14212133/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Returning the Favor" AND a.name = "SteamedZing"
+UNION
+SELECT "https://archiveofourown.org/works/40653135", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Off-Seers Need a Good Laugh Too" AND a.name = "Rainbowwing251"
+UNION
+SELECT "https://archiveofourown.org/works/40721910", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Melt" AND a.name = "Ilvidis"
+UNION
+SELECT "https://archiveofourown.org/works/40722282", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Forever After" AND a.name = "Egildidnothingwrong (Lavider)"
+UNION
+SELECT "https://archiveofourown.org/works/40727859", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Dreams" AND a.name = ""
+UNION
+SELECT "https://archiveofourown.org/works/40806402", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Do I Remember You?" AND a.name = "OathkeeperAlexis"
+UNION
+SELECT "https://archiveofourown.org/works/40844922", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A step away" AND a.name = "XSparklingRavenx"
+UNION
+SELECT "https://archiveofourown.org/works/40846281", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "His Mio" AND a.name = "Ilvidis"
+UNION
+SELECT "https://archiveofourown.org/works/40859661", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Write it down or you'll forget" AND a.name = "Starcrossedsky"
+UNION
+SELECT "https://archiveofourown.org/works/40891119", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Knowledge obtained" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/40936374", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sunk Cost Fallacy" AND a.name = "ThatWindingPath"
+UNION
+SELECT "https://archiveofourown.org/works/40999182", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "There is a handful of courage in my heart" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/40975332", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Deathly loneliness attacks" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/42785880", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Risk negation" AND a.name = "Lyrecho"
+UNION
+SELECT "https://archiveofourown.org/works/41225439", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Quick to their ends our candles burn until we're free" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/41288385", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Two souls once lost" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/41413797", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Eleven, eleven" AND a.name = "Lyre (Lyrecho)"
+UNION
+SELECT "https://archiveofourown.org/works/41032302", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Who, me?" AND a.name = "Captwaddledoo"
+UNION
+SELECT "https://archiveofourown.org/works/41061771", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "'Til We Find Ourselves, Again" AND a.name = "Dsw78"
+UNION
+SELECT "https://archiveofourown.org/works/41066490", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reunited" AND a.name = "RinOfTheStars"
+UNION
+SELECT "https://archiveofourown.org/works/41072895", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Bonding of Two" AND a.name = "EuphoricMother"
+UNION
+SELECT "https://archiveofourown.org/works/41079906", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Know thy enemy" AND a.name = "Sylvalum"
+UNION
+SELECT "https://archiveofourown.org/works/41130993", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Memories of what we could have been" AND a.name = "Archsage"
+UNION
+SELECT "https://archiveofourown.org/works/41142660", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sundancer" AND a.name = "WisteriaJD (JD2357)"
+UNION
+SELECT "https://archiveofourown.org/works/41159028", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A lot can happen between now and never" AND a.name = "Swordlegion"
+UNION
+SELECT "https://archiveofourown.org/works/41171529", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "How they used to Love" AND a.name = "ArchivalBerethNocta"
+UNION
+SELECT "https://archiveofourown.org/works/41212008", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Just a Night In Camp" AND a.name = "EuphoricMother"
+UNION
+SELECT "https://archiveofourown.org/works/41218632", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Where We Don't Belong" AND a.name = "DewitLater"
+UNION
+SELECT "https://archiveofourown.org/works/41221377", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Our Hopes and Dreams" AND a.name = "Heronsong"
+UNION
+SELECT "https://archiveofourown.org/works/41243880", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For Want of a Dry Wing" AND a.name = "AliceYouWereHere"
+UNION
+SELECT "https://archiveofourown.org/works/41270109", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Clock Strikes Six" AND a.name = "ThatWindingPath"
+UNION
+SELECT "https://archiveofourown.org/works/41271825", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Quiet, Empty Moment" AND a.name = "Cold_Jolteon"
+UNION
+SELECT "https://archiveofourown.org/works/41310942", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Queen's Orders" AND a.name = "Dragon_Falls"
+UNION
+SELECT "https://archiveofourown.org/works/41338659", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "From the Cradle to the Grave (and back again)" AND a.name = "Rosifly"
+UNION
+SELECT "https://archiveofourown.org/works/41340957", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Her Mimi" AND a.name = "Melodramatic_Pretzel"
+UNION
+SELECT "https://archiveofourown.org/works/41353680", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "And eat it too" AND a.name = "Starcrossedsky"
+UNION
+SELECT "https://archiveofourown.org/works/41384025", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "What Comes Next" AND a.name = "Leonidskies"
+UNION
+SELECT "https://archiveofourown.org/works/41384136", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You Got Any Babies?" AND a.name = "RavioxHilda"
+UNION
+SELECT "https://archiveofourown.org/works/41387274", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Our Feelings Will Never Change" AND a.name = "Aegishammer13"
+UNION
+SELECT "https://archiveofourown.org/works/41455929", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reimagination" AND a.name = "Dsw78"
+UNION
+SELECT "https://archiveofourown.org/works/41487915", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Whatever It Is, With You" AND a.name = "Ratly"
+UNION
+SELECT "https://archiveofourown.org/works/41537148", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Long or Short" AND a.name = "Meme_Engine"
+UNION
+SELECT "https://archiveofourown.org/works/41554722", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "I am the only lonely casualty" AND a.name = "Starcrossedsky"
+UNION
+SELECT "https://archiveofourown.org/works/41604057", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Promise of Morning Dew" AND a.name = "MementoVive"
+UNION
+SELECT "https://archiveofourown.org/works/41649054", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Place To Be Alive" AND a.name = "SilberFelx"
+UNION
+SELECT "https://archiveofourown.org/works/41690730", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Strange Feeling" AND a.name = "Ratly"
+UNION
+SELECT "https://archiveofourown.org/works/41828271", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "It Was Right On The Tip Of My Tongue" AND a.name = "SuperNerd92"
+UNION
+SELECT "https://archiveofourown.org/works/41927850", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Not Mine" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/41359887", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Momentary Weakness" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/41875347", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Resemblances" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42044592", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "None, Then Three" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42125319", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Talk" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42429990", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fledglings" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42625821", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Endless Strength" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42071817", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For my part this is all I need" AND a.name = "Lioninjawarloc"
+UNION
+SELECT "https://archiveofourown.org/works/42077928", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "This goodbye is not the end" AND a.name = "Justicetom"
+UNION
+SELECT "https://archiveofourown.org/works/42079188", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Catching up for our past lives" AND a.name = "Tsukarine"
+UNION
+SELECT "https://archiveofourown.org/works/42104949", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sleepy Time with Noah and Mio" AND a.name = "FiliaSnowe"
+UNION
+SELECT "https://archiveofourown.org/works/42105558", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Instruments of Rebirth" AND a.name = "Lumailia"
+UNION
+SELECT "https://archiveofourown.org/works/42219870", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "You're Here; That's More Than Enough" AND a.name = "Ansvel_Ashe"
+UNION
+SELECT "https://archiveofourown.org/works/42259419", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Duet" AND a.name = "Essaysforbreakfast"
+UNION
+SELECT "https://archiveofourown.org/works/42368976/chapters/106395738", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Forever Interlinked Futures" AND a.name = "ValorFennekin34"
+UNION
+SELECT "https://archiveofourown.org/works/42380676", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Sotto Voce" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/42380745", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath"
+UNION
+SELECT "https://archiveofourown.org/works/42387819", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Consequences of Indirect Kissing" AND a.name = "KwIl"
+UNION
+SELECT "https://archiveofourown.org/works/42476790", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "May Our Voices Reach, In Time" AND a.name = "Ansvel_Ashe"
+UNION
+SELECT "https://archiveofourown.org/works/42644136", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Driver and (Artificial) Blade" AND a.name = "Worswor"
+UNION
+SELECT "https://archiveofourown.org/works/42886479", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Promises are meant to be kept" AND a.name = "Frozenbear09"
+UNION
+SELECT "https://archiveofourown.org/works/42972933", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Noah and the Name Game" AND a.name = "BagofChips"
+UNION
+SELECT "https://archiveofourown.org/works/43040991", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul"
+UNION
+SELECT "https://archiveofourown.org/works/43084770", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Traitor in the Mirror" AND a.name = "Pachipower"
+UNION
+SELECT "https://archiveofourown.org/works/43110385", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Miyabi In The Middle" AND a.name = "LunarMelodia"
+UNION
+SELECT "https://archiveofourown.org/works/43156635", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Breaking the Miyabunnit" AND a.name = "LunarMelodia"
+UNION
+SELECT "https://archiveofourown.org/works/43245591", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mio's Guide to Child Birth" AND a.name = "Alucard45"
+UNION
+SELECT "https://archiveofourown.org/works/43341036", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "No Nut Noah-vember" AND a.name = "AbyssalAriel"
+UNION
+SELECT "https://archiveofourown.org/works/43522158", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis"
+UNION
+SELECT "https://archiveofourown.org/works/43524297", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Fast Travel to Flavour City" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/43800778", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Healers' Fate" AND a.name = "SomeDatsunGuy"
+UNION
+SELECT "https://archiveofourown.org/works/43805622", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Potato Eyes of Spudding Justice" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/43833540", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Too Much Information" AND a.name = "AbyssalAriel"
+UNION
+SELECT "https://archiveofourown.org/works/43910919", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The simple rites of undead war-girls" AND a.name = "Lumailia"
+UNION
+SELECT "https://archiveofourown.org/works/43989192", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "New Moon [Hiatus]" AND a.name = "LunarMelodia"
+UNION
+SELECT "https://archiveofourown.org/works/44127897", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The City and Alexandria" AND a.name = "Raelhorn"
+UNION
+SELECT "https://archiveofourown.org/works/44527336", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Letters To Our Son" AND a.name = "LunarMelodia"
+UNION
+SELECT "https://archiveofourown.org/works/44534170", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "In Another Life" AND a.name = "WriterRenEllis"
+UNION
+SELECT "https://archiveofourown.org/works/44546926", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Reunion" AND a.name = "Pocketcucco"
+UNION
+SELECT "https://archiveofourown.org/works/44604367", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Tea Leaves and Fourtune Clovers" AND a.name = "WriterRenEllis"
+UNION
+SELECT "https://archiveofourown.org/works/44962267", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A chat between the Monado's Heir and Master Driver" AND a.name = "Nopeisok"
+UNION
+SELECT "https://archiveofourown.org/works/45016120", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Her Majesty's Masquerade" AND a.name = "Raelhorn"
+UNION
+SELECT "https://archiveofourown.org/works/45044624", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Walking Forward, Looking Back" AND a.name = "AceStarChaser"
+UNION
+SELECT "https://archiveofourown.org/works/45129520", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "A Mother's Love and a Queen's Regret" AND a.name = "BEWD4133"
+UNION
+SELECT "https://archiveofourown.org/works/45233407", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Mirror Mirror" AND a.name = "ThatWindingPath"
+UNION
+SELECT "https://archiveofourown.org/works/45276445", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul"
+UNION
+SELECT "https://archiveofourown.org/works/45340585", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Queen in the Memorial Hall" AND a.name = "Raelhorn"
+UNION
+SELECT "https://archiveofourown.org/works/45551110", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Show and Tell" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/45672757", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Life goes on" AND a.name = "Gayzed"
+UNION
+SELECT "https://archiveofourown.org/works/46178476", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Father, The Son, and the Rubber Duck" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/46612645", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Riki Is Bestest Grampypon!" AND a.name = "BagofChips"
+UNION
+SELECT "https://archiveofourown.org/works/46753036", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Remember We Were Partners in Crime" AND a.name = "Cythieus"
+UNION
+SELECT "https://archiveofourown.org/works/46796794", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Unforeseen Reunion" AND a.name = "Whip9063"
+UNION
+SELECT "https://archiveofourown.org/works/46830421", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Broken Gauntlet (SPOILERS FOR XC3FR)" AND a.name = "Mememan64"
+UNION
+SELECT "https://archiveofourown.org/works/46848442", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Aionios' Strongest!" AND a.name = "Trumai"
+UNION
+SELECT "https://archiveofourown.org/works/46859386", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "New Life" AND a.name = "Onaliiim"
+UNION
+SELECT "https://archiveofourown.org/works/46865290", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "New Feelings" AND a.name = "Nopeisok"
+UNION
+SELECT "https://archiveofourown.org/works/46899505", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "His Best Work's Done in the Bath" AND a.name = "Rozteka"
+UNION
+SELECT "https://archiveofourown.org/works/46931767", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ciao Papa" AND a.name = "BagofChips"
+UNION
+SELECT "https://archiveofourown.org/works/46932220", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Melancholy Milton and Mythra" AND a.name = "Nopeisok"
+UNION
+SELECT "https://archiveofourown.org/works/46965019", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Memories of a distant, near world" AND a.name = "Nth111"
+UNION
+SELECT "https://archiveofourown.org/works/46981192", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Looking up from Beneath the Ripples" AND a.name = "Ferry5067"
+UNION
+SELECT "https://archiveofourown.org/works/47042548", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Across time and space" AND a.name = "Jellijeans"
+UNION
+SELECT "https://archiveofourown.org/works/47060038", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Birdsong" AND a.name = "Sylvalum"
+UNION
+SELECT "https://archiveofourown.org/works/47089513", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Full of Beans" AND a.name = "Raelhorn"
+UNION
+SELECT "https://archiveofourown.org/works/47098327", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX";

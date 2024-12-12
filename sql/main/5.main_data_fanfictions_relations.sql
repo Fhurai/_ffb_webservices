@@ -2153,4 +2153,334 @@ SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a O
 UNION
 SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Father Figure" AND a.name = "Optional_adventure" AND r.name = "Saika | Pandoria / Ozychlyrus Brounev Tantal | Zeke von Genbu"
 UNION
-SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Returning the Favor" AND a.name = "SteamedZing" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex";
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Returning the Favor" AND a.name = "SteamedZing" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Melt" AND a.name = "Ilvidis" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Forever After" AND a.name = "Egildidnothingwrong (Lavider)" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Dreams" AND a.name = "" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Do I Remember You?" AND a.name = "OathkeeperAlexis" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A step away" AND a.name = "XSparklingRavenx" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "His Mio" AND a.name = "Ilvidis" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Knowledge obtained" AND a.name = "Lyre (Lyrecho)" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "There is a handful of courage in my heart" AND a.name = "Lyre (Lyrecho)" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Two souls once lost" AND a.name = "Lyre (Lyrecho)" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Two souls once lost" AND a.name = "Lyre (Lyrecho)" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Who, me?" AND a.name = "Captwaddledoo" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Who, me?" AND a.name = "Captwaddledoo" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "'Til We Find Ourselves, Again" AND a.name = "Dsw78" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reunited" AND a.name = "RinOfTheStars" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reunited" AND a.name = "RinOfTheStars" AND r.name = "Hikari | Mythra / Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reunited" AND a.name = "RinOfTheStars" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reunited" AND a.name = "RinOfTheStars" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bonding of Two" AND a.name = "EuphoricMother" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A lot can happen between now and never" AND a.name = "Swordlegion" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "How they used to Love" AND a.name = "ArchivalBerethNocta" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where We Don't Belong" AND a.name = "DewitLater" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where We Don't Belong" AND a.name = "DewitLater" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where We Don't Belong" AND a.name = "DewitLater" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Where We Don't Belong" AND a.name = "DewitLater" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Our Hopes and Dreams" AND a.name = "Heronsong" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Our Hopes and Dreams" AND a.name = "Heronsong" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For Want of a Dry Wing" AND a.name = "AliceYouWereHere" AND r.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For Want of a Dry Wing" AND a.name = "AliceYouWereHere" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For Want of a Dry Wing" AND a.name = "AliceYouWereHere" AND r.name = "Kagutsuchi | Brighid / Meleph | Mòrag Ladair"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Quiet, Empty Moment" AND a.name = "Cold_Jolteon" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From the Cradle to the Grave (and back again)" AND a.name = "Rosifly" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "From the Cradle to the Grave (and back again)" AND a.name = "Rosifly" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her Mimi" AND a.name = "Melodramatic_Pretzel" AND r.name = "Mio / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her Mimi" AND a.name = "Melodramatic_Pretzel" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "What Comes Next" AND a.name = "Leonidskies" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "What Comes Next" AND a.name = "Leonidskies" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You Got Any Babies?" AND a.name = "RavioxHilda" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You Got Any Babies?" AND a.name = "RavioxHilda" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Our Feelings Will Never Change" AND a.name = "Aegishammer13" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reimagination" AND a.name = "Dsw78" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Reimagination" AND a.name = "Dsw78" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Whatever It Is, With You" AND a.name = "Ratly" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Long or Short" AND a.name = "Meme_Engine" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Long or Short" AND a.name = "Meme_Engine" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "I am the only lonely casualty" AND a.name = "Starcrossedsky" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Promise of Morning Dew" AND a.name = "MementoVive" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place To Be Alive" AND a.name = "SilberFelx" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Place To Be Alive" AND a.name = "SilberFelx" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Strange Feeling" AND a.name = "Ratly" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Not Mine" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Resemblances" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "None, Then Three" AND a.name = "Rozteka" AND r.name = "Hikari | Mythra / Homura | Pyra / Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "None, Then Three" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "None, Then Three" AND a.name = "Rozteka" AND r.name = "Ashera / Eunie"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "None, Then Three" AND a.name = "Rozteka" AND r.name = "Isurugi | Isurd / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Talk" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Talk" AND a.name = "Rozteka" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fledglings" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fledglings" AND a.name = "Rozteka" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fledglings" AND a.name = "Rozteka" AND r.name = "Kagutsuchi | Brighid / Meleph | Mòrag Ladair"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Endless Strength" AND a.name = "Rozteka" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Endless Strength" AND a.name = "Rozteka" AND r.name = "Kagutsuchi | Brighid / Meleph | Mòrag Ladair"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Endless Strength" AND a.name = "Rozteka" AND r.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For my part this is all I need" AND a.name = "Lioninjawarloc" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "This goodbye is not the end" AND a.name = "Justicetom" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "This goodbye is not the end" AND a.name = "Justicetom" AND r.name = "Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "This goodbye is not the end" AND a.name = "Justicetom" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Catching up for our past lives" AND a.name = "Tsukarine" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Sleepy Time with Noah and Mio" AND a.name = "FiliaSnowe" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Instruments of Rebirth" AND a.name = "Lumailia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Instruments of Rebirth" AND a.name = "Lumailia" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "You're Here; That's More Than Enough" AND a.name = "Ansvel_Ashe" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Duet" AND a.name = "Essaysforbreakfast" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Forever Interlinked Futures" AND a.name = "ValorFennekin34" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Sotto Voce" AND a.name = "Rozteka" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Lanz / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Joran / Miyabi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Hand in Hand" AND a.name = "StrayedPath" AND r.name = "Joran / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Consequences of Indirect Kissing" AND a.name = "KwIl" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Consequences of Indirect Kissing" AND a.name = "KwIl" AND r.name = "Mio / Miyabi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Consequences of Indirect Kissing" AND a.name = "KwIl" AND r.name = "Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "May Our Voices Reach, In Time" AND a.name = "Ansvel_Ashe" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Driver and (Artificial) Blade" AND a.name = "Worswor" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Promises are meant to be kept" AND a.name = "Frozenbear09" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Noah and the Name Game" AND a.name = "BagofChips" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Lanz / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Hikari | Mythra / Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Ad Tertium / Upon the Third" AND a.name = "DredgenSoul" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Traitor in the Mirror" AND a.name = "Pachipower" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Miyabi In The Middle" AND a.name = "LunarMelodia" AND r.name = "Mio / Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Miyabi In The Middle" AND a.name = "LunarMelodia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Miyabi In The Middle" AND a.name = "LunarMelodia" AND r.name = "Mio / Miyabi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Miyabi In The Middle" AND a.name = "LunarMelodia" AND r.name = "Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Breaking the Miyabunnit" AND a.name = "LunarMelodia" AND r.name = "Mio / Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Breaking the Miyabunnit" AND a.name = "LunarMelodia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Breaking the Miyabunnit" AND a.name = "LunarMelodia" AND r.name = "Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Mio's Guide to Child Birth" AND a.name = "Alucard45" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "No Nut Noah-vember" AND a.name = "AbyssalAriel" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "No Nut Noah-vember" AND a.name = "AbyssalAriel" AND r.name = "Mio / Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "No Nut Noah-vember" AND a.name = "AbyssalAriel" AND r.name = "Mio / Miyabi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "No Nut Noah-vember" AND a.name = "AbyssalAriel" AND r.name = "Miyabi / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Lanz & Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Lanz / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A Bridge Between Worlds" AND a.name = "WriterRenEllis" AND r.name = "Kagutsuchi | Brighid / Meleph | Mòrag Ladair"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Fast Travel to Flavour City" AND a.name = "Rozteka" AND r.name = "Ghondor Vandham Jr. / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Healers' Fate" AND a.name = "SomeDatsunGuy" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Too Much Information" AND a.name = "AbyssalAriel" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The simple rites of undead war-girls" AND a.name = "Lumailia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Moon [Hiatus]" AND a.name = "LunarMelodia" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Moon [Hiatus]" AND a.name = "LunarMelodia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Letters To Our Son" AND a.name = "LunarMelodia" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Letters To Our Son" AND a.name = "LunarMelodia" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "In Another Life" AND a.name = "WriterRenEllis" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "In Another Life" AND a.name = "WriterRenEllis" AND r.name = "M(io) / Mio / N(oah) / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "In Another Life" AND a.name = "WriterRenEllis" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "In Another Life" AND a.name = "WriterRenEllis" AND r.name = "Lanz / Sena"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Tea Leaves and Fourtune Clovers" AND a.name = "WriterRenEllis" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A chat between the Monado's Heir and Master Driver" AND a.name = "Nopeisok" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "A chat between the Monado's Heir and Master Driver" AND a.name = "Nopeisok" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Her Majesty's Masquerade" AND a.name = "Raelhorn" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Walking Forward, Looking Back" AND a.name = "AceStarChaser" AND r.name = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Hikari | Mythra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Homura | Pyra / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Hikari | Mythra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Homura | Pyra / Niyah | Nia"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Ashera / Eunie"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "For When The Dawn Comes Again" AND a.name = "DredgenSoul" AND r.name = "Kagutsuchi | Brighid / Meleph | Mòrag Ladair"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Life goes on" AND a.name = "Gayzed" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Life goes on" AND a.name = "Gayzed" AND r.name = "M(io) / N(oah)"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Father, The Son, and the Rubber Duck" AND a.name = "Rozteka" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "The Father, The Son, and the Rubber Duck" AND a.name = "Rozteka" AND r.name = "Melia Ancient | Melia Antiqua / Talco | Tyrea"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Riki Is Bestest Grampypon!" AND a.name = "BagofChips" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Remember We Were Partners in Crime" AND a.name = "Cythieus" AND r.name = "Eunie / Taion"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Remember We Were Partners in Crime" AND a.name = "Cythieus" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Unforeseen Reunion" AND a.name = "Whip9063" AND r.name = "Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Unforeseen Reunion" AND a.name = "Whip9063" AND r.name = "Melia Ancient | Melia Antiqua / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Broken Gauntlet (SPOILERS FOR XC3FR)" AND a.name = "Mememan64" AND r.name = "Hikari | Mythra / Homura | Pyra / Pneuma / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Broken Gauntlet (SPOILERS FOR XC3FR)" AND a.name = "Mememan64" AND r.name = "Pneuma / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Aionios' Strongest!" AND a.name = "Trumai" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Life" AND a.name = "Onaliiim" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Feelings" AND a.name = "Nopeisok" AND r.name = "Kite / Yuzuriha | Juniper"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Feelings" AND a.name = "Nopeisok" AND r.name = "Mio / Noah"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "New Feelings" AND a.name = "Nopeisok" AND r.name = "Ethel / Kamunabi | Cammuravi"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "His Best Work's Done in the Bath" AND a.name = "Rozteka" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Melancholy Milton and Mythra" AND a.name = "Nopeisok" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Across time and space" AND a.name = "Jellijeans" AND r.name = "Fiorung | Fiora / Shulk"
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX" AND r.name = "Niyah | Nia / Rex "
+UNION
+SELECT ff.id, r.id FROM `relations` r, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX" AND r.name = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex";
