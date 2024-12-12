@@ -8,12 +8,17 @@ Coté back
 . View avec toutes les fanfictions ayant le meme nom pour comparer les auteurs et savoir si l'auteur n'a pas deux pseudos différents sur deux sites (UltraPop / Utra-Pop).
 . Si user n'est pas admin, il peut seulement faire de la consultation.
 . Possibilité  de lier deux utilisateurs ensemble pour changer d'utilisateur (non-admin <-> admin en cas de modification à faire).
+. Permettre de faire des requêtes personnalisées sur les stats
+    . Exemple : savoir quels auteurs ont écrit sur Xenoblade 2 et Xenoblade 3 ou sur Xenoblade 1 et Xenoblade 3.
 
 Coté front
 . Pouvoir rajouter un tag à la volée (ajout avec un +, grouper les tags par "type" ?)
 . Pouvoir créer toutes les relations possibles de la liste des personnages (et ainsi permettre l'ajout à la volée)
 . Pouvoir lister toutes les fanfictions qui ont le même titre pour permettre le rajout de lien si elle se trouve aussi sur un autre site web.
-. Consultation des informations d'une fanfiction ou d'une série, même déconnecté (utilisateur "guest" ou webservice sans connexion ?).
+. Consultation des informations d'une fanfiction ou d'une série, même déconnecté (utilisateur "guest" ou webservice sans connexion ?)
+. Page qui transforme le code source d'une page fanfiction en formulaire pré-rempli ?
+. Modifier les relations depuis la partie des personnages (Edition si personnage change, suppression si personnage est supprimé, ajout à la volée à la création d'un personnage & à tout moment après).
+    . Appels au webservices character & relation depuis la partie Personnage du front.
 
 Coté outils
 . Vérification existence en bdd pour author, langage fandom, character, relation, tag, link, fanfiction [titre + auteur], series
@@ -38,6 +43,7 @@ Coté outils
     . Search ([Array conditions, String order, Array limit [start, count]])
         . Voir si search() peut appeler search() d'une association.
     . List (webservice appelle search() method ? Ou list() method ?)
+        . search -> Par défaut, une taille de 25 éléments dans la liste même si permission d'aller jusqu'à un nombre max beaucoup plus grand (100 ? 200 ? 500 ? -> En fonction des objets manipulés)
     . New (Empty object with id 0)
     . Create (Object > Associations)
     . Delete (Suppression logique, delete_date mis à CURRENT_DATE)
