@@ -4,6 +4,7 @@ Coté back
 . A l'insertion, vérification que toutes les relations ont leurs personnages dans l'ordre alphabétique et si elles le sont, vérification que la relation n'existe pas déjà en base.
 . Check lien à l'insertion et si existe dans bdd, n'insert pas la fanfiction.
 . Si tags contiennent "Sexual content" -> rating auto à 4.
+    . Avertissement que le rating de FFB est différent de celui des sites de fanfictions pour correspondre aux thèmes proposées par les histoires.
 . Si un personnage, ayant des relations, est modifié alors toutes ses relations sont aussi modifiées pour faire correspondre le nouveau nom.
 . View avec toutes les fanfictions ayant le meme nom pour comparer les auteurs et savoir si l'auteur n'a pas deux pseudos différents sur deux sites (UltraPop / Utra-Pop).
 . Si user n'est pas admin, il peut seulement faire de la consultation.
@@ -40,13 +41,25 @@ Coté outils
 . Prévoir CORS bypass pour webservices.
 . Plan for CRUD
     . Read (Object without associations, with simple associations, with every associations)
-    . Search ([Array conditions, String order, Array limit [start, count]])
+        . GET
+    . Search ([Array conditions, String order, Array filter [limit, offset]])
         . Voir si search() peut appeler search() d'une association.
+        . GET
     . List (webservice appelle search() method ? Ou list() method ?)
         . search -> Par défaut, une taille de 25 éléments dans la liste même si permission d'aller jusqu'à un nombre max beaucoup plus grand (100 ? 200 ? 500 ? -> En fonction des objets manipulés)
+        . GET
+        . GET /fandoms/{fandomId}/fanfictions => Fanfictions du fandom fandomId
+        . /api/fanfictions?limit=100&offset=0
+        . /api/fanfictions?startDate={date}&endDate={date}
     . New (Empty object with id 0)
+        . GET
     . Create (Object > Associations)
+        . POST
     . Delete (Suppression logique, delete_date mis à CURRENT_DATE)
+        . PUT / PATCH
     . Restore (delete_date mise à null)
+        . PUT / PATCH
     . Remove (Suppression physique, nécessite l'objet d'avoir été delete précédemment)
+        . DELETE
     . Update (Object > Links, jamais les objets associés)
+        . PUT / PATCH
