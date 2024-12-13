@@ -1444,7 +1444,7 @@ VALUES
 ("Ashera / Eunie"),
 ("Ashera / Eunie"),
 ("Eunie / Taion"),
-("Ichika | Irma / Mashiro | Fiona")
+("Ichika | Irma / Mashiro | Fiona"),
 ("Isurugi | Isurd / Taion"),
 ("Joran / Lanz"),
 ("Joran / Miyabi"),
@@ -1461,7 +1461,7 @@ VALUES
 ("Mio / Taion"),
 ("Miyabi / Noah"),
 ("Niina | Alexandria / Taion"),
-("Rex / Shulk"),;
+("Rex / Shulk");
 
 /*
  * Relations characters
