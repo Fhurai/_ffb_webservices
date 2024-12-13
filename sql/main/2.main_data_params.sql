@@ -867,6 +867,8 @@ SELECT "Linada", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "Nene", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
+SELECT "Kino", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
+UNION 
 SELECT "Talco | Tyrea", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "Vanea", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
@@ -884,6 +886,12 @@ UNION
 SELECT "Ontos", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "Teto | Teelan", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
+UNION 
+SELECT "Nopon Archsage", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
+UNION 
+SELECT "Mir'liez", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
+UNION 
+SELECT "Emmy Leater", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION /************************************************************************************************************************************/
 SELECT "Rex", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
@@ -962,6 +970,20 @@ UNION
 SELECT "Rageruto | Raqura", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
 SELECT "Kamekichi | Turters", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Jikarao | Wulfric", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Theory", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Vasara | Perceval", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Uka | Nim", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Nanakoori | Ursula", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Kubira | Dagas", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
+UNION 
+SELECT "Zantetsu | Sever", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION /************************************************************************************************************************************/
 SELECT "Mio", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
@@ -990,6 +1012,8 @@ UNION
 SELECT "Monica Vandham", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
 SELECT "Guernica Vandham", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "Matthew Vandham", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
 SELECT "M(io)", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
@@ -1067,7 +1091,19 @@ SELECT "Kotori | Chickadee", `id` from `fandoms` WHERE `name` = "Xenoblade Chron
 UNION 
 SELECT "Michiba", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
-SELECT "Rozana", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3";
+SELECT "Rozana", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "Maybach", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "OFC", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "OMC", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "Georgie", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "Shania Reid", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
+UNION 
+SELECT "S(hania)", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3";
 
 /*
  * Relations
@@ -1382,38 +1418,50 @@ VALUES
 /************************************************************************************************************************************/
 ("Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg"),
 /************************************************************************************************************************************/
-("Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"),
-("Fiorung | Fiora / Shulk"),
+("Alvis / Shulk"),
 ("Carna | Sharla / Reyn"),
 ("Dunban / Vanea"),
+("Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"),
+("Fiorung | Fiora / Shulk"),
 ("Melia Ancient | Melia Antiqua / Talco | Tyrea"),
 /************************************************************************************************************************************/
 ("Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"),
+("Hikari | Mythra / Homura | Pyra / Niyah | Nia"),
+("Hikari | Mythra / Homura | Pyra / Pneuma / Rex"),
+("Hikari | Mythra / Homura | Pyra / Rex"),
+("Hikari | Mythra / Niyah | Nia"),
 ("Hikari | Mythra / Rex"),
+("Homura | Pyra / Niyah | Nia"),
 ("Homura | Pyra / Rex"),
+("KOS-MOS / Shiki | Adenine"),
+("Meleph | Mòrag Ladair / Satahiko | Mikhail"),
+("Metsu | Malos / Shin | Jin"),
 ("Niyah | Nia / Rex"),
 ("Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria"),
-("Hikari | Mythra / Homura | Pyra / Pneuma / Rex"),
-("Hikari | Mythra / Niyah | Nia"),
-("Homura | Pyra / Niyah | Nia"),
-("Hikari | Mythra / Homura | Pyra / Niyah | Nia"),
-("Meleph | Mòrag Ladair / Satahiko | Mikhail"),
-("Hikari | Mythra / Homura | Pyra / Rex"),
 ("Pneuma / Rex"),
 /************************************************************************************************************************************/
-("Mio / Noah"),
-("Eunie / Taion"),
-("M(io) / N(oah)"),
-("Mio / Sena"),
+("A / Shulk"),
 ("Ashera / Eunie"),
+("Ashera / Eunie"),
+("Eunie / Taion"),
+("Ichika | Irma / Mashiro | Fiona")
 ("Isurugi | Isurd / Taion"),
-("Joran / Noah"),
+("Joran / Lanz"),
 ("Joran / Miyabi"),
+("Joran / Noah"),
 ("Lanz / Sena"),
-("Mio / Miyabi"),
-("Miyabi / Noah"),
+("Linka / Panacea"),
+("M(io) / Mio / N(oah) / Noah"),
+("M(io) / N(oah)"),
+("Melia Ancient | Melia Antiqua / Niyah | Nia"),
 ("Mio / Miyabi / Noah"),
-("M(io) / Mio / N(oah) / Noah");
+("Mio / Miyabi"),
+("Mio / Noah"),
+("Mio / Sena"),
+("Mio / Taion"),
+("Miyabi / Noah"),
+("Niina | Alexandria / Taion"),
+("Rex / Shulk"),;
 
 /*
  * Relations characters
@@ -2852,6 +2900,10 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Melia Ancient | Melia Antiqua / Talco | Tyrea" AND c.`name` = "Melia Ancient | Melia Antiqua"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Melia Ancient | Melia Antiqua / Talco | Tyrea" AND c.`name` = "Talco | Tyrea"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alvis / Shulk" AND c.`name` = "Alvis"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alvis / Shulk" AND c.`name` = "Shulk"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex" AND c.`name` = "Hikari | Mythra"
 UNION 
@@ -2912,6 +2964,14 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Pneuma / Rex" AND c.`name` = "Pneuma"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Pneuma / Rex" AND c.`name` = "Rex"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Metsu | Malos / Shin | Jin" AND c.`name` = "Metsu | Malos"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Metsu | Malos / Shin | Jin" AND c.`name` = "Shin | Jin"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "KOS-MOS / Shiki | Adenine" AND c.`name` = "KOS-MOS"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "KOS-MOS / Shiki | Adenine" AND c.`name` = "Shiki | Adenine"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Noah" AND c.`name` = "Mio"
 UNION 
@@ -2981,4 +3041,40 @@ SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "M(io)
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Kite / Yuzuriha | Juniper" AND c.`name` = "Kite"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Kite / Yuzuriha | Juniper" AND c.`name` = "Yuzuriha | Juniper";
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Kite / Yuzuriha | Juniper" AND c.`name` = "Yuzuriha | Juniper"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Rex / Shulk" AND c.`name` = "Rex"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Rex / Shulk" AND c.`name` = "Shulk"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Linka / Panacea" AND c.`name` = "Linka"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Linka / Panacea" AND c.`name` = "Panacea"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Melia Ancient | Melia Antiqua / Niyah | Nia" AND c.`name` = "Melia Ancient | Melia Antiqua"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Melia Ancient | Melia Antiqua / Niyah | Nia" AND c.`name` = "Niyah | Nia"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "A / Shulk" AND c.`name` = "A"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "A / Shulk" AND c.`name` = "Shulk"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Taion" AND c.`name` = "Mio"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Taion" AND c.`name` = "Taion"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Niina | Alexandria / Taion" AND c.`name` = "Niina | Alexandria"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Niina | Alexandria / Taion" AND c.`name` = "Taion"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Joran / Lanz" AND c.`name` = "Joran"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Joran / Lanz" AND c.`name` = "Lanz"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ashera / Eunie" AND c.`name` = "Ashera"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ashera / Eunie" AND c.`name` = "Eunie"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ichika | Irma / Mashiro | Fiona" AND c.`name` = "Ichika | Irma"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ichika | Irma / Mashiro | Fiona" AND c.`name` = "Mashiro | Fiona";
