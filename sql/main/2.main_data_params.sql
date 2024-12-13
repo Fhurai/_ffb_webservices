@@ -1179,7 +1179,6 @@ VALUES
 ("Daphne Greengrass / Fleur Delacour / Harry Potter / Susan Bones"),
 ("Daphne Greengrass / Gabrielle Delacour / Harry Potter"),
 ("Daphne Greengrass / Gabrielle Delacour"),
-("Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Harry Potter"),
 ("Daphne Greengrass / Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger"),
 ("Daphne Greengrass / Harry Potter / Hermione Granger / Susan Bones"),
 ("Daphne Greengrass / Harry Potter / Hermione Granger"),
@@ -2435,6 +2434,14 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Narcissa Black Malfoy" AND c.`name` = "Hermione Granger"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hermione Granger / Narcissa Black Malfoy" AND c.`name` = "Narcissa Black Malfoy"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Ginevra 'Ginny' Weasley"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Harry Potter"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Hermione Granger"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Susan Bones"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 
@@ -2854,6 +2861,16 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tayuya / Uzumaki Naruto / Yamanaka Ino" AND c.`name` = "Uzumaki Naruto"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Tayuya / Uzumaki Naruto / Yamanaka Ino" AND c.`name` = "Yamanaka Ino"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Haruno Mebuki / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Haruno Mebuki / Uzumaki Naruto" AND c.`name` = "Haruno Mebuki"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Haruno Mebuki / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sabaku no Temari / Uzumaki Naruto" AND c.`name` = "Sabaku no Temari"
+UNION 
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sabaku no Temari / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
 UNION /************************************************************************************************************************************/
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Tracer | Lena Oxton"
 UNION 
