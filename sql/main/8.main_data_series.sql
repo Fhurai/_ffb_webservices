@@ -41,7 +41,8 @@ VALUES ("From Innocent Feelings to Post Crisis", "Tifa's journey from Nibelheim 
 ("The Blades of Elysium", ""),
 ("Adventures in New Alrest", "Join Rex and his friends in their adventures across New Alrest (and possibly further, later in the series). Multiple one-shots with minor story arcs. Maybe even a big one at some point. Notes: The main reason for me having all this in the same series is because for most of my Xenoblade 2 fics, the same head canon will apply, that way you don't get too confused with my lore."),
 ("The weight of life", "the weight of life is a collection of my xbc3 fics that are written to be roughly interconnected. you don't need to read them all, or in order, but doing so will probably grant you a greater understanding of the headcanons and worldbuilding present in the fics. Series order is roughly chronological with respect to the in game timeline. Whether it is mentioned or not, know that noah, mio, eunie and taion are all trans. as of what's posted now and my own personal takes, i read lanz and sena as cis, or at least not binary trans (i could see demigirl sena). all fics will be pre polyboros polycule, or have polyboros polycule. that's the agenda. N and m are cis. yes. i needed to absolutely make this more complicated than it had to be. Noah/mio owns my entire heart. polyboros agenda but Just Know This."),
-("Momentary Weakness", "This series focuses on the relationship between the Queen of Agnus and the Zephyr of Ouroboros, both in Aionios during the course of Xenoblade Chronicles 3, and in the world they originated from in Xenoblade Chronicles 2.This series contains references to my Xenoblade Chronicles 2 longfic 'The House That Rex Built'");
+("Momentary Weakness", "This series focuses on the relationship between the Queen of Agnus and the Zephyr of Ouroboros, both in Aionios during the course of Xenoblade Chronicles 3, and in the world they originated from in Xenoblade Chronicles 2.This series contains references to my Xenoblade Chronicles 2 longfic 'The House That Rex Built'"),
+("Story of the Sword Demon", "");
 
 /*
  * Series fanfictions
@@ -391,4 +392,10 @@ SELECT s.id, f.id, 4 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f
 UNION
 SELECT s.id, f.id, 5 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Momentary Weakness" AND f.name = "Fledglings" AND a.name = "Rozteka"
 UNION
-SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Momentary Weakness" AND f.name = "Endless Strength" AND a.name = "Rozteka";
+SELECT s.id, f.id, 6 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Momentary Weakness" AND f.name = "Endless Strength" AND a.name = "Rozteka"
+UNION /************************************************************************************************************************************/
+SELECT s.id, f.id, 1 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Story of the Sword DemonSeries" AND f.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar"
+UNION
+SELECT s.id, f.id, 2 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Story of the Sword DemonSeries" AND f.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar"
+UNION
+SELECT s.id, f.id, 3 FROM series s, fanfictions f INNER JOIN authors a ON a.id=f.author_id WHERE s.name = "Story of the Sword DemonSeries" AND f.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar";
