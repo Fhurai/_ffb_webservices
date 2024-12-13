@@ -8247,4 +8247,926 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk " AND f.name = "Xenoblade Chronicles 1"
 UNION
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion " AND f.name = "Xenoblade Chronicles 3";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memories of the Stoutheart and the Queen" AND a.name = "ZAD_GX" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion " AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "And Those We've Left Behind" AND a.name = "Perciatelli" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "And Those We've Left Behind" AND a.name = "Perciatelli" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashera" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Na'el" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Campfire Conversations" AND a.name = "Discar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Carna | Sharla" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dickson" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Many Parts of One Identity" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Vanea" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alpha" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alvis" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benkei | Patroka" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Carna | Sharla" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Jikarao | Wulfric" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kubira | Dagas" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Meleph | Mòrag Ladair" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Metsu | Malos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nami | Nimue" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nanakoori | Ursula" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Reyn" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riki" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Satahiko | Mikhail" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shiki | Adenine" AND f.name = "Xenoblade Chronicles"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shin | Jin" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Theory" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tora" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Uka | Nim" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Vasara | Perceval" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yoshitsune | Akhos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "We’ll meet again" AND a.name = "Za_Waruldo_is_MINE" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Pangram" AND a.name = "SirTeateiMoonlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Scavenger's Code, Number Eight" AND a.name = "Looking4Amuro" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Scavenger's Code, Number Eight" AND a.name = "Looking4Amuro" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Scavenger's Code, Number Eight" AND a.name = "Looking4Amuro" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "M" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "X" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Y" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Ye Shall Be As Gods" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Caring Hand" AND a.name = "Exhausted_Sloth" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Scars We Carry" AND a.name = "Minmei" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ashera" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Scars We Carry" AND a.name = "Minmei" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Maybach" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Scars We Carry" AND a.name = "Minmei" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Scars We Carry" AND a.name = "Minmei" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shidou | Teach" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Byakko | Dromarch" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hana | Poppi" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kino" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Suzaku | Roc" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Talco | Tyrea" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tora" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Reyn" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riki - Character" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Moments Before Midnight" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nene" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The rhapsodist" AND a.name = "Archangelgf" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The rhapsodist" AND a.name = "Archangelgf" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Origin Archive" AND a.name = "Lumailia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alvis" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Origin Archive" AND a.name = "Lumailia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Origin Archive" AND a.name = "Lumailia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Origin Archive" AND a.name = "Lumailia" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Love Me Like That" AND a.name = "OathkeeperAlexis" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Love Me Like That" AND a.name = "OathkeeperAlexis" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Love Me Like That" AND a.name = "OathkeeperAlexis" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Love Me Like That" AND a.name = "OathkeeperAlexis" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Meleph | Mòrag Ladair" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nephel | Niall Ardanach" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Saika | Pandoria" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Talco | Tyrea" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tora" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Vanea" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "1+1=1" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Red Left Hand of Fate" AND a.name = "Raelhorn" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mashiro | Fiona" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Aionios High 101" AND a.name = "AioniosHigh" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Zeon" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alvis" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Joran" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Forever Interlinked: Futures Redeemed" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hot and cold" AND a.name = "Sylvalum" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hot and cold" AND a.name = "Sylvalum" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shania Reid" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hana | Poppi" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Hero Quest: The Sword Demon Of Agnus" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ghondor Vandham Jr." AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miyabi" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Monica Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "X" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Y" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "An Aegisborn in Aionios" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "D(irk)" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Joran" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "N(oah)" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Power Of a Demon" AND a.name = "The_Warrior_And_The_Scholar" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Byakko | Dromarch" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Carna | Sharla" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Georgie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hana | Poppi" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagutsuchi | Brighid" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kino" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Meleph | Mòrag Ladair" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nene" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia " AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex " AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Reyn" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Saika | Pandoria" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Suzaku | Roc" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Talco | Tyrea" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tora " AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stronger Together" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hana | Poppi" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Stasis" AND a.name = "AceAxolotl" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ethel" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Metsu | Malos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Drifting soul" AND a.name = "Orpheus_under_starlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Beginning's End" AND a.name = "BtrSwt" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Beginning's End" AND a.name = "BtrSwt" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Beginning's End" AND a.name = "BtrSwt" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Beginning's End" AND a.name = "BtrSwt" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Beginning's End" AND a.name = "BtrSwt" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "As Nature Intended?" AND a.name = "KittykatOwO" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "As Nature Intended?" AND a.name = "KittykatOwO" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ghondor Vandham Sr." AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "M" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "N" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The N stands for ""Not having a good time""" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Z" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "M" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "N" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Our Repentance" AND a.name = "ValorFennekin34" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "All my dreams come true" AND a.name = "Tbat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Saika | Pandoria" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "All my dreams come true" AND a.name = "Tbat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagutsuchi | Brighid" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Meleph | Mòrag Ladair" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OFC" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Saika | Pandoria" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Second Chances" AND a.name = "Little_Anxiety_Plant" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Tales of Interlinked Worlds" AND a.name = "ArcaneMadman" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Tales of Interlinked Worlds" AND a.name = "ArcaneMadman" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Tales of Interlinked Worlds" AND a.name = "ArcaneMadman" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Visions of Another" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Visions of Another" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Visions of Another" AND a.name = "Secret_Artistry" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ghondor Vandham Jr." AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shania Reid" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Goldenrod" AND a.name = "Eryth_sea" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "X" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Future Awaits" AND a.name = "Halteclare" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Future Awaits" AND a.name = "Halteclare" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Future Awaits" AND a.name = "Halteclare" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "A" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Storms" AND a.name = "MementoVive" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Bolearis" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mashiro | Fiona" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Metsu | Malos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "End's Journey" AND a.name = "MissMiccy" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Triton" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Benkei | Patroka" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Metsu | Malos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miyabi" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Satahiko | Mikhail" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shin | Jin" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yoshitsune | Akhos" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "First Chance" AND a.name = "Blumbrr" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Zantetsu | Sever" AND f.name = "Xenoblade Chronicles 2"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Byakko | Dromarch" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ghondor Vandham Sr." AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ghondor Vandham Jr." AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Joran" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Manana" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miyabi" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Na'el" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shania Reid" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "The Gift of Unity" AND a.name = "DewitLater" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Talco | Tyrea" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Triad" AND a.name = "Rozteka" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Triad" AND a.name = "Rozteka" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miyabi" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Triad" AND a.name = "Rozteka" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Romance Stories for the Half-Homs Girl" AND a.name = "Rozteka" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Isurugi | Isurd" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nami | Nimue" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niina | Alexandria" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Loving you is a losing game" AND a.name = "BelgianPallasCat" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Alvis" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Byakko | Dromarch" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Carna | Sharla" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Crys" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Dunban" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Emmy Leater" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Eunie" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Fiorung | Fiora" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hana | Poppi" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hibana | Crossette" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Hikari | Mythra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Homura | Pyra" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ichika | Irma" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Joran" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "KOS-MOS" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagutsuchi | Brighid" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kino" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linada" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mashiro | Fiona" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Meleph | Mòrag Ladair" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mikumari | Praxis" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mir'liez" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Miyabi" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nene" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niyah | Nia" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Niina | Alexandria" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nopon Archsage" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Rex" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Reyn" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riki" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Saika | Pandoria" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Satahiko | Mikhail" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Seiryuu | Azurda" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Sena" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shania Reid" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shidou | Teach" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shiki | Adenine" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Shulk" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Taion" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Talco | Tyrea" AND f.name = "Xenoblade Chronicles 1"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Theory" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Tora" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Yuzuriha | Juniper" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Ozychlyrus Brounev Tantal | Zeke von Genbu" AND f.name = "Xenoblade Chronicles 2"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Memory Husks" AND a.name = "Aionian_Lucario" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Zeon" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Parent's Secret" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Parent's Secret" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Parent's Secret" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Parent's Secret" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "A Parent's Secret" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Kagiroi | Glimmer" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Linka" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "M" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Matthew Vandham" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Na'el" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nami | Nimue" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Nikol" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Panacea" AND f.name = "Xenoblade Chronicles Series 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "(Re)unions" AND a.name = "Nopeisok" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Riku" AND f.name = "Xenoblade Chronicles Series 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = " Lanz" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Mio" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Noah" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC " AND f.name = "Xenoblade Chronicles 3"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1";
