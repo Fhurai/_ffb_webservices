@@ -1,6 +1,6 @@
 <?php
 
-readonly class Parameters implements JsonSerializable
+abstract readonly class Parameters implements JsonSerializable
 {
 
     private int $id;
