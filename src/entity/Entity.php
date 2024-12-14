@@ -77,7 +77,7 @@ abstract class Entity implements JsonSerializable
      * 
      * @return DateTime
      */
-    public function getDeleteDate(): DateTime
+    public function getDeleteDate(): ?DateTime
     {
         return $this->delete_date;
     }
