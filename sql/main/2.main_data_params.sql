@@ -4,7 +4,7 @@
  * Users
  */
 DELETE FROM `users`;
-INSERT INTO `users` (`username`,`password`,`email`,`is_admin`, `is_local`, `view_nsfw`,`birthday`) 
+INSERT INTO `users` (`username`,`password`,`email`,`is_admin`, `is_local`, `is_nsfw`,`birthday`) 
 VALUES ("Admin", "$2y$10$R3VHp4v5P1okSgInzICW8u/jUcbfufXzbiKqfegVW6gljo0iuwla6", "kulu57@live.com", 1, 1, 1, "1970-01-01 00:00:01"), 
 ("Guest", "", "luku@free.fr", 0, 1, 0, "1970-01-01 00:00:01"),
 ("Fhurai", "$2y$10$B.KiKRiqYNSshmJXEWZJKuuf3g6pQVx0mNNjvf.udRMlS4hlmy3lq", "kulu57@gmail.com", 0, 1, 1, "1992-12-21 23:30:00");
