@@ -1,2 +1,5 @@
 .vscode/*
+
 initNAS.sh
+
+tests/tests.php
