@@ -20,8 +20,9 @@ class Author extends NamedEntity
             $getFunction = parent::getterFunction($key);
             $setFunction = parent::setterFunction($key);
 
-            if ($entity->$getFunction() instanceof DateTime) {
-                $entity->$setFunction(DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")));
+            if ($entity->$getFunction()) {
+                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
+                $entity->$setFunction($date);
             } else {
                 $entity->$setFunction($data);
             }

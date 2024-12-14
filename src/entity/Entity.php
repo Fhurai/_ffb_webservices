@@ -6,7 +6,7 @@ abstract class Entity implements JsonSerializable
     private int $id;
     private DateTime $creation_date;
     private DateTime $update_date;
-    private DateTime $delete_date;
+    private ?DateTime $delete_date;
 
 
     /**
@@ -87,7 +87,7 @@ abstract class Entity implements JsonSerializable
      * @param DateTime $delete_date
      * @return void
      */
-    public function setDeleteDate(DateTime $delete_date){
+    public function setDeleteDate(?DateTime $delete_date = null){
         $this->delete_date = $delete_date;
     }
 
