@@ -62,12 +62,5 @@ abstract readonly class Parameters implements JsonSerializable
      * @param array $data
      * @return Parameters
      */
-    public static function jsonUnserialize($json): Parameters
-    {
-        $parameters = new Parameters();
-        foreach (json_decode($json, true) as $key => $data) {
-            $parameters->$key = $data;
-        }
-        return $parameters;
-    }
+    abstract public static function jsonUnserialize($json): Parameters;
 }
