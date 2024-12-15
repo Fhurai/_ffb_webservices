@@ -1,22 +1,33 @@
 <?php
 
+/**
+ * Readonly abstract class Parameters
+ */
 abstract readonly class Parameters implements JsonSerializable
 {
 
+    /**
+     * Identifier.
+     * @var int
+     */
     private int $id;
+    /**
+     * Name.
+     * @var string
+     */
     private string $name;
 
 
     /**
-     * @param int $id
-     * @param string name
+     * Implied constructor.
      */
     public function __construct()
     {
     }
 
     /**
-     * @return int
+     * Getter Identifier.
+     * @return int Identifier.
      */
     public function getId(): int
     {
@@ -24,7 +35,8 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * @param int $id
+     * Setter Identifier
+     * @param int $id New identifier.
      */
     protected function setId(int $id)
     {
@@ -32,7 +44,8 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * @return string 
+     * Getter Name.
+     * @return string Name.
      */
     public function getName(): string
     {
@@ -40,7 +53,8 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * @param string $name
+     * Setter Name.
+     * @param string $name new Name.
      */
     protected function setName(string $name)
     {
@@ -48,7 +62,8 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * @return array
+     * Method to parse parameters into an array for JSON parsing.
+     * @return array Array of parameters data.
      */
     public function jsonSerialize(): mixed
     {
@@ -59,8 +74,29 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * @param array $data
-     * @return Parameters
+     * Method to parse a JSON string into an action object.
+     * @param string $json JSON string.
+     * @return mixed Parsed object.
      */
-    abstract public static function jsonUnserialize($json): Parameters;
+    public static function jsonUnserialize($json): mixed
+    {
+        // Create paramters with the child class.
+        $parameters = static::getNewObject();
+
+        // JSON string is parsed as an array then browsed.
+        foreach (json_decode($json, true) as $key => $data) {
+            // Foreach property, the set method is generated then used on the provided data.
+            $function = "set" . ucfirst($key);
+            $parameters->$function($data);
+        }
+
+        // The new parameters is returned.
+        return $parameters;
+    }
+
+    /**
+     * Abstract method to create a new child object.
+     * @return mixed The child object.
+     */
+    public abstract static function getNewObject(): mixed;
 }

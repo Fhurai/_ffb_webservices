@@ -2,12 +2,14 @@
 
 require_once "../src/entity/Parameters.php";
 
+/**
+ * Readonly Rating class.
+ */
 readonly class Rating extends Parameters
 {
 
     /**
-     * @param int $id
-     * @param string name
+     * Implied Constructor.
      */
     public function __construct()
     {
@@ -15,16 +17,11 @@ readonly class Rating extends Parameters
     }
 
     /**
-     * @param string $json
-     * @return Rating
+     * Method to create a new object.
+     * @return mixed the new object.
      */
-    public static function jsonUnserialize($json): Rating
+    public static function getNewObject(): mixed
     {
-        $parameters = new Rating();
-        foreach (json_decode($json, true) as $key => $data) {
-            $function = "set" . ucfirst($key);
-            $parameters->$function($data);
-        }
-        return $parameters;
+        return new self();
     }
 }

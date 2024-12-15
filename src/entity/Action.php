@@ -2,12 +2,14 @@
 
 require_once "../src/entity/Parameters.php";
 
+/**
+ * Readonly Action class.
+ */
 readonly class Action extends Parameters
 {
 
     /**
-     * @param int $id
-     * @param string name
+     * Implied Constructor.
      */
     public function __construct()
     {
@@ -15,16 +17,11 @@ readonly class Action extends Parameters
     }
 
     /**
-     * @param string $json
-     * @return Action
+     * Method to create a new object.
+     * @return mixed the new object.
      */
-    public static function jsonUnserialize($json): Action
+    public static function getNewObject(): mixed
     {
-        $parameters = new Action();
-        foreach (json_decode($json, true) as $key => $data) {
-            $function = "set" . ucfirst($key);
-            $parameters->$function($data);
-        }
-        return $parameters;
+        return new self();
     }
 }
