@@ -39,9 +39,9 @@ abstract class NamedEntity extends Entity {
 
     /**
      * Method to parse NamedEntity into an array for JSON parsing.
-     * @return mixed Array of NamedEntity data.
+     * @return array Array of NamedEntity data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(),[
             "name"=> $this->getName(),

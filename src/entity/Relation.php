@@ -44,9 +44,9 @@ class Relation extends ComplexEntity
 
     /**
      * Method to parse Relation into an array for JSON parsing.
-     * @return mixed Array of Relation data.
+     * @return array Array of Relation data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             "characters_ids" => $this->getCharactersIds(),

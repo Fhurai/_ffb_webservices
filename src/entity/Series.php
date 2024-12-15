@@ -74,9 +74,9 @@ class Series extends ComplexEntity
 
     /**
      * Method to parse Series into an array for JSON parsing.
-     * @return mixed Array of Series data.
+     * @return array Array of Series data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         // If fanfictions property exists,
         // adding it to associations array.

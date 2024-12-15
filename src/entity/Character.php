@@ -45,9 +45,9 @@ class Character extends ComplexEntity
 
     /**
      * Method to parse Character into an array for JSON parsing.
-     * @return mixed Array of Character data.
+     * @return array Array of Character data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             "fandom_id" => $this->getFandomId(),

@@ -68,9 +68,9 @@ class Link extends Entity
 
     /**
      * Method to parse Link into an array for JSON parsing.
-     * @return mixed Array of Link data.
+     * @return array Array of Link data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             "url" => $this->url,

@@ -203,9 +203,9 @@ class User extends Entity
 
     /**
      * Method to parse User into an array for JSON parsing.
-     * @return mixed Array of User data.
+     * @return array Array of User data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             "username" => $this->username,

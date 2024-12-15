@@ -251,9 +251,9 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Method to parse Fanfiction into an array for JSON parsing.
-     * @return mixed Array of Fanfiction data.
+     * @return array Array of Fanfiction data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         // Initialization of the associations array
         $associations = [];

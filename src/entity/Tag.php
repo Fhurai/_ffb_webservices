@@ -70,9 +70,9 @@ class Tag extends ComplexEntity
 
     /**
      * Method to parse Tag into an array for JSON parsing.
-     * @return mixed Array of Tag data.
+     * @return array Array of Tag data.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->getDescription(),
