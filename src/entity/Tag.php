@@ -2,15 +2,26 @@
 
 require_once "../src/entity/ComplexEntity.php";
 
+/**
+ * Tag class.
+ */
 #[AllowDynamicProperties]
 class Tag extends ComplexEntity
 {
 
+    /**
+     * Description.
+     * @var string
+     */
     private string $description;
+    /**
+     * Type_id.
+     * @var int
+     */
     private int $type_id;
 
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
@@ -20,8 +31,8 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * 
-     * @return string
+     * Getter description.
+     * @return string Description.
      */
     public function getDescription(): string
     {
@@ -29,8 +40,8 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * 
-     * @param string $description
+     * Setter description.
+     * @param string $description New Description.
      * @return void
      */
     public function setDescription(string $description): void
@@ -39,8 +50,8 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * 
-     * @return int
+     * Getter Type_id.
+     * @return int Type_id.
      */
     public function getTypeId(): int
     {
@@ -48,8 +59,8 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * 
-     * @param int $type_id
+     * Setter Type_id.
+     * @param int $type_id New Type_id;
      * @return void
      */
     public function setTypeId(int $type_id): void
@@ -58,7 +69,8 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * @return array
+     * Method to parse Tag into an array for JSON parsing.
+     * @return mixed Array of Tag data.
      */
     public function jsonSerialize(): mixed
     {
@@ -69,33 +81,10 @@ class Tag extends ComplexEntity
     }
 
     /**
-     * 
-     * @param mixed $json
-     * @return Tag
+     * Method to create a new Tag.
+     * @return mixed new Tag.
      */
-    public static function jsonUnserialize($json): Tag
-    {
-        $entity = new Tag();
-
-        $properties = parent::getProperties($entity);
-
-        foreach (json_decode($json, true) as $key => $data) {
-
-            if (in_array($key, $properties)) {
-
-                $getFunction = parent::getterFunction($key);
-                $setFunction = parent::setterFunction($key);
-
-                if ($entity->$getFunction() instanceof DateTime) {
-                    $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                    $entity->$setFunction($date);
-                } else {
-                    $entity->$setFunction($data);
-                }
-            } else {
-                $entity->$key = parent::parseDataProperty($key, $data);
-            }
-        }
-        return $entity;
+    public static function getNewObject(): mixed {
+        return new self();
     }
 }

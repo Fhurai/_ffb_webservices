@@ -2,14 +2,21 @@
 
 require_once "../src/entity/ComplexEntity.php";
 
+/**
+ * Character class.
+ */
 #[AllowDynamicProperties]
 class Character extends ComplexEntity
 {
 
+    /**
+     * Fandom_id.
+     * @var int
+     */
     private int $fandom_id;
 
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
@@ -18,8 +25,8 @@ class Character extends ComplexEntity
     }
 
     /**
-     * 
-     * @return int
+     * Getter Fandom_id.
+     * @return int Fandom_id.
      */
     public function getFandomId(): int
     {
@@ -27,8 +34,8 @@ class Character extends ComplexEntity
     }
 
     /**
-     * 
-     * @param int $fandom_id
+     * Setter Fandom_id.
+     * @param int $fandom_id New Fandom_id.
      * @return void
      */
     public function setFandomId(int $fandom_id): void
@@ -37,7 +44,8 @@ class Character extends ComplexEntity
     }
 
     /**
-     * @return array
+     * Method to parse Character into an array for JSON parsing.
+     * @return mixed Array of Character data.
      */
     public function jsonSerialize(): mixed
     {
@@ -47,33 +55,10 @@ class Character extends ComplexEntity
     }
 
     /**
-     * 
-     * @param mixed $json
-     * @return Character
+     * Method to create a new Character.
+     * @return mixed new Character.
      */
-    public static function jsonUnserialize($json): Character
-    {
-        $entity = new Character();
-
-        $properties = parent::getProperties($entity);
-
-        foreach (json_decode($json, true) as $key => $data) {
-
-            if (in_array($key, $properties)) {
-
-                $getFunction = parent::getterFunction($key);
-                $setFunction = parent::setterFunction($key);
-
-                if ($entity->$getFunction() instanceof DateTime) {
-                    $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                    $entity->$setFunction($date);
-                } else {
-                    $entity->$setFunction($data);
-                }
-            } else {
-                $entity->$key = parent::parseDataProperty($key, $data);
-            }
-        }
-        return $entity;
+    public static function getNewObject(): mixed {
+        return new self();
     }
 }

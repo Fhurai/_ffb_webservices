@@ -3,16 +3,27 @@
 require_once "../src/entity/ComplexEntity.php";
 require_once "../src/entity/Evaluable.php";
 
+/**
+ * Series class.
+ */
 #[AllowDynamicProperties]
 class Series extends ComplexEntity
 {
     use Evaluable;
 
+    /**
+     * Description.
+     * @var string
+     */
     private string $description;
+    /**
+     * Fanfictions_ids.
+     * @var array
+     */
     private array $fanfictions_ids;
 
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
@@ -24,7 +35,8 @@ class Series extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Description.
+     * @return string Description.
      */
     public function getDescription(): string
     {
@@ -32,7 +44,9 @@ class Series extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Description.
+     * @param string $description New Description.
+     * @return void
      */
     public function setDescription(string $description): void
     {
@@ -40,7 +54,8 @@ class Series extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Fanfictions_ids.
+     * @return array Fanfictions_ids.
      */
     public function getFanfictionsIds(): array
     {
@@ -48,7 +63,9 @@ class Series extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Fanfictions_ids.
+     * @param array $fanfictions_ids New Fanfictions_ids.
+     * @return void
      */
     public function setFanfictionsIds(array $fanfictions_ids): void
     {
@@ -56,16 +73,19 @@ class Series extends ComplexEntity
     }
 
     /**
-     * @return array
+     * Method to parse Series into an array for JSON parsing.
+     * @return mixed Array of Series data.
      */
     public function jsonSerialize(): mixed
     {
+        // If fanfictions property exists,
+        // adding it to associations array.
         $associations = [];
-
         if(property_exists($this, "fanfictions")){
             $associations["fanfictions"] = $this->fanfictions;
         }
 
+        // Return array of data from Series.
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->description,
             "score_id" => $this->getScoreId(),
@@ -74,33 +94,10 @@ class Series extends ComplexEntity
     }
 
     /**
-     * 
-     * @param mixed $json
-     * @return Character
+     * Method to create a new Series.
+     * @return mixed new Series.
      */
-    public static function jsonUnserialize($json): Series
-    {
-        $entity = new Series();
-
-        $properties = parent::getProperties($entity);
-
-        foreach (json_decode($json, true) as $key => $data) {
-
-            if (in_array($key, $properties)) {
-
-                $getFunction = parent::getterFunction($key);
-                $setFunction = parent::setterFunction($key);
-
-                if ($entity->$getFunction() instanceof DateTime) {
-                    $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                    $entity->$setFunction($date);
-                } else {
-                    $entity->$setFunction($data);
-                }
-            } else {
-                $entity->$key = parent::parseDataProperty($key, $data);
-            }
-        }
-        return $entity;
+    public static function getNewObject(): mixed {
+        return new self();
     }
 }

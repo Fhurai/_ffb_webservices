@@ -3,24 +3,63 @@
 require_once "../src/entity/ComplexEntity.php";
 require_once "../src/entity/Evaluable.php";
 
+/**
+ * Fanfiction class.
+ */
 #[AllowDynamicProperties]
 class Fanfiction extends ComplexEntity
 {
     use Evaluable;
 
+    /**
+     * Author_id.
+     * @var int
+     */
     private int $author_id;
+    /**
+     * Rating_id.
+     * @var int
+     */
     private int $rating_id;
+    /**
+     * Description.
+     * @var string
+     */
     private string $description;
+    /**
+     * Language_id.
+     * @var int
+     */
     private int $language_id;
+    /**
+     * Fandoms_ids.
+     * @var array
+     */
     private array $fandoms_ids;
+    /**
+     * Relation_ids.
+     * @var array
+     */
     private array $relations_ids;
+    /**
+     * Characters_ids.
+     * @var array
+     */
     private array $characters_ids;
+    /**
+     * Tags_ids
+     * @var array
+     */
     private array $tags_ids;
+    /**
+     * Links.
+     * @var array
+     */
     private array $links;
 
 
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
@@ -39,7 +78,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Author_id.
+     * @return int Author_id.
      */
     public function getAuthorId(): int
     {
@@ -47,7 +87,9 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Author_id.
+     * @param int $author_id New Author_id.
+     * @return void
      */
     public function setAuthorId(int $author_id): void
     {
@@ -55,7 +97,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Rating_id.
+     * @return int Rating_id.
      */
     public function getRatingId(): int
     {
@@ -63,7 +106,9 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Rating_id.
+     * @param int $rating_id New Rating_id.
+     * @return void
      */
     public function setRatingId(int $rating_id): void
     {
@@ -71,7 +116,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Description.
+     * @return string Description.
      */
     public function getDescription(): string
     {
@@ -79,7 +125,9 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Description.
+     * @param string $description New Description.
+     * @return void
      */
     public function setDescription(string $description): void
     {
@@ -87,7 +135,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Language_id.
+     * @return int Language_id.
      */
     public function getLanguageId(): int
     {
@@ -95,7 +144,9 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Language_id.
+     * @param string $language_id Language_id.
+     * @return void
      */
     public function setLanguageId(string $language_id): void
     {
@@ -103,7 +154,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Fandomds_ids.
+     * @return array Fandoms_ids.
      */
     public function getFandomsIds(): array
     {
@@ -111,14 +163,18 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Fandoms_ids.
+     * @param array $fandoms_ids new Fandoms_ids.
+     * @return void
      */
     public function setFandomsIds(array $fandoms_ids): void
     {
         $this->fandoms_ids = $fandoms_ids;
     }
+
     /**
-     * 
+     * Getter Relations_ids.
+     * @return array Relations_ids.
      */
     public function getRelationsIds(): array
     {
@@ -126,14 +182,18 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Relations_ids.
+     * @param array $relations_ids Relations_ids.
+     * @return void
      */
     public function setRelationsIds(array $relations_ids): void
     {
         $this->relations_ids = $relations_ids;
     }
+
     /**
-     * 
+     * Getter Characters_Ids.
+     * @return array Characters_Ids.
      */
     public function getCharactersIds(): array
     {
@@ -141,14 +201,18 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Characters_Ids.
+     * @param array $characters_ids New Characters_Ids.
+     * @return void
      */
     public function setCharactersIds(array $characters_ids): void
     {
         $this->characters_ids = $characters_ids;
     }
+
     /**
-     * 
+     * Getter Tags_ids.
+     * @return array Tags_ids.
      */
     public function getTagsIds(): array
     {
@@ -156,7 +220,9 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Tags_ids.
+     * @param array $tags_ids New Tags_ids.
+     * @return void
      */
     public function setTagsIds(array $tags_ids): void
     {
@@ -164,7 +230,8 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Getter Links.
+     * @return array Links.
      */
     public function getLinks(): array
     {
@@ -172,48 +239,68 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
+     * Setter Links.
+     * @param array $links New Links.
+     * @return void
      */
-    public function setLinks(array $links){
+    public function setLinks(array $links)
+    {
         $this->links = $links;
     }
 
 
     /**
-     * @return array
+     * Method to parse Fanfiction into an array for JSON parsing.
+     * @return mixed Array of Fanfiction data.
      */
     public function jsonSerialize(): mixed
     {
+        // Initialization of the associations array
         $associations = [];
 
-        if(property_exists($this, "author")){
+        if (property_exists($this, "author")) {
+            // If author property exists,
+            // adding it to associations array.
             $associations["author"] = $this->author;
         }
 
-        if(property_exists($this, "fandoms")){
+        if (property_exists($this, "fandoms")) {
+            // If fandoms property exists,
+            // adding it to associations array.
             $associations["fandoms"] = $this->fandoms;
         }
 
-        if(property_exists($this, "language")){
+        if (property_exists($this, "language")) {
+            // If language property exists,
+            // adding it to associations array.
             $associations["language"] = $this->language;
         }
 
-        if(property_exists($this, "relations")){
+        if (property_exists($this, "relations")) {
+            // If relations property exists,
+            // adding it to associations array.
             $associations["relations"] = $this->relations;
         }
 
-        if(property_exists($this, "characters")){
+        if (property_exists($this, "characters")) {
+            // If characters property exists,
+            // adding it to associations array.
             $associations["characters"] = $this->characters;
         }
 
-        if(property_exists($this, "tags")){
+        if (property_exists($this, "tags")) {
+            // If tags property exists,
+            // adding it to associations array.
             $associations["tags"] = $this->tags;
         }
 
-        if(property_exists($this, "score")){
+        if (property_exists($this, "score")) {
+            // If score property exists,
+            // adding it to associations array.
             $associations["score"] = $this->score;
         }
 
+        // Return array of data from Fanfiction.
         return array_merge(parent::jsonSerialize(), [
             "author_id" => $this->getAuthorId(),
             "rating_id" => $this->getRatingId(),
@@ -230,33 +317,11 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * 
-     * @param mixed $json
-     * @return Character
+     * Method to create a new Fanfiction.
+     * @return mixed new Fanfiction.
      */
-    public static function jsonUnserialize($json): Fanfiction
+    public static function getNewObject(): mixed
     {
-        $entity = new Fanfiction();
-
-        $properties = parent::getProperties($entity);
-
-        foreach (json_decode($json, true) as $key => $data) {
-
-            if (in_array($key, $properties)) {
-
-                $getFunction = parent::getterFunction($key);
-                $setFunction = parent::setterFunction($key);
-
-                if ($entity->$getFunction() instanceof DateTime) {
-                    $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                    $entity->$setFunction($date);
-                } else {
-                    $entity->$setFunction($data);
-                }
-            } else {
-                $entity->$key = parent::parseDataProperty($key, $data);
-            }
-        }
-        return $entity;
+        return new self();
     }
 }
