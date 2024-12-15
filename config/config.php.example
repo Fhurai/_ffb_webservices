@@ -4,7 +4,7 @@ return [
     "db" => [
         "main" => "ffb_main",
         "stats"=> "ffb_stats",
-        "tests"=> "ff_tests",
+        "tests"=> "ffb_tests",
     ],
     "credentials"=> [
         "host" => "",
