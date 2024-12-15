@@ -1,0 +1,13 @@
+<?php
+
+return [
+    "db" => [
+        "main" => "ffb_main",
+        "stats"=> "ffb_stats",
+        "tests"=> "ff_tests",
+    ],
+    "credentials"=> [
+        "user" => "",
+        "password" => ""
+    ]
+];

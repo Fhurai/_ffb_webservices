@@ -2,4 +2,5 @@
 
 initNAS.sh
 
+config/config.php
 tests/tests.php
