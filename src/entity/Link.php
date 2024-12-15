@@ -2,21 +2,35 @@
 
 require_once "../src/entity/Entity.php";
 
+/**
+ * Link class
+ */
 class Link extends Entity
 {
+    /**
+     * URL.
+     * @var string
+     */
     private string $url;
+    /**
+     * Identifier fanfiction with the link.
+     * @var int
+     */
     private int $fanfiction_id;
 
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
+        $this->setUrl("");
+        $this->setFanfictionId(-1);
     }
 
     /**
-     * 
+     * Getter URL.
+     * @return string URL.
      */
     public function getUrl(): string
     {
@@ -24,7 +38,9 @@ class Link extends Entity
     }
 
     /**
-     * 
+     * Setter URL.
+     * @param string $url new URL.
+     * @return void
      */
     public function setUrl(string $url): void
     {
@@ -32,7 +48,8 @@ class Link extends Entity
     }
 
     /**
-     * 
+     * Getter Identifier fanfiction.
+     * @return int Identifier fanfiction.
      */
     public function getFanfictionId(): int
     {
@@ -40,7 +57,9 @@ class Link extends Entity
     }
 
     /**
-     * 
+     * Setter Identifier fanfiction.
+     * @param int $fanfiction_id new Identifier fanfiction.
+     * @return void
      */
     public function setFanfictionId(int $fanfiction_id): void
     {
@@ -48,7 +67,8 @@ class Link extends Entity
     }
 
     /**
-     * @return array
+     * Method to parse Link into an array for JSON parsing.
+     * @return mixed Array of Link data.
      */
     public function jsonSerialize(): mixed
     {
@@ -58,21 +78,11 @@ class Link extends Entity
         ]);
     }
 
-    public static function jsonUnserialize($json): Link
-    {
-        $entity = new Link();
-        foreach (json_decode($json, true) as $key => $data) {
-
-            $getFunction = parent::getterFunction($key);
-            $setFunction = parent::setterFunction($key);
-
-            if ($entity->$getFunction() instanceof DateTime) {
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $entity->$setFunction($date);
-            } else {
-                $entity->$setFunction($data);
-            }
-        }
-        return $entity;
+    /**
+     * Method to create a new Link.
+     * @return mixed new Link.
+     */
+    public static function getNewObject(): mixed {
+        return new self();
     }
 }
