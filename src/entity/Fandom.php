@@ -2,31 +2,25 @@
 
 require_once "../src/entity/NamedEntity.php";
 
+/**
+ * Fandom class.
+ */
 class Fandom extends NamedEntity
 {
     /**
-     * 
+     * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function jsonUnserialize($json): Fandom
+    /**
+     * Method to create a Fandom.
+     * @return mixed new Fandom.
+     */
+    public static function getNewObject(): mixed
     {
-        $entity = new Fandom();
-        foreach (json_decode($json, true) as $key => $data) {
-
-            $getFunction = parent::getterFunction($key);
-            $setFunction = parent::setterFunction($key);
-
-            if ($entity->$getFunction() instanceof DateTime) {
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $entity->$setFunction($date);
-            } else {
-                $entity->$setFunction($data);
-            }
-        }
-        return $entity;
+        return new self();
     }
 }

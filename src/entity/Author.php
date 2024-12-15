@@ -2,31 +2,25 @@
 
 require_once "../src/entity/NamedEntity.php";
 
+/**
+ * Author class.
+ */
 class Author extends NamedEntity
 {
     /**
-     * 
+     * Implied Constructor
      */
     public function __construct()
     {
         parent::__construct();
     }
 
-    public static function jsonUnserialize($json): Author
+    /**
+     * Method to create a Author.
+     * @return mixed New Author.
+     */
+    public static function getNewObject(): mixed
     {
-        $entity = new Author();
-        foreach (json_decode($json, true) as $key => $data) {
-
-            $getFunction = parent::getterFunction($key);
-            $setFunction = parent::setterFunction($key);
-
-            if ($entity->$getFunction()) {
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $entity->$setFunction($date);
-            } else {
-                $entity->$setFunction($data);
-            }
-        }
-        return $entity;
+        return new self();
     }
 }

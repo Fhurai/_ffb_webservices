@@ -2,12 +2,19 @@
 
 require_once "../src/entity/NamedEntity.php";
 
+/**
+ * Language class.
+ */
 class Language extends NamedEntity
 {
+    /**
+     * Abbreviation.
+     * @var string
+     */
     private string $abbreviation;
 
     /**
-     * 
+     * Constructor.
      */
     public function __construct()
     {
@@ -16,9 +23,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * getAbbreviation
-     * 
-     * @return string
+     * Getter Abbreviation.
+     * @return string Abbreviation.
      */
     public function getAbbreviation(): string
     {
@@ -26,8 +32,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * 
-     * @param string $abbreviation
+     * Setter Abbreviation.
+     * @param string $abbreviation new Abbreviation.
      * @return void
      */
     public function setAbbreviation(string $abbreviation): void
@@ -35,21 +41,12 @@ class Language extends NamedEntity
         $this->abbreviation = $abbreviation;
     }
 
-    public static function jsonUnserialize($json): Language
+    /**
+     * Method to create a new object.
+     * @return mixed the new object.
+     */
+    public static function getNewObject(): mixed
     {
-        $entity = new Language();
-        foreach (json_decode($json, true) as $key => $data) {
-
-            $getFunction = parent::getterFunction($key);
-            $setFunction = parent::setterFunction($key);
-
-            if ($entity->$getFunction() instanceof DateTime) {
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $entity->$setFunction($date);
-            } else {
-                $entity->$setFunction($data);
-            }
-        }
-        return $entity;
+        return new self();
     }
 }

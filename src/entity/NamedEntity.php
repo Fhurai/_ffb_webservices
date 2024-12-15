@@ -2,25 +2,35 @@
 
 require_once "../src/entity/Entity.php";
 
+/**
+ * Abstract class NamedEntity
+ */
 abstract class NamedEntity extends Entity {
+    /**
+     * Name.
+     * @var string
+     */
     private string $name;
 
+    /**
+     * Implied constructor.
+     */
     public function __construct() {
         parent::__construct();
         $this->setName("");
     }
 
     /**
-     * 
-     * @return string
+     * Getter Name.
+     * @return string Name.
      */
     public function getName(): string {
         return $this->name;
     }
 
     /**
-     * 
-     * @param string $name
+     * Setter Name.
+     * @param string $name New Name.
      * @return void
      */
     public function setName(string $name) {
@@ -28,7 +38,8 @@ abstract class NamedEntity extends Entity {
     }
 
     /**
-     * @return array
+     * Method to parse NamedEntity into an array for JSON parsing.
+     * @return mixed Array of NamedEntity data.
      */
     public function jsonSerialize(): mixed
     {
