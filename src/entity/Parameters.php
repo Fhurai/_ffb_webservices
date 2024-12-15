@@ -37,8 +37,9 @@ abstract readonly class Parameters implements JsonSerializable
     /**
      * Setter Identifier
      * @param int $id New identifier.
+     * @return void
      */
-    protected function setId(int $id)
+    protected function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -55,8 +56,9 @@ abstract readonly class Parameters implements JsonSerializable
     /**
      * Setter Name.
      * @param string $name new Name.
+     * @return void
      */
-    protected function setName(string $name)
+    protected function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -74,18 +76,18 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * Method to parse a JSON string into an action object.
+     * Method to parse a JSON string into an parameters object.
      * @param string $json JSON string.
      * @return mixed Parsed object.
      */
     public static function jsonUnserialize($json): mixed
     {
-        // Create paramters with the child class.
+        // Create parameters with the child class.
         $parameters = static::getNewObject();
 
         // JSON string is parsed as an array then browsed.
         foreach (json_decode($json, true) as $key => $data) {
-            // Foreach property, the set method is generated then used on the provided data.
+            // For each property, the set method is generated then used on the provided data.
             $function = "set" . ucfirst($key);
             $parameters->$function($data);
         }
