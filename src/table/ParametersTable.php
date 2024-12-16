@@ -30,14 +30,26 @@ if (file_exists("../entity/TagType.php")) {
     require_once "../src/entity/TagType.php";
 }
 
+/**
+ * Abstract table Parameters.
+ */
 abstract class ParametersTable extends Connection
 {
 
+    /**
+     * Constructor.
+     * @param string $typeConnection
+     */
     public function __construct(string $typeConnection)
     {
         parent::__construct($typeConnection);
     }
 
+    /**
+     * Summary of parseDataParameters
+     * @param array $parameters
+     * @return mixed
+     */
     private function parseDataParameters(array $parameters): mixed
     {
         switch ($this->getTable()) {
@@ -70,7 +82,6 @@ abstract class ParametersTable extends Connection
 
     public function search(?array $args = null): mixed
     {
-        //[Array conditions, Array order[property, direction], Array filter [limit, offset]]
         $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` ";
 
         if (!is_null($args)) {
@@ -83,18 +94,18 @@ abstract class ParametersTable extends Connection
                     if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
                         $query .= $value;
                     } else {
-                        $query .= "= " . $value;
+                        $query .= " = " . $value;
                     }
                     $count++;
                 }
             }
 
             if (array_key_exists("order", $args)) {
-                $query .= "ORDER BY " . $args["order"]["property"] . " " . $args["order"]["direction"];
+                $query .= " ORDER BY " . $args["order"]["property"] . " " . $args["order"]["direction"];
             }
 
             if (array_key_exists("filter", $args)) {
-                $query .= "LIMIT " . $args["filter"]["limit"] . ", " . $args["filter"]["offset"];
+                $query .= " LIMIT " . $args["filter"]["limit"] . ", " . $args["filter"]["offset"];
             }
         }
 
