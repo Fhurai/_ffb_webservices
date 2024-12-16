@@ -6,11 +6,20 @@ if(file_exists("../table/ParametersTable.php")){
     require_once "../src/table/ParametersTable.php";
 }
 
+/**
+ * Table Tag_types.
+ */
 class TagTypesTable extends ParametersTable{
 
+    /**
+     * Constructor.
+     * @param string $typeConnection Connection to use [main/stats/tests].
+     */
     public function __construct(string $typeConnection){
+        // Parent overloading.
         parent::__construct($typeConnection);
 
+        // Initialization of table & columns.
         $this->setTable("tag_types");
         $this->setColumns(["id", "name"]);
     }
