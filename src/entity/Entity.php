@@ -1,5 +1,11 @@
 <?php
 
+if (file_exists("../utilities/SrcUtilities.php")) {
+    require_once "../utilities/SrcUtilities.php";
+} else if (file_exists("../src/utilities/SrcUtilities.php")) {
+    require_once "../src/utilities/SrcUtilities.php";
+}
+
 /**
  * Abstract class Entity
  */
@@ -34,9 +40,9 @@ abstract class Entity implements JsonSerializable
     public function __construct()
     {
         $this->setId(0);
-        $this->setCreationDate(new DateTime());
-        $this->setUpdateDate(new DateTime());
-        $this->setDeleteDate(new DateTime());
+        $this->setCreationDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
+        $this->setUpdateDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
+        $this->setDeleteDate(null);
     }
 
     /**
@@ -133,7 +139,7 @@ abstract class Entity implements JsonSerializable
      * @param string $json JSON string.
      * @return mixed Parsed object.
      */
-    public static function jsonUnserialize($json): User
+    public static function jsonUnserialize($json): mixed
     {
         // Create parameters with the child class.
         $entity = static::getNewObject();
@@ -142,13 +148,14 @@ abstract class Entity implements JsonSerializable
         foreach (json_decode($json, true) as $key => $data) {
 
             // For each property, the set & get methods are generated then used on the provided data.
-            $getFunction = static::gsFunction("get", $key);
-            $setFunction = static::gsFunction("set", $key);
+            $getFunction = SrcUtilities::gsFunction("get", $key);
+            $setFunction = SrcUtilities::gsFunction("set", $key);
 
             if ($entity->$getFunction() instanceof DateTime) {
 
                 // If the property is a datetime, the data is parsed as a datetime only if the data is a not empty string.
                 $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
+                $date = is_array($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s.u", $data["date"], new DateTimeZone("Europe/Paris")) : $date;
 
                 // Once a datetime, the data is set in the property.
                 $entity->$setFunction($date);
@@ -170,41 +177,28 @@ abstract class Entity implements JsonSerializable
     public abstract static function getNewObject(): mixed;
 
     /**
-     * Method to generate getter function from property.
-     * @param string $property Property to get.
-     * @return string The getter function to call.
+     * Method to get properties of ComplexEntity.
+     * @return array Array of properties of the ComplexEntity.
      */
-    protected static function gsFunction(string $prefix, string $property)
+    public static function getProperties(): array
     {
-        // Initialization of variable.
-        $pos = -1;
+        // Initialization of variables.
+        $reflect = new ReflectionClass(static::class);
+        $properties = [];
 
-        // If property begin with "is", this is a boolean who don't have getters beginning with "get".
-        if (strpos($property, "is") !== false && strpos($property, "is") === 0)
-            $function = "";
-        else
-            $function = $prefix;
 
-        // Property name is parsed as an array who is browsed.
-        foreach (str_split($property) as $key => $character) {
-            
-            // If current character is "_" then this is not put into the return value.
-            // The next character is converted to uppercase and put into the return value.
-            // If current character is not "_", then current character is put into the return value.
+        do {
+            // While the reflection of the complexEntity has a parent.
 
-            if ($character === "_") {
-                $pos = $key;
+            // Browing the ComplexEntity properties.
+            foreach ($reflect->getProperties() as $property) {
+
+                // Pushing the current property into the properties array.
+                array_push($properties, $property->getName());
             }
+        } while ($reflect = $reflect->getParentClass());
 
-            if ($pos + 1 === $key) {
-                $function .= strtoupper($character);
-                $pos = -1;
-            } else if ($pos === -1) {
-                $function .= $character;
-            }
-        }
-
-        // The generated getter function is returned.
-        return $function;
+        // Return the properties array.
+        return $properties;
     }
 }

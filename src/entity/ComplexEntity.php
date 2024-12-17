@@ -17,33 +17,6 @@ abstract class ComplexEntity extends NamedEntity
     }
 
     /**
-     * Method to get properties of ComplexEntity.
-     * @param ComplexEntity $complex The ComplexEntity whom properties are seek.
-     * @return array Array of properties of the ComplexEntity.
-     */
-    protected static function getProperties(ComplexEntity $complex)
-    {
-        // Initialization of variables.
-        $reflect = new ReflectionClass($complex);
-        $properties = [];
-
-
-        do {
-            // While the reflection of the complexEntity has a parent.
-
-            // Browing the ComplexEntity properties.
-            foreach ($reflect->getProperties() as $property) {
-                
-                // Pushing the current property into the properties array.
-                array_push($properties, $property->getName());
-            }
-        } while ($reflect = $reflect->getParentClass());
-
-        // Return the properties array.
-        return $properties;
-    }
-
-    /**
      * Method to parse an array into an object.
      * @param string $property_name Name of the property to parse.
      * @param array $data 
