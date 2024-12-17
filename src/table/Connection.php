@@ -105,4 +105,28 @@ class Connection
     protected function setColumns(array $columns): void{
         $this->columns = $columns;
     }
+
+    protected function getPropertiesColumns(): array{
+        $propertiesColumns = [];
+
+        switch($this->table){
+            case "authors":
+                $propertiesColumns = Author::getProperties();
+                break;
+            case "fandoms":
+                $propertiesColumns = Fandom::getProperties();
+                break;
+            case "languages":
+                $propertiesColumns = Language::getProperties();
+                break;
+        }
+
+        return $propertiesColumns;
+    }
+
+    protected function setPropertiesColumns(): void{
+        $propertiesColumns = $this->getPropertiesColumns();
+
+        $this->setColumns($propertiesColumns);
+    }
 }
