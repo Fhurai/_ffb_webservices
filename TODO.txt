@@ -46,7 +46,7 @@ Coté outils
         . Voir si search() peut appeler search() d'une association.
         . GET
     . List (webservice appelle search() method ? Ou list() method ?)
-        . search -> Par défaut, une taille de 25 éléments dans la liste même si permission d'aller jusqu'à un nombre max beaucoup plus grand (100 ? 200 ? 500 ? -> En fonction des objets manipulés)
+        . search -> Par défaut, une taille de 25 éléments dans la liste même si permission d'aller jusqu'à un nombre max beaucoup plus grand (25 ? 50 ? 100 ? -> En fonction des objets manipulés)
         . GET
         . GET /fandoms/{fandomId}/fanfictions => Fanfictions du fandom fandomId
         . /api/fanfictions?limit=100&offset=0
