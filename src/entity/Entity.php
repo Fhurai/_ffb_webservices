@@ -147,11 +147,10 @@ abstract class Entity implements JsonSerializable
         // JSON string is parsed as an array then browsed.
         foreach (json_decode($json, true) as $key => $data) {
 
-            // For each property, the set & get methods are generated then used on the provided data.
-            $getFunction = SrcUtilities::gsFunction("get", $key);
+            // For each property, the set method is generated then used on the provided data.
             $setFunction = SrcUtilities::gsFunction("set", $key);
 
-            if ($entity->$getFunction() instanceof DateTime) {
+            if (in_array($key, ["creation_date", "update_date", "delete_date"])) {
 
                 // If the property is a datetime, the data is parsed as a datetime only if the data is a not empty string.
                 $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;

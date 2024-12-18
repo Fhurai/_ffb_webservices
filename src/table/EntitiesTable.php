@@ -193,7 +193,7 @@ abstract class EntitiesTable extends Connection
 
         try {
             // Preparation of the query.
-            $sth = $this->getDatabase()->prepare($this->getCudQueryString("CREATE"));
+            $sth = $this->getDatabase()->prepare($this->getCurQueryString("CREATE"));
 
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
@@ -228,12 +228,46 @@ abstract class EntitiesTable extends Connection
         }
     }
 
+    public function remove(string $json): mixed
+    {
+        // Begin transaction.
+        $this->getDatabase()->beginTransaction();
+
+        try {
+
+            // Preparation of the query.
+            // $query = $this->getCurQueryString("REMOVE");
+            $sth = $this->getDatabase()->prepare($this->getCurQueryString("REMOVE"));
+
+            // Get object in the correct class.
+            $entity = $this->parseDataParameters(json_decode($json, true));
+
+            // Get data array for execution.
+            $data[":id"] = $entity->getId();
+
+            // Execution of the query with the id parameter.
+            $result = $sth->execute($data);
+
+            // Commit the deletion.
+            $this->getDatabase()->commit();
+
+            // Return the result of the deletion.
+            return $result;
+        } catch (\PDOException $e) {
+            // Exception caught, rollback changes.
+            $this->getDatabase()->rollBack();
+
+            // Throw new Exception with previous exception message.
+            throw new FfbTableException($e->getMessage());
+        }
+    }
+
     /**
      * Method to generate CREATE, UPDATE or DELETE querystring.
      * @param string $action Action whom the querystring is created.
      * @return string The SQL statement to prepare.
      */
-    private function getCudQueryString(string $action): string
+    private function getCurQueryString(string $action): string
     {
         // Get columns without id & delete_date for creation.
         $fileredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
@@ -255,19 +289,22 @@ abstract class EntitiesTable extends Connection
                 return ":$e";
             }, $fileredColumns));
 
-            // End SQL statement.
+            // Return SQL statement + end SQL statement.
             return $query . ")";
         } else if ($action === "UPDATE") {
             // The action is update of entity.
 
             return "";
-        }else if ($action === "DELETE") {
-            // The action is deletion of entity.
+        } else if ($action === "REMOVE") {
+            // The action is physical deletion of entity.
 
-            return "";
+            // SQL statement.
+            $query = "DELETE FROM `" . $this->getTable() . "` WHERE `id` = :id AND `delete_date` IS NOT NULL";
+
+            // Return SQL statement.
+            return $query;
         }
 
-        // Unknown action, return empty string.
-        return "";
+        throw new FfbTableException("Unknown action.");
     }
 }
