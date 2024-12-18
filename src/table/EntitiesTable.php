@@ -199,11 +199,11 @@ abstract class EntitiesTable extends Connection
             $entity = $this->parseDataParameters(json_decode($json, true));
 
             // Get columns without id & delete_date for creation.
-            $fileredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
+            $filteredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
 
             // Get data array for execution.
             $data = [];
-            foreach ($fileredColumns as $column) {
+            foreach ($filteredColumns as $column) {
                 $getFunction = SrcUtilities::gsFunction("get", $column);
                 $data[":" . $column] = is_scalar($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
             }
@@ -262,6 +262,62 @@ abstract class EntitiesTable extends Connection
         }
     }
 
+    public function update(string $json): mixed
+    {
+
+        // Begin transaction.
+        $this->getDatabase()->beginTransaction();
+
+        try {
+            // Preparation of the query.
+            $sth = $this->getDatabase()->prepare($this->getCurQueryString("UPDATE"));
+
+            // Get object in the correct class.
+            $entity = $this->parseDataParameters(json_decode($json, true));
+
+            // Get data array for execution.
+            $data = [];
+            foreach ($this->getColumns() as $column) {
+                $getFunction = SrcUtilities::gsFunction("get", $column);
+                
+                if(is_scalar($entity->$getFunction())){
+                    $data[":" . $column] =  $entity->$getFunction();
+                }else{
+                    $data[":" . $column] = is_null($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
+                }
+            }
+
+            // Execution of the query with the id parameter.
+            $sth->execute($data);
+
+            // Commit the insertion.
+            $this->getDatabase()->commit();
+
+            // Return newly inserted entity.
+            return $this->get($entity->getId());
+        } catch (\PDOException $e) {
+            // Exception caught, rollback changes.
+            $this->getDatabase()->rollBack();
+
+            // Throw new Exception with previous exception message.
+            throw new FfbTableException($e->getMessage());
+        }
+    }
+
+    public function delete(int $id): mixed
+    {
+        $entity = $this->get($id);
+        $entity->setDeleteDate(new \DateTime());
+        return $this->update(json_encode($entity));
+    }
+
+    public function restore(int $id): mixed
+    {
+        $entity = $this->get($id);
+        $entity->setDeleteDate(null);
+        return $this->update(json_encode($entity));
+    }
+
     /**
      * Method to generate CREATE, UPDATE or DELETE querystring.
      * @param string $action Action whom the querystring is created.
@@ -269,11 +325,12 @@ abstract class EntitiesTable extends Connection
      */
     private function getCurQueryString(string $action): string
     {
-        // Get columns without id & delete_date for creation.
-        $fileredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
 
         if ($action === "CREATE") {
             // The action is creation of entity.
+
+            // Get columns without id & delete_date for creation.
+            $filteredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
 
             // Beginning SQL statement.
             $query = "INSERT INTO `" . $this->getTable() . "`(";
@@ -281,28 +338,36 @@ abstract class EntitiesTable extends Connection
             // Field names part for SQL statement.
             $query .= implode(", ", array_map(function ($e) {
                 return "`$e`";
-            }, $fileredColumns));
+            }, $filteredColumns));
 
             // Fields values part for SQL statement.
             $query .= ") VALUES (";
             $query .= implode(", ", array_map(function ($e) {
                 return ":$e";
-            }, $fileredColumns));
+            }, $filteredColumns));
 
             // Return SQL statement + end SQL statement.
             return $query . ")";
         } else if ($action === "UPDATE") {
             // The action is update of entity.
 
-            return "";
+            // Get columns without id & delete_date for creation.
+            $filteredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id"]));
+
+            $query = "UPDATE `" . $this->getTable() . "` SET ";
+
+            $query .= implode(", ", array_map(function ($e) {
+                return "`$e` = :$e";
+            }, $filteredColumns));
+
+            $query .= " WHERE id = :id";
+
+            return $query;
         } else if ($action === "REMOVE") {
             // The action is physical deletion of entity.
 
-            // SQL statement.
-            $query = "DELETE FROM `" . $this->getTable() . "` WHERE `id` = :id AND `delete_date` IS NOT NULL";
-
             // Return SQL statement.
-            return $query;
+            return "DELETE FROM `" . $this->getTable() . "` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         }
 
         throw new FfbTableException("Unknown action.");
