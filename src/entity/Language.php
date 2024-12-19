@@ -49,4 +49,15 @@ class Language extends NamedEntity
     {
         return new self();
     }
+
+    /**
+     * Method to parse NamedEntity into an array for JSON parsing.
+     * @return array Array of NamedEntity data.
+     */
+    public function jsonSerialize(): array
+    {
+        return array_merge(parent::jsonSerialize(),[
+            "abbreviation"=> $this->getAbbreviation(),
+        ]);
+    }
 }
