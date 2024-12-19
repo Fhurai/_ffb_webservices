@@ -198,12 +198,12 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
-            if($entity->getId() !== 0) {
+            if ($entity->getId() !== 0) {
                 // Entity has an id, it cannot be created in DB.
 
                 // Rollback the transaction.
                 $this->getDatabase()->rollBack();
-                
+
                 // Throw exception to notify user.
                 throw new FfbTableException("New entity has an id already !");
             }
@@ -252,14 +252,24 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
-            if($entity->getId() === 0) {
+            if ($entity->getId() === 0) {
                 // Entity has no id.
 
                 // Rollback the transaction.
                 $this->getDatabase()->rollBack();
-                
+
                 // Throw exception to notify the user.
                 throw new FfbTableException("Entity being removed has no id !");
+            }
+
+            if ($entity->getDeleteDate() === null) {
+                // Entity has no delete_date.
+
+                // Rollback the transaction.
+                $this->getDatabase()->rollBack();
+
+                // Throw exception to notify the user.
+                throw new FfbTableException("Entity being removed has no delete date !");
             }
 
             // Get data array for execution.
@@ -282,9 +292,8 @@ abstract class EntitiesTable extends Connection
         }
     }
 
-    public function update(string $json): mixed
+    public function update(string $json, bool $update = true): mixed
     {
-
         // Begin transaction.
         $this->getDatabase()->beginTransaction();
 
@@ -295,26 +304,36 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
-            if($entity->getId() === 0) {
+            if ($entity->getId() === 0) {
                 // Entity to update has no id.
 
                 // Rollback the transaction.
                 $this->getDatabase()->rollBack();
-                
+
                 // Throw exception to notify user.
                 throw new FfbTableException("Entity being updated has no id !");
+            }
+
+            if ($entity->getDeleteDate() !== null && $update) {
+                // Entity has no delete_date.
+
+                // Rollback the transaction.
+                $this->getDatabase()->rollBack();
+
+                // Throw exception to notify the user.
+                throw new FfbTableException("Entity being updated has delete date !");
             }
 
             // Get data array for execution.
             $data = [];
             foreach ($this->getColumns() as $column) {
                 $getFunction = SrcUtilities::gsFunction("get", $column);
-                
-                if(is_scalar($entity->$getFunction())){
+
+                if (is_scalar($entity->$getFunction())) {
 
                     // Value is scalar, so normal getFunction works.
-                    $data[":" . $column] =  $entity->$getFunction();
-                }else{
+                    $data[":" . $column] = $entity->$getFunction();
+                } else {
 
                     // Value is not scalar, so need to pass through format function
                     $data[":" . $column] = is_null($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
@@ -342,14 +361,14 @@ abstract class EntitiesTable extends Connection
     {
         $entity = $this->get($id);
         $entity->setDeleteDate(new \DateTime());
-        return $this->update(json_encode($entity));
+        return $this->update(json_encode($entity), false);
     }
 
     public function restore(int $id): mixed
     {
         $entity = $this->get($id);
         $entity->setDeleteDate(null);
-        return $this->update(json_encode($entity));
+        return $this->update(json_encode($entity), false);
     }
 
     /**
