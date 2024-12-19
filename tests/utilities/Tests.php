@@ -27,7 +27,7 @@ abstract class Tests
      * @param string $actual Actual result.
      * @return void
      */
-    public function addEqualsCheck(string $subject, string $expected, string $actual): void
+    public function addEqualsCheck(string $subject, mixed $expected, mixed $actual): void
     {
         $this->checks[$subject] = $actual === $expected;
     }
@@ -39,7 +39,7 @@ abstract class Tests
      * @param string $actual Actual result.
      * @return void
      */
-    public function addNotEqualsCheck(string $subject, string $expected, string $actual): void
+    public function addNotEqualsCheck(string $subject, mixed $expected, mixed $actual): void
     {
         $this->checks[$subject] = $actual !== $expected;
     }
