@@ -141,7 +141,7 @@ abstract class ParametersTable extends Connection
             if (array_key_exists("order", $args) && is_array($args["order"]) 
                 && array_key_exists("property", $args["order"]) && array_key_exists("direction", $args["order"])) {
                 // If order option exists with its two options, property & direction, addition to querystring.
-                $query .= " ORDER BY " . $args["order"]["property"] . " " . $args["order"]["direction"];
+                $query .= " ORDER BY " . (is_array($args["order"]["property"]) ? implode(", ", $args["order"]["property"]) : $args["order"]["property"]) . " " . $args["order"]["direction"];
             }
 
             if (array_key_exists("filter", $args) && is_array($args["filter"]) 
@@ -160,18 +160,13 @@ abstract class ParametersTable extends Connection
         // Fetch the result of the query.
         $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!$rows) {
-
-            // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->table);
-        } else {
-
+        $result = [];
+        if ($rows) {
             // Data found, return array of objects with that data.
-            $result = [];
             foreach ($rows as $row) {
                 $result[] = $this->parseDataParameters($row);
             }
-            return $result;
         }
+        return $result;
     }
 }
