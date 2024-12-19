@@ -5,7 +5,7 @@ if (file_exists("./utilities/Tests.php"))
 else if (file_exists("../utilities/Tests.php"))
     require_once "../utilities/Tests.php";
 
-class ComplexEntitiesTests extends Tests
+class NamedEntitiesTests extends Tests
 {
     /**
      * Implied constructor.
@@ -13,29 +13,23 @@ class ComplexEntitiesTests extends Tests
     public function __construct()
     {
         parent::__construct();
+
+        $this->testsAuthors();
+        $this->testsFandoms();
+        $this->testsLanguages();
     }
 
-    public function testsTags(): void
+    public function testsAuthors():void
     {
 
     }
 
-    public function testsCharacters(): void
+    public function testsFandoms():void
     {
 
     }
 
-    public function testsRelations(): void
-    {
-
-    }
-
-    public function testsFanfictions(): void
-    {
-
-    }
-
-    public function testsSeries(): void
+    public function testsLanguages(): void
     {
 
     }

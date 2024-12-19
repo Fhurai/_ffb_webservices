@@ -35,6 +35,8 @@ class ParametersTests extends Tests
      */
     public function __construct()
     {
+        parent::__construct();
+        
         // Do all tests.
         $this->testsRatings();
         $this->testsScores();

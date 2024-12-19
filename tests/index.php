@@ -1,8 +1,14 @@
 <?php
 
 require_once "./bdd/ParametersTests.php";
+require_once "./bdd/EntitiesTests.php";
+require_once "./bdd/NamedEntitiesTests.php";
+require_once "./bdd/ComplexEntitiesTests.php";
 
 $parameters = new ParametersTests();
+$entities = new EntitiesTests();
+$named = new NamedEntitiesTests();
+$complex = new ComplexEntitiesTests();
 ?>
 
 <!DOCTYPE html>
@@ -18,23 +24,24 @@ $parameters = new ParametersTests();
 <body>
     <h2>DB Tests</h2>
     <p>All tests about DB accesses</p>
+    <?php foreach(["Parameters" => $parameters, "Entities" => $entities, "Named entities" => $named, "Complex entities" => $complex] as $key => $test): ?>
     <table>
-        <thead class="<?= $parameters->testCheck() ? "success" : "fail" ?>">
+        <thead class="<?= $test->testCheck() ? "success" : "fail" ?>">
             <tr>
                 <th colspan="4">
-                    Total Parameters checks :
-                    <?= $parameters->testCheck() ? "All tests succeed !" : "At least one test failed !" ?>
+                    Total <?= $key ?> checks :
+                    <?= $test->testCheck() ? "All tests succeed !" : "At least one test failed !" ?>
                 </th>
             </tr>
             <tr>
                 <th>Class</th>
                 <th>Method</th>
-                <th>Verification</th>
+                <th>Subject</th>
                 <th>Success</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($parameters->getChecksArray() as $libelle => $value): ?>
+            <?php foreach ($test->getChecksArray() as $libelle => $value): ?>
                 <tr class="<?= $value ? "success" : "fail" ?>">
                     <?php $libelleParts = explode("_", $libelle); ?>
                     <td><?= $libelleParts[0] ?></td>
@@ -51,6 +58,7 @@ $parameters = new ParametersTests();
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php endforeach; ?>
 </body>
 
 </html>
