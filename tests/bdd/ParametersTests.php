@@ -53,46 +53,46 @@ class ParametersTests extends Tests
         $ratingsTable = new RatingsTable("tests");
 
         $parameter = $ratingsTable->get(1);
-        $this->addCheck("Ratings_GET_id", 1, $parameter->getId());
-        $this->addCheck("Ratings_GET_name", "K+ / 7", $parameter->getName());
+        $this->addEqualsCheck("Ratings_GET_id", 1, $parameter->getId());
+        $this->addEqualsCheck("Ratings_GET_name", "K+ / 7", $parameter->getName());
 
         try {
             $parameter = $ratingsTable->get(6);
-            $this->addCheck("Ratings_GET_exception",1, 0);
+            $this->addEqualsCheck("Ratings_GET_exception",1, 0);
         } catch (FfbTableException $e) {
-            $this->addCheck("Ratings_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Ratings_GET_exception", FfbTableException::class, $e::class);
         }
 
 
         $parameters = $ratingsTable->search();
-        $this->addCheck("Ratings_SEARCH_complete_count", 5, count($parameters));
-        $this->addCheck("Ratings_SEARCH_complete_min", 0, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_complete_count", 5, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_complete_min", 0, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $ratingsTable->search(["conditions" => ["name" => "LIKE 'K%'"]]);
-        $this->addCheck("Ratings_SEARCH_conditions_count", 2, count($parameters));
-        $this->addCheck("Ratings_SEARCH_conditions_min", 0, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_conditions_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_conditions_min", 0, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_conditions_max", 1, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $ratingsTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("Ratings_SEARCH_order_count", 5, count($parameters));
-        $this->addCheck("Ratings_SEARCH_order_min", 2, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_order_max", 0, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_count", 5, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_order_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_max", 0, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $ratingsTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
-        $this->addCheck("Ratings_SEARCH_filter_count", 3, count($parameters));
-        $this->addCheck("Ratings_SEARCH_filter_min", 2, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_filter_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $ratingsTable->search(["conditions" => ["name" => "LIKE 'M%'"], "order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("Ratings_SEARCH_order_conditions_count", 2, count($parameters));
-        $this->addCheck("Ratings_SEARCH_order_conditions_min", 4, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_order_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_order_conditions_min", 4, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $ratingsTable->search(["filter" => ["limit" => 2, "offset" => 3], "order" => ["property" => ["id"], "direction" => "DESC"]]);
-        $this->addCheck("Ratings_SEARCH_order_filter_count", 3, count($parameters));
-        $this->addCheck("Ratings_SEARCH_order_filter_min", 2, $parameters[0]->getId());
-        $this->addCheck("Ratings_SEARCH_order_filter_max", 0, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Ratings_SEARCH_order_filter_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_order_filter_max", 0, $parameters[count($parameters) - 1]->getId());
     }
 
     /**
@@ -104,45 +104,45 @@ class ParametersTests extends Tests
         $scoresTable = new ScoresTable("tests");
 
         $parameter = $scoresTable->get(1);
-        $this->addCheck("Scores_GET_id", 1, $parameter->getId());
-        $this->addCheck("Scores_GET_name", "Poor", $parameter->getName());
+        $this->addEqualsCheck("Scores_GET_id", 1, $parameter->getId());
+        $this->addEqualsCheck("Scores_GET_name", "Poor", $parameter->getName());
 
         try {
             $parameter = $scoresTable->get(6);
-            $this->addCheck("Scores_GET_exception",1, 0);
+            $this->addEqualsCheck("Scores_GET_exception",1, 0);
         } catch (FfbTableException $e) {
-            $this->addCheck("Scores_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Scores_GET_exception", FfbTableException::class, $e::class);
         }
 
         $parameters = $scoresTable->search();
-        $this->addCheck("Scores_SEARCH_complete_count", 6, count($parameters));
-        $this->addCheck("Scores_SEARCH_complete_min", 0, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_complete_count", 6, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_complete_min", 0, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $scoresTable->search(["conditions" => ["name" => "LIKE '%acceptable%'"]]);
-        $this->addCheck("Scores_SEARCH_conditions_count", 2, count($parameters));
-        $this->addCheck("Scores_SEARCH_conditions_min", 0, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_conditions_min", 0, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $scoresTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("Scores_SEARCH_order_count", 6, count($parameters));
-        $this->addCheck("Scores_SEARCH_order_min", 0, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_order_max", 3, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_count", 6, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_order_min", 0, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_max", 3, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $scoresTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
-        $this->addCheck("Scores_SEARCH_filter_count", 3, count($parameters));
-        $this->addCheck("Scores_SEARCH_filter_min", 2, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_filter_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $scoresTable->search(["conditions" => ["name" => "LIKE '%oo%'"], "order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("Scores_SEARCH_order_conditions_count", 2, count($parameters));
-        $this->addCheck("Scores_SEARCH_order_conditions_min", 1, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_order_conditions_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_order_conditions_min", 1, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_conditions_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $scoresTable->search(["filter" => ["limit" => 2, "offset" => 3], "order" => ["property" => ["id"], "direction" => "DESC"]]);
-        $this->addCheck("Scores_SEARCH_order_filter_count", 3, count($parameters));
-        $this->addCheck("Scores_SEARCH_order_filter_min", 3, $parameters[0]->getId());
-        $this->addCheck("Scores_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Scores_SEARCH_order_filter_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
     }
 
     /**
@@ -154,45 +154,45 @@ class ParametersTests extends Tests
         $actionsTable = new ActionsTable("tests");
 
         $parameter = $actionsTable->get(1);
-        $this->addCheck("Actions_GET_id", 1, $parameter->getId());
-        $this->addCheck("Actions_GET_name", "CREATION", $parameter->getName());
+        $this->addEqualsCheck("Actions_GET_id", 1, $parameter->getId());
+        $this->addEqualsCheck("Actions_GET_name", "CREATION", $parameter->getName());
 
         try {
             $parameter = $actionsTable->get(6);
-            $this->addCheck("Actions_GET_exception",1, 0);
+            $this->addEqualsCheck("Actions_GET_exception",1, 0);
         } catch (FfbTableException $e) {
-            $this->addCheck("Actions_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Actions_GET_exception", FfbTableException::class, $e::class);
         }
 
         $parameters = $actionsTable->search();
-        $this->addCheck("Actions_SEARCH_complete_count", 5, count($parameters));
-        $this->addCheck("Actions_SEARCH_complete_min", 1, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_complete_count", 5, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_complete_min", 1, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $actionsTable->search(["conditions" => ["name" => "LIKE 'RE%'"]]);
-        $this->addCheck("Actions_SEARCH_conditions_count", 2, count($parameters));
-        $this->addCheck("Actions_SEARCH_conditions_min", 4, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_conditions_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_conditions_min", 4, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_conditions_max", 5, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $actionsTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("Actions_SEARCH_order_count", 5, count($parameters));
-        $this->addCheck("Actions_SEARCH_order_min", 2, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_order_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_count", 5, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_order_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_max", 1, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $actionsTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
-        $this->addCheck("Actions_SEARCH_filter_count", 3, count($parameters));
-        $this->addCheck("Actions_SEARCH_filter_min", 3, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_filter_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_filter_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_filter_max", 5, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $actionsTable->search(["conditions" => ["name" => "LIKE '%TE%'"], "order" => ["property" => ["name"], "direction" => "ASC"]]);
-        $this->addCheck("Actions_SEARCH_order_conditions_count", 2, count($parameters));
-        $this->addCheck("Actions_SEARCH_order_conditions_min", 3, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_order_conditions_max", 2, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_order_conditions_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_conditions_max", 2, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $actionsTable->search(["filter" => ["limit" => 2, "offset" => 3], "order" => ["property" => ["id"], "direction" => "DESC"]]);
-        $this->addCheck("Actions_SEARCH_order_filter_count", 3, count($parameters));
-        $this->addCheck("Actions_SEARCH_order_filter_min", 3, $parameters[0]->getId());
-        $this->addCheck("Actions_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_filter_count", 3, count($parameters));
+        $this->addEqualsCheck("Actions_SEARCH_order_filter_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
     }
 
     /**
@@ -204,44 +204,44 @@ class ParametersTests extends Tests
         $tagTypesTable = new TagTypesTable("tests");
 
         $parameter = $tagTypesTable->get(1);
-        $this->addCheck("TagTypes_GET_id", 1, $parameter->getId());
-        $this->addCheck("TagTypes_GET_name", "Genre", $parameter->getName());
+        $this->addEqualsCheck("TagTypes_GET_id", 1, $parameter->getId());
+        $this->addEqualsCheck("TagTypes_GET_name", "Genre", $parameter->getName());
 
         try {
             $parameter = $tagTypesTable->get(6);
-            $this->addCheck("TagTypes_GET_exception",1, 0);
+            $this->addEqualsCheck("TagTypes_GET_exception",1, 0);
         } catch (FfbTableException $e) {
-            $this->addCheck("TagTypes_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("TagTypes_GET_exception", FfbTableException::class, $e::class);
         }
 
         $parameters = $tagTypesTable->search();
-        $this->addCheck("TagTypes_SEARCH_complete_count", 4, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_complete_min", 1, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_complete_count", 4, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_complete_min", 1, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $tagTypesTable->search(["conditions" => ["name" => "LIKE 'Relation%'"]]);
-        $this->addCheck("TagTypes_SEARCH_conditions_count", 1, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_conditions_min", 3, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_conditions_count", 1, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_conditions_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $tagTypesTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
-        $this->addCheck("TagTypes_SEARCH_order_count", 4, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_order_min", 2, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_order_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_count", 4, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_order_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_max", 1, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $tagTypesTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
-        $this->addCheck("TagTypes_SEARCH_filter_count", 2, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_filter_min", 3, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_filter_count", 2, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_filter_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $tagTypesTable->search(["conditions" => ["name" => "LIKE '%el%'"], "order" => ["property" => ["name"], "direction" => "ASC"]]);
-        $this->addCheck("TagTypes_SEARCH_order_conditions_count", 2, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_order_conditions_min", 3, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_order_conditions_max", 2, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_conditions_count", 2, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_order_conditions_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_conditions_max", 2, $parameters[count($parameters) - 1]->getId());
 
         $parameters = $tagTypesTable->search(["filter" => ["limit" => 2, "offset" => 3], "order" => ["property" => ["id"], "direction" => "DESC"]]);
-        $this->addCheck("TagTypes_SEARCH_order_filter_count", 2, count($parameters));
-        $this->addCheck("TagTypes_SEARCH_order_filter_min", 2, $parameters[0]->getId());
-        $this->addCheck("TagTypes_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_filter_count", 2, count($parameters));
+        $this->addEqualsCheck("TagTypes_SEARCH_order_filter_min", 2, $parameters[0]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_order_filter_max", 1, $parameters[count($parameters) - 1]->getId());
     }
 }

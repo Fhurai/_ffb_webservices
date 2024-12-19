@@ -21,15 +21,27 @@ abstract class Tests
     }
 
     /**
-     * Method to stock result of one test.
+     * Method to stock result of one equals test.
      * @param string $subject Subject of test.
      * @param string $expected Expected result.
      * @param string $actual Actual result.
      * @return void
      */
-    public function addCheck(string $subject, string $expected, string $actual): void
+    public function addEqualsCheck(string $subject, string $expected, string $actual): void
     {
         $this->checks[$subject] = $actual === $expected;
+    }
+
+    /**
+     * Method to stock result of one notEquals test.
+     * @param string $subject Subject of test.
+     * @param string $expected Expected result.
+     * @param string $actual Actual result.
+     * @return void
+     */
+    public function addNotEqualsCheck(string $subject, string $expected, string $actual): void
+    {
+        $this->checks[$subject] = $actual !== $expected;
     }
 
     /**
