@@ -198,6 +198,16 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
+            if($entity->getId() !== 0) {
+                // Entity has an id, it cannot be created in DB.
+
+                // Rollback the transaction.
+                $this->getDatabase()->rollBack();
+                
+                // Throw exception to notify user.
+                throw new FfbTableException("New entity has an id already !");
+            }
+
             // Get columns without id & delete_date for creation.
             $filteredColumns = array_filter($this->getColumns(), fn($column) => !in_array($column, ["id", "delete_date"]));
 
@@ -242,6 +252,16 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
+            if($entity->getId() === 0) {
+                // Entity has no id.
+
+                // Rollback the transaction.
+                $this->getDatabase()->rollBack();
+                
+                // Throw exception to notify the user.
+                throw new FfbTableException("Entity being removed has no id !");
+            }
+
             // Get data array for execution.
             $data[":id"] = $entity->getId();
 
@@ -275,14 +295,28 @@ abstract class EntitiesTable extends Connection
             // Get object in the correct class.
             $entity = $this->parseDataParameters(json_decode($json, true));
 
+            if($entity->getId() === 0) {
+                // Entity to update has no id.
+
+                // Rollback the transaction.
+                $this->getDatabase()->rollBack();
+                
+                // Throw exception to notify user.
+                throw new FfbTableException("Entity being updated has no id !");
+            }
+
             // Get data array for execution.
             $data = [];
             foreach ($this->getColumns() as $column) {
                 $getFunction = SrcUtilities::gsFunction("get", $column);
                 
                 if(is_scalar($entity->$getFunction())){
+
+                    // Value is scalar, so normal getFunction works.
                     $data[":" . $column] =  $entity->$getFunction();
                 }else{
+
+                    // Value is not scalar, so need to pass through format function
                     $data[":" . $column] = is_null($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
                 }
             }
