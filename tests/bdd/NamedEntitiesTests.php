@@ -29,6 +29,7 @@ class NamedEntitiesTests extends Tests
     {
         parent::__construct();
 
+        // Do all tests.
         $this->testsAuthors();
         $this->testsFandoms();
         $this->testsLanguages();

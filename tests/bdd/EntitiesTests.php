@@ -19,6 +19,7 @@ class EntitiesTests extends Tests
     {
         parent::__construct();
 
+        // Do all tests.
         $this->testsUsers();
     }
 
