@@ -8,7 +8,7 @@
 html,
 body {
     height: 100vh;
-    margin: 0;
+    margin: 0 0.5rem;
     overflow: hidden;
     background-color: var(--color-dark);
     color: var(--color-light);
