@@ -21,7 +21,6 @@ body {
  */
 
 table{
-    width: 90%;
     margin: 0 auto;
     border: 1px solid var(--color-light);
     border-radius: 1rem;
@@ -31,17 +30,18 @@ table{
 table tr td{
     border: 1px solid var(--color-light);
     padding: 0.25rem 0.5rem;
+    text-align: justify;
 }
 
-table tr.success td:nth-child(4){
+table tr.success td:nth-child(3){
     color: var(--color-green);
 }
 
-table tr.fail td:nth-child(4){
+table tr.fail td:nth-child(3){
     color: var(--color-red);
 }
 
-table tr td:nth-child(4){
+table tr td:nth-child(3){
     text-align: center;
 }
 
@@ -51,7 +51,6 @@ table tr td:nth-child(4){
 
 .dropdown-panel {
     border: 1px solid grey;
-    text-align: center;
 }
 
 .dropdown-panel>* {
@@ -63,6 +62,10 @@ table tr td:nth-child(4){
     color: var(--color-light);
     display: block;
     cursor: pointer;
+    border-bottom: 1px solid grey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .dropdown-panel label.success {
@@ -89,5 +92,23 @@ table tr td:nth-child(4){
     padding: 0;
     height: 0rem;
     transition: height 1s linear;
-    overflow: scroll;
+    overflow-y: scroll;
 }
+
+.dropdown-panel .content .tables {
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+}
+
+@media (min-width: 576px) { 
+    .dropdown-panel label{
+        text-align: justify;
+    }
+ }
+
+ @media (min-width:1200px) {
+    .dropdown-panel label{
+        text-align: center;
+    }
+ }
