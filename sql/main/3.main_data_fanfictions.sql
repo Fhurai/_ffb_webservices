@@ -438,6 +438,7 @@ VALUES
 ("Nynayve"),
 ("Oakel"),
 ("OathkeeperAlexis"),
+("Oceanaway"),
 ("OfficeSloth"),
 ("Offsides"),
 ("OldAsHeck"),
@@ -3935,7 +3936,10 @@ SELECT "Xenoblade Chronicles 3: Hero Quest Counterbalance" as name, a.id as auth
 FROM `authors` a, `languages` l WHERE a.name="YootisPoshil" AND l.name="English"
 UNION
 SELECT "Patience" as name, a.id as author_id, 3 as rating, "[Midgame, Lategame Spoilers][Vague XC1 spoilers] When time is stopped, you can wait as long as you need to for the perfect moment." as description, l.id as language_id
-FROM `authors` a, `languages` l WHERE a.name="SirTeateiMoonlight" AND l.name="English";
+FROM `authors` a, `languages` l WHERE a.name="SirTeateiMoonlight" AND l.name="English"
+UNION
+SELECT "Bluebird" as name, a.id as author_id, 3 as rating, "When Lily Evans becomes unexpectedly pregnant during seventh year, the story changes but certain truths remain the same." as description, l.id as language_id
+FROM `authors` a, `languages` l WHERE a.name="Oceanaway" AND l.name="English";
 
 /*
  * Link
@@ -6107,4 +6111,6 @@ SELECT "https://archiveofourown.org/works/55545313", ff.id FROM fanfictions ff I
 UNION
 SELECT "https://www.fanfiction.net/s/14131005/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil"
 UNION
-SELECT "https://www.fanfiction.net/s/14135294/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight";
+SELECT "https://www.fanfiction.net/s/14135294/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight"
+UNION
+SELECT "https://www.fanfiction.net/s/13976187/1/", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Bluebird" AND a.name = "Oceanaway";

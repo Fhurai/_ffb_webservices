@@ -4379,4 +4379,8 @@ SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.i
 UNION
 SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Romance Stories for the Half-Homs Girl" AND t.name = "One-shot" AND a.name = "Rozteka"
 UNION /************************************************************************************************************************************/
-SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Patience" AND t.name = "One-shot" AND a.name = "SirTeateiMoonlight";
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Patience" AND t.name = "One-shot" AND a.name = "SirTeateiMoonlight"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Bluebird" AND t.name = "Hurt | Comfort" AND a.name = "Oceanaway"
+UNION
+SELECT ff.id, t.id FROM `tags` t, `fanfictions` ff INNER JOIN `authors` a on a.id=ff.author_id WHERE ff.name = "Bluebird" AND t.name = "Romance" AND a.name = "Oceanaway";

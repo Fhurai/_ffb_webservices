@@ -9169,4 +9169,8 @@ SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms`
 UNION
 SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "OMC " AND f.name = "Xenoblade Chronicles 3"
 UNION /************************************************************************************************************************************/
-SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1";
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Melia Ancient | Melia Antiqua" AND f.name = "Xenoblade Chronicles 1"
+UNION /************************************************************************************************************************************/
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Bluebird" AND a.name = "Oceanaway" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = " James P." AND f.name = "Harry Potter - Wizarding World"
+UNION
+SELECT ff.id, c.id FROM `fanfictions` ff, `characters` c, `authors` a, `fandoms` f WHERE ff.name = "Bluebird" AND a.name = "Oceanaway" AND a.id=ff.author_id AND c.fandom_id = f.id AND c.name = "Lily Evans P. " AND f.name = "Harry Potter - Wizarding World";

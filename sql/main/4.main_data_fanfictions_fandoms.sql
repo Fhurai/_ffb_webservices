@@ -2418,4 +2418,6 @@ SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON 
 UNION
 SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Xenoblade Chronicles 3: Hero Quest Counterbalance" AND a.name = "YootisPoshil" AND f.name = "Xenoblade Chronicles 3"
 UNION
-SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight" AND f.name = "Xenoblade Chronicles 3";
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Patience" AND a.name = "SirTeateiMoonlight" AND f.name = "Xenoblade Chronicles 3"
+UNION
+SELECT ff.id, f.id FROM `fandoms` f, `fanfictions` ff INNER JOIN `authors` a ON a.id = ff.author_id WHERE ff.name = "Bluebird" AND a.name = "Oceanaway" AND f.name = "Harry Potter";
