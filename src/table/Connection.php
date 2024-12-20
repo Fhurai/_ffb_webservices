@@ -110,6 +110,9 @@ class Connection
         $propertiesColumns = [];
 
         switch($this->table){
+            case "users":
+                $propertiesColumns = User::getProperties();
+                break;
             case "authors":
                 $propertiesColumns = Author::getProperties();
                 break;

@@ -214,7 +214,7 @@ class User extends Entity
             "is_admin" => $this->is_admin,
             "is_local" => $this->is_local,
             "birthday" => $this->birthday,
-            "view_nsfw" => $this->is_nsfw,
+            "is_nsfw" => $this->is_nsfw,
         ]);
     }
 

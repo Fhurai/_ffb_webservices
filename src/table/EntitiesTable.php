@@ -6,6 +6,12 @@ if (file_exists("../table/Connection.php")) {
     require_once "../src/table/Connection.php";
 }
 
+if (file_exists("../entity/User.php")) {
+    require_once "../entity/User.php";
+} else if (file_exists("../src/entity/User.php")) {
+    require_once "../src/entity/User.php";
+}
+
 if (file_exists("../entity/Author.php")) {
     require_once "../entity/Author.php";
 } else if (file_exists("../src/entity/Author.php")) {
@@ -49,6 +55,8 @@ abstract class EntitiesTable extends Connection
     {
         switch ($this->getTable()) {
             // JsonUnserialize en fonction de la table utilisée.
+            case "users":
+                return User::jsonUnserialize(json_encode($parameters));
             case "authors":
                 return Author::jsonUnserialize(json_encode($parameters));
             case "fandoms":

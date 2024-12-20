@@ -150,7 +150,7 @@ abstract class Entity implements JsonSerializable
             // For each property, the set method is generated then used on the provided data.
             $setFunction = SrcUtilities::gsFunction("set", $key);
 
-            if (in_array($key, ["creation_date", "update_date", "delete_date"])) {
+            if (in_array($key, ["creation_date", "update_date", "delete_date", "birthday"])) {
 
                 // If the property is a datetime, the data is parsed as a datetime only if the data is a not empty string.
                 $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
