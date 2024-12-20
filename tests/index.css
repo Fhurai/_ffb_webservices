@@ -1,18 +1,24 @@
 :root{
     --color-dark: #1f1f1f;
     --color-light: #f1f1f1;
-    --color-red: #f01c0f;
-    --color-green: #0fc10f;
+    --color-red: #f01a0f;
+    --color-green: #0fa10f;
 }
 
-document, body{
+html,
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
     background-color: var(--color-dark);
     color: var(--color-light);
-    width: 100%;
-    height: 100%;
     overflow-x: hidden;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
+/**
+ * Table
+ */
 
 table{
     width: 90%;
@@ -22,30 +28,16 @@ table{
     border-collapse: collapse;
 }
 
-table:has(thead.success), table:has(thead.fail){
-    border: 1px solid transparent;
-}
-
-table thead.success{
-    color: var(--color-dark);
-    background-color: var(--color-green);
-}
-
-table thead.fail{
-    color: var(--color-dark);
-    background-color: var(--color-red);
-}
-
 table tr td{
     border: 1px solid var(--color-light);
     padding: 0.25rem 0.5rem;
 }
 
-table tr.success{
+table tr.success td:nth-child(4){
     color: var(--color-green);
 }
 
-table tr.fail{
+table tr.fail td:nth-child(4){
     color: var(--color-red);
 }
 
@@ -53,3 +45,49 @@ table tr td:nth-child(4){
     text-align: center;
 }
 
+/**
+ * Dropdown-panel
+ */
+
+.dropdown-panel {
+    border: 1px solid grey;
+    text-align: center;
+}
+
+.dropdown-panel>* {
+    padding: 0.5rem
+}
+
+.dropdown-panel label {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-panel label.success {
+    color: var(--color-green);
+}
+
+.dropdown-panel label.fail {
+    color: var(--color-red);
+}
+
+.dropdown-panel label:hover {
+    filter: brightness(1.5);
+}
+
+.dropdown-panel input {
+    display: none;
+}
+
+.dropdown-panel input:checked~.content {
+    height: 70vh;
+}
+
+.dropdown-panel .content {
+    padding: 0;
+    height: 0rem;
+    transition: height 1s linear;
+    overflow: scroll;
+}
