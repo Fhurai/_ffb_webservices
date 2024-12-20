@@ -35,6 +35,12 @@ class ComplexEntitiesTests extends Tests
 
     }
 
+    
+    public function testsLinks(): void
+    {
+
+    }
+
     public function testsSeries(): void
     {
 
