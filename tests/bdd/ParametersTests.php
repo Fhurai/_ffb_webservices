@@ -64,6 +64,9 @@ class ParametersTests extends Tests
             $this->addEqualsCheck("Ratings_GET_exception",1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Ratings_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Ratings_GET_exception_message", "No data for ratings n°6", $e->getMessage());
+            $this->addEqualsCheck("Ratings_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Ratings_GET_exception_trace", 3, count($e->getTrace()));
         }
 
         // Search complete
@@ -123,6 +126,9 @@ class ParametersTests extends Tests
             $this->addEqualsCheck("Scores_GET_exception",1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Scores_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Scores_GET_exception_message", "No data for scores n°6", $e->getMessage());
+            $this->addEqualsCheck("Scores_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Scores_GET_exception_trace", 3, count($e->getTrace()));
         }
 
         // Search complete
@@ -182,6 +188,9 @@ class ParametersTests extends Tests
             $this->addEqualsCheck("Actions_GET_exception",1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Actions_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Actions_GET_exception_message", "No data for actions n°6", $e->getMessage());
+            $this->addEqualsCheck("Actions_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Actions_GET_exception_trace", 3, count($e->getTrace()));
         }
 
         // Search complete
@@ -241,6 +250,9 @@ class ParametersTests extends Tests
             $this->addEqualsCheck("TagTypes_GET_exception",1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("TagTypes_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("TagTypes_GET_exception_message", "No data for tag_types n°6", $e->getMessage());
+            $this->addEqualsCheck("TagTypes_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("TagTypes_GET_exception_trace", 3, count($e->getTrace()));
         }
 
         // Search complete
