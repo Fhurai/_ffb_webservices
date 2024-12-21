@@ -223,7 +223,16 @@ abstract class EntitiesTable extends Connection
             $data = [];
             foreach ($filteredColumns as $column) {
                 $getFunction = SrcUtilities::gsFunction("get", $column);
-                $data[":" . $column] = is_scalar($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
+                switch (gettype($entity->$getFunction())) {
+                    case "string":
+                        $data[":" . $column] = $entity->$getFunction();
+                        break;
+                    case "boolean":
+                        $data[":" . $column] = $entity->$getFunction() ? 1 : 0;
+                        break;
+                    case "object"://Datetime
+                        $data[":" . $column] = $entity->$getFunction()->format("Y-m-d H:i:s");
+                }
             }
 
             // Execution of the query with the id parameter.
@@ -336,15 +345,20 @@ abstract class EntitiesTable extends Connection
             $data = [];
             foreach ($this->getColumns() as $column) {
                 $getFunction = SrcUtilities::gsFunction("get", $column);
+                switch (gettype(value: $entity->$getFunction())) {
+                    case "integer":
+                    case "string":
+                        $data[":" . $column] = $entity->$getFunction();
+                        break;
+                    case "boolean":
+                        $data[":" . $column] = $entity->$getFunction() ? 1 : 0;
+                        break;
+                    case "object": //Datetime
+                        $data[":" . $column] = $entity->$getFunction()->format("Y-m-d H:i:s");
+                        break;
+                    case "NULL": //null
+                        $data[":". $column] = NULL;
 
-                if (is_scalar($entity->$getFunction())) {
-
-                    // Value is scalar, so normal getFunction works.
-                    $data[":" . $column] = $entity->$getFunction();
-                } else {
-
-                    // Value is not scalar, so need to pass through format function
-                    $data[":" . $column] = is_null($entity->$getFunction()) ? $entity->$getFunction() : $entity->$getFunction()->format("Y-m-d H:i:s");
                 }
             }
 

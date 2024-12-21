@@ -81,7 +81,7 @@ class EntitiesTests extends Tests
 
         try {
             $entity->setUsername("Kaiser57");
-            $entity->setIsNsfw(false);
+            $entity->setIsNsfw(true);
             $entity = $usersTable->update(json_encode($entity));
             $this->addEqualsCheck("Users_UPDATE_id", $entityId, $entity->getId());
             $this->addEqualsCheck("Users_UPDATE_username", "Kaiser57", $entity->getUsername());
