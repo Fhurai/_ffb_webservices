@@ -74,17 +74,24 @@ class Tag extends ComplexEntity
      */
     public function jsonSerialize(): array
     {
+        $assoc = [];
+
+        if (property_exists($this, "tag_type")) {
+            $assoc["tag_type"] = $this->tag_type;
+        }
+        
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->getDescription(),
-            "type" => $this->getTypeId(),
-        ]);
+            "type_id" => $this->getTypeId()
+        ], $assoc);
     }
 
     /**
      * Method to create a new Tag.
      * @return mixed new Tag.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }
