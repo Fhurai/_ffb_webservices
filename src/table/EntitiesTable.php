@@ -91,7 +91,7 @@ abstract class EntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->getTable() . " n°" . $id);
+            throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id, 404);
         } else {
 
             // Data found, return the object with that data.

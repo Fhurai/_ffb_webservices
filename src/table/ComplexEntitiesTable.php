@@ -75,7 +75,7 @@ abstract class ComplexEntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->getTable() . " n°" . $id);
+            throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id);
         } else {
             if ($loadAssociations) {
                 $tagTypesTable = new TagTypesTable($this->getTypeConnection());
