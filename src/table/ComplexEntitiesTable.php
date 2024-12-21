@@ -75,7 +75,7 @@ abstract class ComplexEntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id);
+            throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id, 404);
         } else {
             if ($loadAssociations) {
                 $tagTypesTable = new TagTypesTable($this->getTypeConnection());
@@ -387,6 +387,9 @@ abstract class ComplexEntitiesTable extends Connection
                     $assoc = property_exists($entity, "tag_type");
                     break;
             }
+
+            // Update of the date of last modification of the entity.
+            $data[":update_date"] = (new DateTime("now", new DateTimeZone("Europe/Paris")))->format("Y-m-d H:i:s");
 
             // Execution of the query with the id parameter.
             $sth->execute($data);

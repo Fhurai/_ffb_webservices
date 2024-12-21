@@ -167,7 +167,7 @@ abstract class EntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->getTable());
+            throw new FfbTableException("No data for " . $this->getTable(), 404);
         } else {
 
             // Data found, return array of objects with that data.
@@ -213,7 +213,7 @@ abstract class EntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify user.
-                throw new FfbTableException("New entity has an id already !");
+                throw new FfbTableException("New entity has an id already !", 409);
             }
 
             // Get columns without id & delete_date for creation.
@@ -239,7 +239,7 @@ abstract class EntitiesTable extends Connection
             $sth->execute($data);
 
             // Set the new id of the inserted entity.
-            $entity->setId($this->getDatabase()->lastInsertId());
+            $entity = $this->get($this->getDatabase()->lastInsertId());
 
             // Commit the insertion.
             $this->getDatabase()->commit();
@@ -282,7 +282,7 @@ abstract class EntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being removed has no id !");
+                throw new FfbTableException("Entity being removed has no id !", 409);
             }
 
             if ($entity->getDeleteDate() === null) {
@@ -292,7 +292,7 @@ abstract class EntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being removed has no delete date !");
+                throw new FfbTableException("Entity being removed has no delete date !", 409);
             }
 
             // Get data array for execution.
@@ -341,7 +341,7 @@ abstract class EntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify user.
-                throw new FfbTableException("Entity being updated has no id !");
+                throw new FfbTableException("Entity being updated has no id !", 409);
             }
 
             if ($entity->getDeleteDate() !== null && $update) {
@@ -351,7 +351,7 @@ abstract class EntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being updated has delete date !");
+                throw new FfbTableException("Entity being updated has delete date !", 409);
             }
 
             // Get data array for execution.
@@ -370,10 +370,13 @@ abstract class EntitiesTable extends Connection
                         $data[":" . $column] = $entity->$getFunction()->format("Y-m-d H:i:s");
                         break;
                     case "NULL": //null
-                        $data[":". $column] = NULL;
+                        $data[":" . $column] = NULL;
 
                 }
             }
+
+            // Update of the date of last modification of the entity.
+            $data[":update_date"] = (new DateTime("now", new DateTimeZone("Europe/Paris")))->format("Y-m-d H:i:s");
 
             // Execution of the query with the id parameter.
             $sth->execute($data);
@@ -400,7 +403,7 @@ abstract class EntitiesTable extends Connection
     public function delete(int $id): mixed
     {
         $entity = $this->get($id);
-        $entity->setDeleteDate(new \DateTime());
+        $entity->setDeleteDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
         return $this->update(json_encode($entity), false);
     }
 
