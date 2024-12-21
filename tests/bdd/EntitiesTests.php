@@ -49,7 +49,7 @@ class EntitiesTests extends Tests
         // Case get() with exception.
         try {
             $entity = $usersTable->get(0);
-            $this->addEqualsCheck("Users_GET_exception_type", 1, 0);
+            $this->addEqualsCheck("Users_GET_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Users_GET_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Users_GET_exception_message", "No data for users n°0", $e->getMessage());
