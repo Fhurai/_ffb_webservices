@@ -13,7 +13,7 @@ class SrcUtilities {
         $pos = -1;
 
         // If property begin with "is", this is a boolean who don't have getters beginning with "get".
-        if (strpos($property, "is") !== false && strpos($property, "is") === 0)
+        if (strpos($property, "is") !== false && strpos($property, "is") === 0 && $prefix === "get")
             $function = "";
         else
             $function = $prefix;
