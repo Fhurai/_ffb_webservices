@@ -161,7 +161,11 @@ abstract class Entity implements JsonSerializable
             } else {
 
                 // The property is not a datetime, use of the setter function directly.
-                $entity->$setFunction($data);
+                if (gettype($data) === "boolean") {
+                    $entity->$setFunction($data ? 1 : 0);
+                } else {
+                    $entity->$setFunction($data);
+                }
             }
         }
 

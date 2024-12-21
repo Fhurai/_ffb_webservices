@@ -54,7 +54,7 @@ class User extends Entity
         $this->setEmail("");
         $this->setIsAdmin(false);
         $this->setIsLocal(true);
-        $this->setBirthday(new DateTime());
+        $this->setBirthday(new DateTime("now", new DateTimeZone("Europe/Paris")));
         $this->setIsNsfw(false);
     }
 
