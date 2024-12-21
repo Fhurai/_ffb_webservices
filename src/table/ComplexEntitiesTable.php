@@ -210,7 +210,7 @@ abstract class ComplexEntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify user.
-                throw new FfbTableException("New entity has an id already !");
+                throw new FfbTableException("New entity has an id already !", 409);
             }
 
             // Get columns without id & delete_date for creation.
@@ -288,7 +288,7 @@ abstract class ComplexEntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being removed has no id !");
+                throw new FfbTableException("Entity being removed has no id !", 409);
             }
 
             if ($entity->getDeleteDate() === null) {
@@ -298,7 +298,7 @@ abstract class ComplexEntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being removed has no delete date !");
+                throw new FfbTableException("Entity being removed has no delete date !", 409);
             }
 
             // Get data array for execution.
@@ -347,7 +347,7 @@ abstract class ComplexEntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify user.
-                throw new FfbTableException("Entity being updated has no id !");
+                throw new FfbTableException("Entity being updated has no id !", 409);
             }
 
             if ($entity->getDeleteDate() !== null && $update) {
@@ -357,7 +357,7 @@ abstract class ComplexEntitiesTable extends Connection
                 $this->getDatabase()->rollBack();
 
                 // Throw exception to notify the user.
-                throw new FfbTableException("Entity being updated has delete date !");
+                throw new FfbTableException("Entity being updated has delete date !", 409);
             }
 
             // Get data array for execution.
@@ -417,7 +417,7 @@ abstract class ComplexEntitiesTable extends Connection
     public function delete(int $id, bool $loadAssociations = false): mixed
     {
         $entity = $this->get($id, $loadAssociations);
-        $entity->setDeleteDate(new \DateTime());
+        $entity->setDeleteDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
         return $this->update(json_encode($entity), false);
     }
 
