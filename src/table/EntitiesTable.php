@@ -91,7 +91,7 @@ abstract class EntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->table . " n°" . $id);
+            throw new FfbTableException(message: "No data for " . $this->getTable() . " n°" . $id);
         } else {
 
             // Data found, return the object with that data.
@@ -167,7 +167,7 @@ abstract class EntitiesTable extends Connection
         if (!$rows) {
 
             // No data found, throw FfbTableException
-            throw new FfbTableException(message: "No data for " . $this->table);
+            throw new FfbTableException(message: "No data for " . $this->getTable());
         } else {
 
             // Data found, return array of objects with that data.
@@ -255,7 +255,13 @@ abstract class EntitiesTable extends Connection
         }
     }
 
-    public function remove(string $json): mixed
+    /**
+     * Method to physically delete data.
+     * @param string $json Object as a json string
+     * @throws \FfbTableException Exception if remove met an exception.
+     * @return bool Indication if data was removed.
+     */
+    public function remove(string $json): bool
     {
         // Begin transaction.
         $this->getDatabase()->beginTransaction();
@@ -309,6 +315,13 @@ abstract class EntitiesTable extends Connection
         }
     }
 
+    /**
+     * Method to update data.
+     * @param string $json Object as a json string
+     * @param bool $update Indication if method is called as pure update or as delete/restore.
+     * @throws \FfbTableException Exception if update met an exception.
+     * @return mixed Updated object with new data.
+     */
     public function update(string $json, bool $update = true): mixed
     {
         // Begin transaction.
@@ -379,6 +392,11 @@ abstract class EntitiesTable extends Connection
         }
     }
 
+    /**
+     * Method to logically delete data.
+     * @param int $id Identifier of objet to delete.
+     * @return mixed Object logically deleted.
+     */
     public function delete(int $id): mixed
     {
         $entity = $this->get($id);
@@ -386,6 +404,11 @@ abstract class EntitiesTable extends Connection
         return $this->update(json_encode($entity), false);
     }
 
+    /**
+     * Method to restore deleted data
+     * @param int $id Identifier of objet to delete.
+     * @return mixed Object restored.
+     */
     public function restore(int $id): mixed
     {
         $entity = $this->get($id);

@@ -20,12 +20,17 @@ class Connection
      * Table name.
      * @var 
      */
-    protected string $table;
+    private string $table;
     /**
      * Array of columns names.
      * @var 
      */
-    protected array $columns;
+    private array $columns;
+    /**
+     * Label of connection type.
+     * @var string
+     */
+    private string $typeConnection;
 
     /**
      * Constructor.
@@ -34,12 +39,15 @@ class Connection
     public function __construct(string $typeConnection)
     {
         if (in_array($typeConnection, ["main", "stats", "tests"])) {
-            
+
+            // Set the type of connection.
+            $this->typeConnection = $typeConnection;
+
             // If connection type is known, then use config file.
             $configFile = include "../config/config.php";
 
             try {
-                
+
                 // Creation of Php Database Object with provided data from config.
                 $this->db = new PDO("mysql:host=" . $configFile["credentials"]["host"] . ";dbname=" . $configFile["db"][$typeConnection], $configFile["credentials"]["user"], $configFile["credentials"]["password"]);
             } catch (PDOException $e) {
@@ -48,7 +56,7 @@ class Connection
                 throw new FfbTableException($e->getMessage());
             }
         } else {
-            
+
             // Unknown connection, throw exception.
             throw new FfbTableException("Unknown connection!");
         }
@@ -67,16 +75,18 @@ class Connection
      * Getter Table name.
      * @return string Table name.
      */
-    protected function getTable(): string {
+    protected function getTable(): string
+    {
         return $this->table;
     }
-    
+
     /**
      * Setter Table name.
      * @param string $table new Table name.
      * @return void
      */
-    protected function setTable(string $table): void{
+    protected function setTable(string $table): void
+    {
         $this->table = $table;
     }
 
@@ -84,7 +94,8 @@ class Connection
      * Getter Columns names.
      * @return array Columns names.
      */
-    protected function getColumns(): array{
+    protected function getColumns(): array
+    {
         return $this->columns;
     }
 
@@ -102,14 +113,21 @@ class Connection
      * @param array $columns New array of Columns names.
      * @return void
      */
-    protected function setColumns(array $columns): void{
+    protected function setColumns(array $columns): void
+    {
         $this->columns = $columns;
     }
 
-    protected function getPropertiesColumns(): array{
+    protected function getTypeConnection(): string
+    {
+        return $this->typeConnection;
+    }
+
+    protected function getPropertiesColumns(): array
+    {
         $propertiesColumns = [];
 
-        switch($this->table){
+        switch ($this->table) {
             case "users":
                 $propertiesColumns = User::getProperties();
                 break;
@@ -122,12 +140,19 @@ class Connection
             case "languages":
                 $propertiesColumns = Language::getProperties();
                 break;
+            case "tags":
+                $propertiesColumns = Tag::getProperties();
+                break;
+            case "characters":
+                $propertiesColumns = Character::getProperties();
+                break;
         }
 
         return $propertiesColumns;
     }
 
-    protected function setPropertiesColumns(): void{
+    protected function setPropertiesColumns(): void
+    {
         $propertiesColumns = $this->getPropertiesColumns();
 
         $this->setColumns($propertiesColumns);
