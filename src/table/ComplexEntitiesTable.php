@@ -78,8 +78,16 @@ abstract class ComplexEntitiesTable extends Connection
             throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id, 404);
         } else {
             if ($loadAssociations) {
-                $tagTypesTable = new TagTypesTable($this->getTypeConnection());
-                $rows["tag_type"] = $tagTypesTable->get($rows["type_id"]);
+                switch ($this->getTable()) {
+                    case "tags":
+                        $tagTypesTable = new TagTypesTable($this->getTypeConnection());
+                        $rows["tag_type"] = $tagTypesTable->get($rows["type_id"]);
+                        break;
+                    case "characters":
+                        $fandomsTable = new FandomsTable($this->getTypeConnection());
+                        $rows["fandom"] = $fandomsTable->get($rows["fandom_id"]);
+                        break;
+                }
             }
 
             // Data found, return the object with that data.
@@ -168,6 +176,10 @@ abstract class ComplexEntitiesTable extends Connection
                             $tagTypesTable = new TagTypesTable($this->getTypeConnection());
                             $row["tag_type"] = $tagTypesTable->get($row["type_id"]);
                             break;
+                        case "characters":
+                            $fandomsTable = new FandomsTable($this->getTypeConnection());
+                            $row["fandom"] = $fandomsTable->get($row["fandom_id"]);
+                            break;
                     }
                 }
                 $result[] = $this->parseDataParameters($row);
@@ -246,6 +258,10 @@ abstract class ComplexEntitiesTable extends Connection
                 case "tags":
                     $tagTypesTable = new TagTypesTable($this->getTypeConnection());
                     $entity->tag_type = $tagTypesTable->get($entity->getTypeId());
+                    break;
+                case "characters":
+                    $fandomsTable = new FandomsTable($this->getTypeConnection());
+                    $entity->fandom = $fandomsTable->get($entity->getFandomId());
                     break;
             }
 
@@ -385,6 +401,9 @@ abstract class ComplexEntitiesTable extends Connection
             switch ($this->getTable()) {
                 case "tags":
                     $assoc = property_exists($entity, "tag_type");
+                    break;
+                case "characters":
+                    $assoc = property_exists($entity, "fandom");
                     break;
             }
 

@@ -198,7 +198,7 @@ class ComplexEntitiesTests extends Tests
         }
 
         try{
-            $entity = $tagsTable->get($named->getId());
+            $named = $tagsTable->get($named->getId());
             $this->addEqualsCheck("Tags_REMOVE2_exception",0,1);
         }catch (Throwable $e) {
             $this->addEqualsCheck("Tags_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
@@ -209,7 +209,169 @@ class ComplexEntitiesTests extends Tests
 
     public function testsCharacters(): void
     {
-        
+        // Table creation for tests.
+        $charactersTable = new CharactersTable("tests");
+
+        // Case get() without problem.
+        $complex = $charactersTable->get(1, true);
+        $this->addEqualsCheck("Characters_GET_id", 1, $complex->getId());
+        $this->addEqualsCheck("Characters_GET_name", "Angelise Ikaruga Misurugi", $complex->getName());
+        $this->addNotEqualsCheck("Characters_GET_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Characters_GET_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addEqualsCheck("Characters_GET_delete_date", null, $complex->getDeleteDate());
+        $this->addEqualsCheck("Characters_GET_fandom_association", $complex->getFandomId(), $complex->fandom->getId());
+
+        // Case get() with exception.
+        try {
+            $complex = $charactersTable->get(0);
+            $this->addEqualsCheck("Characters_GET_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_GET_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_GET_exception_message", "No data for characters n°0", $e->getMessage());
+            $this->addEqualsCheck("Characters_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Characters_GET_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Search with filter.
+        $complex = $charactersTable->search(["filter" => ["limit" => 0, "offset" => 100]], true);
+        $this->addEqualsCheck("Characters_SEARCH_complete_count", 100, count($complex));
+        $this->addEqualsCheck("Characters_SEARCH_complete_min", 1, $complex[0]->getId());
+
+        // Create with exception.
+        try {
+            $complex = $charactersTable->create("{\"id\":\"1\",\"name\":\"Kadaj\", \"fandom_id\":\"4\",\"creation_date\":\"2024-12-18 13:30:05\",\"update_date\":\"2024-12-18 13:30:05\",\"delete_date\":\"2024-12-18 13:30:05\"}");
+            $this->addEqualsCheck("Characters_CREATE1_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_CREATE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_CREATE1_exception_message", "New entity has an id already !", $e->getMessage());
+            $this->addEqualsCheck("Characters_CREATE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Characters_CREATE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // New.
+        $complex = $charactersTable->new();
+        $this->addEqualsCheck("Characters_NEW_id", 0, $complex->getId());
+        $this->addEqualsCheck("Characters_NEW_name", "", $complex->getName());
+        $this->addEqualsCheck("Characters_NEW_fandom_id_id", -1, $complex->getFandomId());
+        $this->addNotEqualsCheck("Characters_NEW_creation_date", null, $complex->getCreationDate());
+        $this->addNotEqualsCheck("Characters_NEW_update_date", null, $complex->getUpdateDate());
+        $this->addEqualsCheck("Characters_NEW_delete_date", null, $complex->getDeleteDate());
+
+        // Create with exception.
+        try {
+            $complex = $charactersTable->create(json_encode(value: $complex));
+            $this->addEqualsCheck("Characters_CREATE2_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_CREATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_CREATE2_exception_message", true, str_contains($e->getMessage(), "SQLSTATE"));
+            $this->addEqualsCheck("Characters_CREATE2_exception_code", 500, $e->getCode());
+            $this->addEqualsCheck("Characters_CREATE2_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Create without exception.
+        try {
+            $complex->setFandomId(1);
+            $complex = $charactersTable->create(json_encode($complex));
+            $complexId = $complex->getId();
+            $this->addNotEqualsCheck("Characters_CREATE3_id", 0, $complexId);
+            $this->addEqualsCheck("Characters_CREATE3_name", "", $complex->getName());
+            $this->addEqualsCheck("Characters_CREATE3_fandom_id",1,$complex->getFandomId());
+            $this->addEqualsCheck("Characters_CREATE3_fandomObj_id", 1, $complex->fandom->getId());
+            $this->addNotEqualsCheck("Characters_CREATE3_fandom_name", "", $complex->fandom->getName());
+            $this->addNotEqualsCheck("Characters_CREATE3_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Characters_CREATE3_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Characters_CREATE3_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Characters_CREATE3_delete_date", null, $complex->getDeleteDate());
+        } catch (Throwable $e) {
+            $this->addNotEqualsCheck("Characters_CREATE3_no_exception", 0, 1);
+        }
+
+        // Delete without exception.
+        try {
+            sleep(1);
+            $complex = $charactersTable->delete($complex->getId(), true);
+            $this->addEqualsCheck("Characters_DELETE1_id", $complexId, $complex->getId());
+            $this->addNotEqualsCheck("Characters_DELETE1_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Characters_DELETE1_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Characters_DELETE1_dates_delete", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_DELETE1_no_exception", 0, 1);
+        }
+
+        // Restore without exception.
+        try {
+            $complex = $charactersTable->restore($complex->getId(), true);
+            $this->addEqualsCheck("Characters_RESTORE_id", $complexId, $complex->getId());
+            $this->addEqualsCheck("Characters_RESTORE_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Characters_RESTORE_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_RESTORE_no_exception", 0, 1);
+        }
+
+        // Update without exception.
+        try {
+            $complex->setName("Kadaj");
+            $complex->setFandomId(4);
+            $complex = $charactersTable->update(json_encode($complex));
+            $this->addEqualsCheck("Characters_UPDATE_id", $complexId, $complex->getId());
+            $this->addEqualsCheck("Characters_UPDATE_name", "Kadaj", $complex->getName());
+            $this->addNotEqualsCheck("Characters_UPDATE_name_empty", "", $complex->getName());
+            $this->addEqualsCheck("Characters_UPDATE_fandom_id",4,$complex->getFandomId());
+            $this->addEqualsCheck("Characters_UPDATE_fandomObj_id", 4, $complex->fandom->getId());
+            $this->addEqualsCheck("Characters_UPDATE_fandom_name", "Final Fantasy VII", $complex->fandom->getName());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_UPDATE_no_exception", 0, 1);
+        }
+
+        // Remove with exception
+        try {
+            $complex = $charactersTable->remove(json_encode($complex));
+            $this->addEqualsCheck("Characters_REMOVE1_no_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_REMOVE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_REMOVE1_exception_message", "Entity being removed has no delete date !", $e->getMessage());
+            $this->addEqualsCheck("Characters_REMOVE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Characters_REMOVE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Delete without exception
+        try {
+            $named = $charactersTable->delete($complex->getId());
+            $this->addEqualsCheck("Characters_DELETE2_id", $complexId, $named->getId());
+            $this->addNotEqualsCheck("Characters_DELETE2_delete_date", null, $named->getDeleteDate());
+            $this->addNotEqualsCheck("Characters_DELETE2_dates_creation", $named->getUpdateDate()->format("Y-m-d H:i:s"), $named->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Characters_DELETE2_dates_delete", $named->getUpdateDate()->format("Y-m-d H:i:s"), $named->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addNotEqualsCheck("Characters_DELETE2_no_exception", 0, 1);
+        }
+
+        // Update with exception
+        try {
+            $named = $charactersTable->update(json_encode($named));
+            $this->addEqualsCheck("Characters_UPDATE_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_UPDATE_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_UPDATE_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Characters_UPDATE_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Characters_UPDATE_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Remove without exception
+        try {
+            $result = $charactersTable->remove(json_encode($named));
+            $this->addEqualsCheck("Characters_REMOVE2_result", true, $result);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_REMOVE2_no_exception", 0, 1);
+        }
+
+        try{
+            $named = $charactersTable->get($named->getId());
+            $this->addEqualsCheck("Characters_REMOVE2_exception",0,1);
+        }catch (Throwable $e) {
+            $this->addEqualsCheck("Characters_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Characters_REMOVE2_get_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Characters_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
+        }
     }
 
     public function testsRelations(): void

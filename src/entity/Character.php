@@ -49,9 +49,15 @@ class Character extends ComplexEntity
      */
     public function jsonSerialize(): array
     {
+        $assoc = [];
+
+        if (property_exists($this, "fandom")) {
+            $assoc["fandom"] = $this->fandom;
+        }
+
         return array_merge(parent::jsonSerialize(), [
             "fandom_id" => $this->getFandomId(),
-        ]);
+        ], $assoc);
     }
 
     /**
