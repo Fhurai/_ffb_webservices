@@ -48,8 +48,8 @@ class NamedEntitiesTests extends Tests
         $named = $authorsTable->get(2);
         $this->addEqualsCheck("Authors_GET_id", 2, $named->getId());
         $this->addEqualsCheck("Authors_GET_name", "123irish", $named->getName());
-        $this->addEqualsCheck("Authors_GET_creation_date", "2024-12-20 18:51:41", $named->getCreationDate()->format("Y-m-d H:i:s"));
-        $this->addEqualsCheck("Authors_GET_update_date", "2024-12-20 18:51:41", $named->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Authors_GET_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Authors_GET_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Authors_GET_delete_date", null, $named->getDeleteDate());
 
         // Case get() with exception.

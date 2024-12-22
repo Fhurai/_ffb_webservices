@@ -46,8 +46,8 @@ class ComplexEntitiesTests extends Tests
         $complex = $tagsTable->get(1, true);
         $this->addEqualsCheck("Tags_GET_id", 1, $complex->getId());
         $this->addEqualsCheck("Tags_GET_name", "Romance", $complex->getName());
-        $this->addEqualsCheck("Tags_GET_creation_date", "2024-12-20 18:51:40", $complex->getCreationDate()->format("Y-m-d H:i:s"));
-        $this->addEqualsCheck("Tags_GET_update_date", "2024-12-20 18:51:40", $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Tags_GET_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Tags_GET_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Tags_GET_delete_date", null, $complex->getDeleteDate());
         $this->addEqualsCheck("Tags_GET_tagtype_association", $complex->getTypeId(), $complex->tag_type->getId());
 

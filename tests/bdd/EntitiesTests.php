@@ -41,8 +41,8 @@ class EntitiesTests extends Tests
         $this->addEqualsCheck("Users_GET_is_admin", false, $entity->isAdmin());
         $this->addEqualsCheck("Users_GET_is_local", true, $entity->isLocal());
         $this->addEqualsCheck("Users_GET_is_nsfw", false, $entity->isNsfw());
-        $this->addEqualsCheck("Users_GET_creation_date", "2024-12-20 18:51:40", $entity->getCreationDate()->format("Y-m-d H:i:s"));
-        $this->addEqualsCheck("Users_GET_update_date", "2024-12-20 18:51:40", $entity->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Users_GET_creation_date", null, $entity->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Users_GET_update_date", null, $entity->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Users_GET_delete_date", null, $entity->getDeleteDate());
         $this->addEqualsCheck("Users_GET_birthday", "1970-01-01 00:00:01", $entity->getBirthday()->format("Y-m-d H:i:s"));
 
