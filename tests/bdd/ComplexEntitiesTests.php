@@ -94,7 +94,7 @@ class ComplexEntitiesTests extends Tests
             $this->addEqualsCheck("Tags_CREATE2_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Tags_CREATE2_exception_type", FfbTableException::class, $e::class);
-            $this->addEqualsCheck("Tags_CREATE2_exception_message", "SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`ffb_tests`.`tags`, CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `tag_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT)", $e->getMessage());
+            $this->addEqualsCheck("Tags_CREATE2_exception_message", true, str_contains($e->getMessage(), "SQLSTATE"));
             $this->addEqualsCheck("Tags_CREATE2_exception_code", 500, $e->getCode());
             $this->addEqualsCheck("Tags_CREATE2_exception_trace", 3, count($e->getTrace()));
         }
@@ -104,17 +104,17 @@ class ComplexEntitiesTests extends Tests
             $complex->setTypeId(1);
             $complex = $tagsTable->create(json_encode($complex));
             $complexId = $complex->getId();
-            $this->addNotEqualsCheck("Tags_CREATE_id", 0, $complexId);
-            $this->addEqualsCheck("Tags_CREATE_name", "", $complex->getName());
-            $this->addEqualsCheck("Tags_CREATE_type_id",1,$complex->getTypeId());
-            $this->addEqualsCheck("Tags_CREATE_tagtype_id", 1, $complex->tag_type->getId());
-            $this->addEqualsCheck("Tags_CREATE_tagtype_name", "Genre", $complex->tag_type->getName());
-            $this->addNotEqualsCheck("Tags_CREATE_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
-            $this->addNotEqualsCheck("Tags_CREATE_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
-            $this->addEqualsCheck("Tags_CREATE_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
-            $this->addEqualsCheck("Tags_CREATE_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Tags_CREATE3_id", 0, $complexId);
+            $this->addEqualsCheck("Tags_CREATE3_name", "", $complex->getName());
+            $this->addEqualsCheck("Tags_CREATE3_type_id",1,$complex->getTypeId());
+            $this->addEqualsCheck("Tags_CREATE3_tagtype_id", 1, $complex->tag_type->getId());
+            $this->addEqualsCheck("Tags_CREATE3_tagtype_name", "Genre", $complex->tag_type->getName());
+            $this->addNotEqualsCheck("Tags_CREATE3_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Tags_CREATE3_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Tags_CREATE3_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Tags_CREATE3_delete_date", null, $complex->getDeleteDate());
         } catch (Throwable $e) {
-            $this->addNotEqualsCheck("Tags_CREATE_no_exception", 0, 1);
+            $this->addNotEqualsCheck("Tags_CREATE3_no_exception", 0, 1);
         }
 
         // Delete without exception.

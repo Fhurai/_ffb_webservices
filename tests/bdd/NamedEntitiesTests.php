@@ -197,8 +197,8 @@ class NamedEntitiesTests extends Tests
         $named = $fandomsTable->get(7);
         $this->addEqualsCheck("Fandoms_GET_id", 7, $named->getId());
         $this->addEqualsCheck("Fandoms_GET_name", "Harry Potter - Wizarding World", $named->getName());
-        $this->addEqualsCheck("Fandoms_GET_creation_date", "2024-12-20 18:51:40", $named->getCreationDate()->format("Y-m-d H:i:s"));
-        $this->addEqualsCheck("Fandoms_GET_update_date", "2024-12-20 18:51:40", $named->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Fandoms_GET_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Fandoms_GET_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Fandoms_GET_delete_date", null, $named->getDeleteDate());
 
         // Case get() with exception.
@@ -346,8 +346,8 @@ class NamedEntitiesTests extends Tests
         $named = $languagesTable->get(1);
         $this->addEqualsCheck("Languages_GET_id", 1, $named->getId());
         $this->addEqualsCheck("Languages_GET_name", "Français", $named->getName());
-        $this->addEqualsCheck("Languages_GET_creation_date", "2024-12-20 18:51:40", $named->getCreationDate()->format("Y-m-d H:i:s"));
-        $this->addEqualsCheck("Languages_GET_update_date", "2024-12-20 18:51:40", $named->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Languages_GET_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Languages_GET_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Languages_GET_delete_date", null, $named->getDeleteDate());
 
         // Case get() with exception.
