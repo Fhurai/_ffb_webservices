@@ -9,7 +9,6 @@ html,
 body {
     height: 100vh;
     margin: 0 0.5rem;
-    overflow: hidden;
     background-color: var(--color-dark);
     color: var(--color-light);
     overflow-x: hidden;
@@ -102,12 +101,20 @@ table tr td:nth-child(3){
 }
 
 @media (min-width: 576px) { 
+    html{
+        overflow: auto;
+    }
+
     .dropdown-panel label{
         text-align: justify;
     }
  }
 
  @media (min-width:1200px) {
+    html{
+        overflow: hidden;
+    }
+
     .dropdown-panel label{
         text-align: center;
     }
