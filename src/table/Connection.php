@@ -146,6 +146,18 @@ class Connection
             case "characters":
                 $propertiesColumns = Character::getProperties();
                 break;
+            case "relations":
+                $propertiesColumns = Relation::getProperties();
+                break;
+            case "fanfictions":
+                $propertiesColumns = Fanfiction::getProperties();
+                break;
+            case "links":
+                $propertiesColumns = Link::getProperties();
+                break;
+            case "series":
+                $propertiesColumns = Series::getProperties();
+                break;
         }
 
         return $propertiesColumns;
