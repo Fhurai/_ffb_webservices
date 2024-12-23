@@ -67,6 +67,11 @@ abstract class ComplexEntity extends NamedEntity
                 foreach ($data as $fanfiction_array)
                     $fanfictions[] = Fanfiction::jsonUnserialize(json_encode($fanfiction_array));
                 return $fanfictions;
+
+            // Ids array cases :
+            // Just set from data
+            case "characters_ids":
+                return $data;
             default:
                 return null;
         }

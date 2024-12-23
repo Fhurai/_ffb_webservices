@@ -9,37 +9,11 @@ require_once "../src/entity/ComplexEntity.php";
 class Relation extends ComplexEntity
 {
     /**
-     * Characters_ids.
-     * @var array
-     */
-    private array $characters_ids;
-
-    /**
      * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
-        $this->setCharactersIds([]);
-    }
-
-    /**
-     * Getter Characters_ids.
-     * @return array Characters_ids.
-     */
-    public function getCharactersIds(): array
-    {
-        return $this->characters_ids;
-    }
-
-    /**
-     * Setter Characters_ids.
-     * @param array $characters_ids New Characters_ids.
-     * @return void
-     */
-    public function setCharactersIds(array $characters_ids): void
-    {
-        $this->characters_ids = $characters_ids;
     }
 
     /**
@@ -48,9 +22,17 @@ class Relation extends ComplexEntity
      */
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
-            "characters_ids" => $this->getCharactersIds(),
-        ]);
+        $assoc = [];
+
+        if (property_exists($this, "characters_ids")) {
+            $assoc["characters_ids"] = $this->characters_ids;
+        }
+
+        if (property_exists($this, "characters")) {
+            $assoc["characters"] = $this->characters;
+        }
+
+        return array_merge(parent::jsonSerialize(), $assoc);
     }
 
     /**
