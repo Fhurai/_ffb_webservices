@@ -18,6 +18,30 @@ if (file_exists("../entity/Character.php")) {
     require_once "../src/entity/Character.php";
 }
 
+if (file_exists("../entity/Relation.php")) {
+    require_once "../entity/Relation.php";
+} else if (file_exists("../src/entity/Relation.php")) {
+    require_once "../src/entity/Relation.php";
+}
+
+if (file_exists("../entity/Fanfiction.php")) {
+    require_once "../entity/Fanfiction.php";
+} else if (file_exists("../src/entity/Fanfiction.php")) {
+    require_once "../src/entity/Fanfiction.php";
+}
+
+if (file_exists("../entity/Link.php")) {
+    require_once "../entity/Link.php";
+} else if (file_exists("../src/entity/Link.php")) {
+    require_once "../src/entity/Link.php";
+}
+
+if (file_exists("../entity/Series.php")) {
+    require_once "../entity/Series.php";
+} else if (file_exists("../src/entity/Series.php")) {
+    require_once "../src/entity/Series.php";
+}
+
 /**
  * Abstract table Entities.
  */
@@ -36,7 +60,8 @@ abstract class ComplexEntitiesTable extends Connection
     /**
      * Method to parse data into object.
      * @param array $parameters Data array from db.
-     * @return mixed Object created from data, or false.
+     * @throws \FfbTableException No parsing done.
+     * @return mixed Object created from data
      */
     private function parseDataParameters(array $parameters): mixed
     {
@@ -46,10 +71,11 @@ abstract class ComplexEntitiesTable extends Connection
                 return Tag::jsonUnserialize(json_encode($parameters));
             case "characters":
                 return Character::jsonUnserialize(json_encode($parameters));
+            case "relations":
+                return Relation::jsonUnserialize(json_encode($parameters));
         }
 
-        // Table not found, return false.
-        return false;
+        throw new FfbTableException("No parsing data !", 409);
     }
 
     /**
@@ -86,6 +112,21 @@ abstract class ComplexEntitiesTable extends Connection
                     case "characters":
                         $fandomsTable = new FandomsTable($this->getTypeConnection());
                         $rows["fandom"] = $fandomsTable->get($rows["fandom_id"]);
+                        break;
+                    case "relations":
+                        // Characters_ids
+                        $sth = $this->getDatabase()->prepare("SELECT relation_id, character_id FROM `relations_characters` WHERE `relation_id` = :id");
+                        $sth->execute([
+                            ":id" => $id
+                        ]);
+                        $characters_ids = array_map(function ($e) {
+                            return $e["character_id"];
+                        }, $sth->fetchAll(PDO::FETCH_ASSOC));
+                        $rows["characters_ids"] = $characters_ids;
+                        // Characters
+                        $charactersTable = new CharactersTable("tests");
+                        $characters = $charactersTable->search(["conditions" => ["id IN" => json_encode($characters_ids)]]);
+                        $rows["characters"] = $characters;
                         break;
                 }
             }
@@ -126,8 +167,12 @@ abstract class ComplexEntitiesTable extends Connection
                         // If special character in value, value is used without addon.
                         $query .= $value;
                     } else {
-                        // If no special character in value, add " = " as addon.
-                        $query .= " = " . $value;
+                        if (strpos($key, "IN") !== false) {
+                            $query .= "(" . implode(", ", json_decode($value)) . ")";
+                        } else {
+                            // If no special character in value, add " = " as addon.
+                            $query .= " = " . $value;
+                        }
                     }
 
                     // Increment countdown.
@@ -250,6 +295,19 @@ abstract class ComplexEntitiesTable extends Connection
 
             // Set the new id of the inserted entity.
             $entity->setId($this->getDatabase()->lastInsertId());
+
+
+            switch ($this->getTable()) {
+                case "relations":
+                    $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
+                    foreach ($entity->characters_ids as $characterId) {
+                        $sth->execute([
+                            ":relation_id" => $entity->getId(),
+                            ":character_id" => $characterId
+                        ]);
+                    }
+                    break;
+            }
 
             // Commit the insertion.
             $this->getDatabase()->commit();
@@ -405,6 +463,9 @@ abstract class ComplexEntitiesTable extends Connection
                 case "characters":
                     $assoc = property_exists($entity, "fandom");
                     break;
+                case "relations":
+                    $assoc = property_exists($entity, "characters") || property_exists($entity, "characters_ids");
+                    break;
             }
 
             // Update of the date of last modification of the entity.
@@ -412,6 +473,26 @@ abstract class ComplexEntitiesTable extends Connection
 
             // Execution of the query with the id parameter.
             $sth->execute($data);
+
+            switch ($this->getTable()) {
+                case "relations":
+                    if (property_exists($entity, "characters_ids")) {
+                        // Old links deleted.
+                        $sth = $this->getDatabase()->prepare("DELETE FROM `relations_characters` WHERE `relation_id` = :relation_id");
+                        $sth->execute([
+                            ":relation_id" => $entity->getId()
+                        ]);
+                        // New links added.
+                        $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
+                        foreach ($entity->characters_ids as $characterId) {
+                            $sth->execute([
+                                ":relation_id" => $entity->getId(),
+                                ":character_id" => $characterId
+                            ]);
+                        }
+                    }
+                    break;
+            }
 
             // Commit the insertion.
             $this->getDatabase()->commit();
