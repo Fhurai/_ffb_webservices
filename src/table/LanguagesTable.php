@@ -7,7 +7,7 @@ if(file_exists("../table/EntitiesTable.php")){
 }
 
 /**
- * Table Authors.
+ * Table Languages.
  */
 class LanguagesTable extends EntitiesTable {
 

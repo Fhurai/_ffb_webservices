@@ -9,7 +9,7 @@ if(file_exists("../table/ComplexEntitiesTable.php")){
 }
 
 /**
- * Table Authors.
+ * Table Characters.
  */
 class CharactersTable extends ComplexEntitiesTable {
 

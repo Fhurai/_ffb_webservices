@@ -7,7 +7,7 @@ if(file_exists("../table/EntitiesTable.php")){
 }
 
 /**
- * Table Authors.
+ * Table Fandoms.
  */
 class FandomsTable extends EntitiesTable {
 
