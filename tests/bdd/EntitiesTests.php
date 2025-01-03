@@ -17,6 +17,9 @@ else if (file_exists("../src/exceptions/FfbTableException.php"))
 else if (file_exists("../../src/exceptions/FfbTableException.php"))
     require_once "../../src/exceptions/FfbTableException.php";
 
+/**
+ * Entities tests class.
+ */
 class EntitiesTests extends Tests
 {
     /**

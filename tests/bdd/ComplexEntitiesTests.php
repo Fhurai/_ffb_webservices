@@ -27,6 +27,9 @@ else if (file_exists("../src/exceptions/FfbTableException.php"))
 else if (file_exists("../../src/exceptions/FfbTableException.php"))
     require_once "../../src/exceptions/FfbTableException.php";
 
+/**
+ * Complex Entities tests class.
+ */
 class ComplexEntitiesTests extends Tests
 {
     /**
