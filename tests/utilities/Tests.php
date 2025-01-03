@@ -74,4 +74,14 @@ abstract class Tests
         }
         return true;
     }
+
+    /**
+     * Method to show the checks array as json string.
+     * @return void
+     */
+    public function toJson(): void
+    {
+        header("Content-Type: application/json; charset=utf-8");
+        echo json_encode($this->checks);
+    }
 }
