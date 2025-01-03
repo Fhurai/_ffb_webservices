@@ -4,30 +4,40 @@ if (file_exists("../table/Connection.php")) {
     require_once "../table/Connection.php";
 } else if (file_exists("../src/table/Connection.php")) {
     require_once "../src/table/Connection.php";
+} else if (file_exists("../../src/table/Connection.php")) {
+    require_once "../../src/table/Connection.php";
 }
 
 if (file_exists("../entity/Rating.php")) {
     require_once "../entity/Rating.php";
 } else if (file_exists("../src/entity/Rating.php")) {
     require_once "../src/entity/Rating.php";
+} else if (file_exists("../../src/entity/Rating.php")) {
+    require_once "../../src/entity/Rating.php";
 }
 
 if (file_exists("../entity/Score.php")) {
     require_once "../entity/Score.php";
 } else if (file_exists("../src/entity/Score.php")) {
     require_once "../src/entity/Score.php";
+} else if (file_exists("../../src/entity/Score.php")) {
+    require_once "../../src/entity/Score.php";
 }
 
 if (file_exists("../entity/Action.php")) {
     require_once "../entity/Action.php";
 } else if (file_exists("../src/entity/Action.php")) {
     require_once "../src/entity/Action.php";
+} else if (file_exists("../../src/entity/Action.php")) {
+    require_once "../../src/entity/Action.php";
 }
 
 if (file_exists("../entity/TagType.php")) {
     require_once "../entity/TagType.php";
 } else if (file_exists("../src/entity/TagType.php")) {
     require_once "../src/entity/TagType.php";
+} else if (file_exists("../../src/entity/TagType.php")) {
+    require_once "../../src/entity/TagType.php";
 }
 
 /**

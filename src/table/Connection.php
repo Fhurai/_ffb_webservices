@@ -5,6 +5,27 @@ if (file_exists("../exceptions/FfbTableException.php"))
 else if (file_exists("../src/exceptions/FfbTableException.php"))
     require_once "../src/exceptions/FfbTableException.php";
 
+if (file_exists("../../src/entity/User.php"))
+    require_once "../../src/entity/User.php";
+
+if (file_exists("../../src/entity/Author.php"))
+    require_once "../../src/entity/Author.php";
+
+if (file_exists("../../src/entity/Fandom.php"))
+    require_once "../../src/entity/Fandom.php";
+
+if (file_exists("../../src/entity/Language.php"))
+    require_once "../../src/entity/Language.php";
+
+    if (file_exists("../../src/entity/Tag.php"))
+    require_once "../../src/entity/Tag.php";
+
+    if (file_exists("../../src/entity/Character.php"))
+    require_once "../../src/entity/Character.php";
+
+    if (file_exists("../../src/entity/Relation.php"))
+    require_once "../../src/entity/Relation.php";
+
 /**
  * Connection class.
  */
@@ -44,7 +65,10 @@ class Connection
             $this->typeConnection = $typeConnection;
 
             // If connection type is known, then use config file.
-            $configFile = include "../config/config.php";
+            if (file_exists("../config/config.php"))
+                $configFile = include "../config/config.php";
+            else if (file_exists("../../config/config.php"))
+                $configFile = include "../../config/config.php";
 
             try {
 

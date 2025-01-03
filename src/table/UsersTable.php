@@ -4,6 +4,8 @@ if(file_exists("../table/EntitiesTable.php")){
     require_once "../table/EntitiesTable.php";
 }else if(file_exists("../src/table/EntitiesTable.php")){
     require_once "../src/table/EntitiesTable.php";
+}else if(file_exists("../../src/table/EntitiesTable.php")){
+    require_once "../../src/table/EntitiesTable.php";
 }
 
 /**
