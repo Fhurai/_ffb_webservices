@@ -1,6 +1,9 @@
 <?php
 
-require_once "../src/entity/Entity.php";
+if(file_exists("../src/entity/Entity.php"))
+    require_once "../src/entity/Entity.php";
+else if(file_exists("../../src/entity/Entity.php"))
+    require_once "../../src/entity/Entity.php";
 
 /**
  * User class

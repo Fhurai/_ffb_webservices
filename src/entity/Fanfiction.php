@@ -1,7 +1,14 @@
 <?php
 
-require_once "../src/entity/ComplexEntity.php";
-require_once "../src/entity/Evaluable.php";
+if (file_exists("../src/entity/ComplexEntity.php"))
+    require_once "../src/entity/ComplexEntity.php";
+else if (file_exists("../../src/entity/ComplexEntity.php"))
+    require_once "../../src/entity/ComplexEntity.php";
+
+if (file_exists("../src/entity/Evaluable.php"))
+    require_once "../src/entity/Evaluable.php";
+else if (file_exists("../../src/entity/Evaluable.php"))
+    require_once "../../src/entity/Evaluable.php";
 
 /**
  * Fanfiction class.

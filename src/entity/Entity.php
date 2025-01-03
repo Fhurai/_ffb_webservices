@@ -4,6 +4,8 @@ if (file_exists("../utilities/SrcUtilities.php")) {
     require_once "../utilities/SrcUtilities.php";
 } else if (file_exists("../src/utilities/SrcUtilities.php")) {
     require_once "../src/utilities/SrcUtilities.php";
+} else if (file_exists("../../src/utilities/SrcUtilities.php")) {
+    require_once "../../src/utilities/SrcUtilities.php";
 }
 
 /**

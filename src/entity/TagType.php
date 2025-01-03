@@ -1,6 +1,9 @@
 <?php
 
-require_once "../src/entity/Parameters.php";
+if(file_exists("../src/entity/Parameters.php"))
+    require_once "../src/entity/Parameters.php";
+else if(file_exists("../../src/entity/Parameters.php"))
+    require_once "../../src/entity/Parameters.php";
 
 /**
  * Readonly TagType class.

@@ -1,7 +1,14 @@
 <?php
 
-require_once "../src/entity/ComplexEntity.php";
-require_once "../src/entity/Evaluable.php";
+if (file_exists("../src/entity/ComplexEntity.php"))
+    require_once "../src/entity/ComplexEntity.php";
+else if (file_exists("../../src/entity/ComplexEntity.php"))
+    require_once "../../src/entity/ComplexEntity.php";
+
+if (file_exists("../src/entity/Evaluable.php"))
+    require_once "../src/entity/Evaluable.php";
+else if (file_exists("../../src/entity/Evaluable.php"))
+    require_once "../../src/entity/Evaluable.php";
 
 /**
  * Series class.
@@ -81,7 +88,7 @@ class Series extends ComplexEntity
         // If fanfictions property exists,
         // adding it to associations array.
         $associations = [];
-        if(property_exists($this, "fanfictions")){
+        if (property_exists($this, "fanfictions")) {
             $associations["fanfictions"] = $this->fanfictions;
         }
 
@@ -97,7 +104,8 @@ class Series extends ComplexEntity
      * Method to create a new Series.
      * @return mixed new Series.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }
