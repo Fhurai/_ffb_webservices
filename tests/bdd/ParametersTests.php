@@ -9,21 +9,36 @@ if (file_exists("../../src/table/RatingsTable.php"))
     require_once "../../src/table/RatingsTable.php";
 else if (file_exists("../src/table/RatingsTable.php"))
     require_once "../src/table/RatingsTable.php";
+else if (file_exists("../../src/table/RatingsTable.php"))
+    require_once "../../src/table/RatingsTable.php";
 
-if (file_exists("../../src/table/ScoresTable"))
+if (file_exists("../../src/table/ScoresTable.php"))
     require_once "../../src/table/ScoresTable.php";
 else if (file_exists("../src/table/ScoresTable.php"))
     require_once "../src/table/ScoresTable.php";
+else if (file_exists("../../src/table/ScoresTable.php"))
+    require_once "../../src/table/ScoresTable.php";
 
-    if (file_exists("../../src/table/ActionsTable"))
+if (file_exists("../../src/table/ActionsTable.php"))
     require_once "../../src/table/ActionsTable.php";
 else if (file_exists("../src/table/ActionsTable.php"))
     require_once "../src/table/ActionsTable.php";
+else if (file_exists("../../src/table/ActionsTable.php"))
+    require_once "../../src/table/ActionsTable.php";
 
-    if (file_exists("../../src/table/TagTypesTable"))
+if (file_exists("../../src/table/TagTypesTable.php"))
     require_once "../../src/table/TagTypesTable.php";
 else if (file_exists("../src/table/TagTypesTable.php"))
     require_once "../src/table/TagTypesTable.php";
+else if (file_exists("../../src/table/TagTypesTable.php"))
+    require_once "../../src/table/TagTypesTable.php";
+
+if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+else if (file_exists("../src/exceptions/FfbTableException.php"))
+    require_once "../src/exceptions/FfbTableException.php";
+else if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
 
 /**
  * Parameters tests class.
@@ -36,7 +51,7 @@ class ParametersTests extends Tests
     public function __construct()
     {
         parent::__construct();
-        
+
         // Do all tests.
         $this->testsRatings();
         $this->testsScores();
@@ -61,7 +76,7 @@ class ParametersTests extends Tests
         // Case get() with exception.
         try {
             $parameter = $ratingsTable->get(6);
-            $this->addEqualsCheck("Ratings_GET_exception",1, 0);
+            $this->addEqualsCheck("Ratings_GET_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Ratings_GET_exception", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Ratings_GET_exception_message", "No data for ratings n°6", $e->getMessage());
@@ -123,7 +138,7 @@ class ParametersTests extends Tests
         // Case get() with exception.
         try {
             $parameter = $scoresTable->get(6);
-            $this->addEqualsCheck("Scores_GET_exception",1, 0);
+            $this->addEqualsCheck("Scores_GET_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Scores_GET_exception", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Scores_GET_exception_message", "No data for scores n°6", $e->getMessage());
@@ -185,7 +200,7 @@ class ParametersTests extends Tests
         // Case get() with exception.
         try {
             $parameter = $actionsTable->get(6);
-            $this->addEqualsCheck("Actions_GET_exception",1, 0);
+            $this->addEqualsCheck("Actions_GET_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("Actions_GET_exception", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Actions_GET_exception_message", "No data for actions n°6", $e->getMessage());
@@ -247,7 +262,7 @@ class ParametersTests extends Tests
         // Case get() with exception.
         try {
             $parameter = $tagTypesTable->get(6);
-            $this->addEqualsCheck("TagTypes_GET_exception",1, 0);
+            $this->addEqualsCheck("TagTypes_GET_exception", 1, 0);
         } catch (Throwable $e) {
             $this->addEqualsCheck("TagTypes_GET_exception", FfbTableException::class, $e::class);
             $this->addEqualsCheck("TagTypes_GET_exception_message", "No data for tag_types n°6", $e->getMessage());

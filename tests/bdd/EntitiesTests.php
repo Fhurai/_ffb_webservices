@@ -10,6 +10,13 @@ if (file_exists("../../src/table/UsersTable.php"))
 else if (file_exists("../src/table/UsersTable.php"))
     require_once "../src/table/UsersTable.php";
 
+if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+else if (file_exists("../src/exceptions/FfbTableException.php"))
+    require_once "../src/exceptions/FfbTableException.php";
+else if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+
 class EntitiesTests extends Tests
 {
     /**
@@ -76,7 +83,7 @@ class EntitiesTests extends Tests
 
         // New
         $entity = $usersTable->new();
-        $this->addEqualsCheck("Users_NEW_id", 0, $entity->getId()); 
+        $this->addEqualsCheck("Users_NEW_id", 0, $entity->getId());
         $this->addEqualsCheck("Users_NEW_username", "", $entity->getUsername());
         $this->addEqualsCheck("Users_NEW_password", "", $entity->getPassword());
         $this->addEqualsCheck("Users_NEW_email", "", $entity->getEmail());
@@ -177,11 +184,11 @@ class EntitiesTests extends Tests
             $this->addEqualsCheck("Users_REMOVE2_no_exception", 0, 1);
         }
 
-        try{
+        try {
             $entity = $usersTable->get($entity->getId());
-            $this->addEqualsCheck("Users_REMOVE2_exception",0,1);
-        }catch (Throwable $e) {
-            $this->addEqualsCheck("Users_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Users_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Users_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Users_REMOVE2_get_exception_code", 404, $e->getCode());
             $this->addEqualsCheck("Users_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
         }

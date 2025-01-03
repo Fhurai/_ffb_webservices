@@ -20,6 +20,13 @@ if (file_exists("../../src/table/LanguagesTable.php"))
 else if (file_exists("../src/table/LanguagesTable.php"))
     require_once "../src/table/LanguagesTable.php";
 
+if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+else if (file_exists("../src/exceptions/FfbTableException.php"))
+    require_once "../src/exceptions/FfbTableException.php";
+else if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+
 class NamedEntitiesTests extends Tests
 {
     /**
@@ -174,11 +181,11 @@ class NamedEntitiesTests extends Tests
             $this->addEqualsCheck("Authors_REMOVE2_no_exception", 0, 1);
         }
 
-        try{
+        try {
             $entity = $authorsTable->get($named->getId());
-            $this->addEqualsCheck("Authors_REMOVE2_exception",0,1);
-        }catch (Throwable $e) {
-            $this->addEqualsCheck("Authors_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Authors_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Authors_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Authors_REMOVE2_get_exception_code", 404, $e->getCode());
             $this->addEqualsCheck("Authors_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
         }
@@ -323,11 +330,11 @@ class NamedEntitiesTests extends Tests
             $this->addEqualsCheck("Fandoms_REMOVE2_no_exception", 0, 1);
         }
 
-        try{
+        try {
             $entity = $fandomsTable->get($named->getId());
-            $this->addEqualsCheck("Fandoms_REMOVE2_exception",0,1);
-        }catch (Throwable $e) {
-            $this->addEqualsCheck("Fandoms_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fandoms_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fandoms_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Fandoms_REMOVE2_get_exception_code", 404, $e->getCode());
             $this->addEqualsCheck("Fandoms_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
         }
@@ -419,7 +426,7 @@ class NamedEntitiesTests extends Tests
         } catch (Throwable $e) {
             $this->addEqualsCheck("Languages_RESTORE_no_exception", 0, 1);
         }
-        
+
         // Update without exception.
         try {
             $named->setName("Deutsch");
@@ -474,11 +481,11 @@ class NamedEntitiesTests extends Tests
             $this->addEqualsCheck("Languages_REMOVE2_no_exception", 0, 1);
         }
 
-        try{
+        try {
             $entity = $languagesTable->get($named->getId());
-            $this->addEqualsCheck("Languages_REMOVE2_exception",0,1);
-        }catch (Throwable $e) {
-            $this->addEqualsCheck("Languages_REMOVE2_get_exception_type",FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Languages_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Languages_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Languages_REMOVE2_get_exception_code", 404, $e->getCode());
             $this->addEqualsCheck("Languages_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
         }

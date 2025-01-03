@@ -20,6 +20,13 @@ if (file_exists("../../src/table/RelationsTable.php"))
 else if (file_exists("../src/table/RelationsTable.php"))
     require_once "../src/table/RelationsTable.php";
 
+if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+else if (file_exists("../src/exceptions/FfbTableException.php"))
+    require_once "../src/exceptions/FfbTableException.php";
+else if (file_exists("../../src/exceptions/FfbTableException.php"))
+    require_once "../../src/exceptions/FfbTableException.php";
+
 class ComplexEntitiesTests extends Tests
 {
     /**
