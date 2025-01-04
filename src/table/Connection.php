@@ -17,14 +17,23 @@ if (file_exists("../../src/entity/Fandom.php"))
 if (file_exists("../../src/entity/Language.php"))
     require_once "../../src/entity/Language.php";
 
-    if (file_exists("../../src/entity/Tag.php"))
+if (file_exists("../../src/entity/Tag.php"))
     require_once "../../src/entity/Tag.php";
 
-    if (file_exists("../../src/entity/Character.php"))
+if (file_exists("../../src/entity/Character.php"))
     require_once "../../src/entity/Character.php";
 
-    if (file_exists("../../src/entity/Relation.php"))
+if (file_exists("../../src/entity/Relation.php"))
     require_once "../../src/entity/Relation.php";
+
+    if (file_exists("../../src/entity/Fanfiction.php"))
+    require_once "../../src/entity/Fanfiction.php";
+
+    if (file_exists("../../src/entity/Link.php"))
+    require_once "../../src/entity/Link.php";
+
+    if (file_exists("../../src/entity/Series.php"))
+    require_once "../../src/entity/Series.php";
 
 /**
  * Connection class.

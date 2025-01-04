@@ -43,7 +43,7 @@ if (file_exists("../entity/Series.php")) {
 }
 
 /**
- * Abstract table Entities.
+ * Abstract table ComplexEntities.
  */
 abstract class ComplexEntitiesTable extends Connection
 {
@@ -73,9 +73,15 @@ abstract class ComplexEntitiesTable extends Connection
                 return Character::jsonUnserialize(json_encode($parameters));
             case "relations":
                 return Relation::jsonUnserialize(json_encode($parameters));
+            case "fanfictions":
+                return Fanfiction::jsonUnserialize(json_encode($parameters));
+            case "links":
+                return Link::jsonUnserialize(json_encode($parameters));
+            case "series":
+                return Series::jsonUnserialize(json_encode($parameters));
         }
 
-        throw new FfbTableException("No parsing data !", 409);
+        throw new FfbTableException("No parse for data !", 409);
     }
 
     /**
@@ -103,36 +109,13 @@ abstract class ComplexEntitiesTable extends Connection
             // No data found, throw FfbTableException
             throw new FfbTableException("No data for " . $this->getTable() . " n°" . $id, 404);
         } else {
-            if ($loadAssociations) {
-                switch ($this->getTable()) {
-                    case "tags":
-                        $tagTypesTable = new TagTypesTable($this->getTypeConnection());
-                        $rows["tag_type"] = $tagTypesTable->get($rows["type_id"]);
-                        break;
-                    case "characters":
-                        $fandomsTable = new FandomsTable($this->getTypeConnection());
-                        $rows["fandom"] = $fandomsTable->get($rows["fandom_id"]);
-                        break;
-                    case "relations":
-                        // Characters_ids
-                        $sth = $this->getDatabase()->prepare("SELECT relation_id, character_id FROM `relations_characters` WHERE `relation_id` = :id");
-                        $sth->execute([
-                            ":id" => $id
-                        ]);
-                        $characters_ids = array_map(function ($e) {
-                            return $e["character_id"];
-                        }, $sth->fetchAll(PDO::FETCH_ASSOC));
-                        $rows["characters_ids"] = $characters_ids;
-                        // Characters
-                        $charactersTable = new CharactersTable("tests");
-                        $characters = $charactersTable->search(["conditions" => ["id IN" => json_encode($characters_ids)]]);
-                        $rows["characters"] = $characters;
-                        break;
-                }
-            }
+            if ($loadAssociations)
+                $data = $this->loadAssociations($rows);
+            else
+                $data = $rows;
 
             // Data found, return the object with that data.
-            return $this->parseDataParameters($rows);
+            return $this->parseDataParameters($data);
         }
     }
 
@@ -312,19 +295,11 @@ abstract class ComplexEntitiesTable extends Connection
             // Commit the insertion.
             $this->getDatabase()->commit();
 
-            switch ($this->getTable()) {
-                case "tags":
-                    $tagTypesTable = new TagTypesTable($this->getTypeConnection());
-                    $entity->tag_type = $tagTypesTable->get($entity->getTypeId());
-                    break;
-                case "characters":
-                    $fandomsTable = new FandomsTable($this->getTypeConnection());
-                    $entity->fandom = $fandomsTable->get($entity->getFandomId());
-                    break;
-            }
+            // Load associations from new entity
+            $data = $this->loadAssociations(json_decode(json_encode($entity), true));
 
             // Return newly inserted entity.
-            return $entity;
+            return $this->parseDataParameters($data);
         } catch (\PDOException $e) {
             // Exception caught, rollback changes.
             $this->getDatabase()->rollBack();
@@ -586,5 +561,43 @@ abstract class ComplexEntitiesTable extends Connection
         }
 
         throw new FfbTableException("Unknown action.");
+    }
+
+    abstract protected function loadAssociations(array $data): array;
+
+    protected function loadAssociationData(string $association, int $identifier, bool $multiple)
+    {
+        if (!$multiple) {
+            $tableName = SrcUtilities::getTableName($association);
+            $table = new $tableName($this->getTypeConnection());
+            return $table->get($identifier);
+        } else {
+            // Variables initialization.
+            $tableSuffix = substr($this->getTable(), 0, -1);
+            $associationSuffix = substr($association, 0, -1);
+
+            // Data associations
+            $sth = $this->getDatabase()->prepare("SELECT * FROM `{$this->getTable()}_{$association}` WHERE `{$tableSuffix}_id` = :id");
+            $sth->execute([
+                ":id" => $identifier,
+            ]);
+            $assocData = $sth->fetchAll(PDO::FETCH_ASSOC);
+            
+            $ids = array_map(function ($e) use ($associationSuffix) {
+                return $e["{$associationSuffix}_id"];
+            }, $assocData);
+
+            $tableName = SrcUtilities::getTableName($association, false);
+            $table = new $tableName($this->getTypeConnection());
+            $objects = $table->search(["conditions" => ["id IN" => json_encode($ids)]], true);
+
+            foreach ($objects as $object) {
+                $object->_assoc_data = array_merge(...array_filter($assocData, function ($data) use ($object, $associationSuffix) {
+                    return $data["{$associationSuffix}_id"] === $object->getId();
+                }));
+            }
+
+            return $objects;
+        }
     }
 }
