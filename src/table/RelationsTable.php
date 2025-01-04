@@ -27,4 +27,10 @@ class RelationsTable extends ComplexEntitiesTable {
         // Auto set columns of table.
         $this->setPropertiesColumns();
     }
+
+    protected function loadAssociations(array $data): array
+    {
+        $data["characters"] = $this->loadAssociationData("characters", $data["id"], true);
+        return $data;
+    }
 }

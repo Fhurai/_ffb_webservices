@@ -27,4 +27,10 @@ class CharactersTable extends ComplexEntitiesTable {
         // Auto set columns of table.
         $this->setPropertiesColumns();
     }
+
+    protected function loadAssociations(array $data): array
+    {
+        $data["fandom"] = $this->loadAssociationData("fandom", $data["fandom_id"], false);
+        return $data;
+    }
 }

@@ -27,4 +27,10 @@ class TagsTable extends ComplexEntitiesTable {
         // Auto set columns of table.
         $this->setPropertiesColumns();
     }
+
+    protected function loadAssociations(array $data): array
+    {
+        $data["tag_type"] = $this->loadAssociationData("tag_type", $data["type_id"], false);
+        return $data;
+    }
 }
