@@ -40,4 +40,36 @@ class SrcUtilities {
         // The generated getter function is returned.
         return $function;
     }
+
+    /**
+     * Method to generate table name from class
+     * @param string $class Class from which the table is generated.
+     * @return string Table name.
+     */
+    public static function getTableName(string $class, bool $singular = true){
+        // Initialization of variables.
+        $pos = -1;
+        $tableName = "";
+
+        foreach (str_split($class) as $key => $character) {
+
+            // If current character is "_" then this is not put into the return value.
+            // The next character is converted to uppercase and put into the return value.
+            // If current character is not "_", then current character is put into the return value.
+
+            if ($character === "_") {
+                $pos = $key;
+            }
+
+            if ($pos + 1 === $key) {
+                $tableName .= strtoupper($character);
+                $pos = -1;
+            } else if ($pos === -1) {
+                $tableName .= $character;
+            }
+        }
+
+        // The generated table name is returned.
+        return $tableName .= ($singular ? "s" : "") . "Table";
+    }
 }
