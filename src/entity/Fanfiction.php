@@ -13,7 +13,6 @@ else if (file_exists("../../src/entity/Evaluable.php"))
 /**
  * Fanfiction class.
  */
-#[AllowDynamicProperties]
 class Fanfiction extends ComplexEntity
 {
     use Evaluable;
@@ -38,31 +37,6 @@ class Fanfiction extends ComplexEntity
      * @var int
      */
     private int $language_id;
-    /**
-     * Fandoms_ids.
-     * @var array
-     */
-    private array $fandoms_ids;
-    /**
-     * Relation_ids.
-     * @var array
-     */
-    private array $relations_ids;
-    /**
-     * Characters_ids.
-     * @var array
-     */
-    private array $characters_ids;
-    /**
-     * Tags_ids
-     * @var array
-     */
-    private array $tags_ids;
-    /**
-     * Links.
-     * @var array
-     */
-    private array $links;
 
 
     /**
@@ -75,13 +49,8 @@ class Fanfiction extends ComplexEntity
         $this->setRatingId(-1);
         $this->setDescription("");
         $this->setLanguageId(-1);
-        $this->setFandomsIds([]);
-        $this->setRelationsIds([]);
-        $this->setCharactersIds([]);
-        $this->setTagsIds([]);
         $this->setScoreId(-1);
         $this->setEvaluation("");
-        $this->setLinks([]);
     }
 
     /**
@@ -161,102 +130,6 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * Getter Fandomds_ids.
-     * @return array Fandoms_ids.
-     */
-    public function getFandomsIds(): array
-    {
-        return $this->fandoms_ids;
-    }
-
-    /**
-     * Setter Fandoms_ids.
-     * @param array $fandoms_ids new Fandoms_ids.
-     * @return void
-     */
-    public function setFandomsIds(array $fandoms_ids): void
-    {
-        $this->fandoms_ids = $fandoms_ids;
-    }
-
-    /**
-     * Getter Relations_ids.
-     * @return array Relations_ids.
-     */
-    public function getRelationsIds(): array
-    {
-        return $this->relations_ids;
-    }
-
-    /**
-     * Setter Relations_ids.
-     * @param array $relations_ids Relations_ids.
-     * @return void
-     */
-    public function setRelationsIds(array $relations_ids): void
-    {
-        $this->relations_ids = $relations_ids;
-    }
-
-    /**
-     * Getter Characters_Ids.
-     * @return array Characters_Ids.
-     */
-    public function getCharactersIds(): array
-    {
-        return $this->characters_ids;
-    }
-
-    /**
-     * Setter Characters_Ids.
-     * @param array $characters_ids New Characters_Ids.
-     * @return void
-     */
-    public function setCharactersIds(array $characters_ids): void
-    {
-        $this->characters_ids = $characters_ids;
-    }
-
-    /**
-     * Getter Tags_ids.
-     * @return array Tags_ids.
-     */
-    public function getTagsIds(): array
-    {
-        return $this->tags_ids;
-    }
-
-    /**
-     * Setter Tags_ids.
-     * @param array $tags_ids New Tags_ids.
-     * @return void
-     */
-    public function setTagsIds(array $tags_ids): void
-    {
-        $this->tags_ids = $tags_ids;
-    }
-
-    /**
-     * Getter Links.
-     * @return array Links.
-     */
-    public function getLinks(): array
-    {
-        return $this->links;
-    }
-
-    /**
-     * Setter Links.
-     * @param array $links New Links.
-     * @return void
-     */
-    public function setLinks(array $links)
-    {
-        $this->links = $links;
-    }
-
-
-    /**
      * Method to parse Fanfiction into an array for JSON parsing.
      * @return array Array of Fanfiction data.
      */
@@ -313,13 +186,8 @@ class Fanfiction extends ComplexEntity
             "rating_id" => $this->getRatingId(),
             "description" => $this->getDescription(),
             "language_id" => $this->getLanguageId(),
-            "fandoms_ids" => $this->getFandomsIds(),
-            "relations_ids" => $this->getRelationsIds(),
-            "characters_ids" => $this->getCharactersIds(),
-            "tags_ids" => $this->getTagsIds(),
             "score_id" => $this->getScoreId(),
-            "evaluation" => $this->getEvaluation(),
-            "links" => $this->getLinks()
+            "evaluation" => $this->getEvaluation()
         ], $associations);
     }
 

@@ -13,7 +13,6 @@ else if (file_exists("../../src/entity/Evaluable.php"))
 /**
  * Series class.
  */
-#[AllowDynamicProperties]
 class Series extends ComplexEntity
 {
     use Evaluable;
@@ -24,19 +23,12 @@ class Series extends ComplexEntity
      */
     private string $description;
     /**
-     * Fanfictions_ids.
-     * @var array
-     */
-    private array $fanfictions_ids;
-
-    /**
      * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->setDescription("");
-        $this->setFanfictionsIds([]);
         $this->setScoreId(-1);
         $this->setEvaluation("");
     }
@@ -58,25 +50,6 @@ class Series extends ComplexEntity
     public function setDescription(string $description): void
     {
         $this->description = $description;
-    }
-
-    /**
-     * Getter Fanfictions_ids.
-     * @return array Fanfictions_ids.
-     */
-    public function getFanfictionsIds(): array
-    {
-        return $this->fanfictions_ids;
-    }
-
-    /**
-     * Setter Fanfictions_ids.
-     * @param array $fanfictions_ids New Fanfictions_ids.
-     * @return void
-     */
-    public function setFanfictionsIds(array $fanfictions_ids): void
-    {
-        $this->fanfictions_ids = $fanfictions_ids;
     }
 
     /**

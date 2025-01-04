@@ -8,7 +8,6 @@ else if(file_exists("../../src/entity/ComplexEntity.php"))
 /**
  * Relation class.
  */
-#[AllowDynamicProperties]
 class Relation extends ComplexEntity
 {
     /**

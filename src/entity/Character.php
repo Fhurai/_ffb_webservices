@@ -8,7 +8,6 @@ else if(file_exists("../../src/entity/ComplexEntity.php"))
 /**
  * Character class.
  */
-#[AllowDynamicProperties]
 class Character extends ComplexEntity
 {
 
