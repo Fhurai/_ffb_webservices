@@ -129,8 +129,12 @@ abstract class EntitiesTable extends Connection
                         // If special character in value, value is used without addon.
                         $query .= $value;
                     } else {
-                        // If no special character in value, add " = " as addon.
-                        $query .= " = " . $value;
+                        if (strpos($key, "IN") !== false) {
+                            $query .= "(" . implode(", ", json_decode($value)) . ")";
+                        } else {
+                            // If no special character in value, add " = " as addon.
+                            $query .= " = " . $value;
+                        }
                     }
 
                     // Increment countdown.
