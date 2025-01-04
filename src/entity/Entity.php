@@ -11,6 +11,7 @@ if (file_exists("../utilities/SrcUtilities.php")) {
 /**
  * Abstract class Entity
  */
+#[AllowDynamicProperties]
 abstract class Entity implements JsonSerializable
 {
 
@@ -128,12 +129,18 @@ abstract class Entity implements JsonSerializable
      */
     public function jsonSerialize(): mixed
     {
-        return [
+        $assoc = [];
+
+        if (property_exists($this,"_assoc_data")) {
+            $assoc["_assoc_data"] = $this->_assoc_data;
+        }
+
+        return array_merge([
             "id" => $this->getId(),
             "creation_date" => $this->getCreationDate(),
             "update_date" => $this->getUpdateDate(),
             "delete_date" => $this->getDeleteDate(),
-        ];
+        ], $assoc);
     }
 
     /**
@@ -160,14 +167,12 @@ abstract class Entity implements JsonSerializable
 
                 // Once a datetime, the data is set in the property.
                 $entity->$setFunction($date);
-            } else {
+            } else if (is_scalar($data) || is_null($data)) {
 
                 // The property is not a datetime, use of the setter function directly.
-                if (gettype($data) === "boolean") {
-                    $entity->$setFunction($data ? 1 : 0);
-                } else {
-                    $entity->$setFunction($data);
-                }
+                $entity->$setFunction($data);
+            } else {
+                $entity->$key = $data;
             }
         }
 

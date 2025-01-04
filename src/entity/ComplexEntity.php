@@ -1,8 +1,8 @@
 <?php
 
-if(file_exists("../src/entity/NamedEntity.php"))
+if (file_exists("../src/entity/NamedEntity.php"))
     require_once "../src/entity/NamedEntity.php";
-else if(file_exists("../../src/entity/NamedEntity.php"))
+else if (file_exists("../../src/entity/NamedEntity.php"))
     require_once "../../src/entity/NamedEntity.php";
 
 /**
@@ -39,6 +39,8 @@ abstract class ComplexEntity extends NamedEntity
                 return Author::jsonUnserialize(json_encode($data));
             case "language":
                 return Language::jsonUnserialize(json_encode($data));
+            case "rating":
+                return Rating::jsonUnserialize(json_encode($data));
             case "score":
                 return Score::jsonUnserialize(json_encode($data));
 
@@ -73,8 +75,9 @@ abstract class ComplexEntity extends NamedEntity
 
             // Ids array cases :
             // Just set from data
+            case "_assoc_data":
             case "characters_ids":
-                return $data;
+                return $data;    
             default:
                 return null;
         }
@@ -104,7 +107,7 @@ abstract class ComplexEntity extends NamedEntity
 
                 // Once a datetime, the data is set in the property.
                 $entity->$setFunction($date);
-            } else if (is_scalar($data)) {
+            } else if (is_scalar($data) || is_null($data)) {
 
                 // The property is not a datetime, use of the setter function directly.
                 $entity->$setFunction($data);
