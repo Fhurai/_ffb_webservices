@@ -20,6 +20,21 @@ if (file_exists("../../src/table/RelationsTable.php"))
 else if (file_exists("../src/table/RelationsTable.php"))
     require_once "../src/table/RelationsTable.php";
 
+if (file_exists("../../src/table/FanfictionsTable.php"))
+    require_once "../../src/table/FanfictionsTable.php";
+else if (file_exists("../src/table/FanfictionsTable.php"))
+    require_once "../src/table/FanfictionsTable.php";
+
+if (file_exists("../../src/table/LinksTable.php"))
+    require_once "../../src/table/LinksTable.php";
+else if (file_exists("../src/table/LinksTable.php"))
+    require_once "../src/table/LinksTable.php";
+
+if (file_exists("../../src/table/SeriesTable.php"))
+    require_once "../../src/table/SeriesTable.php";
+else if (file_exists("../src/table/SeriesTable.php"))
+    require_once "../src/table/SeriesTable.php";
+
 if (file_exists("../../src/exceptions/FfbTableException.php"))
     require_once "../../src/exceptions/FfbTableException.php";
 else if (file_exists("../src/exceptions/FfbTableException.php"))
@@ -44,8 +59,8 @@ class ComplexEntitiesTests extends Tests
         $this->testsCharacters();
         $this->testsRelations();
         $this->testsFanfictions();
-        $this->testsLinks();
-        $this->testsSeries();
+        // $this->testsLinks();
+        // $this->testsSeries();
     }
 
     /**
@@ -401,10 +416,8 @@ class ComplexEntitiesTests extends Tests
         $this->addNotEqualsCheck("Relations_GET_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
         $this->addNotEqualsCheck("Relations_GET_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
         $this->addEqualsCheck("Relations_GET_delete_date", null, $complex->getDeleteDate());
-        $this->addEqualsCheck("Relations_GET_characters_ids", true, property_exists($complex, "characters_ids"));
-        $this->addEqualsCheck("Relations_GET_characters_count", count($complexCharactersNameArray), count($complex->characters_ids));
+        $this->addEqualsCheck("Relations_GET_characters_count", count($complexCharactersNameArray), count($complex->characters));
         foreach ($complex->characters as $key => $character) {
-            $this->addEqualsCheck("Relations_GET_characters_idsObj" . ($key + 1), true, in_array($character->getId(), $complex->characters_ids));
             $this->addEqualsCheck("Relations_GET_characters_namesObj" . ($key + 1), true, in_array($character->getName(), $complexCharactersNameArray));
         }
 
@@ -455,8 +468,7 @@ class ComplexEntitiesTests extends Tests
             $this->addNotEqualsCheck("Relations_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Relations_CREATE2_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Relations_CREATE2_delete_date", null, $complex->getDeleteDate());
-            $this->addEqualsCheck("Relations_CREATE2_characters_ids", true, property_exists($complex, "characters_ids"));
-            $this->addEqualsCheck("Relations_CREATE2_characters_count", count($complexCharactersNameArray), count($complex->characters_ids));
+            $this->addEqualsCheck("Relations_CREATE2_characters_count", count($complexCharactersNameArray), count($complex->characters));
         } catch (Throwable $e) {
             $this->addEqualsCheck("Relations_CREATE2_no_exception", 0, 1);
         }
@@ -496,10 +508,8 @@ class ComplexEntitiesTests extends Tests
             $this->addNotEqualsCheck("Relations_UPDATE1_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Relations_UPDATE1_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Relations_UPDATE1_delete_date", null, $complex->getDeleteDate());
-            $this->addEqualsCheck("Relations_UPDATE1_characters_ids", true, property_exists($complex, "characters_ids"));
-            $this->addEqualsCheck("Relations_UPDATE1_characters_count", count($complexCharactersNameArray), count($complex->characters_ids));
+            $this->addEqualsCheck("Relations_UPDATE1_characters_count", count($complexCharactersNameArray), count($complex->characters));
             foreach ($complex->characters as $key => $character) {
-                $this->addEqualsCheck("Relations_UPDATE1_characters_idsObj" . ($key + 1), true, in_array($character->getId(), $complex->characters_ids));
                 $this->addEqualsCheck("Relations_UPDATE1_characters_namesObj" . ($key + 1), true, in_array($character->getName(), $complexCharactersNameArray));
             }
         } catch (Throwable $e) {
@@ -559,17 +569,39 @@ class ComplexEntitiesTests extends Tests
 
     public function testsFanfictions(): void
     {
+        $fanfictionsTable = new FanfictionsTable("tests");
 
+        // Case get() without problem.
+        $complex = $fanfictionsTable->get(2, true);
+        $this->addEqualsCheck("Fanfictions_GET_id", 2, $complex->getId());
+        $this->addEqualsCheck("Fanfictions_GET_name", "Necessary", $complex->getName());
+        $this->addNotEqualsCheck("Fanfictions_GET_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Fanfictions_GET_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addEqualsCheck("Fanfictions_GET_delete_date", null, $complex->getDeleteDate());
+        $this->addEqualsCheck("Fanfictions_GET_author_association", $complex->author->getId(), $complex->getAuthorId());
+        $this->addEqualsCheck("Fanfictions_GET_rating_association", $complex->rating->getId(), $complex->getRatingId());
+        $this->addEqualsCheck("Fanfictions_GET_language_association", $complex->language->getId(), $complex->getLanguageId());
+        $this->addEqualsCheck("Fanfictions_GET_score_association", null, $complex->getScoreId());
+        $this->addEqualsCheck("Relations_GET_fandoms_count", 1, count($complex->fandoms));
+        $this->addEqualsCheck("Relations_GET_relations_count", 1, count($complex->relations));
+        $this->addEqualsCheck("Relations_GET_characters_count", 3, count($complex->characters));
+        $this->addEqualsCheck("Relations_GET_tags_count", 4, count($complex->tags));
     }
 
 
     public function testsLinks(): void
     {
+        $linksTable = new LinksTable("tests");
 
+        // Case get() without problem.
+        $complex = $linksTable->get(3);
     }
 
     public function testsSeries(): void
     {
+        $seriesTable = new SeriesTable("tests");
 
+        // Case get() without problem.
+        $complex = $seriesTable->get(1, true);
     }
 }
