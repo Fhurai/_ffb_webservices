@@ -582,10 +582,62 @@ class ComplexEntitiesTests extends Tests
         $this->addEqualsCheck("Fanfictions_GET_rating_association", $complex->rating->getId(), $complex->getRatingId());
         $this->addEqualsCheck("Fanfictions_GET_language_association", $complex->language->getId(), $complex->getLanguageId());
         $this->addEqualsCheck("Fanfictions_GET_score_association", null, $complex->getScoreId());
-        $this->addEqualsCheck("Relations_GET_fandoms_count", 1, count($complex->fandoms));
-        $this->addEqualsCheck("Relations_GET_relations_count", 1, count($complex->relations));
-        $this->addEqualsCheck("Relations_GET_characters_count", 3, count($complex->characters));
-        $this->addEqualsCheck("Relations_GET_tags_count", 4, count($complex->tags));
+        $this->addEqualsCheck("Fanfictions_GET_fandoms_count", 1, count($complex->fandoms));
+        $this->addEqualsCheck("Fanfictions_GET_relations_count", 1, count($complex->relations));
+        $this->addEqualsCheck("Fanfictions_GET_characters_count", 3, count($complex->characters));
+        $this->addEqualsCheck("Fanfictions_GET_tags_count", 4, count($complex->tags));
+
+        // Case get() with exception.
+        try {
+            $complex = $fanfictionsTable->get(0);
+            $this->addEqualsCheck("Fanfictions_GET_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fanfictions_GET_exception_message", "No data for fanfictions n°0", $e->getMessage());
+            $this->addEqualsCheck("Fanfictions_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Fanfictions_GET_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Search with filter.
+        $complex = $fanfictionsTable->search(["filter" => ["limit" => 0, "offset" => 100]]);
+        $this->addEqualsCheck("Fanfictions_SEARCH_complete_count", 100, count($complex));
+        $this->addEqualsCheck("Fanfictions_SEARCH_complete_min", 1, $complex[0]->getId());
+
+        // Create with exception.
+        try {
+            $complex = $fanfictionsTable->create("{\"id\":\"1\",\"name\":\"Les Reliques des Aînés\",\"creation_date\":\"2024-12-18 13:30:05\",\"update_date\":\"2024-12-18 13:30:05\",\"delete_date\":\"2024-12-18 13:30:05\"}");
+            $this->addEqualsCheck("Fanfictions_CREATE1_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_CREATE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fanfictions_CREATE1_exception_message", "New entity has an id already !", $e->getMessage());
+            $this->addEqualsCheck("Fanfictions_CREATE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Fanfictions_CREATE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // New.
+        $complex = $fanfictionsTable->new();
+        $this->addEqualsCheck("Fanfictions_NEW_id", 0, $complex->getId());
+        $this->addEqualsCheck("Fanfictions_NEW_name", "", $complex->getName());
+        $this->addNotEqualsCheck("Fanfictions_NEW_creation_date", null, $complex->getCreationDate());
+        $this->addNotEqualsCheck("Fanfictions_NEW_update_date", null, $complex->getUpdateDate());
+        $this->addEqualsCheck("Fanfictions_NEW_delete_date", null, $complex->getDeleteDate());
+
+        // Create without exception.
+        try {
+            $complex->setAuthorId(1);
+            $complex->setRatingId(1);
+            $complex->setLanguageId(1);
+            $complex->setScoreId(1);
+            $complex = $fanfictionsTable->create(json_encode($complex));
+            $complexId = $complex->getId();
+            $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
+            $this->addNotEqualsCheck("Fanfictions_CREATE2_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Fanfictions_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fanfictions_CREATE2_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fanfictions_CREATE2_delete_date", null, $complex->getDeleteDate());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_CREATE2_no_exception", 0, 1);
+        }
     }
 
 
