@@ -107,7 +107,8 @@ abstract class EntitiesTable extends Connection
      */
     public function search(?array $args = null): mixed
     {
-        // Querystring initialization.
+        try{
+            // Querystring initialization.
         $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` ";
 
         if ($args !== null) {
@@ -180,6 +181,9 @@ abstract class EntitiesTable extends Connection
                 $result[] = $this->parseDataParameters($row);
             }
             return $result;
+        }
+        }catch (PDOException $e) {
+            throw new FfbTableException($e->getMessage(), 500, $e);
         }
     }
 

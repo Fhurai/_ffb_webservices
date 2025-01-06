@@ -301,11 +301,14 @@ abstract class ComplexEntitiesTable extends Connection
             // Return newly inserted entity.
             return $this->parseDataParameters($data);
         } catch (\PDOException $e) {
+
             // Exception caught, rollback changes.
-            $this->getDatabase()->rollBack();
+            if ($this->getDatabase()->inTransaction()) {
+                $this->getDatabase()->rollBack();
+            }
 
             // Throw new Exception with previous exception message.
-            throw new FfbTableException($e->getMessage());
+            throw new FfbTableException($e->getMessage(), 500, $e);
         }
     }
 
@@ -563,38 +566,69 @@ abstract class ComplexEntitiesTable extends Connection
         throw new FfbTableException("Unknown action.");
     }
 
+    /**
+     * Method to load all associations for the class.
+     * @param array $data Data from database.
+     * @return array Data with associations data.
+     */
     abstract protected function loadAssociations(array $data): array;
 
+    /**
+     * Method to load all data for association.
+     * @param string $association Association to get.
+     * @param int $identifier Identifier of the association.
+     * @param bool $multiple Indication if multiple association or not.
+     * @return mixed
+     */
     protected function loadAssociationData(string $association, int $identifier, bool $multiple)
     {
         if (!$multiple) {
+            // Association is not multiple.
+
+            // Get table of association.
             $tableName = SrcUtilities::getTableName($association);
             $table = new $tableName($this->getTypeConnection());
+
+            // Get data from table with identifier.
             return $table->get($identifier);
         } else {
+            // Association is multiple.
+
             // Variables initialization.
             $tableSuffix = substr($this->getTable(), 0, -1);
             $associationSuffix = substr($association, 0, -1);
 
-            // Data associations
+            // Retrieve association links.
             $sth = $this->getDatabase()->prepare("SELECT * FROM `{$this->getTable()}_{$association}` WHERE `{$tableSuffix}_id` = :id");
             $sth->execute([
                 ":id" => $identifier,
             ]);
             $assocData = $sth->fetchAll(PDO::FETCH_ASSOC);
-            
+
+            // Array of all association identifiers.
             $ids = array_map(function ($e) use ($associationSuffix) {
                 return $e["{$associationSuffix}_id"];
             }, $assocData);
 
-            $tableName = SrcUtilities::getTableName($association, false);
-            $table = new $tableName($this->getTypeConnection());
-            $objects = $table->search(["conditions" => ["id IN" => json_encode($ids)]], true);
+            // Array of association objects.
+            $objects = [];
 
-            foreach ($objects as $object) {
-                $object->_assoc_data = array_merge(...array_filter($assocData, function ($data) use ($object, $associationSuffix) {
-                    return $data["{$associationSuffix}_id"] === $object->getId();
-                }));
+            if (!empty($ids)) {
+                // Array of identifiers is not empty.
+
+                // Get table of association.
+                $tableName = SrcUtilities::getTableName($association, false);
+                $table = new $tableName($this->getTypeConnection());
+
+                // Search association objects with identifiers array.
+                $objects = $table->search(["conditions" => ["id IN" => json_encode($ids)]], true);
+
+                // For each association object, the association link data is put into the object.
+                foreach ($objects as $object) {
+                    $object->_assoc_data = array_merge(...array_filter($assocData, function ($data) use ($object, $associationSuffix) {
+                        return $data["{$associationSuffix}_id"] === $object->getId();
+                    }));
+                }
             }
 
             return $objects;
