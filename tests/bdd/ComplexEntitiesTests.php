@@ -637,10 +637,7 @@ class ComplexEntitiesTests extends Tests
             $complex->relations = $relationsTable->search(["conditions" => ["id IN" => json_encode([250, 245, 244])]], true);
             $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([229, 225, 299])]], true);
             $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([1, 16, 20, 21])]], true);
-            var_dump($complex->tags);
             $complex = $fanfictionsTable->create(json_encode($complex));
-            var_dump($complex->tags);
-            $complexId = $complex->getId();
             $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
             $this->addEqualsCheck("Fanfictions_CREATE2_name", "", $complex->getName());
             $this->addEqualsCheck("Fanfictions_CREATE2_author_id", 3, $complex->getAuthorId());
@@ -655,11 +652,16 @@ class ComplexEntitiesTests extends Tests
             $this->addEqualsCheck("Fanfictions_CREATE2_score_id", 5, $complex->getScoreId());
             $this->addEqualsCheck("Fanfictions_CREATE2_scoreObj_id", 5, $complex->score->getId());
             $this->addEqualsCheck("Fanfictions_CREATE2_score_name", "Excellent", $complex->score->getName());
+
+            $this->addEqualsCheck("Fanfictions_CREATE2_fandoms_count", 1, count($complex->fandoms));
+            $this->addEqualsCheck("Fanfictions_CREATE2_relations_count", 3, count($complex->relations));
+            $this->addEqualsCheck("Fanfictions_CREATE2_characters_count", 3, count($complex->characters));
+            $this->addEqualsCheck("Fanfictions_CREATE2_tags_count", 4, count($complex->tags));
+
             $this->addNotEqualsCheck("Fanfictions_CREATE2_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Fanfictions_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Fanfictions_CREATE2_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Fanfictions_CREATE2_delete_date", null, $complex->getDeleteDate());
-            die();
         } catch (Throwable $e) {
             $this->addEqualsCheck("Fanfictions_CREATE2_no_exception", 0, 1);
         }

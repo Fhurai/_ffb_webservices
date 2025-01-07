@@ -319,13 +319,7 @@ abstract class ComplexEntitiesTable extends Connection
             $data = $this->loadAssociations(json_decode(json_encode($entity), true));
 
             // Return newly inserted entity.
-            $entity = $this->parseDataParameters($data);
-            if (isset($data["author_id"])) {
-                var_dump($entity);
-                die();
-            }
-
-            return $entity;
+            return $this->parseDataParameters($data);
         } catch (\PDOException $e) {
 
             // Exception caught, rollback changes.
@@ -678,12 +672,25 @@ abstract class ComplexEntitiesTable extends Connection
     {
         foreach ($this->getAssociations() as $association => $multiple) {
             if ($multiple)
-                $data[$association] = $this->insertAssociationsData($association, $data["id"]);
+                $this->insertAssociationsData($association, $entity);
         }
     }
 
-    private function insertAssociationsData(string $association, int $identifier): bool
+    private function insertAssociationsData(string $association, ComplexEntity $entity): void
     {
-        
+        // Variables initialization.
+        $tableSuffix = substr($this->getTable(), 0, -1);
+        $associationSuffix = substr($association, 0, -1);
+
+        $query = "INSERT INTO `{$this->getTable()}_{$association}`(`{$tableSuffix}_id`,`{$associationSuffix}_id`) VALUES (:{$tableSuffix}_id, :{$associationSuffix}_id)";
+
+        $sth = $this->getDatabase()->prepare($query);
+
+        foreach($entity->$association as $object){
+            $sth->execute([
+                ":{$tableSuffix}_id" => $entity->getId(),
+                ":{$associationSuffix}_id" => $object->getId(),
+            ]);
+        }
     }
 }
