@@ -87,7 +87,8 @@ abstract class ParametersTable extends Connection
      */
     public function get(int $id): mixed
     {
-        // Preparation of the query.
+        try{
+            // Preparation of the query.
         $sth = $this->getDatabase()->prepare("SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` WHERE `id`=:id");
 
         // Execution of the query with the id parameter.
@@ -106,6 +107,9 @@ abstract class ParametersTable extends Connection
 
             // Data found, return the object with that data.
             return $this->parseDataParameters($rows);
+        }
+        }catch(PDOException $e){
+            throw new FfbTableException($e->getMessage(), 500, $e);
         }
     }
 
