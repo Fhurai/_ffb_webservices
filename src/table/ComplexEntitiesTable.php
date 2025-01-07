@@ -310,17 +310,7 @@ abstract class ComplexEntitiesTable extends Connection
             $entity->setId($this->getDatabase()->lastInsertId());
 
 
-            switch ($this->getTable()) {
-                case "relations":
-                    $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
-                    foreach ($entity->characters as $character) {
-                        $sth->execute([
-                            ":relation_id" => $entity->getId(),
-                            ":character_id" => $character->getId()
-                        ]);
-                    }
-                    break;
-            }
+            $this->insertAssociations($entity);
 
             // Commit the insertion.
             $this->getDatabase()->commit();
@@ -329,7 +319,13 @@ abstract class ComplexEntitiesTable extends Connection
             $data = $this->loadAssociations(json_decode(json_encode($entity), true));
 
             // Return newly inserted entity.
-            return $this->parseDataParameters($data);
+            $entity = $this->parseDataParameters($data);
+            if (isset($data["author_id"])) {
+                var_dump($entity);
+                die();
+            }
+
+            return $entity;
         } catch (\PDOException $e) {
 
             // Exception caught, rollback changes.
@@ -474,6 +470,8 @@ abstract class ComplexEntitiesTable extends Connection
                 case "relations":
                     $assoc = property_exists($entity, "characters");
                     break;
+                case "fanfictions":
+                    $assoc = property_exists($entity, "author");
             }
 
             // Update of the date of last modification of the entity.
@@ -601,7 +599,7 @@ abstract class ComplexEntitiesTable extends Connection
      * @param array $data Data from database.
      * @return array Data with associations data.
      */
-    protected function loadAssociations(array $data): array
+    private function loadAssociations(array $data): array
     {
 
         foreach ($this->getAssociations() as $association => $multiple) {
@@ -621,7 +619,7 @@ abstract class ComplexEntitiesTable extends Connection
      * @param bool $multiple Indication if multiple association or not.
      * @return mixed
      */
-    protected function loadAssociationData(string $association, int $identifier, bool $multiple)
+    private function loadAssociationData(string $association, int $identifier, bool $multiple)
     {
         if (!$multiple) {
             // Association is not multiple.
@@ -674,5 +672,18 @@ abstract class ComplexEntitiesTable extends Connection
 
             return $objects;
         }
+    }
+
+    private function insertAssociations(ComplexEntity $entity): void
+    {
+        foreach ($this->getAssociations() as $association => $multiple) {
+            if ($multiple)
+                $data[$association] = $this->insertAssociationsData($association, $data["id"]);
+        }
+    }
+
+    private function insertAssociationsData(string $association, int $identifier): bool
+    {
+        
     }
 }

@@ -407,6 +407,7 @@ class ComplexEntitiesTests extends Tests
     public function testsRelations(): void
     {
         $relationsTable = new RelationsTable("tests");
+        $charactersTable = new CharactersTable("tests");
 
         // Case get() without problem.
         $complex = $relationsTable->get(1, true);
@@ -459,7 +460,7 @@ class ComplexEntitiesTests extends Tests
         // Create without exception.
         try {
             $complex->setName("Lulu / Tidus / Yuna");
-            $complex->characters_ids = [23, 24, 26];
+            $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([23, 24, 26])]], true);
             $complex = $relationsTable->create(json_encode($complex));
             $complexId = $complex->getId();
             $complexCharactersNameArray = explode(" / ", $complex->getName());
@@ -498,7 +499,7 @@ class ComplexEntitiesTests extends Tests
         // Update without exception.
         try {
             $complex->setName("Rikku / Tidus / Yuna");
-            $complex->characters_ids = [23, 24, 29];
+            $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([23, 24, 29])]], true);
             $complex = $relationsTable->update(json_encode($complex));
             $complexCharactersNameArray = explode(" / ", $complex->getName());
             $this->addEqualsCheck("Relations_UPDATE1_id", $complexId, actual: $complex->getId());
@@ -570,6 +571,10 @@ class ComplexEntitiesTests extends Tests
     public function testsFanfictions(): void
     {
         $fanfictionsTable = new FanfictionsTable("tests");
+        $fandomsTable = new FandomsTable("tests");
+        $relationsTable = new RelationsTable("tests");
+        $charactersTable = new CharactersTable("tests");
+        $tagsTable = new TagsTable("tests");
 
         // Case get() without problem.
         $complex = $fanfictionsTable->get(2, true);
@@ -624,17 +629,37 @@ class ComplexEntitiesTests extends Tests
 
         // Create without exception.
         try {
-            $complex->setAuthorId(1);
+            $complex->setAuthorId(3);
             $complex->setRatingId(1);
-            $complex->setLanguageId(1);
-            $complex->setScoreId(1);
+            $complex->setLanguageId(2);
+            $complex->setScoreId(5);
+            $complex->fandoms = $fandomsTable->search(["conditions" => ["id IN" => json_encode([11])]]);
+            $complex->relations = $relationsTable->search(["conditions" => ["id IN" => json_encode([250, 245, 244])]], true);
+            $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([229, 225, 299])]], true);
+            $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([1, 16, 20, 21])]], true);
+            var_dump($complex->tags);
             $complex = $fanfictionsTable->create(json_encode($complex));
+            var_dump($complex->tags);
             $complexId = $complex->getId();
             $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_name", "", $complex->getName());
+            $this->addEqualsCheck("Fanfictions_CREATE2_author_id", 3, $complex->getAuthorId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_authorObj_id", 3, $complex->author->getId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_author_name", "1Sakura-Haruno1", $complex->author->getName());
+            $this->addEqualsCheck("Fanfictions_CREATE2_rating_id", 1, $complex->getRatingId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_ratingObj_id", 1, $complex->rating->getId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_rating_name", "K+ / 7", $complex->rating->getName());
+            $this->addEqualsCheck("Fanfictions_CREATE2_language_id", 2, $complex->getLanguageId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_languageObj_id", 2, $complex->language->getId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_language_name", "English", $complex->language->getName());
+            $this->addEqualsCheck("Fanfictions_CREATE2_score_id", 5, $complex->getScoreId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_scoreObj_id", 5, $complex->score->getId());
+            $this->addEqualsCheck("Fanfictions_CREATE2_score_name", "Excellent", $complex->score->getName());
             $this->addNotEqualsCheck("Fanfictions_CREATE2_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Fanfictions_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Fanfictions_CREATE2_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Fanfictions_CREATE2_delete_date", null, $complex->getDeleteDate());
+            die();
         } catch (Throwable $e) {
             $this->addEqualsCheck("Fanfictions_CREATE2_no_exception", 0, 1);
         }
