@@ -20,17 +20,25 @@ class RelationsTable extends ComplexEntitiesTable {
     public function __construct(string $typeConnection){
         // Parent overloading.
         parent::__construct($typeConnection);
-
-        // Initialization of table.
-        $this->setTable("relations");
-        
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
     }
 
-    protected function loadAssociations(array $data): array
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
     {
-        $data["characters"] = $this->loadAssociationData("characters", $data["id"], true);
-        return $data;
+        return "relations";
+    }
+
+    /**
+     * Summary of getNameAssociations
+     * @return array
+     */
+    protected function getNameAssociations(): array
+    {
+        return [
+            "characters" => true
+        ];
     }
 }

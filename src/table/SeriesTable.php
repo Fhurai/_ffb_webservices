@@ -22,18 +22,25 @@ class SeriesTable extends ComplexEntitiesTable
     {
         // Parent overloading.
         parent::__construct($typeConnection);
-
-        // Initialization of table.
-        $this->setTable("series");
-
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
     }
 
-    protected function loadAssociations(array $data): array
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
     {
-        // Fanfictions_ids
-        // Fanfictions
-        return $data;
+        return "series";
+    }
+
+    /**
+     * Summary of getNameAssociations
+     * @return array
+     */
+    protected function getNameAssociations(): array
+    {
+        return [
+            "fanfictions" => true
+        ];
     }
 }

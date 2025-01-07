@@ -22,12 +22,15 @@ class FanfictionsTable extends ComplexEntitiesTable
     {
         // Parent overloading.
         parent::__construct($typeConnection);
+    }
 
-        // Initialization of table.
-        $this->setTable("fanfictions");
-
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
+    {
+        return "fanfictions";
     }
 
     /**
@@ -37,21 +40,28 @@ class FanfictionsTable extends ComplexEntitiesTable
      */
     protected function loadAssociations(array $data): array
     {
-        // Simple associations.
-        $data["author"] = $this->loadAssociationData("author", $data["author_id"], false);
-        $data["rating"] = $this->loadAssociationData("rating", $data["rating_id"], false);
-        $data["language"] = $this->loadAssociationData("language", $data["language_id"], false);
-        if ($data["score_id"])
-            $data["score"] = $this->loadAssociationData("score", $data["score_id"], false);
-
-        // Multiple associations.
-        $data["fandoms"] = $this->loadAssociationData("fandoms", $data["id"], true);
-        $data["relations"] = $this->loadAssociationData("relations", $data["id"], true);
-        $data["characters"] = $this->loadAssociationData("characters", $data["id"], true);
-        $data["tags"] = $this->loadAssociationData("tags", $data["id"], true);
+        $data = parent::loadAssociations($data);
 
         // Links
 
         return $data;
+    }
+
+    /**
+     * Summary of getNameAssociations
+     * @return array
+     */
+    protected function getNameAssociations(): array
+    {
+        return [
+            "author" => false,
+            "rating" => false,
+            "language" => false,
+            "score" => false,
+            "fandoms" => true,
+            "relations" => true,
+            "characters" => true,
+            "tags" => true,
+        ];
     }
 }

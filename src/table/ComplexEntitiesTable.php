@@ -47,6 +47,8 @@ if (file_exists("../entity/Series.php")) {
  */
 abstract class ComplexEntitiesTable extends Connection
 {
+    private array $associations;
+
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
@@ -55,7 +57,35 @@ abstract class ComplexEntitiesTable extends Connection
     {
         // Parent overloading.
         parent::__construct($typeConnection);
+
+        $this->setAssociations($this->getNameAssociations());
     }
+
+    /**
+     * Getter Associations.
+     * @return array Associations.
+     */
+    protected function getAssociations(): array
+    {
+        return $this->associations;
+    }
+
+    /**
+     * Setter Associations.
+     * @param array $associations New Associations.
+     * @return void
+     */
+    protected function setAssociations(array $associations): void
+    {
+        $this->associations = $associations;
+    }
+
+    /**
+     * Method to set associations in children classes.
+     * @param array $associations Associations array.
+     * @return void
+     */
+    abstract protected function getNameAssociations(): array;
 
     /**
      * Method to parse data into object.
@@ -283,10 +313,10 @@ abstract class ComplexEntitiesTable extends Connection
             switch ($this->getTable()) {
                 case "relations":
                     $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
-                    foreach ($entity->characters_ids as $characterId) {
+                    foreach ($entity->characters as $character) {
                         $sth->execute([
                             ":relation_id" => $entity->getId(),
-                            ":character_id" => $characterId
+                            ":character_id" => $character->getId()
                         ]);
                     }
                     break;
@@ -442,7 +472,7 @@ abstract class ComplexEntitiesTable extends Connection
                     $assoc = property_exists($entity, "fandom");
                     break;
                 case "relations":
-                    $assoc = property_exists($entity, "characters") || property_exists($entity, "characters_ids");
+                    $assoc = property_exists($entity, "characters");
                     break;
             }
 
@@ -454,7 +484,7 @@ abstract class ComplexEntitiesTable extends Connection
 
             switch ($this->getTable()) {
                 case "relations":
-                    if (property_exists($entity, "characters_ids")) {
+                    if (property_exists($entity, "characters")) {
                         // Old links deleted.
                         $sth = $this->getDatabase()->prepare("DELETE FROM `relations_characters` WHERE `relation_id` = :relation_id");
                         $sth->execute([
@@ -462,10 +492,10 @@ abstract class ComplexEntitiesTable extends Connection
                         ]);
                         // New links added.
                         $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
-                        foreach ($entity->characters_ids as $characterId) {
+                        foreach ($entity->characters as $character) {
                             $sth->execute([
                                 ":relation_id" => $entity->getId(),
-                                ":character_id" => $characterId
+                                ":character_id" => $character->getId()
                             ]);
                         }
                     }
@@ -571,7 +601,18 @@ abstract class ComplexEntitiesTable extends Connection
      * @param array $data Data from database.
      * @return array Data with associations data.
      */
-    abstract protected function loadAssociations(array $data): array;
+    protected function loadAssociations(array $data): array
+    {
+
+        foreach ($this->getAssociations() as $association => $multiple) {
+            $key = strpos($association, "_") === false ? $association : explode("_", $association)[1];
+            $identifier = ($multiple ? $data["id"] : $data["{$key}_id"]);
+            if (!is_null($identifier))
+                $data[$association] = $this->loadAssociationData($association, $identifier, $multiple);
+        }
+
+        return $data;
+    }
 
     /**
      * Method to load all data for association.

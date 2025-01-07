@@ -22,12 +22,14 @@ class UsersTable extends EntitiesTable
     {
         // Parent overloading.
         parent::__construct($typeConnection);
-
-        // Initialization of table & columns.
-        $this->setTable("users");
-
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
     }
 
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
+    {
+        return "users";
+    }
 }

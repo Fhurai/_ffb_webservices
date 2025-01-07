@@ -26,13 +26,13 @@ if (file_exists("../../src/entity/Character.php"))
 if (file_exists("../../src/entity/Relation.php"))
     require_once "../../src/entity/Relation.php";
 
-    if (file_exists("../../src/entity/Fanfiction.php"))
+if (file_exists("../../src/entity/Fanfiction.php"))
     require_once "../../src/entity/Fanfiction.php";
 
-    if (file_exists("../../src/entity/Link.php"))
+if (file_exists("../../src/entity/Link.php"))
     require_once "../../src/entity/Link.php";
 
-    if (file_exists("../../src/entity/Series.php"))
+if (file_exists("../../src/entity/Series.php"))
     require_once "../../src/entity/Series.php";
 
 /**
@@ -88,6 +88,12 @@ class Connection
                 // Exception caught, throw new exception with previous exception message.
                 throw new FfbTableException($e->getMessage());
             }
+
+            // Auto set of name of table.
+            $this->setTable($this->getNameTable());
+
+            // Auto set columns of table.
+            $this->setColumns($this->getPropertiesColumns());
         } else {
 
             // Unknown connection, throw exception.
@@ -102,6 +108,15 @@ class Connection
     protected function getDatabase(): PDO
     {
         return $this->db;
+    }
+
+    /**
+     * Method to call in children class to set table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
+    {
+        return "";
     }
 
     /**
@@ -151,16 +166,30 @@ class Connection
         $this->columns = $columns;
     }
 
+    /**
+     * Getter TypeConnection.
+     * @return string TypeConnection.
+     */
     protected function getTypeConnection(): string
     {
         return $this->typeConnection;
     }
 
+    /**
+     * Getter PropertyColumns.
+     * @return array PropertyColumns.
+     */
     protected function getPropertiesColumns(): array
     {
         $propertiesColumns = [];
 
         switch ($this->table) {
+            case "actions":
+            case "ratings":
+            case "tag_types":
+            case "scores":
+                $propertiesColumns = ["id", "name"];
+                break;
             case "users":
                 $propertiesColumns = User::getProperties();
                 break;
@@ -194,12 +223,5 @@ class Connection
         }
 
         return $propertiesColumns;
-    }
-
-    protected function setPropertiesColumns(): void
-    {
-        $propertiesColumns = $this->getPropertiesColumns();
-
-        $this->setColumns($propertiesColumns);
     }
 }

@@ -20,17 +20,25 @@ class TagsTable extends ComplexEntitiesTable {
     public function __construct(string $typeConnection){
         // Parent overloading.
         parent::__construct($typeConnection);
-
-        // Initialization of table.
-        $this->setTable("tags");
-        
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
     }
 
-    protected function loadAssociations(array $data): array
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
     {
-        $data["tag_type"] = $this->loadAssociationData("tag_type", $data["type_id"], false);
-        return $data;
+        return "tags";
+    }
+
+    /**
+     * Summary of getNameAssociations
+     * @return array
+     */
+    protected function getNameAssociations(): array
+    {
+        return [
+            "tag_type" => false
+        ];
     }
 }

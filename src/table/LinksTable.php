@@ -20,11 +20,14 @@ class LinksTable extends EntitiesTable {
     public function __construct(string $typeConnection){
         // Parent overloading.
         parent::__construct($typeConnection);
+    }
 
-        // Initialization of table.
-        $this->setTable("links");
-        
-        // Auto set columns of table.
-        $this->setPropertiesColumns();
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
+    {
+        return "links";
     }
 }

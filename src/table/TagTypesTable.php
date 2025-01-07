@@ -20,9 +20,14 @@ class TagTypesTable extends ParametersTable{
     public function __construct(string $typeConnection){
         // Parent overloading.
         parent::__construct($typeConnection);
+    }
 
-        // Initialization of table & columns.
-        $this->setTable("tag_types");
-        $this->setColumns(["id", "name"]);
+    /**
+     * Getter table name.
+     * @return string Table name.
+     */
+    protected function getNameTable(): string
+    {
+        return "tag_types";
     }
 }
