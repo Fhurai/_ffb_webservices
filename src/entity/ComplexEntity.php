@@ -76,7 +76,6 @@ abstract class ComplexEntity extends NamedEntity
             // Ids array cases :
             // Just set from data
             case "_assoc_data":
-            case "characters_ids":
                 return $data;    
             default:
                 return null;

@@ -26,10 +26,6 @@ class Relation extends ComplexEntity
     {
         $assoc = [];
 
-        if (property_exists($this, "characters_ids")) {
-            $assoc["characters_ids"] = $this->characters_ids;
-        }
-
         if (property_exists($this, "characters")) {
             $assoc["characters"] = $this->characters;
         }
