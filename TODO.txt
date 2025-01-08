@@ -24,6 +24,10 @@ Coté outils
 . Vérification existence en bdd pour author, langage fandom, character, relation, tag, link, fanfiction [titre + auteur], series
 . Vérification aucun fanfiction a un lien inconnu pour author, character, relation -> Possible ?
 
+** SQL **
+. Un compte SQL pour tests, un compte pour stats & un compte pour main.
+. Triggers pour remplir la table users_actions sur main.
+
 ** Code **
 
 . De base, seuls admin & guest de créés comme utilisateur. 
