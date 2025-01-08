@@ -4309,7 +4309,7 @@ SELECT "https://archiveofourown.org/works/7816444", ff.id FROM fanfictions ff IN
 UNION
 SELECT "https://archiveofourown.org/works/86489", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Troika" AND a.name = "Lily_pearl (lilyandjoey)"
 UNION
-SELECT "https://archiveofourown.org/works/86489", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Subservient Housewives and other Mythical Creatures" AND a.name = "Voxangelus"
+SELECT "https://archiveofourown.org/works/941323", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Subservient Housewives and other Mythical Creatures" AND a.name = "Voxangelus"
 UNION
 SELECT "https://ficwad.com/story/155242", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Ice Princess" AND a.name = "LuanMao"
 UNION

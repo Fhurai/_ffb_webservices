@@ -1232,7 +1232,6 @@ VALUES
 ("Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Neville Longbottom"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood / Nymphadora Tonks"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood"),
-("Ginevra 'Ginny' Weasley / Harry Potter / Luna Lovegood"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Narcissa Black Malfoy"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / Neville Longbottom"),
 ("Ginevra 'Ginny' Weasley / Harry Potter / OFC"),
@@ -1440,7 +1439,6 @@ VALUES
 ("Pneuma / Rex"),
 /************************************************************************************************************************************/
 ("A / Shulk"),
-("Ashera / Eunie"),
 ("Ashera / Eunie"),
 ("Eunie / Taion"),
 ("Ichika | Irma / Mashiro | Fiona"),
