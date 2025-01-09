@@ -17,11 +17,12 @@ class FanfictionsTable extends ComplexEntitiesTable
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection)
+    public function __construct(string $typeConnection, string $user)
     {
         // Parent overloading.
-        parent::__construct($typeConnection);
+        parent::__construct($typeConnection, $user);
     }
 
     /**
@@ -31,20 +32,6 @@ class FanfictionsTable extends ComplexEntitiesTable
     protected function getNameTable(): string
     {
         return "fanfictions";
-    }
-
-    /**
-     * Method to load fanfictions associations
-     * @param array $data
-     * @return array
-     */
-    protected function loadAssociations(array $data): array
-    {
-        $data = parent::loadAssociations($data);
-
-        // Links
-
-        return $data;
     }
 
     /**

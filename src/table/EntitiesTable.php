@@ -4,6 +4,8 @@ if (file_exists("../table/Connection.php")) {
     require_once "../table/Connection.php";
 } else if (file_exists("../src/table/Connection.php")) {
     require_once "../src/table/Connection.php";
+} else if (file_exists("../../src/table/Connection.php")) {
+    require_once "../../src/table/Connection.php";
 }
 
 if (file_exists("../entity/User.php")) {
@@ -39,11 +41,12 @@ abstract class EntitiesTable extends Connection
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection)
+    public function __construct(string $typeConnection, string $user)
     {
         // Parent overloading.
-        parent::__construct($typeConnection);
+        parent::__construct($typeConnection, $user);
     }
 
     /**

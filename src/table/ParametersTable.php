@@ -49,11 +49,12 @@ abstract class ParametersTable extends Connection
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection)
+    public function __construct(string $typeConnection, string $user)
     {
         // Parent overloading.
-        parent::__construct($typeConnection);
+        parent::__construct($typeConnection, $user);
     }
 
     /**
@@ -122,7 +123,7 @@ abstract class ParametersTable extends Connection
     public function search(?array $args = null): mixed
     {
         // Querystring initialization.
-        $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` ";
+        $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "`";
 
         if ($args !== null) {
             // If arguments exists

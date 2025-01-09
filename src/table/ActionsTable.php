@@ -16,10 +16,12 @@ class ActionsTable extends ParametersTable{
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection){
+    public function __construct(string $typeConnection, string $user)
+    {
         // Parent overloading.
-        parent::__construct($typeConnection);
+        parent::__construct($typeConnection, $user);
     }
 
     /**

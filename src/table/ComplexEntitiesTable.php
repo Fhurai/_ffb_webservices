@@ -52,11 +52,12 @@ abstract class ComplexEntitiesTable extends Connection
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection)
+    public function __construct(string $typeConnection, string $user)
     {
         // Parent overloading.
-        parent::__construct($typeConnection);
+        parent::__construct($typeConnection, $user);
 
         $this->setAssociations($this->getNameAssociations());
     }
@@ -229,16 +230,7 @@ abstract class ComplexEntitiesTable extends Connection
             $result = [];
             foreach ($rows as $row) {
                 if ($loadAssociations) {
-                    switch ($this->getTable()) {
-                        case "tags":
-                            $tagTypesTable = new TagTypesTable($this->getTypeConnection());
-                            $row["tag_type"] = $tagTypesTable->get($row["type_id"]);
-                            break;
-                        case "characters":
-                            $fandomsTable = new FandomsTable($this->getTypeConnection());
-                            $row["fandom"] = $fandomsTable->get($row["fandom_id"]);
-                            break;
-                    }
+                    $row = $this->loadAssociations($row);
                 }
                 $result[] = $this->parseDataParameters($row);
             }
@@ -620,7 +612,7 @@ abstract class ComplexEntitiesTable extends Connection
 
             // Get table of association.
             $tableName = SrcUtilities::getTableName($association);
-            $table = new $tableName($this->getTypeConnection());
+            $table = new $tableName($this->getTypeConnection(), $this->getUser());
 
             // Get data from table with identifier.
             return $table->get($identifier);
@@ -651,7 +643,7 @@ abstract class ComplexEntitiesTable extends Connection
 
                 // Get table of association.
                 $tableName = SrcUtilities::getTableName($association, false);
-                $table = new $tableName($this->getTypeConnection());
+                $table = new $tableName($this->getTypeConnection(), $this->getUser());
 
                 // Search association objects with identifiers array.
                 $objects = $table->search(["conditions" => ["id IN" => json_encode($ids)]], true);

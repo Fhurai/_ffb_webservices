@@ -61,39 +61,53 @@ class Connection
      * @var string
      */
     private string $typeConnection;
+    /**
+     * User of connection
+     * @var  string
+     */
+    private $user;
 
     /**
      * Constructor.
      * @param string $typeConnection Connection to use [main/stats/tests].
+     * @param string $user SQL user.
      */
-    public function __construct(string $typeConnection)
+    public function __construct(string $typeConnection, string $user)
     {
         if (in_array($typeConnection, ["main", "stats", "tests"])) {
 
-            // Set the type of connection.
-            $this->typeConnection = $typeConnection;
+            if (in_array($user, ["guest", "user", "admin"])) {
+                // Set the type of connection.
+                $this->typeConnection = $typeConnection;
 
-            // If connection type is known, then use config file.
-            if (file_exists("../config/config.php"))
-                $configFile = include "../config/config.php";
-            else if (file_exists("../../config/config.php"))
-                $configFile = include "../../config/config.php";
+                // Set the user of connection.
+                $this->user = $user;
 
-            try {
+                // If connection type is known, then use config file.
+                if (file_exists("../config/config.php"))
+                    $configFile = include "../config/config.php";
+                else if (file_exists("../../config/config.php"))
+                    $configFile = include "../../config/config.php";
 
-                // Creation of Php Database Object with provided data from config.
-                $this->db = new PDO("mysql:host=" . $configFile["credentials"]["host"] . ";dbname=" . $configFile["db"][$typeConnection], $configFile["credentials"]["user"], $configFile["credentials"]["password"]);
-            } catch (PDOException $e) {
+                try {
 
-                // Exception caught, throw new exception with previous exception message.
-                throw new FfbTableException($e->getMessage());
+                    // Creation of Php Database Object with provided data from config.
+                    $this->db = new PDO("mysql:host=" . $configFile["credentials"][$user]["host"] . ";dbname=" . $configFile["db"][$typeConnection], $configFile["credentials"][$user]["user"], $configFile["credentials"][$user]["password"]);
+                } catch (PDOException $e) {
+
+                    // Exception caught, throw new exception with previous exception message.
+                    throw new FfbTableException($e->getMessage());
+                }
+
+                // Auto set of name of table.
+                $this->setTable($this->getNameTable());
+
+                // Auto set columns of table.
+                $this->setColumns($this->getPropertiesColumns());
+            } else {
+                // Unknown sql user, throw exception.
+                throw new FfbTableException("Unknown user!");
             }
-
-            // Auto set of name of table.
-            $this->setTable($this->getNameTable());
-
-            // Auto set columns of table.
-            $this->setColumns($this->getPropertiesColumns());
         } else {
 
             // Unknown connection, throw exception.
@@ -173,6 +187,15 @@ class Connection
     protected function getTypeConnection(): string
     {
         return $this->typeConnection;
+    }
+
+    /**
+     * Getter User.
+     * @return string User.
+     */
+    protected function getUser(): string
+    {
+        return $this->user;
     }
 
     /**
