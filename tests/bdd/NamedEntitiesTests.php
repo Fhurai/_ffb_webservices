@@ -411,7 +411,6 @@ class NamedEntitiesTests extends Tests
             $this->addEqualsCheck("Languages_CREATE_dates", $named->getCreationDate()->format("Y-m-d H:i:s"), $named->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Languages_CREATE_delete_date", null, $named->getDeleteDate());
         } catch (Throwable $th) {
-            var_dump($th);die();
             $this->addEqualsCheck("Languages_CREATE_no_exception", 0, 1);
         }
 
