@@ -6,10 +6,24 @@ return [
         "stats"=> "ffb_stats",
         "tests"=> "ffb_tests",
     ],
-    "credentials"=> [
-        "host" => "",
-        "post" => "",
-        "user" => "",
-        "password" => ""
+    "credentials" => [
+        "guest" => [
+            "host" => "",
+            "post" => "",
+            "user" => "guest",
+            "password" => ""
+        ],
+        "user" => [
+            "host" => "",
+            "post" => "",
+            "user" => "ffb_user",
+            "password" => ""
+        ],
+        "admin" => [
+            "host" => "",
+            "post" => "",
+            "user" => "ffb_admin",
+            "password" => ""
+        ]
     ]
 ];
