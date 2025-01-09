@@ -32,6 +32,8 @@ else if (file_exists("../../src/exceptions/FfbTableException.php"))
  */
 class NamedEntitiesTests extends Tests
 {
+    private string $user = "user";
+    
     /**
      * Implied constructor.
      */
@@ -52,7 +54,7 @@ class NamedEntitiesTests extends Tests
     public function testsAuthors(): void
     {
         // Table creation for tests.
-        $authorsTable = new AuthorsTable("tests");
+        $authorsTable = new AuthorsTable("tests", $this->user);
 
         // Case get() without problem.
         $named = $authorsTable->get(2);
@@ -99,6 +101,7 @@ class NamedEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $named->setName("Kaiser57");
             $named = $authorsTable->create(json_encode($named));
             $namedId = $named->getId();
             $this->addNotEqualsCheck("Authors_CREATE_id", 0, $named->getId());
@@ -107,7 +110,7 @@ class NamedEntitiesTests extends Tests
             $this->addEqualsCheck("Authors_CREATE_dates", $named->getCreationDate()->format("Y-m-d H:i:s"), $named->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Authors_CREATE_delete_date", null, $named->getDeleteDate());
         } catch (Throwable $th) {
-            $this->addNotEqualsCheck("Authors_CREATE_no_exception", 0, 1);
+            $this->addEqualsCheck("Authors_CREATE_no_exception", 0, 1);
         }
 
         // Delete without exception.
@@ -134,13 +137,13 @@ class NamedEntitiesTests extends Tests
 
         // Update without exception.
         try {
-            $named->setName("Fhuraï");
+            $named->setName("Kaïser57");
             $named = $authorsTable->update(json_encode($named));
-            $this->addEqualsCheck("Authors_UPDATE_id", $namedId, $named->getId());
-            $this->addEqualsCheck("Authors_UPDATE_username_value", "Fhuraï", $named->getName());
-            $this->addNotEqualsCheck("Authors_UPDATE_username_empty", "", $named->getName());
-        } catch (Throwable $e) {
-            $this->addEqualsCheck("Authors_UPDATE_no_exception", 0, 1);
+            $this->addEqualsCheck("Authors_UPDATE1_id", $namedId, $named->getId());
+            $this->addEqualsCheck("Authors_UPDATE1_username_value", "Kaïser57", $named->getName());
+            $this->addNotEqualsCheck("Authors_UPDATE1_username_empty", "", $named->getName());
+        } catch (Throwable $th) {
+            $this->addEqualsCheck("Authors_UPDATE1_no_exception", 0, 1);
         }
 
         // Remove with exception
@@ -168,12 +171,12 @@ class NamedEntitiesTests extends Tests
         // Update with exception
         try {
             $named = $authorsTable->update(json_encode($named));
-            $this->addEqualsCheck("Authors_UPDATE_exception", 1, 0);
+            $this->addEqualsCheck("Authors_UPDATE2_exception", 1, 0);
         } catch (Throwable $e) {
-            $this->addEqualsCheck("Authors_UPDATE_exception_type", FfbTableException::class, $e::class);
-            $this->addEqualsCheck("Authors_UPDATE_exception_message", "Entity being updated has delete date !", $e->getMessage());
-            $this->addEqualsCheck("Authors_UPDATE_exception_code", 409, $e->getCode());
-            $this->addEqualsCheck("Authors_UPDATE_exception_trace", 3, count($e->getTrace()));
+            $this->addEqualsCheck("Authors_UPDATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Authors_UPDATE2_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Authors_UPDATE2_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Authors_UPDATE2_exception_trace", 3, count($e->getTrace()));
         }
 
         // Remove without exception
@@ -201,7 +204,7 @@ class NamedEntitiesTests extends Tests
     public function testsFandoms(): void
     {
         // Table creation for tests.
-        $fandomsTable = new FandomsTable("tests");
+        $fandomsTable = new FandomsTable("tests", $this->user);
 
         // Case get() without problem.
         $named = $fandomsTable->get(7);
@@ -230,12 +233,12 @@ class NamedEntitiesTests extends Tests
         // Create with exception.
         try {
             $named = $fandomsTable->create("{\"id\":\"1\",\"name\":\"South PARK\",\"creation_date\":\"2024-12-18 13:30:05\",\"update_date\":\"2024-12-18 13:30:05\",\"delete_date\":\"2024-12-18 13:30:05\"}");
-            $this->addEqualsCheck("Fandoms_CREATE_exception", 1, 0);
+            $this->addEqualsCheck("Fandoms_CREATE1_exception", 1, 0);
         } catch (Throwable $e) {
-            $this->addEqualsCheck("Fandoms_CREATE_exception_type", FfbTableException::class, $e::class);
-            $this->addEqualsCheck("Fandoms_CREATE_exception_message", "New entity has an id already !", $e->getMessage());
-            $this->addEqualsCheck("Fandoms_CREATE_exception_code", 409, $e->getCode());
-            $this->addEqualsCheck("Fandoms_CREATE_exception_trace", 3, count($e->getTrace()));
+            $this->addEqualsCheck("Fandoms_CREATE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fandoms_CREATE1_exception_message", "New entity has an id already !", $e->getMessage());
+            $this->addEqualsCheck("Fandoms_CREATE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Fandoms_CREATE1_exception_trace", 3, count($e->getTrace()));
         }
 
         // New.
@@ -248,15 +251,16 @@ class NamedEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $named->setName("South Park");
             $named = $fandomsTable->create(json_encode($named));
             $namedId = $named->getId();
-            $this->addNotEqualsCheck("Fandoms_CREATE_id", 0, $named->getId());
-            $this->addNotEqualsCheck("Fandoms_CREATE_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
-            $this->addNotEqualsCheck("Fandoms_CREATE_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
-            $this->addEqualsCheck("Fandoms_CREATE_dates", $named->getCreationDate()->format("Y-m-d H:i:s"), $named->getUpdateDate()->format("Y-m-d H:i:s"));
-            $this->addEqualsCheck("Fandoms_CREATE_delete_date", null, $named->getDeleteDate());
+            $this->addNotEqualsCheck("Fandoms_CREATE2_id", 0, $named->getId());
+            $this->addNotEqualsCheck("Fandoms_CREATE2_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Fandoms_CREATE2_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fandoms_CREATE2_dates", $named->getCreationDate()->format("Y-m-d H:i:s"), $named->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fandoms_CREATE2_delete_date", null, $named->getDeleteDate());
         } catch (Throwable $th) {
-            $this->addNotEqualsCheck("Fandoms_CREATE_no_exception", 0, 1);
+            $this->addEqualsCheck("Fandoms_CREATE2_no_exception", 0, 1);
         }
 
         // Delete without exception.
@@ -285,11 +289,11 @@ class NamedEntitiesTests extends Tests
         try {
             $named->setName("SOUTH PARK");
             $named = $fandomsTable->update(json_encode($named));
-            $this->addEqualsCheck("Fandoms_UPDATE_id", $namedId, $named->getId());
-            $this->addEqualsCheck("Fandoms_UPDATE_username_value", "SOUTH PARK", $named->getName());
-            $this->addNotEqualsCheck("Fandoms_UPDATE_username_empty", "", $named->getName());
+            $this->addEqualsCheck("Fandoms_UPDATE1_id", $namedId, $named->getId());
+            $this->addEqualsCheck("Fandoms_UPDATE1_username_value", "SOUTH PARK", $named->getName());
+            $this->addNotEqualsCheck("Fandoms_UPDATE1_username_empty", "", $named->getName());
         } catch (Throwable $e) {
-            $this->addEqualsCheck("Fandoms_UPDATE_no_exception", 0, 1);
+            $this->addEqualsCheck("Fandoms_UPDATE1_no_exception", 0, 1);
         }
 
         // Remove with exception
@@ -317,12 +321,12 @@ class NamedEntitiesTests extends Tests
         // Update with exception
         try {
             $named = $fandomsTable->update(json_encode($named));
-            $this->addEqualsCheck("Fandoms_UPDATE_exception", 1, 0);
+            $this->addEqualsCheck("Fandoms_UPDATE2_exception", 1, 0);
         } catch (Throwable $e) {
-            $this->addEqualsCheck("Fandoms_UPDATE_exception_type", FfbTableException::class, $e::class);
-            $this->addEqualsCheck("Fandoms_UPDATE_exception_message", "Entity being updated has delete date !", $e->getMessage());
-            $this->addEqualsCheck("Fandoms_UPDATE_exception_code", 409, $e->getCode());
-            $this->addEqualsCheck("Fandoms_UPDATE_exception_trace", 3, count($e->getTrace()));
+            $this->addEqualsCheck("Fandoms_UPDATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fandoms_UPDATE2_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Fandoms_UPDATE2_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Fandoms_UPDATE2_exception_trace", 3, count($e->getTrace()));
         }
 
         // Remove without exception
@@ -350,7 +354,7 @@ class NamedEntitiesTests extends Tests
     public function testsLanguages(): void
     {
         // Table creation for tests.
-        $languagesTable = new LanguagesTable("tests");
+        $languagesTable = new LanguagesTable("tests", $this->user);
 
         // Case get() without problem.
         $named = $languagesTable->get(1);
@@ -397,6 +401,8 @@ class NamedEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $named->setName("Portuguese");
+            $named->setAbbreviation("PT");
             $named = $languagesTable->create(json_encode($named));
             $namedId = $named->getId();
             $this->addNotEqualsCheck("Languages_CREATE_id", 0, $named->getId());
@@ -404,7 +410,8 @@ class NamedEntitiesTests extends Tests
             $this->addNotEqualsCheck("Languages_CREATE_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Languages_CREATE_dates", $named->getCreationDate()->format("Y-m-d H:i:s"), $named->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Languages_CREATE_delete_date", null, $named->getDeleteDate());
-        } catch (Throwable $e) {
+        } catch (Throwable $th) {
+            var_dump($th);die();
             $this->addEqualsCheck("Languages_CREATE_no_exception", 0, 1);
         }
 

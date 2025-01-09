@@ -22,12 +22,16 @@ else if (file_exists("../../src/exceptions/FfbTableException.php"))
  */
 class EntitiesTests extends Tests
 {
+    private string $user = "user";
+
     /**
      * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
+
+
 
         // Do all tests.
         $this->testsUsers();
@@ -40,7 +44,7 @@ class EntitiesTests extends Tests
     public function testsUsers(): void
     {
         // Table creation for tests.
-        $usersTable = new UsersTable("tests");
+        $usersTable = new UsersTable("tests", $this->user);
 
         // Case get() without problem.
         $entity = $usersTable->get(2);
@@ -100,6 +104,8 @@ class EntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $entity->setUsername("Kaiser57");
+            $entity->setEmail("kuntz.lucas@gmail.com");
             $entity = $usersTable->create(json_encode($entity));
             $entityId = $entity->getId();
             $this->addNotEqualsCheck("Users_CREATE_id", 0, $entity->getId());

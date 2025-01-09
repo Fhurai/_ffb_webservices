@@ -45,6 +45,8 @@ else if (file_exists("../../src/exceptions/FfbTableException.php"))
  */
 class ParametersTests extends Tests
 {
+    private string $user = "user";
+
     /**
      * Implied constructor.
      */
@@ -66,7 +68,7 @@ class ParametersTests extends Tests
     public function testsRatings(): void
     {
         // Table creation for tests.
-        $ratingsTable = new RatingsTable("tests");
+        $ratingsTable = new RatingsTable("tests", $this->user);
 
         // Case get() without problem.
         $parameter = $ratingsTable->get(1);
@@ -88,7 +90,7 @@ class ParametersTests extends Tests
         $parameters = $ratingsTable->search();
         $this->addEqualsCheck("Ratings_SEARCH_complete_count", 5, count($parameters));
         $this->addEqualsCheck("Ratings_SEARCH_complete_min", 0, $parameters[0]->getId());
-        $this->addEqualsCheck("Ratings_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_complete_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions
         $parameters = $ratingsTable->search(["conditions" => ["name" => "LIKE 'K%'"]]);
@@ -105,8 +107,8 @@ class ParametersTests extends Tests
         // Search with filter
         $parameters = $ratingsTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
         $this->addEqualsCheck("Ratings_SEARCH_filter_count", 3, count($parameters));
-        $this->addEqualsCheck("Ratings_SEARCH_filter_min", 2, $parameters[0]->getId());
-        $this->addEqualsCheck("Ratings_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_filter_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Ratings_SEARCH_filter_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions & order
         $parameters = $ratingsTable->search(["conditions" => ["name" => "LIKE 'M%'"], "order" => ["property" => ["name"], "direction" => "DESC"]]);
@@ -128,7 +130,7 @@ class ParametersTests extends Tests
     public function testsScores(): void
     {
         // Table creation for tests.
-        $scoresTable = new ScoresTable("tests");
+        $scoresTable = new ScoresTable("tests", $this->user);
 
         // Case get() without problem.
         $parameter = $scoresTable->get(1);
@@ -149,14 +151,14 @@ class ParametersTests extends Tests
         // Search complete
         $parameters = $scoresTable->search();
         $this->addEqualsCheck("Scores_SEARCH_complete_count", 6, count($parameters));
-        $this->addEqualsCheck("Scores_SEARCH_complete_min", 0, $parameters[0]->getId());
-        $this->addEqualsCheck("Scores_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_complete_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_complete_max", 0, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions
         $parameters = $scoresTable->search(["conditions" => ["name" => "LIKE '%acceptable%'"]]);
         $this->addEqualsCheck("Scores_SEARCH_conditions_count", 2, count($parameters));
-        $this->addEqualsCheck("Scores_SEARCH_conditions_min", 0, $parameters[0]->getId());
-        $this->addEqualsCheck("Scores_SEARCH_conditions_max", 3, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_conditions_min", 3, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_conditions_max", 0, $parameters[count($parameters) - 1]->getId());
 
         // Search with order
         $parameters = $scoresTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
@@ -167,8 +169,8 @@ class ParametersTests extends Tests
         // Search with filter
         $parameters = $scoresTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
         $this->addEqualsCheck("Scores_SEARCH_filter_count", 3, count($parameters));
-        $this->addEqualsCheck("Scores_SEARCH_filter_min", 2, $parameters[0]->getId());
-        $this->addEqualsCheck("Scores_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_filter_min", 4, $parameters[0]->getId());
+        $this->addEqualsCheck("Scores_SEARCH_filter_max", 1, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions & order
         $parameters = $scoresTable->search(["conditions" => ["name" => "LIKE '%oo%'"], "order" => ["property" => ["name"], "direction" => "DESC"]]);
@@ -190,7 +192,7 @@ class ParametersTests extends Tests
     public function testsActions(): void
     {
         // Table creation for tests.
-        $actionsTable = new ActionsTable("tests");
+        $actionsTable = new ActionsTable("tests", $this->user);
 
         // Case get() without problem.
         $parameter = $actionsTable->get(1);
@@ -212,13 +214,13 @@ class ParametersTests extends Tests
         $parameters = $actionsTable->search();
         $this->addEqualsCheck("Actions_SEARCH_complete_count", 5, count($parameters));
         $this->addEqualsCheck("Actions_SEARCH_complete_min", 1, $parameters[0]->getId());
-        $this->addEqualsCheck("Actions_SEARCH_complete_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_complete_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions
         $parameters = $actionsTable->search(["conditions" => ["name" => "LIKE 'RE%'"]]);
         $this->addEqualsCheck("Actions_SEARCH_conditions_count", 2, count($parameters));
-        $this->addEqualsCheck("Actions_SEARCH_conditions_min", 4, $parameters[0]->getId());
-        $this->addEqualsCheck("Actions_SEARCH_conditions_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_conditions_min", 5, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_conditions_max", 4, $parameters[count($parameters) - 1]->getId());
 
         // Search with order
         $parameters = $actionsTable->search(["order" => ["property" => ["name"], "direction" => "DESC"]]);
@@ -229,8 +231,8 @@ class ParametersTests extends Tests
         // Search with filter
         $parameters = $actionsTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
         $this->addEqualsCheck("Actions_SEARCH_filter_count", 3, count($parameters));
-        $this->addEqualsCheck("Actions_SEARCH_filter_min", 3, $parameters[0]->getId());
-        $this->addEqualsCheck("Actions_SEARCH_filter_max", 5, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_filter_min", 5, $parameters[0]->getId());
+        $this->addEqualsCheck("Actions_SEARCH_filter_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions & order
         $parameters = $actionsTable->search(["conditions" => ["name" => "LIKE '%TE%'"], "order" => ["property" => ["name"], "direction" => "ASC"]]);
@@ -252,7 +254,7 @@ class ParametersTests extends Tests
     public function testsTagTypes(): void
     {
         // Table creation for tests.
-        $tagTypesTable = new TagTypesTable("tests");
+        $tagTypesTable = new TagTypesTable("tests", $this->user);
 
         // Case get() without problem.
         $parameter = $tagTypesTable->get(1);
@@ -274,7 +276,7 @@ class ParametersTests extends Tests
         $parameters = $tagTypesTable->search();
         $this->addEqualsCheck("TagTypes_SEARCH_complete_count", 4, count($parameters));
         $this->addEqualsCheck("TagTypes_SEARCH_complete_min", 1, $parameters[0]->getId());
-        $this->addEqualsCheck("TagTypes_SEARCH_complete_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_complete_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions
         $parameters = $tagTypesTable->search(["conditions" => ["name" => "LIKE 'Relation%'"]]);
@@ -292,7 +294,7 @@ class ParametersTests extends Tests
         $parameters = $tagTypesTable->search(["filter" => ["limit" => 2, "offset" => 3]]);
         $this->addEqualsCheck("TagTypes_SEARCH_filter_count", 2, count($parameters));
         $this->addEqualsCheck("TagTypes_SEARCH_filter_min", 3, $parameters[0]->getId());
-        $this->addEqualsCheck("TagTypes_SEARCH_filter_max", 4, $parameters[count($parameters) - 1]->getId());
+        $this->addEqualsCheck("TagTypes_SEARCH_filter_max", 2, $parameters[count($parameters) - 1]->getId());
 
         // Search with conditions & order
         $parameters = $tagTypesTable->search(["conditions" => ["name" => "LIKE '%el%'"], "order" => ["property" => ["name"], "direction" => "ASC"]]);

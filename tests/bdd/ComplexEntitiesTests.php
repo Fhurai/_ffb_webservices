@@ -47,6 +47,7 @@ else if (file_exists("../../src/exceptions/FfbTableException.php"))
  */
 class ComplexEntitiesTests extends Tests
 {
+    private string $user = "user";
     /**
      * Implied constructor.
      */
@@ -70,7 +71,7 @@ class ComplexEntitiesTests extends Tests
     public function testsTags(): void
     {
         // Table creation for tests.
-        $tagsTable = new TagsTable("tests");
+        $tagsTable = new TagsTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $tagsTable->get(1, true);
@@ -131,11 +132,12 @@ class ComplexEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $complex->setName("Nobility");
             $complex->setTypeId(1);
             $complex = $tagsTable->create(json_encode($complex));
             $complexId = $complex->getId();
             $this->addNotEqualsCheck("Tags_CREATE3_id", 0, $complexId);
-            $this->addEqualsCheck("Tags_CREATE3_name", "", $complex->getName());
+            $this->addEqualsCheck("Tags_CREATE3_name", "Nobility", $complex->getName());
             $this->addEqualsCheck("Tags_CREATE3_type_id", 1, $complex->getTypeId());
             $this->addEqualsCheck("Tags_CREATE3_tagtype_id", 1, $complex->tag_type->getId());
             $this->addEqualsCheck("Tags_CREATE3_tagtype_name", "Genre", $complex->tag_type->getName());
@@ -144,7 +146,7 @@ class ComplexEntitiesTests extends Tests
             $this->addEqualsCheck("Tags_CREATE3_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addEqualsCheck("Tags_CREATE3_delete_date", null, $complex->getDeleteDate());
         } catch (Throwable $e) {
-            $this->addNotEqualsCheck("Tags_CREATE3_no_exception", 0, 1);
+            $this->addEqualsCheck("Tags_CREATE3_no_exception", 0, 1);
         }
 
         // Delete without exception.
@@ -240,7 +242,7 @@ class ComplexEntitiesTests extends Tests
     public function testsCharacters(): void
     {
         // Table creation for tests.
-        $charactersTable = new CharactersTable("tests");
+        $charactersTable = new CharactersTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $charactersTable->get(1, true);
@@ -300,11 +302,12 @@ class ComplexEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $complex->setName("Tony Stark | Iron Man");
             $complex->setFandomId(1);
             $complex = $charactersTable->create(json_encode($complex));
             $complexId = $complex->getId();
             $this->addNotEqualsCheck("Characters_CREATE3_id", 0, $complexId);
-            $this->addEqualsCheck("Characters_CREATE3_name", "", $complex->getName());
+            $this->addEqualsCheck("Characters_CREATE3_name", "Tony Stark | Iron Man", $complex->getName());
             $this->addEqualsCheck("Characters_CREATE3_fandom_id", 1, $complex->getFandomId());
             $this->addEqualsCheck("Characters_CREATE3_fandomObj_id", 1, $complex->fandom->getId());
             $this->addNotEqualsCheck("Characters_CREATE3_fandom_name", "", $complex->fandom->getName());
@@ -406,8 +409,8 @@ class ComplexEntitiesTests extends Tests
 
     public function testsRelations(): void
     {
-        $relationsTable = new RelationsTable("tests");
-        $charactersTable = new CharactersTable("tests");
+        $relationsTable = new RelationsTable("tests", $this->user);
+        $charactersTable = new CharactersTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $relationsTable->get(1, true);
@@ -570,11 +573,11 @@ class ComplexEntitiesTests extends Tests
 
     public function testsFanfictions(): void
     {
-        $fanfictionsTable = new FanfictionsTable("tests");
-        $fandomsTable = new FandomsTable("tests");
-        $relationsTable = new RelationsTable("tests");
-        $charactersTable = new CharactersTable("tests");
-        $tagsTable = new TagsTable("tests");
+        $fanfictionsTable = new FanfictionsTable("tests", $this->user);
+        $fandomsTable = new FandomsTable("tests", $this->user);
+        $relationsTable = new RelationsTable("tests", $this->user);
+        $charactersTable = new CharactersTable("tests", $this->user);
+        $tagsTable = new TagsTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $fanfictionsTable->get(2, true);
@@ -629,6 +632,7 @@ class ComplexEntitiesTests extends Tests
 
         // Create without exception.
         try {
+            $complex->setName("With frustration and fear");
             $complex->setAuthorId(3);
             $complex->setRatingId(1);
             $complex->setLanguageId(2);
@@ -639,7 +643,7 @@ class ComplexEntitiesTests extends Tests
             $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([1, 16, 20, 21])]], true);
             $complex = $fanfictionsTable->create(json_encode($complex));
             $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
-            $this->addEqualsCheck("Fanfictions_CREATE2_name", "", $complex->getName());
+            $this->addEqualsCheck("Fanfictions_CREATE2_name", "With frustration and fear", $complex->getName());
             $this->addEqualsCheck("Fanfictions_CREATE2_author_id", 3, $complex->getAuthorId());
             $this->addEqualsCheck("Fanfictions_CREATE2_authorObj_id", 3, $complex->author->getId());
             $this->addEqualsCheck("Fanfictions_CREATE2_author_name", "1Sakura-Haruno1", $complex->author->getName());
@@ -670,7 +674,7 @@ class ComplexEntitiesTests extends Tests
 
     public function testsLinks(): void
     {
-        $linksTable = new LinksTable("tests");
+        $linksTable = new LinksTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $linksTable->get(3);
@@ -678,7 +682,7 @@ class ComplexEntitiesTests extends Tests
 
     public function testsSeries(): void
     {
-        $seriesTable = new SeriesTable("tests");
+        $seriesTable = new SeriesTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $seriesTable->get(1, true);
