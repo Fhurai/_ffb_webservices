@@ -8,6 +8,7 @@ DROP VIEW IF EXISTS view_series_fandoms;
 DROP VIEW IF EXISTS view_series_languages;
 DROP VIEW IF EXISTS view_series_authors;
 DROP VIEW IF EXISTS view_series_fanfictions;
+DROP VIEW IF EXISTS view_fanfictions_links; 
 DROP VIEW IF EXISTS view_fanfictions_tags;
 DROP VIEW IF EXISTS view_fanfictions_characters;
 DROP VIEW IF EXISTS view_fanfictions_relations;
@@ -16,6 +17,7 @@ DROP VIEW IF EXISTS view_data_crossovers;
 DROP VIEW IF EXISTS view_data_fanfictions;
 DROP VIEW IF EXISTS view_data_relations;
 DROP VIEW IF EXISTS view_data_characters;
+DROP VIEW IF EXISTS view_data_users;
 
 /*
  * TABLES

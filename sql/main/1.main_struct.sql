@@ -238,6 +238,11 @@ CREATE TABLE IF NOT EXISTS users_actions (
  * VIEWS DATA
  */
 
+CREATE OR REPLACE VIEW view_data_users AS (
+    SELECT u.username, u.password
+    FROM users u
+);
+
 CREATE OR REPLACE VIEW view_data_characters AS (
     SELECT c.name as name, f.name as fandom, c.creation_date as creation_date, c.update_date as update_date, c.delete_date as delete_date
     FROM characters c
