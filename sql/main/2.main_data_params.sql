@@ -19,7 +19,8 @@ VALUES
 ("Boruto: Naruto Next Generations"),
 ("クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon"), 
 ("Final Fantasy VII"), 
-("Final Fantasy X / X-2"), 
+("Final Fantasy X / X-2"),
+("Final Fantasy XIV"),
 ("Hellsing"), 
 ("Harry Potter - Wizarding World"),
 ("LEGO Harry Potter"),
@@ -152,6 +153,14 @@ UNION
 SELECT "Rikku", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
 UNION 
 SELECT "OC", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
+UNION /************************************************************************************************************************************/
+SELECT "OFC", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
+UNION
+SELECT "Minfilia Warde", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
+UNION
+SELECT "Y'shtola Rhul", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
+UNION
+SELECT "Y'mhitra Rhul", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
 UNION /************************************************************************************************************************************/
 SELECT "Harry Potter", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
