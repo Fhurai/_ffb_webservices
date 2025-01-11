@@ -506,8 +506,8 @@ class ComplexEntitiesTests extends Tests
             $complex = $relationsTable->update(json_encode($complex));
             $complexCharactersNameArray = explode(" / ", $complex->getName());
             $this->addEqualsCheck("Relations_UPDATE1_id", $complexId, actual: $complex->getId());
-            $this->addEqualsCheck("Relations_UPDATE1_username_value", "Rikku / Tidus / Yuna", $complex->getName());
-            $this->addNotEqualsCheck("Relations_UPDATE1_username_empty", "", $complex->getName());
+            $this->addEqualsCheck("Relations_UPDATE1_name_value", "Rikku / Tidus / Yuna", $complex->getName());
+            $this->addNotEqualsCheck("Relations_UPDATE1_name_empty", "", $complex->getName());
             $this->addNotEqualsCheck("Relations_UPDATE1_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Relations_UPDATE1_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Relations_UPDATE1_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
@@ -574,6 +574,8 @@ class ComplexEntitiesTests extends Tests
     public function testsFanfictions(): void
     {
         $fanfictionsTable = new FanfictionsTable("tests", $this->user);
+        $authorsTable = new AuthorsTable("tests", $this->user);
+        $fandomsTable = new FandomsTable("tests", $this->user);
         $fandomsTable = new FandomsTable("tests", $this->user);
         $relationsTable = new RelationsTable("tests", $this->user);
         $charactersTable = new CharactersTable("tests", $this->user);
@@ -637,11 +639,12 @@ class ComplexEntitiesTests extends Tests
             $complex->setRatingId(1);
             $complex->setLanguageId(2);
             $complex->setScoreId(5);
-            $complex->fandoms = $fandomsTable->search(["conditions" => ["id IN" => json_encode([11])]]);
+            $complex->fandoms = $fandomsTable->search(["conditions" => ["id IN" => json_encode([8])]]);
             $complex->relations = $relationsTable->search(["conditions" => ["id IN" => json_encode([250, 245, 244])]], true);
             $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([229, 225, 299])]], true);
             $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([1, 16, 20, 21])]], true);
             $complex = $fanfictionsTable->create(json_encode($complex));
+            $complexId = $complex->getId();
             $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
             $this->addEqualsCheck("Fanfictions_CREATE2_name", "With frustration and fear", $complex->getName());
             $this->addEqualsCheck("Fanfictions_CREATE2_author_id", 3, $complex->getAuthorId());
@@ -669,6 +672,132 @@ class ComplexEntitiesTests extends Tests
         } catch (Throwable $e) {
             $this->addEqualsCheck("Fanfictions_CREATE2_no_exception", 0, 1);
         }
+
+        // Delete without exception.
+        try {
+            sleep(1);
+            $complex = $fanfictionsTable->delete($complex->getId());
+            $this->addEqualsCheck("Fanfictions_DELETE1_id", $complexId, $complex->getId());
+            $this->addNotEqualsCheck("Fanfictions_DELETE1_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Fanfictions_DELETE1_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fanfictions_DELETE1_dates_delete", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_DELETE1_no_exception", 0, 1);
+        }
+
+        // Restore without exception.
+        try {
+            $complex = $fanfictionsTable->restore($complex->getId());
+            $this->addEqualsCheck("Fanfictions_RESTORE_id", $complexId, $complex->getId());
+            $this->addEqualsCheck("Fanfictions_RESTORE_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Fanfictions_RESTORE_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_RESTORE_no_exception", 0, 1);
+        }
+
+        // Update without exception.
+        try {
+            $author = $authorsTable->new();
+            $author->setName("Fhuraï");
+            $author = $authorsTable->create(json_encode($author));
+
+            $relation = $relationsTable->new();
+            $relation->setName("Chigusa Nana / Hyuuga Hinata / OFC");
+            $relation->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([31, 224, 233])]], true);
+            $relation = $relationsTable->create(json_encode($relation));
+
+            $complex->setName("A Night for girls across the worlds");
+            $complex->setDescription("When three beautiful and long haired ladies meet in a cross over event, they profit to experiment together...");
+            $complex->setAuthorId($author->getId());
+            $complex->author = $author;
+            $complex->setRatingId(4);
+            $complex->setScoreId(5);
+            $complex->fandoms = $fandomsTable->search(["conditions" => ["id IN" => json_encode([6, 11, 12])]]);
+            $complex->relations = [$relation];
+            $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([31, 224, 233])]], true);
+            $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([21, 20, 26, 28, 34])]], true);
+            $complex = $fanfictionsTable->update(json_encode($complex));
+
+            $this->addEqualsCheck("Fanfictions_UPDATE1_id", $complexId, actual: $complex->getId());
+            $this->addEqualsCheck("Fanfictions_UPDATE1_name_value", "A Night for girls across the worlds", $complex->getName());
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_name_empty", "", $complex->getName());
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fanfictions_UPDATE1_delete_date", null, $complex->getDeleteDate());
+
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_author_id", 3, $complex->getAuthorId());
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_authorObj_id", 3, $complex->author->getId());
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_rating_id", 1, $complex->getRatingId());
+            $this->addNotEqualsCheck("Fanfictions_UPDATE1_ratingObj_id", 1, $complex->rating->getId());
+            $this->addEqualsCheck("Fanfictions_UPDATE1_language_id", 2, $complex->getLanguageId());
+            $this->addEqualsCheck("Fanfictions_UPDATE1_languageObj_id", 2, $complex->language->getId());
+            $this->addEqualsCheck("Fanfictions_UPDATE1_score_id", 5, $complex->getScoreId());
+            $this->addEqualsCheck("Fanfictions_UPDATE1_scoreObj_id", 5, $complex->score->getId());
+
+            $this->addEqualsCheck("Fanfictions_UPDATE1_fandoms_count", 3, count($complex->fandoms));
+            $this->addEqualsCheck("Fanfictions_UPDATE1_relations_count", 1, count($complex->relations));
+            $this->addEqualsCheck("Fanfictions_UPDATE1_characters_count", 3, count($complex->characters));
+            $this->addEqualsCheck("Fanfictions_UPDATE1_tags_count", 5, count($complex->tags));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_UPDATE1_no_exception", 0, 1);
+        }
+
+        // Remove with exception
+        try {
+            $complex = $fanfictionsTable->remove(json_encode($complex));
+            $this->addEqualsCheck("Fanfictions_REMOVE1_no_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_REMOVE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fanfictions_REMOVE1_exception_message", "Entity being removed has no delete date !", $e->getMessage());
+            $this->addEqualsCheck("Fanfictions_REMOVE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Fanfictions_REMOVE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Delete without exception
+        try {
+            $complex = $fanfictionsTable->delete($complex->getId());
+            $this->addEqualsCheck("Fanfictions_DELETE2_id", $complexId, $complex->getId());
+            $this->addNotEqualsCheck("Fanfictions_DELETE2_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Fanfictions_DELETE2_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Fanfictions_DELETE2_dates_delete", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addNotEqualsCheck("Fanfictions_DELETE2_no_exception", 0, 1);
+        }
+
+        // Update with exception
+        try {
+            $complex = $fanfictionsTable->update(json_encode($complex));
+            $this->addEqualsCheck("Fanfictions_UPDATE2_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_UPDATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fanfictions_UPDATE2_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Fanfictions_UPDATE2_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Fanfictions_UPDATE2_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Remove without exception
+        try {
+            $result = $fanfictionsTable->remove(json_encode($complex));
+            $this->addEqualsCheck("Fanfictions_REMOVE2_result", true, $result);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_REMOVE2_no_exception", 0, 1);
+        }
+
+        try {
+            $entity = $fanfictionsTable->get($complex->getId());
+            $this->addEqualsCheck("Fanfictions_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Fanfictions_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Fanfictions_REMOVE2_get_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Fanfictions_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
+        }
+
+        $author = $authorsTable->delete($author->getId());
+        $authorsTable->remove(json_encode($author));
+
+        $relation = $relationsTable->delete($relation->getId());
+        $relationsTable->remove(json_encode($relation));
     }
 
 

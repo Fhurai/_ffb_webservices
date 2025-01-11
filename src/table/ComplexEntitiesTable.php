@@ -301,7 +301,7 @@ abstract class ComplexEntitiesTable extends Connection
             // Set the new id of the inserted entity.
             $entity->setId($this->getDatabase()->lastInsertId());
 
-
+            // Insert association(s).
             $this->insertAssociations($entity);
 
             // Commit the insertion.
@@ -457,7 +457,7 @@ abstract class ComplexEntitiesTable extends Connection
                     $assoc = property_exists($entity, "characters");
                     break;
                 case "fanfictions":
-                    $assoc = property_exists($entity, "author");
+                    $assoc = property_exists($entity, "author") || property_exists($entity, "rating") || property_exists($entity, "language") || property_exists($entity, "score") || property_exists($entity, "fandoms") || property_exists($entity, "relations") || property_exists($entity, "characters") || property_exists($entity, "tags");
             }
 
             // Update of the date of last modification of the entity.
@@ -466,29 +466,12 @@ abstract class ComplexEntitiesTable extends Connection
             // Execution of the query with the id parameter.
             $sth->execute($data);
 
-            switch ($this->getTable()) {
-                case "relations":
-                    if (property_exists($entity, "characters")) {
-                        // Old links deleted.
-                        $sth = $this->getDatabase()->prepare("DELETE FROM `relations_characters` WHERE `relation_id` = :relation_id");
-                        $sth->execute([
-                            ":relation_id" => $entity->getId()
-                        ]);
-                        // New links added.
-                        $sth = $this->getDatabase()->prepare("INSERT INTO `relations_characters`(`relation_id`, `character_id`) VALUES (:relation_id, :character_id) ");
-                        foreach ($entity->characters as $character) {
-                            $sth->execute([
-                                ":relation_id" => $entity->getId(),
-                                ":character_id" => $character->getId()
-                            ]);
-                        }
-                    }
-                    break;
-            }
+            // Update associations
+            if($update) $this->updateAssociations($entity);
 
             // Commit the insertion.
             $this->getDatabase()->commit();
-
+            
             // Return newly inserted entity.
             return $this->get($entity->getId(), $assoc);
         } catch (\PDOException $e) {
@@ -660,6 +643,11 @@ abstract class ComplexEntitiesTable extends Connection
         }
     }
 
+    /**
+     * Method to insert all associations for the class.
+     * @param ComplexEntity $entity Entity from which insert associations.
+     * @return void
+     */
     private function insertAssociations(ComplexEntity $entity): void
     {
         foreach ($this->getAssociations() as $association => $multiple) {
@@ -668,21 +656,80 @@ abstract class ComplexEntitiesTable extends Connection
         }
     }
 
+    /**
+     * Method to insert one association for the class.
+     * @param string $association Association to insert.
+     * @param ComplexEntity $entity Entity to link association into.
+     * @return void
+     */
     private function insertAssociationsData(string $association, ComplexEntity $entity): void
     {
         // Variables initialization.
         $tableSuffix = substr($this->getTable(), 0, -1);
         $associationSuffix = substr($association, 0, -1);
 
+        // Query.
         $query = "INSERT INTO `{$this->getTable()}_{$association}`(`{$tableSuffix}_id`,`{$associationSuffix}_id`) VALUES (:{$tableSuffix}_id, :{$associationSuffix}_id)";
 
+        // Prepare query.
         $sth = $this->getDatabase()->prepare($query);
 
-        foreach($entity->$association as $object){
-            $sth->execute([
-                ":{$tableSuffix}_id" => $entity->getId(),
-                ":{$associationSuffix}_id" => $object->getId(),
-            ]);
+        // Execute query.
+        if(property_exists($entity, $association)){
+            foreach($entity->$association as $object){
+                $sth->execute([
+                    ":{$tableSuffix}_id" => $entity->getId(),
+                    ":{$associationSuffix}_id" => $object->getId(),
+                ]);
+            }
         }
+    }
+
+    /**
+     * Methode to delete all association data from entity.
+     * @param string $association Association name to delete.
+     * @param ComplexEntity $entity Entity from which the association data should be delete from.
+     * @return void
+     */
+    private function deleteAssociationsData(string $association, ComplexEntity $entity): void
+    {
+        // Variables initialization.
+        $tableSuffix = substr($this->getTable(), 0, -1);
+
+        // Query.
+        $query = "DELETE FROM `{$this->getTable()}_{$association}` WHERE `{$tableSuffix}_id` = :{$tableSuffix}_id";
+
+        // Prepare query.
+        $sth = $this->getDatabase()->prepare($query);
+
+        // Execute query.
+        $sth->execute([
+            ":{$tableSuffix}_id" => $entity->getId()
+        ]);
+    }
+
+    /**
+     * Method to update all association for the class.
+     * @param ComplexEntity $entity Entity from which the associations are updated.
+     * @return void
+     */
+    private function updateAssociations(ComplexEntity $entity): void
+    {
+        foreach ($this->getAssociations() as $association => $multiple) {
+            if ($multiple)
+                $this->updateAssociationsData($association, $entity);
+        }
+    }
+
+    /**
+     * Method to update a specific assocation.
+     * @param string $association Association to update.
+     * @param ComplexEntity $entity Entity to update association.
+     * @return void
+     */
+    private function updateAssociationsData(string $association, ComplexEntity $entity): void
+    {
+        $this->deleteAssociationsData($association, $entity);
+        $this->insertAssociationsData($association, $entity);
     }
 }
