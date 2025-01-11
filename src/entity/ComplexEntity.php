@@ -67,6 +67,11 @@ abstract class ComplexEntity extends NamedEntity
                 foreach ($data as $tag_array)
                     $tags[] = Tag::jsonUnserialize(json_encode($tag_array));
                 return $tags;
+            case "links":
+                $links = [];
+                foreach ($data as $link_array)
+                    $links[] = Link::jsonUnserialize(json_encode($link_array));
+                return $links;
             case "fanfictions":
                 $fanfictions = [];
                 foreach ($data as $fanfiction_array)
@@ -76,7 +81,7 @@ abstract class ComplexEntity extends NamedEntity
             // Ids array cases :
             // Just set from data
             case "_assoc_data":
-                return $data;    
+                return $data;
             default:
                 return null;
         }

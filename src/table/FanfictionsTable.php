@@ -51,4 +51,43 @@ class FanfictionsTable extends ComplexEntitiesTable
             "tags" => true,
         ];
     }
+
+    protected function loadAssociations(array $data): array
+    {
+        $data = parent::loadAssociations($data);
+
+        // Get table of association.
+        $tableName = SrcUtilities::getTableName("Link");
+        $table = new $tableName($this->getTypeConnection(), $this->getUser());
+
+        // Get data from table with identifier.
+        $data["links"] = $table->search(["conditions" => ["fanfiction_id" => $data["id"]]]);
+
+        return $data;
+    }
+
+    protected function insertAssociations(ComplexEntity $entity): void
+    {
+
+        parent::insertAssociations($entity);
+
+        if (property_exists($entity, "links")) {
+
+            // Get table of association.
+            $tableName = SrcUtilities::getTableName("Link");
+            $table = new $tableName($this->getTypeConnection(), $this->getUser());
+
+            foreach ($entity->links as $link) {
+                $link->setFanfictionId($entity->getId());
+
+                $query = "INSERT INTO `Links` (`url`,`fanfiction_id`) VALUES (:url, :fanfiction_id)";
+                $sth = $this->getDatabase()->prepare($query); 
+
+                $sth->execute([
+                    ":url"=> $link->getUrl(),
+                    ":fanfiction_id" => $link->getFanfictionId()
+                ]);
+            }
+        }
+    }
 }

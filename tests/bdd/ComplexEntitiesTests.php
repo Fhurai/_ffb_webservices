@@ -579,6 +579,7 @@ class ComplexEntitiesTests extends Tests
         $relationsTable = new RelationsTable("tests", $this->user);
         $charactersTable = new CharactersTable("tests", $this->user);
         $tagsTable = new TagsTable("tests", $this->user);
+        $linksTable = new LinksTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $fanfictionsTable->get(2, true);
@@ -595,6 +596,7 @@ class ComplexEntitiesTests extends Tests
         $this->addEqualsCheck("Fanfictions_GET_relations_count", 1, count($complex->relations));
         $this->addEqualsCheck("Fanfictions_GET_characters_count", 3, count($complex->characters));
         $this->addEqualsCheck("Fanfictions_GET_tags_count", 4, count($complex->tags));
+        $this->addEqualsCheck("Fanfictions_GET_links_count", 1, count($complex->links));
 
         // Case get() with exception.
         try {
@@ -642,6 +644,12 @@ class ComplexEntitiesTests extends Tests
             $complex->relations = $relationsTable->search(["conditions" => ["id IN" => json_encode([250, 245, 244])]], true);
             $complex->characters = $charactersTable->search(["conditions" => ["id IN" => json_encode([229, 225, 299])]], true);
             $complex->tags = $tagsTable->search(["conditions" => ["id IN" => json_encode([1, 16, 20, 21])]], true);
+
+
+            $link = $linksTable->new();
+            $link->setUrl("https://archiveofourown.org/works/24301294");
+            $complex->links = [$link];
+
             $complex = $fanfictionsTable->create(json_encode($complex));
             $complexId = $complex->getId();
             $this->addNotEqualsCheck("Fanfictions_CREATE2_id", 0, $complex->getId());
@@ -663,6 +671,7 @@ class ComplexEntitiesTests extends Tests
             $this->addEqualsCheck("Fanfictions_CREATE2_relations_count", 3, count($complex->relations));
             $this->addEqualsCheck("Fanfictions_CREATE2_characters_count", 3, count($complex->characters));
             $this->addEqualsCheck("Fanfictions_CREATE2_tags_count", 4, count($complex->tags));
+            $this->addEqualsCheck("Fanfictions_CREATE2_links_count", 1, count($complex->links));
 
             $this->addNotEqualsCheck("Fanfictions_CREATE2_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
             $this->addNotEqualsCheck("Fanfictions_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));

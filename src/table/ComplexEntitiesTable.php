@@ -568,7 +568,7 @@ abstract class ComplexEntitiesTable extends Connection
      * @param array $data Data from database.
      * @return array Data with associations data.
      */
-    private function loadAssociations(array $data): array
+    protected function loadAssociations(array $data): array
     {
 
         foreach ($this->getAssociations() as $association => $multiple) {
@@ -648,7 +648,7 @@ abstract class ComplexEntitiesTable extends Connection
      * @param ComplexEntity $entity Entity from which insert associations.
      * @return void
      */
-    private function insertAssociations(ComplexEntity $entity): void
+    protected function insertAssociations(ComplexEntity $entity): void
     {
         foreach ($this->getAssociations() as $association => $multiple) {
             if ($multiple)

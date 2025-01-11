@@ -180,6 +180,12 @@ class Fanfiction extends ComplexEntity
             $associations["score"] = $this->score;
         }
 
+        if (property_exists($this, "links")) {
+            // If score property exists,
+            // adding it to associations array.
+            $associations["links"] = $this->links;
+        }
+
         // Return array of data from Fanfiction.
         return array_merge(parent::jsonSerialize(), [
             "author_id" => $this->getAuthorId(),
