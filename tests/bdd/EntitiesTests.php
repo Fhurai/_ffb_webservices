@@ -35,6 +35,7 @@ class EntitiesTests extends Tests
 
         // Do all tests.
         $this->testsUsers();
+        $this->testsLinks();
     }
 
     /**
@@ -200,6 +201,158 @@ class EntitiesTests extends Tests
             $this->addEqualsCheck("Users_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
             $this->addEqualsCheck("Users_REMOVE2_get_exception_code", 404, $e->getCode());
             $this->addEqualsCheck("Users_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
+        }
+    }
+
+    public function testsLinks(): void
+    {
+        $linksTable = new LinksTable("tests", $this->user);
+
+        // Case get() without problem.
+        $entity = $linksTable->get(2);
+        $this->addEqualsCheck("Links_GET_id", 2, $entity->getId());
+        $this->addEqualsCheck("Links_GET_url", "https://www.fanfiction.net/s/11171160/1/", $entity->getUrl());
+        $this->addEqualsCheck("Links_GET_fanfiction_id", 2, $entity->getFanfictionId());
+        $this->addNotEqualsCheck("Links_GET_creation_date", null, $entity->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Links_GET_update_date", null, $entity->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addEqualsCheck("Links_GET_delete_date", null, $entity->getDeleteDate());
+
+        // Case get() with exception.
+        try {
+            $entity = $linksTable->get(0);
+            $this->addEqualsCheck("Links_GET_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_GET_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Links_GET_exception_message", "No data for links n°0", $e->getMessage());
+            $this->addEqualsCheck("Links_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Links_GET_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Search with filter.
+        $entity = $linksTable->search(["filter" => ["limit" => 0, "offset" => 100]]);
+        $this->addNotEqualsCheck("Links_SEARCH_complete_count", 2, count($entity));
+        $this->addEqualsCheck("Links_SEARCH_complete_min", 1, $entity[0]->getId());
+
+
+        // Create with exception.
+        try {
+            $entity = $linksTable->create("{\"id\":\"1\",\"url\":\"Kaiser_57\", \"fanfiction_id\":\"2\", \"creation_date\":\"2024-12-18 13:30:05\",\"update_date\":\"2024-12-18 13:30:05\",\"delete_date\":\"2024-12-18 13:30:05\"}");
+            $this->addEqualsCheck("Links_CREATE1_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_CREATE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Links_CREATE1_exception_message", "New entity has an id already !", $e->getMessage());
+            $this->addEqualsCheck("Links_CREATE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Links_CREATE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // New
+        $entity = $linksTable->new();
+        $this->addEqualsCheck("Links_NEW_id", 0, $entity->getId());
+        $this->addEqualsCheck("Links_NEW_url", "", $entity->getUrl());
+        $this->addEqualsCheck("Links_NEW_fanfiction_id", -1, $entity->getFanfictionId());
+        $this->addNotEqualsCheck("Links_NEW_creation_date", null, $entity->getCreationDate());
+        $this->addNotEqualsCheck("Links_NEW_update_date", null, $entity->getUpdateDate());
+        $this->addEqualsCheck("Links_NEW_delete_date", null, $entity->getDeleteDate());
+
+        // Create without exception.
+        try {
+            $entity->setUrl("https://archiveofourown.org/works/5076781/chapters/11674074");
+            $entity->setFanfictionId(2);
+            $entity = $linksTable->create(json_encode($entity));
+            $entityId = $entity->getId();
+            $this->addNotEqualsCheck("Links_CREATE2_id", 0, $entity->getId());
+            $this->addEqualsCheck("Links_CREATE2_url", "https://archiveofourown.org/works/5076781/chapters/11674074", $entity->getUrl());
+            $this->addEqualsCheck("Links_CREATE2_fanfiction_id", 2, $entity->getFanfictionId());
+            $this->addNotEqualsCheck("Links_CREATE2_creation_date", null, $entity->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Links_CREATE2_update_date", null, $entity->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Links_CREATE2_dates", $entity->getCreationDate()->format("Y-m-d H:i:s"), $entity->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Links_CREATE2_delete_date", null, $entity->getDeleteDate());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_CREATE2_no_exception", 0, 1);
+        }
+
+        // Delete without exception.
+        try {
+            sleep(1);
+            $entity = $linksTable->delete($entity->getId());
+            $this->addEqualsCheck("Links_DELETE1_id", $entityId, $entity->getId());
+            $this->addNotEqualsCheck("Links_DELETE1_delete_date", null, $entity->getDeleteDate());
+            $this->addNotEqualsCheck("Links_DELETE1_dates_creation", $entity->getUpdateDate()->format("Y-m-d H:i:s"), $entity->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Links_DELETE1_dates_delete", $entity->getUpdateDate()->format("Y-m-d H:i:s"), $entity->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_DELETE1_no_exception", 0, 1);
+        }
+
+        // Restore without exception.
+        try {
+            $entity = $linksTable->restore($entity->getId());
+            $this->addEqualsCheck("Links_RESTORE_id", $entityId, $entity->getId());
+            $this->addEqualsCheck("Links_RESTORE_delete_date", null, $entity->getDeleteDate());
+            $this->addNotEqualsCheck("Links_RESTORE_dates_creation", $entity->getUpdateDate()->format("Y-m-d H:i:s"), $entity->getCreationDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_RESTORE_no_exception", 0, 1);
+        }
+
+        // Update without exception.
+        try {
+            $entity->setUrl("https://archiveofourown.org/works/4973755/chapters/11423519");
+            $entity->setFanfictionId(3);
+            $entity = $linksTable->update(json_encode($entity));
+            $this->addEqualsCheck("Links_UPDATE1_id", $entityId, $entity->getId());
+            $this->addEqualsCheck("Links_UPDATE1_url_value", "https://archiveofourown.org/works/4973755/chapters/11423519", $entity->getUrl());
+            $this->addNotEqualsCheck("Links_UPDATE1_fanfiction_id", "", $entity->getFanfictionId());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_UPDATE1_no_exception", 0, 1);
+        }
+
+         // Remove with exception
+         try {
+            $entity = $linksTable->remove(json_encode($entity));
+            $this->addEqualsCheck("Links_REMOVE1_no_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_REMOVE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Links_REMOVE1_exception_message", "Entity being removed has no delete date !", $e->getMessage());
+            $this->addEqualsCheck("Links_REMOVE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Links_REMOVE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Delete without exception
+        try {
+            $entity = $linksTable->delete($entity->getId());
+            $this->addEqualsCheck("Links_DELETE2_id", $entityId, $entity->getId());
+            $this->addNotEqualsCheck("Links_DELETE2_delete_date", null, $entity->getDeleteDate());
+            $this->addNotEqualsCheck("Links_DELETE2_dates_creation", $entity->getUpdateDate()->format("Y-m-d H:i:s"), $entity->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Links_DELETE2_dates_delete", $entity->getUpdateDate()->format("Y-m-d H:i:s"), $entity->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addNotEqualsCheck("Links_DELETE2_no_exception", 0, 1);
+        }
+
+        // Update with exception
+        try {
+            $entity = $linksTable->update(json_encode($entity));
+            $this->addEqualsCheck("Links_UPDATE2_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_UPDATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Links_UPDATE2_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Links_UPDATE2_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Links_UPDATE2_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Remove without exception
+        try {
+            $result = $linksTable->remove(json_encode($entity));
+            $this->addEqualsCheck("Links_REMOVE2_result", true, $result);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_REMOVE2_no_exception", 0, 1);
+        }
+
+        try {
+            $entity = $linksTable->get($entity->getId());
+            $this->addEqualsCheck("Links_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Links_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Links_REMOVE2_get_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Links_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
         }
     }
 }

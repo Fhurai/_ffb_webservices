@@ -60,6 +60,8 @@ abstract class EntitiesTable extends Connection
             // JsonUnserialize en fonction de la table utilisée.
             case "users":
                 return User::jsonUnserialize(json_encode($parameters));
+            case "links":
+                return Link::jsonUnserialize(json_encode($parameters));
             case "authors":
                 return Author::jsonUnserialize(json_encode($parameters));
             case "fandoms":
@@ -68,8 +70,7 @@ abstract class EntitiesTable extends Connection
                 return Language::jsonUnserialize(json_encode($parameters));
         }
 
-        // Table not found, return false.
-        return false;
+        throw new FfbTableException("Unserialize parse missing !");
     }
 
     /**
@@ -110,82 +111,82 @@ abstract class EntitiesTable extends Connection
      */
     public function search(?array $args = null): mixed
     {
-        try{
+        try {
             // Querystring initialization.
-        $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` ";
+            $query = "SELECT " . $this->getColumnsSelect() . " FROM `" . $this->getTable() . "` ";
 
-        if ($args !== null) {
-            // If arguments exists
+            if ($args !== null) {
+                // If arguments exists
 
-            if (array_key_exists("conditions", $args)) {
-                // If conditions option exists
+                if (array_key_exists("conditions", $args)) {
+                    // If conditions option exists
 
-                // Initialization Countdown for number of conditions.
-                $count = 0;
+                    // Initialization Countdown for number of conditions.
+                    $count = 0;
 
-                foreach ($args["conditions"] as $key => $value) {
-                    // Going through conditions to add them to querystring.
+                    foreach ($args["conditions"] as $key => $value) {
+                        // Going through conditions to add them to querystring.
 
-                    // if first condition, that's a WHERE, otherwise that's a AND.
-                    $query .= ($count === 0) ? " WHERE $key " : " AND $key ";
+                        // if first condition, that's a WHERE, otherwise that's a AND.
+                        $query .= ($count === 0) ? " WHERE $key " : " AND $key ";
 
-                    if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                        // If special character in value, value is used without addon.
-                        $query .= $value;
-                    } else {
-                        if (strpos($key, "IN") !== false) {
-                            $query .= "(" . implode(", ", json_decode($value)) . ")";
+                        if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
+                            // If special character in value, value is used without addon.
+                            $query .= $value;
                         } else {
-                            // If no special character in value, add " = " as addon.
-                            $query .= " = " . $value;
+                            if (strpos($key, "IN") !== false) {
+                                $query .= "(" . implode(", ", json_decode($value)) . ")";
+                            } else {
+                                // If no special character in value, add " = " as addon.
+                                $query .= " = " . $value;
+                            }
                         }
-                    }
 
-                    // Increment countdown.
-                    $count++;
+                        // Increment countdown.
+                        $count++;
+                    }
+                }
+
+                if (
+                    array_key_exists("order", $args) && is_array($args["order"])
+                    && array_key_exists("property", $args["order"]) && array_key_exists("direction", $args["order"])
+                ) {
+                    // If order option exists with its two options, property & direction, addition to querystring.
+                    $query .= " ORDER BY " . $args["order"]["property"] . " " . $args["order"]["direction"];
+                }
+
+                if (
+                    array_key_exists("filter", $args) && is_array($args["filter"])
+                    && array_key_exists("limit", $args["filter"]) && array_key_exists("offset", $args["filter"])
+                ) {
+                    // If filter option exists with its two options, limit & offset, addition to querystring.
+                    $query .= " LIMIT " . $args["filter"]["limit"] . ", " . $args["filter"]["offset"];
                 }
             }
 
-            if (
-                array_key_exists("order", $args) && is_array($args["order"])
-                && array_key_exists("property", $args["order"]) && array_key_exists("direction", $args["order"])
-            ) {
-                // If order option exists with its two options, property & direction, addition to querystring.
-                $query .= " ORDER BY " . $args["order"]["property"] . " " . $args["order"]["direction"];
+            // Preparation of the query.
+            $sth = $this->getDatabase()->prepare($query);
+
+            // Execution of the query with the id parameter.
+            $sth->execute();
+
+            // Fetch the result of the query.
+            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+            if (!$rows) {
+
+                // No data found, throw FfbTableException
+                throw new FfbTableException("No data for " . $this->getTable(), 404);
+            } else {
+
+                // Data found, return array of objects with that data.
+                $result = [];
+                foreach ($rows as $row) {
+                    $result[] = $this->parseDataParameters($row);
+                }
+                return $result;
             }
-
-            if (
-                array_key_exists("filter", $args) && is_array($args["filter"])
-                && array_key_exists("limit", $args["filter"]) && array_key_exists("offset", $args["filter"])
-            ) {
-                // If filter option exists with its two options, limit & offset, addition to querystring.
-                $query .= " LIMIT " . $args["filter"]["limit"] . ", " . $args["filter"]["offset"];
-            }
-        }
-
-        // Preparation of the query.
-        $sth = $this->getDatabase()->prepare($query);
-
-        // Execution of the query with the id parameter.
-        $sth->execute();
-
-        // Fetch the result of the query.
-        $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$rows) {
-
-            // No data found, throw FfbTableException
-            throw new FfbTableException("No data for " . $this->getTable(), 404);
-        } else {
-
-            // Data found, return array of objects with that data.
-            $result = [];
-            foreach ($rows as $row) {
-                $result[] = $this->parseDataParameters($row);
-            }
-            return $result;
-        }
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             throw new FfbTableException($e->getMessage(), 500, $e);
         }
     }
@@ -236,6 +237,7 @@ abstract class EntitiesTable extends Connection
                 $getFunction = SrcUtilities::gsFunction("get", $column);
                 switch (gettype($entity->$getFunction())) {
                     case "string":
+                    case "integer":
                         $data[":" . $column] = $entity->$getFunction();
                         break;
                     case "boolean":
@@ -245,7 +247,7 @@ abstract class EntitiesTable extends Connection
                         $data[":" . $column] = $entity->$getFunction()->format("Y-m-d H:i:s");
                 }
             }
-
+            
             // Execution of the query with the id parameter.
             $sth->execute($data);
 

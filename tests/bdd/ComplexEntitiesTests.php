@@ -60,7 +60,6 @@ class ComplexEntitiesTests extends Tests
         $this->testsCharacters();
         $this->testsRelations();
         $this->testsFanfictions();
-        // $this->testsLinks();
         // $this->testsSeries();
     }
 
@@ -798,15 +797,6 @@ class ComplexEntitiesTests extends Tests
 
         $relation = $relationsTable->delete($relation->getId());
         $relationsTable->remove(json_encode($relation));
-    }
-
-
-    public function testsLinks(): void
-    {
-        $linksTable = new LinksTable("tests", $this->user);
-
-        // Case get() without problem.
-        $complex = $linksTable->get(3);
     }
 
     public function testsSeries(): void
