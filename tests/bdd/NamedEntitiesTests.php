@@ -140,8 +140,8 @@ class NamedEntitiesTests extends Tests
             $named->setName("Kaïser57");
             $named = $authorsTable->update(json_encode($named));
             $this->addEqualsCheck("Authors_UPDATE1_id", $namedId, $named->getId());
-            $this->addEqualsCheck("Authors_UPDATE1_username_value", "Kaïser57", $named->getName());
-            $this->addNotEqualsCheck("Authors_UPDATE1_username_empty", "", $named->getName());
+            $this->addEqualsCheck("Authors_UPDATE1_name_value", "Kaïser57", $named->getName());
+            $this->addNotEqualsCheck("Authors_UPDATE1_name_empty", "", $named->getName());
         } catch (Throwable $th) {
             $this->addEqualsCheck("Authors_UPDATE1_no_exception", 0, 1);
         }
@@ -207,8 +207,8 @@ class NamedEntitiesTests extends Tests
         $fandomsTable = new FandomsTable("tests", $this->user);
 
         // Case get() without problem.
-        $named = $fandomsTable->get(7);
-        $this->addEqualsCheck("Fandoms_GET_id", 7, $named->getId());
+        $named = $fandomsTable->get(8);
+        $this->addEqualsCheck("Fandoms_GET_id", 8, $named->getId());
         $this->addEqualsCheck("Fandoms_GET_name", "Harry Potter - Wizarding World", $named->getName());
         $this->addNotEqualsCheck("Fandoms_GET_creation_date", null, $named->getCreationDate()->format("Y-m-d H:i:s"));
         $this->addNotEqualsCheck("Fandoms_GET_update_date", null, $named->getUpdateDate()->format("Y-m-d H:i:s"));
@@ -290,8 +290,8 @@ class NamedEntitiesTests extends Tests
             $named->setName("SOUTH PARK");
             $named = $fandomsTable->update(json_encode($named));
             $this->addEqualsCheck("Fandoms_UPDATE1_id", $namedId, $named->getId());
-            $this->addEqualsCheck("Fandoms_UPDATE1_username_value", "SOUTH PARK", $named->getName());
-            $this->addNotEqualsCheck("Fandoms_UPDATE1_username_empty", "", $named->getName());
+            $this->addEqualsCheck("Fandoms_UPDATE1_name_value", "SOUTH PARK", $named->getName());
+            $this->addNotEqualsCheck("Fandoms_UPDATE1_name_empty", "", $named->getName());
         } catch (Throwable $e) {
             $this->addEqualsCheck("Fandoms_UPDATE1_no_exception", 0, 1);
         }
@@ -442,8 +442,8 @@ class NamedEntitiesTests extends Tests
             $named->setAbbreviation("DE");
             $named = $languagesTable->update(json_encode($named));
             $this->addEqualsCheck("Languages_UPDATE_id", $namedId, actual: $named->getId());
-            $this->addEqualsCheck("Languages_UPDATE_username_value", "Deutsch", $named->getName());
-            $this->addNotEqualsCheck("Languages_UPDATE_username_empty", "", $named->getName());
+            $this->addEqualsCheck("Languages_UPDATE_name_value", "Deutsch", $named->getName());
+            $this->addNotEqualsCheck("Languages_UPDATE_name_empty", "", $named->getName());
             $this->addEqualsCheck("Languages_UPDATE_abbreviation", "DE", $named->getAbbreviation());
         } catch (Throwable $e) {
             $this->addEqualsCheck("Languages_UPDATE_no_exception", 0, 1);
