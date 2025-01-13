@@ -458,6 +458,8 @@ abstract class ComplexEntitiesTable extends Connection
                     break;
                 case "fanfictions":
                     $assoc = property_exists($entity, "author") || property_exists($entity, "rating") || property_exists($entity, "language") || property_exists($entity, "score") || property_exists($entity, "fandoms") || property_exists($entity, "relations") || property_exists($entity, "characters") || property_exists($entity, "tags");
+                case "series":
+                    $assoc = property_exists($entity, "fanfictions");
             }
 
             // Update of the date of last modification of the entity.
@@ -603,7 +605,7 @@ abstract class ComplexEntitiesTable extends Connection
             // Association is multiple.
 
             // Variables initialization.
-            $tableSuffix = substr($this->getTable(), 0, -1);
+            $tableSuffix = $this->getTable() !== "series" ? substr($this->getTable(), 0, -1) : "series";
             $associationSuffix = substr($association, 0, -1);
 
             // Retrieve association links.
@@ -665,7 +667,7 @@ abstract class ComplexEntitiesTable extends Connection
     private function insertAssociationsData(string $association, ComplexEntity $entity): void
     {
         // Variables initialization.
-        $tableSuffix = substr($this->getTable(), 0, -1);
+        $tableSuffix = $this->getTable() !== "series" ? substr($this->getTable(), 0, -1) : "series";
         $associationSuffix = substr($association, 0, -1);
 
         // Query.
@@ -694,7 +696,7 @@ abstract class ComplexEntitiesTable extends Connection
     private function deleteAssociationsData(string $association, ComplexEntity $entity): void
     {
         // Variables initialization.
-        $tableSuffix = substr($this->getTable(), 0, -1);
+        $tableSuffix = $this->getTable() !== "series" ? substr($this->getTable(), 0, -1) : "series";
 
         // Query.
         $query = "DELETE FROM `{$this->getTable()}_{$association}` WHERE `{$tableSuffix}_id` = :{$tableSuffix}_id";

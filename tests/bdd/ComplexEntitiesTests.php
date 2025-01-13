@@ -60,7 +60,7 @@ class ComplexEntitiesTests extends Tests
         $this->testsCharacters();
         $this->testsRelations();
         $this->testsFanfictions();
-        // $this->testsSeries();
+        $this->testsSeries();
     }
 
     /**
@@ -811,8 +811,155 @@ class ComplexEntitiesTests extends Tests
     public function testsSeries(): void
     {
         $seriesTable = new SeriesTable("tests", $this->user);
+        $fanfictionsTable = new FanfictionsTable("tests", $this->user);
 
         // Case get() without problem.
         $complex = $seriesTable->get(1, true);
+        $this->addEqualsCheck("Series_GET_id", 1, $complex->getId());
+        $this->addEqualsCheck("Series_GET_name", "From Innocent Feelings to Post Crisis", $complex->getName());
+        $this->addEqualsCheck("Series_GET_fanfictions_count", 8, count($complex->fanfictions));
+        $this->addNotEqualsCheck("Series_GET_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        $this->addNotEqualsCheck("Series_GET_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+        $this->addEqualsCheck("Series_GET_delete_date", null, $complex->getDeleteDate());
+
+        // Case get() with exception.
+        try {
+            $complex = $seriesTable->get(0);
+            $this->addEqualsCheck("Series_GET_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_GET_exception", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Series_GET_exception_message", "No data for series n°0", $e->getMessage());
+            $this->addEqualsCheck("Series_GET_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Series_GET_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Search with filter.
+        $complex = $seriesTable->search(["filter" => ["limit" => 0, "offset" => 100]]);
+        $this->addNotEqualsCheck("Series_SEARCH_complete_count", 100, count($complex));
+        $this->addEqualsCheck("Series_SEARCH_complete_min", 1, $complex[0]->getId());
+
+        // Create with exception.
+        try {
+            $complex = $seriesTable->create("{\"id\":\"1\",\"name\":\"Tests\",\"creation_date\":\"2024-12-18 13:30:05\",\"update_date\":\"2024-12-18 13:30:05\",\"delete_date\":\"2024-12-18 13:30:05\"}");
+            $this->addEqualsCheck("Series_CREATE1_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_CREATE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Series_CREATE1_exception_message", "New entity has an id already !", $e->getMessage());
+            $this->addEqualsCheck("Series_CREATE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Series_CREATE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // New.
+        $complex = $seriesTable->new();
+        $this->addEqualsCheck("Series_NEW_id", 0, $complex->getId());
+        $this->addEqualsCheck("Series_NEW_name", "", $complex->getName());
+        $this->addNotEqualsCheck("Series_NEW_creation_date", null, $complex->getCreationDate());
+        $this->addNotEqualsCheck("Series_NEW_update_date", null, $complex->getUpdateDate());
+        $this->addEqualsCheck("Series_NEW_delete_date", null, $complex->getDeleteDate());
+
+        // Create without exception.
+        try {
+            $complex->setName("Orion Black");
+            $complex->fanfictions = $fanfictionsTable->search(["conditions" => ["id IN" => json_encode([23, 24, 26])]], true);
+            $complex = $seriesTable->create(json_encode($complex));
+            $complexId = $complex->getId();
+            $this->addNotEqualsCheck("Series_CREATE2_id", 0, $complex->getId());
+            $this->addEqualsCheck("Series_CREATE2_fanfictions_count", 3, count($complex->fanfictions));
+            $this->addNotEqualsCheck("Series_CREATE2_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Series_CREATE2_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Series_CREATE2_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Series_CREATE2_delete_date", null, $complex->getDeleteDate());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_CREATE2_no_exception", 0, 1);
+        }
+
+        // Delete without exception.
+        try {
+            sleep(1);
+            $complex = $seriesTable->delete($complex->getId());
+            $this->addEqualsCheck("Series_DELETE1_id", $complexId, $complex->getId());
+            $this->addNotEqualsCheck("Series_DELETE1_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Series_DELETE1_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Series_DELETE1_dates_delete", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_DELETE1_no_exception", 0, 1);
+        }
+
+        // Restore without exception.
+        try {
+            $complex = $seriesTable->restore($complex->getId());
+            $this->addEqualsCheck("Series_RESTORE_id", $complexId, $complex->getId());
+            $this->addEqualsCheck("Series_RESTORE_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Series_RESTORE_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_RESTORE_no_exception", 0, 1);
+        }
+
+        // Update without exception.
+        try {
+            $complex->setName("Unknown Relations: Orion Black");
+            $complex->fanfictions = $fanfictionsTable->search(["conditions" => ["id IN" => json_encode([23, 24, 29, 150, 1000])]], true);
+            $complex = $seriesTable->update(json_encode($complex));
+            $this->addEqualsCheck("Series_UPDATE1_id", $complexId, actual: $complex->getId());
+            $this->addEqualsCheck("Series_UPDATE1_name_value", "Unknown Relations: Orion Black", $complex->getName());
+            $this->addNotEqualsCheck("Series_UPDATE1_name_empty", "", $complex->getName());
+            $this->addEqualsCheck("Series_UPDATE1_fanfictions_count", 5, count($complex->fanfictions));
+            $this->addNotEqualsCheck("Series_UPDATE1_creation_date", null, $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Series_UPDATE1_update_date", null, $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addNotEqualsCheck("Series_UPDATE1_dates", $complex->getCreationDate()->format("Y-m-d H:i:s"), $complex->getUpdateDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Series_UPDATE1_delete_date", null, $complex->getDeleteDate());
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_UPDATE_no_exception", 0, 1);
+        }
+
+        // Remove with exception
+        try {
+            $complex = $seriesTable->remove(json_encode($complex));
+            $this->addEqualsCheck("Series_REMOVE1_no_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_REMOVE1_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Series_REMOVE1_exception_message", "Entity being removed has no delete date !", $e->getMessage());
+            $this->addEqualsCheck("Series_REMOVE1_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Series_REMOVE1_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Delete without exception
+        try {
+            $complex = $seriesTable->delete($complex->getId());
+            $this->addEqualsCheck("Series_DELETE2_id", $complexId, $complex->getId());
+            $this->addNotEqualsCheck("Series_DELETE2_delete_date", null, $complex->getDeleteDate());
+            $this->addNotEqualsCheck("Series_DELETE2_dates_creation", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getCreationDate()->format("Y-m-d H:i:s"));
+            $this->addEqualsCheck("Series_DELETE2_dates_delete", $complex->getUpdateDate()->format("Y-m-d H:i:s"), $complex->getDeleteDate()->format("Y-m-d H:i:s"));
+        } catch (Throwable $e) {
+            $this->addNotEqualsCheck("Series_DELETE2_no_exception", 0, 1);
+        }
+
+        // Update with exception
+        try {
+            $complex = $seriesTable->update(json_encode($complex));
+            $this->addEqualsCheck("Series_UPDATE2_exception", 1, 0);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_UPDATE2_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Series_UPDATE2_exception_message", "Entity being updated has delete date !", $e->getMessage());
+            $this->addEqualsCheck("Series_UPDATE2_exception_code", 409, $e->getCode());
+            $this->addEqualsCheck("Series_UPDATE2_exception_trace", 3, count($e->getTrace()));
+        }
+
+        // Remove without exception
+        try {
+            $result = $seriesTable->remove(json_encode($complex));
+            $this->addEqualsCheck("Series_REMOVE2_result", true, $result);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_REMOVE2_no_exception", 0, 1);
+        }
+
+        try {
+            $entity = $seriesTable->get($complex->getId());
+            $this->addEqualsCheck("Series_REMOVE2_exception", 0, 1);
+        } catch (Throwable $e) {
+            $this->addEqualsCheck("Series_REMOVE2_get_exception_type", FfbTableException::class, $e::class);
+            $this->addEqualsCheck("Series_REMOVE2_get_exception_code", 404, $e->getCode());
+            $this->addEqualsCheck("Series_REMOVE2_get_exception_trace", 3, count($e->getTrace()));
+        }
     }
 }

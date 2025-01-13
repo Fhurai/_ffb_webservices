@@ -37,9 +37,9 @@ trait Evaluable
 
     /**
      * Getter Evaluation.
-     * @return string Evaluation.
+     * @return ?string Evaluation.
      */
-    public function getEvaluation(): string
+    public function getEvaluation(): ?string
     {
         return $this->evaluation;
     }
