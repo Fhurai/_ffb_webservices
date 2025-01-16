@@ -458,8 +458,10 @@ abstract class ComplexEntitiesTable extends Connection
                     break;
                 case "fanfictions":
                     $assoc = property_exists($entity, "author") || property_exists($entity, "rating") || property_exists($entity, "language") || property_exists($entity, "score") || property_exists($entity, "fandoms") || property_exists($entity, "relations") || property_exists($entity, "characters") || property_exists($entity, "tags");
+                    break;
                 case "series":
                     $assoc = property_exists($entity, "fanfictions");
+                    break;
             }
 
             // Update of the date of last modification of the entity.
