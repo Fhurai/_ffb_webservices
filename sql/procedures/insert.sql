@@ -341,6 +341,7 @@ BEGIN
     DECLARE parent_id INT;
     DECLARE i INT DEFAULT 0;
     DECLARE chara_id VARCHAR(10);
+    DECLARE temp VARCHAR(100);
 
     -- Handle errors by rolling back the transaction
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -357,13 +358,23 @@ BEGIN
 
     -- Loop through the JSON array of character IDs
     WHILE i < JSON_LENGTH(chara) DO
+    
         -- Extract the character ID from the JSON array
         SET chara_id = JSON_UNQUOTE(JSON_EXTRACT(chara, CONCAT('$[', i, ']')));
+
+        IF fn_check_character(CAST(chara_id AS UNSIGNED)) THEN
 
         -- Link the character to the relation
         INSERT INTO `relations_characters` (relation_id, character_id) VALUES (parent_id, chara_id);
 
         SET i = i + 1; -- Move to the next character
+
+        ELSE
+            ROLLBACK;
+
+            SELECT CONCAT('Character ', chara_id,' does not exist.') INTO temp;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+        END IF;
     END WHILE;
 
     COMMIT;
