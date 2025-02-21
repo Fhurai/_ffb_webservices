@@ -199,8 +199,8 @@ BEGIN
         SET t_count = (
             SELECT COUNT(*) 
             FROM `tags`
-            WHERE name = label 
-            AND type_id = typeTag
+            WHERE `name` = label 
+            AND `type_id` = typeTag
             FOR SHARE
         );
 
@@ -335,15 +335,17 @@ END $$
 DROP PROCEDURE IF EXISTS prc_insert_relations $$
 CREATE PROCEDURE prc_insert_relations(
     IN label VARCHAR(255), 
-    IN chara JSON
+    IN chara JSON, 
+    OUT id INT
 )
 BEGIN
+    DECLARE r_count INT DEFAULT 1;
     DECLARE parent_id INT;
     DECLARE i INT DEFAULT 0;
     DECLARE chara_id VARCHAR(10);
     DECLARE temp VARCHAR(100);
 
-    -- Handle errors by rolling back the transaction
+    -- Handler must be declared before other code
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
@@ -352,32 +354,44 @@ BEGIN
 
     START TRANSACTION;
 
-    -- Insert the relation name
-    INSERT INTO `relations` (`name`) VALUES (label);
-    SET parent_id = LAST_INSERT_ID(); -- Get the new relation's ID
+    -- Check for existing relation
+    SET r_count = (
+        SELECT COUNT(*)
+        FROM `relations`
+        WHERE `name` = label
+        FOR SHARE  -- Proper locking to prevent race condition
+    );
 
-    -- Loop through the JSON array of character IDs
-    WHILE i < JSON_LENGTH(chara) DO
-    
-        -- Extract the character ID from the JSON array
-        SET chara_id = JSON_UNQUOTE(JSON_EXTRACT(chara, CONCAT('$[', i, ']')));
+    IF r_count = 0 THEN
+        -- Insert new relation
+        INSERT INTO `relations` (`name`) VALUES (label);
+        SET parent_id = LAST_INSERT_ID();
 
-        IF fn_check_character(CAST(`chara_id` AS UNSIGNED)) THEN
+        -- Process character links
+        WHILE i < JSON_LENGTH(chara) DO
+            -- Extract character ID from JSON array
+            SET chara_id = JSON_UNQUOTE(JSON_EXTRACT(chara, CONCAT('$[', i, ']')));
+            
+            -- Validate character existence (fixed variable reference)
+            IF fn_check_character(CAST(chara_id AS UNSIGNED)) THEN
+                INSERT INTO `relations_characters` (`relation_id`, `character_id`)
+                VALUES (parent_id, chara_id);
+                SET i = i + 1;
+            ELSE
+                -- Handle invalid character
+                ROLLBACK;
+                SET temp = CONCAT('Character ', chara_id, ' does not exist.');
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+            END IF;
+        END WHILE;
 
-        -- Link the character to the relation
-        INSERT INTO `relations_characters` (`relation_id`, `character_id`) VALUES (parent_id, chara_id);
-
-        SET i = i + 1; -- Move to the next character
-
-        ELSE
-            ROLLBACK;
-
-            SELECT CONCAT('Character ', chara_id,' does not exist.') INTO temp;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
-        END IF;
-    END WHILE;
-
-    COMMIT;
+        COMMIT;
+        SET id = parent_id;
+    ELSE
+        -- Handle duplicate relation
+        ROLLBACK;  -- Added missing semicolon
+        SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Relation already exists.';  -- Fixed SQLSTATE
+    END IF;
 END $$
 
 -- ####################################################################################
@@ -402,6 +416,28 @@ BEGIN
     SELECT COUNT(*) > 0 INTO exist 
     FROM `authors` 
     WHERE id = AID;
+
+    RETURN exist;
+END $$
+
+/**
+    Function: fn_check_rating
+    Purpose: Validates if a rating ID exists in the `ratings` table.
+    Parameters:
+        - IN RID INT: Rating ID to validate.
+    Returns: BOOLEAN (true if the rating exists, false otherwise).
+*/
+DROP FUNCTION IF EXISTS fn_check_rating $$
+CREATE FUNCTION fn_check_rating(
+    AID INT
+) RETURNS BOOLEAN DETERMINISTIC
+BEGIN
+    DECLARE exist BOOLEAN DEFAULT true;
+
+    -- Check if the rating exists
+    SELECT COUNT(*) > 0 INTO exist 
+    FROM `ratings` 
+    WHERE id = RID;
 
     RETURN exist;
 END $$
@@ -487,7 +523,7 @@ END $$
         - IN tags JSON: JSON array of tags IDs.
     Exceptions:
         Automaticaly rolls back on any SQL error.
-    Example Usage
+    Example Usage:
         CALL prc_insert_fanfictions('Test Overwatch', 704, 4, 'This is a test of fanfiction created by procedure', 2, '[348, 349]', '[13]', '[291]', '[10, 20, 27, 28, 34]')
  */
 DROP PROCEDURE IF EXISTS prc_insert_fanfictions $$
@@ -500,9 +536,11 @@ CREATE PROCEDURE prc_insert_fanfictions(
     IN chara JSON,
     IN fandoms JSON,
     IN relations JSON,
-    IN tags JSON
+    IN tags JSON, 
+    OUT id INT
 )
 BEGIN
+    DECLARE f_count INT DEFAULT 1;
     DECLARE parent_id INT;
     DECLARE i INT DEFAULT 0;
     DECLARE child_id VARCHAR(10);
@@ -515,110 +553,257 @@ BEGIN
         RESIGNAL;
     END;
 
-    -- Insert the fanfiction
-    INSERT INTO `fanfictions`(`name`, `author_id`, `rating_id`, `description`, `language_id`) VALUES (label, author, rating, summary, language_id);
-    SET parent_id = LAST_INSERT_ID(); -- Get the new fanfictions's ID
+    START TRANSACTION;
 
-    -- Loop through the JSON array of characters IDs
-    WHILE i < JSON_LENGTH(chara) DO
+    IF fn_check_author(author) AND fn_check_rating(rating) AND fn_check_language(language_id) THEN
+        SET f_count = (
+            SELECT COUNT(*)
+            FROM `fanfictions`
+            WHERE `name` = label
+            AND `author_id` = author
+        );
 
-        -- Extract the character ID from the JSON array
-        SET child_id = JSON_UNQUOTE(JSON_EXTRACT(chara, CONCAT('$[', i, ']')));
+        if f_count = 0 THEN
+            -- Insert the fanfiction
+            INSERT INTO `fanfictions`(`name`, `author_id`, `rating_id`, `description`, `language_id`) VALUES (label, author, rating, summary, language_id);
+            SET parent_id = LAST_INSERT_ID(); -- Get the new fanfiction's ID
 
-        IF fn_check_character(CAST(child_id AS UNSIGNED)) THEN
-            -- Link the character to the relation
-            INSERT INTO `fanfictions_characters` (fanfiction_id, character_id) VALUES (parent_id, child_id);
+            -- Loop through the JSON array of characters IDs
+            WHILE i < JSON_LENGTH(chara) DO
 
-            SET i = i + 1; -- Move to the next character
+                -- Extract the character ID from the JSON array
+                SET child_id = JSON_UNQUOTE(JSON_EXTRACT(chara, CONCAT('$[', i, ']')));
+
+                IF fn_check_character(CAST(child_id AS UNSIGNED)) THEN
+                    -- Link the character to the relation
+                    INSERT INTO `fanfictions_characters` (fanfiction_id, character_id) VALUES (parent_id, child_id);
+
+                    SET i = i + 1; -- Move to the next character
+                ELSE
+                    ROLLBACK;
+
+                    SELECT CONCAT('Character ', child_id,' does not exist.') INTO temp;
+                    SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+                END IF;
+            END WHILE;
+
+            -- Loop through the JSON array of fandoms IDs
+            WHILE i < JSON_LENGTH(fandoms) DO
+
+                -- Extract the fandom ID from the JSON array
+                SET child_id = JSON_UNQUOTE(JSON_EXTRACT(fandoms, CONCAT('$[', i, ']')));
+
+                IF fn_check_fandom(CAST(child_id AS UNSIGNED)) THEN
+                    -- Link the fandom to the relation
+                    INSERT INTO `fanfictions_fandoms` (fanfiction_id, fandom_id) VALUES (parent_id, child_id);
+
+                    SET i = i + 1; -- Move to the next fandom
+                ELSE
+                    ROLLBACK;
+
+                    SELECT CONCAT('Fandom ', child_id,' does not exist.') INTO temp;
+                    SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+                END IF;
+            END WHILE;
+
+            -- Loop through the JSON array of relations IDs
+            WHILE i < JSON_LENGTH(relations) DO
+
+                -- Extract the relation ID from the JSON array
+                SET child_id = JSON_UNQUOTE(JSON_EXTRACT(relations, CONCAT('$[', i, ']')));
+
+                IF fn_check_relation(CAST(child_id AS UNSIGNED)) THEN
+                    -- Link the relation to the relation
+                    INSERT INTO `fanfictions_relations` (fanfiction_id, relation_id) VALUES (parent_id, child_id);
+
+                    SET i = i + 1; -- Move to the next relation
+                ELSE
+                    ROLLBACK;
+
+                    SELECT CONCAT('Relation ', child_id,' does not exist.') INTO temp;
+                    SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+                END IF;
+            END WHILE;
+
+            -- Loop through the JSON array of tags IDs
+            WHILE i < JSON_LENGTH(tags) DO
+
+                -- Extract the tag ID from the JSON array
+                SET child_id = JSON_UNQUOTE(JSON_EXTRACT(tags, CONCAT('$[', i, ']')));
+
+                IF fn_check_tag(CAST(child_id AS UNSIGNED)) THEN
+                    -- Link the tag to the relation
+                    INSERT INTO `fanfictions_tags` (fanfiction_id, tag_id) VALUES (parent_id, child_id);
+
+                    SET i = i + 1; -- Move to the next tag
+                ELSE
+                    ROLLBACK;
+
+                    SELECT CONCAT('Character ', child_id,' does not exist.') INTO temp;
+                    SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+                END IF;
+            END WHILE;
+            COMMIT;
+
+            SET id = parent_id;
         ELSE
             ROLLBACK;
-
-            SELECT CONCAT('Character ', child_id,' does not exist.') INTO temp;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+            SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Fanfiction already exists.';
         END IF;
-    END WHILE;
-
-    -- Loop through the JSON array of fandoms IDs
-    WHILE i < JSON_LENGTH(fandoms) DO
-
-        -- Extract the fandom ID from the JSON array
-        SET child_id = JSON_UNQUOTE(JSON_EXTRACT(fandoms, CONCAT('$[', i, ']')));
-
-        IF fn_check_fandom(CAST(child_id AS UNSIGNED)) THEN
-            -- Link the fandom to the relation
-            INSERT INTO `fanfictions_fandoms` (fanfiction_id, fandom_id) VALUES (parent_id, child_id);
-
-            SET i = i + 1; -- Move to the next fandom
-        ELSE
-            ROLLBACK;
-
-            SELECT CONCAT('Fandom ', child_id,' does not exist.') INTO temp;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
-        END IF;
-    END WHILE;
-
-    -- Loop through the JSON array of relations IDs
-    WHILE i < JSON_LENGTH(relations) DO
-
-        -- Extract the relation ID from the JSON array
-        SET child_id = JSON_UNQUOTE(JSON_EXTRACT(relations, CONCAT('$[', i, ']')));
-
-        IF fn_check_relation(CAST(child_id AS UNSIGNED)) THEN
-            -- Link the relation to the relation
-            INSERT INTO `fanfictions_relations` (fanfiction_id, relation_id) VALUES (parent_id, child_id);
-
-            SET i = i + 1; -- Move to the next relation
-        ELSE
-            ROLLBACK;
-
-            SELECT CONCAT('Relation ', child_id,' does not exist.') INTO temp;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
-        END IF;
-    END WHILE;
-
-    -- Loop through the JSON array of tags IDs
-    WHILE i < JSON_LENGTH(tags) DO
-
-        -- Extract the tag ID from the JSON array
-        SET child_id = JSON_UNQUOTE(JSON_EXTRACT(tags, CONCAT('$[', i, ']')));
-
-        IF fn_check_tag(CAST(child_id AS UNSIGNED)) THEN
-            -- Link the tag to the relation
-            INSERT INTO `fanfictions_tags` (fanfiction_id, tag_id) VALUES (parent_id, child_id);
-
-            SET i = i + 1; -- Move to the next tag
-        ELSE
-            ROLLBACK;
-
-            SELECT CONCAT('Character ', child_id,' does not exist.') INTO temp;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
-        END IF;
-    END WHILE;
-
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Author, rating or language do not exist.';
+    END IF;
 END $$
-
-/**
- */
 
 -- ####################################################################################
 -- # Links
 -- ####################################################################################
 
 /**
- */
+    Function: fn_check_fanfiction
+    Purpose: Validates if a fanfiction ID exists in the `fanfictions` table.
+    Parameters:
+        - IN FID INT: Fanfiction ID to validate.
+    Returns: BOOLEAN (true if the fanfiction exists, false otherwise).
+*/
+DROP FUNCTION IF EXISTS fn_check_fanfiction $$
+CREATE FUNCTION fn_check_fanfiction(
+    FID INT
+) RETURNS BOOLEAN DETERMINISTIC
+BEGIN
+    DECLARE exist BOOLEAN DEFAULT true;
 
-/**
- */
+    -- Check if the fanfiction exists
+    SELECT COUNT(*) > 0 INTO exist
+    FROM `fanfictions`
+    WHERE id = FID;
+
+    RETURN exist;
+END $$
+
+DROP PROCEDURE IF EXISTS prc_insert_links $$
+CREATE PROCEDURE prc_insert_links(
+    IN url_str VARCHAR(255),
+    IN fanfiction_id INT,
+    OUT id INT
+)
+BEGIN
+    DECLARE l_count INT DEFAULT 1;
+
+    -- Handle errors by rolling back the transaction
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    -- Validate the fanfiction
+    IF fn_check_fanfiction(fanfiction_id) THEN
+        -- Check for existing link for linked fanfiction.
+        SET l_count = (
+            SELECT COUNT(*)
+            FROM `fanfictions`
+            WHERE `url` = url_str
+            AND `fanfiction_id` = fanfiction_id
+            FOR SHARE
+        );
+
+        IF l_count = 0 THEN
+            INSERT INTO `links`(`url`, `fanfiction_id`) VALUES (url_str, fanfiction_id);
+            SET id = LAST_INSERT_ID();
+
+            COMMIT;
+        ELSE
+            ROLLBACK;
+            SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Link already exists.';
+        END IF;
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist.';
+    END IF;
+END $$
+
 
 -- ####################################################################################
 -- # Series
 -- ####################################################################################
 
 /**
+    Procedure: prc_insert_series
+    Purpose: Inserts a new series into the `series` table and links it to the fanfictions via `series_fanfictions`.
+    Parameters :
+        - IN label VARCHAR(100) : Series name.
+        - IN summary TEXT: Summary of the series.
+        - IN fanfictions JSON: JSON array of fanfictions IDs.
+    Exceptions:
+            Automaticaly rolls back on any SQL error.
+    Example Usage:
+        CALL prc_insert_series('Overwatch duties', 'Test of series', '[835, 2049]');
  */
+DROP PROCEDURE IF EXISTS prc_insert_series $$
+CREATE PROCEDURE prc_insert_series(
+    IN label VARCHAR(100),
+    IN summary TEXT,
+    IN fanfictions JSON,
+    OUT id INT
+)
+BEGIN
+    DECLARE s_count INT DEFAULT 1;
+    DECLARE parent_id INT;
+    DECLARE i INT DEFAULT 0;
+    DECLARE child_id VARCHAR(10);
+    DECLARE temp VARCHAR(100);
 
-/**
- */
+    -- Handle errors by rolling back the transaction
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+
+    SET s_count = (
+        SELECT COUNT(*)
+        FROM `series`
+        WHERE `name` = label
+        AND `description` = summary
+    );
+
+    IF s_count = 0 THEN
+        -- Insert the series
+        INSERT INTO `series`(`name`, `description`) VALUES (label, summary);
+        SET parent_id = LAST_INSERT_ID(); -- Get the new series's ID
+
+        -- Loop through the JSON array of fanfictions IDs
+        WHILE i < JSON_LENGTH(fanfictions) DO
+
+            -- Extract the character ID from the JSON array
+            SET child_id = JSON_UNQUOTE(JSON_EXTRACT(fanfictions, CONCAT('$[', i, ']')));
+
+            IF fn_check_fanfiction(CAST(child_id AS UNSIGNED)) THEN
+                -- Link the character to the relation
+                INSERT INTO `series_fanfictions` (`series_id`, `fanfiction_id`) VALUES (parent_id, child_id);
+
+                SET i = i + 1; -- Move to the next character
+            ELSE
+                ROLLBACK;
+
+                SELECT CONCAT('Fanfiction ', child_id,' does not exist.') INTO temp;
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
+            END IF;
+        END WHILE;
+        COMMIT;
+
+        SET id = parent_id;
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Series already exists.';
+    END IF;
+END $$
 
 
 -- ####################################################################################
@@ -640,5 +825,3 @@ END $$
 
 /**
  */
- 
-DELIMITER ;
