@@ -1,4 +1,5 @@
 DELIMITER $$
+
 /*
     Database Procedures and Functions for Managing Authors, Fandoms, Languages, Tags, Characters, and Relations
     Description: This script defines stored procedures and functions to insert data into the database with validation checks.
@@ -400,7 +401,7 @@ END $$
 
 /**
     Function: fn_check_author
-    Purpose: Validates if a author ID exists in the `authors` table.
+    Purpose: Validates if an author ID exists in the `authors` table.
     Parameters:
         - IN AID INT: Author ID to validate.
     Returns: BOOLEAN (true if the author exists, false otherwise).
@@ -429,7 +430,7 @@ END $$
 */
 DROP FUNCTION IF EXISTS fn_check_rating $$
 CREATE FUNCTION fn_check_rating(
-    AID INT
+    RID INT
 ) RETURNS BOOLEAN DETERMINISTIC
 BEGIN
     DECLARE exist BOOLEAN DEFAULT true;
@@ -639,7 +640,7 @@ BEGIN
                 ELSE
                     ROLLBACK;
 
-                    SELECT CONCAT('Character ', child_id,' does not exist.') INTO temp;
+                    SELECT CONCAT('Tag ', child_id,' does not exist.') INTO temp;
                     SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = temp;
                 END IF;
             END WHILE;
@@ -804,24 +805,3 @@ BEGIN
         SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Series already exists.';
     END IF;
 END $$
-
-
--- ####################################################################################
--- # Users
--- ####################################################################################
-
-/**
- */
-
-/**
- */
-
--- ####################################################################################
--- # UsersActions
--- ####################################################################################
-
-/**
- */
-
-/**
- */
