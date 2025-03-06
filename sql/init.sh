@@ -30,10 +30,13 @@ echo "-- done"
 echo ""
 echo "procedures :"
 echo "insert >"
-mysql --login-path=client ffb_tests < procedures/insert.sql
+mysql --login-path=client ffb_tests < procedures/1.insert.sql
 echo "-- done"
 echo "delete >"
-mysql --login-path=client ffb_tests < procedures/delete.sql
+mysql --login-path=client ffb_tests < procedures/2.delete.sql
+echo "-- done"
+echo "update >"
+mysql --login-path=client ffb_tests < procedures/3.update.sql
 echo "-- done"
 echo ""
 echo "stats :"

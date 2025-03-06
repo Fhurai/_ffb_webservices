@@ -15,7 +15,7 @@ DELIMITER $$
     Purpose: Deletes an author from the `authors` table if they exist, using transactional safety and row locking.
     Parameters:
         - IN p_id INT: ID of the author to delete.
-        - OUT result BOOLEAN: Returns TRUE (1) if the author was successfully deleted, FALSE (0) otherwise.
+        - OUT result BOOLEAN: Returns TRUE (1) if the author was successfully removed, FALSE (0) otherwise.
     Exceptions:
         - SQLSTATE '45000': Author does not exist.
     Example Usage:
