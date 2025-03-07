@@ -7,6 +7,7 @@ Coté back
 . Si tags contiennent "Sexual content" -> rating auto à 4.
     . Avertissement que le rating de FFB est différent de celui des sites de fanfictions pour correspondre aux thèmes proposées par les histoires.
 . Si un personnage, ayant des relations, est modifié alors toutes ses relations sont aussi modifiées pour faire correspondre le nouveau nom.
+    . Moulinette qui passe une fois par jour pour assurer que les personnages d'une relation sont dans l'ordre alphabétique et qui update la relation si ce n'est pas le cas.
 . Si user n'est pas admin, il peut seulement faire de la consultation.
 . Possibilité  de lier deux utilisateurs ensemble pour changer d'utilisateur (non-admin <-> admin en cas de modification à faire).
 . Permettre de faire des requêtes personnalisées sur les stats
