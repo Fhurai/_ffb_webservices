@@ -1,28 +1,9 @@
 DELIMITER $$
 
-/*
-    Database Procedures and Functions for Managing Authors, Fandoms, Languages, Tags, Characters, and Relations
-    Description: This script defines stored procedures and functions to update data into the database with validation checks.
-    Error Handling: Uses transactions to ensure atomicity and custom SQLSTATE codes for specific errors.
-*/
-
 -- ####################################################################################
 -- # Authors
 -- ####################################################################################
 
-/**
-    Procedure: prc_update_authors
-    Purpose: Deletes an author from the `authors` table if they exist, using transactional safety and row locking.
-    Parameters:
-        - IN p_id INT: ID of the author to update.
-        - IN label VARCHAR(100): Name of the author to update.
-        - OUT result BOOLEAN: Returns TRUE (1) if the author was successfully updated, FALSE (0) otherwise.
-    Exceptions:
-        - SQLSTATE '50002': Author does not exist.
-    Example Usage:
-        CALL prc_update_authors(123, @deletion_result);
-        SELECT @deletion_result; -- Returns 1 for success, 0 for failure
-*/
 DROP PROCEDURE IF EXISTS prc_update_authors $$
 CREATE PROCEDURE prc_update_authors(
     IN p_id INT,
@@ -57,104 +38,6 @@ BEGIN
         -- Determine if the update was successful
         SET result = (ROW_COUNT() > 0);
 
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Author does not exist.';
-    END IF;
-END $$
-
-/**
-    Procedure: prc_delete_authors
-    Purpose: Performs a soft delete on an author by setting `delete_date` and `update_date` to the current timestamp.
-    Parameters:
-        - IN p_id INT: ID of the author to soft delete.
-        - OUT result BOOLEAN: Returns TRUE (1) if the soft delete was successful, FALSE (0) otherwise.
-    Exceptions:
-        - SQLSTATE '50002': Author does not exist.
-    Example Usage:
-        CALL prc_delete_authors(123, @result);
-        SELECT @result; -- Returns 1 for success, 0 for failure
-*/
-DROP PROCEDURE IF EXISTS prc_delete_authors $$
-CREATE PROCEDURE prc_delete_authors(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE a_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO a_count
-    FROM `authors`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF a_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `authors`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Author does not exist.';
-    END IF;
-END $$
-
-/**
-    Procedure: prc_restore_authors
-    Purpose: Restores a soft-deleted author by setting `delete_date` to NULL and updating `update_date`.
-    Parameters:
-        - IN p_id INT: ID of the author to restore.
-        - OUT result BOOLEAN: Returns TRUE (1) if the restore was successful, FALSE (0) otherwise.
-    Exceptions:
-        - SQLSTATE '50002': Author does not exist.
-    Example Usage:
-        CALL prc_restore_authors(123, @result);
-        SELECT @result; -- Returns 1 for success, 0 for failure
-*/
-DROP PROCEDURE IF EXISTS prc_restore_authors $$
-CREATE PROCEDURE prc_restore_authors(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE a_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO a_count
-    FROM `authors`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF a_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `authors`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
         COMMIT;
     ELSE
         ROLLBACK;
@@ -208,84 +91,6 @@ BEGIN
     END IF;
 END $$
 
-/**
- */
-DROP PROCEDURE IF EXISTS prc_delete_fandoms $$
-CREATE PROCEDURE prc_delete_fandoms(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE a_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO a_count
-    FROM `fandoms`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF a_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `fandoms`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fandom does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_restore_fandoms $$
-CREATE PROCEDURE prc_restore_fandoms(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE a_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO a_count
-    FROM `fandoms`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF a_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `fandoms`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fandom does not exist.';
-    END IF;
-END $$
-
 -- ####################################################################################
 -- # Languages
 -- ####################################################################################
@@ -325,84 +130,6 @@ BEGIN
         -- Determine if the update was successful
         SET result = (ROW_COUNT() > 0);
 
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Language does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_delete_languages $$
-CREATE PROCEDURE prc_delete_languages(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE l_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO l_count
-    FROM `languages`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF l_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `languages`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Language does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_restore_languages $$
-CREATE PROCEDURE prc_restore_languages(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE l_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO l_count
-    FROM `languages`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF l_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `languages`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
         COMMIT;
     ELSE
         ROLLBACK;
@@ -466,84 +193,6 @@ BEGIN
             ROLLBACK;
             SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Tag type does not exist.';
         END IF;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Tag does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_delete_tags $$
-CREATE PROCEDURE prc_delete_tags(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE t_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO t_count
-    FROM `tags`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF t_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `tags`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Tag does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_restore_tags $$
-CREATE PROCEDURE prc_restore_tags(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE t_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO t_count
-    FROM `tags`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF t_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `tags`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
     ELSE
         ROLLBACK;
         SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Tag does not exist.';
@@ -627,102 +276,6 @@ BEGIN
     END IF;
 END $$
 
-/**
- */
-DROP PROCEDURE IF EXISTS prc_delete_characters $$
-CREATE PROCEDURE prc_delete_characters(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE c_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO c_count
-    FROM `characters`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF c_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `characters`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-
-        IF result THEN
-            UPDATE `relations` r
-            INNER JOIN `relations_characters` rc ON r.`id` = rc.`relation_id`
-            SET r.`delete_date` = NOW(),
-                r.`update_date` = NOW()
-            WHERE rc.`character_id` = p_id;
-        END IF;
-
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Character does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_restore_characters $$
-CREATE PROCEDURE prc_restore_characters(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE c_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO c_count
-    FROM `characters`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF c_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `characters`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-
-        IF result THEN
-            UPDATE `relations` r
-            INNER JOIN `relations_characters` rc ON r.`id` = rc.`relation_id`
-            SET r.`delete_date` = NULL,
-                r.`update_date` = NOW()
-            WHERE rc.`character_id` = p_id;
-        END IF;
-
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Character does not exist.';
-    END IF;
-END $$
-
 -- ####################################################################################
 -- # Relations
 -- ####################################################################################
@@ -739,8 +292,6 @@ BEGIN
     DECLARE current_name VARCHAR(255);
     DECLARE i INT DEFAULT 0;
     DECLARE chara_id INT;
-    DECLARE temp VARCHAR(100);
-    DECLARE name_count INT;
 
     -- Error handling and transaction control
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -816,116 +367,189 @@ BEGIN
     SET result = TRUE;
 END $$
 
-/**
- */
-DROP PROCEDURE IF EXISTS prc_delete_relations $$
-CREATE PROCEDURE prc_delete_relations(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE r_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO r_count
-    FROM `relations`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF r_count > 0 THEN
-        -- Perform soft delete
-        UPDATE `relations`
-        SET `delete_date` = NOW(),
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Relation does not exist.';
-    END IF;
-END $$
-
-/**
- */
-DROP PROCEDURE IF EXISTS prc_restore_relations $$
-CREATE PROCEDURE prc_restore_relations(
-    IN p_id INT,
-    OUT result BOOLEAN
-)
-BEGIN
-    DECLARE r_count INT;
-
-    DECLARE EXIT HANDLER FOR SQLEXCEPTION
-    BEGIN
-        ROLLBACK;
-        RESIGNAL;
-    END;
-
-    START TRANSACTION;
-
-    -- Check existence and lock the row
-    SELECT COUNT(*) INTO r_count
-    FROM `relations`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF r_count > 0 THEN
-        -- Restore by clearing delete_date
-        UPDATE `relations`
-        SET `delete_date` = NULL,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Relation does not exist.';
-    END IF;
-END $$
-
 -- ####################################################################################
 -- # Fanfictions
 -- ####################################################################################
-/**
- */
+DROP PROCEDURE IF EXISTS prc_update_fanfictions $$
+CREATE PROCEDURE prc_update_fanfictions(
+    IN p_id INT,
+    IN label VARCHAR(100),
+    IN description TEXT,
+    IN language_id INT,
+    IN rating_id INT,
+    IN score_id INT,
+    IN evaluation TEXT,
+    OUT result BOOLEAN
+)
+BEGIN
+    DECLARE f_count INT;
+    DECLARE l_count INT;
+    DECLARE r_count INT;
+    DECLARE s_count INT;
 
-/**
- */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
 
-/**
- */
+    START TRANSACTION;
+
+    -- Check if the fanfiction exists and lock the row
+    SELECT COUNT(*) INTO f_count
+    FROM `fanfictions`
+    WHERE `id` = p_id
+    FOR SHARE;
+
+    IF f_count > 0 THEN
+        -- Check if the language exists
+        SELECT COUNT(*) INTO l_count
+        FROM `languages`
+        WHERE `id` = language_id
+        FOR SHARE;
+
+        IF l_count = 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Language does not exist.';
+        END IF;
+
+        -- Check if the rating exists
+        SELECT COUNT(*) INTO r_count
+        FROM `ratings`
+        WHERE `id` = rating_id
+        FOR SHARE;
+
+        IF r_count = 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Rating does not exist.';
+        END IF;
+
+        -- Check if the score exists
+        SELECT COUNT(*) INTO s_count
+        FROM `scores`
+        WHERE `id` = score_id
+        FOR SHARE;
+
+        IF s_count = 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Score does not exist.';
+        END IF;
+
+        -- Update the fanfiction
+        UPDATE `fanfictions`
+        SET `name` = label,
+            `description` = description,
+            `language_id` = language_id,
+            `rating_id` = rating_id,
+            `score_id` = score_id,
+            `evaluation` = evaluation,
+            `update_date` = NOW()
+        WHERE `id` = p_id;
+
+        SET result = (ROW_COUNT() > 0);
+        COMMIT;
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist.';
+    END IF;
+END $$
 
 -- ####################################################################################
 -- # Links
 -- ####################################################################################
-/**
- */
+DROP PROCEDURE IF EXISTS prc_update_links $$
+CREATE PROCEDURE prc_update_links(
+    IN p_id INT,
+    IN url VARCHAR(255),
+    OUT result BOOLEAN
+)
+BEGIN
+    DECLARE l_count INT;
 
-/**
- */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
 
-/**
- */
+    START TRANSACTION;
+
+    -- Check if the link exists and lock the row
+    SELECT COUNT(*) INTO l_count
+    FROM `links`
+    WHERE `id` = p_id
+    FOR SHARE;
+
+    IF l_count > 0 THEN
+        -- Update the link
+        UPDATE `links`
+        SET `url` = url,
+            `update_date` = NOW()
+        WHERE `id` = p_id;
+
+        SET result = (ROW_COUNT() > 0);
+        COMMIT;
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Link does not exist.';
+    END IF;
+END $$
 
 -- ####################################################################################
 -- # Series
 -- ####################################################################################
-/**
- */
+DROP PROCEDURE IF EXISTS prc_update_series $$
+CREATE PROCEDURE prc_update_series(
+    IN p_id INT,
+    IN label VARCHAR(100),
+    IN description TEXT,
+    IN score_id INT,
+    IN evaluation TEXT,
+    OUT result BOOLEAN
+)
+BEGIN
+    DECLARE s_count INT;
+    DECLARE sc_count INT;
 
-/**
- */
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
 
-/**
- */
+    START TRANSACTION;
+
+    -- Check if the series exists and lock the row
+    SELECT COUNT(*) INTO s_count
+    FROM `series`
+    WHERE `id` = p_id
+    FOR SHARE;
+
+    IF s_count > 0 THEN
+        -- Check if the score exists
+        SELECT COUNT(*) INTO sc_count
+        FROM `scores`
+        WHERE `id` = score_id
+        FOR SHARE;
+
+        IF sc_count = 0 THEN
+            ROLLBACK;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Score does not exist.';
+        END IF;
+
+        -- Update the series
+        UPDATE `series`
+        SET `name` = label,
+            `description` = description,
+            `score_id` = score_id,
+            `evaluation` = evaluation,
+            `update_date` = NOW()
+        WHERE `id` = p_id;
+
+        SET result = (ROW_COUNT() > 0);
+        COMMIT;
+    ELSE
+        ROLLBACK;
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Series does not exist.';
+    END IF;
+END $$
