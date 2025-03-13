@@ -1,6 +1,5 @@
 {
     "name": "fhurai/ffb",
-    "description": "Webservices for FFB",
     "autoload": {
         "psr-4": {
             "Fhurai\\Ffb\\": "src/"
@@ -13,6 +12,6 @@
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^12.0"
     }
 }

@@ -1,9 +1,6 @@
 <?php
 
-if(file_exists("../src/entity/Parameters.php"))
-    require_once "../src/entity/Parameters.php";
-else if(file_exists("../../src/entity/Parameters.php"))
-    require_once "../../src/entity/Parameters.php";
+require_once __DIR__ . "/Parameters.php";
 
 /**
  * Readonly Score class.

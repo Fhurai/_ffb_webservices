@@ -1,11 +1,22 @@
 <?php
 
+/**
+ * Class SrcUtilities
+ *
+ * This class provides a set of utility functions for the application.
+ * These utilities are designed to assist with common tasks and 
+ * operations that are used throughout the application.
+ *
+ * @package _ffb_webservices\src\utilities
+ */
 class SrcUtilities {
 
     /**
-     * Method to generate getter function from property.
-     * @param string $property Property to get.
-     * @return string The getter function to call.
+     * Generates a string by combining a prefix and a property.
+     *
+     * @param string $prefix The prefix to be used.
+     * @param string $property The property to be appended to the prefix.
+     * @return string The combined string of prefix and property.
      */
     public static function gsFunction(string $prefix, string $property)
     {
