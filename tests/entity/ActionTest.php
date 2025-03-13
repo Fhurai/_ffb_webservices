@@ -1,8 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/Action.php";
-
-use PHPUnit\Framework\TestCase;
+require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
 
 /**
  * Class ActionTest
@@ -12,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package Tests\Entity
  */
-class ActionTest extends TestCase
+class ActionTest extends ParametersTest
 {
     /**
      * Tests the Action class.

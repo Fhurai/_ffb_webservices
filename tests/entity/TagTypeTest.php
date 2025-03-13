@@ -1,8 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/TagType.php";
-
-use PHPUnit\Framework\TestCase;
+require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
 
 /**
  * Class TagTypeTest
@@ -12,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package Tests\Entity
  */
-class TagTypeTest extends TestCase
+class TagTypeTest extends ParametersTest
 {
     /**
      * Tests the TagType class.

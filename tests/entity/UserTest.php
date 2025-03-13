@@ -1,10 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 require_once __DIR__ . "/../../src/entity/User.php";
+require_once __DIR__ . "/../../tests/entity/EntityTest.php";
 
-class UserTest extends TestCase
+class UserTest extends EntityTest
 {
     public function testConstructor()
     {

@@ -1,8 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/Score.php";
-
-use PHPUnit\Framework\TestCase;
+require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
 
 /**
  * Class ScoreTest
@@ -12,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package Tests\Entity
  */
-class ScoreTest extends TestCase
+class ScoreTest extends ParametersTest
 {
     /**
      * Tests the Score class.
