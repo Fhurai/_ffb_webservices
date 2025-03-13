@@ -379,79 +379,190 @@ CREATE PROCEDURE prc_update_fanfictions(
     IN rating_id INT,
     IN score_id INT,
     IN evaluation TEXT,
+    IN fandoms JSON, 
+    IN characters JSON, 
+    IN relations JSON, 
+    IN tags JSON, 
     OUT result BOOLEAN
 )
 BEGIN
-    DECLARE f_count INT;
-    DECLARE l_count INT;
-    DECLARE r_count INT;
-    DECLARE s_count INT;
-
+    DECLARE current_name VARCHAR(100);
+    DECLARE i INT DEFAULT 0;
+    DECLARE temp_id INT;
+    
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
+        SET result = FALSE;
         RESIGNAL;
     END;
 
     START TRANSACTION;
 
-    -- Check if the fanfiction exists and lock the row
-    SELECT COUNT(*) INTO f_count
-    FROM `fanfictions`
-    WHERE `id` = p_id
-    FOR SHARE;
-
-    IF f_count > 0 THEN
-        -- Check if the language exists
-        SELECT COUNT(*) INTO l_count
-        FROM `languages`
-        WHERE `id` = language_id
-        FOR SHARE;
-
-        IF l_count = 0 THEN
-            ROLLBACK;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Language does not exist.';
-        END IF;
-
-        -- Check if the rating exists
-        SELECT COUNT(*) INTO r_count
-        FROM `ratings`
-        WHERE `id` = rating_id
-        FOR SHARE;
-
-        IF r_count = 0 THEN
-            ROLLBACK;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Rating does not exist.';
-        END IF;
-
-        -- Check if the score exists
-        SELECT COUNT(*) INTO s_count
-        FROM `scores`
-        WHERE `id` = score_id
-        FOR SHARE;
-
-        IF s_count = 0 THEN
-            ROLLBACK;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Score does not exist.';
-        END IF;
-
-        -- Update the fanfiction
-        UPDATE `fanfictions`
-        SET `name` = label,
-            `description` = description,
-            `language_id` = language_id,
-            `rating_id` = rating_id,
-            `score_id` = score_id,
-            `evaluation` = evaluation,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
-
-        SET result = (ROW_COUNT() > 0);
-        COMMIT;
-    ELSE
-        ROLLBACK;
-        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist.';
+    -- Verify fanfiction exists and lock row
+    IF NOT EXISTS (SELECT 1 FROM `fanfictions` WHERE id = p_id FOR UPDATE) THEN
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist';
     END IF;
+
+    -- Validate foreign keys using EXISTS pattern
+    IF NOT EXISTS (SELECT 1 FROM `languages` WHERE id = language_id) THEN
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Language does not exist';
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM `ratings` WHERE id = rating_id) THEN
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Rating does not exist';
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM `scores` WHERE id = score_id) THEN
+        SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Score does not exist';
+    END IF;
+
+    -- Name update with duplicate check
+    IF label IS NOT NULL THEN
+        SELECT name INTO current_name FROM `fanfictions` WHERE id = p_id;
+        
+        IF current_name <> label AND EXISTS (SELECT 1 FROM `fanfictions` WHERE name = label) THEN
+            SIGNAL SQLSTATE '50001' SET MESSAGE_TEXT = 'Fanfiction name already exists';
+        END IF;
+    END IF;
+
+    -- Main fanfiction update
+    UPDATE `fanfictions`
+    SET `name` = COALESCE(label, name),
+        `description` = COALESCE(description, description),
+        `language_id` = language_id,
+        `rating_id` = rating_id,
+        `score_id` = score_id,
+        `evaluation` = COALESCE(evaluation, evaluation),
+        `update_date` = NOW()
+    WHERE `id` = p_id;
+
+    -- Process fandoms relationships
+    IF fandoms IS NOT NULL THEN
+        CREATE TEMPORARY TABLE `tmp_fandoms` (fandom_id INT UNSIGNED PRIMARY KEY) ENGINE = Memory;
+        
+        WHILE i < JSON_LENGTH(fandoms) DO
+            SET temp_id = JSON_UNQUOTE(JSON_EXTRACT(fandoms, CONCAT('$[', i, ']')));
+            
+            IF NOT EXISTS (SELECT 1 FROM `fandoms` WHERE id = temp_id) THEN
+                DROP TEMPORARY TABLE `tmp_fandoms`;
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fandom does not exist';
+            END IF;
+            
+            INSERT IGNORE INTO `tmp_fandoms` VALUES (temp_id);
+            SET i = i + 1;
+        END WHILE;
+        
+        -- Sync relationships
+        DELETE FROM `fanfictions_fandoms`
+        WHERE `fanfiction_id` = p_id
+        AND `fandom_id` NOT IN (SELECT fandom_id FROM `tmp_fandoms`);
+        
+        INSERT IGNORE INTO `fanfictions_fandoms` (`fanfiction_id`, `fandom_id`)
+        SELECT p_id, fandom_id FROM `tmp_fandoms`
+        WHERE fandom_id NOT IN (
+            SELECT `fandom_id` FROM `fanfictions_fandoms` WHERE `fanfiction_id` = p_id
+        );
+        
+        DROP TEMPORARY TABLE `tmp_fandoms`;
+        SET i = 0;  -- Reset counter for next JSON array
+    END IF;
+
+    -- Process characters relationships
+    IF characters IS NOT NULL THEN
+        CREATE TEMPORARY TABLE `tmp_characters` (character_id INT UNSIGNED PRIMARY KEY) ENGINE = Memory;
+        
+        WHILE i < JSON_LENGTH(characters) DO
+            SET temp_id = JSON_UNQUOTE(JSON_EXTRACT(characters, CONCAT('$[', i, ']')));
+            
+            IF NOT EXISTS (SELECT 1 FROM `characters` WHERE id = temp_id) THEN
+                DROP TEMPORARY TABLE `tmp_characters`;
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Character does not exist';
+            END IF;
+            
+            INSERT IGNORE INTO `tmp_characters` VALUES (temp_id);
+            SET i = i + 1;
+        END WHILE;
+        
+        -- Sync relationships
+        DELETE FROM `fanfictions_characters`
+        WHERE `fanfiction_id` = p_id
+        AND `character_id` NOT IN (SELECT character_id FROM `tmp_characters`);
+        
+        INSERT IGNORE INTO `fanfictions_characters` (`fanfiction_id`, `character_id`)
+        SELECT p_id, fandom_id FROM `tmp_characters`
+        WHERE character_id NOT IN (
+            SELECT `character_id` FROM `fanfictions_characters` WHERE `fanfiction_id` = p_id
+        );
+        
+        DROP TEMPORARY TABLE `tmp_characters`;
+        SET i = 0;  -- Reset counter for next JSON array
+    END IF;
+
+    -- Process relations relationships
+    IF relations IS NOT NULL THEN
+        CREATE TEMPORARY TABLE `tmp_relations` (relation_id INT UNSIGNED PRIMARY KEY) ENGINE = Memory;
+        
+        WHILE i < JSON_LENGTH(relations) DO
+            SET temp_id = JSON_UNQUOTE(JSON_EXTRACT(relations, CONCAT('$[', i, ']')));
+            
+            IF NOT EXISTS (SELECT 1 FROM `relations` WHERE id = temp_id) THEN
+                DROP TEMPORARY TABLE `tmp_relations`;
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Relation does not exist';
+            END IF;
+            
+            INSERT IGNORE INTO `tmp_relations` VALUES (temp_id);
+            SET i = i + 1;
+        END WHILE;
+        
+        -- Sync relationships
+        DELETE FROM `fanfictions_relations`
+        WHERE `fanfiction_id` = p_id
+        AND `relation_id` NOT IN (SELECT relation_id FROM `tmp_relations`);
+        
+        INSERT IGNORE INTO `fanfictions_relations` (`fanfiction_id`, `relation_id`)
+        SELECT p_id, fandom_id FROM `tmp_relations`
+        WHERE relation_id NOT IN (
+            SELECT `relation_id` FROM `fanfictions_relations` WHERE `fanfiction_id` = p_id
+        );
+        
+        DROP TEMPORARY TABLE `tmp_relations`;
+        SET i = 0;  -- Reset counter for next JSON array
+    END IF;
+
+    -- Process tags relationships
+    IF tags IS NOT NULL THEN
+        CREATE TEMPORARY TABLE `tmp_tags` (tag_id INT UNSIGNED PRIMARY KEY) ENGINE = Memory;
+        
+        WHILE i < JSON_LENGTH(tags) DO
+            SET temp_id = JSON_UNQUOTE(JSON_EXTRACT(tags, CONCAT('$[', i, ']')));
+            
+            IF NOT EXISTS (SELECT 1 FROM `tags` WHERE id = temp_id) THEN
+                DROP TEMPORARY TABLE `tmp_tags`;
+                SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Tag does not exist';
+            END IF;
+            
+            INSERT IGNORE INTO `tmp_tags` VALUES (temp_id);
+            SET i = i + 1;
+        END WHILE;
+        
+        -- Sync relationships
+        DELETE FROM `fanfictions_tags`
+        WHERE `fanfiction_id` = p_id
+        AND `tag_id` NOT IN (SELECT tag_id FROM `tmp_tags`);
+        
+        INSERT IGNORE INTO `fanfictions_tags` (`fanfiction_id`, `tag_id`)
+        SELECT p_id, fandom_id FROM `tmp_tags`
+        WHERE tag_id NOT IN (
+            SELECT `tag_id` FROM `fanfictions_tags` WHERE `fanfiction_id` = p_id
+        );
+        
+        DROP TEMPORARY TABLE `tmp_tags`;
+        SET i = 0;  -- Reset counter for next JSON array
+    END IF;
+
+    COMMIT;
+    SET result = TRUE;
 END $$
 
 -- ####################################################################################
@@ -461,10 +572,12 @@ DROP PROCEDURE IF EXISTS prc_update_links $$
 CREATE PROCEDURE prc_update_links(
     IN p_id INT,
     IN url VARCHAR(255),
+    IN fanfiction INT,
     OUT result BOOLEAN
 )
 BEGIN
     DECLARE l_count INT;
+    DECLARE f_count INT;
 
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
@@ -481,11 +594,29 @@ BEGIN
     FOR SHARE;
 
     IF l_count > 0 THEN
-        -- Update the link
-        UPDATE `links`
-        SET `url` = url,
-            `update_date` = NOW()
-        WHERE `id` = p_id;
+
+    SELECT COUNT(*) INTO f_count
+        FROM `fanfictions`
+        WHERE `id` = fandom_id
+        FOR SHARE;
+
+        IF f_count THEN
+        
+            -- Update the link
+            UPDATE `links`
+            SET `url` = url,
+                `fanfiction_id` = fanfiction,
+                `update_date` = NOW()
+            WHERE `id` = p_id;
+
+            -- Determine if the update was successful
+            SET result = (ROW_COUNT() > 0);
+
+            COMMIT;
+        ELSE
+            ROLLBACK;
+            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist.';
+        END IF;
 
         SET result = (ROW_COUNT() > 0);
         COMMIT;
@@ -505,12 +636,16 @@ CREATE PROCEDURE prc_update_series(
     IN description TEXT,
     IN score_id INT,
     IN evaluation TEXT,
+    IN fanfictions JSON,
     OUT result BOOLEAN
 )
 BEGIN
     DECLARE s_count INT;
-    DECLARE sc_count INT;
+    DECLARE f_count INT;
+    DECLARE i INT DEFAULT 0;
+    DECLARE temp_id INT;
 
+    -- Handle errors by rolling back the transaction
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
@@ -526,27 +661,48 @@ BEGIN
     FOR SHARE;
 
     IF s_count > 0 THEN
-        -- Check if the score exists
-        SELECT COUNT(*) INTO sc_count
-        FROM `scores`
-        WHERE `id` = score_id
-        FOR SHARE;
-
-        IF sc_count = 0 THEN
-            ROLLBACK;
-            SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Score does not exist.';
-        END IF;
-
         -- Update the series
         UPDATE `series`
-        SET `name` = label,
-            `description` = description,
+        SET `name` = COALESCE(label, name),
+            `description` = COALESCE(description, description),
             `score_id` = score_id,
-            `evaluation` = evaluation,
+            `evaluation` = COALESCE(evaluation, evaluation),
             `update_date` = NOW()
         WHERE `id` = p_id;
 
+        -- Determine if the update was successful
         SET result = (ROW_COUNT() > 0);
+
+        -- Process fanfictions relationships
+        IF fanfictions IS NOT NULL THEN
+            CREATE TEMPORARY TABLE `tmp_fanfictions` (fanfiction_id INT UNSIGNED PRIMARY KEY) ENGINE = Memory;
+
+            WHILE i < JSON_LENGTH(fanfictions) DO
+                SET temp_id = JSON_UNQUOTE(JSON_EXTRACT(fanfictions, CONCAT('$[', i, ']')));
+
+                IF NOT EXISTS (SELECT 1 FROM `fanfictions` WHERE id = temp_id) THEN
+                    DROP TEMPORARY TABLE `tmp_fanfictions`;
+                    SIGNAL SQLSTATE '50002' SET MESSAGE_TEXT = 'Fanfiction does not exist';
+                END IF;
+
+                INSERT IGNORE INTO `tmp_fanfictions` VALUES (temp_id);
+                SET i = i + 1;
+            END WHILE;
+
+            -- Sync relationships
+            DELETE FROM `series_fanfictions`
+            WHERE `series_id` = p_id
+            AND `fanfiction_id` NOT IN (SELECT fanfiction_id FROM `tmp_fanfictions`);
+
+            INSERT IGNORE INTO `series_fanfictions` (`series_id`, `fanfiction_id`)
+            SELECT p_id, fanfiction_id FROM `tmp_fanfictions`
+            WHERE fanfiction_id NOT IN (
+                SELECT `fanfiction_id` FROM `series_fanfictions` WHERE `series_id` = p_id
+            );
+
+            DROP TEMPORARY TABLE `tmp_fanfictions`;
+        END IF;
+
         COMMIT;
     ELSE
         ROLLBACK;
