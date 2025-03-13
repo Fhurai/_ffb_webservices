@@ -6,6 +6,9 @@
         <testsuite name="Entity Test Suite">
             <directory>./tests/entity</directory>
         </testsuite>
+        <testsuite name="Exceptions Test Suite">
+            <directory>./tests/exceptions</directory>
+        </testsuite>
         <testsuite name="Utilities Test Suite">
             <directory>./tests/utilities</directory>
         </testsuite>

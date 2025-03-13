@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Class FfbTableException
+ *
+ * Custom exception class for handling errors related to FfbTable operations.
+ *
+ * @package exceptions
+ */
 class FfbTableException extends Exception{
 
     /**
