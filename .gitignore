@@ -4,3 +4,4 @@ initNAS.sh
 resetTestsNAS.sh
 
 config/config.php
+/vendor/
