@@ -6,5 +6,8 @@
         <testsuite name="Entity Test Suite">
             <directory>./tests/entity</directory>
         </testsuite>
+        <testsuite name="Utilities Test Suite">
+            <directory>./tests/utilities</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
