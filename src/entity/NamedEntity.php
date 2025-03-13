@@ -1,9 +1,6 @@
 <?php
 
-if(file_exists("../src/entity/Entity.php"))
-    require_once "../src/entity/Entity.php";
-else if(file_exists("../../src/entity/Entity.php"))
-    require_once "../../src/entity/Entity.php";
+require_once __DIR__ . "/../../src/entity/Entity.php";
 
 /**
  * Abstract class NamedEntity
