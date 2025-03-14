@@ -13,15 +13,15 @@ class ParametersTest extends TestCase
             $this->assertTrue(true);
         }
 
-        $this->parameters = new readonly class extends Parameters {
-            public function __construct()
+        $this->parameters = new readonly class(1, 'TestName') extends Parameters {
+            public function __construct($id, $name)
             {
-                parent::__construct();
+                parent::__construct($id, $name);
             }
 
-            public static function getNewObject(): mixed
+            public static function getNewObject($id, $name): static
             {
-                return new self();
+                return new self($id, $name);
             }
         };
     }

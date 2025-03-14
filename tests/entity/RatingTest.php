@@ -15,7 +15,7 @@ class RatingTest extends ParametersTest
 {
     protected function setUp(): void
     {
-        $this->parameters = new Rating();
+        $this->parameters = new Rating(2, "T / 12");
     }
     /**
      * Tests the Rating class.

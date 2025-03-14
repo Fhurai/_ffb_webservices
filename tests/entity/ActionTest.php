@@ -16,7 +16,7 @@ class ActionTest extends ParametersTest
 
     protected function setUp(): void
     {
-        $this->parameters = new Action();
+        $this->parameters = new Action(1, "CREATION");
     }
     /**
      * Tests the Action class.

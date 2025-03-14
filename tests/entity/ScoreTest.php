@@ -15,7 +15,7 @@ class ScoreTest extends ParametersTest
 {
     protected function setUp(): void
     {
-        $this->parameters = new Score();
+        $this->parameters = new Score(3, "Acceptable");
     }
     /**
      * Tests the Score class.
@@ -40,8 +40,6 @@ class ScoreTest extends ParametersTest
      */
     public function testScoreNewObject(): void
     {
-        $score = Score::getNewObject();
-
         $this->assertEquals(Score::class, get_class($this->parameters));
     }
 

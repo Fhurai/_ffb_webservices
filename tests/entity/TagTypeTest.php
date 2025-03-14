@@ -15,7 +15,7 @@ class TagTypeTest extends ParametersTest
 {
     protected function setUp(): void
     {
-        $this->parameters = new TagType();
+        $this->parameters = new TagType(4, "Other");
     }
     /**
      * Tests the TagType class.

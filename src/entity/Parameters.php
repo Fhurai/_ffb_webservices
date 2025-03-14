@@ -1,33 +1,27 @@
 <?php
 
 /**
- * Readonly abstract class Parameters
+ * Abstract class Parameters implementing JsonSerializable.
  */
 abstract readonly class Parameters implements JsonSerializable
 {
-
-    /**
-     * Identifier.
-     * @var int
-     */
     private int $id;
-    /**
-     * Name.
-     * @var string
-     */
     private string $name;
 
-
     /**
-     * Implied constructor.
+     * Constructor initializes the properties.
+     * @param int $id The identifier.
+     * @param string $name The name.
      */
-    public function __construct()
+    public function __construct(int $id, string $name)
     {
+        $this->id = $id;
+        $this->name = $name;
     }
 
     /**
-     * Getter Identifier.
-     * @return int Identifier.
+     * Getter for Identifier.
+     * @return int The identifier.
      */
     public function getId(): int
     {
@@ -35,18 +29,8 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * Setter Identifier
-     * @param int $id New identifier.
-     * @return void
-     */
-    protected function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * Getter Name.
-     * @return string Name.
+     * Getter for Name.
+     * @return string The name.
      */
     public function getName(): string
     {
@@ -54,51 +38,33 @@ abstract readonly class Parameters implements JsonSerializable
     }
 
     /**
-     * Setter Name.
-     * @param string $name new Name.
-     * @return void
+     * Serializes the object to an array.
+     * @return array The serialized data.
      */
-    protected function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * Method to parse parameters into an array for JSON parsing.
-     * @return array Array of parameters data.
-     */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
-            "id" => $this->getId(),
-            "name" => $this->getName()
+            "id" => $this->id,
+            "name" => $this->name
         ];
     }
 
     /**
-     * Method to parse a JSON string into an parameters object.
-     * @param string $json JSON string.
-     * @return mixed Parsed object.
+     * Unserializes a JSON string into an object.
+     * @param string $json The JSON string.
+     * @return static The unserialized object.
      */
-    public static function jsonUnserialize($json): mixed
+    public static function jsonUnserialize(string $json): static
     {
-        // Create parameters with the child class.
-        $parameters = static::getNewObject();
-
-        // JSON string is parsed as an array then browsed.
-        foreach (json_decode($json, true) as $key => $data) {
-            // For each property, the set method is generated then used on the provided data.
-            $function = "set" . ucfirst($key);
-            $parameters->$function($data);
-        }
-
-        // The new parameters is returned.
-        return $parameters;
+        $data = json_decode($json, true);
+        return static::getNewObject($data['id'], $data['name']);
     }
 
     /**
-     * Abstract method to create a new child object.
-     * @return mixed The child object.
+     * Abstract method to create a new instance.
+     * @param int $id The identifier.
+     * @param string $name The name.
+     * @return static The new instance.
      */
-    public abstract static function getNewObject(): mixed;
+    abstract public static function getNewObject(int $id, string $name): static;
 }
