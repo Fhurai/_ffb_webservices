@@ -1,0 +1,132 @@
+<?php
+
+use PHPUnit\Framework\TestCase;
+
+require_once __DIR__ . '/../../src/entity/Series.php';
+
+class SeriesTest extends TestCase
+{
+    private Series $series;
+
+    protected function setUp(): void
+    {
+        $this->series = new Series();
+    }
+
+    public function testInheritedProperties(): void
+    {
+        // Test Entity properties
+        $this->series->setId(123);
+        $this->assertEquals(123, $this->series->getId());
+
+        $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
+        $this->series->setCreationDate($date);
+        $this->assertSame($date, $this->series->getCreationDate());
+
+        // Test NamedEntity property
+        $this->series->setName('Test Series');
+        $this->assertEquals('Test Series', $this->series->getName());
+
+        // Test Evaluable trait properties
+        $this->series->setScoreId(5);
+        $this->series->setEvaluation('4.5 stars');
+        $this->assertEquals(5, $this->series->getScoreId());
+        $this->assertEquals('4.5 stars', $this->series->getEvaluation());
+    }
+
+    public function testDescriptionProperty(): void
+    {
+        $this->series->setDescription('Test description');
+        $this->assertEquals('Test description', $this->series->getDescription());
+    }
+
+    public function testJsonSerialization(): void
+    {
+        // Set basic properties
+        $this->series->setId(1);
+        $this->series->setName('Great Series');
+        $this->series->setDescription('An amazing series');
+        $this->series->setScoreId(4);
+        $this->series->setEvaluation('Highly recommended');
+
+        // Set date for consistent testing
+        $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
+        $this->series->setCreationDate($date);
+        $this->series->setUpdateDate($date);
+
+        // Test without associations
+        $result = $this->series->jsonSerialize();
+        $this->assertArrayNotHasKey('fanfictions', $result);
+
+        // Add fanfictions association
+        $this->series->fanfictions = [new Fanfiction()];
+        $resultWithAssoc = $this->series->jsonSerialize();
+
+        // Test core fields
+        $this->assertEquals(1, $resultWithAssoc['id']);
+        $this->assertEquals('Great Series', $resultWithAssoc['name']);
+        $this->assertEquals('An amazing series', $resultWithAssoc['description']);
+        $this->assertEquals(4, $resultWithAssoc['score_id']);
+        $this->assertEquals('Highly recommended', $resultWithAssoc['evaluation']);
+        $this->assertEquals($date, $resultWithAssoc['creation_date']);
+
+        // Test association
+        $this->assertArrayHasKey('fanfictions', $resultWithAssoc);
+        $this->assertIsArray($resultWithAssoc['fanfictions']);
+        $this->assertInstanceOf(Fanfiction::class, $resultWithAssoc['fanfictions'][0]);
+    }
+
+    public function testJsonUnserialization(): void
+    {
+        $json = '{
+            "id": 456,
+            "name": "Epic Series",
+            "description": "Fantastic series journey",
+            "score_id": 7,
+            "evaluation": "Must read series!",
+            "creation_date": "2023-02-01 10:15:30",
+            "fanfictions": [
+                {"id": 1, "name": "First Part"},
+                {"id": 2, "name": "Second Part"}
+            ]
+        }';
+
+        $series = Series::jsonUnserialize($json);
+
+        // Test basic properties
+        $this->assertEquals(456, $series->getId());
+        $this->assertEquals('Epic Series', $series->getName());
+        $this->assertEquals('Fantastic series journey', $series->getDescription());
+        $this->assertEquals(7, $series->getScoreId());
+        $this->assertEquals('Must read series!', $series->getEvaluation());
+
+        // Test date handling
+        $this->assertEquals(
+            '2023-02-01 10:15:30',
+            $series->getCreationDate()->format('Y-m-d H:i:s')
+        );
+        $this->assertEquals(
+            'Europe/Paris',
+            $series->getCreationDate()->getTimezone()->getName()
+        );
+
+        // Test association
+        $this->assertIsArray($series->fanfictions);
+        $this->assertCount(2, $series->fanfictions);
+        $this->assertInstanceOf(Fanfiction::class, $series->fanfictions[0]);
+        $this->assertEquals(1, $series->fanfictions[0]->getId());
+    }
+
+    public function testEmptyObject(): void
+    {
+        $json = '{}';
+        $series = Series::jsonUnserialize($json);
+        
+        $this->assertEquals(0, $series->getId());
+        $this->assertEquals('', $series->getName());
+        $this->assertEquals('', $series->getDescription());
+        $this->assertEquals(-1, $series->getScoreId());
+        $this->assertEquals('', $series->getEvaluation());
+        $this->assertInstanceOf(DateTime::class, $series->getCreationDate());
+    }
+}

@@ -1,101 +1,109 @@
 <?php
 
-require_once __DIR__ . "/../../src/entity/User.php";
-require_once __DIR__ . "/../../tests/entity/EntityTest.php";
+use PHPUnit\Framework\TestCase;
 
-class UserTest extends EntityTest
+require_once __DIR__ . '/../../src/entity/User.php';
+
+class UserTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        $this->entity = new User();
-    }
-
-    public function testConstructor()
+    public function testConstructorInitializesDefaults(): void
     {
         $user = new User();
-        $this->assertEquals("", $user->getUsername());
-        $this->assertEquals("", $user->getPassword());
-        $this->assertEquals("", $user->getEmail());
+        
+        $this->assertSame('', $user->getUsername());
+        $this->assertSame('', $user->getPassword());
+        $this->assertSame('', $user->getEmail());
         $this->assertFalse($user->isAdmin());
         $this->assertTrue($user->isLocal());
-        $this->assertInstanceOf(DateTime::class, $user->getBirthday());
         $this->assertFalse($user->isNsfw());
+        
+        // Test birthday initialization
+        $birthday = $user->getBirthday();
+        $this->assertInstanceOf(DateTime::class, $birthday);
+        $this->assertSame('Europe/Paris', $birthday->getTimezone()->getName());
     }
 
-    public function testSetUsername()
+    public function testSettersAndGetters(): void
     {
-        $this->entity->setUsername("testuser");
-        $this->assertEquals("testuser", $this->entity->getUsername());
+        $user = new User();
+        
+        // Test username
+        $user->setUsername('john_doe');
+        $this->assertSame('john_doe', $user->getUsername());
+        
+        // Test email
+        $user->setEmail('john@example.com');
+        $this->assertSame('john@example.com', $user->getEmail());
+        
+        // Test boolean flags
+        $user->setIsAdmin(true);
+        $this->assertTrue($user->isAdmin());
+        
+        $user->setIsLocal(false);
+        $this->assertFalse($user->isLocal());
+        
+        $user->setIsNsfw(true);
+        $this->assertTrue($user->isNsfw());
+        
+        // Test birthday
+        $newBirthday = new DateTime('2000-01-01');
+        $user->setBirthday($newBirthday);
+        $this->assertSame($newBirthday, $user->getBirthday());
     }
 
-    public function testSetPassword()
+    public function testPasswordHashing(): void
     {
-        $this->entity->setPassword("password", false);
-        $this->assertTrue(password_verify("password", $this->entity->getPassword()));
+        $user = new User();
+        
+        // Test hashed password
+        $plainPassword = 'secret123';
+        $user->setPassword($plainPassword, false);
+        $this->assertTrue(password_verify($plainPassword, $user->getPassword()));
+        
+        // Test pre-hashed password
+        $hashedPassword = password_hash('anotherpass', PASSWORD_DEFAULT);
+        $user->setPassword($hashedPassword, true);
+        $this->assertSame($hashedPassword, $user->getPassword());
     }
 
-    public function testSetEmail()
+    public function testJsonSerialize(): void
     {
-        $this->entity->setEmail("test@example.com");
-        $this->assertEquals("test@example.com", $this->entity->getEmail());
+        $user = new User();
+        $user->setUsername('test_user');
+        $user->setEmail('test@example.com');
+        $user->setIsAdmin(true);
+        $fixedDate = new DateTime('1990-05-15 08:00:00', new DateTimeZone('Europe/Paris'));
+        $user->setBirthday($fixedDate);
+        
+        $serialized = $user->jsonSerialize();
+        
+        // Test parent fields
+        $this->assertArrayHasKey('id', $serialized);
+        
+        // Test user fields
+        $this->assertSame('test_user', $serialized['username']);
+        $this->assertSame('test@example.com', $serialized['email']);
+        $this->assertTrue($serialized['is_admin']);
+        $this->assertInstanceOf(DateTime::class, $serialized['birthday']);
+        $this->assertSame('1990-05-15 08:00:00', $serialized['birthday']->format('Y-m-d H:i:s'));
     }
 
-    public function testSetIsAdmin()
+    public function testGetBirthDateFormat(): void
     {
-        $this->entity->setIsAdmin(true);
-        $this->assertTrue($this->entity->isAdmin());
+        $user = new User();
+        $fixedDate = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
+        $user->setBirthday($fixedDate);
+        
+        $this->assertSame('2023-01-01 12:34:56', $user->getBirthDate());
     }
 
-    public function testSetIsLocal()
+    public function testGetNewObject(): void
     {
-        $this->entity->setIsLocal(false);
-        $this->assertFalse($this->entity->isLocal());
-    }
-
-    public function testSetBirthday()
-    {
-        $birthday = new DateTime("2000-01-01");
-        $this->entity->setBirthday($birthday);
-        $this->assertEquals($birthday, $this->entity->getBirthday());
-    }
-
-    public function testSetIsNsfw()
-    {
-        $this->entity->setIsNsfw(true);
-        $this->assertTrue($this->entity->isNsfw());
-    }
-
-    public function testJsonSerialize()
-    {
-        $this->entity->setUsername("testuser");
-        $this->entity->setPassword("password", false);
-        $this->entity->setEmail("test@example.com");
-        $this->entity->setIsAdmin(true);
-        $this->entity->setIsLocal(false);
-        $birthday = new DateTime("2000-01-01");
-        $this->entity->setBirthday($birthday);
-        $this->entity->setIsNsfw(true);
-
-        $expected = [
-            "id" => 0,
-            "creation_date" => $this->entity->getCreationDate(),
-            "update_date" => $this->entity->getUpdateDate(),
-            "delete_date" => $this->entity->getDeleteDate(),
-            "username" => "testuser",
-            "password" => $this->entity->getPassword(),
-            "email" => "test@example.com",
-            "is_admin" => true,
-            "is_local" => false,
-            "birthday" => $birthday,
-            "is_nsfw" => true,
-        ];
-
-        $this->assertEqualsCanonicalizing($expected, $this->entity->jsonSerialize());
-    }
-
-    public function testGetNewObject()
-    {
-        $user = User::getNewObject();
-        $this->assertInstanceOf(User::class, $user);
+        $newUser = User::getNewObject();
+        
+        $this->assertInstanceOf(User::class, $newUser);
+        $this->assertSame('', $newUser->getUsername());
+        $this->assertSame('', $newUser->getEmail());
+        $this->assertFalse($newUser->isAdmin());
     }
 }

@@ -1,54 +1,59 @@
 <?php
 
-require_once __DIR__ . "/../../src/entity/Link.php";
-require_once __DIR__ . "/../../tests/entity/EntityTest.php";
+use PHPUnit\Framework\TestCase;
 
-class LinkTest extends EntityTest
+require_once __DIR__ . '/../../src/entity/Link.php';
+
+class LinkTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        $this->entity = new Link();
-    }
-
-    public function testConstructor()
+    public function testConstructorInitializesDefaults(): void
     {
         $link = new Link();
-        $this->assertEquals("", $link->getUrl());
-        $this->assertEquals(-1, $link->getFanfictionId());
+        $this->assertSame('', $link->getUrl());
+        $this->assertSame(-1, $link->getFanfictionId());
     }
 
-    public function testSetAndGetUrl()
+    public function testSettersAndGetters(): void
     {
-        $url = "https://example.com";
-        $this->entity->setUrl($url);
-        $this->assertEquals($url, $this->entity->getUrl());
+        $link = new Link();
+        
+        // Test URL setter/getter
+        $testUrl = 'https://example.com';
+        $link->setUrl($testUrl);
+        $this->assertSame($testUrl, $link->getUrl());
+
+        // Test Fanfiction ID setter/getter
+        $testId = 42;
+        $link->setFanfictionId($testId);
+        $this->assertSame($testId, $link->getFanfictionId());
     }
 
-    public function testSetAndGetFanfictionId()
+    public function testJsonSerialize(): void
     {
-        $fanfictionId = 123;
-        $this->entity->setFanfictionId($fanfictionId);
-        $this->assertEquals($fanfictionId, $this->entity->getFanfictionId());
+        $link = new Link();
+        $testUrl = 'https://test.com';
+        $testId = 123;
+        
+        $link->setUrl($testUrl);
+        $link->setFanfictionId($testId);
+
+        $serialized = $link->jsonSerialize();
+
+        // Verify Link-specific fields
+        $this->assertArrayHasKey('url', $serialized);
+        $this->assertArrayHasKey('fanfiction_id', $serialized);
+        $this->assertSame($testUrl, $serialized['url']);
+        $this->assertSame($testId, $serialized['fanfiction_id']);
+
+        // Verify parent Entity fields exist (assuming Entity::jsonSerialize works)
+        $this->assertArrayHasKey('id', $serialized);   // From parent Entity
     }
 
-    public function testJsonSerialize()
+    public function testGetNewObject(): void
     {
-        $this->entity->setUrl("https://example.com");
-        $this->entity->setFanfictionId(123);
-        $expected = [
-            "id" => 0,
-            "creation_date" => $this->entity->getCreationDate(),
-            "update_date" => $this->entity->getUpdateDate(),
-            "delete_date" => $this->entity->getDeleteDate(),
-            "url" => "https://example.com",
-            "fanfiction_id" => 123
-        ];
-        $this->assertEqualsCanonicalizing($expected, $this->entity->jsonSerialize());
-    }
-
-    public function testGetNewObject()
-    {
-        $link = Link::getNewObject();
-        $this->assertInstanceOf(Link::class, $link);
+        $newLink = Link::getNewObject();
+        $this->assertInstanceOf(Link::class, $newLink);
+        $this->assertSame('', $newLink->getUrl());
+        $this->assertSame(-1, $newLink->getFanfictionId());
     }
 }

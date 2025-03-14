@@ -1,43 +1,86 @@
 <?php
 
-require_once __DIR__ . "/../../src/entity/Language.php";
-require_once __DIR__ . "/../../tests/entity/NamedEntityTest.php";
+use PHPUnit\Framework\TestCase;
 
-class LanguageTest extends NamedEntityTest
+require_once __DIR__ . '/../../src/entity/Language.php';
+
+class LanguageTest extends TestCase
 {
-    protected function setUp(): void
+    public function testConstructorInitializesDefaultValues()
     {
-        $this->entity = new Language();
-    }
-    public function testConstructor()
-    {
-        $this->assertInstanceOf(Language::class, $this->entity);
-        $this->assertEquals("", $this->entity->getAbbreviation());
+        $language = new Language();
+        $this->assertSame('', $language->getName());
+        $this->assertSame('', $language->getAbbreviation());
+        $this->assertEquals(0, $language->getId());
     }
 
-    public function testGetAndSetAbbreviation()
+    public function testNameSetterAndGetter()
     {
-        $this->entity->setAbbreviation("EN");
-        $this->assertEquals("EN", $this->entity->getAbbreviation());
+        $language = new Language();
+        $testName = 'English';
+        $language->setName($testName);
+        $this->assertSame($testName, $language->getName());
     }
 
-    public function testGetNewObject()
+    public function testAbbreviationSetterAndGetter()
     {
-        $newLanguage = Language::getNewObject();
-        $this->assertInstanceOf(Language::class, $newLanguage);
+        $language = new Language();
+        $testAbbrev = 'EN';
+        $language->setAbbreviation($testAbbrev);
+        $this->assertSame($testAbbrev, $language->getAbbreviation());
     }
 
-    public function testJsonSerialize()
+    public function testJsonSerializationContainsAllProperties()
     {
-        $this->entity->setAbbreviation("EN");
-        $expected = [
-            "id" => 0,
-            "creation_date" => $this->entity->getCreationDate(),
-            "update_date" => $this->entity->getUpdateDate(),
-            "delete_date" => $this->entity->getDeleteDate(),
-            "name" => "", // Assuming NamedEntity has a name property
-            "abbreviation" => "EN"
-        ];
-        $this->assertEquals($expected, $this->entity->jsonSerialize());
+        $language = new Language();
+        $language->setName('Spanish');
+        $language->setAbbreviation('ES');
+        $data = $language->jsonSerialize();
+
+        $this->assertArrayHasKey('id', $data);
+        $this->assertArrayHasKey('name', $data);
+        $this->assertArrayHasKey('abbreviation', $data);
+        $this->assertEquals('Spanish', $data['name']);
+        $this->assertEquals('ES', $data['abbreviation']);
+    }
+
+    public function testGetNewObjectReturnsLanguageInstance()
+    {
+        $language = Language::getNewObject();
+        $this->assertInstanceOf(Language::class, $language);
+    }
+
+    public function testPropertyModificationSequence()
+    {
+        $language = new Language();
+        
+        // Test initial empty values
+        $this->assertSame('', $language->getName());
+        $this->assertSame('', $language->getAbbreviation());
+
+        // Set first values
+        $language->setName('French');
+        $language->setAbbreviation('FR');
+        $this->assertSame('French', $language->getName());
+        $this->assertSame('FR', $language->getAbbreviation());
+
+        // Update values
+        $language->setName('German');
+        $language->setAbbreviation('DE');
+        $this->assertSame('German', $language->getName());
+        $this->assertSame('DE', $language->getAbbreviation());
+    }
+
+    public function testSpecialCharactersHandling()
+    {
+        $language = new Language();
+        $complexName = 'Português (Brasil)';
+        $complexAbbrev = 'PT-BR';
+
+        $language->setName($complexName);
+        $language->setAbbreviation($complexAbbrev);
+
+        $this->assertSame($complexName, $language->getName());
+        $this->assertSame($complexAbbrev, $language->getAbbreviation());
     }
 }

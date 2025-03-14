@@ -1,9 +1,6 @@
 <?php
 
-if(file_exists("../src/entity/ComplexEntity.php"))
-    require_once "../src/entity/ComplexEntity.php";
-else if(file_exists("../../src/entity/ComplexEntity.php"))
-    require_once "../../src/entity/ComplexEntity.php";
+require_once __DIR__ . '/../../src/entity/ComplexEntity.php';
 
 /**
  * Tag class.
