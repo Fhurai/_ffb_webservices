@@ -1,4 +1,6 @@
 .vscode/*
+.phpunit.result.cache
+test-results.xml
 
 initNAS.sh
 resetTestsNAS.sh
