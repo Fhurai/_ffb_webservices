@@ -5,8 +5,6 @@ require_once __DIR__ . "/../../tests/entity/EntityTest.php";
 
 class NamedEntityTest extends EntityTest
 {
-    protected $namedEntity;
-
     protected function setUp(): void
     {
         if ($this::class === NamedEntityTest::class) {
@@ -29,13 +27,13 @@ class NamedEntityTest extends EntityTest
     public function testGetName()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('name')) {
                 $property = $reflection->getProperty('name');
                 $property->setAccessible(true);
-                $property->setValue($this->namedEntity, 'TestName');
+                $property->setValue($this->entity, 'TestName');
 
-                $this->assertEquals('TestName', $this->namedEntity->getName());
+                $this->assertEquals('TestName', $this->entity->getName());
             } else {
                 $this->assertTrue(true);
             }
@@ -47,16 +45,16 @@ class NamedEntityTest extends EntityTest
     public function testSetName()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('name')) {
                 $method = $reflection->getMethod('setName');
                 $method->setAccessible(true);
-                $method->invoke($this->namedEntity, 'NewName');
+                $method->invoke($this->entity, 'NewName');
 
                 $property = $reflection->getProperty('name');
                 $property->setAccessible(true);
 
-                $this->assertEquals('NewName', $property->getValue($this->namedEntity));
+                $this->assertEquals('NewName', $property->getValue($this->entity));
             } else {
                 $this->assertTrue(true);
             }
@@ -68,28 +66,28 @@ class NamedEntityTest extends EntityTest
     public function testJsonSerialize()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('id') && $reflection->hasProperty('creation_date') && $reflection->hasProperty('update_date') && $reflection->hasProperty('delete_date') && $reflection->hasProperty('name')) {
                 $propertyId = $reflection->getProperty('id');
                 $propertyId->setAccessible(true);
-                $propertyId->setValue($this->namedEntity, 1);
+                $propertyId->setValue($this->entity, 1);
 
                 $propertyCreationDate = $reflection->getProperty('creation_date');
                 $propertyCreationDate->setAccessible(true);
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
-                $propertyCreationDate->setValue($this->namedEntity, $date);
+                $propertyCreationDate->setValue($this->entity, $date);
 
                 $propertyUpdateDate = $reflection->getProperty('update_date');
                 $propertyUpdateDate->setAccessible(true);
-                $propertyUpdateDate->setValue($this->namedEntity, $date);
+                $propertyUpdateDate->setValue($this->entity, $date);
 
                 $propertyDeleteDate = $reflection->getProperty('delete_date');
                 $propertyDeleteDate->setAccessible(true);
-                $propertyDeleteDate->setValue($this->namedEntity, $date);
+                $propertyDeleteDate->setValue($this->entity, $date);
 
                 $propertyName = $reflection->getProperty('name');
                 $propertyName->setAccessible(true);
-                $propertyName->setValue($this->namedEntity, 'TestName');
+                $propertyName->setValue($this->entity, 'TestName');
 
                 $expected = [
                     "id" => 1,
@@ -99,7 +97,7 @@ class NamedEntityTest extends EntityTest
                     "name" => 'TestName',
                 ];
 
-                $this->assertEquals($expected, $this->namedEntity->jsonSerialize());
+                $this->assertEquals($expected, $this->entity->jsonSerialize());
             } else {
                 $this->assertTrue(true);
             }
@@ -111,13 +109,13 @@ class NamedEntityTest extends EntityTest
     public function testGetId()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('id')) {
                 $property = $reflection->getProperty('id');
                 $property->setAccessible(true);
-                $property->setValue($this->namedEntity, 1);
+                $property->setValue($this->entity, 1);
 
-                $this->assertEquals(1, $this->namedEntity->getId());
+                $this->assertEquals(1, $this->entity->getId());
             } else {
                 $this->assertTrue(true);
             }
@@ -129,16 +127,16 @@ class NamedEntityTest extends EntityTest
     public function testSetId()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('id')) {
                 $method = $reflection->getMethod('setId');
                 $method->setAccessible(true);
-                $method->invoke($this->namedEntity, 1);
+                $method->invoke($this->entity, 1);
 
                 $property = $reflection->getProperty('id');
                 $property->setAccessible(true);
 
-                $this->assertEquals(1, $property->getValue($this->namedEntity));
+                $this->assertEquals(1, $property->getValue($this->entity));
             } else {
                 $this->assertTrue(true);
             }
@@ -150,14 +148,14 @@ class NamedEntityTest extends EntityTest
     public function testGetCreationDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('creation_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $property = $reflection->getProperty('creation_date');
                 $property->setAccessible(true);
-                $property->setValue($this->namedEntity, $date);
+                $property->setValue($this->entity, $date);
 
-                $this->assertEquals($date, $this->namedEntity->getCreationDate());
+                $this->assertEquals($date, $this->entity->getCreationDate());
             } else {
                 $this->assertTrue(true);
             }
@@ -169,17 +167,17 @@ class NamedEntityTest extends EntityTest
     public function testSetCreationDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('creation_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $method = $reflection->getMethod('setCreationDate');
                 $method->setAccessible(true);
-                $method->invoke($this->namedEntity, $date);
+                $method->invoke($this->entity, $date);
 
                 $property = $reflection->getProperty('creation_date');
                 $property->setAccessible(true);
 
-                $this->assertEquals($date, $property->getValue($this->namedEntity));
+                $this->assertEquals($date, $property->getValue($this->entity));
             } else {
                 $this->assertTrue(true);
             }
@@ -191,14 +189,14 @@ class NamedEntityTest extends EntityTest
     public function testGetUpdateDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('update_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $property = $reflection->getProperty('update_date');
                 $property->setAccessible(true);
-                $property->setValue($this->namedEntity, $date);
+                $property->setValue($this->entity, $date);
 
-                $this->assertEquals($date, $this->namedEntity->getUpdateDate());
+                $this->assertEquals($date, $this->entity->getUpdateDate());
             } else {
                 $this->assertTrue(true);
             }
@@ -210,17 +208,17 @@ class NamedEntityTest extends EntityTest
     public function testSetUpdateDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('update_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $method = $reflection->getMethod('setUpdateDate');
                 $method->setAccessible(true);
-                $method->invoke($this->namedEntity, $date);
+                $method->invoke($this->entity, $date);
 
                 $property = $reflection->getProperty('update_date');
                 $property->setAccessible(true);
 
-                $this->assertEquals($date, $property->getValue($this->namedEntity));
+                $this->assertEquals($date, $property->getValue($this->entity));
             } else {
                 $this->assertTrue(true);
             }
@@ -232,14 +230,14 @@ class NamedEntityTest extends EntityTest
     public function testGetDeleteDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('delete_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $property = $reflection->getProperty('delete_date');
                 $property->setAccessible(true);
-                $property->setValue($this->namedEntity, $date);
+                $property->setValue($this->entity, $date);
 
-                $this->assertEquals($date, $this->namedEntity->getDeleteDate());
+                $this->assertEquals($date, $this->entity->getDeleteDate());
             } else {
                 $this->assertTrue(true);
             }
@@ -251,17 +249,17 @@ class NamedEntityTest extends EntityTest
     public function testSetDeleteDate()
     {
         if ($this::class !== NamedEntityTest::class) {
-            $reflection = new ReflectionClass($this->namedEntity);
+            $reflection = new ReflectionClass($this->entity);
             if ($reflection->hasProperty('delete_date')) {
                 $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
                 $method = $reflection->getMethod('setDeleteDate');
                 $method->setAccessible(true);
-                $method->invoke($this->namedEntity, $date);
+                $method->invoke($this->entity, $date);
 
                 $property = $reflection->getProperty('delete_date');
                 $property->setAccessible(true);
 
-                $this->assertEquals($date, $property->getValue($this->namedEntity));
+                $this->assertEquals($date, $property->getValue($this->entity));
             } else {
                 $this->assertTrue(true);
             }

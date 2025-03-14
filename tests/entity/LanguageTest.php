@@ -7,18 +7,18 @@ class LanguageTest extends NamedEntityTest
 {
     protected function setUp(): void
     {
-        $this->namedEntity = new Language();
+        $this->entity = new Language();
     }
     public function testConstructor()
     {
-        $this->assertInstanceOf(Language::class, $this->namedEntity);
-        $this->assertEquals("", $this->namedEntity->getAbbreviation());
+        $this->assertInstanceOf(Language::class, $this->entity);
+        $this->assertEquals("", $this->entity->getAbbreviation());
     }
 
     public function testGetAndSetAbbreviation()
     {
-        $this->namedEntity->setAbbreviation("EN");
-        $this->assertEquals("EN", $this->namedEntity->getAbbreviation());
+        $this->entity->setAbbreviation("EN");
+        $this->assertEquals("EN", $this->entity->getAbbreviation());
     }
 
     public function testGetNewObject()
@@ -29,15 +29,15 @@ class LanguageTest extends NamedEntityTest
 
     public function testJsonSerialize()
     {
-        $this->namedEntity->setAbbreviation("EN");
+        $this->entity->setAbbreviation("EN");
         $expected = [
             "id" => 0,
-            "creation_date" => $this->namedEntity->getCreationDate(),
-            "update_date" => $this->namedEntity->getUpdateDate(),
-            "delete_date" => $this->namedEntity->getDeleteDate(),
+            "creation_date" => $this->entity->getCreationDate(),
+            "update_date" => $this->entity->getUpdateDate(),
+            "delete_date" => $this->entity->getDeleteDate(),
             "name" => "", // Assuming NamedEntity has a name property
             "abbreviation" => "EN"
         ];
-        $this->assertEquals($expected, $this->namedEntity->jsonSerialize());
+        $this->assertEquals($expected, $this->entity->jsonSerialize());
     }
 }

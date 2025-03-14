@@ -10,14 +10,14 @@ class AuthorTest extends NamedEntityTest
 {
     protected function setUp(): void
     {
-        $this->namedEntity = new Author();
+        $this->entity = new Author();
     }
     /**
      * Test the constructor of Author.
      */
     public function testConstructor()
     {
-        $this->assertInstanceOf(Author::class, $this->namedEntity);
+        $this->assertInstanceOf(Author::class, $this->entity);
     }
 
     /**

@@ -10,14 +10,14 @@ class FandomTest extends NamedEntityTest
 {
     protected function setUp(): void
     {
-        $this->namedEntity = new Fandom();
+        $this->entity = new Fandom();
     }
     /**
      * Test the constructor of Fandom.
      */
     public function testConstructor()
     {
-        $this->assertInstanceOf(Fandom::class, $this->namedEntity);
+        $this->assertInstanceOf(Fandom::class, $this->entity);
     }
 
     /**
