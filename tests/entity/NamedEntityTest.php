@@ -8,23 +8,22 @@ class NamedEntityTest extends EntityTest
     protected $namedEntity;
 
     protected function setUp(): void
-    { {
-            if ($this::class === NamedEntityTest::class) {
-                $this->assertTrue(true);
+    {
+        if ($this::class === NamedEntityTest::class) {
+            $this->assertTrue(true);
+        }
+
+        $this->entity = new class extends NamedEntity {
+            public function __construct()
+            {
+                parent::__construct();
             }
 
-            $this->entity = new class extends NamedEntity {
-                public function __construct()
-                {
-                    parent::__construct();
-                }
-
-                public static function getNewObject(): mixed
-                {
-                    return new self();
-                }
-            };
-        }
+            public static function getNewObject(): mixed
+            {
+                return new self();
+            }
+        };
     }
 
     public function testGetName()

@@ -1,9 +1,6 @@
 <?php
 
-if (file_exists("../src/entity/NamedEntity.php"))
-    require_once "../src/entity/NamedEntity.php";
-else if (file_exists("../../src/entity/NamedEntity.php"))
-    require_once "../../src/entity/NamedEntity.php";
+require_once __DIR__ . "/../../src/entity/NamedEntity.php";
 
 /**
  * Abstract ComplexEntity class.
