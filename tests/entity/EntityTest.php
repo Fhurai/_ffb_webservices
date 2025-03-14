@@ -6,13 +6,27 @@ require_once __DIR__ . "/../../src/entity/Entity.php";
 
 class EntityTest extends TestCase
 {
-    private $entity;
+    protected $entity;
 
     protected function setUp(): void
     {
-        $this->entity = $this->getMockBuilder(Entity::class)
-                             ->disableOriginalConstructor()
-                             ->getMock();
+        {
+            if ($this::class === EntityTest::class) {
+                $this->assertTrue(true);
+            }
+    
+            $this->entity = new class extends Entity {
+                public function __construct()
+                {
+                    parent::__construct();
+                }
+    
+                public static function getNewObject(): mixed
+                {
+                    return new self();
+                }
+            };
+        }
     }
 
     public function testGetId()

@@ -8,13 +8,16 @@ require_once __DIR__ . "/../../tests/entity/NamedEntityTest.php";
  */
 class FandomTest extends NamedEntityTest
 {
+    protected function setUp(): void
+    {
+        $this->namedEntity = new Fandom();
+    }
     /**
      * Test the constructor of Fandom.
      */
     public function testConstructor()
     {
-        $fandom = new Fandom();
-        $this->assertInstanceOf(Fandom::class, $fandom);
+        $this->assertInstanceOf(Fandom::class, $this->namedEntity);
     }
 
     /**

@@ -13,6 +13,11 @@ require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
  */
 class ActionTest extends ParametersTest
 {
+
+    protected function setUp(): void
+    {
+        $this->parameters = new Action();
+    }
     /**
      * Tests the Action class.
      *
@@ -23,9 +28,7 @@ class ActionTest extends ParametersTest
      */
     public function testActionClass(): void
     {
-        $action = new Action();
-
-        $this->assertEquals(Action::class, get_class($action));
+        $this->assertEquals(Action::class, get_class(object: $this->parameters));
     }
 
     /**
@@ -38,9 +41,7 @@ class ActionTest extends ParametersTest
      */
     public function testActionNewObject(): void
     {
-        $action = Action::getNewObject();
-
-        $this->assertEquals(Action::class, get_class($action));
+        $this->assertEquals(Action::class, get_class($this->parameters));
     }
 
     /**

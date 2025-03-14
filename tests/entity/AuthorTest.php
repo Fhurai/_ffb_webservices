@@ -8,13 +8,16 @@ require_once __DIR__ . "/../../tests/entity/NamedEntityTest.php";
  */
 class AuthorTest extends NamedEntityTest
 {
+    protected function setUp(): void
+    {
+        $this->namedEntity = new Author();
+    }
     /**
      * Test the constructor of Author.
      */
     public function testConstructor()
     {
-        $author = new Author();
-        $this->assertInstanceOf(Author::class, $author);
+        $this->assertInstanceOf(Author::class, $this->namedEntity);
     }
 
     /**

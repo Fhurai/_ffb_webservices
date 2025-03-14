@@ -13,6 +13,10 @@ require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
  */
 class TagTypeTest extends ParametersTest
 {
+    protected function setUp(): void
+    {
+        $this->parameters = new TagType();
+    }
     /**
      * Tests the TagType class.
      *
@@ -23,9 +27,7 @@ class TagTypeTest extends ParametersTest
      */
     public function testTagTypeClass(): void
     {
-        $tagType = new TagType();
-
-        $this->assertEquals(TagType::class, get_class($tagType));
+        $this->assertEquals(TagType::class, get_class($this->parameters));
     }
 
     /**
@@ -38,9 +40,7 @@ class TagTypeTest extends ParametersTest
      */
     public function testTagTypeNewObject(): void
     {
-        $tagType = TagType::getNewObject();
-
-        $this->assertEquals(TagType::class, get_class($tagType));
+        $this->assertEquals(TagType::class, get_class($this->parameters));
     }
 
     /**

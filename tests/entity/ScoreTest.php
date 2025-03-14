@@ -13,6 +13,10 @@ require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
  */
 class ScoreTest extends ParametersTest
 {
+    protected function setUp(): void
+    {
+        $this->parameters = new Score();
+    }
     /**
      * Tests the Score class.
      *
@@ -23,9 +27,7 @@ class ScoreTest extends ParametersTest
      */
     public function testScoreClass(): void
     {
-        $score = new Score();
-
-        $this->assertEquals(Score::class, get_class($score));
+        $this->assertEquals(Score::class, get_class($this->parameters));
     }
 
     /**
@@ -40,7 +42,7 @@ class ScoreTest extends ParametersTest
     {
         $score = Score::getNewObject();
 
-        $this->assertEquals(Score::class, get_class($score));
+        $this->assertEquals(Score::class, get_class($this->parameters));
     }
 
     /**

@@ -5,6 +5,11 @@ require_once __DIR__ . "/../../tests/entity/EntityTest.php";
 
 class UserTest extends EntityTest
 {
+    protected function setUp(): void
+    {
+        $this->entity = new User();
+    }
+
     public function testConstructor()
     {
         $user = new User();
@@ -19,73 +24,65 @@ class UserTest extends EntityTest
 
     public function testSetUsername()
     {
-        $user = new User();
-        $user->setUsername("testuser");
-        $this->assertEquals("testuser", $user->getUsername());
+        $this->entity->setUsername("testuser");
+        $this->assertEquals("testuser", $this->entity->getUsername());
     }
 
     public function testSetPassword()
     {
-        $user = new User();
-        $user->setPassword("password", false);
-        $this->assertTrue(password_verify("password", $user->getPassword()));
+        $this->entity->setPassword("password", false);
+        $this->assertTrue(password_verify("password", $this->entity->getPassword()));
     }
 
     public function testSetEmail()
     {
-        $user = new User();
-        $user->setEmail("test@example.com");
-        $this->assertEquals("test@example.com", $user->getEmail());
+        $this->entity->setEmail("test@example.com");
+        $this->assertEquals("test@example.com", $this->entity->getEmail());
     }
 
     public function testSetIsAdmin()
     {
-        $user = new User();
-        $user->setIsAdmin(true);
-        $this->assertTrue($user->isAdmin());
+        $this->entity->setIsAdmin(true);
+        $this->assertTrue($this->entity->isAdmin());
     }
 
     public function testSetIsLocal()
     {
-        $user = new User();
-        $user->setIsLocal(false);
-        $this->assertFalse($user->isLocal());
+        $this->entity->setIsLocal(false);
+        $this->assertFalse($this->entity->isLocal());
     }
 
     public function testSetBirthday()
     {
-        $user = new User();
         $birthday = new DateTime("2000-01-01");
-        $user->setBirthday($birthday);
-        $this->assertEquals($birthday, $user->getBirthday());
+        $this->entity->setBirthday($birthday);
+        $this->assertEquals($birthday, $this->entity->getBirthday());
     }
 
     public function testSetIsNsfw()
     {
-        $user = new User();
-        $user->setIsNsfw(true);
-        $this->assertTrue($user->isNsfw());
+        $this->entity->setIsNsfw(true);
+        $this->assertTrue($this->entity->isNsfw());
     }
 
     public function testJsonSerialize()
     {
-        $user = new User();
-        $user->setUsername("testuser");
-        $user->setPassword("password", false);
-        $user->setEmail("test@example.com");
-        $user->setIsAdmin(true);
-        $user->setIsLocal(false);
+        $this->entity->setUsername("testuser");
+        $this->entity->setPassword("password", false);
+        $this->entity->setEmail("test@example.com");
+        $this->entity->setIsAdmin(true);
+        $this->entity->setIsLocal(false);
         $birthday = new DateTime("2000-01-01");
-        $user->setBirthday($birthday);
-        $user->setIsNsfw(true);
+        $this->entity->setBirthday($birthday);
+        $this->entity->setIsNsfw(true);
 
         $expected = [
             "id" => 0,
-            "creation_date" => $user->getCreationDate(),
-            "update_date" => $user->getUpdateDate(),
-            "delete_date" => $user->getDeleteDate(),
+            "creation_date" => $this->entity->getCreationDate(),
+            "update_date" => $this->entity->getUpdateDate(),
+            "delete_date" => $this->entity->getDeleteDate(),
             "username" => "testuser",
-            "password" => $user->getPassword(),
+            "password" => $this->entity->getPassword(),
             "email" => "test@example.com",
             "is_admin" => true,
             "is_local" => false,
@@ -93,7 +90,7 @@ class UserTest extends EntityTest
             "is_nsfw" => true,
         ];
 
-        $this->assertEqualsCanonicalizing($expected, $user->jsonSerialize());
+        $this->assertEqualsCanonicalizing($expected, $this->entity->jsonSerialize());
     }
 
     public function testGetNewObject()

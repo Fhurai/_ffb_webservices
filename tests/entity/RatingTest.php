@@ -13,6 +13,10 @@ require_once __DIR__ . "/../../tests/entity/ParametersTest.php";
  */
 class RatingTest extends ParametersTest
 {
+    protected function setUp(): void
+    {
+        $this->parameters = new Rating();
+    }
     /**
      * Tests the Rating class.
      *
@@ -23,9 +27,7 @@ class RatingTest extends ParametersTest
      */
     public function testRatingClass(): void
     {
-        $rating = new Rating();
-
-        $this->assertEquals(Rating::class, get_class($rating));
+        $this->assertEquals(Rating::class, get_class($this->parameters));
     }
 
     /**
@@ -38,9 +40,7 @@ class RatingTest extends ParametersTest
      */
     public function testRatingNewObject(): void
     {
-        $rating = Rating::getNewObject();
-
-        $this->assertEquals(Rating::class, get_class($rating));
+        $this->assertEquals(Rating::class, get_class($this->parameters));
     }
 
     /**

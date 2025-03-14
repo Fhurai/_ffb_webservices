@@ -5,6 +5,11 @@ require_once __DIR__ . "/../../tests/entity/EntityTest.php";
 
 class LinkTest extends EntityTest
 {
+    protected function setUp(): void
+    {
+        $this->entity = new Link();
+    }
+
     public function testConstructor()
     {
         $link = new Link();
@@ -14,34 +19,31 @@ class LinkTest extends EntityTest
 
     public function testSetAndGetUrl()
     {
-        $link = new Link();
         $url = "https://example.com";
-        $link->setUrl($url);
-        $this->assertEquals($url, $link->getUrl());
+        $this->entity->setUrl($url);
+        $this->assertEquals($url, $this->entity->getUrl());
     }
 
     public function testSetAndGetFanfictionId()
     {
-        $link = new Link();
         $fanfictionId = 123;
-        $link->setFanfictionId($fanfictionId);
-        $this->assertEquals($fanfictionId, $link->getFanfictionId());
+        $this->entity->setFanfictionId($fanfictionId);
+        $this->assertEquals($fanfictionId, $this->entity->getFanfictionId());
     }
 
     public function testJsonSerialize()
     {
-        $link = new Link();
-        $link->setUrl("https://example.com");
-        $link->setFanfictionId(123);
+        $this->entity->setUrl("https://example.com");
+        $this->entity->setFanfictionId(123);
         $expected = [
             "id" => 0,
-            "creation_date" => $link->getCreationDate(),
-            "update_date" => $link->getUpdateDate(),
-            "delete_date" => $link->getDeleteDate(),
+            "creation_date" => $this->entity->getCreationDate(),
+            "update_date" => $this->entity->getUpdateDate(),
+            "delete_date" => $this->entity->getDeleteDate(),
             "url" => "https://example.com",
             "fanfiction_id" => 123
         ];
-        $this->assertEqualsCanonicalizing($expected, $link->jsonSerialize());
+        $this->assertEqualsCanonicalizing($expected, $this->entity->jsonSerialize());
     }
 
     public function testGetNewObject()

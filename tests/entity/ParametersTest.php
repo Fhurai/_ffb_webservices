@@ -13,9 +13,17 @@ class ParametersTest extends TestCase
             $this->assertTrue(true);
         }
 
-        $this->parameters = $this->getMockBuilder(Parameters::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->parameters = new readonly class extends Parameters {
+            public function __construct()
+            {
+                parent::__construct();
+            }
+
+            public static function getNewObject(): mixed
+            {
+                return new self();
+            }
+        };
     }
 
     public function testGetId()
