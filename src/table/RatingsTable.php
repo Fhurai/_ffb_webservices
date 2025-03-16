@@ -258,7 +258,14 @@ class RatingsTable extends ParametersTable
         }
     }
 
-    private function parseRating(array $row){
+    /**
+     * Parse a database row into a Rating object.
+     * @param array $row The database row.
+     * @return Rating The Rating object.
+     */
+    private function parseRating(array $row): Rating
+    {
+        // Create and return a new Rating object using the data from the row.
         return new Rating($row["id"], $row["name"]);
     }
 }
