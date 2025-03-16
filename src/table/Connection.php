@@ -1,56 +1,22 @@
 <?php
 
-if (file_exists("../exceptions/FfbTableException.php"))
-    require_once "../exceptions/FfbTableException.php";
-else if (file_exists("../src/exceptions/FfbTableException.php"))
-    require_once "../src/exceptions/FfbTableException.php";
-
-if (file_exists("../../src/entity/User.php"))
-    require_once "../../src/entity/User.php";
-
-if (file_exists("../../src/entity/Author.php"))
-    require_once "../../src/entity/Author.php";
-
-if (file_exists("../../src/entity/Fandom.php"))
-    require_once "../../src/entity/Fandom.php";
-
-if (file_exists("../../src/entity/Language.php"))
-    require_once "../../src/entity/Language.php";
-
-if (file_exists("../../src/entity/Tag.php"))
-    require_once "../../src/entity/Tag.php";
-
-if (file_exists("../../src/entity/Character.php"))
-    require_once "../../src/entity/Character.php";
-
-if (file_exists("../../src/entity/Relation.php"))
-    require_once "../../src/entity/Relation.php";
-
-if (file_exists("../../src/entity/Fanfiction.php"))
-    require_once "../../src/entity/Fanfiction.php";
-
-if (file_exists("../../src/entity/Link.php"))
-    require_once "../../src/entity/Link.php";
-
-if (file_exists("../../src/entity/Series.php"))
-    require_once "../../src/entity/Series.php";
-
 /**
  * Connection class.
  */
 class Connection
 {
-
     /**
      * Php Database Object.
      * @var PDO
      */
-    private PDO $db;
+    private static ?PDO $db = null; // Declare static property
+
     /**
      * Label of connection type.
      * @var string
      */
     private string $typeConnection;
+
     /**
      * User of connection
      * @var  string
@@ -66,15 +32,13 @@ class Connection
      */
     public static function getDatabase(string $typeConnection, string $user): PDO
     {
-        static $dbInstances = [];
-
-        $key = $typeConnection . '_' . $user;
-
-        if (!isset($dbInstances[$key])) {
-            $dbInstances[$key] = self::createDbConnection($typeConnection, $user);
+        // Check if the database connection is already established
+        if(self::$db === NULL){
+            // Create a new database connection if not already established
+            self::$db = self::createDbConnection($typeConnection, $user);
         }
-
-        return $dbInstances[$key];
+        // Return the database connection
+        return self::$db;
     }
 
     /**
@@ -86,19 +50,23 @@ class Connection
      */
     private static function createDbConnection(string $typeConnection, string $user): PDO
     {
+        // Validate the connection type
         if (!in_array($typeConnection, ["main", "stats", "tests"])) {
             throw new FfbTableException("Unknown connection!");
         }
 
+        // Validate the user
         if (!in_array($user, ["guest", "user", "admin"])) {
             throw new FfbTableException("Unknown user!");
         }
 
+        // Check for unauthorized access
+        if($user === "guest" && $typeConnection === "tests"){
+            throw new FfbTableException("Acces unauthorized!");
+        }
+
         // If connection type is known, then use config file.
-        if (file_exists("../config/config.php"))
-            $configFile = include "../config/config.php";
-        else if (file_exists("../../config/config.php"))
-            $configFile = include "../../config/config.php";
+        $configFile = include __DIR__ . "/../../config/config.php";
 
         try {
             // Creation of Php Database Object with provided data from config.
@@ -107,5 +75,24 @@ class Connection
             // Exception caught, throw new exception with previous exception message.
             throw new FfbTableException($e->getMessage());
         }
+    }
+
+    /**
+     * Debug method to print data.
+     * @param mixed $data
+     */
+    public static function debug(mixed $data){
+        echo "\n";
+        var_dump($data);
+    }
+
+    /**
+     * Debug and die method to print data and stop execution.
+     * @param mixed $data
+     */
+    public static function dd(mixed $data){
+        echo "\n";
+        var_dump($data);
+        die();
     }
 }
