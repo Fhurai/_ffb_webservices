@@ -2,6 +2,7 @@
 
 /**
  * Connection class.
+ * Manages the database connection.
  */
 class Connection
 {
@@ -25,10 +26,10 @@ class Connection
 
     /**
      * Get the database connection.
-     * @param string $typeConnection
-     * @param string $user
-     * @return PDO
-     * @throws FfbTableException
+     * @param string $typeConnection The type of connection (main, stats, tests).
+     * @param string $user The user of the connection (guest, user, admin).
+     * @return PDO The PDO instance representing the database connection.
+     * @throws FfbTableException If the connection type or user is invalid.
      */
     public static function getDatabase(string $typeConnection, string $user): PDO
     {
@@ -43,10 +44,10 @@ class Connection
 
     /**
      * Create the database connection.
-     * @param string $typeConnection
-     * @param string $user
-     * @return PDO
-     * @throws FfbTableException
+     * @param string $typeConnection The type of connection (main, stats, tests).
+     * @param string $user The user of the connection (guest, user, admin).
+     * @return PDO The PDO instance representing the database connection.
+     * @throws FfbTableException If the connection type or user is invalid, or if the connection fails.
      */
     private static function createDbConnection(string $typeConnection, string $user): PDO
     {
@@ -79,20 +80,25 @@ class Connection
 
     /**
      * Debug method to print data.
-     * @param mixed $data
+     * @param mixed $data The data to be printed.
      */
     public static function debug(mixed $data){
+        // Print a newline for better readability
         echo "\n";
+        // Dump the data
         var_dump($data);
     }
 
     /**
      * Debug and die method to print data and stop execution.
-     * @param mixed $data
+     * @param mixed $data The data to be printed.
      */
     public static function dd(mixed $data){
+        // Print a newline for better readability
         echo "\n";
+        // Dump the data
         var_dump($data);
+        // Stop the script execution
         die();
     }
 }

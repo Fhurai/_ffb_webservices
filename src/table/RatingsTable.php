@@ -10,18 +10,6 @@ require_once __DIR__ . "/../entity/Rating.php";
  */
 class RatingsTable extends ParametersTable
 {
-    private PDO $connection;
-
-    /**
-     * RatingsTable constructor.
-     * @param string $typeConnection Type of database connection.
-     * @param string $user Database user.
-     */
-    public function __construct(string $typeConnection, string $user)
-    {
-        $this->connection = Connection::getDatabase($typeConnection, $user);
-    }
-
     /**
      * Get a rating by its ID.
      * @param int $id Rating ID.
@@ -30,25 +18,15 @@ class RatingsTable extends ParametersTable
      */
     public function get(int $id): Rating
     {
-        try {
-            // Prepare the SQL query to fetch the rating by ID.
-            $query = "SELECT * FROM `ratings` WHERE `id` = :id";
-            $sth = $this->connection->prepare($query);
-            $sth->execute([":id" => $id]);
+        // Prepare the query to fetch the rating by ID.
+        $query = "SELECT * FROM `ratings` WHERE `id` = :id";
+        $values = [":id" => $id];
 
-            // Fetch the result of the query.
-            $rows = $sth->fetch(PDO::FETCH_ASSOC);
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
 
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for rating n°" . $id, 404);
-            } else {
-                // Data found, return the object with that data.
-                return $this->parseRating($rows);
-            }
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
-        }
+        // Parse the result into a Rating object and return it.
+        return $this->parseRatings($rows)[0];
     }
 
     /**
@@ -60,54 +38,40 @@ class RatingsTable extends ParametersTable
      */
     public function findSearchedBy(array $args, $execute = true): mixed
     {
-        try {
-            $values = [];
-            $first = true;
-            $query = $execute ? "SELECT * FROM `ratings`" : "";
+        $values = [];
+        $first = true;
+        $query = $execute ? "SELECT * FROM `ratings`" : "";
 
-            // Build the query based on the provided arguments.
-            foreach ($args as $key => $value) {
-                if ($first) {
-                    $query .= " WHERE ";
-                    $first = false;
-                } else {
-                    $query .= " AND ";
-                }
-
-                // Handle different types of conditions.
-                if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                    $array = explode(' ', $value);
-                    $query .= " " . $key . " " . $array[0] . " :" . $key;
-                    $values[":" . $key] = str_replace("'", "", $array[1]);
-                } else {
-                    $query .= " " . $key . " = :" . $key;
-                    $values[":" . $key] = $value;
-                }
-            }
-
-            if (!$execute) {
-                return $query;
-            }
-
-            // Prepare and execute the query.
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for arguments provided!", 404);
+        // Build the query based on the provided arguments.
+        foreach ($args as $key => $value) {
+            if ($first) {
+                $query .= " WHERE ";
+                $first = false;
             } else {
-                // Data found, return the list of Rating objects.
-                $ratings = [];
-                foreach ($rows as $row) {
-                    $ratings[] = $this->parseRating($row);
-                }
-                return $ratings;
+                $query .= " AND ";
             }
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
+
+            // Handle different types of conditions.
+            if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
+                $array = explode(' ', $value);
+                $query .= " " . $key . " " . $array[0] . " :" . $key;
+                $values[":" . $key] = str_replace("'", "", $array[1]);
+            } else {
+                $query .= " " . $key . " = :" . $key;
+                $values[":" . $key] = $value;
+            }
         }
+
+        // Return the query string if not executing.
+        if (!$execute) {
+            return $query;
+        }
+
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
+
+        // Parse the result into an array of Rating objects and return it.
+        return $this->parseRatings($rows);
     }
 
     /**
@@ -119,43 +83,30 @@ class RatingsTable extends ParametersTable
      */
     public function findOrderedBy(array $args, $execute = true): mixed
     {
-        try {
-            $values = [];
-            $first = true;
-            $query = $execute ? "SELECT * FROM `ratings`" : "";
+        $values = [];
+        $first = true;
+        $query = $execute ? "SELECT * FROM `ratings`" : "";
 
-            // Build the ORDER BY clause based on the provided arguments.
-            foreach ($args as $key => $value) {
-                if ($first) {
-                    $query .= " ORDER BY " . $key . " " . $value;
-                } else {
-                    $query .= "OFFSET " . $key . " " . $value;
-                }
-            }
-
-            if (!$execute) {
-                return $query;
-            }
-
-            // Prepare and execute the query.
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for arguments provided!", 404);
+        // Build the ORDER BY clause based on the provided arguments.
+        foreach ($args as $key => $value) {
+            if ($first) {
+                $query .= " ORDER BY " . $key . " " . $value;
+                $first = false;
             } else {
-                // Data found, return the list of Rating objects.
-                $ratings = [];
-                foreach ($rows as $row) {
-                    $ratings[] = $this->parseRating($row);
-                }
-                return $ratings;
+                $query .= "OFFSET " . $key . " " . $value;
             }
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
         }
+
+        // Return the query string if not executing.
+        if (!$execute) {
+            return $query;
+        }
+
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
+
+        // Parse the result into an array of Rating objects and return it.
+        return $this->parseRatings($rows);
     }
 
     /**
@@ -167,45 +118,31 @@ class RatingsTable extends ParametersTable
      */
     public function findLimitedBy(array $args, $execute = true): mixed
     {
-        try {
-            $values = [];
-            $query = $execute ? "SELECT * FROM `ratings`" : "";
+        $values = [];
+        $query = $execute ? "SELECT * FROM `ratings`" : "";
 
-            // Add the LIMIT clause to the query.
-            if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
-                $query .= " LIMIT " . $args["limit"];
-            } else {
-                throw new FfbTableException("No limit provided!");
-            }
-
-            // Add the OFFSET clause to the query if provided.
-            if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
-                $query .= ", " . $args["offset"];
-            }
-
-            if (!$execute) {
-                return $query;
-            }
-
-            // Prepare and execute the query.
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for arguments provided!", 404);
-            } else {
-                // Data found, return the list of Rating objects.
-                $ratings = [];
-                foreach ($rows as $row) {
-                    $ratings[] = $this->parseRating($row);
-                }
-                return $ratings;
-            }
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
+        // Add the LIMIT clause to the query.
+        if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
+            $query .= " LIMIT " . $args["limit"];
+        } else {
+            throw new FfbTableException("No limit provided!");
         }
+
+        // Add the OFFSET clause to the query if provided.
+        if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
+            $query .= ", " . $args["offset"];
+        }
+
+        // Return the query string if not executing.
+        if (!$execute) {
+            return $query;
+        }
+
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
+
+        // Parse the result into an array of Rating objects and return it.
+        return $this->parseRatings($rows);
     }
 
     /**
@@ -216,46 +153,31 @@ class RatingsTable extends ParametersTable
      */
     public function findAll(array $args): array
     {
-        try {
-            $values = [];
-            $query = "SELECT * FROM `ratings`";
+        $values = [];
+        $query = "SELECT * FROM `ratings`";
 
-            // Append the conditions, order, and limit clauses to the query.
-            if (array_key_exists("search", $args)) {
-                $query .= $this->findSearchedBy($args["search"], false);
-                foreach(array_keys($args["search"]) as $key){
-                    $array = explode(' ', $args["search"][$key]);
-                    $values[":" . $key] = str_replace("'", "", $array[1]);
-                }
+        // Append the conditions, order, and limit clauses to the query.
+        if (array_key_exists("search", $args)) {
+            $query .= $this->findSearchedBy($args["search"], false);
+            foreach (array_keys($args["search"]) as $key) {
+                $array = explode(' ', $args["search"][$key]);
+                $values[":" . $key] = str_replace("'", "", $array[1]);
             }
-
-            if (array_key_exists("order", $args)) {
-                $query .= $this->findOrderedBy($args["order"], false);
-            }
-
-            if (array_key_exists("limit", $args)) {
-                $query .= $this->findLimitedBy($args["limit"], false);
-            }
-
-            // Prepare and execute the query.
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for arguments provided!", 404);
-            } else {
-                // Data found, return the list of Rating objects.
-                $ratings = [];
-                foreach ($rows as $row) {
-                    $ratings[] = $this->parseRating($row);
-                }
-                return $ratings;
-            }
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
         }
+
+        if (array_key_exists("order", $args)) {
+            $query .= $this->findOrderedBy($args["order"], false);
+        }
+
+        if (array_key_exists("limit", $args)) {
+            $query .= $this->findLimitedBy($args["limit"], false);
+        }
+
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
+
+        // Parse the result into an array of Rating objects and return it.
+        return $this->parseRatings($rows);
     }
 
     /**
@@ -267,5 +189,19 @@ class RatingsTable extends ParametersTable
     {
         // Create and return a new Rating object using the data from the row.
         return new Rating($row["id"], $row["name"]);
+    }
+
+    /**
+     * Parse multiple database rows into an array of Rating objects.
+     * @param array $rows The database rows.
+     * @return array Array of Rating objects.
+     */
+    private function parseRatings(array $rows): array
+    {
+        $ratings = [];
+        foreach ($rows as $row) {
+            $ratings[] = $this->parseRating($row);
+        }
+        return $ratings;
     }
 }
