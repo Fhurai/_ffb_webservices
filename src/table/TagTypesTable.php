@@ -26,7 +26,7 @@ class TagTypesTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into a TagType object and return it.
-        return $this->parseTagTypes($rows)[0];
+        return $this->parseEntities($rows)[0];
     }
 
     /**
@@ -71,7 +71,7 @@ class TagTypesTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of TagType objects and return it.
-        return $this->parseTagTypes($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -106,7 +106,7 @@ class TagTypesTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of TagType objects and return it.
-        return $this->parseTagTypes($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -142,7 +142,7 @@ class TagTypesTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of TagType objects and return it.
-        return $this->parseTagTypes($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -177,7 +177,7 @@ class TagTypesTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of TagType objects and return it.
-        return $this->parseTagTypes($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -185,23 +185,9 @@ class TagTypesTable extends ParametersTable
      * @param array $row The database row.
      * @return TagType The TagType object.
      */
-    private function parseTagType(array $row): TagType
+    protected function parseEntity(array $row): TagType
     {
         // Create and return a new TagType object using the data from the row.
         return new TagType($row["id"], $row["name"]);
-    }
-
-    /**
-     * Parse multiple database rows into an array of TagType objects.
-     * @param array $rows The database rows.
-     * @return array Array of TagType objects.
-     */
-    private function parseTagTypes(array $rows): array
-    {
-        $tagTypes = [];
-        foreach ($rows as $row) {
-            $tagTypes[] = $this->parseTagType($row);
-        }
-        return $tagTypes;
     }
 }

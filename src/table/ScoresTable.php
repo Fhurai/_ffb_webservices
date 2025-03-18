@@ -26,7 +26,7 @@ class ScoresTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into a Score object and return it.
-        return $this->parseScores($rows)[0];
+        return $this->parseEntities($rows)[0];
     }
 
     /**
@@ -71,7 +71,7 @@ class ScoresTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Score objects and return it.
-        return $this->parseScores($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -106,7 +106,7 @@ class ScoresTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Score objects and return it.
-        return $this->parseScores($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -142,7 +142,7 @@ class ScoresTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Score objects and return it.
-        return $this->parseScores($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -177,7 +177,7 @@ class ScoresTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Score objects and return it.
-        return $this->parseScores($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -185,23 +185,9 @@ class ScoresTable extends ParametersTable
      * @param array $row The database row.
      * @return Score The Score object.
      */
-    private function parseScore(array $row): Score
+    protected function parseEntity(array $row): Score
     {
         // Create and return a new Score object using the data from the row.
         return new Score($row["id"], $row["name"]);
-    }
-
-    /**
-     * Parse multiple database rows into an array of Score objects.
-     * @param array $rows The database rows.
-     * @return array Array of Score objects.
-     */
-    private function parseScores(array $rows): array
-    {
-        $scores = [];
-        foreach ($rows as $row) {
-            $scores[] = $this->parseScore($row);
-        }
-        return $scores;
     }
 }

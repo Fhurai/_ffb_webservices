@@ -56,6 +56,13 @@ abstract class ParametersTable
     abstract public function findAll(array $args);
 
     /**
+     * Parse a database row into an entity object.
+     * @param array $row The database row.
+     * @return mixed The entity object.
+     */
+    abstract protected function parseEntity(array $row);
+
+    /**
      * Execute a query with the provided values.
      * @param string $query The SQL query to execute.
      * @param array $values The values to bind to the query.
@@ -78,5 +85,19 @@ abstract class ParametersTable
         } catch (PDOException $e) {
             throw new FfbTableException($e->getMessage(), 500, $e);
         }
+    }
+
+    /**
+     * Parse multiple database rows into an array of entity objects.
+     * @param array $rows The database rows.
+     * @return array Array of entity objects.
+     */
+    protected function parseEntities(array $rows): array
+    {
+        $entities = [];
+        foreach ($rows as $row) {
+            $entities[] = $this->parseEntity($row);
+        }
+        return $entities;
     }
 }
