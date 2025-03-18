@@ -32,21 +32,21 @@ abstract class ParametersTable
      * @param array $args The search criteria.
      * @return mixed The search results.
      */
-    abstract public function findSearchedBy(array $args): mixed;
+    abstract public function findSearchedBy(array $args, $execute = true): mixed;
 
     /**
      * Find parameters ordered by specific criteria.
      * @param array $args The ordering criteria.
      * @return mixed The ordered results.
      */
-    abstract public function findOrderedBy(array $args): mixed;
+    abstract public function findOrderedBy(array $args, $execute = true): mixed;
 
     /**
      * Find a limited number of parameters based on criteria.
      * @param array $args The limiting criteria.
      * @return mixed The limited results.
      */
-    abstract public function findLimitedBy(array $args): mixed;
+    abstract public function findLimitedBy(array $args, $execute = true): mixed;
 
     /**
      * Find all parameters based on criteria.
