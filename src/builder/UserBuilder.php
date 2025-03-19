@@ -1,15 +1,18 @@
 <?php
 
+require_once __DIR__ . "/EntityBuilderInterface.php";
+require_once __DIR__ . "/../entity/User.php";
+
 /**
  * Class UserBuilder
  * Implements the BuilderInterface to build User objects.
  */
-class UserBuilder implements BuilderInterface {
+class UserBuilder implements EntityBuilderInterface {
 
     /**
      * @var User The User object being built.
      */
-    private user $obj;
+    private User $obj;
 
     /**
      * UserBuilder constructor.
@@ -50,10 +53,10 @@ class UserBuilder implements BuilderInterface {
     /**
      * Sets the creation date of the User.
      *
-     * @param mixed $creationDate The creation date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withCreationDate(mixed $creationDate): UserBuilder {
+    public function withCreationDate(DateTime|string $creationDate): UserBuilder {
         // Check if the creation date is a DateTime object
         if($creationDate instanceof DateTime){
             $this->obj->setCreationDate($creationDate);
@@ -69,10 +72,10 @@ class UserBuilder implements BuilderInterface {
     /**
      * Sets the update date of the User.
      *
-     * @param mixed $updateDate The update date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withUpdateDate(mixed $updateDate): UserBuilder {
+    public function withUpdateDate(DateTime|string $updateDate): UserBuilder {
         // Check if the update date is a DateTime object
         if($updateDate instanceof DateTime){
             $this->obj->setUpdateDate($updateDate);
@@ -88,10 +91,10 @@ class UserBuilder implements BuilderInterface {
     /**
      * Sets the delete date of the User.
      *
-     * @param mixed $deleteDate The delete date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $deleteDate The delete date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withDeleteDate(mixed $deleteDate): UserBuilder {
+    public function withDeleteDate(DateTime|string $deleteDate): UserBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             $this->obj->setDeleteDate($deleteDate);
@@ -167,10 +170,10 @@ class UserBuilder implements BuilderInterface {
     /**
      * Sets the birthday of the User.
      *
-     * @param mixed $birthday The birthday to set. Can be a DateTime object or a string.
+     * @param DateTime|string $birthday The birthday to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withBirthday(mixed $birthday): UserBuilder {
+    public function withBirthday(DateTime|string $birthday): UserBuilder {
         // Check if the birthday is a DateTime object
         if($birthday instanceof DateTime){
             $this->obj->setBirthday($birthday);

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Interface BuilderInterface
+ * Interface EntityBuilderInterface
  * 
  * Defines the methods required for a builder.
  */
-interface BuilderInterface
+interface EntityBuilderInterface
 {
     /**
      * Constructor for the builder.
@@ -29,21 +29,24 @@ interface BuilderInterface
     /**
      * Adds a creation date to the product.
      *
+     * @param DateTime|string $creationDate
      * @return self
      */
-    public function withCreationDate(mixed $creationDate);
+    public function withCreationDate(DateTime|string $creationDate);
 
     /**
      * Adds an update date to the product.
      *
+     * @param DateTime|string $updateDate
      * @return self
      */
-    public function withUpdateDate(mixed $updateDate);
+    public function withUpdateDate(DateTime|string $updateDate);
 
     /**
      * Adds a delete date to the product.
      *
+     * @param DateTime|string $deleteDate
      * @return self
      */
-    public function withDeleteDate(mixed $deleteDate);
+    public function withDeleteDate(DateTime|string $deleteDate);
 }

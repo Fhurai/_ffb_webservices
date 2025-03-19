@@ -1,10 +1,13 @@
 <?php
 
+require_once __DIR__ . "/EntityBuilderInterface.php";
+require_once __DIR__ . "/../entity/Link.php";
+
 /**
  * Class LinkBuilder
  * Implements the BuilderInterface to build Link objects.
  */
-class LinkBuilder implements BuilderInterface {
+class LinkBuilder implements EntityBuilderInterface {
 
     /**
      * @var Link The Link object being built.
@@ -50,10 +53,10 @@ class LinkBuilder implements BuilderInterface {
     /**
      * Sets the creation date of the User.
      *
-     * @param mixed $creationDate The creation date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
-    public function withCreationDate(mixed $creationDate): LinkBuilder {
+    public function withCreationDate(DateTime|string $creationDate): LinkBuilder {
         // Check if the creation date is a DateTime object
         if($creationDate instanceof DateTime){
             $this->obj->setCreationDate($creationDate);
@@ -69,10 +72,10 @@ class LinkBuilder implements BuilderInterface {
     /**
      * Sets the update date of the User.
      *
-     * @param mixed $updateDate The update date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
-    public function withUpdateDate(mixed $updateDate): LinkBuilder {
+    public function withUpdateDate(DateTime|string $updateDate): LinkBuilder {
         // Check if the update date is a DateTime object
         if($updateDate instanceof DateTime){
             $this->obj->setUpdateDate($updateDate);
@@ -88,10 +91,10 @@ class LinkBuilder implements BuilderInterface {
     /**
      * Sets the delete date of the User.
      *
-     * @param mixed $deleteDate The delete date to set. Can be a DateTime object or a string.
+     * @param DateTime|string $deleteDate The delete date to set. Can be a DateTime object or a string.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
-    public function withDeleteDate(mixed $deleteDate): LinkBuilder {
+    public function withDeleteDate(DateTime|string $deleteDate): LinkBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             $this->obj->setDeleteDate($deleteDate);
