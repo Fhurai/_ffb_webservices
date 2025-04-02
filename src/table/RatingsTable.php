@@ -26,7 +26,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into a Rating object and return it.
-        return $this->parseRatings($rows)[0];
+        return $this->parseEntities($rows)[0];
     }
 
     /**
@@ -71,7 +71,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Rating objects and return it.
-        return $this->parseRatings($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -106,7 +106,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Rating objects and return it.
-        return $this->parseRatings($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -142,7 +142,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Rating objects and return it.
-        return $this->parseRatings($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -177,7 +177,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Rating objects and return it.
-        return $this->parseRatings($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -185,23 +185,9 @@ class RatingsTable extends ParametersTable
      * @param array $row The database row.
      * @return Rating The Rating object.
      */
-    private function parseRating(array $row): Rating
+    protected function parseEntity(array $row): Rating
     {
         // Create and return a new Rating object using the data from the row.
         return new Rating($row["id"], $row["name"]);
-    }
-
-    /**
-     * Parse multiple database rows into an array of Rating objects.
-     * @param array $rows The database rows.
-     * @return array Array of Rating objects.
-     */
-    private function parseRatings(array $rows): array
-    {
-        $ratings = [];
-        foreach ($rows as $row) {
-            $ratings[] = $this->parseRating($row);
-        }
-        return $ratings;
     }
 }

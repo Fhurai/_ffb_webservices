@@ -49,6 +49,9 @@ echo "-- done"
 echo "restore >"
 mysql --login-path=client ffb_tests < procedures/5.restore.sql
 echo "-- done"
+echo "finders >"
+mysql --login-path=client ffb_tests < procedures/6.finders.sql
+echo "-- done"
 echo ""
 echo "stats :"
 echo "0 >"

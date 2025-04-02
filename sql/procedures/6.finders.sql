@@ -4,9 +4,16 @@ DELIMITER $$
 -- # Authors
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_authors $$
-CREATE PROCEDURE prc_findAll_authors()
+CREATE PROCEDURE prc_findAll_authors(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `authors`;
+    SET @query = CONCAT('SELECT * FROM `authors`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -22,9 +29,16 @@ END $$
 -- # Fandoms
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fandoms $$
-CREATE PROCEDURE prc_findAll_fandoms()
+CREATE PROCEDURE prc_findAll_fandoms(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `fandoms`;
+    SET @query = CONCAT('SELECT * FROM `fandoms`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -40,9 +54,16 @@ END $$
 -- # Languages
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_languages $$
-CREATE PROCEDURE prc_findAll_languages()
+CREATE PROCEDURE prc_findAll_languages(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `languages`;
+    SET @query = CONCAT('SELECT * FROM `languages`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -58,9 +79,16 @@ END $$
 -- # Tags
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_tags $$
-CREATE PROCEDURE prc_findAll_tags()
+CREATE PROCEDURE prc_findAll_tags(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `tags`;
+    SET @query = CONCAT('SELECT * FROM `tags`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -76,9 +104,16 @@ END $$
 -- # Characters
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_characters $$
-CREATE PROCEDURE prc_findAll_characters()
+CREATE PROCEDURE prc_findAll_characters(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `characters`;
+    SET @query = CONCAT('SELECT * FROM `characters`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -94,9 +129,16 @@ END $$
 -- # Relations
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_relations $$
-CREATE PROCEDURE prc_findAll_relations()
+CREATE PROCEDURE prc_findAll_relations(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `relations`;
+    SET @query = CONCAT('SELECT * FROM `relations`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -112,9 +154,16 @@ END $$
 -- # Fanfictions
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fanfictions $$
-CREATE PROCEDURE prc_findAll_fanfictions()
+CREATE PROCEDURE prc_findAll_fanfictions(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `fanfictions`;
+    SET @query = CONCAT('SELECT * FROM `fanfictions`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -130,9 +179,16 @@ END $$
 -- # Links
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_links $$
-CREATE PROCEDURE prc_findAll_links()
+CREATE PROCEDURE prc_findAll_links(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `links`;
+    SET @query = CONCAT('SELECT * FROM `links`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -148,9 +204,16 @@ END $$
 -- # Series
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_series $$
-CREATE PROCEDURE prc_findAll_series()
+CREATE PROCEDURE prc_findAll_series(
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT * FROM `series`;
+    SET @query = CONCAT('SELECT * FROM `series`', search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
@@ -166,60 +229,85 @@ END $$
 -- # Fanfictions Fandoms
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fanfictions_fandoms $$
-CREATE PROCEDURE prc_findAll_fanfictions_fandoms(IN fanfiction_id INT)
+CREATE PROCEDURE prc_findAll_fanfictions_fandoms(
+    IN fanfiction_id INT,
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT f.*
-    FROM `fanfictions_fandoms` fnf
-    INNER JOIN `fandoms` f ON fnf.fandom_id = f.id
-    WHERE fnf.fanfiction_id = fanfiction_id;
+    SET @query = CONCAT('SELECT f.* FROM `fanfictions_fandoms` fnf INNER JOIN `fandoms` f ON fnf.fandom_id = f.id WHERE fnf.fanfiction_id = ', fanfiction_id, search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
 -- # Fanfictions Relations
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fanfictions_relations $$
-CREATE PROCEDURE prc_findAll_fanfictions_relations(IN fanfiction_id INT)
+CREATE PROCEDURE prc_findAll_fanfictions_relations(
+    IN fanfiction_id INT,
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT r.*
-    FROM `fanfictions_relations` fnr
-    INNER JOIN `relations` r ON fnr.relation_id = r.id
-    WHERE fnr.fanfiction_id = fanfiction_id;
+    SET @query = CONCAT('SELECT r.* FROM `fanfictions_relations` fnr INNER JOIN `relations` r ON fnr.relation_id = r.id WHERE fnr.fanfiction_id = ', fanfiction_id, search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
 -- # Fanfictions Characters
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fanfictions_characters $$
-CREATE PROCEDURE prc_findAll_fanfictions_characters(IN fanfiction_id INT)
+CREATE PROCEDURE prc_findAll_fanfictions_characters(
+    IN fanfiction_id INT,
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT c.*
-    FROM `fanfictions_characters` fnc
-    INNER JOIN `characters` c ON fnc.character_id = c.id
-    WHERE fnc.fanfiction_id = fanfiction_id;
+    SET @query = CONCAT('SELECT c.* FROM `fanfictions_characters` fnc INNER JOIN `characters` c ON fnc.character_id = c.id WHERE fnc.fanfiction_id = ', fanfiction_id, search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
 -- # Fanfictions Tags
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_fanfictions_tags $$
-CREATE PROCEDURE prc_findAll_fanfictions_tags(IN fanfiction_id INT)
+CREATE PROCEDURE prc_findAll_fanfictions_tags(
+    IN fanfiction_id INT,
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT t.*
-    FROM `fanfictions_tags` fnt
-    INNER JOIN `tags` t ON fnt.tag_id = t.id
-    WHERE fnt.fanfiction_id = fanfiction_id;
+    SET @query = CONCAT('SELECT t.* FROM `fanfictions_tags` fnt INNER JOIN `tags` t ON fnt.tag_id = t.id WHERE fnt.fanfiction_id = ', fanfiction_id, search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 -- ####################################################################################
 -- # Series Fanfictions
 -- ####################################################################################
 DROP PROCEDURE IF EXISTS prc_findAll_series_fanfictions $$
-CREATE PROCEDURE prc_findAll_series_fanfictions(IN series_id INT)
+CREATE PROCEDURE prc_findAll_series_fanfictions(
+    IN series_id INT,
+    IN search_conditions TEXT,
+    IN order_conditions TEXT,
+    IN limit_conditions TEXT
+)
 BEGIN
-    SELECT ff.*
-    FROM `series_fanfictions` sf
-    INNER JOIN `fanfictions` ff ON sf.fanfiction_id = ff.id
-    WHERE sf.series_id = series_id;
+    SET @query = CONCAT('SELECT ff.* FROM `series_fanfictions` sf INNER JOIN `fanfictions` ff ON sf.fanfiction_id = ff.id WHERE sf.series_id = ', series_id, search_conditions, order_conditions, limit_conditions);
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END $$
 
 DELIMITER ;

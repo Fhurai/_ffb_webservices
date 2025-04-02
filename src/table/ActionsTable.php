@@ -26,7 +26,7 @@ class ActionsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an Action object and return it.
-        return $this->parseActions($rows)[0];
+        return $this->parseEntity($rows[0]);
     }
 
     /**
@@ -71,7 +71,7 @@ class ActionsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Action objects and return it.
-        return $this->parseActions($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -106,7 +106,7 @@ class ActionsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Action objects and return it.
-        return $this->parseActions($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -142,7 +142,7 @@ class ActionsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Action objects and return it.
-        return $this->parseActions($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -177,7 +177,7 @@ class ActionsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into an array of Action objects and return it.
-        return $this->parseActions($rows);
+        return $this->parseEntities($rows);
     }
 
     /**
@@ -185,23 +185,9 @@ class ActionsTable extends ParametersTable
      * @param array $row The database row.
      * @return Action The Action object.
      */
-    private function parseAction(array $row): Action
+    protected function parseEntity(array $row): Action
     {
         // Create and return a new Action object using the data from the row.
         return new Action($row["id"], $row["name"]);
-    }
-
-    /**
-     * Parse multiple database rows into an array of Action objects.
-     * @param array $rows The database rows.
-     * @return array Array of Action objects.
-     */
-    private function parseActions(array $rows): array
-    {
-        $actions = [];
-        foreach ($rows as $row) {
-            $actions[] = $this->parseAction($row);
-        }
-        return $actions;
     }
 }
