@@ -7,3 +7,6 @@ resetTestsNAS.sh
 
 config/config.php
 /vendor/
+.scannerwork/.sonar_lock
+.scannerwork/report-task.txt
+sonar.bat
