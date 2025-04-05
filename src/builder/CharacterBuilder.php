@@ -79,10 +79,10 @@ class CharacterBuilder implements NamedEntityBuilderInterface {
     /**
      * Sets the delete date for the Character object.
      * 
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return CharacterBuilder The current instance of CharacterBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): CharacterBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): CharacterBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             // Set the delete date
@@ -94,6 +94,9 @@ class CharacterBuilder implements NamedEntityBuilderInterface {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
+        } else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

@@ -104,7 +104,7 @@ class UserBuilder implements EntityBuilderInterface {
      * @param DateTime|string $deleteDate The delete date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): UserBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): UserBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             $this->obj->setDeleteDate($deleteDate);
@@ -113,6 +113,15 @@ class UserBuilder implements EntityBuilderInterface {
         else if(is_string($deleteDate)){
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             $this->obj->setDeleteDate($date);
+        }
+        // Check if the delete date is null
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
+        }
+        // If the delete date is not provided, set it to null
+        else {
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

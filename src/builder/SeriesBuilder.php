@@ -75,16 +75,24 @@ class SeriesBuilder implements NamedEntityBuilderInterface
     /**
      * Sets the delete date for the Series object.
      * 
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): SeriesBuilder
+    public function withDeleteDate(DateTime|string|null $deleteDate): SeriesBuilder
     {
         if ($deleteDate instanceof DateTime) {
             $this->obj->setDeleteDate($deleteDate); // Set the delete date if it's a DateTime object.
         } else if (is_string($deleteDate)) {
             $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             $this->obj->setDeleteDate($date); // Parse and set the delete date if it's a string.
+        }
+        // If delete date is null, set it to null in the Series object.
+        else if ($deleteDate === null) {
+            $this->obj->setDeleteDate(null); // Set delete date to null if not provided.
+        }
+        // If delete date is not provided, set it to null in the Series object.
+        else {
+            $this->obj->setDeleteDate(null); // Set delete date to null if not provided.
         }
         return $this; // Return the builder instance for chaining.
     }

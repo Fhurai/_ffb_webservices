@@ -53,8 +53,8 @@ interface EntityBuilderInterface
     /**
      * Adds a delete date to the product.
      *
-     * @param DateTime|string $deleteDate
+     * @param DateTime|string|null $deleteDate
      * @return self
      */
-    public function withDeleteDate(DateTime|string $deleteDate);
+    public function withDeleteDate(DateTime|string|null $deleteDate);
 }

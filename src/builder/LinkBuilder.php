@@ -101,10 +101,10 @@ class LinkBuilder implements EntityBuilderInterface {
     /**
      * Sets the delete date of the User.
      *
-     * @param DateTime|string $deleteDate The delete date to set. Can be a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date to set. Can be a DateTime object or a string.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): LinkBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): LinkBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             $this->obj->setDeleteDate($deleteDate);
@@ -113,6 +113,10 @@ class LinkBuilder implements EntityBuilderInterface {
         else if(is_string($deleteDate)){
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             $this->obj->setDeleteDate($date);
+        }
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

@@ -79,10 +79,10 @@ class AuthorBuilder implements NamedEntityBuilderInterface {
     /**
      * Sets the delete date for the Author object.
      * 
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return AuthorBuilder The current instance of AuthorBuilder.
      */
-	public function withDeleteDate(DateTime|string $deleteDate): AuthorBuilder {
+	public function withDeleteDate(DateTime|string|null $deleteDate): AuthorBuilder {
 		// Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             // Set the delete date
@@ -94,6 +94,11 @@ class AuthorBuilder implements NamedEntityBuilderInterface {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
+        } 
+        // Check if the delete date is null
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
         }
         return $this;
 	}

@@ -84,10 +84,10 @@ class LanguageBuilder implements NamedEntityBuilderInterface
     /**
      * Sets the delete date for the Language object.
      * 
-     * @param DateTime|string $deleteDate The delete date of the language.
+     * @param DateTime|string|null $deleteDate The delete date of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): LanguageBuilder
+    public function withDeleteDate(DateTime|string|null $deleteDate): LanguageBuilder
     {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
@@ -100,6 +100,15 @@ class LanguageBuilder implements NamedEntityBuilderInterface
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
+        }
+        // Check if the delete date is null
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
+        }
+        else {
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

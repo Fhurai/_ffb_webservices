@@ -62,7 +62,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withCreationDate(DateTime|string $creationDate): FanfictionBuilder
+    public function withCreationDate(DateTime|string|null $creationDate): FanfictionBuilder
     {
         if ($creationDate instanceof DateTime) {
             $this->obj->setCreationDate($creationDate);
@@ -76,16 +76,26 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
     /**
      * Sets the delete date for the Fanfiction object.
      * 
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): FanfictionBuilder
+    public function withDeleteDate(DateTime|string|null $deleteDate): FanfictionBuilder
     {
+        // Check if the delete date is a DateTime object, string, or null
+        // and set it accordingly.
         if ($deleteDate instanceof DateTime) {
             $this->obj->setDeleteDate($deleteDate);
-        } else if (is_string($deleteDate)) {
+        } 
+        // Check if the delete date is a string
+        // and convert it to a DateTime object.
+        else if (is_string($deleteDate)) {
             $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             $this->obj->setDeleteDate($date);
+        } 
+        // If the delete date is null, set it to null in the Fanfiction object.
+        else if($deleteDate === null){
+
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

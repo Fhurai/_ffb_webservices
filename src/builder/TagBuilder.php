@@ -79,10 +79,10 @@ class TagBuilder implements NamedEntityBuilderInterface {
     /**
      * Sets the delete date for the Tag object.
      * 
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
+     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return TagBuilder The current instance of TagBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): TagBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): TagBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             // Set the delete date
@@ -94,6 +94,16 @@ class TagBuilder implements NamedEntityBuilderInterface {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
+        }
+        // Check if the delete date is null
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
+        }
+        // Check if the delete date is not provided
+        else {
+            // Set delete date to null if not provided
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }

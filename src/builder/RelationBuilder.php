@@ -82,7 +82,7 @@ class RelationBuilder implements NamedEntityBuilderInterface {
      * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
      * @return RelationBuilder The current instance of RelationBuilder.
      */
-    public function withDeleteDate(DateTime|string $deleteDate): RelationBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): RelationBuilder {
         // Check if the delete date is a DateTime object
         if($deleteDate instanceof DateTime){
             // Set the delete date
@@ -94,6 +94,11 @@ class RelationBuilder implements NamedEntityBuilderInterface {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
+        }
+        // Check if the delete date is null
+        else if($deleteDate === null){
+            // Set the delete date to null
+            $this->obj->setDeleteDate(null);
         }
         return $this;
     }
