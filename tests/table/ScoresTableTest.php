@@ -340,4 +340,64 @@ class ScoresTableTest extends TestCase
         $this->assertNotEmpty($scores, "Scores array should not be empty");
         $this->assertIsArray($scores, "Scores should be returned as an array");
     }
+
+    
+    /**
+     * Test finding scores with empty search criteria.
+     * This test checks if an exception is thrown when search criteria are empty.
+     */
+    public function testFindSearchedByEmptyCriteria()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to search with empty criteria
+        $this->scoresTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test finding scores with a negative limit.
+     * This test checks if an exception is thrown when the limit is negative.
+     */
+    public function testFindLimitedByNegativeLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Limit must be a non-negative integer!");
+
+        // Attempt to retrieve scores with a negative limit
+        $this->scoresTable->findLimitedBy([
+            "limit" => -1
+        ]);
+    }
+
+    /**
+     * Test finding scores with a negative offset.
+     * This test checks if an exception is thrown when the offset is negative.
+     */
+    public function testFindLimitedByNegativeOffset()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+
+        // Attempt to retrieve scores with a negative offset
+        $this->scoresTable->findLimitedBy([
+            "limit" => 1,
+            "offset" => -1
+        ]);
+    }
+
+    /**
+     * Test finding scores with a limit of zero.
+     * This test checks if no scores are returned when the limit is zero.
+     */
+    public function testFindLimitedByZeroLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Retrieve scores with a limit of zero
+        $scores = $this->scoresTable->findLimitedBy([
+            "limit" => 0
+        ]);
+    }
 }

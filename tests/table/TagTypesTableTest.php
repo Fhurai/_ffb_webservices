@@ -324,4 +324,63 @@ class TagTypesTableTest extends TestCase
         // Additional assertion: Ensure the array of tag types is not empty
         $this->assertNotEmpty($tagTypes);
     }
+
+    /**
+     * Test finding tag types with empty search criteria.
+     * This test checks if an exception is thrown when search criteria are empty.
+     */
+    public function testFindSearchedByEmptyCriteria()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to search with empty criteria
+        $this->tagTypesTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test finding tag types with a negative limit.
+     * This test checks if an exception is thrown when the limit is negative.
+     */
+    public function testFindLimitedByNegativeLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Limit must be a non-negative integer!");
+
+        // Attempt to retrieve tag types with a negative limit
+        $this->tagTypesTable->findLimitedBy([
+            "limit" => -1
+        ]);
+    }
+
+    /**
+     * Test finding tag types with a negative offset.
+     * This test checks if an exception is thrown when the offset is negative.
+     */
+    public function testFindLimitedByNegativeOffset()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+
+        // Attempt to retrieve tag types with a negative offset
+        $this->tagTypesTable->findLimitedBy([
+            "limit" => 1,
+            "offset" => -1
+        ]);
+    }
+
+    /**
+     * Test finding tag types with a limit of zero.
+     * This test checks if no tag types are returned when the limit is zero.
+     */
+    public function testFindLimitedByZeroLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Retrieve tag types with a limit of zero
+        $tagtypes = $this->tagTypesTable->findLimitedBy([
+            "limit" => 0
+        ]);
+    }
 }

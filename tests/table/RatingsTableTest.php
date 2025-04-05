@@ -346,4 +346,59 @@ class RatingsTableTest extends TestCase
         $this->assertNotEmpty($ratings, "Ratings array should not be empty");
         $this->assertIsArray($ratings, "Ratings should be an array");
     }
+
+    public function testFindSearchedByEmptyCriteria()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to search with empty criteria
+        $this->ratingsTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test finding ratings with a negative limit.
+     * This test checks if an exception is thrown when the limit is negative.
+     */
+    public function testFindLimitedByNegativeLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Limit must be a non-negative integer!");
+
+        // Attempt to retrieve ratings with a negative limit
+        $this->ratingsTable->findLimitedBy([
+            "limit" => -1
+        ]);
+    }
+
+    /**
+     * Test finding ratings with a negative offset.
+     * This test checks if an exception is thrown when the offset is negative.
+     */
+    public function testFindLimitedByNegativeOffset()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+
+        // Attempt to retrieve ratings with a negative offset
+        $this->ratingsTable->findLimitedBy([
+            "limit" => 1,
+            "offset" => -1
+        ]);
+    }
+
+    /**
+     * Test finding ratings with a limit of zero.
+     * This test checks if no ratings are returned when the limit is zero.
+     */
+    public function testFindLimitedByZeroLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Retrieve ratings with a limit of zero
+        $ratings = $this->ratingsTable->findLimitedBy([
+            "limit" => 0
+        ]);
+    }
 }

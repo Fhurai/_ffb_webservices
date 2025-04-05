@@ -55,6 +55,18 @@ class ActionsTableTest extends TestCase
     }
 
     /**
+     * Test getting an action with an invalid ID type.
+     * This test checks if an exception is thrown when the ID is not an integer.
+     */
+    public function testGetActionByInvalidIdType()
+    {
+        $this->expectException(TypeError::class);
+
+        // Attempt to retrieve an action with a string ID
+        $this->actionsTable->get("invalid_id");
+    }
+
+    /**
      * Test finding actions by exact match.
      * This test checks if the action with the exact name "DELETE" can be found.
      */
@@ -348,5 +360,64 @@ class ActionsTableTest extends TestCase
         // Additional assertions
         $this->assertNotEmpty($actions, "Actions array should not be empty");
         $this->assertIsArray($actions, "Actions should be an array");
+    }
+
+    /**
+     * Test finding actions with empty search criteria.
+     * This test checks if an exception is thrown when search criteria are empty.
+     */
+    public function testFindSearchedByEmptyCriteria()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to search with empty criteria
+        $this->actionsTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test finding actions with a negative limit.
+     * This test checks if an exception is thrown when the limit is negative.
+     */
+    public function testFindLimitedByNegativeLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Limit must be a non-negative integer!");
+
+        // Attempt to retrieve actions with a negative limit
+        $this->actionsTable->findLimitedBy([
+            "limit" => -1
+        ]);
+    }
+
+    /**
+     * Test finding actions with a negative offset.
+     * This test checks if an exception is thrown when the offset is negative.
+     */
+    public function testFindLimitedByNegativeOffset()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+
+        // Attempt to retrieve actions with a negative offset
+        $this->actionsTable->findLimitedBy([
+            "limit" => 1,
+            "offset" => -1
+        ]);
+    }
+
+    /**
+     * Test finding actions with a limit of zero.
+     * This test checks if no actions are returned when the limit is zero.
+     */
+    public function testFindLimitedByZeroLimit()
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Retrieve actions with a limit of zero
+        $actions = $this->actionsTable->findLimitedBy([
+            "limit" => 0
+        ]);
     }
 }

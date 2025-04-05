@@ -42,6 +42,10 @@ class ScoresTable extends ParametersTable
         $first = true;
         $query = $execute ? "SELECT * FROM `scores`" : "";
 
+        if (empty($args)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
         // Build the query based on the provided arguments.
         foreach ($args as $key => $value) {
             if ($first) {
@@ -87,6 +91,10 @@ class ScoresTable extends ParametersTable
         $first = true;
         $query = $execute ? "SELECT * FROM `scores`" : "";
 
+        if (empty($args)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
         // Build the ORDER BY clause based on the provided arguments.
         foreach ($args as $key => $value) {
             if ($first) {
@@ -121,8 +129,16 @@ class ScoresTable extends ParametersTable
         $values = [];
         $query = $execute ? "SELECT * FROM `scores`" : "";
 
+        if (empty($args)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
         // Add the LIMIT clause to the query.
         if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
+            // Check if the limit is a valid integer.
+            if (is_numeric($args["limit"]) && $args["limit"] < 0) {
+                throw new FfbTableException("Limit must be a non-negative integer!");
+            }
             $query .= " LIMIT " . $args["limit"];
         } else {
             throw new FfbTableException("No limit provided!");
@@ -130,6 +146,10 @@ class ScoresTable extends ParametersTable
 
         // Add the OFFSET clause to the query if provided.
         if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
+            // Check if the offset is a valid integer.
+            if (is_numeric($args["offset"]) && $args["offset"] < 0) {
+                throw new FfbTableException("Offset must be a non-negative integer!");
+            }
             $query .= ", " . $args["offset"];
         }
 
