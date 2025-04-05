@@ -39,14 +39,24 @@ class LinkBuilder implements EntityBuilderInterface {
     }
 
     /**
-     * Sets the ID of the User.
-     *
-     * @param int $id The ID to set.
+     * Sets the ID for the Author object.
+     * 
+     * @param int|string $id The ID of the author, either as an integer or a string.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
-    public function withId(int $id): LinkBuilder {
-        // Set the ID of the User object
-        $this->obj->setId($id);
+    public function withId(int|string $id): LinkBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
         return $this;
     }
 

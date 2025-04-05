@@ -37,6 +37,28 @@ class LanguageBuilder implements NamedEntityBuilderInterface
     }
 
     /**
+     * Sets the ID for the Author object.
+     * 
+     * @param int|string $id The ID of the author, either as an integer or a string.
+     * @return LanguageBuilder The current instance of LanguageBuilder.
+     */
+    public function withId(int|string $id): LanguageBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
+        return $this;
+    }
+
+    /**
      * Sets the creation date for the Language object.
      * 
      * @param DateTime|string $creationDate The creation date of the language.

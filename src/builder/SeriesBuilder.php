@@ -34,6 +34,28 @@ class SeriesBuilder implements NamedEntityBuilderInterface
     }
 
     /**
+     * Sets the ID for the Series object.
+     * 
+     * @param int|string $id The ID of the series, either as an integer or a string.
+     * @return SeriesBuilder The current instance of SeriesBuilder.
+     */
+    public function withId(int|string $id): SeriesBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
+        return $this;
+    }
+
+    /**
      * Sets the creation date for the Series object.
      * 
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.

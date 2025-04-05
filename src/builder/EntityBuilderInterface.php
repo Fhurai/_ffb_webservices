@@ -27,6 +27,14 @@ interface EntityBuilderInterface
     public function build();
 
     /**
+     * Adds an ID to the product.
+     *
+     * @param int|string $id
+     * @return self
+     */
+    public function withId(int|string $id);
+
+    /**
      * Adds a creation date to the product.
      *
      * @param DateTime|string $creationDate

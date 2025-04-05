@@ -33,6 +33,28 @@ class TagBuilder implements NamedEntityBuilderInterface {
     }
 
     /**
+     * Sets the ID for the Tag object.
+     * 
+     * @param int|string $id The ID of the tag, either as an integer or a string.
+     * @return TagBuilder The current instance of TagBuilder.
+     */
+    public function withId(int|string $id): TagBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
+        return $this;
+    }
+
+    /**
      * Sets the creation date for the Tag object.
      * 
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.

@@ -35,6 +35,28 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
     }
 
     /**
+     * Sets the ID for the Author object.
+     * 
+     * @param int|string $id The ID of the author, either as an integer or a string.
+     * @return FanfictionBuilder The current instance of FanfictionBuilder.
+     */
+    public function withId(int|string $id): FanfictionBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
+        return $this;
+    }
+
+    /**
      * Sets the creation date for the Fanfiction object.
      * 
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.

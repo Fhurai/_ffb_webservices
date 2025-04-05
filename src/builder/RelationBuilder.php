@@ -33,6 +33,28 @@ class RelationBuilder implements NamedEntityBuilderInterface {
     }
 
     /**
+     * Sets the ID for the Relation object.
+     * 
+     * @param int|string $id The ID of the relation, either as an integer or a string.
+     * @return RelationBuilder The current instance of RelationBuilder.
+     */
+    public function withId(int|string $id): RelationBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
+        return $this;
+    }
+
+    /**
      * Sets the creation date for the Relation object.
      * 
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.

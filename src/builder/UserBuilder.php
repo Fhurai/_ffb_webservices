@@ -39,14 +39,24 @@ class UserBuilder implements EntityBuilderInterface {
     }
 
     /**
-     * Sets the ID of the User.
-     *
-     * @param int $id The ID to set.
+     * Sets the ID for the User object.
+     * 
+     * @param int|string $id The ID of the user, either as an integer or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withId(int $id): UserBuilder {
-        // Set the ID of the User object
-        $this->obj->setId($id);
+    public function withId(int|string $id): UserBuilder {
+        // Check if the id is an integer
+        if (is_integer($id)) {
+            // Set the id
+            $this->obj->setId($id);
+        } 
+        // Check if the id is a string
+        else if (is_string($id)) {
+            // Convert the string to an integer
+            $integer = (int)$id;
+            // Set the id
+            $this->obj->setId($integer);
+        }
         return $this;
     }
 
