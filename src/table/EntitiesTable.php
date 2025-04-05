@@ -12,6 +12,8 @@ abstract class EntitiesTable
 
     /**
      * EntitiesTable constructor.
+     * Initializes the database connection using the provided type and user.
+     *
      * @param string $typeConnection Type of database connection.
      * @param string $user Database user.
      */
@@ -22,6 +24,8 @@ abstract class EntitiesTable
 
     /**
      * Get an entity by its ID.
+     * Retrieves a single entity object from the database based on its unique identifier.
+     *
      * @param int $id The ID of the entity.
      * @return Entity The entity object.
      */
@@ -29,48 +33,65 @@ abstract class EntitiesTable
 
     /**
      * Find entities based on search criteria.
-     * @param array $args The search criteria.
-     * @return array The search results as Entity objects.
+     * Searches the database for entities matching the provided criteria.
+     *
+     * @param array $args The search criteria as key-value pairs.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array The search results as an array of Entity objects.
      */
-    abstract public function findSearchedBy(array $args): array;
+    abstract public function findSearchedBy(array $args, $execute = true): array|string;
 
     /**
      * Find entities ordered by specific criteria.
-     * @param array $args The ordering criteria.
-     * @return array The ordered results as Entity objects.
+     * Retrieves entities from the database ordered by the specified criteria.
+     *
+     * @param array $args The ordering criteria as key-value pairs.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array The ordered results as an array of Entity objects.
      */
-    abstract public function findOrderedBy(array $args): array;
+    abstract public function findOrderedBy(array $args, $execute = true): array|string;
 
     /**
      * Find a limited number of entities based on criteria.
-     * @param array $args The limiting criteria.
-     * @return array The limited results as Entity objects.
+     * Retrieves a subset of entities from the database based on the provided criteria.
+     *
+     * @param array $args The limiting criteria as key-value pairs.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array The limited results as an array of Entity objects.
      */
-    abstract public function findLimitedBy(array $args): array;
+    abstract public function findLimitedBy(array $args, $execute = true): array|string;
 
     /**
      * Find all entities based on criteria.
-     * @param array $args The criteria.
-     * @return array The results as Entity objects.
+     * Retrieves all entities from the database that match the given criteria.
+     *
+     * @param array $args The criteria as key-value pairs.
+     * @return array The results as an array of Entity objects.
      */
     abstract public function findAll(array $args): array;
 
     /**
-     * Create a new entity.
-     * @param Entity $entity The entity to create.
-     * @return Entity The created entity.
+     * Create a new entity in the database.
+     * Inserts a new entity into the database and returns the created entity with updated properties.
+     *
+     * @param Entity $entity The entity object to be created.
+     * @return Entity The created entity object with updated properties.
      */
     abstract public function create(Entity $entity): Entity;
 
     /**
-     * Update an existing entity.
-     * @param Entity $entity The entity to update.
-     * @return Entity The updated entity.
+     * Update an existing entity in the database.
+     * Modifies the properties of an existing entity in the database.
+     *
+     * @param Entity $entity The entity object with updated properties.
+     * @return Entity The updated entity object.
      */
     abstract public function update(Entity $entity): Entity;
 
     /**
      * Soft delete an entity.
+     * Marks an entity as deleted without removing it from the database.
+     *
      * @param int $id The ID of the entity to delete.
      * @return bool True if the entity was soft deleted, false otherwise.
      */
@@ -78,6 +99,8 @@ abstract class EntitiesTable
 
     /**
      * Restore a soft-deleted entity.
+     * Reverts the soft deletion of an entity, making it active again.
+     *
      * @param int $id The ID of the entity to restore.
      * @return bool True if the entity was restored, false otherwise.
      */
@@ -85,6 +108,8 @@ abstract class EntitiesTable
 
     /**
      * Hard delete an entity.
+     * Permanently removes an entity from the database.
+     *
      * @param int $id The ID of the entity to remove.
      * @return bool True if the entity was hard deleted, false otherwise.
      */
@@ -92,6 +117,8 @@ abstract class EntitiesTable
 
     /**
      * Execute a query with the provided values.
+     * Prepares and executes an SQL query with bound values, returning the results.
+     *
      * @param string $query The SQL query to execute.
      * @param array $values The values to bind to the query.
      * @return array The query results as associative arrays.
@@ -105,14 +132,39 @@ abstract class EntitiesTable
             $sth->execute($values);
             $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-            if (!$rows) {
-                // No data found, throw FfbTableException
-                throw new FfbTableException("No data for arguments provided!", 404);
-            } else {
-                return $rows;
-            }
+            return $rows;
         } catch (PDOException $e) {
             throw new FfbTableException($e->getMessage(), 500, $e);
         }
+    }
+
+    /**
+     * Retrieves the ID of the last inserted row in the database.
+     * Fetches the last auto-incremented ID generated by an INSERT operation.
+     *
+     * @return int The ID of the last inserted row as an integer.
+     * @throws FfbTableException If the last inserted ID cannot be retrieved.
+     */
+    public function getLastInsertId(): int
+    {
+        $lastInsertId = $this->connection->lastInsertId();
+
+        if ($lastInsertId === false || !is_numeric($lastInsertId)) {
+            throw new FfbTableException("Failed to retrieve the last inserted ID.", 500);
+        }
+
+        return (int) $lastInsertId;
+    }
+
+    /**
+     * Parse multiple database rows into an array of entity objects.
+     * Converts database rows into an array of entity objects using the parseEntity method.
+     *
+     * @param array $rows The database rows.
+     * @return array Array of entity objects.
+     */
+    protected function parseEntities(array $rows): array
+    {
+        return array_map([$this, 'parseEntity'], $rows);
     }
 }
