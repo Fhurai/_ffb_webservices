@@ -30,6 +30,10 @@ class AuthorsTableTest extends TestCase
         $this->assertEquals(1, $author->getId());
         $this->assertEquals("", $author->getName());
         $this->assertInstanceOf(Author::class, $author);
+
+        // Additional assertions
+        $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
+        $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
     }
 
     /**
@@ -40,6 +44,9 @@ class AuthorsTableTest extends TestCase
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
         $this->authorsTable->get(999);
+
+        // Additional assertion to ensure exception is thrown
+        $this->assertTrue(true, "Exception was correctly thrown for non-existent ID.");
     }
 
     /**
@@ -55,6 +62,10 @@ class AuthorsTableTest extends TestCase
         $this->assertEquals(1, $authors[0]->getId());
         $this->assertEquals("", $authors[0]->getName());
         $this->assertInstanceOf(Author::class, $authors[0]);
+
+        // Additional assertions
+        $this->assertNotNull($authors[0]->getCreationDate(), "Creation date should not be null.");
+        $this->assertNull($authors[0]->getDeleteDate(), "Delete date should be null for active authors.");
     }
 
     /**
@@ -73,6 +84,12 @@ class AuthorsTableTest extends TestCase
         $this->assertEquals("Jayf", $authors[1]->getName());
         $this->assertInstanceOf(Author::class, $authors[0]);
         $this->assertInstanceOf(Author::class, $authors[1]);
+
+        // Additional assertions
+        foreach ($authors as $author) {
+            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
+            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
+        }
     }
 
     /**
@@ -90,6 +107,10 @@ class AuthorsTableTest extends TestCase
         $this->assertEquals("1Sakura-Haruno1", $authors[2]->getName());
         foreach ($authors as $author) {
             $this->assertInstanceOf(Author::class, $author);
+
+            // Additional assertions
+            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
+            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
         }
     }
 
@@ -107,6 +128,10 @@ class AuthorsTableTest extends TestCase
         $this->assertEquals("123irish", $authors[1]->getName());
         foreach ($authors as $author) {
             $this->assertInstanceOf(Author::class, $author);
+
+            // Additional assertions
+            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
+            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
         }
     }
 

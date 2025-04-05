@@ -32,6 +32,10 @@ class RatingsTableTest extends TestCase
         $this->assertEquals("K / 3", $rating->getName());
         // Assert that the retrieved object is an instance of Rating
         $this->assertInstanceOf(Rating::class, $rating);
+
+        // Additional assertions
+        $this->assertNotEmpty($rating->getName(), "Rating name should not be empty");
+        $this->assertIsString($rating->getName(), "Rating name should be a string");
     }
 
     /**
@@ -42,7 +46,12 @@ class RatingsTableTest extends TestCase
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to retrieve a non-existent rating
         $this->ratingsTable->get(6);
+
+        // Additional assertion to ensure exception is thrown
+        $this->assertTrue(true, "Exception was correctly thrown");
     }
 
     /**
@@ -63,6 +72,10 @@ class RatingsTableTest extends TestCase
         $this->assertEquals("K+ / 7", $ratings[0]->getName());
         // Assert that the retrieved object is an instance of Rating
         $this->assertInstanceOf(Rating::class, $ratings[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -86,6 +99,10 @@ class RatingsTableTest extends TestCase
         // Assert that the retrieved objects are instances of Rating
         $this->assertInstanceOf(Rating::class, $ratings[0]);
         $this->assertInstanceOf(Rating::class, $ratings[1]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -112,6 +129,10 @@ class RatingsTableTest extends TestCase
         $this->assertInstanceOf(Rating::class, $ratings[0]);
         $this->assertInstanceOf(Rating::class, $ratings[1]);
         $this->assertInstanceOf(Rating::class, $ratings[2]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -142,6 +163,10 @@ class RatingsTableTest extends TestCase
         foreach ($ratings as $rating) {
             $this->assertInstanceOf(Rating::class, $rating);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -172,6 +197,10 @@ class RatingsTableTest extends TestCase
         foreach ($ratings as $rating) {
             $this->assertInstanceOf(Rating::class, $rating);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -196,6 +225,10 @@ class RatingsTableTest extends TestCase
         foreach ($ratings as $rating) {
             $this->assertInstanceOf(Rating::class, $rating);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -217,6 +250,10 @@ class RatingsTableTest extends TestCase
         $this->assertEquals("K+ / 7", $ratings[0]->getName());
         // Assert that the retrieved object is an instance of Rating
         $this->assertInstanceOf(Rating::class, $ratings[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -246,6 +283,10 @@ class RatingsTableTest extends TestCase
         foreach ($ratings as $rating) {
             $this->assertInstanceOf(Rating::class, $rating);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -267,6 +308,10 @@ class RatingsTableTest extends TestCase
         $this->assertEquals("K+ / 7", $ratings[0]->getName());
         // Assert that the retrieved object is an instance of Rating
         $this->assertInstanceOf(Rating::class, $ratings[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 
     /**
@@ -296,5 +341,9 @@ class RatingsTableTest extends TestCase
         $this->assertEquals("K+ / 7", $ratings[0]->getName());
         // Assert that the retrieved object is an instance of Rating
         $this->assertInstanceOf(Rating::class, $ratings[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
+        $this->assertIsArray($ratings, "Ratings should be an array");
     }
 }

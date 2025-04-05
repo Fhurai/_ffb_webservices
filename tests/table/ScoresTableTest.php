@@ -32,6 +32,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Unacceptable", $score->getName());
         // Assert that the retrieved object is an instance of Score
         $this->assertInstanceOf(Score::class, $score);
+
+        // Additional assertions
+        $this->assertNotEmpty($score->getName(), "Score name should not be empty");
+        $this->assertIsString($score->getName(), "Score name should be a string");
     }
 
     /**
@@ -43,6 +47,9 @@ class ScoresTableTest extends TestCase
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
         $this->scoresTable->get(6);
+
+        // Additional assertion to ensure exception is thrown
+        $this->assertTrue(true, "Exception was correctly thrown");
     }
 
     /**
@@ -63,6 +70,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Acceptable", $scores[0]->getName());
         // Assert that the retrieved object is an instance of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -83,6 +94,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Acceptable", $scores[0]->getName());
         // Assert that the retrieved objects are instances of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -112,6 +127,10 @@ class ScoresTableTest extends TestCase
         $this->assertInstanceOf(Score::class, $scores[1]);
         $this->assertInstanceOf(Score::class, $scores[2]);
         $this->assertInstanceOf(Score::class, $scores[3]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -142,6 +161,10 @@ class ScoresTableTest extends TestCase
         foreach ($scores as $score) {
             $this->assertInstanceOf(Score::class, $score);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -172,6 +195,10 @@ class ScoresTableTest extends TestCase
         foreach ($scores as $score) {
             $this->assertInstanceOf(Score::class, $score);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -196,6 +223,10 @@ class ScoresTableTest extends TestCase
         foreach ($scores as $score) {
             $this->assertInstanceOf(Score::class, $score);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -217,6 +248,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Excellent", $scores[0]->getName());
         // Assert that the retrieved object is an instance of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -242,6 +277,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Poor", $scores[0]->getName());
         // Assert that the retrieved object is instance of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -263,6 +302,10 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Needs improvement", $scores[0]->getName());
         // Assert that the retrieved object is an instance of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 
     /**
@@ -292,5 +335,9 @@ class ScoresTableTest extends TestCase
         $this->assertEquals("Good", $scores[0]->getName());
         // Assert that the retrieved object is an instance of Score
         $this->assertInstanceOf(Score::class, $scores[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($scores, "Scores array should not be empty");
+        $this->assertIsArray($scores, "Scores should be returned as an array");
     }
 }

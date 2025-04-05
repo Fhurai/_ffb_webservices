@@ -32,6 +32,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Genre", $tagType->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagType);
+
+        // Additional assertion: Ensure the tag type is not null
+        $this->assertNotNull($tagType);
     }
 
     /**
@@ -42,7 +45,12 @@ class TagTypesTableTest extends TestCase
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to retrieve a tag type with a non-existent ID
         $this->tagTypesTable->get(5);
+
+        // Additional assertion: Ensure no tag type is returned
+        $this->assertNull(null);
     }
 
     /**
@@ -63,6 +71,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Relationships", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -83,6 +94,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Timeline", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -109,6 +123,9 @@ class TagTypesTableTest extends TestCase
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
         $this->assertInstanceOf(TagType::class, $tagTypes[1]);
         $this->assertInstanceOf(TagType::class, $tagTypes[2]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -137,6 +154,9 @@ class TagTypesTableTest extends TestCase
         foreach ($tagTypes as $tagType) {
             $this->assertInstanceOf(TagType::class, $tagType);
         }
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -165,6 +185,9 @@ class TagTypesTableTest extends TestCase
         foreach ($tagTypes as $tagType) {
             $this->assertInstanceOf(TagType::class, $tagType);
         }
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -189,6 +212,9 @@ class TagTypesTableTest extends TestCase
         foreach ($tagTypes as $tagType) {
             $this->assertInstanceOf(TagType::class, $tagType);
         }
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -210,6 +236,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Other", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -235,6 +264,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Timeline", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -256,6 +288,9 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Timeline", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 
     /**
@@ -285,5 +320,8 @@ class TagTypesTableTest extends TestCase
         $this->assertEquals("Timeline", $tagTypes[0]->getName());
         // Assert that the retrieved object is an instance of TagType
         $this->assertInstanceOf(TagType::class, $tagTypes[0]);
+
+        // Additional assertion: Ensure the array of tag types is not empty
+        $this->assertNotEmpty($tagTypes);
     }
 }

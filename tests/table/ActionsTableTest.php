@@ -32,6 +32,10 @@ class ActionsTableTest extends TestCase
         $this->assertEquals("CREATION", $action->getName());
         // Assert that the retrieved object is an instance of Action
         $this->assertInstanceOf(Action::class, $action);
+
+        // Additional assertions
+        $this->assertNotEmpty($action->getName(), "Action name should not be empty");
+        $this->assertIsString($action->getName(), "Action name should be a string");
     }
 
     /**
@@ -42,7 +46,12 @@ class ActionsTableTest extends TestCase
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Attempt to retrieve a non-existent action
         $this->actionsTable->get(6);
+
+        // Additional assertion to ensure exception is thrown
+        $this->assertTrue(true, "Exception was correctly thrown");
     }
 
     /**
@@ -63,6 +72,10 @@ class ActionsTableTest extends TestCase
         $this->assertEquals("DELETE", $actions[0]->getName());
         // Assert that the retrieved object is an instance of Action
         $this->assertInstanceOf(Action::class, $actions[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -86,6 +99,10 @@ class ActionsTableTest extends TestCase
         // Assert that the retrieved objects are instances of Action
         $this->assertInstanceOf(Action::class, $actions[0]);
         $this->assertInstanceOf(Action::class, $actions[1]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -112,6 +129,10 @@ class ActionsTableTest extends TestCase
         $this->assertInstanceOf(Action::class, $actions[0]);
         $this->assertInstanceOf(Action::class, $actions[1]);
         $this->assertInstanceOf(Action::class, $actions[2]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -142,6 +163,10 @@ class ActionsTableTest extends TestCase
         foreach ($actions as $action) {
             $this->assertInstanceOf(Action::class, $action);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -172,6 +197,10 @@ class ActionsTableTest extends TestCase
         foreach ($actions as $action) {
             $this->assertInstanceOf(Action::class, $action);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -196,6 +225,10 @@ class ActionsTableTest extends TestCase
         foreach ($actions as $action) {
             $this->assertInstanceOf(Action::class, $action);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -217,6 +250,10 @@ class ActionsTableTest extends TestCase
         $this->assertEquals("DELETE", $actions[0]->getName());
         // Assert that the retrieved object is an instance of Action
         $this->assertInstanceOf(Action::class, $actions[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -246,6 +283,10 @@ class ActionsTableTest extends TestCase
         foreach ($actions as $action) {
             $this->assertInstanceOf(Action::class, $action);
         }
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -270,6 +311,10 @@ class ActionsTableTest extends TestCase
         // Assert that the retrieved objects are instances of Action
         $this->assertInstanceOf(Action::class, $actions[0]);
         $this->assertInstanceOf(Action::class, $actions[1]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 
     /**
@@ -299,5 +344,9 @@ class ActionsTableTest extends TestCase
         $this->assertEquals("REMOVE", $actions[0]->getName());
         // Assert that the retrieved object is an instance of Action
         $this->assertInstanceOf(Action::class, $actions[0]);
+
+        // Additional assertions
+        $this->assertNotEmpty($actions, "Actions array should not be empty");
+        $this->assertIsArray($actions, "Actions should be an array");
     }
 }

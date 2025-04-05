@@ -30,11 +30,11 @@ class LanguagesTableTest extends TestCase
         $language = $this->languagesTable->get(1);
 
         // Assert that the retrieved language has the expected ID and name.
-        $this->assertEquals(1, $language->getId());
-        $this->assertEquals("Français", $language->getName());
+        $this->assertEquals(1, $language->getId(), "The ID of the retrieved language should be 1.");
+        $this->assertEquals("Français", $language->getName(), "The name of the retrieved language should be 'Français'.");
 
         // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $language);
+        $this->assertInstanceOf(Language::class, $language, "The retrieved object should be an instance of the Language class.");
     }
 
     /**
@@ -43,8 +43,8 @@ class LanguagesTableTest extends TestCase
     public function testGetLanguageByIdNotFound()
     {
         // Expect an exception when trying to retrieve a non-existent language.
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
+        $this->expectException(FfbTableException::class, "An exception should be thrown for a non-existent language ID.");
+        $this->expectExceptionMessage("No data for arguments provided!", "The exception message should indicate no data was found.");
 
         // Attempt to retrieve a language with an invalid ID.
         $this->languagesTable->get(999);
@@ -61,12 +61,12 @@ class LanguagesTableTest extends TestCase
         ]);
 
         // Assert that only one language is found and it matches the expected name.
-        $this->assertCount(1, $languages);
-        $this->assertEquals(1, $languages[0]->getId());
-        $this->assertEquals("Français", $languages[0]->getName());
+        $this->assertCount(1, $languages, "Only one language should be found with the exact name 'Français'.");
+        $this->assertEquals(1, $languages[0]->getId(), "The ID of the found language should be 1.");
+        $this->assertEquals("Français", $languages[0]->getName(), "The name of the found language should be 'Français'.");
 
         // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $languages[0]);
+        $this->assertInstanceOf(Language::class, $languages[0], "The found object should be an instance of the Language class.");
     }
 
     /**
@@ -82,12 +82,12 @@ class LanguagesTableTest extends TestCase
         ]);
 
         // Assert that one language is found and it matches the expected name.
-        $this->assertCount(1, $languages);
-        $this->assertEquals(2, $languages[0]->getId());
-        $this->assertEquals("English", $languages[0]->getName());
+        $this->assertCount(1, $languages, "Only one language should be found with names starting with 'E'.");
+        $this->assertEquals(2, $languages[0]->getId(), "The ID of the found language should be 2.");
+        $this->assertEquals("English", $languages[0]->getName(), "The name of the found language should be 'English'.");
 
         // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $languages[0]);
+        $this->assertInstanceOf(Language::class, $languages[0], "The found object should be an instance of the Language class.");
     }
 
     /**

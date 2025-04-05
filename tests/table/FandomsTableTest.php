@@ -24,15 +24,14 @@ class FandomsTableTest extends TestCase
      */
     public function testGetFandomById()
     {
-        // Retrieve a fandom with ID 1 from the database.
         $fandom = $this->fandomsTable->get(1);
 
         // Assert that the retrieved fandom has the expected ID.
-        $this->assertEquals(1, $fandom->getId());
+        $this->assertEquals(1, $fandom->getId(), "The ID of the retrieved fandom should be 1.");
         // Assert that the retrieved fandom has the expected name ("Avengers" in this case).
-        $this->assertEquals("Avengers", $fandom->getName());
+        $this->assertEquals("Avengers", $fandom->getName(), "The name of the retrieved fandom should be 'Avengers'.");
         // Assert that the retrieved object is an instance of the Fandom class.
-        $this->assertInstanceOf(Fandom::class, $fandom);
+        $this->assertInstanceOf(Fandom::class, $fandom, "The retrieved object should be an instance of the Fandom class.");
     }
 
     /**
@@ -41,10 +40,9 @@ class FandomsTableTest extends TestCase
      */
     public function testGetFandomByIdNotFound()
     {
-        // Expect an exception of type FfbTableException to be thrown.
         $this->expectException(FfbTableException::class);
-        // Expect the exception message to match the provided string.
         $this->expectExceptionMessage("No data for arguments provided!");
+
         // Attempt to retrieve a fandom with a non-existent ID (999), which should trigger the exception.
         $this->fandomsTable->get(999);
     }
@@ -55,16 +53,15 @@ class FandomsTableTest extends TestCase
      */
     public function testFindSearchedByEquality()
     {
-        // Search for fandoms with an exact match on the "name" field (empty string in this case).
         $fandoms = $this->fandomsTable->findSearchedBy([
             "name" => ""
         ]);
 
         // Assert that no fandoms are returned in the result set.
-        $this->assertCount(0, $fandoms);
+        $this->assertCount(0, $fandoms, "The result set should contain 0 fandoms.");
         // If there are any results, assert that the first object in the result set is an instance of the Fandom class.
         if (count($fandoms) > 0) {
-            $this->assertInstanceOf(Fandom::class, $fandoms[0]);
+            $this->assertInstanceOf(Fandom::class, $fandoms[0], "Each result should be an instance of the Fandom class.");
         }
     }
 
@@ -78,10 +75,13 @@ class FandomsTableTest extends TestCase
             "name" => "LIKE 'A%'"
         ]);
 
-        $this->assertCount(1, $fandoms);
-        $this->assertEquals(1, $fandoms[0]->getId());
-        $this->assertEquals("Avengers", $fandoms[0]->getName());
-        $this->assertInstanceOf(Fandom::class, $fandoms[0]);
+        // Assert that exactly one fandom is returned.
+        $this->assertCount(1, $fandoms, "The result set should contain exactly 1 fandom.");
+        // Assert that the first fandom has the expected ID and name.
+        $this->assertEquals(1, $fandoms[0]->getId(), "The ID of the first fandom should be 1.");
+        $this->assertEquals("Avengers", $fandoms[0]->getName(), "The name of the first fandom should be 'Avengers'.");
+        // Assert that the first object is an instance of the Fandom class.
+        $this->assertInstanceOf(Fandom::class, $fandoms[0], "The first result should be an instance of the Fandom class.");
     }
 
     /**
