@@ -26,7 +26,7 @@ class RatingsTable extends ParametersTable
         $rows = $this->executeQuery($query, $values);
 
         // Parse the result into a Rating object and return it.
-        return $this->parseEntities($rows)[0];
+        return $this->parseEntity($rows[0]);
     }
 
     /**

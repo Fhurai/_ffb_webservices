@@ -22,43 +22,46 @@ abstract class ParametersTable
 
     /**
      * Get a parameter by its ID.
-     * @param int $id The ID of the parameter.
-     * @return mixed The parameter data.
+     * @param int $id The unique identifier of the parameter.
+     * @return mixed The parameter data as an associative array or object.
      */
     abstract public function get(int $id);
 
     /**
-     * Find parameters based on search criteria.
-     * @param array $args The search criteria.
-     * @return mixed The search results.
+     * Find parameters based on specific search criteria.
+     * @param array $args An associative array of search criteria.
+     * @param bool $execute Whether to execute the query immediately (default: true).
+     * @return mixed The search results as an array or object.
      */
     abstract public function findSearchedBy(array $args, $execute = true): mixed;
 
     /**
-     * Find parameters ordered by specific criteria.
-     * @param array $args The ordering criteria.
-     * @return mixed The ordered results.
+     * Retrieve parameters ordered by specific criteria.
+     * @param array $args An associative array defining the ordering criteria.
+     * @param bool $execute Whether to execute the query immediately (default: true).
+     * @return mixed The ordered results as an array or object.
      */
     abstract public function findOrderedBy(array $args, $execute = true): mixed;
 
     /**
-     * Find a limited number of parameters based on criteria.
-     * @param array $args The limiting criteria.
-     * @return mixed The limited results.
+     * Retrieve a limited number of parameters based on criteria.
+     * @param array $args An associative array defining the limiting criteria.
+     * @param bool $execute Whether to execute the query immediately (default: true).
+     * @return mixed The limited results as an array or object.
      */
     abstract public function findLimitedBy(array $args, $execute = true): mixed;
 
     /**
-     * Find all parameters based on criteria.
-     * @param array $args The criteria.
-     * @return mixed The results.
+     * Retrieve all parameters matching the provided criteria.
+     * @param array $args An associative array of filtering criteria.
+     * @return mixed The results as an array or object.
      */
     abstract public function findAll(array $args);
 
     /**
-     * Parse a database row into an entity object.
-     * @param array $row The database row.
-     * @return mixed The entity object.
+     * Convert a database row into a corresponding entity object.
+     * @param array $row An associative array representing a database row.
+     * @return mixed The entity object corresponding to the row.
      */
     abstract protected function parseEntity(array $row);
 
@@ -94,10 +97,6 @@ abstract class ParametersTable
      */
     protected function parseEntities(array $rows): array
     {
-        $entities = [];
-        foreach ($rows as $row) {
-            $entities[] = $this->parseEntity($row);
-        }
-        return $entities;
+        return array_map([$this, 'parseEntity'], $rows);
     }
 }
