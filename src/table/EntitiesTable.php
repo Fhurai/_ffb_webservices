@@ -121,22 +121,26 @@ abstract class EntitiesTable
      *
      * @param string $query The SQL query to execute.
      * @param array $values The values to bind to the query.
-     * @return array The query results as associative arrays.
+     * @return mixed The query results as associative arrays.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
-    protected function executeQuery(string $query, array $values): array
-    {
-        try {
-            // Prepare and execute the query.
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
-            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+    protected function executeQuery(string $query, array $values = []): mixed
+{
+    try {
+        $sth = $this->connection->prepare($query);
+        $sth->execute($values);
 
-            return $rows;
-        } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
+        // Check if the query returns results (e.g., SELECT)
+        if ($sth->columnCount() > 0) {
+            return $sth->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // Return the number of affected rows for write operations
+            return $sth->rowCount();
         }
+    } catch (PDOException $e) {
+        throw new FfbTableException($e->getMessage(), 500, $e);
     }
+}
 
     /**
      * Retrieves the ID of the last inserted row in the database.
@@ -154,6 +158,27 @@ abstract class EntitiesTable
         }
 
         return (int) $lastInsertId;
+    }
+
+    /**
+     * Get valid column names for the specified table.
+     * @param string $tableName The table name.
+     * @return array List of valid column names.
+     * @throws FfbTableException If the query fails.
+     */
+    protected function getTableColumns(string $tableName): array {
+        try {
+            $stmt = $this->connection->prepare("
+                SELECT COLUMN_NAME 
+                FROM INFORMATION_SCHEMA.COLUMNS 
+                WHERE TABLE_SCHEMA = DATABASE() 
+                  AND TABLE_NAME = :table
+            ");
+            $stmt->execute([':table' => $tableName]);
+            return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+        }
     }
 
     /**

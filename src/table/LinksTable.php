@@ -5,348 +5,389 @@ require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Link.php";
 require_once __DIR__ . "/../builder/LinkBuilder.php";
 
-class LinksTable extends EntitiesTable{
-
+/**
+ * LinksTable class
+ * 
+ * This class provides methods to interact with the `links` table in the database.
+ * It supports CRUD operations and various query methods for the `Link` entity.
+ */
+class LinksTable extends EntitiesTable
+{
     /**
-     * Retrieves a Link entity by its ID.
+     * Get a Link entity by its ID.
      *
-     * @param int $id The ID of the Link to retrieve.
-     * @return Link The Link entity.
+     * @param int $id The ID of the Link entity.
+     * @return Link The Link entity object.
      * @throws FfbTableException If no data is found for the provided ID.
      */
     public function get(int $id): Link
     {
-        // Prepare the SQL query to select a link by its ID
+        // Prepare the SQL query to fetch the link by ID.
         $query = "SELECT * FROM `links` WHERE `id` = :id";
-        
-        // Bind the ID parameter to the query
         $values = [":id" => $id];
 
-        // Execute the query and fetch the result rows
+        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query, $values);
 
-        // If no rows are returned, throw an exception indicating no data was found
+        // Throw an exception if no rows are returned.
         if (empty($rows)) {
             throw new FfbTableException("No data for arguments provided!");
         }
 
-        // Parse the first row into a Link entity and return it
+        // Parse the result into a Link object and return it.
         return $this->parseEntity($rows[0]);
     }
 
     /**
-     * Searches for Links based on provided arguments.
+     * Find Link entities based on search criteria.
      *
      * @param array $args The search criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query or return it as a string.
-     * @return array|string The resulting Links or the query string.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array|string The search results as an array of Link objects or the query string.
+     * @throws FfbTableException If no search arguments are provided or no data is found.
      */
     public function findSearchedBy(array $args, $execute = true): array|string
     {
-        // Initialize an empty array for query values and a flag for the first condition
-        $values = [];
-        $first = true;
+        // Ensure search arguments are provided.
+        if (empty($args)) {
+            throw new FfbTableException("No search arguments provided!");
+        }
 
-        // Start building the query string
+        $values = [];
         $query = $execute ? "SELECT * FROM `links`" : "";
 
-        // Iterate over the search arguments to build the WHERE clause
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " WHERE ";
-                $first = false;
-            } else {
-                $query .= " AND ";
-            }
-
-            // Check if the value contains special operators (e.g., <, >, !, %)
-            if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                $array = explode(' ', $value);
-                $query .= " " . $key . " " . $array[0] . " :" . $key;
-                $values[":" . $key] = str_replace("'", "", $array[1]);
-            } else {
-                $query .= " " . $key . " = :" . $key;
-                $values[":" . $key] = $value;
+        // Validate that the provided columns exist in the table.
+        $validColumns = $this->getTableColumns('links');
+        foreach ($args as $column => $value) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
             }
         }
 
-        // If execute is false, return the query string
+        $conditions = [];
+        foreach ($args as $key => $value) {
+            // Handle LIKE conditions for partial matches.
+            if (str_contains($value, '%')) {
+                $conditions[] = "$key LIKE :$key";
+                $values[":$key"] = $value;
+            // Handle operators like <, >, =, etc.
+            } elseif (preg_match('/[<>=!]/', $value)) {
+                [$operator, $val] = explode(' ', $value, 2);
+                $conditions[] = "$key $operator :$key";
+                $values[":$key"] = str_replace("'", "", $val);
+            // Handle exact matches.
+            } else {
+                $conditions[] = "$key = :$key";
+                $values[":$key"] = $value;
+            }
+        }
+
+        // Append conditions to the query if any exist.
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        // Return the query string if execution is not required.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and parse the result rows into Link entities
+        // Execute the query and fetch results.
         $rows = $this->executeQuery($query, $values);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Link entities.
         return $this->parseEntities($rows);
     }
 
     /**
-     * Orders Links based on provided arguments.
+     * Find Link entities ordered by specific criteria.
      *
      * @param array $args The ordering criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query or return it as a string.
-     * @return array|string The resulting Links or the query string.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array|string The ordered results as an array of Link objects or the query string.
+     * @throws FfbTableException If no order arguments are provided or no data is found.
      */
     public function findOrderedBy(array $args, $execute = true): array|string
     {
-        // Initialize an empty array for query values and a flag for the first condition
-        $values = [];
-        $first = true;
-
-        // Start building the query string
-        $query = $execute ? "SELECT * FROM `links`" : "";
-
-        // Iterate over the ordering arguments to build the ORDER BY clause
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " ORDER BY " . $key . " " . $value;
-                $first = false;
-            } else {
-                $query .= "OFFSET " . $key . " " . $value;
-            }
+        // Ensure order arguments are provided.
+        if (empty($args)) {
+            throw new FfbTableException("No order arguments provided!");
         }
 
-        // If execute is false, return the query string
+        $query = $execute ? "SELECT * FROM `links`" : "";
+        $orderClauses = [];
+
+        // Validate that the provided columns exist in the table.
+        $validColumns = $this->getTableColumns('links');
+        foreach ($args as $column => $direction) {
+            // Validate the column name and order direction.
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
+            }
+            if (!in_array(strtoupper($direction), ['ASC', 'DESC'])) {
+                throw new FfbTableException("Invalid order direction: '$direction'");
+            }
+            $orderClauses[] = "$column $direction";
+        }
+
+        // Append order clauses to the query if any exist.
+        if (!empty($orderClauses)) {
+            $query .= " ORDER BY " . implode(", ", $orderClauses);
+        }
+
+        // Return the query string if execution is not required.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and parse the result rows into Link entities
-        $rows = $this->executeQuery($query, $values);
+        // Execute the query and fetch results.
+        $rows = $this->executeQuery($query);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Link entities.
         return $this->parseEntities($rows);
     }
 
     /**
-     * Limits the number of Links returned based on provided arguments.
+     * Find a limited number of Link entities.
      *
-     * @param array $args The limit and offset criteria.
-     * @param bool $execute Whether to execute the query or return it as a string.
-     * @return array|string The resulting Links or the query string.
-     * @throws FfbTableException If no limit is provided.
+     * @param array $args The limiting criteria as key-value pairs.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array|string The limited results as an array of Link objects or the query string.
+     * @throws FfbTableException If invalid or missing limit/offset values are provided or no data is found.
      */
     public function findLimitedBy(array $args, $execute = true): array|string
     {
-        // Initialize an empty array for query values
-        $values = [];
-
-        // Start building the query string
-        $query = $execute ? "SELECT * FROM `links`" : "";
-
-        // Add the LIMIT clause if provided in the arguments
-        if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
-            $query .= " LIMIT " . $args["limit"];
-        } else {
-            throw new FfbTableException("No limit provided!");
+        // Validate the limit value.
+        if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
+            throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        // Add the OFFSET clause if provided in the arguments
-        if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
-            $query .= ", " . $args["offset"];
+        // Prepare the query with the limit value.
+        $query = $execute ? "SELECT * FROM `links` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
+
+        // Add an offset if provided.
+        if (!empty($args['offset'])) {
+            if (!is_numeric($args['offset']) || $args['offset'] < 0) {
+                throw new FfbTableException("Invalid offset value!");
+            }
+            $query .= " OFFSET " . (int) $args['offset'];
         }
 
-        // If execute is false, return the query string
+        // Return the query string if execution is not required.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and parse the result rows into Link entities
-        $rows = $this->executeQuery($query, $values);
+        // Execute the query and fetch results.
+        $rows = $this->executeQuery($query);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Link entities.
         return $this->parseEntities($rows);
     }
 
     /**
-     * Retrieves all Links based on provided arguments.
+     * Find all Link entities based on criteria.
      *
-     * @param array $args The search, order, and limit criteria.
-     * @return array The resulting Links.
+     * @param array $args The criteria as key-value pairs.
+     * @return array The results as an array of Link objects.
+     * @throws FfbTableException If no data is found for the provided criteria.
      */
     public function findAll(array $args): array
     {
-        // Initialize an empty array for query values
+        $query = "SELECT * FROM `links`";
         $values = [];
 
-        // Start building the base query string
-        $query = "SELECT * FROM `links`";
+        if (!empty($args['search'])) {
+            // Generate the search query and append it to the main query.
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
 
-        // Add the search conditions if provided in the arguments
-        if (array_key_exists("search", $args)) {
-            $query .= $this->findSearchedBy($args["search"], false);
-            foreach (array_keys($args["search"]) as $key) {
-                $array = explode(' ', $args["search"][$key]);
-                $values[":" . $key] = str_replace("'", "", $array[1]);
+            // Prepare the values for the search query.
+            foreach ($args['search'] as $key => $value) {
+                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
             }
         }
 
-        // Add the ordering conditions if provided in the arguments
-        if (array_key_exists("order", $args)) {
-            $query .= $this->findOrderedBy($args["order"], false);
+        if (!empty($args['order'])) {
+            // Generate the order query and append it to the main query.
+            $orderQuery = $this->findOrderedBy($args['order'], false);
+            $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
         }
 
-        // Add the limit and offset conditions if provided in the arguments
-        if (array_key_exists("limit", $args)) {
-            $query .= $this->findLimitedBy($args["limit"], false);
+        if (!empty($args['limit'])) {
+            // Generate the limit query and append it to the main query.
+            $limitQuery = $this->findLimitedBy($args['limit'], false);
+            $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
         }
 
-        // Execute the query and parse the result rows into Link entities
+        // Execute the query and fetch results.
         $rows = $this->executeQuery($query, $values);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Link entities.
         return $this->parseEntities($rows);
     }
 
     /**
-     * Creates a new Link entity in the database.
+     * Create a new Link entity.
      *
      * @param Entity $entity The Link entity to create.
-     * @return Link The created Link entity with its ID set.
-     * @throws \InvalidArgumentException If the provided entity is not an instance of Link.
+     * @return Link The created Link entity.
+     * @throws InvalidArgumentException If the provided entity is not an instance of Link.
      */
     public function create(Entity $entity): Link
     {
-        // Validate that the provided entity is an instance of Link
+        // Ensure the provided entity is an instance of Link.
         if (!$entity instanceof Link) {
             throw new \InvalidArgumentException('Expected instance of Link');
         }
-    
-        // Prepare the SQL query to insert a new Link entity
+
+        // Prepare the SQL query to insert a new Link entity.
         $query = "INSERT INTO `links` (`url`, `fanfiction_id`, `creation_date`, `update_date`, `delete_date`) 
                   VALUES (:url, :fanfiction_id, :creation_date, :update_date, :delete_date)";
-        
-        // Bind the entity properties to the query parameters
         $values = [
-            ":url" => $entity->getUrl(),
-            ":fanfiction_id" => $entity->getFanfictionId(),
-            ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":url" => $entity->getUrl(), // Bind the URL value.
+            ":fanfiction_id" => $entity->getFanfictionId(), // Bind the fanfiction ID.
+            ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"), // Bind the creation date.
+            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"), // Bind the update date.
+            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null, // Bind the delete date if it exists.
         ];
-    
-        // Execute the query to insert the new Link entity
+
+        // Execute the query to insert the new entity.
         $this->executeQuery($query, $values);
-    
-        // Set the ID of the entity to the last inserted ID
+
+        // Set the ID of the newly created entity.
         $entity->setId($this->getLastInsertId());
-        
-        // Return the created Link entity
+
+        // Return the created Link entity.
         return $entity;
     }
 
     /**
-     * Updates an existing Link entity in the database.
+     * Update an existing Link entity.
      *
      * @param Entity $entity The Link entity to update.
      * @return Link The updated Link entity.
-     * @throws \InvalidArgumentException If the provided entity is not an instance of Link.
+     * @throws InvalidArgumentException If the provided entity is not an instance of Link.
      */
     public function update(Entity $entity): Link
     {
-        // Validate that the provided entity is an instance of Link
+        // Ensure the provided entity is an instance of Link.
         if (!$entity instanceof Link) {
             throw new \InvalidArgumentException('Expected instance of Link');
         }
 
-        // Prepare the SQL query to update an existing Link entity
+        // Prepare the SQL query to update an existing Link entity.
         $query = "UPDATE `links` 
                   SET `url` = :url, `fanfiction_id` = :fanfiction_id, `update_date` = :update_date, `delete_date` = :delete_date 
                   WHERE `id` = :id";
-        
-        // Bind the entity properties to the query parameters
         $values = [
-            ":id" => $entity->getId(),
-            ":url" => $entity->getUrl(),
-            ":fanfiction_id" => $entity->getFanfictionId(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null
+            ":id" => $entity->getId(), // Bind the ID of the entity to update.
+            ":url" => $entity->getUrl(), // Bind the updated URL value.
+            ":fanfiction_id" => $entity->getFanfictionId(), // Bind the updated fanfiction ID.
+            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"), // Bind the updated date.
+            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null, // Bind the delete date if it exists.
         ];
 
-        // Execute the query to update the Link entity
+        // Execute the query to update the entity.
         $this->executeQuery($query, $values);
 
-        // Return the updated Link entity
+        // Return the updated Link entity.
         return $entity;
     }
 
     /**
-     * Soft deletes a Link entity by setting its delete_date to the current timestamp.
+     * Soft delete a Link entity.
      *
-     * @param int $id The ID of the Link to delete.
-     * @return bool True if the deletion was successful, false otherwise.
+     * @param int $id The ID of the Link entity to delete.
+     * @return bool True if the entity was soft deleted, false otherwise.
      */
     public function delete(int $id): bool
     {
-        // Prepare the SQL query to soft delete a Link entity by setting its delete_date
+        // Prepare the SQL query to soft delete a Link entity by setting the delete date.
         $query = "UPDATE `links` SET `delete_date` = NOW() WHERE `id` = :id";
-        
-        // Bind the ID parameter to the query
-        $values = [":id" => $id];
+        $values = [":id" => $id]; // Bind the ID of the entity to delete.
 
-        // Execute the query and check the number of affected rows
+        // Execute the query and check if any rows were affected.
         $result = $this->executeQuery($query, $values);
 
-        // Return true if at least one row was affected, false otherwise
+        // Return true if the entity was successfully soft deleted, false otherwise.
         return $result > 0;
     }
 
     /**
-     * Restores a soft-deleted Link entity by setting its delete_date to NULL.
+     * Restore a soft-deleted Link entity.
      *
-     * @param int $id The ID of the Link to restore.
-     * @return bool True if the restoration was successful, false otherwise.
+     * @param int $id The ID of the Link entity to restore.
+     * @return bool True if the entity was restored, false otherwise.
      */
     public function restore(int $id): bool
     {
-        // Prepare the SQL query to restore a soft-deleted Link entity by setting its delete_date to NULL
+        // Prepare the SQL query to restore a soft-deleted Link entity by removing the delete date.
         $query = "UPDATE `links` SET `delete_date` = NULL WHERE `id` = :id";
-        
-        // Bind the ID parameter to the query
-        $values = [":id" => $id];
+        $values = [":id" => $id]; // Bind the ID of the entity to restore.
 
-        // Execute the query and check the number of affected rows
+        // Execute the query and check if any rows were affected.
         $result = $this->executeQuery($query, $values);
 
-        // Return true if at least one row was affected, false otherwise
+        // Return true if the entity was successfully restored, false otherwise.
         return $result > 0;
     }
 
     /**
-     * Permanently removes a Link entity from the database.
+     * Hard delete a Link entity.
      *
-     * @param int $id The ID of the Link to remove.
-     * @return bool True if the removal was successful, false otherwise.
+     * @param int $id The ID of the Link entity to remove.
+     * @return bool True if the entity was hard deleted, false otherwise.
      */
     public function remove(int $id): bool
     {
-        // Prepare the SQL query to permanently delete a Link entity
+        // Prepare the SQL query to permanently delete a Link entity.
         $query = "DELETE FROM `links` WHERE `id` = :id";
-        
-        // Bind the ID parameter to the query
-        $values = [":id" => $id];
+        $values = [":id" => $id]; // Bind the ID of the entity to delete.
 
-        // Execute the query and check the number of affected rows
+        // Execute the query and check if any rows were affected.
         $result = $this->executeQuery($query, $values);
 
-        // Return true if at least one row was affected, false otherwise
+        // Return true if the entity was successfully deleted, false otherwise.
         return $result > 0;
     }
 
     /**
-     * Parses a database row into a Link entity.
+     * Parse a database row into a Link entity.
      *
      * @param array $row The database row to parse.
      * @return Link The parsed Link entity.
      */
     protected function parseEntity(array $row): Link
     {
-        // Use the LinkBuilder to construct a Link entity from the database row
+        // Use the LinkBuilder to construct a Link entity from the database row.
         return (new LinkBuilder())
-            ->withId($row["id"])
-            ->withUrl($row["url"])
-            ->withFanfictionId($row["fanfiction_id"])
-            ->withCreationDate($row["creation_date"])
-            ->withUpdateDate($row["update_date"])
-            ->withDeleteDate($row["delete_date"])
-            ->build();
+            ->withId($row["id"]) // Set the ID.
+            ->withUrl($row["url"]) // Set the URL.
+            ->withFanfictionId($row["fanfiction_id"]) // Set the fanfiction ID.
+            ->withCreationDate($row["creation_date"]) // Set the creation date.
+            ->withUpdateDate($row["update_date"]) // Set the update date.
+            ->withDeleteDate($row["delete_date"]) // Set the delete date if it exists.
+            ->build(); // Build and return the Link entity.
     }
 }

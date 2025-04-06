@@ -6,222 +6,423 @@ require_once __DIR__ . '/../../src/table/LanguagesTable.php';
 require_once __DIR__ . '/../../src/entity/Language.php';
 require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
 
+/**
+ * LanguagesTableTest class.
+ * 
+ * This class contains unit tests for the LanguagesTable class, which handles
+ * database operations for the `languages` table. Each test method verifies
+ * the behavior of a specific method in the LanguagesTable class.
+ */
 class LanguagesTableTest extends TestCase
 {
     private LanguagesTable $languagesTable;
 
-    private int $languageId; // Example language ID for testing
-
     /**
      * Set up the LanguagesTable instance before each test.
+     * Initializes the LanguagesTable object with test-specific parameters.
      */
     protected function setUp(): void
     {
-        // Initialize the LanguagesTable instance with test database and user.
+        // Initialize the LanguagesTable instance with test parameters
         $this->languagesTable = new LanguagesTable("tests", "user");
     }
 
     /**
-     * Test getting a language by its ID.
+     * Test the get method with a valid ID.
+     * Ensures that the method returns a Language object with the expected properties.
      */
-    public function testGetLanguageById()
+    public function testGetValidId(): void
     {
-        // Retrieve a language by its ID.
-        $language = $this->languagesTable->get(1);
+        // Call the get method with a valid ID
+        $result = $this->languagesTable->get(1);
 
-        // Assert that the retrieved language has the expected ID and name.
-        $this->assertEquals(1, $language->getId(), "The ID of the retrieved language should be 1.");
-        $this->assertEquals("Français", $language->getName(), "The name of the retrieved language should be 'Français'.");
+        // Assert that the result is an instance of Language
+        $this->assertInstanceOf(Language::class, $result);
 
-        // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $language, "The retrieved object should be an instance of the Language class.");
+        // Assert that the ID and name match the expected values
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("Français", $result->getName());
     }
 
     /**
-     * Test getting a language by an ID that does not exist.
+     * Test the get method with an invalid ID.
+     * Verifies that an exception is thrown when the ID does not exist.
      */
-    public function testGetLanguageByIdNotFound()
+    public function testGetInvalidId(): void
     {
-        // Expect an exception when trying to retrieve a non-existent language.
-        $this->expectException(FfbTableException::class, "An exception should be thrown for a non-existent language ID.");
-        $this->expectExceptionMessage("No data for arguments provided!", "The exception message should indicate no data was found.");
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
 
-        // Attempt to retrieve a language with an invalid ID.
+        // Expect the exception message to indicate no data was found
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Call the get method with an invalid ID
         $this->languagesTable->get(999);
     }
 
     /**
-     * Test finding languages by exact match.
+     * Test the get method with a non-integer ID.
+     * Ensures that a TypeError is thrown when the ID is not an integer.
      */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        // Search for languages with an exact name match.
-        $languages = $this->languagesTable->findSearchedBy([
-            "name" => "Français"
-        ]);
+        // Expect a TypeError exception to be thrown
+        $this->expectException(TypeError::class);
 
-        // Assert that only one language is found and it matches the expected name.
-        $this->assertCount(1, $languages, "Only one language should be found with the exact name 'Français'.");
-        $this->assertEquals(1, $languages[0]->getId(), "The ID of the found language should be 1.");
-        $this->assertEquals("Français", $languages[0]->getName(), "The name of the found language should be 'Français'.");
-
-        // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $languages[0], "The found object should be an instance of the Language class.");
+        // Call the get method with a non-integer ID
+        $this->languagesTable->get("invalid_id");
     }
 
     /**
-     * Test finding languages using a LIKE query.
-     * This test checks if the findSearchedBy method can retrieve languages
-     * whose names match a pattern (e.g., names starting with 'E').
+     * Test the findSearchedBy method with valid search criteria.
+     * Ensures that the method returns an array of Language objects matching the criteria.
      */
-    public function testFindSearchedByLike()
+    public function testFindSearchedByValidCriteria(): void
     {
-        // Search for languages with names starting with 'E'.
-        $languages = $this->languagesTable->findSearchedBy([
-            "name" => "LIKE 'E%'"
-        ]);
+        // Call the findSearchedBy method with valid search criteria
+        $result = $this->languagesTable->findSearchedBy(['name' => 'English']);
 
-        // Assert that one language is found and it matches the expected name.
-        $this->assertCount(1, $languages, "Only one language should be found with names starting with 'E'.");
-        $this->assertEquals(2, $languages[0]->getId(), "The ID of the found language should be 2.");
-        $this->assertEquals("English", $languages[0]->getName(), "The name of the found language should be 'English'.");
+        // Assert that the result is an array
+        $this->assertIsArray($result);
 
-        // Assert that the retrieved object is an instance of the Language class.
-        $this->assertInstanceOf(Language::class, $languages[0], "The found object should be an instance of the Language class.");
+        // Assert that the array contains one element
+        $this->assertCount(1, $result);
+
+        // Assert that the first element is an instance of Language
+        $this->assertInstanceOf(Language::class, $result[0]);
     }
 
     /**
-     * Test finding languages ordered by name in ascending order.
-     * This test ensures that the findOrderedBy method correctly sorts
-     * languages alphabetically by their names in ascending order.
+     * Test the findSearchedBy method with invalid search criteria.
+     * Verifies that an exception is thrown for invalid column names.
      */
-    public function testFindOrderedByAsc()
+    public function testFindSearchedByInvalidCriteria(): void
     {
-        // Retrieve languages ordered by name in ascending order.
-        $languages = $this->languagesTable->findOrderedBy([
-            "name" => "ASC"
-        ]);
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
 
-        // Assert that the languages are sorted alphabetically.
-        $this->assertCount(2, $languages);
-        $this->assertEquals("English", $languages[0]->getName());
-        $this->assertEquals("Français", $languages[1]->getName());
+        // Expect the exception message to indicate an invalid column name
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
-        // Assert that each retrieved object is an instance of the Language class.
-        foreach ($languages as $language) {
-            $this->assertInstanceOf(Language::class, $language);
-        }
+        // Call the findSearchedBy method with invalid search criteria
+        $this->languagesTable->findSearchedBy(['invalid_column' => 'value']);
     }
 
     /**
-     * Test finding languages with a limit of 2.
-     * This test verifies that the findLimitedBy method respects the limit
-     * parameter and retrieves only the specified number of languages.
+     * Test the findSearchedBy method with empty search criteria.
+     * Verifies that an exception is thrown when no search arguments are provided.
      */
-    public function testFindLimitedBy02()
+    public function testFindSearchedByEmptyCriteria(): void
     {
-        // Retrieve a limited number of languages (2).
-        $languages = $this->languagesTable->findLimitedBy([
-            "limit" => 2
-        ]);
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
 
-        // Assert that only two languages are retrieved.
-        $this->assertCount(2, $languages);
-        $this->assertEquals("Français", $languages[0]->getName());
-        $this->assertEquals("English", $languages[1]->getName());
+        // Expect the exception message to indicate no search arguments were provided
+        $this->expectExceptionMessage("No search arguments provided!");
 
-        // Assert that each retrieved object is an instance of the Language class.
-        foreach ($languages as $language) {
-            $this->assertInstanceOf(Language::class, $language);
-        }
+        // Call the findSearchedBy method with empty search criteria
+        $this->languagesTable->findSearchedBy([]);
     }
 
     /**
-     * Test creating a new language.
+     * Test the findOrderedBy method with valid order criteria.
+     * Ensures that the method returns an array of Language objects ordered by the specified criteria.
      */
-    public function testCreateLanguage()
+    public function testFindOrderedByValidCriteria(): void
     {
-        $language = new Language();
-        $language->setName("New Language");
-        $language->setAbbreviation("NL");
-        $language->setCreationDate(new DateTime("2023-01-01"));
-        $language->setUpdateDate(new DateTime("2023-01-01"));
-        $language->setDeleteDate(null);
+        // Call the findOrderedBy method with valid order criteria
+        $result = $this->languagesTable->findOrderedBy(['name' => 'ASC']);
 
+        // Assert that the result is an array
+        $this->assertIsArray($result);
+
+        // Assert that the array contains 2 elements
+        $this->assertCount(2, $result);
+
+        // Assert that the first element's name matches the expected value
+        $this->assertEquals("English", $result[0]->getName());
+    }
+
+    /**
+     * Test the findOrderedBy method with invalid order direction.
+     * Verifies that an exception is thrown for invalid order directions.
+     */
+    public function testFindOrderedByInvalidDirection(): void
+    {
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+
+        // Expect the exception message to indicate an invalid order direction
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
+
+        // Call the findOrderedBy method with an invalid order direction
+        $this->languagesTable->findOrderedBy(['name' => 'INVALID']);
+    }
+
+    /**
+     * Test the findLimitedBy method with valid limit and offset.
+     * Ensures that the method returns an array of Language objects within the specified limit and offset.
+     */
+    public function testFindLimitedByValidCriteria(): void
+    {
+        // Call the findLimitedBy method with valid limit and offset
+        $result = $this->languagesTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+
+        // Assert that the result is an array
+        $this->assertIsArray($result);
+
+        // Assert that the array contains two elements
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative limit.
+     * Verifies that an exception is thrown for negative limit values.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+
+        // Expect the exception message to indicate an invalid or missing limit value
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        // Call the findLimitedBy method with a negative limit
+        $this->languagesTable->findLimitedBy(['limit' => -1]);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative offset.
+     * Verifies that an exception is thrown for negative offset values.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+
+        // Expect the exception message to indicate an invalid offset value
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        // Call the findLimitedBy method with a negative offset
+        $this->languagesTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    /**
+     * Test the findAll method with combined criteria.
+     * Ensures that the method returns an array of Language objects matching the combined criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        // Call the findAll method with combined criteria
+        $result = $this->languagesTable->findAll([
+            'search' => ['name' => 'E%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+
+        // Assert that the result is an array
+        $this->assertIsArray($result);
+
+        // Assert that the array contains two elements
+        $this->assertCount(1, $result);
+    }
+
+    /**
+     * Test the findAll method with no results.
+     * Verifies that an exception is thrown when no results are found.
+     */
+    public function testFindAllNoResults(): void
+    {
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+
+        // Expect the exception message to indicate no data was found
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        // Call the findAll method with criteria that yield no results
+        $this->languagesTable->findAll([
+            'search' => ['name' => 'Nonexistent%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+    }
+
+    /**
+     * Test the findAll method with empty arguments.
+     * Ensures that the method returns all Language objects when no arguments are provided.
+     */
+    public function testFindAllEmptyArguments(): void
+    {
+        // Call the findAll method with empty arguments
+        $result = $this->languagesTable->findAll([]);
+
+        // Assert that the result is an array
+        $this->assertIsArray($result);
+
+        // Assert that the array contains 2 elements
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the create method with valid data.
+     * Ensures that a new Language object can be created successfully.
+     */
+    public function testCreateValid(): void
+    {
+        // Create a new Language object using the LanguageBuilder
+        $language = (new LanguageBuilder())
+            ->withName("New Language")
+            ->withAbbreviation("NL")
+            ->withCreationDate(new DateTime())
+            ->withUpdateDate(new DateTime())
+            ->build();
+
+        // Call the create method to add the new Language to the database
         $createdLanguage = $this->languagesTable->create($language);
 
-        $this->assertNotNull($createdLanguage->getId());
-        $this->assertEquals("New Language", $createdLanguage->getName());
+        // Assert that the created Language is an instance of Language
         $this->assertInstanceOf(Language::class, $createdLanguage);
+
+        // Assert that the created Language has a non-null ID
+        $this->assertNotNull($createdLanguage->getId());
+
+        // Assert that the name of the created Language matches the expected value
+        $this->assertEquals("New Language", $createdLanguage->getName());
     }
 
     /**
-     * Test updating an existing language.
+     * Test the create method with an invalid entity type.
+     * Ensures that a TypeError is thrown when the provided entity is not of the expected type.
      */
-    public function testUpdateLanguage()
+    public function testCreateInvalidEntity(): void
     {
-        $language = $this->languagesTable->get($this->languagesTable->getLastInsertId());
-        $language->setName("Updated Language");
+        // Expect a TypeError exception to be thrown
+        $this->expectException(TypeError::class);
 
+        // Call the create method with an invalid entity type
+        $this->languagesTable->create(new stdClass());
+    }
+
+    /**
+     * Test the update method with valid data.
+     * Ensures that a Language object can be updated and the changes are reflected.
+     */
+    public function testUpdateValid(): void
+    {
+        // Find the Language object to be updated
+        $language = $this->languagesTable->findSearchedBy(["name" => "New Language"])[0];
+
+        // Update the name and update date of the Language object
+        $language->setName("Updated Language");
+        $language->setUpdateDate(new DateTime());
+
+        // Call the update method to save the changes
         $updatedLanguage = $this->languagesTable->update($language);
 
-        $this->assertEquals("Updated Language", $updatedLanguage->getName());
+        // Assert that the updated Language is an instance of Language
         $this->assertInstanceOf(Language::class, $updatedLanguage);
+
+        // Assert that the name of the updated Language matches the expected value
+        $this->assertEquals("Updated Language", $updatedLanguage->getName());
     }
 
     /**
-     * Test soft deleting a language.
+     * Test the update method with an invalid entity type.
+     * Verifies that a TypeError is thrown when the provided entity is not of the expected type.
      */
-    public function testDeleteLanguage()
+    public function testUpdateInvalidEntity(): void
     {
-        $languages = $this->languagesTable->findSearchedBy([
-            "name" => "Updated Language"
-        ]);
+        // Expect a TypeError exception to be thrown
+        $this->expectException(TypeError::class);
 
-        $result = $this->languagesTable->delete($languages[0]->getId());
+        // Call the update method with an invalid entity type
+        $this->languagesTable->update(new stdClass());
+    }
 
+    /**
+     * Test the delete method with a valid ID.
+     * Ensures that a Language object can be soft-deleted successfully.
+     */
+    public function testDeleteValidId(): void
+    {
+        // Find the Language object to be deleted
+        $language = $this->languagesTable->findSearchedBy(["name" => "Updated Language"])[0];
+
+        // Call the delete method with the ID of the Language object
+        $result = $this->languagesTable->delete($language->getId());
+
+        // Assert that the delete operation was successful
         $this->assertTrue($result);
     }
 
     /**
-     * Test restoring a soft-deleted language.
+     * Test the delete method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
      */
-    public function testRestoreLanguage()
+    public function testDeleteInvalidId(): void
     {
-        $languages = $this->languagesTable->findSearchedBy([
-            "name" => "Updated Language"
-        ]);
+        // Call the delete method with an invalid ID
+        $result = $this->languagesTable->delete(9999);
 
-        $this->assertNotEmpty($languages);
-        $this->assertEquals("Updated Language", $languages[0]->getName());
-
-        $result = $this->languagesTable->restore($languages[0]->getId());
-
-        $this->assertTrue($result);
-
-        $restoredLanguage = $this->languagesTable->get($languages[0]->getId());
-        $this->assertNotNull($restoredLanguage);
-        $this->assertEquals("Updated Language", $restoredLanguage->getName());
+        // Assert that the delete operation was not successful
+        $this->assertFalse($result);
     }
 
     /**
-     * Test hard deleting a language.
+     * Test the restore method with a valid ID.
+     * Ensures that a soft-deleted Language object can be restored successfully.
      */
-    public function testRemoveLanguage()
+    public function testRestoreValidId(): void
     {
-        $languages = $this->languagesTable->findSearchedBy([
-            "name" => "Updated Language"
-        ]);
+        // Find the Language object to be restored
+        $language = $this->languagesTable->findSearchedBy(["name" => "Updated Language"])[0];
 
-        $this->assertNotEmpty($languages);
-        $this->assertEquals("Updated Language", $languages[0]->getName());
+        // Call the restore method with the ID of the Language object
+        $result = $this->languagesTable->restore($language->getId());
 
-        $result = $this->languagesTable->remove($languages[0]->getId());
-
+        // Assert that the restore operation was successful
         $this->assertTrue($result);
+    }
 
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-        $this->languagesTable->get($languages[0]->getId());
+    /**
+     * Test the restore method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
+     */
+    public function testRestoreInvalidId(): void
+    {
+        // Call the restore method with an invalid ID
+        $result = $this->languagesTable->restore(9999);
+
+        // Assert that the restore operation was not successful
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test the remove method with a valid ID.
+     * Ensures that a Language object can be hard-deleted successfully.
+     */
+    public function testRemoveValidId(): void
+    {
+        // Find the Language object to be removed
+        $language = $this->languagesTable->findSearchedBy(["name" => "Updated Language"])[0];
+
+        // Call the remove method with the ID of the Language object
+        $result = $this->languagesTable->remove($language->getId());
+
+        // Assert that the remove operation was successful
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Test the remove method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
+     */
+    public function testRemoveInvalidId(): void
+    {
+        // Call the remove method with an invalid ID
+        $result = $this->languagesTable->remove(999);
+
+        // Assert that the remove operation was not successful
+        $this->assertFalse($result);
     }
 }

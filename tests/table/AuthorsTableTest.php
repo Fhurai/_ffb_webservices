@@ -10,10 +10,9 @@ class AuthorsTableTest extends TestCase
 {
     private AuthorsTable $authorsTable;
 
-    private int $authorId; // Example author ID for testing
-
     /**
      * Set up the AuthorsTable instance before each test.
+     * This method initializes the AuthorsTable object with test-specific parameters.
      */
     protected function setUp(): void
     {
@@ -21,224 +20,399 @@ class AuthorsTableTest extends TestCase
     }
 
     /**
-     * Test getting an author by its ID.
+     * Test the get method with a valid ID.
+     * Ensures that the method returns an Author object with the expected properties.
      */
-    public function testGetAuthorById()
+    public function testGetValidId(): void
     {
-        $author = $this->authorsTable->get(1);
-
-        $this->assertEquals(1, $author->getId());
-        $this->assertEquals("", $author->getName());
-        $this->assertInstanceOf(Author::class, $author);
-
-        // Additional assertions
-        $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
-        $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
+        $result = $this->authorsTable->get(1);
+        $this->assertInstanceOf(Author::class, $result);
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("", $result->getName());
     }
 
     /**
-     * Test getting an author by an ID that does not exist.
+     * Test the get method with an invalid ID.
+     * Verifies that an exception is thrown when the ID does not exist.
      */
-    public function testGetAuthorByIdNotFound()
+    public function testGetInvalidId(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
+
         $this->authorsTable->get(999);
-
-        // Additional assertion to ensure exception is thrown
-        $this->assertTrue(true, "Exception was correctly thrown for non-existent ID.");
     }
 
     /**
-     * Test finding authors by exact match.
+     * Test the get method with a non-integer ID.
+     * Ensures that a TypeError is thrown when the ID is not an integer.
      */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        $authors = $this->authorsTable->findSearchedBy([
-            "name" => ""
+        $this->expectException(TypeError::class);
+        $this->authorsTable->get("invalid_id");
+    }
+
+    /**
+     * Test the findSearchedBy method with valid search criteria.
+     * Ensures that the method returns an array of Author objects matching the criteria.
+     */
+    public function testFindSearchedByValidCriteria(): void
+    {
+        $result = $this->authorsTable->findSearchedBy(['name' => 'A. LaRosa']);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertInstanceOf(Author::class, $result[0]);
+    }
+
+    /**
+     * Test the findSearchedBy method with invalid search criteria.
+     * Verifies that an exception is thrown for invalid column names.
+     */
+    public function testFindSearchedByInvalidCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->authorsTable->findSearchedBy(['invalid_column' => 'value']);
+    }
+
+    /**
+     * Test the findSearchedBy method with empty search criteria.
+     * Verifies that an exception is thrown when no search arguments are provided.
+     */
+    public function testFindSearchedByEmptyCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No search arguments provided!");
+
+        $this->authorsTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test the findOrderedBy method with valid order criteria.
+     * Ensures that the method returns an array of Author objects ordered by the specified criteria.
+     */
+    public function testFindOrderedByValidCriteria(): void
+    {
+        $result = $this->authorsTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertIsArray($result);
+        $this->assertCount(717, $result);
+        $this->assertEquals("", $result[0]->getName());
+    }
+
+    /**
+     * Test the findOrderedBy method with invalid order direction.
+     * Verifies that an exception is thrown for invalid order directions.
+     */
+    public function testFindOrderedByInvalidDirection(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
+
+        $this->authorsTable->findOrderedBy(['name' => 'INVALID']);
+    }
+
+    /**
+     * Test the findLimitedBy method with valid limit and offset.
+     * Ensures that the method returns an array of Author objects within the specified limit and offset.
+     */
+    public function testFindLimitedByValidCriteria(): void
+    {
+        $result = $this->authorsTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative limit.
+     * Verifies that an exception is thrown for negative limit values.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->authorsTable->findLimitedBy(['limit' => -1]);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative offset.
+     * Verifies that an exception is thrown for negative offset values.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        $this->authorsTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    /**
+     * Test the findAll method with combined criteria.
+     * Ensures that the method returns an array of Author objects matching the combined criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        $result = $this->authorsTable->findAll([
+            'search' => ['name' => 'J%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
         ]);
-
-        $this->assertCount(1, $authors);
-        $this->assertEquals(1, $authors[0]->getId());
-        $this->assertEquals("", $authors[0]->getName());
-        $this->assertInstanceOf(Author::class, $authors[0]);
-
-        // Additional assertions
-        $this->assertNotNull($authors[0]->getCreationDate(), "Creation date should not be null.");
-        $this->assertNull($authors[0]->getDeleteDate(), "Delete date should be null for active authors.");
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
     }
 
     /**
-     * Test finding authors using a LIKE query.
+     * Test the findAll method with no results.
+     * Verifies that an exception is thrown when no results are found.
      */
-    public function testFindSearchedByLike()
+    public function testFindAllNoResults(): void
     {
-        $authors = $this->authorsTable->findSearchedBy([
-            "name" => "LIKE 'J%'"
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        $this->authorsTable->findAll([
+            'search' => ['name' => 'Nonexistent%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
         ]);
-
-        $this->assertCount(12, $authors);
-        $this->assertEquals(276, $authors[0]->getId());
-        $this->assertEquals("James Spookie", $authors[0]->getName());
-        $this->assertEquals(277, $authors[1]->getId());
-        $this->assertEquals("Jayf", $authors[1]->getName());
-        $this->assertInstanceOf(Author::class, $authors[0]);
-        $this->assertInstanceOf(Author::class, $authors[1]);
-
-        // Additional assertions
-        foreach ($authors as $author) {
-            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
-            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
-        }
     }
 
     /**
-     * Test finding authors ordered by name in ascending order.
+     * Test the findAll method with empty arguments.
+     * Ensures that the method returns all Author objects when no arguments are provided.
      */
-    public function testFindOrderedByAsc()
+    public function testFindAllEmptyArguments(): void
     {
-        $authors = $this->authorsTable->findOrderedBy([
-            "name" => "ASC"
+        // Call the findAll method with empty arguments
+        $result = $this->authorsTable->findAll([]);
+        
+        // Assert that the result is an array
+        $this->assertIsArray($result);
+        
+        // Assert that the array contains 717 elements
+        $this->assertCount(717, $result);
+    }
+
+    /**
+     * Test the findAll method with invalid search criteria.
+     * Verifies that an exception is thrown for invalid column names in search criteria.
+     */
+    public function testFindAllInvalidSearchCriteria(): void
+    {
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+        
+        // Expect the exception message to match the invalid column name error
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        // Call the findAll method with invalid search criteria
+        $this->authorsTable->findAll([
+            'search' => ['invalid_column' => 'value']
         ]);
-
-        $this->assertCount(717, $authors);
-        $this->assertEquals("", $authors[0]->getName());
-        $this->assertEquals("123irish", $authors[1]->getName());
-        $this->assertEquals("1Sakura-Haruno1", $authors[2]->getName());
-        foreach ($authors as $author) {
-            $this->assertInstanceOf(Author::class, $author);
-
-            // Additional assertions
-            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
-            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
-        }
     }
 
     /**
-     * Test finding authors with a limit of 2.
+     * Test the findAll method with invalid order criteria.
+     * Verifies that an exception is thrown for invalid column names in order criteria.
      */
-    public function testFindLimitedBy02()
+    public function testFindAllInvalidOrderCriteria(): void
     {
-        $authors = $this->authorsTable->findLimitedBy([
-            "limit" => 2
+        // Expect an exception of type FfbTableException
+        $this->expectException(FfbTableException::class);
+        
+        // Expect the exception message to match the invalid column name error
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        // Call the findAll method with invalid order criteria
+        $this->authorsTable->findAll([
+            'order' => ['invalid_column' => 'ASC']
         ]);
-
-        $this->assertCount(2, $authors);
-        $this->assertEquals("", $authors[0]->getName());
-        $this->assertEquals("123irish", $authors[1]->getName());
-        foreach ($authors as $author) {
-            $this->assertInstanceOf(Author::class, $author);
-
-            // Additional assertions
-            $this->assertNotNull($author->getCreationDate(), "Creation date should not be null.");
-            $this->assertNull($author->getDeleteDate(), "Delete date should be null for active authors.");
-        }
     }
 
     /**
-     * Test creating a new author.
+     * Test the findAll method with invalid limit criteria.
+     * Verifies that an exception is thrown for invalid limit values.
      */
-    public function testCreateAuthor()
+    public function testFindAllInvalidLimitCriteria(): void
     {
-        $author = new Author();
-        $author->setName("New Author");
-        $author->setCreationDate(new DateTime("2023-01-01"));
-        $author->setUpdateDate(new DateTime("2023-01-01"));
-        $author->setDeleteDate(null);
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
 
+        $this->authorsTable->findAll([
+            'limit' => ['limit' => -10]
+        ]);
+    }
+
+    /**
+     * Test the create method with valid data.
+     * Ensures that a new Author object can be created successfully.
+     */
+    public function testCreateValid(): void
+    {
+        // Create a new Author object using the AuthorBuilder
+        $author = (new AuthorBuilder())
+            ->withName("New Author") // Set the name of the author
+            ->withCreationDate(new DateTime()) // Set the creation date
+            ->withUpdateDate(new DateTime()) // Set the update date
+            ->build(); // Build the Author object
+        
+        // Call the create method to save the new Author object
         $createdAuthor = $this->authorsTable->create($author);
 
-        $this->assertNotNull($createdAuthor->getId());
-
-        $this->assertEquals("New Author", $createdAuthor->getName());
+        // Assert that the created object is an instance of Author
         $this->assertInstanceOf(Author::class, $createdAuthor);
+        
+        // Assert that the created Author object has a non-null ID
+        $this->assertNotNull($createdAuthor->getId());
+        
+        // Assert that the name of the created Author matches the expected value
+        $this->assertEquals("New Author", $createdAuthor->getName());
     }
 
     /**
-     * Test updating an existing author.
+     * Test the create method with invalid entity type.
+     * Ensures that a TypeError is thrown when the provided entity is not of the expected type.
      */
-    public function testUpdateAuthor()
+    public function testCreateInvalidEntity(): void
     {
-        $author = $this->authorsTable->get($this->authorsTable->getLastInsertId());
-        $author->setName("Updated Name");
+        // Expect a TypeError exception to be thrown
+        $this->expectException(TypeError::class);
+        
+        // Expect the exception message to indicate the invalid entity type
+        $this->expectExceptionMessage("Argument #1 (\$entity) must be of type Entity, stdClass given");
 
+        // Call the create method with an invalid entity type (stdClass)
+        $this->authorsTable->create(new stdClass());
+    }
+
+    /**
+     * Test the update method with valid data.
+     * Ensures that an Author object can be updated and the changes are reflected.
+     */
+    public function testUpdateValid(): void
+    {
+        // Find an existing Author object by name
+        $author = $this->authorsTable->findSearchedBy(["name" => "New Author"])[0];
+        
+        // Update the name and update date of the Author object
+        $author->setName("Updated Author");
+        $author->setUpdateDate(new DateTime());
+        
+        // Call the update method to save the changes
         $updatedAuthor = $this->authorsTable->update($author);
 
-        $this->assertEquals("Updated Name", $updatedAuthor->getName());
+        // Assert that the updated object is an instance of Author
         $this->assertInstanceOf(Author::class, $updatedAuthor);
+        
+        // Assert that the updated Author object has a different ID
+        $this->assertNotEquals(1, $updatedAuthor->getId());
+        
+        // Assert that the name of the updated Author matches the expected value
+        $this->assertEquals("Updated Author", $updatedAuthor->getName());
     }
 
     /**
-     * Test soft deleting an author.
+     * Test the update method with invalid entity type.
+     * Verifies that a TypeError is thrown when the provided entity is not of the expected type.
      */
-    public function testDeleteAuthor()
+    public function testUpdateInvalidEntity(): void
     {
-        $authors = $this->authorsTable->findSearchedBy([
-            "name" => "Updated Name"
-        ]);
+        // Expect a TypeError exception to be thrown
+        $this->expectException(TypeError::class);
         
-        $result = $this->authorsTable->delete($authors[0]->getId());
+        // Expect the exception message to indicate the invalid entity type
+        $this->expectExceptionMessage("Argument #1 (\$entity) must be of type Entity, stdClass given");
 
+        // Call the update method with an invalid entity type (stdClass)
+        $this->authorsTable->update(new stdClass());
+    }
+
+    /**
+     * Test the delete method with a valid ID.
+     * Ensures that an Author object can be deleted successfully.
+     */
+    public function testDeleteValidId(): void
+    {
+        // Find an existing Author object by name
+        $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
+        
+        // Call the delete method with the ID of the Author object
+        $result = $this->authorsTable->delete($author->getId());
+        
+        // Assert that the delete operation was successful
         $this->assertTrue($result);
     }
 
     /**
-     * Test restoring a soft-deleted author.
-     * This method verifies that a previously soft-deleted author can be restored successfully.
-     * It checks the state of the author before and after the restore operation.
+     * Test the delete method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
      */
-    public function testRestoreAuthor()
+    public function testDeleteInvalidId(): void
     {
-        // Find authors with the name "Updated Name" before the restore operation
-        $authors = $this->authorsTable->findSearchedBy([
-            "name" => "Updated Name"
-        ]);
-
-        // Assert that the authors list is not empty
-        $this->assertNotEmpty($authors, "Authors list should not be empty before restore.");
-        // Assert that the name of the first author matches "Updated Name"
-        $this->assertEquals("Updated Name", $authors[0]->getName(), "Author name should match before restore.");
-
-        // Perform the restore operation on the first author's ID
-        $result = $this->authorsTable->restore($authors[0]->getId());
-
-        // Assert that the restore operation was successful
-        $this->assertTrue($result, "Restore operation should return true.");
-
-        // Retrieve the restored author by ID
-        $restoredAuthor = $this->authorsTable->get($authors[0]->getId());
-        // Assert that the restored author exists
-        $this->assertNotNull($restoredAuthor, "Restored author should exist.");
-        // Assert that the name of the restored author matches "Updated Name"
-        $this->assertEquals("Updated Name", $restoredAuthor->getName(), "Restored author name should match.");
+        // Call the delete method with a non-existent ID
+        $result = $this->authorsTable->delete(9999);
+        
+        // Assert that the delete operation failed
+        $this->assertFalse($result);
     }
 
     /**
-     * Test hard deleting an author.
-     * This method ensures that an author can be permanently removed from the database.
-     * It validates the state of the author before removal and ensures it no longer exists after removal.
+     * Test the restore method with a valid ID.
+     * Ensures that a deleted Author object can be restored successfully.
      */
-    public function testRemoveAuthor()
+    public function testRestoreValidId(): void
     {
-        // Find authors with the name "Updated Name" before the removal operation
-        $authors = $this->authorsTable->findSearchedBy([
-            "name" => "Updated Name"
-        ]);
+        // Find an Author object by name
+        $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
+        
+        // Attempt to restore the Author object by its ID
+        $result = $this->authorsTable->restore($author->getId());
+        
+        // Assert that the restore operation was successful
+        $this->assertTrue($result);
+    }
 
-        // Assert that the authors list is not empty
-        $this->assertNotEmpty($authors, "Authors list should not be empty before removal.");
-        // Assert that the name of the first author matches "Updated Name"
-        $this->assertEquals("Updated Name", $authors[0]->getName(), "Author name should match before removal.");
+    /**
+     * Test the restore method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
+     */
+    public function testRestoreInvalidId(): void
+    {
+        // Attempt to restore an Author object with a non-existent ID
+        $result = $this->authorsTable->restore(9999);
+        
+        // Assert that the restore operation failed
+        $this->assertFalse($result);
+    }
 
-        // Perform the remove operation on the first author's ID
-        $result = $this->authorsTable->remove($authors[0]->getId());
-
+    /**
+     * Test the remove method with a valid ID.
+     * Ensures that an Author object can be removed successfully.
+     */
+    public function testRemoveValidId(): void
+    {
+        // Find an Author object by name
+        $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
+        
+        // Attempt to remove the Author object by its ID
+        $result = $this->authorsTable->remove($author->getId());
+        
         // Assert that the remove operation was successful
-        $this->assertTrue($result, "Remove operation should return true.");
+        $this->assertTrue($result);
+    }
 
-        // Expect an exception when trying to retrieve the removed author by ID
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-        $this->authorsTable->get($authors[0]->getId());
+    /**
+     * Test the remove method with an invalid ID.
+     * Verifies that the method returns false when the ID does not exist.
+     */
+    public function testRemoveInvalidId(): void
+    {
+        // Attempt to remove an Author object with a non-existent ID
+        $result = $this->authorsTable->remove(999);
+        
+        // Assert that the remove operation failed
+        $this->assertFalse($result);
     }
 }

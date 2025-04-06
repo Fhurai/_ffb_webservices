@@ -5,8 +5,8 @@ require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Author.php";
 require_once __DIR__ . "/../builder/AuthorBuilder.php";
 
-class AuthorsTable extends EntitiesTable{
-
+class AuthorsTable extends EntitiesTable
+{
     /**
      * Get an entity by its ID.
      * Retrieves an Author entity from the database by its unique identifier.
@@ -44,38 +44,59 @@ class AuthorsTable extends EntitiesTable{
      */
     public function findSearchedBy(array $args, $execute = true): array|string
     {
-        // Build the query dynamically based on the provided search criteria.
-        // Use placeholders to prevent SQL injection.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Author objects and return them.
+        // Ensure search arguments are provided.
+        if (empty($args)) {
+            throw new FfbTableException("No search arguments provided!");
+        }
+
         $values = [];
-        $first = true;
         $query = $execute ? "SELECT * FROM `authors`" : "";
 
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " WHERE ";
-                $first = false;
-            } else {
-                $query .= " AND ";
-            }
-
-            if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                $array = explode(' ', $value);
-                $query .= " " . $key . " " . $array[0] . " :" . $key;
-                $values[":" . $key] = str_replace("'", "", $array[1]);
-            } else {
-                $query .= " " . $key . " = :" . $key;
-                $values[":" . $key] = $value;
+        // Validate that the provided columns exist in the table.
+        $validColumns = $this->getTableColumns('authors');
+        foreach ($args as $column => $value) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
             }
         }
 
+        $conditions = [];
+        foreach ($args as $key => $value) {
+            // Handle LIKE conditions for partial matches.
+            if (str_contains($value, '%')) {
+                $conditions[] = "$key LIKE :$key";
+                $values[":$key"] = $value;
+                // Handle operators like <, >, =, etc.
+            } elseif (preg_match('/[<>=!]/', $value)) {
+                [$operator, $val] = explode(' ', $value, 2);
+                $conditions[] = "$key $operator :$key";
+                $values[":$key"] = str_replace("'", "", $val);
+                // Handle exact matches.
+            } else {
+                $conditions[] = "$key = :$key";
+                $values[":$key"] = $value;
+            }
+        }
+
+        // Append conditions to the query if any exist.
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        // Return the query string if execution is not required.
         if (!$execute) {
             return $query;
         }
 
+        // Execute the query and fetch results.
         $rows = $this->executeQuery($query, $values);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Author entities.
         return $this->parseEntities($rows);
     }
 
@@ -89,29 +110,46 @@ class AuthorsTable extends EntitiesTable{
      */
     public function findOrderedBy(array $args, $execute = true): array|string
     {
-        // Construct the query to include ORDER BY clauses based on the criteria.
-        // Ensure proper ordering syntax to avoid SQL errors.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Author objects and return them.
-        $values = [];
-        $first = true;
-        $query = $execute ? "SELECT * FROM `authors`" : "";
-
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " ORDER BY " . $key . " " . $value;
-                $first = false;
-            } else {
-                $query .= "OFFSET " . $key . " " . $value;
-            }
+        // Ensure order arguments are provided.
+        if (empty($args)) {
+            throw new FfbTableException("No order arguments provided!");
         }
 
+        $query = $execute ? "SELECT * FROM `authors`" : "";
+        $orderClauses = [];
+
+        // Validate that the provided columns exist in the table.
+        $validColumns = $this->getTableColumns('authors');
+        foreach ($args as $column => $direction) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
+            }
+            // Validate the order direction (ASC or DESC).
+            if (!in_array(strtoupper($direction), ['ASC', 'DESC'])) {
+                throw new FfbTableException("Invalid order direction: '$direction'");
+            }
+            $orderClauses[] = "$column $direction";
+        }
+
+        // Append order clauses to the query if any exist.
+        if (!empty($orderClauses)) {
+            $query .= " ORDER BY " . implode(", ", $orderClauses);
+        }
+
+        // Return the query string if execution is not required.
         if (!$execute) {
             return $query;
         }
 
-        $rows = $this->executeQuery($query, $values);
+        // Execute the query and fetch results.
+        $rows = $this->executeQuery($query);
 
+        // Throw an exception if no results are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse and return the results as Author entities.
         return $this->parseEntities($rows);
     }
 
@@ -125,28 +163,28 @@ class AuthorsTable extends EntitiesTable{
      */
     public function findLimitedBy(array $args, $execute = true): array|string
     {
-        // Add LIMIT and OFFSET clauses to the query based on the provided criteria.
-        // Validate that a limit is provided to avoid errors.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Author objects and return them.
-        $values = [];
-        $query = $execute ? "SELECT * FROM `authors`" : "";
-
-        if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
-            $query .= " LIMIT " . $args["limit"];
-        } else {
-            throw new FfbTableException("No limit provided!");
+        if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
+            throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
-            $query .= ", " . $args["offset"];
+        $query = $execute ? "SELECT * FROM `authors` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
+
+        if (!empty($args['offset'])) {
+            if (!is_numeric($args['offset']) || $args['offset'] < 0) {
+                throw new FfbTableException("Invalid offset value!");
+            }
+            $query .= " OFFSET " . (int) $args['offset'];
         }
 
         if (!$execute) {
             return $query;
         }
 
-        $rows = $this->executeQuery($query, $values);
+        $rows = $this->executeQuery($query);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
 
         return $this->parseEntities($rows);
     }
@@ -160,30 +198,32 @@ class AuthorsTable extends EntitiesTable{
      */
     public function findAll(array $args): array
     {
-        // Combine search, order, and limit criteria into a single query.
-        // Use helper methods to build each part of the query dynamically.
-        // Execute the query and fetch the results from the database.
-        // Parse the results into an array of Author objects and return them.
-        $values = [];
         $query = "SELECT * FROM `authors`";
+        $values = [];
 
-        if (array_key_exists("search", $args)) {
-            $query .= $this->findSearchedBy($args["search"], false);
-            foreach (array_keys($args["search"]) as $key) {
-                $array = explode(' ', $args["search"][$key]);
-                $values[":" . $key] = str_replace("'", "", $array[1]);
+        if (!empty($args['search'])) {
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
+            foreach ($args['search'] as $key => $value) {
+                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
             }
         }
 
-        if (array_key_exists("order", $args)) {
-            $query .= $this->findOrderedBy($args["order"], false);
+        if (!empty($args['order'])) {
+            $orderQuery = $this->findOrderedBy($args['order'], false);
+            $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
         }
 
-        if (array_key_exists("limit", $args)) {
-            $query .= $this->findLimitedBy($args["limit"], false);
+        if (!empty($args['limit'])) {
+            $limitQuery = $this->findLimitedBy($args['limit'], false);
+            $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
         }
 
         $rows = $this->executeQuery($query, $values);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
 
         return $this->parseEntities($rows);
     }
@@ -205,7 +245,7 @@ class AuthorsTable extends EntitiesTable{
         if (!$entity instanceof Author) {
             throw new \InvalidArgumentException('Expected instance of Author');
         }
-    
+
         $query = "INSERT INTO `authors` (`name`, `creation_date`, `update_date`, `delete_date`) 
                   VALUES (:name, :creation_date, :update_date, :delete_date)";
         $values = [
@@ -214,9 +254,9 @@ class AuthorsTable extends EntitiesTable{
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
             ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
         ];
-    
+
         $this->executeQuery($query, $values);
-    
+
         $entity->setId($this->getLastInsertId());
         return $entity;
     }
@@ -323,9 +363,6 @@ class AuthorsTable extends EntitiesTable{
      */
     protected function parseEntity(array $row): Author
     {
-        // Map the database row fields to the properties of an Author object.
-        // Use the AuthorBuilder to construct the Author object.
-        // Return the constructed Author object.
         return (new AuthorBuilder())
             ->withId($row["id"])
             ->withName($row["name"])

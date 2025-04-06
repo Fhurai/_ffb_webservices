@@ -168,7 +168,7 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isAdmin The admin status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function isAdmin(bool $isAdmin): UserBuilder {
+    public function withIsAdmin(bool $isAdmin): UserBuilder {
         // Set the admin status of the User object
         $this->obj->setIsAdmin($isAdmin);
         return $this;
@@ -180,7 +180,7 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isLocal The local status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function isLocal(bool $isLocal): UserBuilder {
+    public function withIsLocal(bool $isLocal): UserBuilder {
         // Set the local status of the User object
         $this->obj->setIsLocal($isLocal);
         return $this;
@@ -211,7 +211,7 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isNsfw The NSFW status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function isNsfw(bool $isNsfw): UserBuilder {
+    public function withIsNsfw(bool $isNsfw): UserBuilder {
         // Set the NSFW status of the User object
         $this->obj->setIsNsfw($isNsfw);
         return $this;

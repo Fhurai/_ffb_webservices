@@ -5,23 +5,81 @@ require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Fandom.php";
 require_once __DIR__ . "/../builder/FandomBuilder.php";
 
-class FandomsTable extends EntitiesTable{
-
+/**
+ * FandomsTable class.
+ * Handles database operations for the Fandom entity.
+ */
+class FandomsTable extends EntitiesTable
+{
     /**
-     * Get an entity by its ID.
-     * Retrieves a Fandom entity from the database by its unique identifier.
+     * Retrieve a Fandom entity by its ID.
      *
-     * @param int $id The ID of the entity.
-     * @return Fandom The entity object.
+     * @param int $id The ID of the fandom.
+     * @return Fandom The retrieved Fandom entity.
+     * @throws FfbTableException If no data is found for the given ID.
      */
     public function get(int $id): Fandom
     {
-        // Prepare the query to fetch the fandom by ID.
-        // Bind the ID parameter to ensure the correct entity is retrieved.
-        // Execute the query and fetch the result from the database.
-        // Parse the result into a Fandom object and return it.
         $query = "SELECT * FROM `fandoms` WHERE `id` = :id";
         $values = [":id" => $id];
+
+        // Execute the query and fetch the result.
+        $rows = $this->executeQuery($query, $values);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        // Parse the result into a Fandom object and return it.
+        return $this->parseEntity($rows[0]);
+    }
+
+    /**
+     * Search for Fandom entities based on criteria.
+     *
+     * @param array $args The search criteria as key-value pairs.
+     * @param bool $execute Whether to execute the query immediately.
+     * @return array|string The search results or the query string if not executed.
+     * @throws FfbTableException If no search arguments are provided or invalid columns are used.
+     */
+    public function findSearchedBy(array $args, $execute = true): array|string
+    {
+        if (empty($args)) {
+            throw new FfbTableException("No search arguments provided!");
+        }
+
+        $values = [];
+        $query = $execute ? "SELECT * FROM `fandoms`" : "";
+
+        $validColumns = $this->getTableColumns('fandoms');
+        foreach ($args as $column => $value) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
+            }
+        }
+
+        $conditions = [];
+        foreach ($args as $key => $value) {
+            if (str_contains($value, '%')) {
+                $conditions[] = "$key LIKE :$key";
+                $values[":$key"] = $value;
+            } elseif (preg_match('/[<>=!]/', $value)) {
+                [$operator, $val] = explode(' ', $value, 2);
+                $conditions[] = "$key $operator :$key";
+                $values[":$key"] = str_replace("'", "", $val);
+            } else {
+                $conditions[] = "$key = :$key";
+                $values[":$key"] = $value;
+            }
+        }
+
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+
+        if (!$execute) {
+            return $query;
+        }
 
         $rows = $this->executeQuery($query, $values);
 
@@ -29,181 +87,142 @@ class FandomsTable extends EntitiesTable{
             throw new FfbTableException("No data for arguments provided!");
         }
 
-        return $this->parseEntity($rows[0]);
-    }
-
-    /**
-     * Find entities based on search criteria.
-     * Searches for Fandom entities in the database that match the given criteria.
-     *
-     * @param array $args The search criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The search results as an array of Fandom objects.
-     */
-    public function findSearchedBy(array $args, $execute = true): array|string
-    {
-        // Build the query dynamically based on the provided search criteria.
-        // Use placeholders to prevent SQL injection.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Fandom objects and return them.
-        $values = [];
-        $first = true;
-        $query = $execute ? "SELECT * FROM `fandoms`" : "";
-
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " WHERE ";
-                $first = false;
-            } else {
-                $query .= " AND ";
-            }
-
-            if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                $array = explode(' ', $value);
-                $query .= " " . $key . " " . $array[0] . " :" . $key;
-                $values[":" . $key] = str_replace("'", "", $array[1]);
-            } else {
-                $query .= " " . $key . " = :" . $key;
-                $values[":" . $key] = $value;
-            }
-        }
-
-        if (!$execute) {
-            return $query;
-        }
-
-        $rows = $this->executeQuery($query, $values);
-
         return $this->parseEntities($rows);
     }
 
     /**
-     * Find entities ordered by specific criteria.
-     * Retrieves Fandom entities from the database ordered by the specified criteria.
+     * Retrieve Fandom entities ordered by specific criteria.
      *
      * @param array $args The ordering criteria as key-value pairs.
      * @param bool $execute Whether to execute the query immediately.
-     * @return array The ordered results as an array of Fandom objects.
+     * @return array|string The ordered results or the query string if not executed.
+     * @throws FfbTableException If no order arguments are provided or invalid columns are used.
      */
     public function findOrderedBy(array $args, $execute = true): array|string
     {
-        // Construct the query to include ORDER BY clauses based on the criteria.
-        // Ensure proper ordering syntax to avoid SQL errors.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Fandom objects and return them.
-        $values = [];
-        $first = true;
-        $query = $execute ? "SELECT * FROM `fandoms`" : "";
+        if (empty($args)) {
+            throw new FfbTableException("No order arguments provided!");
+        }
 
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " ORDER BY " . $key . " " . $value;
-                $first = false;
-            } else {
-                $query .= "OFFSET " . $key . " " . $value;
+        $query = $execute ? "SELECT * FROM `fandoms`" : "";
+        $orderClauses = [];
+
+        $validColumns = $this->getTableColumns('fandoms');
+        foreach ($args as $column => $direction) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
             }
+            if (!in_array(strtoupper($direction), ['ASC', 'DESC'])) {
+                throw new FfbTableException("Invalid order direction: '$direction'");
+            }
+            $orderClauses[] = "$column $direction";
+        }
+
+        if (!empty($orderClauses)) {
+            $query .= " ORDER BY " . implode(", ", $orderClauses);
         }
 
         if (!$execute) {
             return $query;
         }
 
-        $rows = $this->executeQuery($query, $values);
+        $rows = $this->executeQuery($query);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
 
         return $this->parseEntities($rows);
     }
 
     /**
-     * Find a limited number of entities based on criteria.
-     * Retrieves a limited number of Fandom entities from the database based on the given criteria.
+     * Retrieve a limited number of Fandom entities.
      *
-     * @param array $args The limiting criteria as key-value pairs.
+     * @param array $args The limiting criteria (e.g., limit, offset).
      * @param bool $execute Whether to execute the query immediately.
-     * @return array The limited results as an array of Fandom objects.
+     * @return array|string The limited results or the query string if not executed.
+     * @throws FfbTableException If invalid or missing limit/offset values are provided.
      */
     public function findLimitedBy(array $args, $execute = true): array|string
     {
-        // Add LIMIT and OFFSET clauses to the query based on the provided criteria.
-        // Validate that a limit is provided to avoid errors.
-        // Execute the query if $execute is true, otherwise return the query string.
-        // Parse the results into an array of Fandom objects and return them.
-        $values = [];
-        $query = $execute ? "SELECT * FROM `fandoms`" : "";
-
-        if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
-            $query .= " LIMIT " . $args["limit"];
-        } else {
-            throw new FfbTableException("No limit provided!");
+        if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
+            throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
-            $query .= ", " . $args["offset"];
+        $query = $execute ? "SELECT * FROM `fandoms` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
+
+        if (!empty($args['offset'])) {
+            if (!is_numeric($args['offset']) || $args['offset'] < 0) {
+                throw new FfbTableException("Invalid offset value!");
+            }
+            $query .= " OFFSET " . (int) $args['offset'];
         }
 
         if (!$execute) {
             return $query;
         }
 
-        $rows = $this->executeQuery($query, $values);
+        $rows = $this->executeQuery($query);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
 
         return $this->parseEntities($rows);
     }
 
     /**
-     * Find all entities based on criteria.
-     * Retrieves all Fandom entities from the database that match the given criteria.
+     * Retrieve all Fandom entities based on criteria.
      *
-     * @param array $args The criteria as key-value pairs.
+     * @param array $args The criteria for search, order, and limit.
      * @return array The results as an array of Fandom objects.
+     * @throws FfbTableException If no data is found for the given criteria.
      */
     public function findAll(array $args): array
     {
-        // Combine search, order, and limit criteria into a single query.
-        // Use helper methods to build each part of the query dynamically.
-        // Execute the query and fetch the results from the database.
-        // Parse the results into an array of Fandom objects and return them.
-        $values = [];
         $query = "SELECT * FROM `fandoms`";
+        $values = [];
 
-        if (array_key_exists("search", $args)) {
-            $query .= $this->findSearchedBy($args["search"], false);
-            foreach (array_keys($args["search"]) as $key) {
-                $array = explode(' ', $args["search"][$key]);
-                $values[":" . $key] = str_replace("'", "", $array[1]);
+        if (!empty($args['search'])) {
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
+            foreach ($args['search'] as $key => $value) {
+                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
             }
         }
 
-        if (array_key_exists("order", $args)) {
-            $query .= $this->findOrderedBy($args["order"], false);
+        if (!empty($args['order'])) {
+            $orderQuery = $this->findOrderedBy($args['order'], false);
+            $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
         }
 
-        if (array_key_exists("limit", $args)) {
-            $query .= $this->findLimitedBy($args["limit"], false);
+        if (!empty($args['limit'])) {
+            $limitQuery = $this->findLimitedBy($args['limit'], false);
+            $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
         }
 
         $rows = $this->executeQuery($query, $values);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
 
         return $this->parseEntities($rows);
     }
 
     /**
-     * Create a new entity.
-     * Inserts a new Fandom entity into the database.
+     * Create a new Fandom entity in the database.
      *
-     * @param Fandom $entity The entity to create.
-     * @return Fandom The created entity.
+     * @param Entity $entity The Fandom entity to create.
+     * @return Fandom The created Fandom entity with its ID set.
+     * @throws \InvalidArgumentException If the provided entity is not a Fandom.
      */
     public function create(Entity $entity): Fandom
     {
-        // Validate that the provided entity is an instance of Fandom.
-        // Prepare the INSERT query with placeholders for the entity's properties.
-        // Bind the entity's properties to the query parameters.
-        // Execute the query and set the ID of the newly created entity.
-        // Return the created entity.
         if (!$entity instanceof Fandom) {
             throw new \InvalidArgumentException('Expected instance of Fandom');
         }
-    
+
         $query = "INSERT INTO `fandoms` (`name`, `creation_date`, `update_date`, `delete_date`) 
                   VALUES (:name, :creation_date, :update_date, :delete_date)";
         $values = [
@@ -212,27 +231,22 @@ class FandomsTable extends EntitiesTable{
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
             ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
         ];
-    
+
         $this->executeQuery($query, $values);
-    
+
         $entity->setId($this->getLastInsertId());
         return $entity;
     }
 
     /**
-     * Update an existing entity.
-     * Updates the properties of an existing Fandom entity in the database.
+     * Update an existing Fandom entity in the database.
      *
-     * @param Fandom $entity The entity to update.
-     * @return Fandom The updated entity.
+     * @param Entity $entity The Fandom entity to update.
+     * @return Fandom The updated Fandom entity.
+     * @throws \InvalidArgumentException If the provided entity is not a Fandom.
      */
     public function update(Entity $entity): Fandom
     {
-        // Validate that the provided entity is an instance of Fandom.
-        // Prepare the UPDATE query with placeholders for the entity's properties.
-        // Bind the entity's properties to the query parameters.
-        // Execute the query to update the entity in the database.
-        // Return the updated entity.
         if (!$entity instanceof Fandom) {
             throw new \InvalidArgumentException('Expected instance of Fandom');
         }
@@ -253,17 +267,13 @@ class FandomsTable extends EntitiesTable{
     }
 
     /**
-     * Soft delete an entity.
-     * Marks a Fandom entity as deleted by setting a delete date.
+     * Soft delete a Fandom entity by setting its delete date.
      *
-     * @param int $id The ID of the entity to delete.
-     * @return bool True if the entity was soft deleted, false otherwise.
+     * @param int $id The ID of the Fandom to delete.
+     * @return bool True if the operation was successful, false otherwise.
      */
     public function delete(int $id): bool
     {
-        // Prepare the query to set the delete date for the specified entity.
-        // Bind the ID parameter to ensure the correct entity is updated.
-        // Execute the query and return true if the operation was successful.
         $query = "UPDATE `fandoms` SET `delete_date` = NOW() WHERE `id` = :id";
         $values = [":id" => $id];
 
@@ -273,17 +283,13 @@ class FandomsTable extends EntitiesTable{
     }
 
     /**
-     * Restore a soft-deleted entity.
-     * Removes the delete date from a soft-deleted Fandom entity.
+     * Restore a soft-deleted Fandom entity by removing its delete date.
      *
-     * @param int $id The ID of the entity to restore.
-     * @return bool True if the entity was restored, false otherwise.
+     * @param int $id The ID of the Fandom to restore.
+     * @return bool True if the operation was successful, false otherwise.
      */
     public function restore(int $id): bool
     {
-        // Prepare the query to remove the delete date for the specified entity.
-        // Bind the ID parameter to ensure the correct entity is updated.
-        // Execute the query and return true if the operation was successful.
         $query = "UPDATE `fandoms` SET `delete_date` = NULL WHERE `id` = :id";
         $values = [":id" => $id];
 
@@ -293,17 +299,13 @@ class FandomsTable extends EntitiesTable{
     }
 
     /**
-     * Hard delete an entity.
-     * Permanently removes a Fandom entity from the database.
+     * Permanently delete a Fandom entity from the database.
      *
-     * @param int $id The ID of the entity to remove.
-     * @return bool True if the entity was hard deleted, false otherwise.
+     * @param int $id The ID of the Fandom to remove.
+     * @return bool True if the operation was successful, false otherwise.
      */
     public function remove(int $id): bool
     {
-        // Prepare the DELETE query to permanently remove the specified entity.
-        // Bind the ID parameter to ensure the correct entity is deleted.
-        // Execute the query and return true if the operation was successful.
         $query = "DELETE FROM `fandoms` WHERE `id` = :id";
         $values = [":id" => $id];
 
@@ -314,16 +316,12 @@ class FandomsTable extends EntitiesTable{
 
     /**
      * Parse a database row into a Fandom entity.
-     * Converts a database row into a Fandom object.
      *
      * @param array $row The database row to parse.
      * @return Fandom The parsed Fandom entity.
      */
     protected function parseEntity(array $row): Fandom
     {
-        // Map the database row fields to the properties of a Fandom object.
-        // Use the FandomBuilder to construct the Fandom object.
-        // Return the constructed Fandom object.
         return (new FandomBuilder())
             ->withId($row["id"])
             ->withName($row["name"])

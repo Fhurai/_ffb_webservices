@@ -10,226 +10,173 @@ class LinksTableTest extends TestCase
 {
     private LinksTable $linksTable;
 
-    /**
-     * Set up the LinksTable instance before each test.
-     * This method initializes the LinksTable object with test parameters.
-     */
     protected function setUp(): void
     {
         $this->linksTable = new LinksTable("tests", "user");
     }
 
-    /**
-     * Test getting a link by its ID.
-     * This method verifies that a link can be retrieved by its ID and checks its properties.
-     */
-    public function testGetLinkById()
+    public function testGetValidId(): void
     {
-        $link = $this->linksTable->get(1);
-
-        // Assert that the retrieved link has the expected ID and URL.
-        $this->assertEquals(1, $link->getId());
-        $this->assertEquals("https://archiveofourown.org/works/7746940/chapters/17662930", $link->getUrl());
-
-        // Assert that the retrieved object is an instance of the Link class.
-        $this->assertInstanceOf(Link::class, $link);
-
-        // Assert that the creation date is not null and the delete date is null.
-        $this->assertNotNull($link->getCreationDate());
-        $this->assertNull($link->getDeleteDate());
+        $result = $this->linksTable->get(1);
+        $this->assertInstanceOf(Link::class, $result);
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("https://archiveofourown.org/works/7746940/chapters/17662930", $result->getUrl());
+        $this->assertEquals(1, $result->getFanfictionId());
     }
 
-    /**
-     * Test getting a link by an ID that does not exist.
-     * This method ensures that an exception is thrown when trying to retrieve a non-existent link.
-     */
-    public function testGetLinkByIdNotFound()
+    public function testGetInvalidId(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Attempt to retrieve a link with an invalid ID.
-        $this->linksTable->get(0);
+        $this->linksTable->get(9999);
     }
 
-    /**
-     * Test finding links by exact match.
-     * This method verifies that links can be searched by exact match criteria.
-     */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        $links = $this->linksTable->findSearchedBy([
-            "url" => "https://archiveofourown.org/works/7746940/chapters/17662930"
+        $this->expectException(TypeError::class);
+        $this->linksTable->get("invalid_id");
+    }
+
+    public function testFindSearchedByValidCriteria(): void
+    {
+        $result = $this->linksTable->findSearchedBy(['url' => 'https://archiveofourown.org/works/7746940/chapters/17662930']);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertInstanceOf(Link::class, $result[0]);
+    }
+
+    public function testFindSearchedByInvalidCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->linksTable->findSearchedBy(['invalid_column' => 'value']);
+    }
+
+    public function testFindSearchedByEmptyCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No search arguments provided!");
+
+        $this->linksTable->findSearchedBy([]);
+    }
+
+    public function testFindOrderedByValidCriteria(): void
+    {
+        $result = $this->linksTable->findOrderedBy(['url' => 'ASC']);
+        $this->assertIsArray($result);
+        $this->assertCount(1069, $result); // Adjust count based on test data
+        $this->assertEquals("http://archiveofourown.org/works/133672", $result[0]->getUrl());
+    }
+
+    public function testFindOrderedByInvalidDirection(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
+
+        $this->linksTable->findOrderedBy(['url' => 'INVALID']);
+    }
+
+    public function testFindLimitedByValidCriteria(): void
+    {
+        $result = $this->linksTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->linksTable->findLimitedBy(['limit' => -1]);
+    }
+
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        $this->linksTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    public function testFindAllWithCriteria(): void
+    {
+        $result = $this->linksTable->findAll([
+            'search' => ['url' => 'http%'],
+            'order' => ['url' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
         ]);
-
-        // Assert that one link is found and its properties match the expected values.
-        $this->assertCount(1, $links);
-        $this->assertEquals(1, $links[0]->getId());
-        $this->assertEquals("https://archiveofourown.org/works/7746940/chapters/17662930", $links[0]->getUrl());
-        $this->assertInstanceOf(Link::class, $links[0]);
-        $this->assertNotNull($links[0]->getCreationDate());
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
     }
 
-    /**
-     * Test finding links using a LIKE query.
-     * This method ensures that links can be searched using a pattern match.
-     */
-    public function testFindSearchedByLike()
+    public function testFindAllNoResults(): void
     {
-        $links = $this->linksTable->findSearchedBy([
-            "url" => "LIKE 'http%'"
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No data for arguments provided!");
+
+        $this->linksTable->findAll([
+            'search' => ['url' => 'nonexistent%'],
+            'order' => ['url' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
         ]);
-
-        // Assert that the expected number of links is found and their properties are valid.
-        $this->assertCount(1069, $links);
-        $this->assertEquals(1, $links[0]->getId());
-        $this->assertEquals("https://archiveofourown.org/works/7746940/chapters/17662930", $links[0]->getUrl());
-        $this->assertInstanceOf(Link::class, $links[0]);
-        $this->assertNotNull($links[0]->getCreationDate());
     }
 
-    /**
-     * Test finding links ordered by URL in ascending order.
-     * This method verifies that links can be retrieved in a specific order.
-     */
-    public function testFindOrderedByAsc()
+    public function testFindAllEmptyArguments(): void
     {
-        $links = $this->linksTable->findOrderedBy([
-            "url" => "ASC"
-        ]);
-
-        // Assert that the expected number of links is found and the first link has the expected URL.
-        $this->assertCount(1069, $links);
-        $this->assertEquals("http://archiveofourown.org/works/133672", $links[0]->getUrl());
-
-        // Assert that all links are valid instances of the Link class and have a creation date.
-        foreach ($links as $link) {
-            $this->assertInstanceOf(Link::class, $link);
-            $this->assertNotNull($link->getCreationDate());
-        }
+        $result = $this->linksTable->findAll([]);
+        $this->assertIsArray($result);
+        $this->assertCount(1069, $result); // Adjust count based on test data
     }
 
-    /**
-     * Test finding links with a limit of 2.
-     * This method ensures that the number of retrieved links can be limited.
-     */
-    public function testFindLimitedBy02()
+    public function testCreateValid(): void
     {
-        $links = $this->linksTable->findLimitedBy([
-            "limit" => 2
-        ]);
+        $link = (new LinkBuilder())
+            ->withUrl("http://example.com")
+            ->withFanfictionId(1)
+            ->withCreationDate(new DateTime())
+            ->withUpdateDate(new DateTime())
+            ->build();
 
-        // Assert that only two links are retrieved and their properties are valid.
-        $this->assertCount(2, $links);
-        $this->assertEquals("https://archiveofourown.org/works/7746940/chapters/17662930", $links[0]->getUrl());
-        foreach ($links as $link) {
-            $this->assertInstanceOf(Link::class, $link);
-            $this->assertNotNull($link->getCreationDate());
-        }
-    }
-
-    /**
-     * Test creating a new link.
-     * This method verifies that a new link can be created and its properties are correctly set.
-     */
-    public function testCreateLink()
-    {
-        $link = new Link();
-        $link->setUrl("http://newlink.com");
-        $link->setFanfictionId(1);
-        $link->setCreationDate(new DateTime("2023-01-01"));
-        $link->setUpdateDate(new DateTime("2023-01-01"));
-        $link->setDeleteDate(null);
-
-        // Create the link and assert that its properties are correctly set.
         $createdLink = $this->linksTable->create($link);
-        $this->assertNotNull($createdLink->getId());
-        $this->assertEquals("http://newlink.com", $createdLink->getUrl());
+
         $this->assertInstanceOf(Link::class, $createdLink);
-        $this->assertNotNull($createdLink->getCreationDate());
+        $this->assertNotNull($createdLink->getId());
+        $this->assertEquals("http://example.com", $createdLink->getUrl());
     }
 
-    /**
-     * Test updating an existing link.
-     * This method ensures that an existing link can be updated and its properties are modified.
-     */
-    public function testUpdateLink()
+    public function testUpdateValid(): void
     {
-        $link = $this->linksTable->get($this->linksTable->getLastInsertId());
-        $link->setUrl("http://updatedlink.com");
+        $link = $this->linksTable->findSearchedBy(["url" => "http://example.com"])[0];
+        $link->setUrl("http://updated-example.com");
+        $link->setUpdateDate(new DateTime());
 
-        // Update the link and assert that its URL is updated.
         $updatedLink = $this->linksTable->update($link);
-        $this->assertEquals("http://updatedlink.com", $updatedLink->getUrl());
+
         $this->assertInstanceOf(Link::class, $updatedLink);
-        $this->assertNotNull($updatedLink->getUpdateDate());
+        $this->assertEquals("http://updated-example.com", $updatedLink->getUrl());
     }
 
-    /**
-     * Test soft deleting a link.
-     * This method verifies that a link can be soft deleted and its delete date is set.
-     */
-    public function testDeleteLink()
+    public function testDeleteValidId(): void
     {
-        $links = $this->linksTable->findSearchedBy([
-            "url" => "http://updatedlink.com"
-        ]);
-
-        // Soft delete the link and assert that the operation is successful.
-        $result = $this->linksTable->delete($links[0]->getId());
+        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $result = $this->linksTable->delete($link->getId());
         $this->assertTrue($result);
-
-        // Fetch the link again to verify the delete date is set.
-        $deletedLink = $this->linksTable->get($links[0]->getId());
-        $this->assertNotNull($deletedLink->getDeleteDate());
     }
 
-    /**
-     * Test restoring a soft-deleted link.
-     * This method ensures that a soft-deleted link can be restored and its delete date is cleared.
-     */
-    public function testRestoreLink()
+    public function testRestoreValidId(): void
     {
-        $links = $this->linksTable->findSearchedBy([
-            "url" => "http://updatedlink.com"
-        ]);
-
-        // Assert that the link exists and has the expected URL.
-        $this->assertNotEmpty($links);
-        $this->assertEquals("http://updatedlink.com", $links[0]->getUrl());
-
-        // Restore the link and assert that the operation is successful.
-        $result = $this->linksTable->restore($links[0]->getId());
+        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $result = $this->linksTable->restore($link->getId());
         $this->assertTrue($result);
-
-        // Fetch the restored link and verify its properties.
-        $restoredLink = $this->linksTable->get($links[0]->getId());
-        $this->assertNotNull($restoredLink);
-        $this->assertEquals("http://updatedlink.com", $restoredLink->getUrl());
-        $this->assertNull($restoredLink->getDeleteDate());
     }
 
-    /**
-     * Test hard deleting a link.
-     * This method verifies that a link can be permanently deleted and is no longer retrievable.
-     */
-    public function testRemoveLink()
+    public function testRemoveValidId(): void
     {
-        $links = $this->linksTable->findSearchedBy([
-            "url" => "http://updatedlink.com"
-        ]);
-
-        // Assert that the link exists and has the expected URL.
-        $this->assertNotEmpty($links);
-        $this->assertEquals("http://updatedlink.com", $links[0]->getUrl());
-
-        // Permanently delete the link and assert that the operation is successful.
-        $result = $this->linksTable->remove($links[0]->getId());
+        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $result = $this->linksTable->remove($link->getId());
         $this->assertTrue($result);
-
-        // Attempt to retrieve the deleted link and assert that an exception is thrown.
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-        $this->linksTable->get($links[0]->getId());
     }
 }

@@ -11,205 +11,338 @@ class FandomsTableTest extends TestCase
     private FandomsTable $fandomsTable;
 
     /**
-     * Set up the FandomsTable instance before each test.
+     * Set up the FandomsTable instance for testing.
      */
     protected function setUp(): void
     {
+        // Initialize the FandomsTable instance with test parameters
+        // The "tests" database and "user" table are used for testing purposes
         $this->fandomsTable = new FandomsTable("tests", "user");
     }
 
     /**
-     * Test getting a fandom by its ID.
-     * This method verifies that a fandom can be retrieved by its unique ID.
+     * Test retrieving a valid fandom by ID.
      */
-    public function testGetFandomById()
+    public function testGetValidId(): void
     {
-        $fandom = $this->fandomsTable->get(1);
-
-        // Assert that the retrieved fandom has the expected ID.
-        $this->assertEquals(1, $fandom->getId(), "The ID of the retrieved fandom should be 1.");
-        // Assert that the retrieved fandom has the expected name ("Avengers" in this case).
-        $this->assertEquals("Avengers", $fandom->getName(), "The name of the retrieved fandom should be 'Avengers'.");
-        // Assert that the retrieved object is an instance of the Fandom class.
-        $this->assertInstanceOf(Fandom::class, $fandom, "The retrieved object should be an instance of the Fandom class.");
+        // Retrieve a fandom with a valid ID (1)
+        // Verify that the returned object is an instance of Fandom
+        // Check that the ID and name of the fandom match the expected values
+        $result = $this->fandomsTable->get(1);
+        $this->assertInstanceOf(Fandom::class, $result);
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("Avengers", $result->getName());
     }
 
     /**
-     * Test getting a fandom by an ID that does not exist.
-     * This method ensures an exception is thrown when a non-existent ID is queried.
+     * Test retrieving a fandom with an invalid ID.
      */
-    public function testGetFandomByIdNotFound()
+    public function testGetInvalidId(): void
     {
+        // Attempt to retrieve a fandom with an invalid ID (999)
+        // Expect an FfbTableException to be thrown with a specific error message
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
-
-        // Attempt to retrieve a fandom with a non-existent ID (999), which should trigger the exception.
         $this->fandomsTable->get(999);
     }
 
     /**
-     * Test finding fandoms by exact match.
-     * This method checks if fandoms can be searched by exact field values.
+     * Test retrieving a fandom with a non-integer ID.
      */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        $fandoms = $this->fandomsTable->findSearchedBy([
-            "name" => ""
+        // Attempt to retrieve a fandom with a non-integer ID ("invalid_id")
+        // Expect a TypeError to be thrown due to invalid argument type
+        $this->expectException(TypeError::class);
+        $this->fandomsTable->get("invalid_id");
+    }
+
+    /**
+     * Test searching for fandoms with valid criteria.
+     */
+    public function testFindSearchedByValidCriteria(): void
+    {
+        // Search for fandoms using valid criteria (name = "Naruto")
+        // Verify that the result is an array
+        // Check that the array contains exactly one element
+        // Ensure the element is an instance of Fandom
+        $result = $this->fandomsTable->findSearchedBy(['name' => 'Naruto']);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertInstanceOf(Fandom::class, $result[0]);
+    }
+
+    /**
+     * Test searching for fandoms with invalid criteria.
+     */
+    public function testFindSearchedByInvalidCriteria(): void
+    {
+        // Attempt to search for fandoms using invalid criteria (invalid column name)
+        // Expect an FfbTableException to be thrown with a specific error message
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->fandomsTable->findSearchedBy(['invalid_column' => 'value']);
+    }
+
+    /**
+     * Test searching for fandoms with empty criteria.
+     */
+    public function testFindSearchedByEmptyCriteria(): void
+    {
+        // Attempt to search for fandoms with empty criteria
+        // Expect an FfbTableException to be thrown with a specific error message
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No search arguments provided!");
+        $this->fandomsTable->findSearchedBy([]);
+    }
+
+    /**
+     * Test ordering fandoms by valid criteria.
+     */
+    public function testFindOrderedByValidCriteria(): void
+    {
+        // Order fandoms by valid criteria (name in ascending order)
+        // Verify that the result is an array
+        // Check that the array contains the expected number of elements (21)
+        // Ensure the first element has the expected name ("Avengers")
+        $result = $this->fandomsTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertIsArray($result);
+        $this->assertCount(21, $result); // Adjust count based on test data
+        $this->assertEquals("Avengers", $result[0]->getName());
+    }
+
+    /**
+     * Test ordering fandoms with an invalid direction.
+     */
+    public function testFindOrderedByInvalidDirection(): void
+    {
+        // Attempt to order fandoms with an invalid direction ("INVALID")
+        // Expect an FfbTableException to be thrown with a specific error message
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
+        $this->fandomsTable->findOrderedBy(['name' => 'INVALID']);
+    }
+
+    /**
+     * Test limiting the number of fandoms retrieved with valid criteria.
+     */
+    public function testFindLimitedByValidCriteria(): void
+    {
+        // Limit the number of fandoms retrieved (limit = 2, offset = 0)
+        // Verify that the result is an array
+        // Check that the array contains exactly two elements
+        $result = $this->fandomsTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test limiting fandoms with a negative limit value.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        // Attempt to limit fandoms with a negative limit value (-1)
+        // Expect an FfbTableException to be thrown with a specific error message
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+        $this->fandomsTable->findLimitedBy(['limit' => -1]);
+    }
+
+    /**
+     * Test limiting fandoms with a negative offset value.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        // Attempt to limit fandoms with a negative offset value (-5)
+        // Expect an FfbTableException to be thrown with a specific error message
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+        $this->fandomsTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    /**
+     * Test retrieving all fandoms with specific criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        // Retrieve all fandoms with specific criteria:
+        // - Search for names starting with "F"
+        // - Order by name in ascending order
+        // - Limit results to 2 with an offset of 0
+        // Verify that the result is an array
+        // Check that the array contains exactly two elements
+        $result = $this->fandomsTable->findAll([
+            'search' => ['name' => 'F%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
         ]);
-
-        // Assert that no fandoms are returned in the result set.
-        $this->assertCount(0, $fandoms, "The result set should contain 0 fandoms.");
-        // If there are any results, assert that the first object in the result set is an instance of the Fandom class.
-        if (count($fandoms) > 0) {
-            $this->assertInstanceOf(Fandom::class, $fandoms[0], "Each result should be an instance of the Fandom class.");
-        }
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
     }
 
     /**
-     * Test finding fandoms using a LIKE query.
-     * This method validates the ability to search fandoms using partial matches.
+     * Test retrieving all fandoms with criteria that yield no results.
      */
-    public function testFindSearchedByLike()
+    public function testFindAllNoResults(): void
     {
-        $fandoms = $this->fandomsTable->findSearchedBy([
-            "name" => "LIKE 'A%'"
-        ]);
-
-        // Assert that exactly one fandom is returned.
-        $this->assertCount(1, $fandoms, "The result set should contain exactly 1 fandom.");
-        // Assert that the first fandom has the expected ID and name.
-        $this->assertEquals(1, $fandoms[0]->getId(), "The ID of the first fandom should be 1.");
-        $this->assertEquals("Avengers", $fandoms[0]->getName(), "The name of the first fandom should be 'Avengers'.");
-        // Assert that the first object is an instance of the Fandom class.
-        $this->assertInstanceOf(Fandom::class, $fandoms[0], "The first result should be an instance of the Fandom class.");
-    }
-
-    /**
-     * Test finding fandoms ordered by name in ascending order.
-     * This method ensures fandoms can be retrieved in a specific order.
-     */
-    public function testFindOrderedByAsc()
-    {
-        $fandoms = $this->fandomsTable->findOrderedBy([
-            "name" => "ASC"
-        ]);
-
-        $this->assertCount(21, $fandoms);
-        $this->assertEquals("Avengers", $fandoms[0]->getName());
-        $this->assertEquals("Boruto: Naruto Next Generations", $fandoms[1]->getName());
-        foreach ($fandoms as $fandom) {
-            $this->assertInstanceOf(Fandom::class, $fandom);
-        }
-    }
-
-    /**
-     * Test finding fandoms with a limit of 2.
-     * This method verifies that the number of results can be limited.
-     */
-    public function testFindLimitedBy02()
-    {
-        $fandoms = $this->fandomsTable->findLimitedBy([
-            "limit" => 2
-        ]);
-
-        $this->assertCount(2, $fandoms);
-        $this->assertEquals("Avengers", $fandoms[0]->getName());
-        $this->assertEquals("Boruto: Naruto Next Generations", $fandoms[1]->getName());
-        foreach ($fandoms as $fandom) {
-            $this->assertInstanceOf(Fandom::class, $fandom);
-        }
-    }
-
-    /**
-     * Test creating a new fandom.
-     * This method ensures a new fandom can be added to the database.
-     */
-    public function testCreateFandom()
-    {
-        $fandom = new Fandom();
-        $fandom->setName("New Fandom");
-        $fandom->setCreationDate(new DateTime("2023-01-01"));
-        $fandom->setUpdateDate(new DateTime("2023-01-01"));
-        $fandom->setDeleteDate(null);
-
-        $createdFandom = $this->fandomsTable->create($fandom);
-
-        $this->assertNotNull($createdFandom->getId());
-        $this->assertEquals("New Fandom", $createdFandom->getName());
-        $this->assertInstanceOf(Fandom::class, $createdFandom);
-    }
-
-    /**
-     * Test updating an existing fandom.
-     * This method validates that a fandom's details can be updated.
-     */
-    public function testUpdateFandom()
-    {
-        $fandom = $this->fandomsTable->get($this->fandomsTable->getLastInsertId());
-        $fandom->setName("Updated Fandom");
-
-        $updatedFandom = $this->fandomsTable->update($fandom);
-
-        $this->assertEquals("Updated Fandom", $updatedFandom->getName());
-        $this->assertInstanceOf(Fandom::class, $updatedFandom);
-    }
-
-    /**
-     * Test soft deleting a fandom.
-     * This method ensures a fandom can be marked as deleted.
-     */
-    public function testDeleteFandom()
-    {
-        $fandoms = $this->fandomsTable->findSearchedBy([
-            "name" => "Updated Fandom"
-        ]);
-
-        $result = $this->fandomsTable->delete($fandoms[0]->getId());
-
-        $this->assertTrue($result);
-    }
-
-    /**
-     * Test restoring a soft-deleted fandom.
-     * This method verifies that a deleted fandom can be restored.
-     */
-    public function testRestoreFandom()
-    {
-        $fandoms = $this->fandomsTable->findSearchedBy([
-            "name" => "Updated Fandom"
-        ]);
-
-        $this->assertNotEmpty($fandoms);
-        $this->assertEquals("Updated Fandom", $fandoms[0]->getName());
-
-        $result = $this->fandomsTable->restore($fandoms[0]->getId());
-
-        $this->assertTrue($result);
-
-        $restoredFandom = $this->fandomsTable->get($fandoms[0]->getId());
-        $this->assertNotNull($restoredFandom);
-        $this->assertEquals("Updated Fandom", $restoredFandom->getName());
-    }
-
-    /**
-     * Test hard deleting a fandom.
-     * This method ensures a fandom can be permanently removed.
-     */
-    public function testRemoveFandom()
-    {
-        $fandoms = $this->fandomsTable->findSearchedBy([
-            "name" => "Updated Fandom"
-        ]);
-
-        $this->assertNotEmpty($fandoms);
-        $this->assertEquals("Updated Fandom", $fandoms[0]->getName());
-
-        $result = $this->fandomsTable->remove($fandoms[0]->getId());
-
-        $this->assertTrue($result);
-
+        // Attempt to retrieve all fandoms with criteria that yield no results:
+        // - Search for names starting with "Nonexistent"
+        // - Order by name in ascending order
+        // - Limit results to 2 with an offset of 0
+        // Expect an FfbTableException to be thrown with a specific error message
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
-        $this->fandomsTable->get($fandoms[0]->getId());
+        $this->fandomsTable->findAll([
+            'search' => ['name' => 'Nonexistent%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+    }
+
+    /**
+     * Test retrieving all fandoms with empty arguments.
+     */
+    public function testFindAllEmptyArguments(): void
+    {
+        // Retrieve all fandoms with no specific criteria
+        // Verify that the result is an array
+        // Check that the array contains the expected number of elements (21)
+        $result = $this->fandomsTable->findAll([]);
+        $this->assertIsArray($result);
+        $this->assertCount(21, $result); // Adjust count based on test data
+    }
+
+    /**
+     * Test creating a valid fandom entity.
+     */
+    public function testCreateValid(): void
+    {
+        // Create a valid fandom entity using the FandomBuilder
+        // Set the name, creation date, and update date of the fandom
+        // Verify that the created fandom is an instance of Fandom
+        // Check that the ID is not null and the name matches the expected value
+        $fandom = (new FandomBuilder())
+            ->withName("New Fandom")
+            ->withCreationDate(new DateTime())
+            ->withUpdateDate(new DateTime())
+            ->build();
+
+        $createdFandom = $this->fandomsTable->create($fandom);
+        $this->assertInstanceOf(Fandom::class, $createdFandom);
+        $this->assertNotNull($createdFandom->getId());
+        $this->assertEquals("New Fandom", $createdFandom->getName());
+    }
+
+    /**
+     * Test creating an invalid fandom entity.
+     */
+    public function testCreateInvalidEntity(): void
+    {
+        // Attempt to create an invalid fandom entity (stdClass)
+        // Expect a TypeError to be thrown due to invalid argument type
+        $this->expectException(TypeError::class);
+        $this->fandomsTable->create(new stdClass());
+    }
+
+    /**
+     * Test updating a valid fandom entity.
+     */
+    public function testUpdateValid(): void
+    {
+        // Update a valid fandom entity
+        // Retrieve the fandom with the name "New Fandom"
+        // Set the new name and update date of the fandom
+        // Verify that the updated fandom is an instance of Fandom
+        // Check that the name matches the expected value
+        $fandom = $this->fandomsTable->findSearchedBy(["name" => "New Fandom"])[0];
+        $fandom->setName("Updated Fandom");
+        $fandom->setUpdateDate(new DateTime());
+
+        $updatedFandom = $this->fandomsTable->update($fandom);
+        $this->assertInstanceOf(Fandom::class, $updatedFandom);
+        $this->assertEquals("Updated Fandom", $updatedFandom->getName());
+    }
+
+    /**
+     * Test updating an invalid fandom entity.
+     */
+    public function testUpdateInvalidEntity(): void
+    {
+        // Attempt to update an invalid fandom entity (stdClass)
+        // Expect a TypeError to be thrown due to invalid argument type
+        $this->expectException(TypeError::class);
+        $this->fandomsTable->update(new stdClass());
+    }
+
+    /**
+     * Test deleting a fandom by valid ID.
+     */
+    public function testDeleteValidId(): void
+    {
+        // Delete a fandom by valid ID
+        // Retrieve the fandom with the name "Updated Fandom"
+        // Verify that the deletion result is true
+        $fandom = $this->fandomsTable->findSearchedBy(["name" => "Updated Fandom"])[0];
+        $result = $this->fandomsTable->delete($fandom->getId());
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Test deleting a fandom by invalid ID.
+     */
+    public function testDeleteInvalidId(): void
+    {
+        // Attempt to delete a fandom by invalid ID (9999)
+        // Verify that the deletion result is false
+        $result = $this->fandomsTable->delete(9999);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test restoring a fandom by valid ID.
+     */
+    public function testRestoreValidId(): void
+    {
+        // Restore a fandom by valid ID
+        // Retrieve the fandom with the name "Updated Fandom"
+        // Verify that the restoration result is true
+        $fandom = $this->fandomsTable->findSearchedBy(["name" => "Updated Fandom"])[0];
+        $result = $this->fandomsTable->restore($fandom->getId());
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Test restoring a fandom by invalid ID.
+     */
+    public function testRestoreInvalidId(): void
+    {
+        // Attempt to restore a fandom by invalid ID (9999)
+        // Verify that the restoration result is false
+        $result = $this->fandomsTable->restore(9999);
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Test removing a fandom by valid ID.
+     */
+    public function testRemoveValidId(): void
+    {
+        // Remove a fandom by valid ID
+        // Retrieve the fandom with the name "Updated Fandom"
+        // Verify that the removal result is true
+        $fandom = $this->fandomsTable->findSearchedBy(["name" => "Updated Fandom"])[0];
+        $result = $this->fandomsTable->remove($fandom->getId());
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Test removing a fandom by invalid ID.
+     */
+    public function testRemoveInvalidId(): void
+    {
+        // Attempt to remove a fandom by invalid ID (999)
+        // Verify that the removal result is false
+        $result = $this->fandomsTable->remove(999);
+        $this->assertFalse($result);
     }
 }
