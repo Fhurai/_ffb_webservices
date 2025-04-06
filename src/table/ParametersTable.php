@@ -33,7 +33,7 @@ abstract class ParametersTable
      * @param bool $execute Whether to execute the query immediately (default: true).
      * @return mixed The search results as an array or object.
      */
-    abstract public function findSearchedBy(array $args, $execute = true): mixed;
+    abstract public function findSearchedBy(array $args, bool $execute = true): mixed;
 
     /**
      * Retrieve parameters ordered by specific criteria.
@@ -41,7 +41,7 @@ abstract class ParametersTable
      * @param bool $execute Whether to execute the query immediately (default: true).
      * @return mixed The ordered results as an array or object.
      */
-    abstract public function findOrderedBy(array $args, $execute = true): mixed;
+    abstract public function findOrderedBy(array $args, bool $execute = true): mixed;
 
     /**
      * Retrieve a limited number of parameters based on criteria.
@@ -49,14 +49,14 @@ abstract class ParametersTable
      * @param bool $execute Whether to execute the query immediately (default: true).
      * @return mixed The limited results as an array or object.
      */
-    abstract public function findLimitedBy(array $args, $execute = true): mixed;
+    abstract public function findLimitedBy(array $args, bool $execute = true): mixed;
 
     /**
      * Retrieve all parameters matching the provided criteria.
      * @param array $args An associative array of filtering criteria.
-     * @return mixed The results as an array or object.
+     * @return array The results as an array.
      */
-    abstract public function findAll(array $args);
+    abstract public function findAll(array $args): array;
 
     /**
      * Convert a database row into a corresponding entity object.
@@ -72,7 +72,7 @@ abstract class ParametersTable
      * @return array The query results.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
-    protected function executeQuery(string $query, array $values){
+    protected function executeQuery(string $query, array $values = []): array{
         try {
             // Prepare and execute the query.
             $sth = $this->connection->prepare($query);
@@ -99,4 +99,25 @@ abstract class ParametersTable
     {
         return array_map([$this, 'parseEntity'], $rows);
     }
+
+    /**
+ * Get valid column names for the specified table.
+ * @param string $tableName The table name.
+ * @return array List of valid column names.
+ * @throws FfbTableException If the query fails.
+ */
+protected function getTableColumns(string $tableName): array {
+    try {
+        $stmt = $this->connection->prepare("
+            SELECT COLUMN_NAME 
+            FROM INFORMATION_SCHEMA.COLUMNS 
+            WHERE TABLE_SCHEMA = DATABASE() 
+              AND TABLE_NAME = :table
+        ");
+        $stmt->execute([':table' => $tableName]);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    } catch (PDOException $e) {
+        throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+    }
+}
 }

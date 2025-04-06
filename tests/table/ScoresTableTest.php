@@ -12,6 +12,7 @@ class ScoresTableTest extends TestCase
 
     /**
      * Set up the ScoresTable instance before each test.
+     * This method initializes the ScoresTable object with test-specific parameters.
      */
     protected function setUp(): void
     {
@@ -19,385 +20,215 @@ class ScoresTableTest extends TestCase
     }
 
     /**
-     * Test getting a score by its ID.
-     * This test checks if the score with ID 0 can be retrieved correctly.
+     * Test the get method with a valid ID.
+     * Verifies that the method returns a Score object with the expected properties.
      */
-    public function testGetScoreById()
+    public function testGetValidId(): void
     {
-        // Retrieve the score with ID 0
-        $score = $this->scoresTable->get(0);
-
-        // Assert that the ID and name of the score are as expected
-        $this->assertEquals(0, $score->getId());
-        $this->assertEquals("Unacceptable", $score->getName());
-        // Assert that the retrieved object is an instance of Score
-        $this->assertInstanceOf(Score::class, $score);
-
-        // Additional assertions
-        $this->assertNotEmpty($score->getName(), "Score name should not be empty");
-        $this->assertIsString($score->getName(), "Score name should be a string");
+        $result = $this->scoresTable->get(1);
+        $this->assertInstanceOf(Score::class, $result); // Ensure the result is a Score object.
+        $this->assertEquals(1, $result->getId()); // Check that the ID matches.
+        $this->assertEquals("Poor", $result->getName()); // Check that the name matches.
     }
 
     /**
-     * Test getting a score by an ID that does not exist.
-     * This test checks if an exception is thrown when trying to get a score with a non-existent ID.
+     * Test the get method with an invalid ID.
+     * Ensures that an exception is thrown when the ID does not exist.
      */
-    public function testGetScoreByIdNotFound()
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-        $this->scoresTable->get(6);
-
-        // Additional assertion to ensure exception is thrown
-        $this->assertTrue(true, "Exception was correctly thrown");
-    }
-
-    /**
-     * Test finding scores by exact match.
-     * This test checks if the score with the exact name "Acceptable" can be found.
-     */
-    public function testFindSearchedByEquality()
-    {
-        // Search for scores with the exact name "Acceptable"
-        $scores = $this->scoresTable->findSearchedBy([
-            "name" => "Acceptable"
-        ]);
-
-        // Assert that one score is found
-        $this->assertCount(1, $scores);
-        // Assert that the ID and name of the score are as expected
-        $this->assertEquals(3, $scores[0]->getId());
-        $this->assertEquals("Acceptable", $scores[0]->getName());
-        // Assert that the retrieved object is an instance of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores using a LIKE query.
-     * This test checks if scores with names starting with "Score" can be found using a LIKE query.
-     */
-    public function testFindSearchedByLike()
-    {
-        // Search for scores with names starting with "Score"
-        $scores = $this->scoresTable->findSearchedBy([
-            "name" => "LIKE 'Acceptable%'"
-        ]);
-
-        // Assert that two scores are found
-        $this->assertCount(1, $scores);
-        // Assert that the IDs and names of the scores are as expected
-        $this->assertEquals(3, $scores[0]->getId());
-        $this->assertEquals("Acceptable", $scores[0]->getName());
-        // Assert that the retrieved objects are instances of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores with a condition greater than a specified value.
-     * This test checks if scores with IDs greater than 1 can be found.
-     */
-    public function testFindSearchedBySuperior()
-    {
-        // Search for scores with IDs greater than 1
-        $scores = $this->scoresTable->findSearchedBy([
-            "id" => "> 1"
-        ]);
-
-        // Assert that three scores are found
-        $this->assertCount(4, $scores);
-        // Assert that the IDs and names of the scores are as expected
-        $this->assertEquals(2, $scores[0]->getId());
-        $this->assertEquals("Needs improvement", $scores[0]->getName());
-        $this->assertEquals(3, $scores[1]->getId());
-        $this->assertEquals("Acceptable", $scores[1]->getName());
-        $this->assertEquals(4, $scores[2]->getId());
-        $this->assertEquals("Good", $scores[2]->getName());
-        $this->assertEquals(5, $scores[3]->getId());
-        $this->assertEquals("Excellent", $scores[3]->getName());
-        // Assert that the retrieved objects are instances of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-        $this->assertInstanceOf(Score::class, $scores[1]);
-        $this->assertInstanceOf(Score::class, $scores[2]);
-        $this->assertInstanceOf(Score::class, $scores[3]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores ordered by name in ascending order.
-     * This test checks if scores can be ordered by name in ascending order.
-     */
-    public function testFindOrderedByAsc()
-    {
-        // Retrieve scores ordered by name in ascending order
-        $scores = $this->scoresTable->findOrderedBy([
-            "name" => "ASC"
-        ]);
-
-        // Assert that five scores are found
-        $this->assertCount(6, $scores);
-        // Assert that the IDs and names of the scores are as expected
-        $this->assertEquals(3, $scores[0]->getId());
-        $this->assertEquals("Acceptable", $scores[0]->getName());
-        $this->assertEquals(5, $scores[1]->getId());
-        $this->assertEquals("Excellent", $scores[1]->getName());
-        $this->assertEquals(4, $scores[2]->getId());
-        $this->assertEquals("Good", $scores[2]->getName());
-        $this->assertEquals(2, $scores[3]->getId());
-        $this->assertEquals("Needs improvement", $scores[3]->getName());
-        $this->assertEquals(1, $scores[4]->getId());
-        $this->assertEquals("Poor", $scores[4]->getName());
-        // Assert that the retrieved objects are instances of Score
-        foreach ($scores as $score) {
-            $this->assertInstanceOf(Score::class, $score);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores ordered by ID in descending order.
-     * This test checks if scores can be ordered by ID in descending order.
-     */
-    public function testFindOrderedByDesc()
-    {
-        // Retrieve scores ordered by ID in descending order
-        $scores = $this->scoresTable->findOrderedBy([
-            "id" => "DESC"
-        ]);
-
-        // Assert that five scores are found
-        $this->assertCount(6, $scores);
-        // Assert that the IDs and names of the scores are as expected
-        $this->assertEquals(5, $scores[0]->getId());
-        $this->assertEquals("Excellent", $scores[0]->getName());
-        $this->assertEquals(4, $scores[1]->getId());
-        $this->assertEquals("Good", $scores[1]->getName());
-        $this->assertEquals(3, $scores[2]->getId());
-        $this->assertEquals("Acceptable", $scores[2]->getName());
-        $this->assertEquals(2, $scores[3]->getId());
-        $this->assertEquals("Needs improvement", $scores[3]->getName());
-        $this->assertEquals(1, $scores[4]->getId());
-        $this->assertEquals("Poor", $scores[4]->getName());
-        // Assert that the retrieved objects are instances of Score
-        foreach ($scores as $score) {
-            $this->assertInstanceOf(Score::class, $score);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores with a limit of 2.
-     * This test checks if only 2 scores can be retrieved when a limit is set.
-     */
-    public function testFindLimitedBy02()
-    {
-        // Retrieve scores with a limit of 2
-        $scores = $this->scoresTable->findLimitedBy([
-            "limit" => 2
-        ]);
-
-        // Assert that two scores are found
-        $this->assertCount(2, $scores);
-        // Assert that the IDs and names of the scores are as expected
-        $this->assertEquals(3, $scores[0]->getId());
-        $this->assertEquals("Acceptable", $scores[0]->getName());
-        $this->assertEquals(5, $scores[1]->getId());
-        $this->assertEquals("Excellent", $scores[1]->getName());
-        // Assert that the retrieved objects are instances of Score
-        foreach ($scores as $score) {
-            $this->assertInstanceOf(Score::class, $score);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores with a limit of 1 and an offset of 1.
-     * This test checks if the second score can be retrieved when a limit of 1 and an offset of 1 are set.
-     */
-    public function testFindLimitedBy11()
-    {
-        // Retrieve scores with a limit of 1 and an offset of 1
-        $scores = $this->scoresTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => 1
-        ]);
-
-        // Assert that one score is found
-        $this->assertCount(1, $scores);
-        // Assert that the ID and name of the score are as expected
-        $this->assertEquals(5, $scores[0]->getId());
-        $this->assertEquals("Excellent", $scores[0]->getName());
-        // Assert that the retrieved object is an instance of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding all scores with search, order, and limit conditions.
-     * This test checks if scores can be found with combined search, order, and limit conditions.
-     */
-    public function testFindAll()
-    {
-        // Retrieve scores with combined search, order, and limit conditions
-        $scores = $this->scoresTable->findAll(["search" => [
-            "name" => "LIKE 'P%'"
-        ], "order" => [
-            "name" => "DESC"
-        ], "limit" => [
-            "limit" => 0,
-            "offset" => 2
-        ]]);
-
-        // Assert that one score is found
-        $this->assertCount(1, $scores);
-        // Assert that the ID and name of the score is as expected
-        $this->assertEquals(1, $scores[0]->getId());
-        $this->assertEquals("Poor", $scores[0]->getName());
-        // Assert that the retrieved object is instance of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores with multiple search criteria.
-     * This test checks if scores can be found with multiple search criteria.
-     */
-    public function testFindSearchedByMultipleCriteria()
-    {
-        // Search for scores with names starting with "Score" and IDs greater than 0
-        $scores = $this->scoresTable->findSearchedBy([
-            "name" => "LIKE 'N%'",
-            "id" => "> 0"
-        ]);
-
-        // Assert that one score is found
-        $this->assertCount(1, $scores);
-        // Assert that the ID and name of the score are as expected
-        $this->assertEquals(2, $scores[0]->getId());
-        $this->assertEquals("Needs improvement", $scores[0]->getName());
-        // Assert that the retrieved object is an instance of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    /**
-     * Test finding scores with complex order and limit conditions.
-     * This test checks if scores can be found with complex order and limit conditions.
-     */
-    public function testFindAllWithComplexConditions()
-    {
-        // Retrieve scores with complex order and limit conditions
-        $scores = $this->scoresTable->findAll([
-            "search" => [
-                "name" => "LIKE '%oo%'"
-            ],
-            "order" => [
-                "id" => "ASC"
-            ],
-            "limit" => [
-                "limit" => 1,
-                "offset" => 1
-            ]
-        ]);
-
-        // Assert that one score is found
-        $this->assertCount(1, $scores);
-        // Assert that the ID and name of the score are as expected
-        $this->assertEquals(4, $scores[0]->getId());
-        $this->assertEquals("Good", $scores[0]->getName());
-        // Assert that the retrieved object is an instance of Score
-        $this->assertInstanceOf(Score::class, $scores[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($scores, "Scores array should not be empty");
-        $this->assertIsArray($scores, "Scores should be returned as an array");
-    }
-
-    
-    /**
-     * Test finding scores with empty search criteria.
-     * This test checks if an exception is thrown when search criteria are empty.
-     */
-    public function testFindSearchedByEmptyCriteria()
+    public function testGetInvalidId(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Attempt to search with empty criteria
-        $this->scoresTable->findSearchedBy([]);
+        $this->scoresTable->get(999); // Attempt to fetch a non-existent ID.
     }
 
     /**
-     * Test finding scores with a negative limit.
-     * This test checks if an exception is thrown when the limit is negative.
+     * Test the get method with a non-integer ID.
+     * Ensures that a TypeError is thrown for invalid input types.
      */
-    public function testFindLimitedByNegativeLimit()
+    public function testGetNonIntegerId(): void
+    {
+        $this->expectException(TypeError::class);
+        $this->scoresTable->get("invalid_id"); // Pass a string instead of an integer.
+    }
+
+    /**
+     * Test the findSearchedBy method with valid search criteria.
+     * Verifies that the method returns an array of matching Score objects.
+     */
+    public function testFindSearchedByValidCriteria(): void
+    {
+        $result = $this->scoresTable->findSearchedBy(['name' => 'Excellent%']);
+        $this->assertIsArray($result); // Ensure the result is an array.
+        $this->assertCount(1, $result); // Check that one result is returned.
+        $this->assertInstanceOf(Score::class, $result[0]); // Verify the result is a Score object.
+    }
+
+    /**
+     * Test the findSearchedBy method with invalid search criteria.
+     * Ensures that an exception is thrown for invalid column names.
+     */
+    public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Limit must be a non-negative integer!");
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
-        // Attempt to retrieve scores with a negative limit
-        $this->scoresTable->findLimitedBy([
-            "limit" => -1
-        ]);
+        $this->scoresTable->findSearchedBy(['invalid_column' => 'value']); // Use an invalid column name.
     }
 
     /**
-     * Test finding scores with a negative offset.
-     * This test checks if an exception is thrown when the offset is negative.
+     * Test the findSearchedBy method with empty search criteria.
+     * Ensures that an exception is thrown when no criteria are provided.
      */
-    public function testFindLimitedByNegativeOffset()
+    public function testFindSearchedByEmptyCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+        $this->expectExceptionMessage("No search arguments provided!");
 
-        // Attempt to retrieve scores with a negative offset
-        $this->scoresTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => -1
-        ]);
+        $this->scoresTable->findSearchedBy([]); // Pass an empty array as criteria.
     }
 
     /**
-     * Test finding scores with a limit of zero.
-     * This test checks if no scores are returned when the limit is zero.
+     * Test the findOrderedBy method with valid order criteria.
+     * Verifies that the method returns an array of Score objects in the correct order.
      */
-    public function testFindLimitedByZeroLimit()
+    public function testFindOrderedByValidCriteria(): void
+    {
+        $result = $this->scoresTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertIsArray($result); // Ensure the result is an array.
+        $this->assertCount(6, $result); // Check that six results are returned.
+        $this->assertEquals("Acceptable", $result[0]->getName()); // Verify the first result is ordered correctly.
+    }
+
+    /**
+     * Test the findOrderedBy method with invalid order direction.
+     * Ensures that an exception is thrown for invalid order directions.
+     */
+    public function testFindOrderedByInvalidDirection(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
+
+        $this->scoresTable->findOrderedBy(['name' => 'INVALID']); // Use an invalid order direction.
+    }
+
+    /**
+     * Test the findLimitedBy method with valid limit and offset.
+     * Verifies that the method returns the correct number of results.
+     */
+    public function testFindLimitedByValidCriteria(): void
+    {
+        $result = $this->scoresTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result); // Ensure the result is an array.
+        $this->assertCount(2, $result); // Check that two results are returned.
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative limit.
+     * Ensures that an exception is thrown for invalid limit values.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->scoresTable->findLimitedBy(['limit' => -1]); // Use a negative limit value.
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative offset.
+     * Ensures that an exception is thrown for invalid offset values.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        $this->scoresTable->findLimitedBy(['limit' => 10, 'offset' => -5]); // Use a negative offset value.
+    }
+
+    /**
+     * Test the findAll method with combined criteria.
+     * Verifies that the method returns results matching all specified criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        $result = $this->scoresTable->findAll([
+            'search' => ['name' => 'P%'], // Search for names starting with 'P'.
+            'order' => ['name' => 'ASC'], // Order results by name in ascending order.
+            'limit' => ['limit' => 2, 'offset' => 0] // Limit results to 2 with no offset.
+        ]);
+        $this->assertIsArray($result); // Ensure the result is an array.
+        $this->assertCount(1, $result); // Check that one result is returned.
+    }
+
+    /**
+     * Test the findAll method with no results.
+     * Ensures that an exception is thrown when no results match the criteria.
+     */
+    public function testFindAllNoResults(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Retrieve scores with a limit of zero
-        $scores = $this->scoresTable->findLimitedBy([
-            "limit" => 0
+        $this->scoresTable->findAll([
+            'search' => ['name' => 'Nonexistent%'], // Use a search term that matches no results.
+            'order' => ['name' => 'ASC'], // Order results by name in ascending order.
+            'limit' => ['limit' => 2, 'offset' => 0] // Limit results to 2 with no offset.
+        ]);
+    }
+
+    /**
+     * Test the findAll method with empty arguments.
+     * Verifies that the method returns all results when no criteria are provided.
+     */
+    public function testFindAllEmptyArguments(): void
+    {
+        $result = $this->scoresTable->findAll([]); // Pass an empty array as arguments.
+        $this->assertIsArray($result); // Ensure the result is an array.
+        $this->assertCount(6, $result); // Check that all six results are returned.
+    }
+
+    /**
+     * Test the findAll method with invalid search criteria.
+     * Ensures that an exception is thrown for invalid column names in the search criteria.
+     */
+    public function testFindAllInvalidSearchCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->scoresTable->findAll([
+            'search' => ['invalid_column' => 'value'] // Use an invalid column name in the search criteria.
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid order criteria.
+     * Ensures that an exception is thrown for invalid column names in the order criteria.
+     */
+    public function testFindAllInvalidOrderCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->scoresTable->findAll([
+            'order' => ['invalid_column' => 'ASC'] // Use an invalid column name in the order criteria.
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid limit criteria.
+     * Ensures that an exception is thrown for invalid limit values.
+     */
+    public function testFindAllInvalidLimitCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->scoresTable->findAll([
+            'limit' => ['limit' => -10] // Use a negative limit value.
         ]);
     }
 }

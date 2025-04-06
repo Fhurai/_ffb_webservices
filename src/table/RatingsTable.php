@@ -18,14 +18,14 @@ class RatingsTable extends ParametersTable
      */
     public function get(int $id): Rating
     {
-        // Prepare the query to fetch the rating by ID.
         $query = "SELECT * FROM `ratings` WHERE `id` = :id";
         $values = [":id" => $id];
-
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query, $values);
 
-        // Parse the result into a Rating object and return it.
+        if (empty($rows)) {
+            throw new FfbTableException("No rating found with ID: $id");
+        }
+
         return $this->parseEntity($rows[0]);
     }
 
@@ -36,164 +36,225 @@ class RatingsTable extends ParametersTable
      * @return mixed The query string or the result set.
      * @throws FfbTableException If no data is found or a PDO exception occurs.
      */
-    public function findSearchedBy(array $args, $execute = true): mixed
+    public function findSearchedBy(array $args, bool $execute = true): mixed
     {
-        $values = [];
-        $first = true;
-        $query = $execute ? "SELECT * FROM `ratings`" : "";
-
         if (empty($args)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException("No search arguments provided!");
         }
 
-        // Build the query based on the provided arguments.
+        $values = [];
+        $query = $execute ? "SELECT * FROM `ratings`" : "";
+        $validColumns = $this->getTableColumns('ratings');
+
+        foreach ($args as $column => $value) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
+            }
+        }
+
+        $conditions = [];
         foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " WHERE ";
-                $first = false;
+            if (str_contains($value, '%')) {
+                $conditions[] = "$key LIKE :$key";
+                $values[":$key"] = $value;
+            } elseif (preg_match('/[<>=!]/', $value)) {
+                [$operator, $val] = explode(' ', $value, 2);
+                $conditions[] = "$key $operator :$key";
+                $values[":$key"] = str_replace("'", "", $val);
             } else {
-                $query .= " AND ";
-            }
-
-            // Handle different types of conditions.
-            if ((strpos($value, "<") !== false) || (strpos($value, ">") !== false) || (strpos($value, "!") !== false) || (strpos($value, "%"))) {
-                $array = explode(' ', $value);
-                $query .= " " . $key . " " . $array[0] . " :" . $key;
-                $values[":" . $key] = str_replace("'", "", $array[1]);
-            } else {
-                $query .= " " . $key . " = :" . $key;
-                $values[":" . $key] = $value;
+                $conditions[] = "$key = :$key";
+                $values[":$key"] = $value;
             }
         }
 
-        // Return the query string if not executing.
+        if (!empty($conditions)) {
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
+
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query, $values);
 
-        // Parse the result into an array of Rating objects and return it.
+        if (empty($rows)) {
+            throw new FfbTableException("No ratings found matching the search criteria.");
+        }
+
         return $this->parseEntities($rows);
     }
 
     /**
      * Find ratings based on order criteria.
-     * @param array $args Order arguments.
+     * This method constructs and executes a query to retrieve ratings
+     * ordered by specified columns and directions.
+     *
+     * @param array $args Order arguments in the format ['column' => 'direction'].
+     *                    Example: ['score' => 'DESC', 'id' => 'ASC'].
      * @param bool $execute Whether to execute the query or return it as a string.
-     * @return mixed The query string or the result set.
-     * @throws FfbTableException If no data is found or a PDO exception occurs.
+     *                      If false, the constructed query string is returned.
+     * @return mixed The query string (if $execute is false) or the result set (if $execute is true).
+     * @throws FfbTableException If no data is found, invalid column names or directions are provided,
+     *                           or a PDO exception occurs.
      */
-    public function findOrderedBy(array $args, $execute = true): mixed
+    public function findOrderedBy(array $args, bool $execute = true): mixed
     {
-        $values = [];
-        $first = true;
+        // Ensure that order arguments are provided.
+        if (empty($args)) {
+            throw new FfbTableException("No order arguments provided!");
+        }
+
+        // Initialize the base query.
         $query = $execute ? "SELECT * FROM `ratings`" : "";
 
-        if (empty($args)) {
-            throw new FfbTableException("No data for arguments provided!");
-        }
+        // Array to hold ORDER BY clauses.
+        $orderClauses = [];
 
-        // Build the ORDER BY clause based on the provided arguments.
-        foreach ($args as $key => $value) {
-            if ($first) {
-                $query .= " ORDER BY " . $key . " " . $value;
-                $first = false;
-            } else {
-                $query .= "OFFSET " . $key . " " . $value;
+        // Retrieve valid column names for the `ratings` table.
+        $validColumns = $this->getTableColumns('ratings');
+
+        // Validate and construct ORDER BY clauses.
+        foreach ($args as $column => $direction) {
+            // Check if the column name is valid.
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
             }
+            // Check if the direction is valid (ASC or DESC).
+            if (!in_array(strtoupper($direction), ['ASC', 'DESC'])) {
+                throw new FfbTableException("Invalid order direction: '$direction'");
+            }
+            // Add the column and direction to the ORDER BY clause.
+            $orderClauses[] = "$column $direction";
         }
 
-        // Return the query string if not executing.
+        // Append the ORDER BY clause to the query if there are valid clauses.
+        if (!empty($orderClauses)) {
+            $query .= " ORDER BY " . implode(", ", $orderClauses);
+        }
+
+        // If $execute is false, return the constructed query string.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
-        $rows = $this->executeQuery($query, $values);
+        // Execute the query and fetch the results.
+        $rows = $this->executeQuery($query);
 
-        // Parse the result into an array of Rating objects and return it.
+        // Throw an exception if no rows are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No ratings found matching the order criteria.");
+        }
+
+        // Parse and return the result set as an array of Rating objects.
         return $this->parseEntities($rows);
     }
 
     /**
      * Find ratings based on limit criteria.
+     * This method constructs and executes a query to retrieve a limited number of ratings,
+     * optionally starting from a specified offset.
+     *
      * @param array $args Limit arguments.
+     *                    Example: ['limit' => 10, 'offset' => 5].
      * @param bool $execute Whether to execute the query or return it as a string.
-     * @return mixed The query string or the result set.
-     * @throws FfbTableException If no data is found or a PDO exception occurs.
+     *                      If false, the constructed query string is returned.
+     * @return mixed The query string (if $execute is false) or the result set (if $execute is true).
+     * @throws FfbTableException If no data is found, invalid limit or offset values are provided,
+     *                           or a PDO exception occurs.
      */
-    public function findLimitedBy(array $args, $execute = true): mixed
+    public function findLimitedBy(array $args, bool $execute = true): mixed
     {
-        $values = [];
-        $query = $execute ? "SELECT * FROM `ratings`" : "";
-
-        // Add the LIMIT clause to the query.
-        if (!empty($args) && is_array($args) && array_key_exists("limit", $args)) {
-
-            // Check if the limit is a valid integer.
-            if (is_numeric($args["limit"]) && $args["limit"] < 0) {
-                throw new FfbTableException("Limit must be a non-negative integer!");
-            }
-            $query .= " LIMIT " . $args["limit"];
-        } else {
-            throw new FfbTableException("No limit provided!");
+        // Validate the 'limit' argument to ensure it is a positive numeric value.
+        if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
+            throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        // Add the OFFSET clause to the query if provided.
-        if (!empty($args) && is_array($args) && array_key_exists("offset", $args)) {
-            // Check if the offset is a valid integer.
-            if (is_numeric($args["offset"]) && $args["offset"] < 0) {
-                throw new FfbTableException("Offset must be a non-negative integer!");
+        // Construct the base query with the LIMIT clause.
+        $query = $execute ? "SELECT * FROM `ratings` LIMIT " . (int)$args['limit'] : " LIMIT " . (int)$args['limit'];
+
+        // If an 'offset' is provided, validate it and append it to the query.
+        if (!empty($args['offset'])) {
+            if (!is_numeric($args['offset']) || $args['offset'] < 0) {
+                throw new FfbTableException("Invalid offset value!");
             }
-            $query .= ", " . $args["offset"];
+            $query .= " OFFSET " . (int)$args['offset'];
         }
 
-        // Return the query string if not executing.
+        // If $execute is false, return the constructed query string.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
-        $rows = $this->executeQuery($query, $values);
+        // Execute the query and fetch the results.
+        $rows = $this->executeQuery($query);
 
-        // Parse the result into an array of Rating objects and return it.
+        // Throw an exception if no rows are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No ratings found within the specified limit and offset.");
+        }
+
+        // Parse and return the result set as an array of Rating objects.
         return $this->parseEntities($rows);
     }
 
     /**
      * Find all ratings based on specified arguments.
+     * This method combines search, order, and limit criteria to construct
+     * and execute a query that retrieves ratings matching the specified arguments.
+     *
      * @param array $args Search, order, and limit arguments.
+     *                    Example:
+     *                    [
+     *                      'search' => ['score' => '>= 4'],
+     *                      'order' => ['score' => 'DESC'],
+     *                      'limit' => ['limit' => 10, 'offset' => 5]
+     *                    ]
      * @return array Array of Rating objects.
      * @throws FfbTableException If no data is found or a PDO exception occurs.
      */
     public function findAll(array $args): array
     {
-        $values = [];
+        // Initialize the base query.
         $query = "SELECT * FROM `ratings`";
+        $values = [];
 
-        // Append the conditions, order, and limit clauses to the query.
-        if (array_key_exists("search", $args)) {
-            $query .= $this->findSearchedBy($args["search"], false);
-            foreach (array_keys($args["search"]) as $key) {
-                $array = explode(' ', $args["search"][$key]);
-                $values[":" . $key] = str_replace("'", "", $array[1]);
+        // If search arguments are provided, construct the WHERE clause.
+        if (!empty($args['search'])) {
+            // Use the findSearchedBy method to construct the search query.
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            // Append the WHERE clause to the base query.
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
+            // Prepare the values for the placeholders in the search query.
+            foreach ($args['search'] as $key => $value) {
+                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
             }
         }
 
-        if (array_key_exists("order", $args)) {
-            $query .= $this->findOrderedBy($args["order"], false);
+        // If order arguments are provided, construct the ORDER BY clause.
+        if (!empty($args['order'])) {
+            // Use the findOrderedBy method to construct the order query.
+            $orderQuery = $this->findOrderedBy($args['order'], false);
+            // Append the ORDER BY clause to the query.
+            $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
         }
 
-        if (array_key_exists("limit", $args)) {
-            $query .= $this->findLimitedBy($args["limit"], false);
+        // If limit arguments are provided, construct the LIMIT clause.
+        if (!empty($args['limit'])) {
+            // Use the findLimitedBy method to construct the limit query.
+            $limitQuery = $this->findLimitedBy($args['limit'], false);
+            // Append the LIMIT clause to the query.
+            $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
         }
 
-        // Execute the query and fetch the result.
+        // Execute the constructed query with the prepared values.
         $rows = $this->executeQuery($query, $values);
 
-        // Parse the result into an array of Rating objects and return it.
+        // Throw an exception if no rows are found.
+        if (empty($rows)) {
+            throw new FfbTableException("No ratings found matching the specified criteria.");
+        }
+
+        // Parse and return the result set as an array of Rating objects.
         return $this->parseEntities($rows);
     }
 
@@ -204,7 +265,6 @@ class RatingsTable extends ParametersTable
      */
     protected function parseEntity(array $row): Rating
     {
-        // Create and return a new Rating object using the data from the row.
         return new Rating($row["id"], $row["name"]);
     }
 }

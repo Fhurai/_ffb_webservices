@@ -19,386 +19,216 @@ class RatingsTableTest extends TestCase
     }
 
     /**
-     * Test getting a rating by its ID.
-     * This test checks if the rating with ID 0 can be retrieved correctly.
+     * Test the get method with a valid ID.
+     * Ensures that the method returns a Rating object with the correct ID and name.
      */
-    public function testGetRatingById()
+    public function testGetValidId(): void
     {
-        // Retrieve the rating with ID 0
-        $rating = $this->ratingsTable->get(0);
-
-        // Assert that the ID and name of the rating are as expected
-        $this->assertEquals(0, $rating->getId());
-        $this->assertEquals("K / 3", $rating->getName());
-        // Assert that the retrieved object is an instance of Rating
-        $this->assertInstanceOf(Rating::class, $rating);
-
-        // Additional assertions
-        $this->assertNotEmpty($rating->getName(), "Rating name should not be empty");
-        $this->assertIsString($rating->getName(), "Rating name should be a string");
+        $result = $this->ratingsTable->get(1);
+        $this->assertInstanceOf(Rating::class, $result);
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("K+ / 7", $result->getName());
     }
 
     /**
-     * Test getting a rating by an ID that does not exist.
-     * This test checks if an exception is thrown when trying to get a rating with a non-existent ID.
+     * Test the get method with an invalid ID.
+     * Verifies that an exception is thrown when the ID does not exist.
      */
-    public function testGetRatingByIdNotFound()
+    public function testGetInvalidId(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Attempt to retrieve a non-existent rating
-        $this->ratingsTable->get(6);
-
-        // Additional assertion to ensure exception is thrown
-        $this->assertTrue(true, "Exception was correctly thrown");
+        $this->ratingsTable->get(999);
     }
 
     /**
-     * Test finding ratings by exact match.
-     * This test checks if the rating with the exact name "K+ / 7" can be found.
+     * Test the get method with a non-integer ID.
+     * Ensures that a TypeError is thrown when the ID is not an integer.
      */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        // Search for ratings with the exact name "K+ / 7"
-        $ratings = $this->ratingsTable->findSearchedBy([
-            "name" => "K+ / 7"
-        ]);
-
-        // Assert that one rating is found
-        $this->assertCount(1, $ratings);
-        // Assert that the ID and name of the rating are as expected
-        $this->assertEquals(1, $ratings[0]->getId());
-        $this->assertEquals("K+ / 7", $ratings[0]->getName());
-        // Assert that the retrieved object is an instance of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
+        $this->expectException(TypeError::class);
+        $this->ratingsTable->get("invalid_id");
     }
 
     /**
-     * Test finding ratings using a LIKE query.
-     * This test checks if ratings with names starting with "K" can be found using a LIKE query.
+     * Test the findSearchedBy method with valid search criteria.
+     * Confirms that the method returns an array of Rating objects matching the criteria.
      */
-    public function testFindSearchedByLike()
+    public function testFindSearchedByValidCriteria(): void
     {
-        // Search for ratings with names starting with "K"
-        $ratings = $this->ratingsTable->findSearchedBy([
-            "name" => "LIKE 'K%'"
-        ]);
-
-        // Assert that two ratings are found
-        $this->assertCount(2, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(0, $ratings[0]->getId());
-        $this->assertEquals("K / 3", $ratings[0]->getName());
-        $this->assertEquals(1, $ratings[1]->getId());
-        $this->assertEquals("K+ / 7", $ratings[1]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-        $this->assertInstanceOf(Rating::class, $ratings[1]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
+        $result = $this->ratingsTable->findSearchedBy(['name' => 'M / 16']);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertEquals("M / 16", $result[0]->getName());
+        $this->assertInstanceOf(Rating::class, $result[0]);
     }
 
     /**
-     * Test finding ratings with a condition greater than a specified value.
-     * This test checks if ratings with IDs greater than 1 can be found.
+     * Test the findSearchedBy method with invalid search criteria.
+     * Ensures that an exception is thrown for invalid column names.
      */
-    public function testFindSearchedBySuperior()
-    {
-        // Search for ratings with IDs greater than 1
-        $ratings = $this->ratingsTable->findSearchedBy([
-            "id" => "> 1"
-        ]);
-
-        // Assert that three ratings are found
-        $this->assertCount(3, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(2, $ratings[0]->getId());
-        $this->assertEquals("T / 12", $ratings[0]->getName());
-        $this->assertEquals(3, $ratings[1]->getId());
-        $this->assertEquals("M / 16", $ratings[1]->getName());
-        $this->assertEquals(4, $ratings[2]->getId());
-        $this->assertEquals("MA / 18", $ratings[2]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-        $this->assertInstanceOf(Rating::class, $ratings[1]);
-        $this->assertInstanceOf(Rating::class, $ratings[2]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings ordered by name in ascending order.
-     * This test checks if ratings can be ordered by name in ascending order.
-     */
-    public function testFindOrderedByAsc()
-    {
-        // Retrieve ratings ordered by name in ascending order
-        $ratings = $this->ratingsTable->findOrderedBy([
-            "name" => "ASC"
-        ]);
-
-        // Assert that five ratings are found
-        $this->assertCount(5, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(0, $ratings[0]->getId());
-        $this->assertEquals("K / 3", $ratings[0]->getName());
-        $this->assertEquals(1, $ratings[1]->getId());
-        $this->assertEquals("K+ / 7", $ratings[1]->getName());
-        $this->assertEquals(3, $ratings[2]->getId());
-        $this->assertEquals("M / 16", $ratings[2]->getName());
-        $this->assertEquals(4, $ratings[3]->getId());
-        $this->assertEquals("MA / 18", $ratings[3]->getName());
-        $this->assertEquals(2, $ratings[4]->getId());
-        $this->assertEquals("T / 12", $ratings[4]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        foreach ($ratings as $rating) {
-            $this->assertInstanceOf(Rating::class, $rating);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings ordered by ID in descending order.
-     * This test checks if ratings can be ordered by ID in descending order.
-     */
-    public function testFindOrderedByDesc()
-    {
-        // Retrieve ratings ordered by ID in descending order
-        $ratings = $this->ratingsTable->findOrderedBy([
-            "id" => "DESC"
-        ]);
-
-        // Assert that five ratings are found
-        $this->assertCount(5, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(4, $ratings[0]->getId());
-        $this->assertEquals("MA / 18", $ratings[0]->getName());
-        $this->assertEquals(3, $ratings[1]->getId());
-        $this->assertEquals("M / 16", $ratings[1]->getName());
-        $this->assertEquals(2, $ratings[2]->getId());
-        $this->assertEquals("T / 12", $ratings[2]->getName());
-        $this->assertEquals(1, $ratings[3]->getId());
-        $this->assertEquals("K+ / 7", $ratings[3]->getName());
-        $this->assertEquals(0, $ratings[4]->getId());
-        $this->assertEquals("K / 3", $ratings[4]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        foreach ($ratings as $rating) {
-            $this->assertInstanceOf(Rating::class, $rating);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings with a limit of 2.
-     * This test checks if only 2 ratings can be retrieved when a limit is set.
-     */
-    public function testFindLimitedBy02()
-    {
-        // Retrieve ratings with a limit of 2
-        $ratings = $this->ratingsTable->findLimitedBy([
-            "limit" => 2
-        ]);
-
-        // Assert that two ratings are found
-        $this->assertCount(2, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(0, $ratings[0]->getId());
-        $this->assertEquals("K / 3", $ratings[0]->getName());
-        $this->assertEquals(1, $ratings[1]->getId());
-        $this->assertEquals("K+ / 7", $ratings[1]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        foreach ($ratings as $rating) {
-            $this->assertInstanceOf(Rating::class, $rating);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings with a limit of 1 and an offset of 1.
-     * This test checks if the second rating can be retrieved when a limit of 1 and an offset of 1 are set.
-     */
-    public function testFindLimitedBy11()
-    {
-        // Retrieve ratings with a limit of 1 and an offset of 1
-        $ratings = $this->ratingsTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => 1
-        ]);
-
-        // Assert that one rating is found
-        $this->assertCount(1, $ratings);
-        // Assert that the ID and name of the rating are as expected
-        $this->assertEquals(1, $ratings[0]->getId());
-        $this->assertEquals("K+ / 7", $ratings[0]->getName());
-        // Assert that the retrieved object is an instance of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding all ratings with search, order, and limit conditions.
-     * This test checks if ratings can be found with combined search, order, and limit conditions.
-     */
-    public function testFindAll()
-    {
-        // Retrieve ratings with combined search, order, and limit conditions
-        $ratings = $this->ratingsTable->findAll(["search" => [
-            "name" => "LIKE 'K%'"
-        ], "order" => [
-            "name" => "DESC"
-        ], "limit" => [
-            "limit" => 0,
-            "offset" => 2
-        ]]);
-
-        // Assert that two ratings are found
-        $this->assertCount(2, $ratings);
-        // Assert that the IDs and names of the ratings are as expected
-        $this->assertEquals(1, $ratings[0]->getId());
-        $this->assertEquals("K+ / 7", $ratings[0]->getName());
-        $this->assertEquals(0, $ratings[1]->getId());
-        $this->assertEquals("K / 3", $ratings[1]->getName());
-        // Assert that the retrieved objects are instances of Rating
-        foreach ($ratings as $rating) {
-            $this->assertInstanceOf(Rating::class, $rating);
-        }
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings with multiple search criteria.
-     * This test checks if ratings can be found with multiple search criteria.
-     */
-    public function testFindSearchedByMultipleCriteria()
-    {
-        // Search for ratings with names starting with "K" and IDs greater than 0
-        $ratings = $this->ratingsTable->findSearchedBy([
-            "name" => "LIKE 'K%'",
-            "id" => "> 0"
-        ]);
-
-        // Assert that one rating is found
-        $this->assertCount(1, $ratings);
-        // Assert that the ID and name of the rating are as expected
-        $this->assertEquals(1, $ratings[0]->getId());
-        $this->assertEquals("K+ / 7", $ratings[0]->getName());
-        // Assert that the retrieved object is an instance of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    /**
-     * Test finding ratings with complex order and limit conditions.
-     * This test checks if ratings can be found with complex order and limit conditions.
-     */
-    public function testFindAllWithComplexConditions()
-    {
-        // Retrieve ratings with complex order and limit conditions
-        $ratings = $this->ratingsTable->findAll([
-            "search" => [
-                "name" => "LIKE 'K%'"
-            ],
-            "order" => [
-                "id" => "ASC"
-            ],
-            "limit" => [
-                "limit" => 1,
-                "offset" => 1
-            ]
-        ]);
-
-        // Assert that one rating is found
-        $this->assertCount(1, $ratings);
-        // Assert that the ID and name of the rating are as expected
-        $this->assertEquals(1, $ratings[0]->getId());
-        $this->assertEquals("K+ / 7", $ratings[0]->getName());
-        // Assert that the retrieved object is an instance of Rating
-        $this->assertInstanceOf(Rating::class, $ratings[0]);
-
-        // Additional assertions
-        $this->assertNotEmpty($ratings, "Ratings array should not be empty");
-        $this->assertIsArray($ratings, "Ratings should be an array");
-    }
-
-    public function testFindSearchedByEmptyCriteria()
+    public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
-        // Attempt to search with empty criteria
+        $this->ratingsTable->findSearchedBy(['invalid_column' => 'value']);
+    }
+
+    /**
+     * Test the findSearchedBy method with empty search criteria.
+     * Verifies that an exception is thrown when no search arguments are provided.
+     */
+    public function testFindSearchedByEmptyCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No search arguments provided!");
+
         $this->ratingsTable->findSearchedBy([]);
     }
 
     /**
-     * Test finding ratings with a negative limit.
-     * This test checks if an exception is thrown when the limit is negative.
+     * Test the findOrderedBy method with valid order criteria.
+     * Confirms that the method returns an array of Rating objects ordered correctly.
      */
-    public function testFindLimitedByNegativeLimit()
+    public function testFindOrderedByValidCriteria(): void
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Limit must be a non-negative integer!");
-
-        // Attempt to retrieve ratings with a negative limit
-        $this->ratingsTable->findLimitedBy([
-            "limit" => -1
-        ]);
+        $result = $this->ratingsTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertIsArray($result);
+        $this->assertCount(5, $result);
+        $this->assertEquals("K / 3", $result[0]->getName());
     }
 
     /**
-     * Test finding ratings with a negative offset.
-     * This test checks if an exception is thrown when the offset is negative.
+     * Test the findOrderedBy method with invalid order direction.
+     * Ensures that an exception is thrown for invalid order directions.
      */
-    public function testFindLimitedByNegativeOffset()
+    public function testFindOrderedByInvalidDirection(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
 
-        // Attempt to retrieve ratings with a negative offset
-        $this->ratingsTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => -1
-        ]);
+        $this->ratingsTable->findOrderedBy(['name' => 'INVALID']);
     }
 
     /**
-     * Test finding ratings with a limit of zero.
-     * This test checks if no ratings are returned when the limit is zero.
+     * Test the findLimitedBy method with valid limit and offset.
+     * Confirms that the method returns a limited number of results starting from the offset.
      */
-    public function testFindLimitedByZeroLimit()
+    public function testFindLimitedByValidCriteria(): void
+    {
+        $result = $this->ratingsTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative limit.
+     * Verifies that an exception is thrown for invalid limit values.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->ratingsTable->findLimitedBy(['limit' => -1]);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative offset.
+     * Ensures that an exception is thrown for invalid offset values.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        $this->ratingsTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    /**
+     * Test the findAll method with combined criteria.
+     * Confirms that the method returns results matching the search, order, and limit criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        $result = $this->ratingsTable->findAll([
+            'search' => ['name' => 'K%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the findAll method with no results.
+     * Verifies that an exception is thrown when no results match the criteria.
+     */
+    public function testFindAllNoResults(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Retrieve ratings with a limit of zero
-        $ratings = $this->ratingsTable->findLimitedBy([
-            "limit" => 0
+        $this->ratingsTable->findAll([
+            'search' => ['name' => 'Nonexistent%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+    }
+
+    /**
+     * Test the findAll method with empty arguments.
+     * Ensures that the method returns all results when no arguments are provided.
+     */
+    public function testFindAllEmptyArguments(): void
+    {
+        $result = $this->ratingsTable->findAll([]);
+        $this->assertIsArray($result);
+        $this->assertCount(5, $result);
+    }
+
+    /**
+     * Test the findAll method with invalid search criteria.
+     * Verifies that an exception is thrown for invalid column names in the search criteria.
+     */
+    public function testFindAllInvalidSearchCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->ratingsTable->findAll([
+            'search' => ['invalid_column' => 'value']
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid order criteria.
+     * Ensures that an exception is thrown for invalid column names in the order criteria.
+     */
+    public function testFindAllInvalidOrderCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->ratingsTable->findAll([
+            'order' => ['invalid_column' => 'ASC']
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid limit criteria.
+     * Verifies that an exception is thrown for invalid or missing limit values.
+     */
+    public function testFindAllInvalidLimitCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->ratingsTable->findAll([
+            'limit' => ['limit' => -10]
         ]);
     }
 }

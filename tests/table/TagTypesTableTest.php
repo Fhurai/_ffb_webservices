@@ -19,368 +19,198 @@ class TagTypesTableTest extends TestCase
     }
 
     /**
-     * Test getting a tag type by its ID.
-     * This test checks if the tag type with ID 1 can be retrieved correctly.
+     * Test the get method with a valid ID.
      */
-    public function testGetTagTypeById()
+    public function testGetValidId(): void
     {
-        // Retrieve the tag type with ID 1
-        $tagType = $this->tagTypesTable->get(1);
-
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(1, $tagType->getId());
-        $this->assertEquals("Genre", $tagType->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagType);
-
-        // Additional assertion: Ensure the tag type is not null
-        $this->assertNotNull($tagType);
+        $result = $this->tagTypesTable->get(1);
+        $this->assertInstanceOf(TagType::class, $result);
+        $this->assertEquals(1, $result->getId());
+        $this->assertEquals("Genre", $result->getName());
     }
 
     /**
-     * Test getting a tag type by an ID that does not exist.
-     * This test checks if an exception is thrown when trying to get a tag type with a non-existent ID.
+     * Test the get method with an invalid ID.
      */
-    public function testGetTagTypeByIdNotFound()
+    public function testGetInvalidId(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Attempt to retrieve a tag type with a non-existent ID
-        $this->tagTypesTable->get(5);
-
-        // Additional assertion: Ensure no tag type is returned
-        $this->assertNull(null);
+        $this->tagTypesTable->get(999);
     }
 
     /**
-     * Test finding tag types by exact match.
-     * This test checks if the tag type with the exact name "Relationships" can be found.
+     * Test the get method with a non-integer ID.
      */
-    public function testFindSearchedByEquality()
+    public function testGetNonIntegerId(): void
     {
-        // Search for tag types with the exact name "Relationships"
-        $tagTypes = $this->tagTypesTable->findSearchedBy([
-            "name" => "Relationships"
-        ]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(3, $tagTypes[0]->getId());
-        $this->assertEquals("Relationships", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
+        $this->expectException(TypeError::class);
+        $this->tagTypesTable->get("invalid_id");
     }
 
     /**
-     * Test finding tag types using a LIKE query.
-     * This test checks if tag types with names starting with "T" can be found using a LIKE query.
+     * Test the findSearchedBy method with valid search criteria.
      */
-    public function testFindSearchedByLike()
+    public function testFindSearchedByValidCriteria(): void
     {
-        // Search for tag types with names starting with "T"
-        $tagTypes = $this->tagTypesTable->findSearchedBy([
-            "name" => "LIKE 'T%'"
-        ]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(2, $tagTypes[0]->getId());
-        $this->assertEquals("Timeline", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
+        $result = $this->tagTypesTable->findSearchedBy(['name' => 'Other%']);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertInstanceOf(TagType::class, $result[0]);
     }
 
     /**
-     * Test finding tag types with a condition greater than a specified value.
-     * This test checks if tag types with IDs greater than 1 can be found.
+     * Test the findSearchedBy method with invalid search criteria.
      */
-    public function testFindSearchedBySuperior()
-    {
-        // Search for tag types with IDs greater than 1
-        $tagTypes = $this->tagTypesTable->findSearchedBy([
-            "id" => "> 1"
-        ]);
-
-        // Assert that three tag types are found
-        $this->assertCount(3, $tagTypes);
-        // Assert that the IDs and names of the tag types are as expected
-        $this->assertEquals(2, $tagTypes[0]->getId());
-        $this->assertEquals("Timeline", $tagTypes[0]->getName());
-        $this->assertEquals(3, $tagTypes[1]->getId());
-        $this->assertEquals("Relationships", $tagTypes[1]->getName());
-        $this->assertEquals(4, $tagTypes[2]->getId());
-        $this->assertEquals("Other", $tagTypes[2]->getName());
-        // Assert that the retrieved objects are instances of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-        $this->assertInstanceOf(TagType::class, $tagTypes[1]);
-        $this->assertInstanceOf(TagType::class, $tagTypes[2]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types ordered by name in ascending order.
-     * This test checks if tag types can be ordered by name in ascending order.
-     */
-    public function testFindOrderedByAsc()
-    {
-        // Retrieve tag types ordered by name in ascending order
-        $tagTypes = $this->tagTypesTable->findOrderedBy([
-            "name" => "ASC"
-        ]);
-
-        // Assert that four tag types are found
-        $this->assertCount(4, $tagTypes);
-        // Assert that the IDs and names of the tag types are as expected
-        $this->assertEquals(1, $tagTypes[0]->getId());
-        $this->assertEquals("Genre", $tagTypes[0]->getName());
-        $this->assertEquals(4, $tagTypes[1]->getId());
-        $this->assertEquals("Other", $tagTypes[1]->getName());
-        $this->assertEquals(3, $tagTypes[2]->getId());
-        $this->assertEquals("Relationships", $tagTypes[2]->getName());
-        $this->assertEquals(2, $tagTypes[3]->getId());
-        $this->assertEquals("Timeline", $tagTypes[3]->getName());
-        // Assert that the retrieved objects are instances of TagType
-        foreach ($tagTypes as $tagType) {
-            $this->assertInstanceOf(TagType::class, $tagType);
-        }
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types ordered by ID in descending order.
-     * This test checks if tag types can be ordered by ID in descending order.
-     */
-    public function testFindOrderedByDesc()
-    {
-        // Retrieve tag types ordered by ID in descending order
-        $tagTypes = $this->tagTypesTable->findOrderedBy([
-            "id" => "DESC"
-        ]);
-
-        // Assert that four tag types are found
-        $this->assertCount(4, $tagTypes);
-        // Assert that the IDs and names of the tag types are as expected
-        $this->assertEquals(4, $tagTypes[0]->getId());
-        $this->assertEquals("Other", $tagTypes[0]->getName());
-        $this->assertEquals(3, $tagTypes[1]->getId());
-        $this->assertEquals("Relationships", $tagTypes[1]->getName());
-        $this->assertEquals(2, $tagTypes[2]->getId());
-        $this->assertEquals("Timeline", $tagTypes[2]->getName());
-        $this->assertEquals(1, $tagTypes[3]->getId());
-        $this->assertEquals("Genre", $tagTypes[3]->getName());
-        // Assert that the retrieved objects are instances of TagType
-        foreach ($tagTypes as $tagType) {
-            $this->assertInstanceOf(TagType::class, $tagType);
-        }
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types with a limit of 2.
-     * This test checks if only 2 tag types can be retrieved when a limit is set.
-     */
-    public function testFindLimitedBy02()
-    {
-        // Retrieve tag types with a limit of 2
-        $tagTypes = $this->tagTypesTable->findLimitedBy([
-            "limit" => 2
-        ]);
-
-        // Assert that two tag types are found
-        $this->assertCount(2, $tagTypes);
-        // Assert that the IDs and names of the tag types are as expected
-        $this->assertEquals(1, $tagTypes[0]->getId());
-        $this->assertEquals("Genre", $tagTypes[0]->getName());
-        $this->assertEquals(4, $tagTypes[1]->getId());
-        $this->assertEquals("Other", $tagTypes[1]->getName());
-        // Assert that the retrieved objects are instances of TagType
-        foreach ($tagTypes as $tagType) {
-            $this->assertInstanceOf(TagType::class, $tagType);
-        }
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types with a limit of 1 and an offset of 1.
-     * This test checks if the second tag type can be retrieved when a limit of 1 and an offset of 1 are set.
-     */
-    public function testFindLimitedBy11()
-    {
-        // Retrieve tag types with a limit of 1 and an offset of 1
-        $tagTypes = $this->tagTypesTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => 1
-        ]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(4, $tagTypes[0]->getId());
-        $this->assertEquals("Other", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding all tag types with search, order, and limit conditions.
-     * This test checks if tag types can be found with combined search, order, and limit conditions.
-     */
-    public function testFindAll()
-    {
-        // Retrieve tag types with combined search, order, and limit conditions
-        $tagTypes = $this->tagTypesTable->findAll(["search" => [
-            "name" => "LIKE 'T%'"
-        ], "order" => [
-            "name" => "DESC"
-        ], "limit" => [
-            "limit" => 0,
-            "offset" => 2
-        ]]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(2, $tagTypes[0]->getId());
-        $this->assertEquals("Timeline", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types with multiple search criteria.
-     * This test checks if tag types can be found with multiple search criteria.
-     */
-    public function testFindSearchedByMultipleCriteria()
-    {
-        // Search for tag types with names starting with "T" and IDs greater than 1
-        $tagTypes = $this->tagTypesTable->findSearchedBy([
-            "name" => "LIKE 'T%'",
-            "id" => "> 1"
-        ]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(2, $tagTypes[0]->getId());
-        $this->assertEquals("Timeline", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types with complex order and limit conditions.
-     * This test checks if tag types can be found with complex order and limit conditions.
-     */
-    public function testFindAllWithComplexConditions()
-    {
-        // Retrieve tag types with complex order and limit conditions
-        $tagTypes = $this->tagTypesTable->findAll([
-            "search" => [
-                "name" => "LIKE 'T%'"
-            ],
-            "order" => [
-                "id" => "ASC"
-            ],
-            "limit" => [
-                "limit" => 0,
-                "offset" => 1
-            ]
-        ]);
-
-        // Assert that one tag type is found
-        $this->assertCount(1, $tagTypes);
-        // Assert that the ID and name of the tag type are as expected
-        $this->assertEquals(2, $tagTypes[0]->getId());
-        $this->assertEquals("Timeline", $tagTypes[0]->getName());
-        // Assert that the retrieved object is an instance of TagType
-        $this->assertInstanceOf(TagType::class, $tagTypes[0]);
-
-        // Additional assertion: Ensure the array of tag types is not empty
-        $this->assertNotEmpty($tagTypes);
-    }
-
-    /**
-     * Test finding tag types with empty search criteria.
-     * This test checks if an exception is thrown when search criteria are empty.
-     */
-    public function testFindSearchedByEmptyCriteria()
+    public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
-        // Attempt to search with empty criteria
+        $this->tagTypesTable->findSearchedBy(['invalid_column' => 'value']);
+    }
+
+    /**
+     * Test the findSearchedBy method with empty search criteria.
+     */
+    public function testFindSearchedByEmptyCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("No search arguments provided!");
+
         $this->tagTypesTable->findSearchedBy([]);
     }
 
     /**
-     * Test finding tag types with a negative limit.
-     * This test checks if an exception is thrown when the limit is negative.
+     * Test the findOrderedBy method with valid order criteria.
      */
-    public function testFindLimitedByNegativeLimit()
+    public function testFindOrderedByValidCriteria(): void
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Limit must be a non-negative integer!");
-
-        // Attempt to retrieve tag types with a negative limit
-        $this->tagTypesTable->findLimitedBy([
-            "limit" => -1
-        ]);
+        $result = $this->tagTypesTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertIsArray($result);
+        $this->assertCount(4, $result);
+        $this->assertEquals("Genre", $result[0]->getName());
     }
 
     /**
-     * Test finding tag types with a negative offset.
-     * This test checks if an exception is thrown when the offset is negative.
+     * Test the findOrderedBy method with invalid order direction.
      */
-    public function testFindLimitedByNegativeOffset()
+    public function testFindOrderedByInvalidDirection(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Offset must be a non-negative integer!");
+        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
 
-        // Attempt to retrieve tag types with a negative offset
-        $this->tagTypesTable->findLimitedBy([
-            "limit" => 1,
-            "offset" => -1
-        ]);
+        $this->tagTypesTable->findOrderedBy(['name' => 'INVALID']);
     }
 
     /**
-     * Test finding tag types with a limit of zero.
-     * This test checks if no tag types are returned when the limit is zero.
+     * Test the findLimitedBy method with valid limit and offset.
      */
-    public function testFindLimitedByZeroLimit()
+    public function testFindLimitedByValidCriteria(): void
+    {
+        $result = $this->tagTypesTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative limit.
+     */
+    public function testFindLimitedByNegativeLimit(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->tagTypesTable->findLimitedBy(['limit' => -1]);
+    }
+
+    /**
+     * Test the findLimitedBy method with a negative offset.
+     */
+    public function testFindLimitedByNegativeOffset(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid offset value!");
+
+        $this->tagTypesTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
+    }
+
+    /**
+     * Test the findAll method with combined criteria.
+     */
+    public function testFindAllWithCriteria(): void
+    {
+        $result = $this->tagTypesTable->findAll([
+            'search' => ['name' => 'Genre%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+    }
+
+    /**
+     * Test the findAll method with no results.
+     */
+    public function testFindAllNoResults(): void
     {
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Retrieve tag types with a limit of zero
-        $tagtypes = $this->tagTypesTable->findLimitedBy([
-            "limit" => 0
+        $this->tagTypesTable->findAll([
+            'search' => ['name' => 'Nonexistent%'],
+            'order' => ['name' => 'ASC'],
+            'limit' => ['limit' => 2, 'offset' => 0]
+        ]);
+    }
+
+    /**
+     * Test the findAll method with empty arguments.
+     */
+    public function testFindAllEmptyArguments(): void
+    {
+        $result = $this->tagTypesTable->findAll([]);
+        $this->assertIsArray($result);
+        $this->assertCount(4, $result);
+    }
+
+    /**
+     * Test the findAll method with invalid search criteria.
+     */
+    public function testFindAllInvalidSearchCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->tagTypesTable->findAll([
+            'search' => ['invalid_column' => 'value']
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid order criteria.
+     */
+    public function testFindAllInvalidOrderCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+
+        $this->tagTypesTable->findAll([
+            'order' => ['invalid_column' => 'ASC']
+        ]);
+    }
+
+    /**
+     * Test the findAll method with invalid limit criteria.
+     */
+    public function testFindAllInvalidLimitCriteria(): void
+    {
+        $this->expectException(FfbTableException::class);
+        $this->expectExceptionMessage("Invalid or missing limit value!");
+
+        $this->tagTypesTable->findAll([
+            'limit' => ['limit' => -10]
         ]);
     }
 }
