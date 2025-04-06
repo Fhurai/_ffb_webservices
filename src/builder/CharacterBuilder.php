@@ -130,6 +130,11 @@ class CharacterBuilder implements NamedEntityBuilderInterface {
      * @return CharacterBuilder The current instance of CharacterBuilder.
      */
     public function withName(string $name): CharacterBuilder {
+        // Check if the name is empty
+        if(empty($name)){
+            throw new InvalidArgumentException("Name cannot be empty.");
+        }
+
         // Set the name of the character
         $this->obj->setName($name);
         return $this;
