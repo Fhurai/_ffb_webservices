@@ -137,6 +137,12 @@ class TagBuilder implements NamedEntityBuilderInterface {
      * @return TagBuilder The current instance of TagBuilder.
      */
     public function withName(string $name): TagBuilder {
+        // Check if the name is empty
+        if(empty($name)){
+            // Set the name to an empty string
+            throw new InvalidArgumentException("Name cannot be empty.");
+        }
+
         // Set the name of the tag
         $this->obj->setName($name);
         return $this;
