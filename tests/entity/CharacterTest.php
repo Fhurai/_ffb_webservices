@@ -90,8 +90,8 @@ class CharacterTest extends TestCase
 
         // Verify association
         $this->assertTrue(property_exists($character, 'fandom'));
-        $this->assertInstanceOf(Fandom::class, $character->fandom);
-        $this->assertEquals(456, $character->fandom->getId());
+        $this->assertInstanceOf(Fandom::class, $character->getFandom());
+        $this->assertEquals(456, $character->getFandom()->getId());
     }
 
     public function testJsonSerializeWithFandom(): void
@@ -100,12 +100,13 @@ class CharacterTest extends TestCase
         $fandom = new Fandom();
         $fandom->setId(456);
         $fandom->setName('Test Fandom');
-        $this->character->fandom = $fandom;
+        $this->character->setFandom($fandom);
 
         $result = $this->character->jsonSerialize();
         
         $this->assertArrayHasKey('fandom', $result);
         $this->assertInstanceOf(Fandom::class, $result['fandom']);
+        $this->assertEquals(456, $result['fandom']->getId());
     }
 
     public function testDateTimeHandling(): void

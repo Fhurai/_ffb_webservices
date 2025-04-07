@@ -13,6 +13,11 @@ class Character extends ComplexEntity
      * @var int
      */
     private int $fandom_id;
+    /**
+     * Associated Fandom entity (loaded only when needed).
+     * @var Fandom|null
+     */
+    private ?Fandom $fandom = null;
 
     /**
      * Implied constructor.
@@ -40,6 +45,42 @@ class Character extends ComplexEntity
     public function setFandomId(int $fandom_id): void
     {
         $this->fandom_id = $fandom_id;
+    }
+
+    /**
+     * Getter Fandom.
+     * @return Fandom|null Fandom.
+     */
+    public function getFandom(): ?Fandom
+    {
+        if (!$this->fandom) {
+            throw new \RuntimeException("fandom is not loaded. Use hasFandom() to check first.");
+        }
+        return $this->fandom;
+    }
+
+    /**
+     * Check if fandom is loaded.
+     * 
+     * @return bool
+     */
+    public function hasFandom(): bool
+    {
+        return $this->fandom !== null;
+    }
+
+    /**
+     * Setter Fandom.
+     * @param Fandom|array $fandom New Fandom.
+     * @return void
+     */
+    public function setFandom(Fandom|array $fandom): void
+    {
+        if (is_array($fandom)) {
+            $this->fandom = Fandom::jsonUnserialize(json_encode($fandom));
+        } else {
+            $this->fandom = $fandom;
+        }
     }
 
     /**

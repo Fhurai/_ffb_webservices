@@ -56,10 +56,11 @@ class SeriesTest extends TestCase
 
         // Test without associations
         $result = $this->series->jsonSerialize();
-        $this->assertArrayNotHasKey('fanfictions', $result);
+        $this->assertArrayHasKey('fanfictions', $result);
+        $this->assertEmpty($result['fanfictions']);
 
         // Add fanfictions association
-        $this->series->fanfictions = [new Fanfiction()];
+        $this->series->setFanfictions([new Fanfiction()]);
         $resultWithAssoc = $this->series->jsonSerialize();
 
         // Test core fields

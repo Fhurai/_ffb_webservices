@@ -8,11 +8,55 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
 class Relation extends ComplexEntity
 {
     /**
+     * Characters associated with the Relation.
+     * @var array
+     */
+    public ?array $characters = null;
+    /**
      * Implied constructor.
      */
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * Getter Characters.
+     * @return array Characters.
+     */
+    public function getCharacters(): array
+    {
+        if (empty($this->characters)) {
+            throw new \RuntimeException("characters is not loaded. Use hasCharacters() to check first.");
+        }
+        return $this->characters;
+    }
+
+    /**
+     * Method to check if characters are loaded.
+     * @return bool True if characters are loaded, false otherwise.
+     */
+    public function hasCharacters(): bool
+    {
+        return !empty($this->characters);
+    }
+
+    /**
+     * Setter Characters.
+     * @param array $characters New Characters.
+     * @return void
+     */
+    public function setCharacters(array $characters): void
+    {
+        $this->characters = [];
+        foreach ($characters as $character) {
+            if(is_array($character)) {
+                $this->characters[] = Character::jsonUnserialize(json_encode($character));
+            } else if($character instanceof Character) {
+                $this->characters[] = $character;
+            }
+        }
+        
     }
 
     /**

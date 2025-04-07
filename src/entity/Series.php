@@ -16,6 +16,12 @@ class Series extends ComplexEntity
      */
     private string $description;
     /**
+     * Fanfictions associated with the Series.
+     * @var array
+     */
+    public ?array $fanfictions = null;
+
+    /**
      * Implied constructor.
      */
     public function __construct()
@@ -43,6 +49,44 @@ class Series extends ComplexEntity
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * Getter Fanfictions.
+     * @return array Fanfictions.
+     */
+    public function getFanfictions(): array
+    {
+        if (empty($this->fanfictions)) {
+            throw new \RuntimeException("fanfictions is not loaded. Use hasFanfictions() to check first.");
+        }
+        return $this->fanfictions;
+    }
+
+    /**
+     * Method to check if fanfictions are loaded.
+     * @return bool True if fanfictions are loaded, false otherwise.
+     */
+    public function hasFanfictions(): bool
+    {
+        return !empty($this->fanfictions);
+    }
+
+    /**
+     * Setter Fanfictions.
+     * @param array $fanfictions New Fanfictions.
+     * @return void
+     */
+    public function setFanfictions(array $fanfictions): void
+    {
+        $this->fanfictions = [];
+        foreach ($fanfictions as $fanfiction) {
+            if (is_array($fanfiction)) {
+                $this->fanfictions[] = Fanfiction::jsonUnserialize(json_encode($fanfiction));
+            } else if ($fanfiction instanceof Fanfiction) {
+                $this->fanfictions[] = $fanfiction;
+            }
+        }
     }
 
     /**

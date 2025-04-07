@@ -11,6 +11,11 @@ trait Evaluable
      */
     private ?int $score_id;
     /**
+     * Evaluable score.
+     * @var Score
+     */
+    private ?Score $score;
+    /**
      * Evaluable evaluation.
      * @var string
      */
@@ -33,6 +38,29 @@ trait Evaluable
     public function setScoreId(int $score_id = null): void
     {
         $this->score_id = $score_id;
+    }
+
+    /**
+     * Getter Score.
+     * @return ?Score Score.
+     */
+    public function getScore(): ?Score
+    {
+        return $this->score;
+    }
+
+    /**
+     * Setter Score.
+     * @param Score|array|null $score New Score.
+     * @return void
+     */
+    public function setScore(Score|array|null $score): void
+    {
+        if (is_array($score)) {
+            $this->score = Score::jsonUnserialize(json_encode($score));
+        } else {
+            $this->score = $score;
+        }
     }
 
     /**

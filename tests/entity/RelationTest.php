@@ -41,12 +41,13 @@ class RelationTest extends TestCase
 
         // Serialize without characters
         $result = $this->relation->jsonSerialize();
-        $this->assertArrayNotHasKey('characters', $result);
+        $this->assertArrayHasKey('characters', $result);
+        $this->assertEmpty($result['characters']);
 
         // Add characters association
         $character = new Character();
         $character->setId(456);
-        $this->relation->characters = [$character];
+        $this->relation->setCharacters([$character]);
 
         // Serialize with characters
         $resultWithChars = $this->relation->jsonSerialize();

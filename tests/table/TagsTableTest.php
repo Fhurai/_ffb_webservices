@@ -22,6 +22,9 @@ class TagsTableTest extends TestCase
         $this->assertInstanceOf(Tag::class, $result);
         $this->assertEquals(1, $result->getId());
         $this->assertEquals("Romance", $result->getName());
+        $this->assertEquals("Story is about or mentions bit of romance between two or more characters.", $result->getDescription());
+        $this->assertEquals(1, $result->getTypeId());
+        $this->assertEquals("Genre", $result->getTagType()->getName());
     }
 
     public function testGetInvalidId(): void
@@ -60,6 +63,8 @@ class TagsTableTest extends TestCase
         $this->assertIsArray($result);
         $this->assertCount(34, $result);
         $this->assertEquals("Adventure", $result[0]->getName());
+        $this->assertEquals("Story is about or mentions bit of aventure with rather violent actions.", $result[0]->getDescription());
+        $this->assertEquals("Genre", $result[0]->getTagType()->getName());
     }
 
     public function testFindLimitedByValidCriteria(): void

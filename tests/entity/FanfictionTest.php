@@ -62,14 +62,14 @@ class FanfictionTest extends TestCase
         $this->fanfiction->setEvaluation('Highly recommended');
 
         // Set associations
-        $this->fanfiction->author = new Author();
-        $this->fanfiction->fandoms = [new Fandom()];
-        $this->fanfiction->language = new Language();
-        $this->fanfiction->relations = [new Relation()];
-        $this->fanfiction->characters = [new Character()];
-        $this->fanfiction->tags = [new Tag()];
-        $this->fanfiction->score = new Score(3, "Acceptable");
-        $this->fanfiction->links = [new Link()];
+        $this->fanfiction->setAuthor(new Author());
+        $this->fanfiction->setFandoms([new Fandom()]);
+        $this->fanfiction->setLanguage(new Language());
+        $this->fanfiction->setRelations([new Relation()]);
+        $this->fanfiction->setCharacters([new Character()]);
+        $this->fanfiction->setTags([new Tag()]);
+        $this->fanfiction->setScore(new Score(3, "Acceptable"));
+        $this->fanfiction->setLinks([new Link()]);
 
         $result = $this->fanfiction->jsonSerialize();
 
@@ -149,12 +149,12 @@ class FanfictionTest extends TestCase
         );
 
         // Test associations
-        $this->assertInstanceOf(Author::class, $fanfiction->author);
-        $this->assertIsArray($fanfiction->fandoms);
-        $this->assertInstanceOf(Fandom::class, $fanfiction->fandoms[0]);
-        $this->assertInstanceOf(Language::class, $fanfiction->language);
-        $this->assertIsArray($fanfiction->relations);
-        $this->assertInstanceOf(Relation::class, $fanfiction->relations[0]);
+        $this->assertInstanceOf(Author::class, $fanfiction->getAuthor());
+        $this->assertIsArray($fanfiction->getFandoms());
+        $this->assertInstanceOf(Fandom::class, $fanfiction->getFandoms()[0]);
+        $this->assertInstanceOf(Language::class, $fanfiction->getLanguage());
+        $this->assertIsArray($fanfiction->getRelations());
+        $this->assertInstanceOf(Relation::class, $fanfiction->getRelations()[0]);
     }
 
     public function testEmptyObject(): void

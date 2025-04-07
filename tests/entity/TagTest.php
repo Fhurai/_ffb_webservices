@@ -99,19 +99,20 @@ class TagTest extends TestCase
 
         // Verify association
         $this->assertTrue(property_exists($tag, 'tag_type'));
-        $this->assertInstanceOf(TagType::class, $tag->tag_type);
-        $this->assertEquals(456, $tag->tag_type->getId());
+        $this->assertInstanceOf(TagType::class, $tag->getTagType());
+        $this->assertEquals(456, $tag->getTagType()->getId());
     }
 
     public function testJsonSerializeWithTagType(): void
     {
         // Add tag_type association
         $tagType = new TagType(1, "Genre");
-        $this->tag->tag_type = $tagType;
+        $this->tag->setTagType($tagType);
 
         $result = $this->tag->jsonSerialize();
         
         $this->assertArrayHasKey('tag_type', $result);
-        $this->assertInstanceOf(TagType::class, $result['tag_type']);
+        $this->assertArrayHasKey('id', $result['tag_type']);
+        $this->assertArrayHasKey('name', $result['tag_type']);
     }
 }

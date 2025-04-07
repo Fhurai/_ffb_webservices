@@ -108,12 +108,10 @@ abstract class ComplexEntity extends NamedEntity
 
                 // Once a datetime, the data is set in the property.
                 $entity->$setFunction($date);
-            } else if (is_scalar($data) || is_null($data)) {
+            } else {
 
                 // The property is not a datetime, use of the setter function directly.
                 $entity->$setFunction($data);
-            } else {
-                $entity->$key = static::parseDataProperty($key, $data);
             }
         }
 

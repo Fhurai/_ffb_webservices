@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/Connection.php";
+require_once __DIR__ . "/TagTypesTable.php";
 require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Tag.php";
 require_once __DIR__ . "/../builder/TagBuilder.php";
@@ -379,8 +380,7 @@ class TagsTable extends EntitiesTable
      */
     protected function parseEntity(array $row): Tag
     {
-        // Use the TagBuilder to construct a Tag entity from the database row.
-        return (new TagBuilder())
+        $tag = (new TagBuilder())
             ->withId($row["id"])
             ->withName($row["name"])
             ->withDescription($row["description"])
@@ -389,5 +389,21 @@ class TagsTable extends EntitiesTable
             ->withUpdateDate($row["update_date"])
             ->withDeleteDate($row["delete_date"])
             ->build();
+
+        // Load tag_type if type_id is valid (greater than 0)
+        $typeId = $tag->getTypeId();
+        if ($typeId > 0) {
+            // Assuming TagTypesTable is available and uses the same connection
+            $tagTypeTable = new TagTypesTable($this->typeConnection, $this->user);
+            try {
+                $tagType = $tagTypeTable->get($typeId);
+                $tag->setTagType($tagType);
+            } catch (FfbTableException $e) {
+                // Handle exception (e.g., log error, set to null)
+                $tag->setTagType(null);
+            }
+        }
+
+        return $tag;
     }
 }

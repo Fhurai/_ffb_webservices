@@ -8,7 +8,18 @@ abstract class EntitiesTable
      * 
      * @var PDO
      */
-    private PDO $connection;
+    protected PDO $connection;
+
+    /**
+     * Type of database connection.
+     * @var string
+     */
+    protected string $typeConnection;
+    /**
+     * Database user.
+     * @var string
+     */
+    protected string $user;
 
     /**
      * EntitiesTable constructor.
@@ -19,6 +30,14 @@ abstract class EntitiesTable
      */
     public function __construct(string $typeConnection, string $user)
     {
+        // Validate the type of connection and user
+        if (empty($typeConnection) || empty($user)) {
+            throw new InvalidArgumentException("Invalid connection type or user.");
+        }
+        // Set the type of connection and user
+        $this->typeConnection = $typeConnection;
+        $this->user = $user;
+        // Initialize the database connection using the provided type and user
         $this->connection = Connection::getDatabase($typeConnection, $user);
     }
 
