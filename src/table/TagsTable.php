@@ -69,12 +69,12 @@ class TagsTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            // Handle operators like <, >, =, etc.
+                // Handle operators like <, >, =, etc.
             } elseif (preg_match('/[<>=!]/', $value)) {
                 [$operator, $val] = explode(' ', $value, 2);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-            // Handle exact matches.
+                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -260,7 +260,7 @@ class TagsTable extends EntitiesTable
         }
 
         // Prepare the INSERT query with placeholders for the entity's properties.
-        $query = "INSERT INTO `tags` (`description`, `name`, `type_id`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `tags` (`description`, `name`, `type_id`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:description, :name, :type_id, :creation_date, :update_date, :delete_date)";
         $values = [
             ":description" => $entity->getDescription(),
@@ -300,8 +300,8 @@ class TagsTable extends EntitiesTable
         }
 
         // Prepare the UPDATE query with placeholders for the entity's properties.
-        $query = "UPDATE `tags` 
-                  SET `description` = :description, `name` = :name, `type_id` = :type_id, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `tags`
+                  SET `description` = :description, `name` = :name, `type_id` = :type_id, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

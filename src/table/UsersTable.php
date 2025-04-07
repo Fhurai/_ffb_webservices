@@ -68,12 +68,12 @@ class UsersTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            // Handle operators like <, >, =, etc.
+                // Handle operators like <, >, =, etc.
             } elseif (preg_match('/[<>=!]/', $value)) {
                 [$operator, $val] = explode(' ', $value, 2);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-            // Handle exact matches.
+                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -256,7 +256,7 @@ class UsersTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of User');
         }
 
-        $query = "INSERT INTO `users` (`username`, `password`, `email`, `is_admin`, `is_local`, `birthday`, `is_nsfw`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `users` (`username`, `password`, `email`, `is_admin`, `is_local`, `birthday`, `is_nsfw`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:username, :password, :email, :is_admin, :is_local, :birthday, :is_nsfw, :creation_date, :update_date, :delete_date)";
         $values = [
             ":username" => $entity->getUsername(),
@@ -290,9 +290,9 @@ class UsersTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of User');
         }
 
-        $query = "UPDATE `users` 
-                  SET `username` = :username, `password` = :password, `email` = :email, `is_admin` = :is_admin, `is_local` = :is_local, 
-                      `birthday` = :birthday, `is_nsfw` = :is_nsfw, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `users`
+                  SET `username` = :username, `password` = :password, `email` = :email, `is_admin` = :is_admin, `is_local` = :is_local,
+                      `birthday` = :birthday, `is_nsfw` = :is_nsfw, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

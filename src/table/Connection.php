@@ -34,7 +34,7 @@ class Connection
     public static function getDatabase(string $typeConnection, string $user): PDO
     {
         // Check if the database connection is already established
-        if(self::$db === NULL){
+        if (self::$db === NULL) {
             // Create a new database connection if not already established
             self::$db = self::createDbConnection($typeConnection, $user);
         }
@@ -62,7 +62,7 @@ class Connection
         }
 
         // Check for unauthorized access
-        if($user === "guest" && $typeConnection === "tests"){
+        if ($user === "guest" && $typeConnection === "tests") {
             throw new FfbTableException("Acces unauthorized!");
         }
 
@@ -82,7 +82,8 @@ class Connection
      * Debug method to print data.
      * @param mixed $data The data to be printed.
      */
-    public static function debug(mixed $data){
+    public static function debug(mixed $data)
+    {
         // Print a newline for better readability
         echo "\n";
         // Dump the data
@@ -93,7 +94,8 @@ class Connection
      * Debug and die method to print data and stop execution.
      * @param mixed $data The data to be printed.
      */
-    public static function dd(mixed $data){
+    public static function dd(mixed $data)
+    {
         // Print a newline for better readability
         echo "\n";
         // Dump the data

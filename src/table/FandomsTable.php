@@ -223,7 +223,7 @@ class FandomsTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Fandom');
         }
 
-        $query = "INSERT INTO `fandoms` (`name`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `fandoms` (`name`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:name, :creation_date, :update_date, :delete_date)";
         $values = [
             ":name" => $entity->getName(),
@@ -251,8 +251,8 @@ class FandomsTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Fandom');
         }
 
-        $query = "UPDATE `fandoms` 
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `fandoms`
+                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

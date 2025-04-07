@@ -220,7 +220,7 @@ class LanguagesTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Language');
         }
 
-        $query = "INSERT INTO `languages` (`name`, `abbreviation`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `languages` (`name`, `abbreviation`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:name, :abbreviation, :creation_date, :update_date, :delete_date)";
         $values = [
             ":name" => $entity->getName(),
@@ -249,8 +249,8 @@ class LanguagesTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Language');
         }
 
-        $query = "UPDATE `languages` 
-                  SET `name` = :name, `abbreviation` = :abbreviation, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `languages`
+                  SET `name` = :name, `abbreviation` = :abbreviation, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

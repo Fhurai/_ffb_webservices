@@ -7,7 +7,7 @@ require_once __DIR__ . "/../builder/LinkBuilder.php";
 
 /**
  * LinksTable class
- * 
+ *
  * This class provides methods to interact with the `links` table in the database.
  * It supports CRUD operations and various query methods for the `Link` entity.
  */
@@ -70,12 +70,12 @@ class LinksTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            // Handle operators like <, >, =, etc.
+                // Handle operators like <, >, =, etc.
             } elseif (preg_match('/[<>=!]/', $value)) {
                 [$operator, $val] = explode(' ', $value, 2);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-            // Handle exact matches.
+                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -262,7 +262,7 @@ class LinksTable extends EntitiesTable
         }
 
         // Prepare the SQL query to insert a new Link entity.
-        $query = "INSERT INTO `links` (`url`, `fanfiction_id`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `links` (`url`, `fanfiction_id`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:url, :fanfiction_id, :creation_date, :update_date, :delete_date)";
         $values = [
             ":url" => $entity->getUrl(), // Bind the URL value.
@@ -297,8 +297,8 @@ class LinksTable extends EntitiesTable
         }
 
         // Prepare the SQL query to update an existing Link entity.
-        $query = "UPDATE `links` 
-                  SET `url` = :url, `fanfiction_id` = :fanfiction_id, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `links`
+                  SET `url` = :url, `fanfiction_id` = :fanfiction_id, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(), // Bind the ID of the entity to update.

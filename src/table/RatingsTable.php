@@ -170,14 +170,14 @@ class RatingsTable extends ParametersTable
         }
 
         // Construct the base query with the LIMIT clause.
-        $query = $execute ? "SELECT * FROM `ratings` LIMIT " . (int)$args['limit'] : " LIMIT " . (int)$args['limit'];
+        $query = $execute ? "SELECT * FROM `ratings` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
 
         // If an 'offset' is provided, validate it and append it to the query.
         if (!empty($args['offset'])) {
             if (!is_numeric($args['offset']) || $args['offset'] < 0) {
                 throw new FfbTableException("Invalid offset value!");
             }
-            $query .= " OFFSET " . (int)$args['offset'];
+            $query .= " OFFSET " . (int) $args['offset'];
         }
 
         // If $execute is false, return the constructed query string.

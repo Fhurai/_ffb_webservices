@@ -262,7 +262,7 @@ class CharactersTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Character');
         }
 
-        $query = "INSERT INTO `characters` (`name`, `fandom_id`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `characters` (`name`, `fandom_id`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:name, :fandom_id, :creation_date, :update_date, :delete_date)";
         $values = [
             ":name" => $entity->getName(),
@@ -281,7 +281,7 @@ class CharactersTable extends EntitiesTable
         // Set the fandom for the entity if it exists.
         $fandomTable = new FandomsTable($this->typeConnection, $this->user);
         $entity->setFandom($fandomTable->get($entity->getFandomId()));
-        
+
         return $entity;
     }
 
@@ -298,8 +298,8 @@ class CharactersTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Character');
         }
 
-        $query = "UPDATE `characters` 
-                  SET `name` = :name, `fandom_id` = :fandom_id, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `characters`
+                  SET `name` = :name, `fandom_id` = :fandom_id, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

@@ -5,7 +5,7 @@ require_once __DIR__ . "/../entity/Entity.php";
 abstract class EntitiesTable
 {
     /**
-     * 
+     *
      * @var PDO
      */
     protected PDO $connection;
@@ -144,22 +144,22 @@ abstract class EntitiesTable
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
     protected function executeQuery(string $query, array $values = []): mixed
-{
-    try {
-        $sth = $this->connection->prepare($query);
-        $sth->execute($values);
+    {
+        try {
+            $sth = $this->connection->prepare($query);
+            $sth->execute($values);
 
-        // Check if the query returns results (e.g., SELECT)
-        if ($sth->columnCount() > 0) {
-            return $sth->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            // Return the number of affected rows for write operations
-            return $sth->rowCount();
+            // Check if the query returns results (e.g., SELECT)
+            if ($sth->columnCount() > 0) {
+                return $sth->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                // Return the number of affected rows for write operations
+                return $sth->rowCount();
+            }
+        } catch (PDOException $e) {
+            throw new FfbTableException($e->getMessage(), 500, $e);
         }
-    } catch (PDOException $e) {
-        throw new FfbTableException($e->getMessage(), 500, $e);
     }
-}
 
     /**
      * Retrieves the ID of the last inserted row in the database.
@@ -185,12 +185,13 @@ abstract class EntitiesTable
      * @return array List of valid column names.
      * @throws FfbTableException If the query fails.
      */
-    protected function getTableColumns(string $tableName): array {
+    protected function getTableColumns(string $tableName): array
+    {
         try {
             $stmt = $this->connection->prepare("
-                SELECT COLUMN_NAME 
-                FROM INFORMATION_SCHEMA.COLUMNS 
-                WHERE TABLE_SCHEMA = DATABASE() 
+                SELECT COLUMN_NAME
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = DATABASE()
                   AND TABLE_NAME = :table
             ");
             $stmt->execute([':table' => $tableName]);

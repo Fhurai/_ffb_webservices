@@ -5,7 +5,7 @@ require_once __DIR__ . "/../entity/Parameters.php";
 abstract class ParametersTable
 {
     /**
-     * 
+     *
      * @var PDO
      */
     private PDO $connection;
@@ -72,7 +72,8 @@ abstract class ParametersTable
      * @return array The query results.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
-    protected function executeQuery(string $query, array $values = []): array{
+    protected function executeQuery(string $query, array $values = []): array
+    {
         try {
             // Prepare and execute the query.
             $sth = $this->connection->prepare($query);
@@ -101,23 +102,24 @@ abstract class ParametersTable
     }
 
     /**
- * Get valid column names for the specified table.
- * @param string $tableName The table name.
- * @return array List of valid column names.
- * @throws FfbTableException If the query fails.
- */
-protected function getTableColumns(string $tableName): array {
-    try {
-        $stmt = $this->connection->prepare("
-            SELECT COLUMN_NAME 
-            FROM INFORMATION_SCHEMA.COLUMNS 
-            WHERE TABLE_SCHEMA = DATABASE() 
+     * Get valid column names for the specified table.
+     * @param string $tableName The table name.
+     * @return array List of valid column names.
+     * @throws FfbTableException If the query fails.
+     */
+    protected function getTableColumns(string $tableName): array
+    {
+        try {
+            $stmt = $this->connection->prepare("
+            SELECT COLUMN_NAME
+            FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
               AND TABLE_NAME = :table
         ");
-        $stmt->execute([':table' => $tableName]);
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
-    } catch (PDOException $e) {
-        throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+            $stmt->execute([':table' => $tableName]);
+            return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+        }
     }
-}
 }

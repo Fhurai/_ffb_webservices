@@ -246,7 +246,7 @@ class AuthorsTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Author');
         }
 
-        $query = "INSERT INTO `authors` (`name`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `authors` (`name`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:name, :creation_date, :update_date, :delete_date)";
         $values = [
             ":name" => $entity->getName(),
@@ -279,8 +279,8 @@ class AuthorsTable extends EntitiesTable
             throw new \InvalidArgumentException('Expected instance of Author');
         }
 
-        $query = "UPDATE `authors` 
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `authors`
+                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(),

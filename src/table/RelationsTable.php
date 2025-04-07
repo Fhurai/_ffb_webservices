@@ -244,7 +244,7 @@ class RelationsTable extends EntitiesTable
         }
 
         // Prepare the INSERT query with placeholders for values
-        $query = "INSERT INTO `relations` (`name`, `creation_date`, `update_date`, `delete_date`) 
+        $query = "INSERT INTO `relations` (`name`, `creation_date`, `update_date`, `delete_date`)
                   VALUES (:name, :creation_date, :update_date, :delete_date)";
         $values = [
             ":name" => $entity->getName(), // Bind the name of the relation
@@ -275,8 +275,8 @@ class RelationsTable extends EntitiesTable
         }
 
         // Prepare the UPDATE query with placeholders for values
-        $query = "UPDATE `relations` 
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date 
+        $query = "UPDATE `relations`
+                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
                   WHERE `id` = :id";
         $values = [
             ":id" => $entity->getId(), // Bind the ID of the relation to update
@@ -362,8 +362,8 @@ class RelationsTable extends EntitiesTable
             ->withDeleteDate($row["delete_date"]);
 
         // Query to fetch associated characters for the relation
-        $query = "SELECT `characters`.* FROM `relations_characters` 
-                  INNER JOIN `characters` ON `relations_characters`.`character_id` = `characters`.`id` 
+        $query = "SELECT `characters`.* FROM `relations_characters`
+                  INNER JOIN `characters` ON `relations_characters`.`character_id` = `characters`.`id`
                   WHERE `relation_id` = :id";
         $values = [":id" => $row["id"]]; // Bind the relation ID
 

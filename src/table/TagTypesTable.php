@@ -161,14 +161,14 @@ class TagTypesTable extends ParametersTable
         }
 
         // Build the LIMIT clause.
-        $query = $execute ? "SELECT * FROM `tag_types` LIMIT " . (int)$args['limit'] : " LIMIT " . (int)$args['limit'];
+        $query = $execute ? "SELECT * FROM `tag_types` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
 
         // Append the OFFSET clause if provided.
         if (!empty($args['offset'])) {
             if (!is_numeric($args['offset']) || $args['offset'] < 0) {
                 throw new FfbTableException("Invalid offset value!");
             }
-            $query .= " OFFSET " . (int)$args['offset'];
+            $query .= " OFFSET " . (int) $args['offset'];
         }
 
         // Return the query string if not executing.
