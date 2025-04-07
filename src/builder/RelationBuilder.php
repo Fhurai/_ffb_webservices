@@ -168,10 +168,14 @@ class RelationBuilder implements NamedEntityBuilderInterface {
         }
         // Add the character to the characters array
         array_push($this->obj->characters, $character);
-        // Sort the characters array
-        sort($this->obj->characters);
-        // Set the name of the relation based on the characters array
-        $this->obj->setName(implode(" / ", $this->obj->characters));
+        // Sort the characters array by name
+        usort($this->obj->characters, function($a, $b) {
+            return strcmp($a->getName(), $b->getName());
+        });
+        // Set the name of the relation based on the characters names array
+        $this->obj->setName(implode(" / ", array_map(function($character) {
+            return $character->getName();
+        }, $this->obj->characters)));
         return $this;
     }
 }
