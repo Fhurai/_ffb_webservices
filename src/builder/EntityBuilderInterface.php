@@ -2,7 +2,7 @@
 
 /**
  * Interface EntityBuilderInterface
- * 
+ *
  * Defines the methods required for a builder.
  */
 interface EntityBuilderInterface

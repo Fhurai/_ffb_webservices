@@ -17,7 +17,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Builds and returns the Series object.
-     * 
+     *
      * @return Series The built Series object.
      */
     public function build(): Series
@@ -35,20 +35,21 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the ID for the Series object.
-     * 
+     *
      * @param int|string $id The ID of the series, either as an integer or a string.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
-    public function withId(int|string $id): SeriesBuilder {
+    public function withId(int|string $id): SeriesBuilder
+    {
         // Check if the id is an integer
         if (is_integer($id)) {
             // Set the id
             $this->obj->setId($id);
-        } 
+        }
         // Check if the id is a string
         else if (is_string($id)) {
             // Convert the string to an integer
-            $integer = (int)$id;
+            $integer = (int) $id;
             // Set the id
             $this->obj->setId($integer);
         }
@@ -57,7 +58,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the creation date for the Series object.
-     * 
+     *
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -74,7 +75,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the delete date for the Series object.
-     * 
+     *
      * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -99,7 +100,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the update date for the Series object.
-     * 
+     *
      * @param DateTime|string $updateDate The update date as a DateTime object or a string.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -116,7 +117,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the name for the Series object.
-     * 
+     *
      * @param string $name The name.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -128,7 +129,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the description for the Series object.
-     * 
+     *
      * @param string $description The description.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -140,7 +141,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the score ID for the Series object.
-     * 
+     *
      * @param int|null $scoreId The score ID.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
@@ -152,7 +153,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the evaluation for the Series object.
-     * 
+     *
      * @param string|null $evaluation The evaluation.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */

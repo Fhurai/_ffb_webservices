@@ -7,7 +7,8 @@ require_once __DIR__ . "/../entity/User.php";
  * Class UserBuilder
  * Implements the BuilderInterface to build User objects.
  */
-class UserBuilder implements EntityBuilderInterface {
+class UserBuilder implements EntityBuilderInterface
+{
 
     /**
      * @var User The User object being built.
@@ -18,7 +19,8 @@ class UserBuilder implements EntityBuilderInterface {
      * UserBuilder constructor.
      * Initializes the builder by resetting the User object.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->reset();
     }
 
@@ -27,33 +29,36 @@ class UserBuilder implements EntityBuilderInterface {
      *
      * @return User The built User object.
      */
-    public function build(): User {
+    public function build(): User
+    {
         return $this->obj;
     }
 
     /**
      * Resets the builder by creating a new User object.
      */
-    public function reset(): void {
+    public function reset(): void
+    {
         $this->obj = new User();
     }
 
     /**
      * Sets the ID for the User object.
-     * 
+     *
      * @param int|string $id The ID of the user, either as an integer or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withId(int|string $id): UserBuilder {
+    public function withId(int|string $id): UserBuilder
+    {
         // Check if the id is an integer
         if (is_integer($id)) {
             // Set the id
             $this->obj->setId($id);
-        } 
+        }
         // Check if the id is a string
         else if (is_string($id)) {
             // Convert the string to an integer
-            $integer = (int)$id;
+            $integer = (int) $id;
             // Set the id
             $this->obj->setId($integer);
         }
@@ -66,13 +71,14 @@ class UserBuilder implements EntityBuilderInterface {
      * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withCreationDate(DateTime|string $creationDate): UserBuilder {
+    public function withCreationDate(DateTime|string $creationDate): UserBuilder
+    {
         // Check if the creation date is a DateTime object
-        if($creationDate instanceof DateTime){
+        if ($creationDate instanceof DateTime) {
             $this->obj->setCreationDate($creationDate);
-        } 
+        }
         // Check if the creation date is a string
-        else if(is_string($creationDate)){
+        else if (is_string($creationDate)) {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate);
             $this->obj->setCreationDate($date);
         }
@@ -85,13 +91,14 @@ class UserBuilder implements EntityBuilderInterface {
      * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withUpdateDate(DateTime|string $updateDate): UserBuilder {
+    public function withUpdateDate(DateTime|string $updateDate): UserBuilder
+    {
         // Check if the update date is a DateTime object
-        if($updateDate instanceof DateTime){
+        if ($updateDate instanceof DateTime) {
             $this->obj->setUpdateDate($updateDate);
-        } 
+        }
         // Check if the update date is a string
-        else if(is_string($updateDate)){
+        else if (is_string($updateDate)) {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate);
             $this->obj->setUpdateDate($date);
         }
@@ -104,18 +111,19 @@ class UserBuilder implements EntityBuilderInterface {
      * @param DateTime|string $deleteDate The delete date to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withDeleteDate(DateTime|string|null $deleteDate): UserBuilder {
+    public function withDeleteDate(DateTime|string|null $deleteDate): UserBuilder
+    {
         // Check if the delete date is a DateTime object
-        if($deleteDate instanceof DateTime){
+        if ($deleteDate instanceof DateTime) {
             $this->obj->setDeleteDate($deleteDate);
-        } 
+        }
         // Check if the delete date is a string
-        else if(is_string($deleteDate)){
+        else if (is_string($deleteDate)) {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             $this->obj->setDeleteDate($date);
         }
         // Check if the delete date is null
-        else if($deleteDate === null){
+        else if ($deleteDate === null) {
             // Set the delete date to null
             $this->obj->setDeleteDate(null);
         }
@@ -132,7 +140,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param string $username The username to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withUsername(string $username): UserBuilder {
+    public function withUsername(string $username): UserBuilder
+    {
         // Set the username of the User object
         $this->obj->setUsername($username);
         return $this;
@@ -144,7 +153,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param string $password The password to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withPassword(string $password): UserBuilder {
+    public function withPassword(string $password): UserBuilder
+    {
         // Set the password of the User object
         $this->obj->setPassword($password);
         return $this;
@@ -156,7 +166,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param string $email The email to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withEmail(string $email): UserBuilder {
+    public function withEmail(string $email): UserBuilder
+    {
         // Set the email of the User object
         $this->obj->setEmail($email);
         return $this;
@@ -168,7 +179,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isAdmin The admin status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withIsAdmin(bool $isAdmin): UserBuilder {
+    public function withIsAdmin(bool $isAdmin): UserBuilder
+    {
         // Set the admin status of the User object
         $this->obj->setIsAdmin($isAdmin);
         return $this;
@@ -180,7 +192,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isLocal The local status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withIsLocal(bool $isLocal): UserBuilder {
+    public function withIsLocal(bool $isLocal): UserBuilder
+    {
         // Set the local status of the User object
         $this->obj->setIsLocal($isLocal);
         return $this;
@@ -192,13 +205,14 @@ class UserBuilder implements EntityBuilderInterface {
      * @param DateTime|string $birthday The birthday to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withBirthday(DateTime|string $birthday): UserBuilder {
+    public function withBirthday(DateTime|string $birthday): UserBuilder
+    {
         // Check if the birthday is a DateTime object
-        if($birthday instanceof DateTime){
+        if ($birthday instanceof DateTime) {
             $this->obj->setBirthday($birthday);
-        } 
+        }
         // Check if the birthday is a string
-        else if(is_string($birthday)){
+        else if (is_string($birthday)) {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $birthday);
             $this->obj->setBirthday($date);
         }
@@ -211,7 +225,8 @@ class UserBuilder implements EntityBuilderInterface {
      * @param bool $isNsfw The NSFW status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
-    public function withIsNsfw(bool $isNsfw): UserBuilder {
+    public function withIsNsfw(bool $isNsfw): UserBuilder
+    {
         // Set the NSFW status of the User object
         $this->obj->setIsNsfw($isNsfw);
         return $this;

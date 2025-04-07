@@ -18,7 +18,7 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Builds and returns the Language object.
-     * 
+     *
      * @return Language The built Language object.
      */
     public function build()
@@ -38,20 +38,21 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the ID for the Author object.
-     * 
+     *
      * @param int|string $id The ID of the author, either as an integer or a string.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
-    public function withId(int|string $id): LanguageBuilder {
+    public function withId(int|string $id): LanguageBuilder
+    {
         // Check if the id is an integer
         if (is_integer($id)) {
             // Set the id
             $this->obj->setId($id);
-        } 
+        }
         // Check if the id is a string
         else if (is_string($id)) {
             // Convert the string to an integer
-            $integer = (int)$id;
+            $integer = (int) $id;
             // Set the id
             $this->obj->setId($integer);
         }
@@ -60,19 +61,19 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the creation date for the Language object.
-     * 
+     *
      * @param DateTime|string $creationDate The creation date of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
     public function withCreationDate(DateTime|string $creationDate): LanguageBuilder
     {
         // Check if the creation date is a DateTime object
-        if($creationDate instanceof DateTime){
+        if ($creationDate instanceof DateTime) {
             // Set the creation date
             $this->obj->setCreationDate($creationDate);
-        } 
+        }
         // Check if the creation date is a string
-        else if(is_string($creationDate)){
+        else if (is_string($creationDate)) {
             // Convert the string to a DateTime object
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate);
             // Set the creation date
@@ -83,30 +84,29 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the delete date for the Language object.
-     * 
+     *
      * @param DateTime|string|null $deleteDate The delete date of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
     public function withDeleteDate(DateTime|string|null $deleteDate): LanguageBuilder
     {
         // Check if the delete date is a DateTime object
-        if($deleteDate instanceof DateTime){
+        if ($deleteDate instanceof DateTime) {
             // Set the delete date
             $this->obj->setDeleteDate($deleteDate);
-        } 
+        }
         // Check if the delete date is a string
-        else if(is_string($deleteDate)){
+        else if (is_string($deleteDate)) {
             // Convert the string to a DateTime object
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
             // Set the delete date
             $this->obj->setDeleteDate($date);
         }
         // Check if the delete date is null
-        else if($deleteDate === null){
+        else if ($deleteDate === null) {
             // Set the delete date to null
             $this->obj->setDeleteDate(null);
-        }
-        else {
+        } else {
             // Set the delete date to null
             $this->obj->setDeleteDate(null);
         }
@@ -115,19 +115,19 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the update date for the Language object.
-     * 
+     *
      * @param DateTime|string $updateDate The update date of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
     public function withUpdateDate(DateTime|string $updateDate): LanguageBuilder
     {
         // Check if the update date is a DateTime object
-        if($updateDate instanceof DateTime){
+        if ($updateDate instanceof DateTime) {
             // Set the update date
             $this->obj->setUpdateDate($updateDate);
-        } 
+        }
         // Check if the update date is a string
-        else if(is_string($updateDate)){
+        else if (is_string($updateDate)) {
             // Convert the string to a DateTime object
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate);
             // Set the update date
@@ -138,7 +138,7 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the abbreviation for the Language object.
-     * 
+     *
      * @param string $abbreviation The abbreviation of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
@@ -151,7 +151,7 @@ class LanguageBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the name for the Language object.
-     * 
+     *
      * @param string $name The name of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
