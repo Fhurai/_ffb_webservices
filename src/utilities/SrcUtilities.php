@@ -4,12 +4,13 @@
  * Class SrcUtilities
  *
  * This class provides a set of utility functions for the application.
- * These utilities are designed to assist with common tasks and 
+ * These utilities are designed to assist with common tasks and
  * operations that are used throughout the application.
  *
  * @package _ffb_webservices\src\utilities
  */
-class SrcUtilities {
+class SrcUtilities
+{
 
     /**
      * Generates a string by combining a prefix and a property.
@@ -57,7 +58,8 @@ class SrcUtilities {
      * @param string $class Class from which the table is generated.
      * @return string Table name.
      */
-    public static function getTableName(string $class, bool $singular = true){
+    public static function getTableName(string $class, bool $singular = true)
+    {
         // Initialization of variables.
         $pos = -1;
         $tableName = "";
