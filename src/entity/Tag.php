@@ -73,9 +73,9 @@ class Tag extends ComplexEntity
         $this->type_id = $type_id;
     }
 
-     /**
+    /**
      * Get the associated TagType entity.
-     * 
+     *
      * @return TagType
      * @throws \RuntimeException If tag_type is not loaded.
      */
@@ -89,7 +89,7 @@ class Tag extends ComplexEntity
 
     /**
      * Check if tag_type is loaded.
-     * 
+     *
      * @return bool
      */
     public function hasTagType(): bool
@@ -99,7 +99,7 @@ class Tag extends ComplexEntity
 
     /**
      * Set the associated TagType entity.
-     * 
+     *
      * @param TagType|array $tagType
      */
     public function setTagType(TagType|array $tagType): void
@@ -124,7 +124,7 @@ class Tag extends ComplexEntity
         if ($this->hasTagType()) {
             $assoc["tag_type"] = $this->getTagType()->jsonSerialize();
         }
-        
+
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->getDescription(),
             "type_id" => $this->getTypeId()

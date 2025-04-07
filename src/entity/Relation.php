@@ -50,13 +50,13 @@ class Relation extends ComplexEntity
     {
         $this->characters = [];
         foreach ($characters as $character) {
-            if(is_array($character)) {
+            if (is_array($character)) {
                 $this->characters[] = Character::jsonUnserialize(json_encode($character));
-            } else if($character instanceof Character) {
+            } else if ($character instanceof Character) {
                 $this->characters[] = $character;
             }
         }
-        
+
     }
 
     /**
@@ -78,7 +78,8 @@ class Relation extends ComplexEntity
      * Method to create a new Relation.
      * @return mixed new Relation.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }

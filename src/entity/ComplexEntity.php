@@ -19,14 +19,14 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Method to parse an array into an object.
      * @param string $property_name Name of the property to parse.
-     * @param array $data 
+     * @param array $data
      * @return mixed
      */
     protected static function parseDataProperty(string $property_name, array $data): mixed
     {
         switch ($property_name) {
             // Simple association cases :
-            // If the property is about a simple association, 
+            // If the property is about a simple association,
             // going through its jsonUnserialize method().
             case "tag_type":
                 return TagType::jsonUnserialize(json_encode($data));
@@ -42,7 +42,7 @@ abstract class ComplexEntity extends NamedEntity
                 return Score::jsonUnserialize(json_encode($data));
 
             // Multiple association cases :
-            // If the property is about a multiple association, 
+            // If the property is about a multiple association,
             // browing the different data and going through its jsonUnserialize method() for each.
             case "characters":
                 $characters = [];

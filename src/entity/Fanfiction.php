@@ -119,7 +119,7 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Check if author is loaded.
-     * 
+     *
      * @return bool
      */
     public function hasAuthor(): bool
@@ -174,7 +174,7 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Check if rating is loaded.
-     * 
+     *
      * @return bool
      */
     public function hasRating(): bool
@@ -248,7 +248,7 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Check if language is loaded.
-     * 
+     *
      * @return bool
      */
     public function hasLanguage(): bool
@@ -285,7 +285,7 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Check if fandoms are loaded.
-     * 
+     *
      * @return bool
      */
     public function hasFandoms(): bool
@@ -325,7 +325,7 @@ class Fanfiction extends ComplexEntity
 
     /**
      * Check if characters are loaded.
-     * 
+     *
      * @return bool
      */
     public function hasCharacters(): bool
@@ -362,7 +362,7 @@ class Fanfiction extends ComplexEntity
     }
     /**
      * Check if relations are loaded.
-     * 
+     *
      * @return bool
      */
     public function hasRelations(): bool
@@ -399,7 +399,7 @@ class Fanfiction extends ComplexEntity
     }
     /**
      * Check if tags are loaded.
-     * 
+     *
      * @return bool
      */
     public function hasTags(): bool
@@ -437,7 +437,7 @@ class Fanfiction extends ComplexEntity
     }
     /**
      * Check if links are loaded.
-     * 
+     *
      * @return bool
      */
     public function hasLinks(): bool

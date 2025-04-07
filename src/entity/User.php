@@ -222,7 +222,8 @@ class User extends Entity
      * Method to create a new User.
      * @return mixed New User.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }

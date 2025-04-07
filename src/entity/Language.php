@@ -56,8 +56,8 @@ class Language extends NamedEntity
      */
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(),[
-            "abbreviation"=> $this->getAbbreviation(),
+        return array_merge(parent::jsonSerialize(), [
+            "abbreviation" => $this->getAbbreviation(),
         ]);
     }
 }

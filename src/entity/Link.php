@@ -82,7 +82,8 @@ class Link extends Entity
      * Method to create a new Link.
      * @return mixed new Link.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }

@@ -5,7 +5,8 @@ require_once __DIR__ . "/../../src/entity/Entity.php";
 /**
  * Abstract class NamedEntity
  */
-abstract class NamedEntity extends Entity {
+abstract class NamedEntity extends Entity
+{
     /**
      * Name.
      * @var string
@@ -15,7 +16,8 @@ abstract class NamedEntity extends Entity {
     /**
      * Implied constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->setName("");
     }
@@ -24,7 +26,8 @@ abstract class NamedEntity extends Entity {
      * Getter Name.
      * @return string Name.
      */
-    public function getName(): string {
+    public function getName(): string
+    {
         return $this->name;
     }
 
@@ -33,7 +36,8 @@ abstract class NamedEntity extends Entity {
      * @param string $name New Name.
      * @return void
      */
-    public function setName(string $name) {
+    public function setName(string $name)
+    {
         $this->name = $name;
     }
 
@@ -43,8 +47,8 @@ abstract class NamedEntity extends Entity {
      */
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(),[
-            "name"=> $this->getName(),
+        return array_merge(parent::jsonSerialize(), [
+            "name" => $this->getName(),
         ]);
     }
 }

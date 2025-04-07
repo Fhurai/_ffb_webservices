@@ -26,7 +26,7 @@ abstract class Entity implements JsonSerializable
     private DateTime $update_date;
     /**
      * Delete date.
-     * @var 
+     * @var
      */
     private ?DateTime $delete_date;
 
@@ -125,7 +125,7 @@ abstract class Entity implements JsonSerializable
     {
         $assoc = [];
 
-        if (property_exists($this,"_assoc_data")) {
+        if (property_exists($this, "_assoc_data")) {
             $assoc["_assoc_data"] = $this->_assoc_data;
         }
 

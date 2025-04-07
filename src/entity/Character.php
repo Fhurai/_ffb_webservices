@@ -61,7 +61,7 @@ class Character extends ComplexEntity
 
     /**
      * Check if fandom is loaded.
-     * 
+     *
      * @return bool
      */
     public function hasFandom(): bool
@@ -104,7 +104,8 @@ class Character extends ComplexEntity
      * Method to create a new Character.
      * @return mixed new Character.
      */
-    public static function getNewObject(): mixed {
+    public static function getNewObject(): mixed
+    {
         return new self();
     }
 }
