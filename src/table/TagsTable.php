@@ -277,6 +277,10 @@ class TagsTable extends EntitiesTable
         // Set the ID of the newly created entity.
         $entity->setId($this->getLastInsertId());
 
+        // Set the TagType entity based on the type_id.
+        $tagTypeTable = new TagTypesTable($this->typeConnection, $this->user);
+        $entity->setTagType($tagTypeTable->get($entity->getTypeId()));
+
         // Return the created entity.
         return $entity;
     }

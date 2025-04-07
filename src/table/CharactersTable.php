@@ -272,8 +272,16 @@ class CharactersTable extends EntitiesTable
             ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
         ];
 
+        // Execute the query to insert the new entity.
         $this->executeQuery($query, $values);
+
+        // Set the ID of the newly created entity.
         $entity->setId($this->getLastInsertId());
+
+        // Set the fandom for the entity if it exists.
+        $fandomTable = new FandomsTable($this->typeConnection, $this->user);
+        $entity->setFandom($fandomTable->get($entity->getFandomId()));
+        
         return $entity;
     }
 
@@ -380,14 +388,29 @@ class CharactersTable extends EntitiesTable
      */
     protected function parseEntity(array $row): Character
     {
-        // Use the CharacterBuilder to construct a Character object from the database row.
-        return (new CharacterBuilder())
-            ->withId($row["id"]) // Set the ID of the character.
-            ->withName($row["name"]) // Set the name of the character.
-            ->withFandomId($row["fandom_id"]) // Set the fandom ID of the character.
-            ->withCreationDate($row["creation_date"]) // Set the creation date of the character.
-            ->withUpdateDate($row["update_date"]) // Set the update date of the character.
-            ->withDeleteDate($row["delete_date"]) // Set the delete date of the character (if any).
-            ->build(); // Build and return the Character object.
+        $character = (new CharacterBuilder())
+            ->withId($row["id"])
+            ->withName($row["name"])
+            ->withFandomId($row["fandom_id"])
+            ->withCreationDate($row["creation_date"])
+            ->withUpdateDate($row["update_date"])
+            ->withDeleteDate($row["delete_date"])
+            ->build();
+
+        // Load fandom if fandom_id is valid (greater than 0)
+        $fandomId = $character->getFandomId();
+        if ($fandomId > 0) {
+            // Assuming FandomsTable is available and uses the same connection
+            $fandomTable = new FandomsTable($this->typeConnection, $this->user);
+            try {
+                $fandom = $fandomTable->get($fandomId);
+                $character->setFandom($fandom);
+            } catch (FfbTableException $e) {
+                // Handle exception (e.g., log error, set to null)
+                $character->setFandom(null);
+            }
+        }
+
+        return $character;
     }
 }

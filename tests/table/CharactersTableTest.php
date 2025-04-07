@@ -21,6 +21,9 @@ class CharactersTableTest extends TestCase
         $this->assertInstanceOf(Character::class, $result);
         $this->assertEquals(1, $result->getId());
         $this->assertEquals("Angelise Ikaruga Misurugi", $result->getName());
+        $this->assertTrue($result->hasFandom());
+        $this->assertEquals(3, $result->getFandomId());
+        $this->assertEquals("クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon", $result->getFandom()->getName());
     }
 
     public function testGetInvalidId(): void
@@ -174,6 +177,9 @@ class CharactersTableTest extends TestCase
         $this->assertInstanceOf(Character::class, $createdCharacter);
         $this->assertNotNull($createdCharacter->getId());
         $this->assertEquals("New Character", $createdCharacter->getName());
+        $this->assertTrue($createdCharacter->hasFandom());
+        $this->assertEquals(1, $createdCharacter->getFandomId());
+        $this->assertEquals("Avengers", $createdCharacter->getFandom()->getName());
     }
 
     public function testCreateInvalidEntity(): void
@@ -192,6 +198,9 @@ class CharactersTableTest extends TestCase
 
         $this->assertInstanceOf(Character::class, $updatedCharacter);
         $this->assertEquals("Updated Character", $updatedCharacter->getName());
+        $this->assertTrue($updatedCharacter->hasFandom());
+        $this->assertEquals(1, $updatedCharacter->getFandomId());
+        $this->assertEquals("Avengers", $updatedCharacter->getFandom()->getName());
     }
 
     public function testUpdateInvalidEntity(): void
