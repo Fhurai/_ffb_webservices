@@ -3,14 +3,16 @@
 require_once __DIR__ . "/Parameters.php";
 
 /**
- * Readonly Action class extending Parameters
+ * Represents an action with an ID and a name.
+ * This class extends the Parameters class and is immutable.
  */
 readonly class Action extends Parameters
 {
     /**
-     * Constructor explicitly initializes parent properties
-     * @param int $id   The identifier
-     * @param string $name The name
+     * Initializes a new instance of the Action class.
+     *
+     * @param int $id   The unique identifier for the action.
+     * @param string $name The name of the action.
      */
     public function __construct(int $id, string $name)
     {
@@ -18,10 +20,11 @@ readonly class Action extends Parameters
     }
 
     /**
-     * Creates a new Action instance with required parameters
-     * @param int $id   The identifier
-     * @param string $name The name
-     * @return static   New Action object
+     * Creates and returns a new Action instance.
+     *
+     * @param int $id   The unique identifier for the action.
+     * @param string $name The name of the action.
+     * @return static   A new instance of the Action class.
      */
     public static function getNewObject(int $id, string $name): static
     {

@@ -36,7 +36,7 @@ abstract class NamedEntity extends Entity
      * @param string $name New Name.
      * @return void
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }

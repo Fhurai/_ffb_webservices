@@ -4,17 +4,19 @@ require_once __DIR__ . "/../../src/entity/NamedEntity.php";
 
 /**
  * Language class.
+ * Represents a language entity with a name, abbreviation, and ID.
  */
 class Language extends NamedEntity
 {
     /**
-     * Abbreviation.
+     * Abbreviation of the language.
      * @var string
      */
     private string $abbreviation;
 
     /**
      * Constructor.
+     * Initializes the Language object with default values.
      */
     public function __construct()
     {
@@ -23,8 +25,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * Getter Abbreviation.
-     * @return string Abbreviation.
+     * Getter for the abbreviation.
+     * @return string Abbreviation of the language.
      */
     public function getAbbreviation(): string
     {
@@ -32,8 +34,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * Setter Abbreviation.
-     * @param string $abbreviation new Abbreviation.
+     * Setter for the abbreviation.
+     * @param string $abbreviation New abbreviation for the language.
      * @return void
      */
     public function setAbbreviation(string $abbreviation): void
@@ -42,8 +44,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * Method to create a new object.
-     * @return mixed the new object.
+     * Creates a new instance of the Language class.
+     * @return Language A new Language object.
      */
     public static function getNewObject(): mixed
     {
@@ -51,8 +53,8 @@ class Language extends NamedEntity
     }
 
     /**
-     * Method to parse NamedEntity into an array for JSON parsing.
-     * @return array Array of NamedEntity data.
+     * Converts the Language object into an array for JSON serialization.
+     * @return array Array representation of the Language object.
      */
     public function jsonSerialize(): array
     {

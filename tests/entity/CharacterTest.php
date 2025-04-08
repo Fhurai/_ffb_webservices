@@ -4,45 +4,103 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Character.php';
 
+/**
+ * PHPUnit test suite for the Character entity.
+ * Validates core functionality including getters/setters, JSON serialization, and associations.
+ */
 class CharacterTest extends TestCase
 {
     private Character $character;
 
+    /**
+     * Initialize a fresh Character instance before each test.
+     * Ensures test isolation.
+     */
     protected function setUp(): void
     {
         $this->character = new Character();
     }
 
+    /**
+     * Tests getters and setters for both inherited and Character-specific properties.
+     * - Verifies initial default value of `fandom_id` (-1).
+     * - Validates ID, name, and fandom_id assignment/retrieval.
+     */
     public function testGettersAndSetters(): void
     {
-        // Test inherited properties
+        // Check initial default value
+        $this->assertEquals(-1, $this->character->getFandomId());
+
+        // Inherited properties
         $this->character->setId(123);
         $this->assertEquals(123, $this->character->getId());
 
         $this->character->setName('Test Character');
         $this->assertEquals('Test Character', $this->character->getName());
 
-        // Test Character-specific properties
+        // Character-specific property
         $this->character->setFandomId(5);
         $this->assertEquals(5, $this->character->getFandomId());
     }
 
+    /**
+     * Tests the `hasFandom()` method.
+     * - Confirms fandom is not loaded initially.
+     * - Validates fandom presence after setting it.
+     */
+    public function testHasFandom(): void
+    {
+        $this->assertFalse($this->character->hasFandom());
+        $this->character->setFandom(new Fandom());
+        $this->assertTrue($this->character->hasFandom());
+    }
+
+    /**
+     * Tests setting fandom using an array input.
+     * - Converts the array to a Fandom object internally.
+     * - Verifies the converted Fandom's properties.
+     */
+    public function testSetFandomWithArray(): void
+    {
+        $fandomData = ['id' => 789, 'name' => 'Array Fandom'];
+        $this->character->setFandom($fandomData);
+
+        $this->assertTrue($this->character->hasFandom());
+        $this->assertEquals(789, $this->character->getFandom()->getId());
+        $this->assertEquals('Array Fandom', $this->character->getFandom()->getName());
+    }
+
+    /**
+     * Tests exception handling when accessing an unloaded fandom.
+     * - Expects a RuntimeException if `getFandom()` is called without loading the fandom first.
+     */
+    public function testGetFandomThrowsExceptionWhenNotLoaded(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('fandom is not loaded. Use hasFandom() to check first.');
+        $this->character->getFandom();
+    }
+
+    /**
+     * Tests JSON serialization of the Character entity.
+     * - Validates the structure of the serialized output.
+     * - Checks inclusion of core fields (id, name, fandom_id, dates).
+     */
     public function testJsonSerialize(): void
     {
-        // Set up test data
+        // Configure test data
         $this->character->setId(1);
         $this->character->setName('Test Character');
         $this->character->setFandomId(2);
-        
-        // Manually set dates for consistent testing
+
+        // Set fixed dates for consistent assertions
         $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
         $this->character->setCreationDate($date);
         $this->character->setUpdateDate($date);
 
-        // Serialize to array
         $result = $this->character->jsonSerialize();
 
-        // Verify serialized data
+        // Validate structure and values
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('name', $result);
         $this->assertArrayHasKey('fandom_id', $result);
@@ -55,16 +113,48 @@ class CharacterTest extends TestCase
         $this->assertEquals($date, $result['creation_date']);
     }
 
+    /**
+     * Tests JSON serialization when no fandom is associated.
+     * - Ensures the `fandom` key is absent in the output.
+     */
+    public function testJsonSerializeWithoutFandom(): void
+    {
+        $result = $this->character->jsonSerialize();
+        $this->assertArrayHasKey('fandom', $result);
+        $this->assertNull($result['fandom']);
+    }
+
+    /**
+     * Tests JSON serialization with an associated Fandom.
+     * - Validates inclusion of the `fandom` key and its object type.
+     */
+    public function testJsonSerializeWithFandom(): void
+    {
+        $fandom = new Fandom();
+        $fandom->setId(456);
+        $fandom->setName('Test Fandom');
+        $this->character->setFandom($fandom);
+
+        $result = $this->character->jsonSerialize();
+
+        $this->assertArrayHasKey('fandom', $result);
+        $this->assertInstanceOf(Fandom::class, $result['fandom']);
+        $this->assertEquals(456, $result['fandom']->getId());
+    }
+
+    /**
+     * Tests JSON unserialization into a Character object.
+     * - Parses a JSON string into a Character instance.
+     * - Validates property mapping, date parsing, and fandom association.
+     */
     public function testJsonUnserialize(): void
     {
-        // Sample JSON data
         $json = '{
             "id": 123,
             "name": "Unserialized Character",
             "fandom_id": 5,
             "creation_date": "2023-01-01 12:34:56",
             "update_date": "2023-01-02 13:45:00",
-            "delete_date": null,
             "fandom": {
                 "id": 456,
                 "name": "Test Fandom",
@@ -72,43 +162,28 @@ class CharacterTest extends TestCase
             }
         }';
 
-        // Unserialize the JSON
         $character = Character::jsonUnserialize($json);
 
-        // Verify basic properties
-        $this->assertInstanceOf(Character::class, $character);
+        // Basic properties
         $this->assertEquals(123, $character->getId());
         $this->assertEquals('Unserialized Character', $character->getName());
         $this->assertEquals(5, $character->getFandomId());
 
-        // Verify dates
-        $this->assertInstanceOf(DateTime::class, $character->getCreationDate());
+        // Date handling
         $this->assertEquals(
             '2023-01-01 12:34:56',
             $character->getCreationDate()->format('Y-m-d H:i:s')
         );
 
-        // Verify association
-        $this->assertTrue(property_exists($character, 'fandom'));
-        $this->assertInstanceOf(Fandom::class, $character->getFandom());
+        // Fandom association
+        $this->assertTrue($character->hasFandom());
         $this->assertEquals(456, $character->getFandom()->getId());
     }
 
-    public function testJsonSerializeWithFandom(): void
-    {
-        // Add fandom association
-        $fandom = new Fandom();
-        $fandom->setId(456);
-        $fandom->setName('Test Fandom');
-        $this->character->setFandom($fandom);
-
-        $result = $this->character->jsonSerialize();
-        
-        $this->assertArrayHasKey('fandom', $result);
-        $this->assertInstanceOf(Fandom::class, $result['fandom']);
-        $this->assertEquals(456, $result['fandom']->getId());
-    }
-
+    /**
+     * Tests DateTime parsing and timezone handling.
+     * - Ensures dates are parsed with the correct timezone (Europe/Paris).
+     */
     public function testDateTimeHandling(): void
     {
         $json = '{
@@ -117,14 +192,25 @@ class CharacterTest extends TestCase
         }';
 
         $character = Character::jsonUnserialize($json);
-        
+
         $this->assertEquals(
             '2023-12-31 23:59:59',
             $character->getCreationDate()->format('Y-m-d H:i:s')
         );
         $this->assertEquals(
-            'Europe/Paris',
+            'Europe/Paris', // Timezone configured in Character class
             $character->getCreationDate()->getTimezone()->getName()
         );
+    }
+
+    /**
+     * Tests the factory method `getNewObject()`.
+     * - Validates that it returns a new Character instance with default values.
+     */
+    public function testGetNewObject(): void
+    {
+        $newCharacter = Character::getNewObject();
+        $this->assertInstanceOf(Character::class, $newCharacter);
+        $this->assertEquals(-1, $newCharacter->getFandomId()); // Default value check
     }
 }

@@ -32,20 +32,20 @@ class TagTest extends TestCase
     {
         // Test setting and getting the ID property.
         $this->tag->setId(123);
-        $this->assertEquals(123, $this->tag->getId());
+        $this->assertEquals(123, $this->tag->getId(), "ID getter or setter failed.");
 
         // Test setting and getting the creation date.
         $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $this->tag->setCreationDate($date);
-        $this->assertSame($date, $this->tag->getCreationDate());
+        $this->assertSame($date, $this->tag->getCreationDate(), "Creation date getter or setter failed.");
 
         // Test setting and getting the description property.
         $this->tag->setDescription('Test description');
-        $this->assertEquals('Test description', $this->tag->getDescription());
+        $this->assertEquals('Test description', $this->tag->getDescription(), "Description getter or setter failed.");
 
         // Test setting and getting the type ID property.
         $this->tag->setTypeId(5);
-        $this->assertEquals(5, $this->tag->getTypeId());
+        $this->assertEquals(5, $this->tag->getTypeId(), "Type ID getter or setter failed.");
     }
 
     /**
@@ -68,19 +68,19 @@ class TagTest extends TestCase
         $result = $this->tag->jsonSerialize();
 
         // Verify that all expected keys exist in the serialized array.
-        $this->assertArrayHasKey('id', $result);
-        $this->assertArrayHasKey('name', $result);
-        $this->assertArrayHasKey('description', $result);
-        $this->assertArrayHasKey('type_id', $result);
-        $this->assertArrayHasKey('creation_date', $result);
-        $this->assertArrayHasKey('update_date', $result);
+        $this->assertArrayHasKey('id', $result, "Serialized data missing 'id' key.");
+        $this->assertArrayHasKey('name', $result, "Serialized data missing 'name' key.");
+        $this->assertArrayHasKey('description', $result, "Serialized data missing 'description' key.");
+        $this->assertArrayHasKey('type_id', $result, "Serialized data missing 'type_id' key.");
+        $this->assertArrayHasKey('creation_date', $result, "Serialized data missing 'creation_date' key.");
+        $this->assertArrayHasKey('update_date', $result, "Serialized data missing 'update_date' key.");
 
         // Verify the values of the serialized data.
-        $this->assertEquals(1, $result['id']);
-        $this->assertEquals('Test Tag', $result['name']);
-        $this->assertEquals('Test Description', $result['description']);
-        $this->assertEquals(2, $result['type_id']);
-        $this->assertEquals($date, $result['creation_date']);
+        $this->assertEquals(1, $result['id'], "Serialized 'id' value mismatch.");
+        $this->assertEquals('Test Tag', $result['name'], "Serialized 'name' value mismatch.");
+        $this->assertEquals('Test Description', $result['description'], "Serialized 'description' value mismatch.");
+        $this->assertEquals(2, $result['type_id'], "Serialized 'type_id' value mismatch.");
+        $this->assertEquals($date->format('Y-m-d H:i:s'), $result['creation_date']->format('Y-m-d H:i:s'), "Serialized 'creation_date' value mismatch.");
     }
 
     /**
@@ -108,23 +108,24 @@ class TagTest extends TestCase
         $tag = Tag::jsonUnserialize($json);
 
         // Verify the basic properties of the Tag object.
-        $this->assertInstanceOf(Tag::class, $tag);
-        $this->assertEquals(123, $tag->getId());
-        $this->assertEquals('Unserialized Tag', $tag->getName());
-        $this->assertEquals('Test Description', $tag->getDescription());
-        $this->assertEquals(5, $tag->getTypeId());
+        $this->assertInstanceOf(Tag::class, $tag, "Unserialized object is not an instance of Tag.");
+        $this->assertEquals(123, $tag->getId(), "Unserialized 'id' value mismatch.");
+        $this->assertEquals('Unserialized Tag', $tag->getName(), "Unserialized 'name' value mismatch.");
+        $this->assertEquals('Test Description', $tag->getDescription(), "Unserialized 'description' value mismatch.");
+        $this->assertEquals(5, $tag->getTypeId(), "Unserialized 'type_id' value mismatch.");
 
         // Verify the creation date is correctly unserialized.
-        $this->assertInstanceOf(DateTime::class, $tag->getCreationDate());
+        $this->assertInstanceOf(DateTime::class, $tag->getCreationDate(), "Unserialized 'creation_date' is not a DateTime instance.");
         $this->assertEquals(
             '2023-01-01 12:34:56',
-            $tag->getCreationDate()->format('Y-m-d H:i:s')
+            $tag->getCreationDate()->format('Y-m-d H:i:s'),
+            "Unserialized 'creation_date' value mismatch."
         );
 
         // Verify the associated TagType object is correctly unserialized.
-        $this->assertTrue(property_exists($tag, 'tag_type'));
-        $this->assertInstanceOf(TagType::class, $tag->getTagType());
-        $this->assertEquals(456, $tag->getTagType()->getId());
+        $this->assertTrue(property_exists($tag, 'tag_type'), "Unserialized object missing 'tag_type' property.");
+        $this->assertInstanceOf(TagType::class, $tag->getTagType(), "Unserialized 'tag_type' is not an instance of TagType.");
+        $this->assertEquals(456, $tag->getTagType()->getId(), "Unserialized 'tag_type.id' value mismatch.");
     }
 
     /**

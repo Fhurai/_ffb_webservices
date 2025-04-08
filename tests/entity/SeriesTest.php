@@ -13,6 +13,9 @@ class SeriesTest extends TestCase
         $this->series = new Series();
     }
 
+    /**
+     * Test inherited properties from parent classes and traits.
+     */
     public function testInheritedProperties(): void
     {
         // Test Entity properties
@@ -32,14 +35,31 @@ class SeriesTest extends TestCase
         $this->series->setEvaluation('4.5 stars');
         $this->assertEquals(5, $this->series->getScoreId());
         $this->assertEquals('4.5 stars', $this->series->getEvaluation());
+
+        // Test edge cases
+        $this->series->setScoreId(0);
+        $this->assertEquals(0, $this->series->getScoreId());
+
+        $this->series->setEvaluation('');
+        $this->assertEquals('', $this->series->getEvaluation());
     }
 
+    /**
+     * Test the description property of the Series class.
+     */
     public function testDescriptionProperty(): void
     {
         $this->series->setDescription('Test description');
         $this->assertEquals('Test description', $this->series->getDescription());
+
+        // Test edge case
+        $this->series->setDescription('');
+        $this->assertEquals('', $this->series->getDescription());
     }
 
+    /**
+     * Test JSON serialization of the Series object.
+     */
     public function testJsonSerialization(): void
     {
         // Set basic properties
@@ -75,8 +95,16 @@ class SeriesTest extends TestCase
         $this->assertArrayHasKey('fanfictions', $resultWithAssoc);
         $this->assertIsArray($resultWithAssoc['fanfictions']);
         $this->assertInstanceOf(Fanfiction::class, $resultWithAssoc['fanfictions'][0]);
+
+        // Test empty fanfictions
+        $this->series->setFanfictions([]);
+        $resultEmptyAssoc = $this->series->jsonSerialize();
+        $this->assertEmpty($resultEmptyAssoc['fanfictions']);
     }
 
+    /**
+     * Test JSON unserialization of a Series object.
+     */
     public function testJsonUnserialization(): void
     {
         $json = '{
@@ -118,16 +146,40 @@ class SeriesTest extends TestCase
         $this->assertEquals(1, $series->fanfictions[0]->getId());
     }
 
+    /**
+     * Test behavior when an empty JSON object is unserialized.
+     */
     public function testEmptyObject(): void
     {
         $json = '{}';
         $series = Series::jsonUnserialize($json);
-        
+
         $this->assertEquals(0, $series->getId());
         $this->assertEquals('', $series->getName());
         $this->assertEquals('', $series->getDescription());
         $this->assertEquals(-1, $series->getScoreId());
         $this->assertEquals('', $series->getEvaluation());
         $this->assertInstanceOf(DateTime::class, $series->getCreationDate());
+
+        // Test default values
+        $this->assertEquals(-1, $series->getScoreId());
+        $this->assertEquals('', $series->getEvaluation());
+    }
+
+    /**
+     * Test fanfictions association handling.
+     */
+    public function testFanfictionsAssociation(): void
+    {
+        $this->series->setFanfictions([
+            ['id' => 1, 'name' => 'Fanfiction 1'],
+            ['id' => 2, 'name' => 'Fanfiction 2']
+        ]);
+
+        $fanfictions = $this->series->getFanfictions();
+        $this->assertCount(2, $fanfictions);
+        $this->assertInstanceOf(Fanfiction::class, $fanfictions[0]);
+        $this->assertEquals(1, $fanfictions[0]->getId());
+        $this->assertEquals('Fanfiction 1', $fanfictions[0]->getName());
     }
 }
