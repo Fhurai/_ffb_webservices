@@ -7,12 +7,12 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
  */
 class Character extends ComplexEntity
 {
-
     /**
      * Fandom_id.
      * @var int
      */
     private int $fandom_id;
+
     /**
      * Associated Fandom entity (loaded only when needed).
      * @var Fandom|null
@@ -20,7 +20,7 @@ class Character extends ComplexEntity
     private ?Fandom $fandom = null;
 
     /**
-     * Implied constructor.
+     * Constructor.
      */
     public function __construct()
     {
@@ -29,7 +29,7 @@ class Character extends ComplexEntity
     }
 
     /**
-     * Getter Fandom_id.
+     * Get Fandom_id.
      * @return int Fandom_id.
      */
     public function getFandomId(): int
@@ -38,7 +38,7 @@ class Character extends ComplexEntity
     }
 
     /**
-     * Setter Fandom_id.
+     * Set Fandom_id.
      * @param int $fandom_id New Fandom_id.
      * @return void
      */
@@ -48,21 +48,21 @@ class Character extends ComplexEntity
     }
 
     /**
-     * Getter Fandom.
+     * Get Fandom.
      * @return Fandom|null Fandom.
+     * @throws \RuntimeException If fandom is not loaded.
      */
     public function getFandom(): ?Fandom
     {
-        if (!$this->fandom) {
-            throw new \RuntimeException("fandom is not loaded. Use hasFandom() to check first.");
+        if (!$this->hasFandom()) {
+            throw new \RuntimeException("Fandom is not loaded. Use hasFandom() to check first.");
         }
         return $this->fandom;
     }
 
     /**
      * Check if fandom is loaded.
-     *
-     * @return bool
+     * @return bool True if fandom is loaded, false otherwise.
      */
     public function hasFandom(): bool
     {
@@ -70,28 +70,26 @@ class Character extends ComplexEntity
     }
 
     /**
-     * Setter Fandom.
+     * Set Fandom.
      * @param Fandom|array $fandom New Fandom.
      * @return void
      */
     public function setFandom(Fandom|array $fandom): void
     {
-        if (is_array($fandom)) {
-            $this->fandom = Fandom::jsonUnserialize(json_encode($fandom));
-        } else {
-            $this->fandom = $fandom;
-        }
+        $this->fandom = is_array($fandom)
+            ? Fandom::jsonUnserialize(json_encode($fandom))
+            : $fandom;
     }
 
     /**
-     * Method to parse Character into an array for JSON parsing.
+     * Serialize Character into an array for JSON parsing.
      * @return array Array of Character data.
      */
     public function jsonSerialize(): array
     {
         $assoc = [];
 
-        if (property_exists($this, "fandom")) {
+        if ($this->hasFandom()) {
             $assoc["fandom"] = $this->fandom;
         }
 
@@ -101,10 +99,10 @@ class Character extends ComplexEntity
     }
 
     /**
-     * Method to create a new Character.
-     * @return mixed new Character.
+     * Create a new Character instance.
+     * @return self New Character instance.
      */
-    public static function getNewObject(): mixed
+    public static function getNewObject(): self
     {
         return new self();
     }

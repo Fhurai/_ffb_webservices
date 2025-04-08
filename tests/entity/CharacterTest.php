@@ -77,7 +77,7 @@ class CharacterTest extends TestCase
     public function testGetFandomThrowsExceptionWhenNotLoaded(): void
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('fandom is not loaded. Use hasFandom() to check first.');
+        $this->expectExceptionMessage('Fandom is not loaded. Use hasFandom() to check first.');
         $this->character->getFandom();
     }
 
@@ -120,8 +120,7 @@ class CharacterTest extends TestCase
     public function testJsonSerializeWithoutFandom(): void
     {
         $result = $this->character->jsonSerialize();
-        $this->assertArrayHasKey('fandom', $result);
-        $this->assertNull($result['fandom']);
+        $this->assertArrayNotHasKey('fandom', $result);
     }
 
     /**
