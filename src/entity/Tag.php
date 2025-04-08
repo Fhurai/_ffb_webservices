@@ -106,11 +106,15 @@ class Tag extends ComplexEntity
     {
         if (is_array($tagType)) {
             $this->tag_type = TagType::jsonUnserialize(json_encode($tagType));
-        } elseif ($tagType instanceof TagType) {
-            $this->tag_type = $tagType;
-        } else {
-            $this->tag_type = $tagType;
+            return;
         }
+
+        if ($tagType instanceof TagType) {
+            $this->tag_type = $tagType;
+            return;
+        }
+
+        throw new \InvalidArgumentException("Invalid type for tagType. Must be TagType or array.");
     }
 
     /**

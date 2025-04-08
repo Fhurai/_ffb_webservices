@@ -209,7 +209,6 @@ class User extends Entity
     {
         return array_merge(parent::jsonSerialize(), [
             "username" => $this->username,
-            "password" => $this->password,
             "email" => $this->email,
             "is_admin" => $this->is_admin,
             "is_local" => $this->is_local,

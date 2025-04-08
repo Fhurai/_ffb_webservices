@@ -8,38 +8,41 @@ require_once __DIR__ . "/../../src/utilities/SrcUtilities.php";
 #[AllowDynamicProperties]
 abstract class Entity implements JsonSerializable
 {
-
     /**
      * Identifier.
      * @var int
      */
     private int $id;
+
     /**
      * Creation date.
      * @var DateTime
      */
     private DateTime $creation_date;
+
     /**
      * Update date.
      * @var DateTime
      */
     private DateTime $update_date;
+
     /**
      * Delete date.
-     * @var
+     * @var DateTime|null
      */
     private ?DateTime $delete_date;
 
-
     /**
      * Implied constructor.
+     * Initializes default values for the entity's properties.
      */
     public function __construct()
     {
-        $this->setId(0);
-        $this->setCreationDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
-        $this->setUpdateDate(new DateTime("now", new DateTimeZone("Europe/Paris")));
-        $this->setDeleteDate(null);
+        $now = new DateTime("now", new DateTimeZone("Europe/Paris")); // Current date and time in Paris timezone.
+        $this->setId(0); // Default ID is 0.
+        $this->setCreationDate($now); // Set creation date to current time.
+        $this->setUpdateDate($now); // Set update date to current time.
+        $this->setDeleteDate(null); // Delete date is null by default.
     }
 
     /**
@@ -109,26 +112,29 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Delete date
-     * @param mixed $delete_date New Delete date | null
+     * @param DateTime|null $delete_date New Delete date or null.
      * @return void
      */
-    public function setDeleteDate(?DateTime $delete_date = null)
+    public function setDeleteDate(?DateTime $delete_date = null): void
     {
         $this->delete_date = $delete_date;
     }
 
     /**
      * Method to parse entity into an array for JSON parsing.
+     * Converts the entity's properties into an associative array.
      * @return array Array of entity data.
      */
     public function jsonSerialize(): mixed
     {
         $assoc = [];
 
+        // Include additional associated data if it exists.
         if (property_exists($this, "_assoc_data")) {
             $assoc["_assoc_data"] = $this->_assoc_data;
         }
 
+        // Merge core properties with additional data.
         return array_merge([
             "id" => $this->getId(),
             "creation_date" => $this->getCreationDate(),
@@ -138,71 +144,80 @@ abstract class Entity implements JsonSerializable
     }
 
     /**
-     * Method to parse a JSON string into an action object.
+     * Method to parse a JSON string into an entity object.
+     * Dynamically sets properties based on JSON data.
      * @param string $json JSON string.
-     * @return mixed Parsed object.
+     * @return static Parsed object.
      */
-    public static function jsonUnserialize($json): mixed
+    public static function jsonUnserialize(string $json): static
     {
-        // Create parameters with the child class.
-        $entity = static::getNewObject();
+        $entity = static::getNewObject(); // Create a new instance of the child class.
+        $data = json_decode($json, true); // Decode JSON into an associative array.
 
-        // JSON string is parsed as an array then browsed.
-        foreach (json_decode($json, true) as $key => $data) {
-
-            // For each property, the set method is generated then used on the provided data.
-            $setFunction = SrcUtilities::gsFunction("set", $key);
+        foreach ($data as $key => $value) {
+            $setFunction = SrcUtilities::gsFunction("set", $key); // Generate setter method name.
 
             if (in_array($key, ["creation_date", "update_date", "delete_date", "birthday"])) {
-
-                // If the property is a datetime, the data is parsed as a datetime only if the data is a not empty string.
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $date = is_array($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s.u", $data["date"], new DateTimeZone("Europe/Paris")) : $date;
-
-                // Once a datetime, the data is set in the property.
+                // Parse date values if the key matches specific properties.
+                $date = self::parseDate($value);
                 $entity->$setFunction($date);
-            } else if (is_scalar($data) || is_null($data)) {
-
-                // The property is not a datetime, use of the setter function directly.
-                $entity->$setFunction($data);
+            } elseif (is_scalar($value) || is_null($value)) {
+                // Directly set scalar or null values.
+                $entity->$setFunction($value);
             } else {
-                $entity->$key = $data;
+                // Assign complex data directly to the property.
+                $entity->$key = $value;
             }
         }
 
-        // The new entity is returned.
         return $entity;
     }
 
     /**
+     * Helper method to parse date values.
+     * Converts various date formats into a DateTime object.
+     * @param mixed $value Date value to parse.
+     * @return DateTime|null Parsed DateTime or null.
+     */
+    private static function parseDate(mixed $value): ?DateTime
+    {
+        if (is_string($value) && !empty($value)) {
+            // Parse string date in "Y-m-d H:i:s" format.
+            return DateTime::createFromFormat("Y-m-d H:i:s", $value, new DateTimeZone("Europe/Paris"));
+        }
+
+        if (is_array($value) && !empty($value)) {
+            // Parse array date in "Y-m-d H:i:s.u" format.
+            return DateTime::createFromFormat("Y-m-d H:i:s.u", $value["date"], new DateTimeZone("Europe/Paris"));
+        }
+
+        return null; // Return null if the value is invalid or empty.
+    }
+
+    /**
      * Abstract method to create a new child object.
+     * Must be implemented by child classes.
      * @return mixed The child object.
      */
     public abstract static function getNewObject(): mixed;
 
     /**
-     * Method to get properties of ComplexEntity.
-     * @return array Array of properties of the ComplexEntity.
+     * Method to get properties of the entity.
+     * Uses reflection to retrieve all property names, including inherited ones.
+     * @return array Array of property names.
      */
     public static function getProperties(): array
     {
-        // Initialization of variables.
-        $reflect = new ReflectionClass(static::class);
+        $reflect = new ReflectionClass(static::class); // Reflect on the current class.
         $properties = [];
 
-
         do {
-            // While the reflection of the complexEntity has a parent.
-
-            // Browing the ComplexEntity properties.
+            // Iterate through the class hierarchy.
             foreach ($reflect->getProperties() as $property) {
-
-                // Pushing the current property into the properties array.
-                array_push($properties, $property->getName());
+                $properties[] = $property->getName(); // Add property names to the list.
             }
-        } while ($reflect = $reflect->getParentClass());
+        } while ($reflect = $reflect->getParentClass()); // Move to the parent class.
 
-        // Return the properties array.
-        return $properties;
+        return $properties; // Return the complete list of properties.
     }
 }

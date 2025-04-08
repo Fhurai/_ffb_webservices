@@ -79,14 +79,14 @@ class Series extends ComplexEntity
      */
     public function setFanfictions(array $fanfictions): void
     {
-        $this->fanfictions = [];
-        foreach ($fanfictions as $fanfiction) {
+        $this->fanfictions = array_map(function ($fanfiction) {
             if (is_array($fanfiction)) {
-                $this->fanfictions[] = Fanfiction::jsonUnserialize(json_encode($fanfiction));
-            } else if ($fanfiction instanceof Fanfiction) {
-                $this->fanfictions[] = $fanfiction;
+                return Fanfiction::jsonUnserialize(json_encode($fanfiction));
+            } elseif ($fanfiction instanceof Fanfiction) {
+                return $fanfiction;
             }
-        }
+            throw new \InvalidArgumentException("Invalid fanfiction type.");
+        }, $fanfictions);
     }
 
     /**

@@ -3,23 +3,22 @@
 require_once __DIR__ . "/Entity.php";
 
 /**
- * Link class
+ * Link class representing a link entity.
  */
 class Link extends Entity
 {
     /**
-     * URL.
-     * @var string
+     * @var string URL of the link.
      */
     private string $url;
+
     /**
-     * Identifier fanfiction with the link.
-     * @var int
+     * @var int Identifier of the associated fanfiction.
      */
     private int $fanfiction_id;
 
     /**
-     * Implied constructor.
+     * Constructor initializing default values.
      */
     public function __construct()
     {
@@ -29,7 +28,7 @@ class Link extends Entity
     }
 
     /**
-     * Getter URL.
+     * Get the URL of the link.
      * @return string URL.
      */
     public function getUrl(): string
@@ -38,9 +37,8 @@ class Link extends Entity
     }
 
     /**
-     * Setter URL.
-     * @param string $url new URL.
-     * @return void
+     * Set the URL of the link.
+     * @param string $url New URL.
      */
     public function setUrl(string $url): void
     {
@@ -48,8 +46,8 @@ class Link extends Entity
     }
 
     /**
-     * Getter Identifier fanfiction.
-     * @return int Identifier fanfiction.
+     * Get the fanfiction identifier.
+     * @return int Fanfiction identifier.
      */
     public function getFanfictionId(): int
     {
@@ -57,9 +55,8 @@ class Link extends Entity
     }
 
     /**
-     * Setter Identifier fanfiction.
-     * @param int $fanfiction_id new Identifier fanfiction.
-     * @return void
+     * Set the fanfiction identifier.
+     * @param int $fanfiction_id New fanfiction identifier.
      */
     public function setFanfictionId(int $fanfiction_id): void
     {
@@ -67,8 +64,8 @@ class Link extends Entity
     }
 
     /**
-     * Method to parse Link into an array for JSON parsing.
-     * @return array Array of Link data.
+     * Convert the Link object to an array for JSON serialization.
+     * @return array Link data as an array.
      */
     public function jsonSerialize(): array
     {
@@ -79,10 +76,10 @@ class Link extends Entity
     }
 
     /**
-     * Method to create a new Link.
-     * @return mixed new Link.
+     * Create a new instance of Link.
+     * @return self New Link instance.
      */
-    public static function getNewObject(): mixed
+    public static function getNewObject(): self
     {
         return new self();
     }

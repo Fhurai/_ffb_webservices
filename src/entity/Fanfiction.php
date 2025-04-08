@@ -71,7 +71,6 @@ class Fanfiction extends ComplexEntity
      */
     private ?array $links = null;
 
-
     /**
      * Implied constructor.
      */
@@ -271,16 +270,56 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * Getter Fandoms.
+     * Generic setter for array properties.
+     * @param array $items New items.
+     * @param string $class Class name for deserialization.
+     * @return array Processed items.
+     */
+    private function setArrayProperty(array $items, string $class): array
+    {
+        $result = [];
+        foreach ($items as $item) {
+            if (is_array($item)) {
+                $result[] = $class::jsonUnserialize(json_encode($item));
+            } elseif ($item instanceof $class) {
+                $result[] = $item;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Generic getter for nullable array properties.
+     * @param array|null $property Property to check.
+     * @param string $name Property name for exception message.
      * @throws \RuntimeException
+     * @return array|null
+     */
+    private function getNullableArrayProperty(?array $property, string $name): ?array
+    {
+        if (!$property) {
+            throw new \RuntimeException("$name is not loaded. Use has" . ucfirst($name) . "() to check first.");
+        }
+        return $property;
+    }
+
+    /**
+     * Setter Fandoms.
+     * @param array $fandoms New Fandoms.
+     * @return void
+     */
+    public function setFandoms(array $fandoms): void
+    {
+        $this->fandoms = $this->setArrayProperty($fandoms, Fandom::class);
+    }
+
+    /**
+     * Getter Fandoms.
      * @return array|null
      */
     public function getFandoms(): ?array
     {
-        if (!$this->fandoms) {
-            throw new \RuntimeException("fandoms is not loaded. Use hasFandoms() to check first.");
-        }
-        return $this->fandoms;
+        return $this->getNullableArrayProperty($this->fandoms, "fandoms");
     }
 
     /**
@@ -294,33 +333,22 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * Setter Fandoms.
-     * @param array $fandoms New Fandoms.
+     * Setter Characters.
+     * @param array $characters New Characters.
      * @return void
      */
-    public function setFandoms(array $fandoms): void
+    public function setCharacters(array $characters): void
     {
-        $this->fandoms = [];
-        foreach ($fandoms as $fandom) {
-            if (is_array($fandom)) {
-                $this->fandoms[] = Fandom::jsonUnserialize(json_encode($fandom));
-            } else if ($fandom instanceof Fandom) {
-                $this->fandoms[] = $fandom;
-            }
-        }
+        $this->characters = $this->setArrayProperty($characters, Character::class);
     }
 
     /**
      * Getter Characters.
-     * @throws \RuntimeException
      * @return array|null
      */
     public function getCharacters(): ?array
     {
-        if (!$this->characters) {
-            throw new \RuntimeException("characters is not loaded. Use hasCharacters() to check first.");
-        }
-        return $this->characters;
+        return $this->getNullableArrayProperty($this->characters, "characters");
     }
 
     /**
@@ -332,34 +360,26 @@ class Fanfiction extends ComplexEntity
     {
         return $this->characters !== null;
     }
+
     /**
-     * Setter Characters.
-     * @param array $characters New Characters.
+     * Setter Relations.
+     * @param array $relations New Relations.
      * @return void
      */
-    public function setCharacters(array $characters): void
+    public function setRelations(array $relations): void
     {
-        $this->characters = [];
-        foreach ($characters as $character) {
-            if (is_array($character)) {
-                $this->characters[] = Character::jsonUnserialize(json_encode($character));
-            } else if ($character instanceof Character) {
-                $this->characters[] = $character;
-            }
-        }
+        $this->relations = $this->setArrayProperty($relations, Relation::class);
     }
+
     /**
      * Getter Relations.
-     * @throws \RuntimeException
      * @return array|null
      */
     public function getRelations(): ?array
     {
-        if (!$this->relations) {
-            throw new \RuntimeException("relations is not loaded. Use hasRelations() to check first.");
-        }
-        return $this->relations;
+        return $this->getNullableArrayProperty($this->relations, "relations");
     }
+
     /**
      * Check if relations are loaded.
      *
@@ -369,34 +389,26 @@ class Fanfiction extends ComplexEntity
     {
         return $this->relations !== null;
     }
+
     /**
-     * Setter Relations.
-     * @param array $relations New Relations.
+     * Setter Tags.
+     * @param array $tags New Tags.
      * @return void
      */
-    public function setRelations(array $relations): void
+    public function setTags(array $tags): void
     {
-        $this->relations = [];
-        foreach ($relations as $relation) {
-            if (is_array($relation)) {
-                $this->relations[] = Relation::jsonUnserialize(json_encode($relation));
-            } else if ($relation instanceof Relation) {
-                $this->relations[] = $relation;
-            }
-        }
+        $this->tags = $this->setArrayProperty($tags, Tag::class);
     }
+
     /**
      * Getter Tags.
-     * @throws \RuntimeException
      * @return array|null
      */
     public function getTags(): ?array
     {
-        if (!$this->tags) {
-            throw new \RuntimeException("tags is not loaded. Use hasTags() to check first.");
-        }
-        return $this->tags;
+        return $this->getNullableArrayProperty($this->tags, "tags");
     }
+
     /**
      * Check if tags are loaded.
      *
@@ -406,35 +418,26 @@ class Fanfiction extends ComplexEntity
     {
         return $this->tags !== null;
     }
+
     /**
-     * Setter Tags.
-     * @param array $tags New Tags.
+     * Setter Links.
+     * @param array $links New Links.
      * @return void
      */
-    public function setTags(array $tags): void
+    public function setLinks(array $links): void
     {
-        $this->tags = [];
-        foreach ($tags as $tag) {
-            if (is_array($tag)) {
-                $this->tags[] = Tag::jsonUnserialize(json_encode($tag));
-            } else if ($tag instanceof Tag) {
-                $this->tags[] = $tag;
-            }
-        }
+        $this->links = $this->setArrayProperty($links, Link::class);
     }
 
     /**
      * Getter Links.
-     * @throws \RuntimeException
      * @return array|null
      */
     public function getLinks(): ?array
     {
-        if (!$this->links) {
-            throw new \RuntimeException("links is not loaded. Use hasLinks() to check first.");
-        }
-        return $this->links;
+        return $this->getNullableArrayProperty($this->links, "links");
     }
+
     /**
      * Check if links are loaded.
      *
@@ -443,22 +446,6 @@ class Fanfiction extends ComplexEntity
     public function hasLinks(): bool
     {
         return $this->links !== null;
-    }
-    /**
-     * Setter Links.
-     * @param array $links New Links.
-     * @return void
-     */
-    public function setLinks(array $links): void
-    {
-        $this->links = [];
-        foreach ($links as $link) {
-            if (is_array($link)) {
-                $this->links[] = Link::jsonUnserialize(json_encode($link));
-            } else if ($link instanceof Link) {
-                $this->links[] = $link;
-            }
-        }
     }
 
     /**

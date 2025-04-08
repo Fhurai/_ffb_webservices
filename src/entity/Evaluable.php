@@ -56,11 +56,9 @@ trait Evaluable
      */
     public function setScore(Score|array|null $score): void
     {
-        if (is_array($score)) {
-            $this->score = Score::jsonUnserialize(json_encode($score));
-        } else {
-            $this->score = $score;
-        }
+        $this->score = is_array($score)
+            ? Score::jsonUnserialize(json_encode($score))
+            : $score;
     }
 
     /**

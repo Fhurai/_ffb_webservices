@@ -50,13 +50,23 @@ class Relation extends ComplexEntity
     {
         $this->characters = [];
         foreach ($characters as $character) {
-            if (is_array($character)) {
-                $this->characters[] = Character::jsonUnserialize(json_encode($character));
-            } else if ($character instanceof Character) {
-                $this->characters[] = $character;
-            }
+            $this->characters[] = $this->createCharacter($character);
         }
+    }
 
+    /**
+     * Helper method to create a Character instance.
+     * @param mixed $character Character data.
+     * @return Character
+     */
+    private function createCharacter(mixed $character): Character
+    {
+        if (is_array($character)) {
+            return Character::jsonUnserialize(json_encode($character));
+        } else if ($character instanceof Character) {
+            return $character;
+        }
+        throw new \InvalidArgumentException("Invalid character data provided.");
     }
 
     /**

@@ -4,12 +4,14 @@ require_once __DIR__ . "/../../src/entity/NamedEntity.php";
 
 /**
  * Abstract ComplexEntity class.
+ * This class extends NamedEntity and provides additional functionality for handling complex data structures.
  */
 abstract class ComplexEntity extends NamedEntity
 {
 
     /**
      * Implied constructor.
+     * Calls the parent constructor to initialize the base class.
      */
     public function __construct()
     {
@@ -17,17 +19,33 @@ abstract class ComplexEntity extends NamedEntity
     }
 
     /**
+     * Helper function to handle multiple associations.
+     * Converts an array of data into an array of objects of the specified class.
+     * @param array $data Array of data to be converted.
+     * @param string $className Class name of the objects to create.
+     * @return array Array of objects created from the data.
+     */
+    private static function parseMultipleAssociations(array $data, string $className): array
+    {
+        $result = [];
+        foreach ($data as $item) {
+            // Deserialize each item into an object of the specified class.
+            $result[] = $className::jsonUnserialize(json_encode($item));
+        }
+        return $result;
+    }
+
+    /**
      * Method to parse an array into an object.
+     * Maps a property name to its corresponding parsing logic.
      * @param string $property_name Name of the property to parse.
-     * @param array $data
-     * @return mixed
+     * @param array $data Data to be parsed.
+     * @return mixed Parsed object or data.
      */
     protected static function parseDataProperty(string $property_name, array $data): mixed
     {
         switch ($property_name) {
-            // Simple association cases :
-            // If the property is about a simple association,
-            // going through its jsonUnserialize method().
+            // Simple association cases: Deserialize data into specific object types.
             case "tag_type":
                 return TagType::jsonUnserialize(json_encode($data));
             case "fandom":
@@ -41,81 +59,75 @@ abstract class ComplexEntity extends NamedEntity
             case "score":
                 return Score::jsonUnserialize(json_encode($data));
 
-            // Multiple association cases :
-            // If the property is about a multiple association,
-            // browing the different data and going through its jsonUnserialize method() for each.
+            // Multiple association cases: Use helper function to parse arrays into objects.
             case "characters":
-                $characters = [];
-                foreach ($data as $char_array)
-                    $characters[] = Character::jsonUnserialize(json_encode($char_array));
-                return $characters;
+                return self::parseMultipleAssociations($data, Character::class);
             case "fandoms":
-                $fandoms = [];
-                foreach ($data as $fandom_array)
-                    $fandoms[] = Fandom::jsonUnserialize(json_encode($fandom_array));
-                return $fandoms;
+                return self::parseMultipleAssociations($data, Fandom::class);
             case "relations":
-                $relations = [];
-                foreach ($data as $relation_array)
-                    $relations[] = Relation::jsonUnserialize(json_encode($relation_array));
-                return $relations;
+                return self::parseMultipleAssociations($data, Relation::class);
             case "tags":
-                $tags = [];
-                foreach ($data as $tag_array)
-                    $tags[] = Tag::jsonUnserialize(json_encode($tag_array));
-                return $tags;
+                return self::parseMultipleAssociations($data, Tag::class);
             case "links":
-                $links = [];
-                foreach ($data as $link_array)
-                    $links[] = Link::jsonUnserialize(json_encode($link_array));
-                return $links;
+                return self::parseMultipleAssociations($data, Link::class);
             case "fanfictions":
-                $fanfictions = [];
-                foreach ($data as $fanfiction_array)
-                    $fanfictions[] = Fanfiction::jsonUnserialize(json_encode($fanfiction_array));
-                return $fanfictions;
+                return self::parseMultipleAssociations($data, Fanfiction::class);
 
-            // Ids array cases :
-            // Just set from data
+            // Ids array cases: Return the data as-is.
             case "_assoc_data":
                 return $data;
             default:
+                // Return null for unrecognized property names.
                 return null;
         }
     }
 
     /**
-     * Method to parse a JSON string into an action object.
-     * @param string $json JSON string.
-     * @return mixed Parsed object.
+     * Helper function to parse datetime properties.
+     * Converts a string or array into a DateTime object.
+     * @param mixed $data Data to be parsed (string or array).
+     * @return DateTime|null Parsed DateTime object or null if parsing fails.
      */
-    public static function jsonUnserialize($json): mixed
+    private static function parseDateTimeProperty(mixed $data): ?DateTime
     {
-        // Create parameters with the child class.
+        if (is_string($data) && !empty($data)) {
+            // Parse string in "Y-m-d H:i:s" format.
+            return DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris"));
+        }
+        if (is_array($data) && !empty($data)) {
+            // Parse array with "date" key in "Y-m-d H:i:s.u" format.
+            return DateTime::createFromFormat("Y-m-d H:i:s.u", $data["date"], new DateTimeZone("Europe/Paris"));
+        }
+        // Return null if data is invalid or empty.
+        return null;
+    }
+
+    /**
+     * Method to parse a JSON string into an action object.
+     * Converts a JSON string into an instance of the child class.
+     * @param string $json JSON string to be parsed.
+     * @return static Parsed object of the child class.
+     */
+    public static function jsonUnserialize($json): static
+    {
+        // Create a new instance of the child class.
         $entity = static::getNewObject();
 
-        // JSON string is parsed as an array then browsed.
+        // Decode the JSON string into an associative array and iterate over its key-value pairs.
         foreach (json_decode($json, true) as $key => $data) {
-
-            // For each property, the set method is generated then used on the provided data.
+            // Generate the setter function name for the current property.
             $setFunction = SrcUtilities::gsFunction("set", $key);
 
             if (in_array($key, ["creation_date", "update_date", "delete_date", "birthday"])) {
-
-                // If the property is a datetime, the data is parsed as a datetime only if the data is a not empty string.
-                $date = is_string($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s", $data, new DateTimeZone("Europe/Paris")) : null;
-                $date = is_array($data) && !empty($data) ? DateTime::createFromFormat("Y-m-d H:i:s.u", $data["date"], new DateTimeZone("Europe/Paris")) : $date;
-
-                // Once a datetime, the data is set in the property.
-                $entity->$setFunction($date);
+                // Parse datetime properties and set them using the setter function.
+                $entity->$setFunction(self::parseDateTimeProperty($data));
             } else {
-
-                // The property is not a datetime, use of the setter function directly.
+                // Directly set other properties using the setter function.
                 $entity->$setFunction($data);
             }
         }
 
-        // The new entity is returned.
+        // Return the populated entity object.
         return $entity;
     }
 }
