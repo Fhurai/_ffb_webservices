@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS relations_characters (
     character_id INT(10) UNSIGNED,
     PRIMARY KEY (relation_id, character_id),
     FOREIGN KEY (relation_id) REFERENCES relations(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS fanfictions (
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS fanfictions_fandoms (
     fandom_id INT(10) UNSIGNED,
     PRIMARY KEY (fanfiction_id, fandom_id),
     FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (fandom_id) REFERENCES fandoms(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (fandom_id) REFERENCES fandoms(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS fanfictions_relations (
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS fanfictions_relations (
     relation_id INT(10) UNSIGNED,
     PRIMARY KEY (fanfiction_id, relation_id),
     FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (relation_id) REFERENCES relations(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (relation_id) REFERENCES relations(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS fanfictions_characters (
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS fanfictions_characters (
     character_id INT(10) UNSIGNED,
     PRIMARY KEY (fanfiction_id, character_id),
     FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (character_id) REFERENCES characters(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS fanfictions_tags (
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS fanfictions_tags (
     tag_id INT(10) UNSIGNED,
     PRIMARY KEY (fanfiction_id, tag_id),
     FOREIGN KEY (fanfiction_id) REFERENCES fanfictions(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE CASCADE ON DELETE CASCADE 
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS links (
@@ -226,7 +226,7 @@ VALUES ("1", "CREATION"),
 CREATE TABLE IF NOT EXISTS users_actions (
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT(10) UNSIGNED NOT NULL,
-    type_action INT(10) UNSIGNED NOT NULL, 
+    type_action INT(10) UNSIGNED NOT NULL,
     datetime_action DATETIME NOT NULL DEFAULT (CURRENT_TIMESTAMP),
     object_action VARCHAR(25) NOT NULL, -- class
     id_action INT(10) UNSIGNED NOT NULL, -- id
