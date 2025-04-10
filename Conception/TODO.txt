@@ -36,13 +36,8 @@ Coté outils
     . Admin reste pour avoir un accès sans avoir à demander un password à l'utilisateur distant.
 . Trois connexions différentes : une à la base de stats, une à la base de tests, une à la base de prod.
 . Identifiants bdd dans un fichier gitignored avec idenfiants des trois bdd dans un seul fichier.
-. Reset bdd tests avant lancement tests
-    . Copie prod ou nouveau script pour init la base de tests ?
-. Planification des tests
-    . Test solo
-    . Suite de tests pour classe
-    . Enchainer les suites de tests (pas en meme temps pour éviter collisions).
-. Prévoir CORS bypass pour webservices.
+. Reset bdd tests avant lancement tests -> Copie prod.
+. Planification des tests -> PhpUnit.
 . Plan for CRUD
     . Read (Object without associations, with simple associations, with every associations)
         . GET
@@ -60,10 +55,10 @@ Coté outils
     . Create (Object > Associations)
         . POST
     . Delete (Suppression logique, delete_date mis à CURRENT_DATE)
-        . PUT / PATCH
+        . PATCH
     . Restore (delete_date mise à null)
-        . PUT / PATCH
+        . PATCH
     . Remove (Suppression physique, nécessite l'objet d'avoir été delete précédemment)
         . DELETE
     . Update (Object > Links, jamais les objets associés)
-        . PUT / PATCH
+        . PUT
