@@ -1,0 +1,111 @@
+<?php
+
+require_once __DIR__ . '/../entity/Entity.php';
+
+/**
+ * Utility class for handling HTTP responses.
+ */
+class ApiUtilities
+{
+    /**
+     * Sends a 200 OK response with optional JSON-encoded data.
+     *
+     * @param string|array|null $values Data to include in the response body.
+     */
+    public static function HttpOk(string|array|null $values){
+        http_response_code(200); // Set HTTP status code to 200 (OK).
+        if($values !== ""){ // Check if values are not empty.
+            echo json_encode($values); // Encode and output the values as JSON.
+        }else{
+            exit; // Terminate the script if no values are provided.
+        }
+    }
+
+    /**
+     * Sends a 201 Created response with a JSON-encoded entity.
+     *
+     * @param Entity $entity The entity to include in the response body.
+     */
+    public static function HttpCreated(Entity $entity){
+        http_response_code(201); // Set HTTP status code to 201 (Created).
+        echo json_encode($entity); // Encode and output the entity as JSON.
+    }
+
+    /**
+     * Sends a 204 No Content response and terminates the script.
+     */
+    public static function HttpNoContent(){
+        http_response_code(204); // Set HTTP status code to 204 (No Content).
+        exit; // Terminate the script as no content is returned.
+    }
+
+    /**
+     * Sends a 400 Bad Request response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpBadRequest(string $message){
+        http_response_code(400); // Set HTTP status code to 400 (Bad Request).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 401 Unauthorized response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpUnauthorized(string $message){
+        http_response_code(401); // Set HTTP status code to 401 (Unauthorized).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 403 Forbidden response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpForbidden(string $message){
+        http_response_code(403); // Set HTTP status code to 403 (Forbidden).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 404 Not Found response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpNotFound(string $message){
+        http_response_code(404); // Set HTTP status code to 404 (Not Found).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 405 Method Not Allowed response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpMethodNotAllowed(string $message){
+        http_response_code(405); // Set HTTP status code to 405 (Method Not Allowed).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 500 Internal Server Error response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpInternalServerError(string $message){
+        http_response_code(500); // Set HTTP status code to 500 (Internal Server Error).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Sends a 503 Service Unavailable response with an error message.
+     *
+     * @param string $message The error message to include in the response body.
+     */
+    public static function HttpServiceUnavailable(string $message){
+        http_response_code(503); // Set HTTP status code to 503 (Service Unavailable).
+        echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+}
