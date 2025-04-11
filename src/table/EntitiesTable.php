@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . "/../entity/Entity.php";
+require_once __DIR__ . "/../exceptions/FfbTableException.php";
+require_once __DIR__ . "/../exceptions/SqlExceptionManager.php";
 
 abstract class EntitiesTable
 {
@@ -157,7 +159,8 @@ abstract class EntitiesTable
                 return $sth->rowCount();
             }
         } catch (PDOException $e) {
-            throw new FfbTableException($e->getMessage(), 500, $e);
+            $manager = SqlExceptionManager::fromPDOException($e);
+            throw new FfbTableException($manager->getFormattedMessage(), 500, $e);
         }
     }
 

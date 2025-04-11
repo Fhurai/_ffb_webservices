@@ -16,7 +16,7 @@ class ApiUtilities
      *
      * @param string|array|null $values Data to include in the response body.
      */
-    public static function HttpOk(string|array|null $values){
+    public static function HttpOk(object|string|array|null $values){
         http_response_code(200); // Set HTTP status code to 200 (OK).
         if($values !== ""){ // Check if values are not empty.
             echo json_encode($values); // Encode and output the values as JSON.
