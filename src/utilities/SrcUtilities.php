@@ -85,4 +85,44 @@ class SrcUtilities
         // The generated table name is returned.
         return $tableName .= ($singular ? "s" : "") . "Table";
     }
+
+    /**
+     * Get a query parameter from the URL.
+     *
+     * @param string $arg The name of the query parameter.
+     * @return string|bool The value of the query parameter or false if not found.
+     */
+    public static function getQueryParameter(string $arg): string|bool
+    {
+        // Check if the query parameter exists in the URL
+        if (isset($_GET) && array_key_exists($arg, $_GET)) {
+            return $_GET[$arg];
+        }
+        return false;
+    }
+
+    /**
+     * Get a form parameter from POST data or JSON input.
+     *
+     * @param string $arg The name of the form parameter.
+     * @return mixed The value of the form parameter or false if not found.
+     */
+    public static function getFormParameter(string $arg): mixed
+    {
+        // Check if the form parameter exists in POST data
+        if (isset($_POST) && array_key_exists($arg, $_POST)) {
+            return $_POST[$arg];
+        }
+
+        // Read the raw input data
+        $input = file_get_contents('php://input');
+        // Decode the JSON input data
+        $data = json_decode($input, true);
+        // Check if the form parameter exists in the JSON input data
+        if ($data !== null && array_key_exists($arg, $data)) {
+            return $data[$arg];
+        }
+
+        return false;
+    }
 }
