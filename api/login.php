@@ -18,10 +18,11 @@ $data = json_decode(file_get_contents("php://input"));
 
 $username = $data->username ?? '';
 $password = $data->password ?? '';
+$db = $data->db ?? '';
 
-if (empty($username) || empty($password)) {
+if (empty($username) || empty($password) || empty($db)) {
     http_response_code(400);
-    echo json_encode(["message" => "Username and password are required"]);
+    echo json_encode(["message" => "Username, password, and database are required"]);
     exit;
 }
 
@@ -38,16 +39,16 @@ try {
         // JWT Secret Key (store this securely in environment variables)
         $secretKey = $configFile['token']['ffb_secret']; // Use secret key from config
         $issuedAt = time();
-        $expirationTime = $issuedAt + $configFile['token']['ffb_expiration']; // Token valid for 1 hour
+        $expirationTime = $issuedAt + $configFile['token']['ffb_expiration']; // Token valid for config time
 
         // JWT Payload
         $payload = [
             'iat'  => $issuedAt,
             'exp'  => $expirationTime,
             'data' => [
-                'userId'    => $user->getId(),
                 'username'  => $user->getUsername(),
-                'isAdmin'   => $user->isAdmin()
+                'isAdmin'   => $user->isAdmin(),
+                'db'        => $db,
             ]
         ];
 
