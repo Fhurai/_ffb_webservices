@@ -19,6 +19,8 @@ if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
     ApiUtilities::HttpOk(null);
 } else if ($method === 'GET') {
+    ApiUtilities::decodeJWT(); // Decode JWT token from the request header
+
     // Handle GET ALL request to retrieve all actions
     $table = new ActionsTable("main", "user"); // Initialize ActionsTable with database and table name
     $actions = $table->findAll([]); // Fetch all actions from the database

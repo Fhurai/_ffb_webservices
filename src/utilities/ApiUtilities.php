@@ -1,6 +1,10 @@
 <?php
 
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 require_once __DIR__ . '/../entity/Entity.php';
+require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload dependencies
 
 /**
  * Utility class for handling HTTP responses.
@@ -107,5 +111,53 @@ class ApiUtilities
     public static function HttpServiceUnavailable(string $message){
         http_response_code(503); // Set HTTP status code to 503 (Service Unavailable).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+    }
+
+    /**
+     * Decodes a JWT token from the Authorization header.
+     *
+     * @return mixed The decoded JWT payload or null if not found.
+     */
+    public static function decodeJWT(): mixed {
+        // Middleware to validate JWT
+        $token = static::getBearerToken(); // Function to extract token from headers
+        $configFile = include __DIR__ . "/../../config/config.php";
+
+        try {
+            if ($token === null) {
+                http_response_code(401);
+                echo json_encode(["message" => "Unauthorized: No token provided"]);
+                exit;
+            }
+            $decoded = JWT::decode($token, new Key($configFile['token']['ffb_secret'], $configFile['token']['ffb_algorithm'])); // Decode the token using the secret key and algorithm
+            return $decoded; // Return the decoded token
+        } catch (Exception $e) {
+            http_response_code(401);
+            echo json_encode(["message" => "Unauthorized"]);
+            exit;
+        }
+    }
+
+    /**
+     * Extracts the Bearer token from the Authorization header.
+     */
+    public static function getBearerToken() {
+        $headers = null;
+
+        // Check for the Authorization header in different server environments
+        if (isset($_SERVER['Authorization'])) {
+            $headers = trim($_SERVER['Authorization']);
+        } elseif (isset($_SERVER['HTTP_AUTHORIZATION'])) {
+            $headers = trim($_SERVER['HTTP_AUTHORIZATION']);
+        }
+
+        // Extract the Bearer token from the header
+        if (!empty($headers)) {
+            if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+                return $matches[1];
+            }
+        }
+
+        return null; // Return null if no token is found
     }
 }

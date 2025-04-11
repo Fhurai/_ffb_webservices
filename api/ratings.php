@@ -19,6 +19,8 @@ if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
     ApiUtilities::HttpOk(null);
 } else if ($method === 'GET') {
+    ApiUtilities::decodeJWT(); // Decode JWT token from the request header
+
     // Handle GET ALL request to retrieve all ratings
     $table = new RatingsTable("main", "user"); // Initialize RatingsTable with database and table name
     $ratings = $table->findAll(['order' => ['id' => 'ASC']]); // Fetch all ratings from the database
