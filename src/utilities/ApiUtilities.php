@@ -140,6 +140,8 @@ class ApiUtilities
 
     /**
      * Extracts the Bearer token from the Authorization header.
+     *
+     * @return string|null The Bearer token or null if not found.
      */
     public static function getBearerToken() {
         $headers = null;
