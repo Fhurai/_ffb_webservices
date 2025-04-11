@@ -8,20 +8,20 @@ return [
     ],
     "credentials" => [
         "guest" => [
-            "host" => "",
-            "post" => "",
+            "host" => "localhost",
+            "port" => "3306",
             "user" => "guest",
             "password" => ""
         ],
         "user" => [
-            "host" => "",
-            "post" => "",
+            "host" => "localhost",
+            "port" => "3306",
             "user" => "ffb_user",
             "password" => ""
         ],
         "admin" => [
-            "host" => "",
-            "post" => "",
+            "host" => "localhost",
+            "port" => "3306",
             "user" => "ffb_admin",
             "password" => ""
         ]
