@@ -4,7 +4,7 @@
 // These headers enable cross-origin requests and define allowed methods and headers.
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: GET, OPTIONS");
 header('Content-Type: application/json; charset=utf-8');
 
 // Include necessary configuration and utility files
