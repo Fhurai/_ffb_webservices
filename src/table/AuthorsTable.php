@@ -66,6 +66,15 @@ class AuthorsTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
+            } else if (str_contains(strtolower($value), 'null')){
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (str_contains(strtolower($value), 'in')) {
+                $values[":$key"] = str_replace("'", "", explode(' ', $value)[1]);
+                if (is_array($values[":$key"])) {
+                    $conditions[] = "$key IN (" . implode(',', array_map(fn($v) => "'$v'", $values[":$key"])) . ")";
+                }
                 // Handle operators like <, >, =, etc.
             } elseif (preg_match('/[<>=!]/', $value)) {
                 [$operator, $val] = explode(' ', $value, 2);
@@ -205,7 +214,9 @@ class AuthorsTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                }
             }
         }
 
@@ -252,7 +263,7 @@ class AuthorsTable extends EntitiesTable
             ":name" => $entity->getName(),
             ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":delete_date" => null,
         ];
 
         $this->executeQuery($query, $values);
@@ -280,16 +291,19 @@ class AuthorsTable extends EntitiesTable
         }
 
         $query = "UPDATE `authors`
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                  SET `name` = :name, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(),
             ":name" => $entity->getName(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null
+            ":update_date" => (new DateTime("now", new DateTimeZone("Europe/Paris")))->format("Y-m-d H:i:s")
         ];
 
-        $this->executeQuery($query, $values);
+        $result = $this->executeQuery($query, $values);
+
+        if($result === 0){
+            throw new FfbTableException("Update failed for the author is deleted", 403);
+        }
 
         return $entity;
     }
@@ -306,7 +320,7 @@ class AuthorsTable extends EntitiesTable
         // Prepare the query to set the delete date for the specified entity.
         // Bind the ID parameter to ensure the correct entity is updated.
         // Execute the query and return true if the operation was successful.
-        $query = "UPDATE `authors` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `authors` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -326,7 +340,7 @@ class AuthorsTable extends EntitiesTable
         // Prepare the query to remove the delete date for the specified entity.
         // Bind the ID parameter to ensure the correct entity is updated.
         // Execute the query and return true if the operation was successful.
-        $query = "UPDATE `authors` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `authors` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -346,12 +360,12 @@ class AuthorsTable extends EntitiesTable
         // Prepare the DELETE query to permanently remove the specified entity.
         // Bind the ID parameter to ensure the correct entity is deleted.
         // Execute the query and return true if the operation was successful.
-        $query = "DELETE FROM `authors` WHERE `id` = :id";
+        $query = "DELETE FROM `authors` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
 
-        return $result > 0;
+        return $result === 1;
     }
 
     /**

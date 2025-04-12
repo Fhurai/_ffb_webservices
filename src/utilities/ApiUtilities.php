@@ -33,6 +33,7 @@ class ApiUtilities
     public static function HttpCreated(Entity $entity){
         http_response_code(201); // Set HTTP status code to 201 (Created).
         echo json_encode($entity); // Encode and output the entity as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -51,6 +52,7 @@ class ApiUtilities
     public static function HttpBadRequest(string $message){
         http_response_code(400); // Set HTTP status code to 400 (Bad Request).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -61,6 +63,7 @@ class ApiUtilities
     public static function HttpUnauthorized(string $message){
         http_response_code(401); // Set HTTP status code to 401 (Unauthorized).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -71,6 +74,7 @@ class ApiUtilities
     public static function HttpForbidden(string $message){
         http_response_code(403); // Set HTTP status code to 403 (Forbidden).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -81,6 +85,7 @@ class ApiUtilities
     public static function HttpNotFound(string $message){
         http_response_code(404); // Set HTTP status code to 404 (Not Found).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -91,6 +96,7 @@ class ApiUtilities
     public static function HttpMethodNotAllowed(string $message){
         http_response_code(405); // Set HTTP status code to 405 (Method Not Allowed).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -101,6 +107,7 @@ class ApiUtilities
     public static function HttpInternalServerError(string $message){
         http_response_code(500); // Set HTTP status code to 500 (Internal Server Error).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
@@ -111,6 +118,7 @@ class ApiUtilities
     public static function HttpServiceUnavailable(string $message){
         http_response_code(503); // Set HTTP status code to 503 (Service Unavailable).
         echo json_encode(['error' => $message]); // Encode and output the error message as JSON.
+        exit; // Terminate the script after sending the response.
     }
 
     /**
