@@ -5,14 +5,21 @@ require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Author.php";
 require_once __DIR__ . "/../builder/AuthorBuilder.php";
 
+/**
+ * Handles database operations for the Author entity.
+ *
+ * This class extends EntitiesTable to provide CRUD (Create, Read, Update, Delete) functionality,
+ * as well as advanced querying (search, ordering, limiting) for authors. It supports soft deletion
+ * via `delete_date` and includes methods for restoring or permanently removing records.
+ */
 class AuthorsTable extends EntitiesTable
 {
     /**
-     * Get an entity by its ID.
-     * Retrieves an Author entity from the database by its unique identifier.
+     * Retrieve an Author by its unique ID.
      *
-     * @param int $id The ID of the entity.
-     * @return Author The entity object.
+     * @param int $id The ID of the author to fetch.
+     * @return Author The corresponding Author entity.
+     * @throws FfbTableException If no author with the given ID exists.
      */
     public function get(int $id): Author
     {
@@ -35,12 +42,14 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Find entities based on search criteria.
-     * Searches for Author entities in the database that match the given criteria.
+     * Search for authors matching specific criteria.
      *
-     * @param array $args The search criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The search results as an array of Author objects.
+     * Supports operators (e.g., "> 5"), `LIKE` with wildcards (%), `IS NULL`, and `IS NOT NULL`.
+     *
+     * @param array $args Search criteria as key-value pairs (e.g., ["name" => "John%", "age" => "> 30"]).
+     * @param bool $execute If false, returns the SQL query string instead of executing.
+     * @return array|string Array of Author objects if executed, or the query string otherwise.
+     * @throws FfbTableException If no criteria are provided, invalid columns are used, or no results found.
      */
     public function findSearchedBy(array $args, $execute = true): array|string
     {
@@ -62,25 +71,18 @@ class AuthorsTable extends EntitiesTable
 
         $conditions = [];
         foreach ($args as $key => $value) {
-            // Handle LIKE conditions for partial matches.
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } else if (str_contains(strtolower($value), 'null')){
+            } elseif (str_contains(strtolower($value), 'null')) {
                 $conditions[] = "$key IS NULL";
             } elseif (str_contains(strtolower($value), 'not null')) {
                 $conditions[] = "$key IS NOT NULL";
-            } elseif (str_contains(strtolower($value), 'in')) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[1]);
-                if (is_array($values[":$key"])) {
-                    $conditions[] = "$key IN (" . implode(',', array_map(fn($v) => "'$v'", $values[":$key"])) . ")";
-                }
-                // Handle operators like <, >, =, etc.
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -110,12 +112,12 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Find entities ordered by specific criteria.
-     * Retrieves Author entities from the database ordered by the specified criteria.
+     * Retrieve authors ordered by specified columns and directions.
      *
-     * @param array $args The ordering criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The ordered results as an array of Author objects.
+     * @param array $args Order criteria as key-value pairs (e.g., ["name" => "ASC", "id" => "DESC"]).
+     * @param bool $execute If false, returns the SQL query string instead of executing.
+     * @return array|string Array of ordered Author objects if executed, or the query string otherwise.
+     * @throws FfbTableException If no order criteria are provided, invalid columns/directions are used, or no results found.
      */
     public function findOrderedBy(array $args, $execute = true): array|string
     {
@@ -163,12 +165,12 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Find a limited number of entities based on criteria.
-     * Retrieves a limited number of Author entities from the database based on the given criteria.
+     * Retrieve a limited subset of authors with optional pagination (offset).
      *
-     * @param array $args The limiting criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The limited results as an array of Author objects.
+     * @param array $args Must include "limit" (int). May include "offset" (int) for pagination.
+     * @param bool $execute If false, returns the SQL query string instead of executing.
+     * @return array|string Array of Author objects if executed, or the query string otherwise.
+     * @throws FfbTableException If invalid limit/offset values are provided or no results found.
      */
     public function findLimitedBy(array $args, $execute = true): array|string
     {
@@ -199,11 +201,14 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Find all entities based on criteria.
-     * Retrieves all Author entities from the database that match the given criteria.
+     * Fetch authors with combined search, order, and limit criteria.
      *
-     * @param array $args The criteria as key-value pairs.
-     * @return array The results as an array of Author objects.
+     * @param array $args Criteria structured as:
+     *   - "search" (array): Key-value search conditions.
+     *   - "order" (array): Key-value order directives.
+     *   - "limit" (array): Contains "limit" (int) and optionally "offset" (int).
+     * @return array Array of Author objects.
+     * @throws FfbTableException If no results match the criteria.
      */
     public function findAll(array $args): array
     {
@@ -215,7 +220,11 @@ class AuthorsTable extends EntitiesTable
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
                 if (str_contains($value, '%')) {
-                    $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $operator = trim($matches[1]);
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
                 }
             }
         }
@@ -240,11 +249,11 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Create a new entity.
-     * Inserts a new Author entity into the database.
+     * Insert a new Author record into the database.
      *
-     * @param Author $entity The entity to create.
-     * @return Author The created entity.
+     * @param Author $entity The Author entity to create.
+     * @return Author The created Author with its auto-generated ID.
+     * @throws InvalidArgumentException If $entity is not an Author instance.
      */
     public function create(Entity $entity): Author
     {
@@ -273,11 +282,12 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Update an existing entity.
-     * Updates the properties of an existing Author entity in the database.
+     * Update an existing Author record.
      *
-     * @param Author $entity The entity to update.
-     * @return Author The updated entity.
+     * @param Author $entity The Author entity with updated values.
+     * @return Author The updated Author.
+     * @throws InvalidArgumentException If $entity is not an Author instance.
+     * @throws FfbTableException If the update fails (e.g., the author is soft-deleted).
      */
     public function update(Entity $entity): Author
     {
@@ -301,7 +311,7 @@ class AuthorsTable extends EntitiesTable
 
         $result = $this->executeQuery($query, $values);
 
-        if($result === 0){
+        if ($result === 0) {
             throw new FfbTableException("Update failed for the author is deleted", 403);
         }
 
@@ -309,11 +319,10 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Soft delete an entity.
-     * Marks an Author entity as deleted by setting a delete date.
+     * Soft-delete an Author by setting its `delete_date`.
      *
-     * @param int $id The ID of the entity to delete.
-     * @return bool True if the entity was soft deleted, false otherwise.
+     * @param int $id The ID of the author to soft-delete.
+     * @return bool True if the operation succeeded, false otherwise.
      */
     public function delete(int $id): bool
     {
@@ -329,11 +338,10 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Restore a soft-deleted entity.
-     * Removes the delete date from a soft-deleted Author entity.
+     * Restore a soft-deleted Author by clearing its `delete_date`.
      *
-     * @param int $id The ID of the entity to restore.
-     * @return bool True if the entity was restored, false otherwise.
+     * @param int $id The ID of the author to restore.
+     * @return bool True if the operation succeeded, false otherwise.
      */
     public function restore(int $id): bool
     {
@@ -349,11 +357,10 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Hard delete an entity.
-     * Permanently removes an Author entity from the database.
+     * Permanently remove a soft-deleted Author from the database.
      *
-     * @param int $id The ID of the entity to remove.
-     * @return bool True if the entity was hard deleted, false otherwise.
+     * @param int $id The ID of the author to hard-delete.
+     * @return bool True if the operation succeeded, false otherwise.
      */
     public function remove(int $id): bool
     {
@@ -369,11 +376,11 @@ class AuthorsTable extends EntitiesTable
     }
 
     /**
-     * Parse a database row into an Author entity.
-     * Converts a database row into an Author object.
+     * Convert a database row into an Author object.
      *
-     * @param array $row The database row to parse.
-     * @return Author The parsed Author entity.
+     * @param array $row Database result row.
+     * @return Author Parsed Author entity.
+     * @internal This method is used internally by other class methods.
      */
     protected function parseEntity(array $row): Author
     {

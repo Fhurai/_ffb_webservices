@@ -3,9 +3,11 @@
 /**
  * Class SrcUtilities
  *
- * This class provides a set of utility functions for the application.
- * These utilities are designed to assist with common tasks and
- * operations that are used throughout the application.
+ * A utility class providing reusable methods for common application tasks, including:
+ * - String/function name generation (e.g., getter/setter methods).
+ * - Database table name derivation from class names.
+ * - HTTP parameter extraction (query, form, JSON input).
+ * - Input filtering and categorization (search, order, limit parameters).
  *
  * @package _ffb_webservices\src\utilities
  */
@@ -13,116 +15,140 @@ class SrcUtilities
 {
 
     /**
-     * Generates a string by combining a prefix and a property.
+     * Generates a camelCase method name by combining a prefix (e.g., "get"/"set") and a property.
+     * Handles underscores in the property name by converting the next character to uppercase.
+     * Skips the prefix for boolean properties starting with "is" (e.g., "isActive" → "isActive()").
      *
-     * @param string $prefix The prefix to be used.
-     * @param string $property The property to be appended to the prefix.
-     * @return string The combined string of prefix and property.
+     * Example:
+     *   gsFunction("get", "user_name") → "getUserName"
+     *   gsFunction("get", "is_valid") → "isValid" (prefix omitted for "is" boolean properties)
+     *
+     * @param string $prefix Prefix for the method (e.g., "get", "set").
+     * @param string $property Property name to convert (may include underscores).
+     * @return string Combined camelCase method name.
      */
     public static function gsFunction(string $prefix, string $property)
     {
-        // Initialization of variable.
+        // Logic to handle boolean properties starting with "is"
         $pos = -1;
-
-        // If property begin with "is", this is a boolean who don't have getters beginning with "get".
-        if (strpos($property, "is") !== false && strpos($property, "is") === 0 && $prefix === "get")
+        if (str_starts_with($property, "is") && $prefix === "get") {
             $function = "";
-        else
+        } else {
             $function = $prefix;
+        }
 
-        // Property name is parsed as an array who is browsed.
+        // Process each character to replace underscores and build camelCase
         foreach (str_split($property) as $key => $character) {
-
-            // If current character is "_" then this is not put into the return value.
-            // The next character is converted to uppercase and put into the return value.
-            // If current character is not "_", then current character is put into the return value.
-
             if ($character === "_") {
-                $pos = $key;
-            }
-
-            if ($pos + 1 === $key) {
+                $pos = $key; // Mark position to capitalize the next character
+            } elseif ($pos + 1 === $key) {
                 $function .= strtoupper($character);
                 $pos = -1;
-            } else if ($pos === -1) {
+            } else {
                 $function .= $character;
             }
         }
 
-        // The generated getter function is returned.
         return $function;
     }
 
     /**
-     * Method to generate table name from class
-     * @param string $class Class from which the table is generated.
-     * @return string Table name.
+     * Generates a database table name from a class name.
+     * Converts underscores to camelCase and appends "Table" (with optional pluralization).
+     * Example:
+     *   getTableName("UserModel", true) → "UserModelsTable"
+     *   getTableName("Order_Item", false) → "OrderItemTable"
+     *
+     * @param string $class Class name (may include underscores).
+     * @param bool $singular If true, appends "s" before "Table" (e.g., "UsersTable").
+     * @return string Generated table name in camelCase with "Table" suffix.
      */
     public static function getTableName(string $class, bool $singular = true)
     {
-        // Initialization of variables.
         $pos = -1;
         $tableName = "";
 
+        // Process each character to replace underscores and build camelCase
         foreach (str_split($class) as $key => $character) {
-
-            // If current character is "_" then this is not put into the return value.
-            // The next character is converted to uppercase and put into the return value.
-            // If current character is not "_", then current character is put into the return value.
-
             if ($character === "_") {
                 $pos = $key;
-            }
-
-            if ($pos + 1 === $key) {
+            } elseif ($pos + 1 === $key) {
                 $tableName .= strtoupper($character);
                 $pos = -1;
-            } else if ($pos === -1) {
+            } else {
                 $tableName .= $character;
             }
         }
 
-        // The generated table name is returned.
-        return $tableName .= ($singular ? "s" : "") . "Table";
+        // Append "s" (if singular=true) and "Table"
+        return $tableName . ($singular ? "s" : "") . "Table";
     }
 
     /**
-     * Get a query parameter from the URL.
+     * Retrieves a query parameter from the URL.
+     * Returns false if the parameter does not exist.
      *
-     * @param string $arg The name of the query parameter.
-     * @return string|bool The value of the query parameter or false if not found.
+     * @param string $arg Name of the query parameter (e.g., "id").
+     * @return string|bool Parameter value or false if not found.
      */
     public static function getQueryParameter(string $arg): string|bool
     {
-        // Check if the query parameter exists in the URL
-        if (isset($_GET) && array_key_exists($arg, $_GET)) {
-            return $_GET[$arg];
-        }
-        return false;
+        return $_GET[$arg] ?? false;
     }
 
     /**
-     * Get a form parameter from POST data or JSON input.
+     * Extracts and categorizes filter parameters from an input array.
+     * Splits parameters into three groups based on prefixes:
+     * - "search_": Parameters for search conditions.
+     * - "order_": Parameters for sorting (e.g., "order_by=name").
+     * - "limit_": Parameters for pagination (e.g., "limit_offset=10").
      *
-     * @param string $arg The name of the form parameter.
-     * @return mixed The value of the form parameter or false if not found.
+     * Example:
+     *   Input: ["search_name" => "Alice", "order_by" => "id"]
+     *   Output: ["search" => ["name" => "Alice"], "order" => ["by" => "id"], "limit" => []]
+     *
+     * @param array $input Associative array of parameters (e.g., $_REQUEST).
+     * @return array Structured array with "search", "order", and "limit" keys.
+     */
+    public static function extractFilterParams($input)
+    {
+        $searchParams = [];
+        $orderParams = [];
+        $limitParams = [];
+
+        foreach ($input as $key => $value) {
+            if (str_starts_with($key, 'search_')) {
+                $searchParams[substr($key, 7)] = $value;
+            } elseif (str_starts_with($key, 'order_')) {
+                $orderParams[substr($key, 6)] = $value;
+            } elseif (str_starts_with($key, 'limit_')) {
+                $limitParams[substr($key, 6)] = $value;
+            }
+        }
+
+        return [
+            'search' => $searchParams,
+            'order' => $orderParams,
+            'limit' => $limitParams
+        ];
+    }
+
+    /**
+     * Retrieves a form parameter from POST data or JSON input.
+     * Checks both $_POST and the request body (decoded as JSON).
+     *
+     * @param string $arg Name of the parameter (e.g., "email").
+     * @return mixed Parameter value or false if not found.
      */
     public static function getFormParameter(string $arg): mixed
     {
-        // Check if the form parameter exists in POST data
-        if (isset($_POST) && array_key_exists($arg, $_POST)) {
+        // Check POST data first
+        if (isset($_POST[$arg])) {
             return $_POST[$arg];
         }
 
-        // Read the raw input data
-        $input = file_get_contents('php://input');
-        // Decode the JSON input data
-        $data = json_decode($input, true);
-        // Check if the form parameter exists in the JSON input data
-        if ($data !== null && array_key_exists($arg, $data)) {
-            return $data[$arg];
-        }
-
-        return false;
+        // Fallback to JSON input
+        $data = json_decode(file_get_contents('php://input'), true);
+        return $data[$arg] ?? false;
     }
 }
