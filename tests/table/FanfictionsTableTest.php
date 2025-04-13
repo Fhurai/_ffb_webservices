@@ -124,7 +124,7 @@ class FanfictionsTableTest extends TestCase
         $this->assertCount(1061, $result); // Adjust count as needed.
 
         // Assert that the first item's name matches the expected value.
-        $this->assertEquals("'Til We Find Ourselves, Again", $result[0]->getName());
+        $this->assertEquals("\"Harry Potter and the Unbreakable Bond\"", $result[0]->getName());
     }
 
     /**

@@ -245,6 +245,8 @@ class UsersTableTest extends TestCase
             ->withEmail("newuser@example.com")
             ->withCreationDate(new DateTime())
             ->withUpdateDate(new DateTime())
+            ->withIsLocal(true)
+            ->withIsAdmin(false)
             ->build();
 
         // Call the create method to add the new user to the database.

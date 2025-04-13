@@ -1,5 +1,5 @@
 DROP USER IF EXISTS 'ffb_guest'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_guest'@'localhost' IDENTIFIED BY '';
+CREATE USER IF NOT EXISTS 'ffb_guest'@'localhost' IDENTIFIED BY '1Gu3stIsw4yBetter*';
 GRANT SELECT ON ffb_main . view_data_users TO 'ffb_guest'@'localhost';
 GRANT SELECT (name, fandom) ON ffb_main . view_data_characters TO 'ffb_guest'@'localhost';
 GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main . view_data_crossovers TO 'ffb_guest'@'localhost';
@@ -20,7 +20,7 @@ GRANT SELECT ON ffb_main . view_series_tags TO 'ffb_guest'@'localhost';
 GRANT SELECT ON ffb_stats . * TO 'ffb_guest'@'localhost';
 
 DROP USER IF EXISTS 'ffb_user'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_user'@'localhost' IDENTIFIED BY 'password'; -- Change password by instance admin
+CREATE USER IF NOT EXISTS 'ffb_user'@'localhost' IDENTIFIED BY 'MyUs3R5*i5Rich_'; -- Change password by instance admin
 GRANT UPDATE (score_id) ON ffb_main . fanfictions TO 'ffb_user'@'localhost';
 GRANT UPDATE (evaluation) ON ffb_main . fanfictions TO 'ffb_user'@'localhost';
 GRANT UPDATE (score_id) ON ffb_main . series TO 'ffb_user'@'localhost';
@@ -30,7 +30,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_tests . * TO 'ffb_user'@'localhost';
 GRANT SELECT ON ffb_stats . * TO 'ffb_user'@'localhost';
 
 DROP USER IF EXISTS 'ffb_admin'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_admin'@'localhost' IDENTIFIED BY 'ffb_admingrants3privileges'; -- Change password by instance admin
+CREATE USER IF NOT EXISTS 'ffb_admin'@'localhost' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges'; -- Change password by instance admin
 GRANT SELECT ON ffb_main . actions TO 'ffb_admin'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . authors TO 'ffb_admin'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . characters TO 'ffb_admin'@'localhost';
