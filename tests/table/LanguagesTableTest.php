@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
 
 /**
  * LanguagesTableTest class.
- * 
+ *
  * This class contains unit tests for the LanguagesTable class, which handles
  * database operations for the `languages` table. Each test method verifies
  * the behavior of a specific method in the LanguagesTable class.
@@ -405,6 +405,9 @@ class LanguagesTableTest extends TestCase
     {
         // Find the Language object to be removed
         $language = $this->languagesTable->findSearchedBy(["name" => "Updated Language"])[0];
+
+        // Delete the Language object to ensure it exists before removal
+        $this->languagesTable->delete($language->getId());
 
         // Call the remove method with the ID of the Language object
         $result = $this->languagesTable->remove($language->getId());

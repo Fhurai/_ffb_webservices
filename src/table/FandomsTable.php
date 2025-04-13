@@ -63,8 +63,13 @@ class FandomsTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
@@ -187,7 +192,13 @@ class FandomsTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $operator = trim($matches[1]);
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }
             }
         }
 
@@ -229,7 +240,7 @@ class FandomsTable extends EntitiesTable
             ":name" => $entity->getName(),
             ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":delete_date" => null,
         ];
 
         $this->executeQuery($query, $values);
@@ -252,16 +263,19 @@ class FandomsTable extends EntitiesTable
         }
 
         $query = "UPDATE `fandoms`
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                  SET `name` = :name, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(),
             ":name" => $entity->getName(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null
+            ":update_date" => (new DateTime("now", new DateTimeZone("Europe/Paris")))->format("Y-m-d H:i:s")
         ];
 
-        $this->executeQuery($query, $values);
+        $result = $this->executeQuery($query, $values);
+
+        if ($result === 0) {
+            throw new FfbTableException("Update failed for the author is deleted", 403);
+        }
 
         return $entity;
     }
@@ -274,7 +288,7 @@ class FandomsTable extends EntitiesTable
      */
     public function delete(int $id): bool
     {
-        $query = "UPDATE `fandoms` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `fandoms` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -290,7 +304,7 @@ class FandomsTable extends EntitiesTable
      */
     public function restore(int $id): bool
     {
-        $query = "UPDATE `fandoms` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `fandoms` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -306,12 +320,12 @@ class FandomsTable extends EntitiesTable
      */
     public function remove(int $id): bool
     {
-        $query = "DELETE FROM `fandoms` WHERE `id` = :id";
+        $query = "DELETE FROM `fandoms` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
 
-        return $result > 0;
+        return $result === 1;
     }
 
     /**

@@ -60,8 +60,13 @@ class LanguagesTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
@@ -184,7 +189,13 @@ class LanguagesTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $operator = trim($matches[1]);
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }
             }
         }
 
@@ -227,7 +238,7 @@ class LanguagesTable extends EntitiesTable
             ":abbreviation" => $entity->getAbbreviation(),
             ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":delete_date" => null
         ];
 
         $this->executeQuery($query, $values);
@@ -250,14 +261,13 @@ class LanguagesTable extends EntitiesTable
         }
 
         $query = "UPDATE `languages`
-                  SET `name` = :name, `abbreviation` = :abbreviation, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                  SET `name` = :name, `abbreviation` = :abbreviation, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(),
             ":name" => $entity->getName(),
             ":abbreviation" => $entity->getAbbreviation(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null
+            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s")
         ];
 
         $this->executeQuery($query, $values);
@@ -274,7 +284,7 @@ class LanguagesTable extends EntitiesTable
      */
     public function delete(int $id): bool
     {
-        $query = "UPDATE `languages` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `languages` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -291,7 +301,7 @@ class LanguagesTable extends EntitiesTable
      */
     public function restore(int $id): bool
     {
-        $query = "UPDATE `languages` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `languages` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);
@@ -308,7 +318,7 @@ class LanguagesTable extends EntitiesTable
      */
     public function remove(int $id): bool
     {
-        $query = "DELETE FROM `languages` WHERE `id` = :id";
+        $query = "DELETE FROM `languages` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         $result = $this->executeQuery($query, $values);

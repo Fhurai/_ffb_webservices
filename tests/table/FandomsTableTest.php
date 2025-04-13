@@ -331,6 +331,10 @@ class FandomsTableTest extends TestCase
         // Retrieve the fandom with the name "Updated Fandom"
         // Verify that the removal result is true
         $fandom = $this->fandomsTable->findSearchedBy(["name" => "Updated Fandom"])[0];
+
+        // Delete the Fandom object to ensure it exists before removal
+        $this->fandomsTable->delete($fandom->getId());
+
         $result = $this->fandomsTable->remove($fandom->getId());
         $this->assertTrue($result);
     }

@@ -187,10 +187,10 @@ class AuthorsTableTest extends TestCase
     {
         // Call the findAll method with empty arguments
         $result = $this->authorsTable->findAll([]);
-        
+
         // Assert that the result is an array
         $this->assertIsArray($result);
-        
+
         // Assert that the array contains 717 elements
         $this->assertCount(717, $result);
     }
@@ -203,7 +203,7 @@ class AuthorsTableTest extends TestCase
     {
         // Expect an exception of type FfbTableException
         $this->expectException(FfbTableException::class);
-        
+
         // Expect the exception message to match the invalid column name error
         $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
@@ -221,7 +221,7 @@ class AuthorsTableTest extends TestCase
     {
         // Expect an exception of type FfbTableException
         $this->expectException(FfbTableException::class);
-        
+
         // Expect the exception message to match the invalid column name error
         $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
 
@@ -257,16 +257,16 @@ class AuthorsTableTest extends TestCase
             ->withCreationDate(new DateTime()) // Set the creation date
             ->withUpdateDate(new DateTime()) // Set the update date
             ->build(); // Build the Author object
-        
+
         // Call the create method to save the new Author object
         $createdAuthor = $this->authorsTable->create($author);
 
         // Assert that the created object is an instance of Author
         $this->assertInstanceOf(Author::class, $createdAuthor);
-        
+
         // Assert that the created Author object has a non-null ID
         $this->assertNotNull($createdAuthor->getId());
-        
+
         // Assert that the name of the created Author matches the expected value
         $this->assertEquals("New Author", $createdAuthor->getName());
     }
@@ -279,7 +279,7 @@ class AuthorsTableTest extends TestCase
     {
         // Expect a TypeError exception to be thrown
         $this->expectException(TypeError::class);
-        
+
         // Expect the exception message to indicate the invalid entity type
         $this->expectExceptionMessage("Argument #1 (\$entity) must be of type Entity, stdClass given");
 
@@ -295,20 +295,20 @@ class AuthorsTableTest extends TestCase
     {
         // Find an existing Author object by name
         $author = $this->authorsTable->findSearchedBy(["name" => "New Author"])[0];
-        
+
         // Update the name and update date of the Author object
         $author->setName("Updated Author");
         $author->setUpdateDate(new DateTime());
-        
+
         // Call the update method to save the changes
         $updatedAuthor = $this->authorsTable->update($author);
 
         // Assert that the updated object is an instance of Author
         $this->assertInstanceOf(Author::class, $updatedAuthor);
-        
+
         // Assert that the updated Author object has a different ID
         $this->assertNotEquals(1, $updatedAuthor->getId());
-        
+
         // Assert that the name of the updated Author matches the expected value
         $this->assertEquals("Updated Author", $updatedAuthor->getName());
     }
@@ -321,7 +321,7 @@ class AuthorsTableTest extends TestCase
     {
         // Expect a TypeError exception to be thrown
         $this->expectException(TypeError::class);
-        
+
         // Expect the exception message to indicate the invalid entity type
         $this->expectExceptionMessage("Argument #1 (\$entity) must be of type Entity, stdClass given");
 
@@ -337,10 +337,10 @@ class AuthorsTableTest extends TestCase
     {
         // Find an existing Author object by name
         $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
-        
+
         // Call the delete method with the ID of the Author object
         $result = $this->authorsTable->delete($author->getId());
-        
+
         // Assert that the delete operation was successful
         $this->assertTrue($result);
     }
@@ -353,7 +353,7 @@ class AuthorsTableTest extends TestCase
     {
         // Call the delete method with a non-existent ID
         $result = $this->authorsTable->delete(9999);
-        
+
         // Assert that the delete operation failed
         $this->assertFalse($result);
     }
@@ -366,10 +366,10 @@ class AuthorsTableTest extends TestCase
     {
         // Find an Author object by name
         $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
-        
+
         // Attempt to restore the Author object by its ID
         $result = $this->authorsTable->restore($author->getId());
-        
+
         // Assert that the restore operation was successful
         $this->assertTrue($result);
     }
@@ -382,7 +382,7 @@ class AuthorsTableTest extends TestCase
     {
         // Attempt to restore an Author object with a non-existent ID
         $result = $this->authorsTable->restore(9999);
-        
+
         // Assert that the restore operation failed
         $this->assertFalse($result);
     }
@@ -395,10 +395,13 @@ class AuthorsTableTest extends TestCase
     {
         // Find an Author object by name
         $author = $this->authorsTable->findSearchedBy(["name" => "Updated Author"])[0];
-        
+
+        // Delete the Author object to ensure it exists before removal
+        $this->authorsTable->delete($author->getId());
+
         // Attempt to remove the Author object by its ID
         $result = $this->authorsTable->remove($author->getId());
-        
+
         // Assert that the remove operation was successful
         $this->assertTrue($result);
     }
@@ -411,7 +414,7 @@ class AuthorsTableTest extends TestCase
     {
         // Attempt to remove an Author object with a non-existent ID
         $result = $this->authorsTable->remove(999);
-        
+
         // Assert that the remove operation failed
         $this->assertFalse($result);
     }

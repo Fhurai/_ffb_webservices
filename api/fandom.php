@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../src/utilities/ApiUtilities.php';
 require_once __DIR__ . '/../src/utilities/SrcUtilities.php';
-require_once __DIR__ . '/../src/table/AuthorsTable.php';
-require_once __DIR__ . '/../src/builder/AuthorBuilder.php';
+require_once __DIR__ . '/../src/table/FandomsTable.php';
+require_once __DIR__ . '/../src/builder/FandomBuilder.php';
 
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
@@ -17,50 +17,52 @@ try {
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
-            $author = $table->get(SrcUtilities::getQueryParameter('id'));
-            $author ? ApiUtilities::HttpOk($author)
-                   : ApiUtilities::HttpNotFound("Author not found");
+            $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
+            $fandom = $table->get(SrcUtilities::getQueryParameter('id'));
+            $fandom ? ApiUtilities::HttpOk($fandom)
+                    : ApiUtilities::HttpNotFound("Fandom not found");
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $data = json_decode(file_get_contents("php://input"));
-            $author = (new AuthorBuilder())
+            $fandom = (new FandomBuilder())
                 ->withName($data->name ?? null)
                 ->build();
 
-            $createdAuthor = $table->create($author);
-            $createdAuthor ? ApiUtilities::HttpCreated($createdAuthor)
-                          : ApiUtilities::HttpBadRequest("Failed to create author");
+            $createdFandom = $table->create($fandom);
+            $createdFandom ? ApiUtilities::HttpCreated($createdFandom)
+                           : ApiUtilities::HttpBadRequest("Failed to create fandom");
             break;
 
         case 'PUT':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $id = SrcUtilities::getQueryParameter('id');
             $data = json_decode(file_get_contents("php://input"));
 
-            $author = $table->get($id);
-            if (!$author) ApiUtilities::HttpNotFound("Author not found");
 
-            $author->setName($data->name ?? $author->getName());
-            $updatedAuthor = $table->update($author);
-            ApiUtilities::HttpOk($updatedAuthor);
+            $fandom = $table->get($id);
+            if (!$fandom) ApiUtilities::HttpNotFound("Fandom not found");
+
+            $fandom->setName($data->name ?? $fandom->getName());
+
+            $updatedFandom = $table->update($fandom);
+            ApiUtilities::HttpOk($updatedFandom);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Author not found");
+                    : ApiUtilities::HttpNotFound("Fandom not found");
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $data = json_decode(file_get_contents("php://input"));
             $id = SrcUtilities::getQueryParameter('id');
 

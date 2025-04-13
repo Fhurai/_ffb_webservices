@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../src/utilities/ApiUtilities.php';
 require_once __DIR__ . '/../src/utilities/SrcUtilities.php';
-require_once __DIR__ . '/../src/table/AuthorsTable.php';
-require_once __DIR__ . '/../src/builder/AuthorBuilder.php';
+require_once __DIR__ . '/../src/table/LanguagesTable.php';
+require_once __DIR__ . '/../src/builder/LanguageBuilder.php';
 
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
@@ -17,50 +17,52 @@ try {
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
-            $author = $table->get(SrcUtilities::getQueryParameter('id'));
-            $author ? ApiUtilities::HttpOk($author)
-                   : ApiUtilities::HttpNotFound("Author not found");
+            $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
+            $language = $table->get(SrcUtilities::getQueryParameter('id'));
+            $language ? ApiUtilities::HttpOk($language)
+                    : ApiUtilities::HttpNotFound("Language not found");
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $data = json_decode(file_get_contents("php://input"));
-            $author = (new AuthorBuilder())
+            $language = (new LanguageBuilder())
                 ->withName($data->name ?? null)
+                ->withAbbreviation($data->abbreviation ?? null)
                 ->build();
 
-            $createdAuthor = $table->create($author);
-            $createdAuthor ? ApiUtilities::HttpCreated($createdAuthor)
-                          : ApiUtilities::HttpBadRequest("Failed to create author");
+            $createdLanguage = $table->create($language);
+            $createdLanguage ? ApiUtilities::HttpCreated($createdLanguage)
+                           : ApiUtilities::HttpBadRequest("Failed to create language");
             break;
 
         case 'PUT':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $id = SrcUtilities::getQueryParameter('id');
             $data = json_decode(file_get_contents("php://input"));
 
-            $author = $table->get($id);
-            if (!$author) ApiUtilities::HttpNotFound("Author not found");
+            $language = $table->get($id);
+            if (!$language) ApiUtilities::HttpNotFound("Language not found");
 
-            $author->setName($data->name ?? $author->getName());
-            $updatedAuthor = $table->update($author);
-            ApiUtilities::HttpOk($updatedAuthor);
+            $language->setName($data->name ?? $language->getName());
+            $language->setAbbreviation($data->abbreviation ?? $language->getAbbreviation());
+            $updatedFandom = $table->update($language);
+            ApiUtilities::HttpOk($updatedFandom);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Author not found");
+                    : ApiUtilities::HttpNotFound("Language not found");
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $data = json_decode(file_get_contents("php://input"));
             $id = SrcUtilities::getQueryParameter('id');
 
