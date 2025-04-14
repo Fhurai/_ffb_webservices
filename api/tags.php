@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../src/utilities/ApiUtilities.php';
 require_once __DIR__ . '/../src/utilities/SrcUtilities.php';
-require_once __DIR__ . '/../src/table/UsersTable.php';
+require_once __DIR__ . '/../src/table/TagsTable.php';
 
 ApiUtilities::setCorsHeaders(['GET', 'OPTIONS']);
 
@@ -13,7 +13,7 @@ if ($method === 'OPTIONS') {
 } elseif ($method === 'GET') {
     try {
         $decoded = ApiUtilities::decodeJWT();
-        $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
+        $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
 
         $filters = SrcUtilities::extractFilterParams($_GET);
         // Add new condition to existing search params
@@ -29,10 +29,10 @@ if ($method === 'OPTIONS') {
             'limit' => $filters['limit']
         ];
 
-        $users = $table->findAll($finalParams);
+        $tags = $table->findAll($finalParams);
 
-        $users ? ApiUtilities::HttpOk($users)
-               : ApiUtilities::HttpNotFound("No users found");
+        $tags ? ApiUtilities::HttpOk($tags)
+               : ApiUtilities::HttpNotFound("No tags found");
     } catch (FfbTableException $e) {
         ApiUtilities::HttpInternalServerError($e->getMessage());
     }

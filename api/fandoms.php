@@ -29,9 +29,9 @@ if ($method === 'OPTIONS') {
             'limit' => $filters['limit']
         ];
 
-        $authors = $table->findAll($finalParams);
+        $fandoms = $table->findAll($finalParams);
 
-        $authors ? ApiUtilities::HttpOk($authors)
+        $fandoms ? ApiUtilities::HttpOk($fandoms)
                : ApiUtilities::HttpNotFound("No fandoms found");
     } catch (FfbTableException $e) {
         ApiUtilities::HttpInternalServerError($e->getMessage());

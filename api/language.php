@@ -48,8 +48,8 @@ try {
 
             $language->setName($data->name ?? $language->getName());
             $language->setAbbreviation($data->abbreviation ?? $language->getAbbreviation());
-            $updatedFandom = $table->update($language);
-            ApiUtilities::HttpOk($updatedFandom);
+            $updatedLanguage = $table->update($language);
+            ApiUtilities::HttpOk($updatedLanguage);
             break;
 
         case 'DELETE':

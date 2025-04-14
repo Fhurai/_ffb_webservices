@@ -65,16 +65,18 @@ class TagsTable extends EntitiesTable
 
         $conditions = [];
         foreach ($args as $key => $value) {
-            // Handle LIKE conditions for partial matches.
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-                // Handle operators like <, >, =, etc.
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -217,7 +219,14 @@ class TagsTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }else if(str_contains($key, "_id")){
+                    $values[":$key"] = $value;
+                }
             }
         }
 
@@ -301,15 +310,14 @@ class TagsTable extends EntitiesTable
 
         // Prepare the UPDATE query with placeholders for the entity's properties.
         $query = "UPDATE `tags`
-                  SET `description` = :description, `name` = :name, `type_id` = :type_id, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                  SET `description` = :description, `name` = :name, `type_id` = :type_id, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(),
             ":description" => $entity->getDescription(),
             ":name" => $entity->getName(),
             ":type_id" => $entity->getTypeId(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null
+            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s")
         ];
 
         // Execute the query to update the entity.
@@ -329,7 +337,7 @@ class TagsTable extends EntitiesTable
     public function delete(int $id): bool
     {
         // Prepare the query to set the delete date for the specified entity.
-        $query = "UPDATE `tags` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `tags` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id];
 
         // Execute the query and return true if the operation was successful.
@@ -348,7 +356,7 @@ class TagsTable extends EntitiesTable
     public function restore(int $id): bool
     {
         // Prepare the query to remove the delete date for the specified entity.
-        $query = "UPDATE `tags` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `tags` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         // Execute the query and return true if the operation was successful.
@@ -367,7 +375,7 @@ class TagsTable extends EntitiesTable
     public function remove(int $id): bool
     {
         // Prepare the DELETE query to permanently remove the specified entity.
-        $query = "DELETE FROM `tags` WHERE `id` = :id";
+        $query = "DELETE FROM `tags` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         // Execute the query and return true if the operation was successful.

@@ -277,7 +277,7 @@ class UsersTable extends EntitiesTable
             ":is_nsfw" => $entity->isNsfw() ? 1 : 0,
             ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":delete_date" => null,
         ];
 
         $this->executeQuery($query, $values);
@@ -301,8 +301,8 @@ class UsersTable extends EntitiesTable
 
         $query = "UPDATE `users`
                   SET `username` = :username, `password` = :password, `email` = :email, `is_admin` = :is_admin, `is_local` = :is_local,
-                      `birthday` = :birthday, `is_nsfw` = :is_nsfw, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                      `birthday` = :birthday, `is_nsfw` = :is_nsfw, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(),
             ":username" => $entity->getUsername(),
@@ -330,7 +330,7 @@ class UsersTable extends EntitiesTable
     public function delete(int $id): bool
     {
         // Prepare the query to set the delete_date for the specified user.
-        $query = "UPDATE `users` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `users` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id];
 
         // Execute the query and check if any rows were affected.
@@ -349,7 +349,7 @@ class UsersTable extends EntitiesTable
     public function restore(int $id): bool
     {
         // Prepare the query to reset the delete_date for the specified user.
-        $query = "UPDATE `users` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `users` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         // Execute the query and check if any rows were affected.
@@ -368,7 +368,7 @@ class UsersTable extends EntitiesTable
     public function remove(int $id): bool
     {
         // Prepare the query to permanently delete the specified user.
-        $query = "DELETE FROM `users` WHERE `id` = :id";
+        $query = "DELETE FROM `users` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id];
 
         // Execute the query and check if any rows were affected.

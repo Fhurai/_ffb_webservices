@@ -29,10 +29,10 @@ if ($method === 'OPTIONS') {
             'limit' => $filters['limit']
         ];
 
-        $authors = $table->findAll($finalParams);
+        $languages = $table->findAll($finalParams);
 
-        $authors ? ApiUtilities::HttpOk($authors)
-               : ApiUtilities::HttpNotFound("No fandoms found");
+        $languages ? ApiUtilities::HttpOk($languages)
+               : ApiUtilities::HttpNotFound("No languages found");
     } catch (FfbTableException $e) {
         ApiUtilities::HttpInternalServerError($e->getMessage());
     }

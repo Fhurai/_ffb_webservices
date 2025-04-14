@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../src/utilities/ApiUtilities.php';
 require_once __DIR__ . '/../src/utilities/SrcUtilities.php';
-require_once __DIR__ . '/../src/table/UsersTable.php';
-require_once __DIR__ . '/../src/builder/UserBuilder.php';
+require_once __DIR__ . '/../src/table/TagsTable.php';
+require_once __DIR__ . '/../src/builder/TagBuilder.php';
 
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
@@ -17,56 +17,55 @@ try {
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
-            $user = $table->get(SrcUtilities::getQueryParameter('id'));
-            $user ? ApiUtilities::HttpOk($user)
-                    : ApiUtilities::HttpNotFound("Fandom not found");
+            $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
+            $tag = $table->get(SrcUtilities::getQueryParameter('id'));
+            $tag ? ApiUtilities::HttpOk($tag)
+                    : ApiUtilities::HttpNotFound("Tag not found");
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $data = json_decode(file_get_contents("php://input"));
-            $user = (new UserBuilder())
-                ->withUsername($data->username ?? null)
-                ->withPassword($data->password ?? null)
-                ->withEmail($data->email ?? null)
-                ->withBirthday($data->birthday ?? null)
-                ->withIsAdmin(boolval($data->isAdmin) ?? null)
-                ->withIsLocal(boolval($data->isLocal) ?? null)
-                ->withIsNsfw(boolval($data->isNsfw) ?? null)
+            $tag = (new TagBuilder())
+                ->withName($data->name ?? null)
+                ->withDescription($data->description ?? null)
+                ->withTypeId($data->type_id ?? null)
                 ->build();
 
-            $createdUser = $table->create($user);
-            $createdUser ? ApiUtilities::HttpCreated($createdUser)
-                           : ApiUtilities::HttpBadRequest("Failed to create user");
+            $createdTag = $table->create($tag);
+            $createdTag ? ApiUtilities::HttpCreated($createdTag)
+                           : ApiUtilities::HttpBadRequest("Failed to create tag");
             break;
 
         case 'PUT':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $id = SrcUtilities::getQueryParameter('id');
             $data = json_decode(file_get_contents("php://input"));
 
-            $user = $table->get($id);
-            if (!$user) ApiUtilities::HttpNotFound("User not found");
+            $tag = $table->get($id);
+            if (!$tag) ApiUtilities::HttpNotFound("Tag not found");
 
-            $user->setUsername($data->username ?? $user->getUsername());
-            $updateUser = $table->update($user);
-            ApiUtilities::HttpOk($updateUser);
+            $tag->setName($data->tagname ?? $tag->getName());
+            $tag->setDescription($data->description ?? $tag->getDescription());
+            $tag->setTypeId($data->type_id ?? $tag->getTypeId());
+
+            $updatedTag = $table->update($tag);
+            ApiUtilities::HttpOk($updatedTag);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Fandom not found");
+                    : ApiUtilities::HttpNotFound("Tag not found");
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
-            $table = ApiUtilities::getAuthorizedTable($decoded, UsersTable::class);
+            $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $data = json_decode(file_get_contents("php://input"));
             $id = SrcUtilities::getQueryParameter('id');
 
@@ -87,6 +86,7 @@ try {
 } catch (Error $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::HttpBadRequest($e->getMessage());
 } catch (Throwable $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
