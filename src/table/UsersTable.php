@@ -64,16 +64,18 @@ class UsersTable extends EntitiesTable
 
         $conditions = [];
         foreach ($args as $key => $value) {
-            // Handle LIKE conditions for partial matches.
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-                // Handle operators like <, >, =, etc.
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
-                // Handle exact matches.
             } else {
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
@@ -215,7 +217,14 @@ class UsersTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }else if(str_contains($key, "is_")){
+                    $values[":$key"] = $value;
+                }
             }
         }
 
@@ -385,11 +394,11 @@ class UsersTable extends EntitiesTable
             ->withEmail($row["email"]) // Set the email address.
             ->withIsAdmin($row["is_admin"]) // Set the admin status.
             ->withIsLocal($row["is_local"]) // Set the local status.
-            ->withBirthday(new DateTime($row["birthday"])) // Set the birthday.
+            ->withBirthday($row["birthday"]) // Set the birthday.
             ->withIsNsfw($row["is_nsfw"]) // Set the NSFW status.
-            ->withCreationDate(new DateTime($row["creation_date"])) // Set the creation date.
-            ->withUpdateDate(new DateTime($row["update_date"])) // Set the update date.
-            ->withDeleteDate($row["delete_date"] ? new DateTime($row["delete_date"]) : null) // Set the delete date if it exists.
+            ->withCreationDate($row["creation_date"]) // Set the creation date.
+            ->withUpdateDate($row["update_date"]) // Set the update date.
+            ->withDeleteDate( $row["delete_date"]) // Set the delete date if it exists.
             ->build(); // Build and return the User entity.
     }
 }

@@ -192,7 +192,6 @@ class LanguagesTable extends EntitiesTable
                 if (str_contains($value, '%')) {
                     $values[":$key"] = $value;
                 } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
-                    $operator = trim($matches[1]);
                     $val = trim($matches[2]);
                     $values[":$key"] = str_replace("'", "", $val);
                 }
