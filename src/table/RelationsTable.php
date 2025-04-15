@@ -4,6 +4,7 @@ require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Relation.php";
 require_once __DIR__ . "/../builder/RelationBuilder.php";
+require_once __DIR__ . "/../builder/CharacterBuilder.php";
 
 /**
  * Class RelationsTable
@@ -56,12 +57,18 @@ class RelationsTable extends EntitiesTable
         }
 
         $conditions = [];
+        $conditions = [];
         foreach ($args as $key => $value) {
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
@@ -198,11 +205,17 @@ class RelationsTable extends EntitiesTable
 
         // Add search conditions if provided
         if (!empty($args['search'])) {
-            $searchQuery = $this->findSearchedBy($args['search'], false); // Generate search query
-            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6); // Append search conditions
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                // Extract and sanitize search values
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }else if(str_contains($key, "_id")){
+                    $values[":$key"] = $value;
+                }
             }
         }
 
@@ -376,6 +389,7 @@ class RelationsTable extends EntitiesTable
                 $relationBuilder->addCharacter((new CharacterBuilder())
                     ->withId($character["id"])
                     ->withName($character["name"])
+                    ->withFandomId($character["fandom_id"])
                     ->withCreationDate($character["creation_date"])
                     ->withUpdateDate($character["update_date"])
                     ->withDeleteDate($character["delete_date"])
