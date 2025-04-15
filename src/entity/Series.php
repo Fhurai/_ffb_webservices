@@ -1,14 +1,14 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
-require_once __DIR__ . "/../../src/entity/Evaluable.php";
+require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
 
 /**
  * Series class.
  */
 class Series extends ComplexEntity
 {
-    use Evaluable;
+    use EntityTrait, EvaluableTrait;
 
     /**
      * Description.
@@ -52,18 +52,6 @@ class Series extends ComplexEntity
     }
 
     /**
-     * Getter Fanfictions.
-     * @return array Fanfictions.
-     */
-    public function getFanfictions(): array
-    {
-        if (empty($this->fanfictions)) {
-            throw new \RuntimeException("fanfictions is not loaded. Use hasFanfictions() to check first.");
-        }
-        return $this->fanfictions;
-    }
-
-    /**
      * Method to check if fanfictions are loaded.
      * @return bool True if fanfictions are loaded, false otherwise.
      */
@@ -72,50 +60,32 @@ class Series extends ComplexEntity
         return !empty($this->fanfictions);
     }
 
-    /**
-     * Setter Fanfictions.
-     * @param array $fanfictions New Fanfictions.
-     * @return void
-     */
-    public function setFanfictions(array $fanfictions): void
-    {
-        $this->fanfictions = array_map(function ($fanfiction) {
-            if (is_array($fanfiction)) {
-                return Fanfiction::jsonUnserialize(json_encode($fanfiction));
-            } elseif ($fanfiction instanceof Fanfiction) {
-                return $fanfiction;
-            }
-            throw new \InvalidArgumentException("Invalid fanfiction type.");
-        }, $fanfictions);
+    public function getFanfictions(): array {
+        return $this->getNullableArrayProperty($this->fanfictions, "fanfictions");
+    }
+
+    public function setFanfictions(array $fanfictions): void {
+        $this->fanfictions = $this->setArrayProperty($fanfictions, Fanfiction::class);
     }
 
     /**
-     * Method to parse Series into an array for JSON parsing.
-     * @return array Array of Series data.
+     * List of association properties for JSON serialization.
      */
-    public function jsonSerialize(): array
-    {
-        // If fanfictions property exists,
-        // adding it to associations array.
-        $associations = [];
-        if (property_exists($this, "fanfictions")) {
-            $associations["fanfictions"] = $this->fanfictions;
-        }
+    protected function getAssociationProperties(): array {
+        return ["fanfictions"];
+    }
 
-        // Return array of data from Series.
+    public function jsonSerialize(): array {
+        $associations = [];
+        foreach ($this->getAssociationProperties() as $prop) {
+            if ($this->{"has" . ucfirst($prop)}()) {
+                $associations[$prop] = $this->$prop;
+            }
+        }
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->description,
-            "score_id" => $this->getScoreId(),
-            "evaluation" => $this->getEvaluation(),
+            "score_id" => $this->score_id,
+            "evaluation" => $this->evaluation
         ], $associations);
-    }
-
-    /**
-     * Method to create a new Series.
-     * @return mixed new Series.
-     */
-    public static function getNewObject(): mixed
-    {
-        return new self();
     }
 }

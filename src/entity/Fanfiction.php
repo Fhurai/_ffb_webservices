@@ -1,14 +1,14 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
-require_once __DIR__ . "/../../src/entity/Evaluable.php";
+require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
 
 /**
  * Fanfiction class.
  */
 class Fanfiction extends ComplexEntity
 {
-    use Evaluable;
+    use EntityTrait, EvaluableTrait;
 
     /**
      * Author_id.
@@ -270,40 +270,6 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * Generic setter for array properties.
-     * @param array $items New items.
-     * @param string $class Class name for deserialization.
-     * @return array Processed items.
-     */
-    private function setArrayProperty(array $items, string $class): array
-    {
-        $result = [];
-        foreach ($items as $item) {
-            if (is_array($item)) {
-                $result[] = $class::jsonUnserialize(json_encode($item));
-            } elseif ($item instanceof $class) {
-                $result[] = $item;
-            }
-        }
-        return $result;
-    }
-
-    /**
-     * Generic getter for nullable array properties.
-     * @param array|null $property Property to check.
-     * @param string $name Property name for exception message.
-     * @throws \RuntimeException
-     * @return array|null
-     */
-    private function getNullableArrayProperty(?array $property, string $name): ?array
-    {
-        if (!$property) {
-            throw new \RuntimeException("$name is not loaded. Use has" . ucfirst($name) . "() to check first.");
-        }
-        return $property;
-    }
-
-    /**
      * Setter Fandoms.
      * @param array $fandoms New Fandoms.
      * @return void
@@ -449,79 +415,26 @@ class Fanfiction extends ComplexEntity
     }
 
     /**
-     * Method to parse Fanfiction into an array for JSON parsing.
-     * @return array Array of Fanfiction data.
+     * List of association properties for JSON serialization.
      */
-    public function jsonSerialize(): array
-    {
-        // Initialization of the associations array
-        $associations = [];
-
-        if (property_exists($this, "author")) {
-            // If author property exists,
-            // adding it to associations array.
-            $associations["author"] = $this->author;
-        }
-
-        if (property_exists($this, "fandoms")) {
-            // If fandoms property exists,
-            // adding it to associations array.
-            $associations["fandoms"] = $this->fandoms;
-        }
-
-        if (property_exists($this, "language")) {
-            // If language property exists,
-            // adding it to associations array.
-            $associations["language"] = $this->language;
-        }
-
-        if (property_exists($this, "relations")) {
-            // If relations property exists,
-            // adding it to associations array.
-            $associations["relations"] = $this->relations;
-        }
-
-        if (property_exists($this, "characters")) {
-            // If characters property exists,
-            // adding it to associations array.
-            $associations["characters"] = $this->characters;
-        }
-
-        if (property_exists($this, "tags")) {
-            // If tags property exists,
-            // adding it to associations array.
-            $associations["tags"] = $this->tags;
-        }
-
-        if (property_exists($this, "score")) {
-            // If score property exists,
-            // adding it to associations array.
-            $associations["score"] = $this->score;
-        }
-
-        if (property_exists($this, "links")) {
-            // If score property exists,
-            // adding it to associations array.
-            $associations["links"] = $this->links;
-        }
-
-        // Return array of data from Fanfiction.
-        return array_merge(parent::jsonSerialize(), [
-            "author_id" => $this->getAuthorId(),
-            "rating_id" => $this->getRatingId(),
-            "description" => $this->getDescription(),
-            "language_id" => $this->getLanguageId(),
-            "score_id" => $this->getScoreId(),
-            "evaluation" => $this->getEvaluation()
-        ], $associations);
+    protected function getAssociationProperties(): array {
+        return ["author", "fandoms", "language", "relations", "characters", "tags", "links", "score"];
     }
 
-    /**
-     * Method to create a new Fanfiction.
-     * @return mixed new Fanfiction.
-     */
-    public static function getNewObject(): mixed
-    {
-        return new self();
+    public function jsonSerialize(): array {
+        $associations = [];
+        foreach ($this->getAssociationProperties() as $prop) {
+            if ($this->{"has" . ucfirst($prop)}()) {
+                $associations[$prop] = $this->$prop;
+            }
+        }
+        return array_merge(parent::jsonSerialize(), [
+            "author_id" => $this->author_id,
+            "rating_id" => $this->rating_id,
+            "description" => $this->description,
+            "language_id" => $this->language_id,
+            "score_id" => $this->score_id,
+            "evaluation" => $this->evaluation
+        ], $associations);
     }
 }

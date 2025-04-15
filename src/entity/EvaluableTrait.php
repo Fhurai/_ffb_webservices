@@ -3,7 +3,7 @@
 /**
  * Evaluable trait
  */
-trait Evaluable
+trait EvaluableTrait
 {
     /**
      * Evaluable identifier.
@@ -47,6 +47,11 @@ trait Evaluable
     public function getScore(): ?Score
     {
         return $this->score;
+    }
+
+    public function hasScore(): bool
+    {
+        return $this->score  !== null;
     }
 
     /**

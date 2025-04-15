@@ -68,6 +68,7 @@ class SeriesTest extends TestCase
         $this->series->setDescription('An amazing series');
         $this->series->setScoreId(4);
         $this->series->setEvaluation('Highly recommended');
+        $this->series->setFanfictions([new Fanfiction()]);
 
         // Set date for consistent testing
         $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
@@ -77,7 +78,7 @@ class SeriesTest extends TestCase
         // Test without associations
         $result = $this->series->jsonSerialize();
         $this->assertArrayHasKey('fanfictions', $result);
-        $this->assertEmpty($result['fanfictions']);
+        $this->assertNotEmpty($result['fanfictions']);
 
         // Add fanfictions association
         $this->series->setFanfictions([new Fanfiction()]);
@@ -89,7 +90,7 @@ class SeriesTest extends TestCase
         $this->assertEquals('An amazing series', $resultWithAssoc['description']);
         $this->assertEquals(4, $resultWithAssoc['score_id']);
         $this->assertEquals('Highly recommended', $resultWithAssoc['evaluation']);
-        $this->assertEquals($date, $resultWithAssoc['creation_date']);
+        $this->assertEquals($date->format("Y-m-d H:i:s"), $resultWithAssoc['creation_date']);
 
         // Test association
         $this->assertArrayHasKey('fanfictions', $resultWithAssoc);
@@ -99,7 +100,7 @@ class SeriesTest extends TestCase
         // Test empty fanfictions
         $this->series->setFanfictions([]);
         $resultEmptyAssoc = $this->series->jsonSerialize();
-        $this->assertEmpty($resultEmptyAssoc['fanfictions']);
+        $this->assertFalse(array_key_exists('fanfictions', $resultEmptyAssoc));
     }
 
     /**

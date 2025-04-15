@@ -80,7 +80,7 @@ class TagTest extends TestCase
         $this->assertEquals('Test Tag', $result['name'], "Serialized 'name' value mismatch.");
         $this->assertEquals('Test Description', $result['description'], "Serialized 'description' value mismatch.");
         $this->assertEquals(2, $result['type_id'], "Serialized 'type_id' value mismatch.");
-        $this->assertEquals($date->format('Y-m-d H:i:s'), $result['creation_date']->format('Y-m-d H:i:s'), "Serialized 'creation_date' value mismatch.");
+        $this->assertEquals($date->format("Y-m-d H:i:s"), $result['creation_date'], "Serialized 'creation_date' value mismatch.");
     }
 
     /**

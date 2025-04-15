@@ -110,7 +110,7 @@ class CharacterTest extends TestCase
         $this->assertEquals(1, $result['id']);
         $this->assertEquals('Test Character', $result['name']);
         $this->assertEquals(2, $result['fandom_id']);
-        $this->assertEquals($date, $result['creation_date']);
+        $this->assertEquals($date->format("Y-m-d H:i:s"), $result['creation_date']);
     }
 
     /**

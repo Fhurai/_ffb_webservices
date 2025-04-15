@@ -125,23 +125,21 @@ abstract class Entity implements JsonSerializable
      * Converts the entity's properties into an associative array.
      * @return array Array of entity data.
      */
-    public function jsonSerialize(): mixed
-    {
-        $assoc = [];
+    public function jsonSerialize(): array
+{
+    $data = [
+        "id" => $this->id,
+        "creation_date" => $this->creation_date->format("Y-m-d H:i:s"),
+        "update_date" => $this->update_date->format("Y-m-d H:i:s"),
+        "delete_date" => $this->delete_date?->format("Y-m-d H:i:s"),
+    ];
 
-        // Include additional associated data if it exists.
-        if (property_exists($this, "_assoc_data")) {
-            $assoc["_assoc_data"] = $this->_assoc_data;
-        }
-
-        // Merge core properties with additional data.
-        return array_merge([
-            "id" => $this->getId(),
-            "creation_date" => $this->getCreationDate(),
-            "update_date" => $this->getUpdateDate(),
-            "delete_date" => $this->getDeleteDate(),
-        ], $assoc);
+    if (property_exists($this, "_assoc_data")) {
+        $data["_assoc_data"] = $this->_assoc_data;
     }
+
+    return $data;
+}
 
     /**
      * Method to parse a JSON string into an entity object.

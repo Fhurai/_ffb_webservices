@@ -96,8 +96,7 @@ class UserTest extends TestCase
         $this->assertSame('test_user', $serialized['username']);
         $this->assertSame('test@example.com', $serialized['email']);
         $this->assertTrue($serialized['is_admin']);
-        $this->assertInstanceOf(DateTime::class, $serialized['birthday']);
-        $this->assertSame('1990-05-15 08:00:00', $serialized['birthday']->format('Y-m-d H:i:s'));
+        $this->assertSame('1990-05-15 08:00:00', $serialized['birthday']);
     }
 
     /**

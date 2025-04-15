@@ -1,30 +1,17 @@
 <?php
 
 require_once __DIR__ . "/Parameters.php";
+require_once __DIR__ . "/ParameterTrait.php";
 
 /**
- * Readonly Score class extending Parameters
+ * Readonly Score class extending Parameters.
  */
 readonly class Score extends Parameters
 {
-    /**
-     * Constructor explicitly initializes parent properties
-     * @param int $id   The identifier
-     * @param string $name The name
-     */
+    use ParameterTrait;
+
     public function __construct(int $id, string $name)
     {
         parent::__construct($id, $name);
-    }
-
-    /**
-     * Creates a new Score instance with required parameters
-     * @param int $id   The identifier
-     * @param string $name The name
-     * @return static   New Score object
-     */
-    public static function getNewObject(int $id, string $name): static
-    {
-        return new self($id, $name);
     }
 }

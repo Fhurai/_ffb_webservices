@@ -130,4 +130,26 @@ abstract class ComplexEntity extends NamedEntity
         // Return the populated entity object.
         return $entity;
     }
+
+    /**
+     * Generic setter for array properties.
+     */
+    protected function setArrayProperty(array $items, string $class): array {
+        $result = [];
+        foreach ($items as $item) {
+            $result[] = is_array($item) ? $class::jsonUnserialize(json_encode($item)) : $item;
+        }
+        return $result;
+    }
+
+    /**
+     * Generic getter for nullable array properties.
+     */
+    protected function getNullableArrayProperty(?array $property, string $name): array {
+        if (!$property) {
+            throw new \RuntimeException("$name is not loaded. Use has" . ucfirst($name) . "() to check first.");
+        }
+        return $property;
+    }
+
 }
