@@ -24,7 +24,7 @@ if ($method === 'OPTIONS') {
         $parameter = $_GET['parameter']; // Retrieve the 'parameter' query parameter
 
         // Validate the parameter against a predefined list of allowed values
-        if (in_array($parameter, ['actions', 'ratings', 'scores', 'tag_types'])) {
+        if (in_array($parameter, ['actions', 'ratings', 'scores', 'tagtypes'])) {
             $table = new StatsTable(); // Initialize StatsTable with database and table name
             $stats = $table->getStatsByParameter($parameter); // Fetch statistics based on the parameter
 
