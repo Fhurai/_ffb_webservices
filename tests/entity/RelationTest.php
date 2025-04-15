@@ -103,7 +103,7 @@ class RelationTest extends TestCase
         // Verify basic properties of the Relation
         $this->assertInstanceOf(Relation::class, $relation);
         $this->assertEquals(789, $relation->getId());
-        $this->assertEquals('Lover-lover Relationship', $relation->getName());
+        $this->assertEquals('Main Character / Supporting Character', $relation->getName());
 
         // Verify that the creation date is parsed correctly
         $this->assertEquals(

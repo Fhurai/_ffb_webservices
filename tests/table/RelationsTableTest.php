@@ -9,7 +9,7 @@ require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
 
 /**
  * Class RelationsTableTest
- * 
+ *
  * This class contains unit tests for the RelationsTable class, which handles operations
  * related to the "relations" table in the database. It tests methods for retrieving,
  * searching, ordering, creating, updating, deleting, and restoring relations.
@@ -39,7 +39,7 @@ class RelationsTableTest extends TestCase
         $this->assertEquals("Angelise Ikaruga Misurugi / Hilda Schlievogt / Tusk", $result->getName());
         $this->assertNotNull($result->getCharacters());
         $this->assertIsArray($result->getCharacters());
-        $this->assertCount(3, $result->getCharacters());        
+        $this->assertCount(3, $result->getCharacters());
     }
 
     /**
@@ -67,7 +67,7 @@ class RelationsTableTest extends TestCase
         $this->assertEquals("Hyuuga Hinata / Hyuuga Neji / Uzumaki Naruto", $result[0]->getName());
         $this->assertNotNull($result[0]->getCharacters());
         $this->assertIsArray($result[0]->getCharacters());
-        $this->assertCount(3, $result[0]->getCharacters());        
+        $this->assertCount(3, $result[0]->getCharacters());
     }
 
     /**
@@ -127,9 +127,16 @@ class RelationsTableTest extends TestCase
      */
     public function testCreateValid(): void
     {
+        $characters = new CharactersTable("tests", "user");
+        $characters = [
+            $characters->get(1),
+            $characters->get(2),
+            $characters->get(3)
+        ];
+
         // Test creating a new relation with valid data and verify its properties.
         $relation = (new RelationBuilder())
-            ->withCharacters([1, 2, 3]) // Assuming these IDs exist in the characters table
+            ->withCharacters($characters)
             ->withCreationDate(new DateTime())
             ->withUpdateDate(new DateTime())
             ->build();
@@ -138,7 +145,7 @@ class RelationsTableTest extends TestCase
 
         $this->assertInstanceOf(Relation::class, $createdRelation);
         $this->assertNotNull($createdRelation->getId());
-        $this->assertEquals("1 / 2 / 3", $createdRelation->getName());
+        $this->assertEquals("Angelise Ikaruga Misurugi / Hilda Schlievogt / Salamandinay", $createdRelation->getName());
         $this->assertNotNull($createdRelation->getCreationDate());
         $this->assertNotNull($createdRelation->getUpdateDate());
         $this->assertNotNull($createdRelation->getCharacters());
@@ -153,7 +160,7 @@ class RelationsTableTest extends TestCase
     {
         // Test updating an existing relation with valid data:
         // 1. Retrieve a relation by searching for a specific name.
-        $relation = $this->relationsTable->findSearchedBy(["name" => "1 / 2 / 3"])[0];
+        $relation = $this->relationsTable->findSearchedBy(["name" => "Angelise Ikaruga Misurugi / Hilda Schlievogt / Salamandinay"])[0];
 
         // 2. Update the name of the relation to "UpdatedRelation".
         $relation->setName("UpdatedRelation");
@@ -163,6 +170,8 @@ class RelationsTableTest extends TestCase
 
         // 4. Call the update method to save the changes.
         $updatedRelation = $this->relationsTable->update($relation);
+
+        $this->assertTrue($relation->hasCharacters());
 
         // 5. Verify that the updated relation is an instance of the Relation class.
         $this->assertInstanceOf(Relation::class, $updatedRelation);
@@ -212,10 +221,13 @@ class RelationsTableTest extends TestCase
         // 1. Retrieve a relation by searching for a specific name.
         $relation = $this->relationsTable->findSearchedBy(["name" => "UpdatedRelation"])[0];
 
-        // 2. Call the remove method with the relation's ID.
+        // 2. Call the delete method with the relation's ID.
+        $this->relationsTable->delete($relation->getId());
+
+        // 3. Call the remove method with the relation's ID.
         $result = $this->relationsTable->remove($relation->getId());
 
-        // 3. Verify that the remove operation returns true, indicating success.
+        // 4. Verify that the remove operation returns true, indicating success.
         $this->assertTrue($result);
     }
 }

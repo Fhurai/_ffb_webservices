@@ -49,9 +49,17 @@ class Relation extends ComplexEntity
     public function setCharacters(array $characters): void
     {
         $this->characters = [];
+        $names = [];
         foreach ($characters as $character) {
-            $this->characters[] = $this->createCharacter($character);
+            $character = $this->createCharacter($character);
+            $this->characters[] = $character;
+            $names[] = $character;
         }
+
+        // Sort the characters array by name
+        sort($names);
+        // Set the name of the relation based on the characters names array
+        $this->setName(implode(" / ", array_map(fn($c) => $c->getName(), $names)));
     }
 
     /**

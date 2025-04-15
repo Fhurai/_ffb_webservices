@@ -3,6 +3,7 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../src/utilities/ApiUtilities.php';
 require_once __DIR__ . '/../src/utilities/SrcUtilities.php';
 require_once __DIR__ . '/../src/table/RelationsTable.php';
+require_once __DIR__ . '/../src/table/CharactersTable.php';
 require_once __DIR__ . '/../src/builder/RelationBuilder.php';
 
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
@@ -27,8 +28,27 @@ try {
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $data = json_decode(file_get_contents("php://input"));
+            if (!isset($data->characters) || !is_array($data->characters)) {
+                ApiUtilities::HttpBadRequest("Characters must be an array");
+            }
+            if (empty($data->characters)) {
+                ApiUtilities::HttpBadRequest("Characters array cannot be empty");
+            } else {
+                $characters = [];
+                $charactersTable = ApiUtilities::getAuthorizedTable($decoded, CharactersTable::class);
+                foreach ($data->characters as $character) {
+                    if (isset($character->id)) {
+                        $characters[] = $charactersTable->get($character->id);
+                    } else if(is_int($character)) {
+                        $characters[] = $charactersTable->get($character);
+                    } else {
+                        ApiUtilities::HttpBadRequest("Invalid character ID");
+                    }
+                }
+            }
+
             $Relation = (new RelationBuilder())
-                ->withName($data->name ?? null)
+                ->withCharacters($characters ?? [])
                 ->build();
 
             $createdRelation = $table->create($Relation);
@@ -45,7 +65,25 @@ try {
             $Relation = $table->get($id);
             if (!$Relation) ApiUtilities::HttpNotFound("Relation not found");
 
-            $Relation->setName($data->name ?? $Relation->getName());
+            if (!isset($data->characters) || !is_array($data->characters)) {
+                ApiUtilities::HttpBadRequest("Characters must be an array");
+            }
+            if (empty($data->characters)) {
+                ApiUtilities::HttpBadRequest("Characters array cannot be empty");
+            } else {
+                $characters = [];
+                $charactersTable = ApiUtilities::getAuthorizedTable($decoded, CharactersTable::class);
+                foreach ($data->characters as $character) {
+                    if (isset($character->id)) {
+                        $characters[] = $charactersTable->get($character->id);
+                    } else if(is_int($character)) {
+                        $characters[] = $charactersTable->get($character);
+                    } else {
+                        ApiUtilities::HttpBadRequest("Invalid character ID");
+                    }
+                }
+                $Relation->setCharacters($characters);
+            }
 
             $updatedRelation = $table->update($Relation);
             ApiUtilities::HttpOk($updatedRelation);
@@ -73,7 +111,7 @@ try {
         default:
             ApiUtilities::HttpMethodNotAllowed("Method not allowed");
     }
-} catch (FfbTableException $e) {
+} catch (FfbTableException | InvalidArgumentException $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError($e->getMessage());
 } catch (Exception $e) {
@@ -82,7 +120,6 @@ try {
 } catch (Error $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An error occurred with given data.");
-    ApiUtilities::HttpBadRequest($e->getMessage());
 } catch (Throwable $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());

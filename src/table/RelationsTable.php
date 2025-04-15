@@ -271,6 +271,10 @@ class RelationsTable extends EntitiesTable
 
         // Set the ID of the newly created entity
         $entity->setId($this->getLastInsertId());
+
+        // Update associations for the entity.
+        $this->updateAssociations($entity);
+
         return $entity;
     }
 
@@ -289,17 +293,19 @@ class RelationsTable extends EntitiesTable
 
         // Prepare the UPDATE query with placeholders for values
         $query = "UPDATE `relations`
-                  SET `name` = :name, `update_date` = :update_date, `delete_date` = :delete_date
-                  WHERE `id` = :id";
+                  SET `name` = :name, `update_date` = :update_date
+                  WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [
             ":id" => $entity->getId(), // Bind the ID of the relation to update
             ":name" => $entity->getName(), // Bind the updated name
             ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"), // Format update date
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null, // Handle nullable delete date
         ];
 
         // Execute the query to update the relation
         $this->executeQuery($query, $values);
+
+        // Update associations for the entity.
+        $this->updateAssociations($entity);
 
         return $entity;
     }
@@ -313,7 +319,7 @@ class RelationsTable extends EntitiesTable
     public function delete(int $id): bool
     {
         // Prepare the query to soft-delete a relation by setting its delete_date
-        $query = "UPDATE `relations` SET `delete_date` = NOW() WHERE `id` = :id";
+        $query = "UPDATE `relations` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
         $values = [":id" => $id]; // Bind the ID of the relation to delete
 
         // Execute the query and check if any rows were affected
@@ -331,7 +337,7 @@ class RelationsTable extends EntitiesTable
     public function restore(int $id): bool
     {
         // Prepare the query to restore a soft-deleted relation by clearing its delete_date
-        $query = "UPDATE `relations` SET `delete_date` = NULL WHERE `id` = :id";
+        $query = "UPDATE `relations` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id]; // Bind the ID of the relation to restore
 
         // Execute the query and check if any rows were affected
@@ -349,7 +355,7 @@ class RelationsTable extends EntitiesTable
     public function remove(int $id): bool
     {
         // Prepare the query to permanently delete a relation
-        $query = "DELETE FROM `relations` WHERE `id` = :id";
+        $query = "DELETE FROM `relations` WHERE `id` = :id AND `delete_date` IS NOT NULL";
         $values = [":id" => $id]; // Bind the ID of the relation to remove
 
         // Execute the query and check if any rows were affected
@@ -399,5 +405,46 @@ class RelationsTable extends EntitiesTable
 
         // Build and return the Relation entity
         return $relationBuilder->build();
+    }
+
+    /**
+     * Update associations for a Relation entity.
+     *
+     * @param Relation $entity The Relation entity whose associations are to be updated.
+     * @return void
+     */
+    private function updateAssociations(Relation $entity): void
+    {
+        // Update character associations if the entity has characters.
+        if ($entity->hasCharacters()) {
+            $this->updateAssociationTable('relations_characters', 'character_id', $entity->getId(), $entity->getCharacters());
+        }
+    }
+
+    /**
+     * Update a specific association table for a Relation entity.
+     *
+     * @param string $table The name of the association table.
+     * @param string $column The column name for the associated entity.
+     * @param int $relationId The ID of the Relation entity.
+     * @param array|null $items The associated items to update.
+     * @return void
+     */
+    private function updateAssociationTable(string $table, string $column, int $relationId, ?array $items): void
+    {
+        // Delete existing associations for the Relation entity.
+        $queryDelete = "DELETE FROM `$table` WHERE `relation_id` = :relation_id";
+        $this->executeQuery($queryDelete, [":relation_id" => $relationId]);
+
+        // Insert new associations if items are provided.
+        if ($items) {
+            $queryInsert = "INSERT INTO `$table` (`relation_id`, `$column`) VALUES (:relation_id, :item_id)";
+            foreach ($items as $item) {
+                $this->executeQuery($queryInsert, [
+                    ":relation_id" => $relationId,
+                    ":item_id" => $item->getId(),
+                ]);
+            }
+        }
     }
 }

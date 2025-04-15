@@ -154,12 +154,18 @@ class RelationBuilder implements NamedEntityBuilderInterface
      */
     public function withCharacters(array $characters): RelationBuilder
     {
+        // Check if the characters are instances of Character
+        foreach ($characters as $character) {
+            if (!($character instanceof Character)) {
+                throw new InvalidArgumentException("All elements must be instances of Character.");
+            }
+        }
         // Set the characters array
         $this->obj->characters = $characters;
         // Sort the characters array
         sort($characters);
         // Set the name of the relation based on the characters array
-        $this->obj->setName(implode(" / ", $characters));
+        $this->obj->setName(implode(" / ", array_map(fn($c) => $c->getName(), $this->obj->characters)));
         return $this;
     }
 
@@ -183,9 +189,7 @@ class RelationBuilder implements NamedEntityBuilderInterface
             return strcmp($a->getName(), $b->getName());
         });
         // Set the name of the relation based on the characters names array
-        $this->obj->setName(implode(" / ", array_map(function ($character) {
-            return $character->getName();
-        }, $this->obj->characters)));
+        $this->obj->setName(implode(" / ", array_map(fn($c) => $c->getName(), $this->obj->characters)));
         return $this;
     }
 }
