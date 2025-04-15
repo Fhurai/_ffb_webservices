@@ -75,7 +75,7 @@ try {
         default:
             ApiUtilities::HttpMethodNotAllowed("Method not allowed");
     }
-} catch (FfbTableException $e) {
+} catch (FfbTableException | InvalidArgumentException $e) {
     error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError($e->getMessage());
 } catch (Exception $e) {

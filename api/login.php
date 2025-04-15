@@ -63,7 +63,7 @@ try {
     } else {
         throw new Exception("Invalid credentials");
     }
-} catch (FfbTableException $e) {
+} catch (FfbTableException | InvalidArgumentException $e) {
     http_response_code(401);
     echo json_encode(["message" => "Login failed", "error" => $e->getMessage()]);
 } catch (Exception $e) {

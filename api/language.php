@@ -74,7 +74,7 @@ try {
         default:
             ApiUtilities::HttpMethodNotAllowed("Method not allowed");
     }
-} catch (FfbTableException $e) {
+} catch (FfbTableException | InvalidArgumentException $e) {
     ApiUtilities::HttpInternalServerError($e->getMessage());
 } catch (Exception $e) {
     ApiUtilities::HttpUnauthorized("Invalid token");
