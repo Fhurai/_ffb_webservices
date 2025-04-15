@@ -1,13 +1,13 @@
 type: collection.insomnia.rest/5.0
 name: Ffb
 meta:
-  id: wrk_deaeb8b107ab4a52b969221e0dc7f64f
-  created: 1744648321393
-  modified: 1744648321393
+  id: wrk_e24e018b65ea43a7aebb7fa376139846
+  created: 1744701736138
+  modified: 1744701736138
 collection:
   - name: Parameters / Auth
     meta:
-      id: fld_c6dffbff5b69412d9896b7e9ddc119a8
+      id: fld_5630e830443e4839a92d795bf4998f82
       created: 1744304275259
       modified: 1744398878921
       sortKey: -1744366401553.25
@@ -15,7 +15,7 @@ collection:
       - url: "{{ _.pathAPI }}/ratings.php"
         name: Ratings
         meta:
-          id: req_3c820575475641a59016c406214a1940
+          id: req_f2093063fdc444b98a1423d4b81218e7
           created: 1744306072208
           modified: 1744411524476
           isPrivate: false
@@ -39,7 +39,7 @@ collection:
       - url: "{{ _.pathAPI }}/scores.php"
         name: Scores
         meta:
-          id: req_31a4accd800f49018af81fb5a61d24b1
+          id: req_708230da32c84c369ebbc88e318b759b
           created: 1744306088103
           modified: 1744411529519
           isPrivate: false
@@ -63,7 +63,7 @@ collection:
       - url: "{{ _.pathAPI }}/tagtypes.php"
         name: TagTypes
         meta:
-          id: req_84673662a51841f2a7a216bfbf96a60f
+          id: req_e1fd62a2cf324ab58fd95a11de3dd470
           created: 1744306161014
           modified: 1744411535305
           isPrivate: false
@@ -87,7 +87,7 @@ collection:
       - url: "{{ _.pathAPI }}/actions.php"
         name: Actions
         meta:
-          id: req_4f0f798ec24f49fbb16e7fae8f3875aa
+          id: req_a7bd2dc8939e42ad875add448cc65cb6
           created: 1744388428950
           modified: 1744411516328
           isPrivate: false
@@ -111,14 +111,14 @@ collection:
           rebuildPath: true
   - name: Stats / No Auth
     meta:
-      id: fld_df5321fbf91a412ea2baca614c778040
+      id: fld_42a3e9f057a24a9c9c2dcb3474db654f
       created: 1744312020293
       modified: 1744398881079
       sortKey: -1744375465096.625
     children:
       - name: entities
         meta:
-          id: fld_87270eae95fa42169a0fbfdb0d47f0de
+          id: fld_f574c43ca0d648a99de06f526c3de09a
           created: 1744399023386
           modified: 1744399030789
           sortKey: -1744399023586
@@ -126,7 +126,7 @@ collection:
           - url: "{{ _.pathStats }}/entities"
             name: entities
             meta:
-              id: req_df135508c89e49cda647c4bd09895b16
+              id: req_0cece0f4a075440ebef1a67f796c069e
               created: 1744312294834
               modified: 1744399078100
               isPrivate: false
@@ -146,7 +146,7 @@ collection:
           - url: "{{ _.pathStats }}/entity"
             name: entity
             meta:
-              id: req_48a4f86a8f4b426face26683aacba625
+              id: req_23e873f18ae94fb48eadf99e69534f53
               created: 1744312641457
               modified: 1744451995628
               isPrivate: false
@@ -170,7 +170,7 @@ collection:
               rebuildPath: true
       - name: parameters
         meta:
-          id: fld_b5053054cfe34717b039d0e661ba0ee9
+          id: fld_19d81aae54eb4c7ea2d0f0de3bbe8b63
           created: 1744399049821
           modified: 1744399068045
           sortKey: -1744399049821
@@ -178,7 +178,7 @@ collection:
           - url: "{{ _.pathStats }}/parameters"
             name: parameters
             meta:
-              id: req_a305923b9a2444b79e51834f0d88c1bc
+              id: req_89eb0a377ad24f439699c5d19d97ea26
               created: 1744312029966
               modified: 1744399073357
               isPrivate: false
@@ -201,7 +201,7 @@ collection:
           - url: "{{ _.pathStats }}/parameter"
             name: parameter
             meta:
-              id: req_350aad6f9c0f4433a66cda7f5ba5a740
+              id: req_464592e9330c43dabd08ed3067736355
               created: 1744312534119
               modified: 1744399081831
               isPrivate: false
@@ -225,24 +225,24 @@ collection:
               rebuildPath: true
   - name: Entities / Auth
     meta:
-      id: fld_e2d0b403735c4202b8a1322aab1eba62
+      id: fld_54978875a08749dfb76f3d3d561f3680
       created: 1744398836587
-      modified: 1744663437747
+      modified: 1744724428414
       sortKey: -1744348274466.5
     children:
       - name: fandoms
         meta:
-          id: fld_a1fce2d4ccba4a0d8899cc257f6ecca1
+          id: fld_f7a8174eb7404ea184dda4d075429b1f
           created: 1744399219292
-          modified: 1744650033558
+          modified: 1744725002524
           sortKey: -1744400492766
         children:
-          - url: "{{ _.pathAPI }}/fandom.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_a5f0cae36a9f4474824f5903939ef0be
+              id: req_e2c1c1a318e0470eae8ce1c47a5a599e
               created: 1744413710591
-              modified: 1744565792716
+              modified: 1744725150058
               isPrivate: false
               sortKey: -1744537809670
             method: DELETE
@@ -254,10 +254,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -266,12 +262,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandom.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_09861771b5f3429f924d4d49c41e6833
+              id: req_f9bf39e6a2194584b6c6e0973514b665
               created: 1744438779282
-              modified: 1744564295408
+              modified: 1744725141165
               isPrivate: false
               sortKey: -1744537809570
             method: PATCH
@@ -291,10 +287,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -303,22 +295,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandoms.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_216bf1e6beee4adc94f4a18a4eb4ea1d
+              id: req_86015957fe53491bbcdb6a793412d306
               created: 1744456438265
-              modified: 1744533674064
+              modified: 1744725042307
               isPrivate: false
               sortKey: -1744447547298.5
             method: GET
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -327,12 +315,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandoms.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_f760d3300ffc4a8c8700922f9fe60380
+              id: req_8135180157d748b78dde0d44187ea21b
               created: 1744533671300
-              modified: 1744537585788
+              modified: 1744725052362
               isPrivate: false
               sortKey: -1744447547398.5
             method: GET
@@ -348,10 +336,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -360,18 +344,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandom"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_5d5028fe74b9412082d630c765666bf7
+              id: req_c5bd16bea0e040d5a0d7992dc18b809b
               created: 1744536923875
-              modified: 1744564301128
+              modified: 1744725917453
               isPrivate: false
               sortKey: -1744536923875
             method: GET
             parameters:
               - name: id
-                value: "{{ _.idFandom }}"
+                value: "1"
                 disabled: false
                 id: pair_dbb46d8c15ee4ee8b3f319b15959dc60
               - disabled: false
@@ -379,10 +363,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -391,12 +371,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandom.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_03be19a3a6dc40af99c52cb679abf930
+              id: req_0e352d15f8b24a9c9f02fa4cde62983f
               created: 1744537606454
-              modified: 1744566448610
+              modified: 1744725119547
               isPrivate: false
               sortKey: -1744537606454
             method: POST
@@ -411,10 +391,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             scripts:
               afterResponse: |-
                 // Parse the response body
@@ -431,12 +407,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandom"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_027b69a7989f45459a2c08c4f940558f
+              id: req_d6380badc2db45f2beddfde1a48d3c29
               created: 1744537809370
-              modified: 1744564288656
+              modified: 1744725126897
               isPrivate: false
               sortKey: -1744537809370
             method: PUT
@@ -456,10 +432,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -468,12 +440,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/fandom.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_49f7a42be785449ba16f594f3972ad41
+              id: req_37511d52ddde4db88b057f4cbf00a971
               created: 1744567274539
-              modified: 1744567274539
+              modified: 1744725135273
               isPrivate: false
               sortKey: -1744537809420
             method: PATCH
@@ -493,10 +465,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -505,19 +473,53 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
+            meta:
+              id: req_4038eca54b4047069d24c5c32d49ab55
+              created: 1744725911939
+              modified: 1744725913989
+              isPrivate: false
+              sortKey: -1744537265164.5
+            method: GET
+            parameters:
+              - name: id
+                value: "{{ _.idFandom }}"
+                disabled: false
+                id: pair_dbb46d8c15ee4ee8b3f319b15959dc60
+              - disabled: false
+                id: pair_57ca5c6493fc4c46b0dc33ed8383287c
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: fandom
+          stereo: fandoms
+        environmentPropertyOrder:
+          "&":
+            - mono
+            - stereo
       - name: authors
         meta:
-          id: fld_44a97591d83641b5b39ce4bc76a57bfa
+          id: fld_854cd380b15445908d2d478f510007b3
           created: 1744399907690
-          modified: 1744563966882
+          modified: 1744724650788
           sortKey: -1744400492716
         children:
-          - url: "{{ _.pathAPI }}/authors.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_325c0ecccfac43f0afa48f3e81970e01
+              id: req_7c5f70b29e2946f1b9c229b93aed436f
               created: 1744405968212
-              modified: 1744447542017
+              modified: 1744724673166
               isPrivate: false
               sortKey: -1744405968212
             method: GET
@@ -545,10 +547,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -557,12 +555,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
-            name: get
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
             meta:
-              id: req_efd2b4138e2a4c5fa7be729c7c62ea4d
+              id: req_f4ea82c53b1844808887428737c89f18
               created: 1744406641087
-              modified: 1744563924757
+              modified: 1744725888214
               isPrivate: false
               sortKey: -1744406641087
             method: GET
@@ -574,10 +572,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -586,12 +580,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_3e2aaab8529d47b893864ff86f3aa5ac
+              id: req_d65919b0deac49c0ab5e134b4527b9e8
               created: 1744438652025
-              modified: 1744642434187
+              modified: 1744724703292
               isPrivate: false
               sortKey: -1744430283852.125
             method: PATCH
@@ -611,10 +605,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -623,22 +613,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/authors.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_9b3aaccf2d6b4c4783b0df20bb9728fc
+              id: req_3d99213a1d3d43ad857167f69dda45c6
               created: 1744444297732
-              modified: 1744444297732
+              modified: 1744724662793
               isPrivate: false
               sortKey: -1744402520764.5
             method: GET
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -647,12 +633,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_d8b53bb7846b4f93a099f751f5a5a458
+              id: req_282f218a21f247dc8576795fd135592d
               created: 1744538499267
-              modified: 1744563913562
+              modified: 1744724711852
               isPrivate: false
               sortKey: -1744438652075
             method: PATCH
@@ -672,10 +658,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -684,12 +666,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_5829212c9c8e41e49e77d0e7e2e73289
+              id: req_367dafe8efa248c5898a2cb84fac05de
               created: 1744538531942
-              modified: 1744563909655
+              modified: 1744724717925
               isPrivate: false
               sortKey: -1744438652150
             method: DELETE
@@ -701,10 +683,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -713,12 +691,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_6455729616314c5689a1aceba9e8e41f
+              id: req_106bf74671ce4fa48a518177ec3ffa01
               created: 1744640233861
-              modified: 1744640233861
+              modified: 1744724690145
               isPrivate: false
               sortKey: -1744407249113.5
             method: POST
@@ -736,10 +714,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             scripts:
               afterResponse: |-
                 // Parse the response body
@@ -756,12 +730,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/author.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_3cea17beb0fe4da7a89000e6aa61bf36
+              id: req_1f623197edff4290ac37fd7b47cadaf9
               created: 1744642216077
-              modified: 1744642216077
+              modified: 1744724696768
               isPrivate: false
               sortKey: -1744421915629.25
             method: PUT
@@ -781,10 +755,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -793,19 +763,51 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get
+            meta:
+              id: req_ce4a1eb19f854c14b43525026f060c0b
+              created: 1744725879606
+              modified: 1744725898800
+              isPrivate: false
+              sortKey: -1744406304649.5
+            method: GET
+            parameters:
+              - name: id
+                value: "1"
+                disabled: false
+                id: pair_2dde7b458b70418989ff47e4cb3f8078
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: author
+          stereo: authors
+        environmentPropertyOrder:
+          "&":
+            - mono
+            - stereo
       - name: languages
         meta:
-          id: fld_b43cd9d8162e4183adb7e4aba0fc49f6
+          id: fld_bc3cdf2c050545d0a845054ce07cd021
           created: 1744399919475
-          modified: 1744650034795
+          modified: 1744725180713
           sortKey: -1744400492791
         children:
-          - url: "{{ _.pathAPI }}/language.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_3145a2bd57214164b265a70f6f9867c7
+              id: req_6d4465044bd9457b9f382eb428d1a791
               created: 1744538450096
-              modified: 1744567310915
+              modified: 1744725312116
               isPrivate: false
               sortKey: -1744564853257
             method: PATCH
@@ -825,10 +827,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -837,22 +835,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/languages.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_86775fb8fd534a7fa88d0734bfabaa77
+              id: req_41566ee518ea4823a17dbd49d7b4e478
               created: 1744564848888
-              modified: 1744564859055
+              modified: 1744725188974
               isPrivate: false
               sortKey: -1744564852857
             method: GET
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -861,12 +855,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/language.php"
-            name: get
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
             meta:
-              id: req_07bb17ed22f44df68c7c28512ff8bf94
+              id: req_0cc378923fd345a98cacf6b23f14d40f
               created: 1744565215140
-              modified: 1744566117557
+              modified: 1744725964141
               isPrivate: false
               sortKey: -1744564852957
             method: GET
@@ -880,10 +874,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -892,12 +882,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/language.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_881148b9ffc748d89f530754e11b06c5
+              id: req_0e990c26cd5441a495b6b038009f9abd
               created: 1744565653026
-              modified: 1744566492850
+              modified: 1744725293390
               isPrivate: false
               sortKey: -1744564853057
             method: POST
@@ -913,10 +903,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             scripts:
               afterResponse: |-
                 // Parse the response body
@@ -933,12 +919,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/language"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_d6b4d1486e384996aeffc4cf64c3855c
+              id: req_e73119fbd8e143df9e8b3b7cb4167447
               created: 1744566870172
-              modified: 1744567042898
+              modified: 1744725303776
               isPrivate: false
               sortKey: -1744564853157
             method: PUT
@@ -959,10 +945,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -971,12 +953,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/language.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_dc423f97206c4157b8191e39e98c2b02
+              id: req_043246e4f04a4aa7ab13875ab1c7676a
               created: 1744567319840
-              modified: 1744567333504
+              modified: 1744725318492
               isPrivate: false
               sortKey: -1744564853357
             method: PATCH
@@ -996,10 +978,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1008,12 +986,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/language.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_aa936311422644e2b6e7d441813963e0
+              id: req_b8122adc3e3a422fb4a25b6b53b333d0
               created: 1744567342999
-              modified: 1744567365251
+              modified: 1744725323746
               isPrivate: false
               sortKey: -1744564853457
             method: DELETE
@@ -1025,10 +1003,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1037,19 +1011,53 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get
+            meta:
+              id: req_60301e805e1d4ed98913453fc5db61de
+              created: 1744725935345
+              modified: 1744725935345
+              isPrivate: false
+              sortKey: -1744564852907
+            method: GET
+            parameters:
+              - name: id
+                value: "2"
+                disabled: false
+                id: pair_dbb46d8c15ee4ee8b3f319b15959dc60
+              - disabled: false
+                id: pair_57ca5c6493fc4c46b0dc33ed8383287c
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: language
+          stereo: languages
+        environmentPropertyOrder:
+          "&":
+            - mono
+            - stereo
       - name: users
         meta:
-          id: fld_42cdcda49be345b3a0a6c267cda9119b
+          id: fld_4f60c9b2d370447bb3c7efdeb648cb9b
           created: 1744636435520
-          modified: 1744640865264
+          modified: 1744725369088
           sortKey: -1744400492816
         children:
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_71e041bf270f4b83b374a38660f68742
+              id: req_1c81a304d2ed48f8bf7f72bd890c5cf5
               created: 1744407857140
-              modified: 1744642241258
+              modified: 1744725422796
               isPrivate: false
               sortKey: -1744636569262
             method: POST
@@ -1073,10 +1081,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             scripts:
               afterResponse: |-
                 // Parse the response body
@@ -1093,12 +1097,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/users.php"
-            name: getAll
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
+            name: getAll options
             meta:
-              id: req_4074971ad042446297e12eaa68190919
+              id: req_1a24b0f71461448ab8076d5882dfa21d
               created: 1744636566024
-              modified: 1744638017575
+              modified: 1744725402639
               isPrivate: false
               sortKey: -1744636569062
             method: GET
@@ -1110,10 +1114,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1122,22 +1122,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/users.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_e11be2a526054ea78310730bb997e08d
+              id: req_d889af0ecfe04d368d74e38544b0ef36
               created: 1744637043215
-              modified: 1744637043215
+              modified: 1744725391547
               isPrivate: false
               sortKey: -1744600711259.5
             method: GET
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1146,27 +1142,23 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_621701006f3342b597a9a546ddd48a4b
+              id: req_f2febae4b84d48c48c99bc7e42f50ce2
               created: 1744639872604
-              modified: 1744640214244
+              modified: 1744725988733
               isPrivate: false
               sortKey: -1744636569162
             method: GET
             parameters:
               - name: id
-                value: "{{ _.idUser }}"
+                value: "1"
                 disabled: false
                 id: pair_fe071c06d23748a5a3d87779160adb2b
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1175,12 +1167,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_e3199aedc40f49cc873987f2cab76139
+              id: req_1eb029cd5fd048e290f24a9f8b02a5bb
               created: 1744642361241
-              modified: 1744642431103
+              modified: 1744725457931
               isPrivate: false
               sortKey: -1744636569412
             method: PATCH
@@ -1200,10 +1192,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1212,12 +1200,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_7e20003896684d04afe7bcbc5d80f33c
+              id: req_62b258fba7ac459f95d9829486bef2fb
               created: 1744642381456
-              modified: 1744642411993
+              modified: 1744725469766
               isPrivate: false
               sortKey: -1744636569562
             method: PATCH
@@ -1237,10 +1225,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1249,12 +1233,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_26936a916d9b4768a1ee43dd275a591c
+              id: req_9417142de39b4901968118608d954653
               created: 1744663353931
-              modified: 1744663353931
+              modified: 1744725429097
               isPrivate: false
               sortKey: -1744636569312
             method: PUT
@@ -1274,10 +1258,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1286,12 +1266,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/user.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_c813a01adc894baa9227f87d893518f5
+              id: req_dff24f875b444f93ab7af96e9122cc70
               created: 1744663982715
-              modified: 1744663982715
+              modified: 1744725482186
               isPrivate: false
               sortKey: -1744636569612
             method: DELETE
@@ -1303,10 +1283,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1315,19 +1291,51 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
+            meta:
+              id: req_20dd42e9b02147c78a2f814bbf7c3675
+              created: 1744725982418
+              modified: 1744725985463
+              isPrivate: false
+              sortKey: -1744636569212
+            method: GET
+            parameters:
+              - name: id
+                value: "{{ _.idUser }}"
+                disabled: false
+                id: pair_fe071c06d23748a5a3d87779160adb2b
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: user
+          stereo: users
+        environmentPropertyOrder:
+          "&":
+            - mono
+            - stereo
       - name: tags
         meta:
-          id: fld_ce30976d763e4770b9503106ee39d783
+          id: fld_5dca2b80446243118cd4ea3c1ca1b102
           created: 1744651944408
-          modified: 1744663437747
+          modified: 1744725504719
           sortKey: -1744651944408
         children:
-          - url: "{{ _.pathAPI }}/tag.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_f48bbaaf866a4f95b280418d88b88405
+              id: req_c50b91c1b91d4063bf306afc2a9c6251
               created: 1744436582145
-              modified: 1744663702832
+              modified: 1744725557998
               isPrivate: false
               sortKey: -1744652788402
             method: PUT
@@ -1349,10 +1357,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1361,12 +1365,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tag.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_f605ba36020a451c955990bebccc191b
+              id: req_2325cc7cdd6b4878abd7f06c57404fb0
               created: 1744642447267
-              modified: 1744663995962
+              modified: 1744725582109
               isPrivate: false
               sortKey: -1744652788702
             method: DELETE
@@ -1378,10 +1382,6 @@ collection:
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1390,25 +1390,18 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tags.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_b66819d6f46d4092a0a2868fc6f69a2c
+              id: req_d4f6cef07e304f6981657cf9b6211a82
               created: 1744652785251
-              modified: 1744658423556
+              modified: 1744725514491
               isPrivate: false
               sortKey: -1744652788102
             method: GET
-            parameters:
-              - id: pair_d6ccd2beca5e484b9457028bb9cf5352
-                disabled: false
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1417,27 +1410,23 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tag.php"
-            name: get
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
             meta:
-              id: req_01d7a8eb6c2c42d7829c338e317e36ee
+              id: req_8ede2fd80e5143ce839e693d796ef930
               created: 1744658368009
-              modified: 1744662980913
+              modified: 1744726035024
               isPrivate: false
               sortKey: -1744652788202
             method: GET
             parameters:
-              - id: pair_9f7d6c7de08a496ca22cc59aa6e661e6
-                name: id
+              - name: id
                 value: "{{ _.idTag }}"
                 disabled: false
+                id: pair_9f7d6c7de08a496ca22cc59aa6e661e6
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1446,27 +1435,23 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tags.php"
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_34da2a9b18c046e792af3a1ddc119c8f
+              id: req_a98aaf61b3174a3dafebdeddd1bd23ea
               created: 1744662034132
-              modified: 1744662034132
+              modified: 1744725524871
               isPrivate: false
               sortKey: -1744652788152
             method: GET
             parameters:
-              - id: pair_01d470811c6c4e52865ab3c6232aae5f
-                name: search_type_id
+              - name: search_type_id
                 value: "1"
                 disabled: false
+                id: pair_01d470811c6c4e52865ab3c6232aae5f
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1475,12 +1460,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tag.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_349b4c382fdc40eea3673e0391b5469c
+              id: req_55ce07ea0c2446669d31a381c6f0a7b4
               created: 1744662927401
-              modified: 1744663161542
+              modified: 1744725549279
               isPrivate: false
               sortKey: -1744652788302
             method: POST
@@ -1497,10 +1482,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             scripts:
               afterResponse: |-
                 // Parse the response body
@@ -1517,12 +1498,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tag.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_2cfe0abf3feb4a588078126b533cd238
+              id: req_bd505e93f68249038c2778c00778a975
               created: 1744663910996
-              modified: 1744663932718
+              modified: 1744725565573
               isPrivate: false
               sortKey: -1744652788502
             method: PATCH
@@ -1542,10 +1523,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1554,12 +1531,12 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
-          - url: "{{ _.pathAPI }}/tag.php"
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_b9ef0eb95ed243e2981672b1cd86ecb0
+              id: req_881fc53ac1b040bb825e4f0edd02b083
               created: 1744663940665
-              modified: 1744663958877
+              modified: 1744725573586
               isPrivate: false
               sortKey: -1744652788602
             method: PATCH
@@ -1579,10 +1556,6 @@ collection:
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            authentication:
-              type: bearer
-              token: "{{ _.ffb_tests_secret }}"
-              prefix: Bearer
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1591,10 +1564,313 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get
+            meta:
+              id: req_95fbd07ca4f9400286688983da26e92d
+              created: 1744726027515
+              modified: 1744726094682
+              isPrivate: false
+              sortKey: -1744652788177
+            method: GET
+            parameters:
+              - name: id
+                value: "1"
+                disabled: false
+                id: pair_9f7d6c7de08a496ca22cc59aa6e661e6
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: tag
+          stereo: tags
+      - name: characters
+        meta:
+          id: fld_e19c0bd9cab346d4a54f44e971e7bdab
+          created: 1744719441092
+          modified: 1744725609092
+          sortKey: -1744719441092
+        children:
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
+            name: getAll
+            meta:
+              id: req_33733bf32cdb4f9c9e9ffc6ef218eb51
+              created: 1744719568939
+              modified: 1744725627438
+              isPrivate: false
+              sortKey: -1744719571591
+            method: GET
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.stereo }}"
+            name: getAll options
+            meta:
+              id: req_b69a1bb8497941e9b88e0af7251b1193
+              created: 1744721761815
+              modified: 1744725634664
+              isPrivate: false
+              sortKey: -1744719571691
+            method: GET
+            parameters:
+              - id: pair_a299996b856c44f6b5f5e69af10b1d70
+                name: search_name
+                value: F%
+                disabled: false
+              - id: pair_4044433ce36d491f9092d621442611e0
+                name: search_fandom_id
+                value: "12"
+                disabled: false
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get created
+            meta:
+              id: req_fd92bb9543dc4462bd2e056a58377b3b
+              created: 1744722426014
+              modified: 1744726076963
+              isPrivate: false
+              sortKey: -1744719571791
+            method: GET
+            parameters:
+              - id: pair_df02d1e4e12c4d0a8dc3ec0cb0b3cf4c
+                name: id
+                value: "{{ _.idCharacter }}"
+                disabled: false
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: create
+            meta:
+              id: req_e3f9c6d413cf4536995d35d72a656c28
+              created: 1744722635114
+              modified: 1744725647055
+              isPrivate: false
+              sortKey: -1744719571891
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Original Male Character",
+                	"fandom_id": 6
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            scripts:
+              afterResponse: |-
+                // Parse the response body
+                const jsonBody = insomnia.response.json();
+
+                if (jsonBody.id) {
+                  insomnia.environment.set("idCharacter", jsonBody.id);
+                }
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_03d8db8e6eaa4463b3137a10f10ef2af
+              created: 1744722861357
+              modified: 1744725655622
+              isPrivate: false
+              sortKey: -1744719571991
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "new Test",
+                	"fandom_id": 6
+                }
+            parameters:
+              - name: id
+                value: "{{ _.idCharacter }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_faed956cfe0540189e912eead92b3330
+              created: 1744723327168
+              modified: 1744725664763
+              isPrivate: false
+              sortKey: -1744719572091
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.idCharacter }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_3a40514d7e5547128debbd4512e1f6c9
+              created: 1744723594092
+              modified: 1744725671798
+              isPrivate: false
+              sortKey: -1744719572191
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.idCharacter }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_0354966f0ccd49b295401b9475b706f0
+              created: 1744723670262
+              modified: 1744725678815
+              isPrivate: false
+              sortKey: -1744719572291
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.idCharacter }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: get
+            meta:
+              id: req_0c3697071c2944778ff0034464331c84
+              created: 1744726069701
+              modified: 1744726082736
+              isPrivate: false
+              sortKey: -1744719571741
+            method: GET
+            parameters:
+              - id: pair_df02d1e4e12c4d0a8dc3ec0cb0b3cf4c
+                name: id
+                value: "1"
+                disabled: false
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+        environment:
+          mono: character
+          stereo: characters
+    authentication:
+      type: bearer
+      token: "{{ _.ffb_tests_secret }}"
+      prefix: Bearer
   - url: "{{ _.pathAPI }}/login.php"
     name: Login Test / No Auth
     meta:
-      id: req_84cc99cd470d4cb29eb6533f8d289665
+      id: req_3cea2382e2734d568788747890a2a42b
       created: 1744384528640
       modified: 1744635931787
       isPrivate: false
@@ -1632,7 +1908,7 @@ collection:
   - url: "{{ _.pathAPI }}/login"
     name: Login Main / No Auth
     meta:
-      id: req_b01b06687a9647a89249cf8fe089145c
+      id: req_199f29c845334381b6b6a23ef59a8ce4
       created: 1744449255152
       modified: 1744449723792
       isPrivate: false
@@ -1670,20 +1946,20 @@ collection:
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_4589e5d60d944c3594baeac041ceb7b5
+    id: jar_458d63d2f81c47fa8929efb58d9912a9
     created: 1744304261692
-    modified: 1744663437744
+    modified: 1744722791342
 environments:
   name: Base Environment
   meta:
-    id: env_9db6562939a840058bf2415eadb7d4be
+    id: env_bd2c28afce5e419e8be7187a2e351447
     created: 1744304261690
-    modified: 1744663437746
+    modified: 1744722791343
     isPrivate: false
   data:
     pathAPI: http://127.0.1.77/api
     pathStats: http://127.0.1.77/stats
-    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ2NjI4MTMsImV4cCI6MTc0NDY3NzIxMywiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.jUGBdLloJwunANGj5Z5CzzhYabfVeu1QN4Q-gfaEFCc
+    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ3MTUzNjUsImV4cCI6MTc0NDcyOTc2NSwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.hQHP0i2N2t3yKv7fnaR1W62H8sPCHBiKs1IBkLxDeRU
     ffb_main_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ0NDkyNzAsImV4cCI6MTc0NDQ2MzY3MCwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl9tYWluIn19._iUjOFNNEFp6sko4SejxPv8Dk5HRBDfgI7jjuZ4HA1k
     idAuthor: 5
     idFandom: 25
@@ -1691,7 +1967,7 @@ environments:
     idUser: 5
     idLink: 0
     idTag: 36
-    idCharacter: 0
+    idCharacter: 510
     idRelation: 0
     idFanfiction: 0
     idSeries: 0
