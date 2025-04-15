@@ -212,6 +212,11 @@ class TagsTableTest extends TestCase
     {
         // Permanently remove a tag by a valid ID and verify the operation.
         $tag = $this->tagsTable->findSearchedBy(["name" => "UpdatedTag"])[0];
+
+        // Delete the Tag object to ensure it exists before removal
+        $this->tagsTable->delete($tag->getId());
+
+        // Remove the tag
         $result = $this->tagsTable->remove($tag->getId());
 
         $this->assertTrue($result);

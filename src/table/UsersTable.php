@@ -312,8 +312,7 @@ class UsersTable extends EntitiesTable
             ":is_local" => $entity->isLocal() ? 1 : 0,
             ":birthday" => $entity->getBirthday()->format("Y-m-d H:i:s"),
             ":is_nsfw" => $entity->isNsfw() ? 1 : 0,
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
-            ":delete_date" => $entity->getDeleteDate() ? $entity->getDeleteDate()->format("Y-m-d H:i:s") : null,
+            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s")
         ];
 
         $this->executeQuery($query, $values);

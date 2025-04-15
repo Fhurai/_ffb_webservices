@@ -322,6 +322,9 @@ class UsersTableTest extends TestCase
         // Find the user to be removed by searching for the username.
         $user = $this->usersTable->findSearchedBy(["username" => "updateduser"])[0];
 
+        // Delete the User object to ensure it exists before removal
+        $this->usersTable->delete($user->getId());
+
         // Call the remove method with the user's ID.
         $result = $this->usersTable->remove($user->getId());
 
