@@ -220,6 +220,7 @@ class ApiUtilities
         } catch (Exception $e) {
             self::HttpUnauthorized("Unauthorized: Invalid token");
         }
+        return null;
     }
 
     /**
