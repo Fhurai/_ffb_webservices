@@ -75,7 +75,7 @@ class CharacterBuilder implements NamedEntityBuilderInterface
         // Check if the creation date is a string
         else if (is_string($creationDate)) {
             // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate);
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
             // Set the creation date
             $this->obj->setCreationDate($date);
         }
@@ -98,7 +98,7 @@ class CharacterBuilder implements NamedEntityBuilderInterface
         // Check if the delete date is a string
         else if (is_string($deleteDate)) {
             // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate);
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
             // Set the delete date
             $this->obj->setDeleteDate($date);
         } else if ($deleteDate === null) {
@@ -124,7 +124,7 @@ class CharacterBuilder implements NamedEntityBuilderInterface
         // Check if the update date is a string
         else if (is_string($updateDate)) {
             // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate);
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
             // Set the update date
             $this->obj->setUpdateDate($date);
         }
@@ -179,7 +179,7 @@ class CharacterBuilder implements NamedEntityBuilderInterface
     public function withFandom(Fandom $fandom): CharacterBuilder
     {
         // Set the fandom object
-        $this->obj->fandom = $fandom;
+        $this->obj->setFandom($fandom);
         // Set the fandom ID from the Fandom object
         return $this->withFandomId($fandom);
     }

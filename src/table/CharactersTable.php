@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/EntitiesTable.php";
+require_once __DIR__ . "/FandomsTable.php";
 require_once __DIR__ . "/../entity/Character.php";
 require_once __DIR__ . "/../builder/CharacterBuilder.php";
 
@@ -69,16 +70,18 @@ class CharactersTable extends EntitiesTable
         $conditions = [];
         foreach ($args as $key => $value) {
             if (str_contains($value, '%')) {
-                // Handle partial matches using the LIKE operator.
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                // Handle comparisons using operators like <, >, =, etc.
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
-                // Handle exact matches.
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
             }
@@ -221,7 +224,14 @@ class CharactersTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }else if(str_contains($key, "_id")){
+                    $values[":$key"] = $value;
+                }
             }
         }
 
