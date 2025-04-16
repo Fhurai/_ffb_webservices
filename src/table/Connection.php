@@ -71,6 +71,11 @@ class Connection
 
         try {
             // Creation of Php Database Object with provided data from config.
+            var_dump("mysql:host=" . $configFile["credentials"][$user]["host"] .
+                ";port=" . $configFile["credentials"][$user]["port"] .
+                ";dbname=" . $configFile["db"][$typeConnection],
+                $configFile["credentials"][$user]["user"],
+                $configFile["credentials"][$user]["password"]);
             return new PDO(
                 "mysql:host=" . $configFile["credentials"][$user]["host"] .
                 ";port=" . $configFile["credentials"][$user]["port"] .
