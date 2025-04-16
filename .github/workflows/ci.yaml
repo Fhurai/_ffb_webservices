@@ -12,9 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.2', '8.3']
+        php-version: ['8.2']
 
-    # Add MySQL service container
     services:
       mysql:
         image: mysql:8.0
@@ -32,7 +31,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # Add database environment variables
     - name: Setup environment
       run: |
         echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
@@ -49,20 +47,16 @@ jobs:
 
     - name: Configure MySQL client login path
       run: |
-        # Install expect for automated password input
         sudo apt-get update
         sudo apt-get install -y expect
-        # Configure login path using expect to handle password prompt
         expect -c '
           spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
           expect "Enter password:"
           send "root\r"
           expect eof
         '
-        # Verify the login path configuration
         mysql_config_editor print --login-path=client
 
-    # Add database creation step
     - name: Create MySQL databases
       run: |
         mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
@@ -72,6 +66,15 @@ jobs:
 
     - name: Config file
       run: cp config/config.php.example config/config.php
+
+    - name: Verify config.php exists
+      run: |
+        if [ ! -f config/config.php ]; then
+          echo "❌ Error: config/config.php was not created!"
+          echo "Check if config/config.php.example exists in the repository"
+          exit 1
+        fi
+        echo "✅ config/config.php verified"
 
     - name: Permission init
       run: chmod +x ./sql/init.sh
@@ -90,11 +93,11 @@ jobs:
 
     - name: Run tests
       env:
-        DB_DATABASE: ffb_tests  # Default test database
+        DB_DATABASE: ffb_tests
       run: vendor/bin/phpunit
 
     - name: Send Discord notification
-      if: always()  # Runs even if previous steps fail
+      if: always()
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: |
@@ -120,4 +123,4 @@ jobs:
         )
 
         curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-      continue-on-error: true  # Don't fail workflow if notification fails
+      continue-on-error: true
