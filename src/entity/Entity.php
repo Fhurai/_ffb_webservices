@@ -157,7 +157,7 @@ abstract class Entity implements JsonSerializable
 
             if (in_array($key, ["creation_date", "update_date", "delete_date", "birthday"])) {
                 // Parse date values if the key matches specific properties.
-                $date = self::parseDate($value);
+                $date = static::parseDate($value);
                 $entity->$setFunction($date);
             } elseif (is_scalar($value) || is_null($value)) {
                 // Directly set scalar or null values.
@@ -177,45 +177,12 @@ abstract class Entity implements JsonSerializable
      * @param mixed $value Date value to parse.
      * @return DateTime|null Parsed DateTime or null.
      */
-    private static function parseDate(mixed $value): ?DateTime
-    {
-        if (is_string($value) && !empty($value)) {
-            // Parse string date in "Y-m-d H:i:s" format.
-            return DateTime::createFromFormat("Y-m-d H:i:s", $value, new DateTimeZone("Europe/Paris"));
-        }
-
-        if (is_array($value) && !empty($value)) {
-            // Parse array date in "Y-m-d H:i:s.u" format.
-            return DateTime::createFromFormat("Y-m-d H:i:s.u", $value["date"], new DateTimeZone("Europe/Paris"));
-        }
-
-        return null; // Return null if the value is invalid or empty.
-    }
+    abstract protected static function parseDate(mixed $value): ?DateTime;
 
     /**
      * Abstract method to create a new child object.
      * Must be implemented by child classes.
      * @return mixed The child object.
      */
-    public abstract static function getNewObject(): mixed;
-
-    /**
-     * Method to get properties of the entity.
-     * Uses reflection to retrieve all property names, including inherited ones.
-     * @return array Array of property names.
-     */
-    public static function getProperties(): array
-    {
-        $reflect = new ReflectionClass(static::class); // Reflect on the current class.
-        $properties = [];
-
-        do {
-            // Iterate through the class hierarchy.
-            foreach ($reflect->getProperties() as $property) {
-                $properties[] = $property->getName(); // Add property names to the list.
-            }
-        } while ($reflect = $reflect->getParentClass()); // Move to the parent class.
-
-        return $properties; // Return the complete list of properties.
-    }
+    abstract public static function getNewObject(): mixed;
 }

@@ -7,6 +7,8 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
  */
 class Relation extends ComplexEntity
 {
+    use EntityTrait;
+    
     /**
      * Characters associated with the Relation.
      * @var array

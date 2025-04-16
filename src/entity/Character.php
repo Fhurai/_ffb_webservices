@@ -7,6 +7,8 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
  */
 class Character extends ComplexEntity
 {
+    use EntityTrait;
+    
     /**
      * Fandom_id.
      * @var int
