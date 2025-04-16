@@ -18,7 +18,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Builds and returns the Fanfiction object.
-     * 
+     *
      * @return Fanfiction The built Fanfiction object.
      */
     public function build(): Fanfiction
@@ -36,7 +36,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the ID for the Author object.
-     * 
+     *
      * @param int|string $id The ID of the author, either as an integer or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -45,7 +45,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         if (is_integer($id)) {
             // Set the id
             $this->obj->setId($id);
-        } 
+        }
         // Check if the id is a string
         else if (is_string($id)) {
             // Convert the string to an integer
@@ -58,7 +58,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the creation date for the Fanfiction object.
-     * 
+     *
      * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -67,7 +67,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         if ($creationDate instanceof DateTime) {
             $this->obj->setCreationDate($creationDate);
         } else if (is_string($creationDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setCreationDate($date);
         }
         return $this;
@@ -75,7 +75,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the delete date for the Fanfiction object.
-     * 
+     *
      * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -85,13 +85,13 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         // and set it accordingly.
         if ($deleteDate instanceof DateTime) {
             $this->obj->setDeleteDate($deleteDate);
-        } 
+        }
         // Check if the delete date is a string
         // and convert it to a DateTime object.
         else if (is_string($deleteDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setDeleteDate($date);
-        } 
+        }
         // If the delete date is null, set it to null in the Fanfiction object.
         else if($deleteDate === null){
 
@@ -102,7 +102,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the update date for the Fanfiction object.
-     * 
+     *
      * @param DateTime|string $updateDate The update date as a DateTime object or a string.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -111,7 +111,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         if ($updateDate instanceof DateTime) {
             $this->obj->setUpdateDate($updateDate);
         } else if (is_string($updateDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setUpdateDate($date);
         }
         return $this;
@@ -119,7 +119,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the name for the Fanfiction object.
-     * 
+     *
      * @param string $name The name.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -131,7 +131,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the author ID for the Fanfiction object.
-     * 
+     *
      * @param int $authorId The author ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -143,7 +143,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the rating ID for the Fanfiction object.
-     * 
+     *
      * @param int $ratingId The rating ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -155,7 +155,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the description for the Fanfiction object.
-     * 
+     *
      * @param string $description The description.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -167,7 +167,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the language ID for the Fanfiction object.
-     * 
+     *
      * @param int $languageId The language ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -179,17 +179,17 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the fandom for the Fanfiction object.
-     * 
+     *
      * @param array $fandoms The fandoms array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
     public function withFandom(string $fandoms): FanfictionBuilder
     {
-        // Assign the provided fandoms to the Fanfiction object's fandoms property.
-        $this->obj->fandoms = $fandoms;
-
         // Sort the fandoms array to maintain order.
-        sort($this->obj->fandoms);
+        sort($fandoms);
+
+        // Assign the provided fandoms to the Fanfiction object's fandoms property.
+        $this->obj->setFandoms($fandoms);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -197,22 +197,22 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Adds a fandom to the Fanfiction object.
-     * 
+     *
      * @param Fandom $fandom The fandom to add.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
     public function addFandom(Fandom $fandom): FanfictionBuilder
     {
         // Check if the fandoms property is not set, and initialize it as an empty array if needed.
-        if (!isset($this->obj->fandoms)) {
+        if (!isset($this->obj->getFandoms())) {
             $this->obj->fandoms = [];
         }
 
+        // Sort the fandoms array to maintain order.
+        sort($fandoms);
+
         // Add the provided fandom to the fandoms array.
         array_push($this->obj->fandoms, $fandom);
-
-        // Sort the fandoms array to maintain order.
-        sort($this->obj->fandoms);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -220,7 +220,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the characters for the Fanfiction object.
-     * 
+     *
      * @param array $characters The characters array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -238,7 +238,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Adds a character to the Fanfiction object.
-     * 
+     *
      * @param Character $character The character to add.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -261,7 +261,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the relations for the Fanfiction object.
-     * 
+     *
      * @param array $relations The relations array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -279,7 +279,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Adds a relation to the Fanfiction object.
-     * 
+     *
      * @param Relation $relation The relation to add.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -302,7 +302,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the tags for the Fanfiction object.
-     * 
+     *
      * @param array $tags The tags array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -320,7 +320,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Adds a tag to the Fanfiction object.
-     * 
+     *
      * @param Tag $tag The tag to add.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -343,7 +343,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the score ID for the Fanfiction object.
-     * 
+     *
      * @param int|null $scoreId The score ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -358,7 +358,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
 
     /**
      * Sets the evaluation for the Fanfiction object.
-     * 
+     *
      * @param string|null $evaluation The evaluation.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
@@ -370,5 +370,5 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         // Return the current instance of FanfictionBuilder.
         return $this;
     }
-    
+
 }

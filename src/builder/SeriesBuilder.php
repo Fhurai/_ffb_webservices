@@ -67,7 +67,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
         if ($creationDate instanceof DateTime) {
             $this->obj->setCreationDate($creationDate); // Set the creation date if it's a DateTime object.
         } else if (is_string($creationDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setCreationDate($date); // Parse and set the creation date if it's a string.
         }
         return $this; // Return the builder instance for chaining.
@@ -84,7 +84,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
         if ($deleteDate instanceof DateTime) {
             $this->obj->setDeleteDate($deleteDate); // Set the delete date if it's a DateTime object.
         } else if (is_string($deleteDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setDeleteDate($date); // Parse and set the delete date if it's a string.
         }
         // If delete date is null, set it to null in the Series object.
@@ -109,7 +109,7 @@ class SeriesBuilder implements NamedEntityBuilderInterface
         if ($updateDate instanceof DateTime) {
             $this->obj->setUpdateDate($updateDate); // Set the update date if it's a DateTime object.
         } else if (is_string($updateDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate);
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris')));
             $this->obj->setUpdateDate($date); // Parse and set the update date if it's a string.
         }
         return $this; // Return the builder instance for chaining.
