@@ -50,7 +50,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y expect
         expect -c '
-          spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+          mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
           expect "Enter password:"
           send "root\r"
           expect eof
