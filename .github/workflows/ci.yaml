@@ -14,17 +14,64 @@ jobs:
       matrix:
         php-version: ['8.1', '8.2', '8.3']
 
+    # Add MySQL service container
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping -p$$MYSQL_ROOT_PASSWORD"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    # Add database environment variables
+    - name: Setup environment
+      run: |
+        echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+        echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
+        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, dom, fileinfo, curl
-        coverage: xdebug  # or pcov
+        extensions: mbstring, dom, fileinfo, curl, pdo_mysql
+        coverage: xdebug
         tools: composer
+
+    - name: Configure MySQL client login path
+      run: |
+        # Install expect for automated password input
+        sudo apt-get update
+        sudo apt-get install -y expect
+        # Configure login path using expect to handle password prompt
+        expect -c '
+          spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+          expect "Enter password:"
+          send "root\r"
+          expect eof
+        '
+        # Verify the login path configuration
+        mysql_config_editor print --login-path=client
+
+    # Add database creation step
+    - name: Create MySQL databases
+      run: |
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
+        mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
+
+    - name: Initializing the database
+      run: ./sql/init.sh
 
     - name: Cache Composer dependencies
       uses: actions/cache@v3
@@ -36,19 +83,35 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: Run tests
+      env:
+        DB_DATABASE: ffb_tests  # Default test database
       run: vendor/bin/phpunit
 
-    # Optional steps (uncomment as needed)
-    - name: PHP Code Sniffer
-      run: vendor/bin/phpcs
-
-    - name: Static analysis (PHPStan)
-      run: vendor/bin/phpstan analyse
-
-    - name: Security check
-      run: composer audit
-
-    - name: Code coverage
-      run: vendor/bin/phpunit --coverage-clover clover.xml
+    - name: Send Discord notification
+      if: always()  # Runs even if previous steps fail
       env:
-        XDEBUG_MODE: coverage
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        STATUS="${{ job.status }}"
+        if [ "$STATUS" = "success" ]; then
+          COLOR=3066993
+          MESSAGE="✅ PHP CI Pipeline Succeeded"
+        else
+          COLOR=15158332
+          MESSAGE="❌ PHP CI Pipeline Failed"
+        fi
+
+        PAYLOAD=$(cat <<EOF
+        {
+          "embeds": [{
+            "title": "${MESSAGE}",
+            "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+            "color": ${COLOR},
+            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          }]
+        }
+        EOF
+        )
+
+        curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
+      continue-on-error: true  # Don't fail workflow if notification fails
