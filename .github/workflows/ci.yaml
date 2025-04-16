@@ -70,6 +70,9 @@ jobs:
         mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
         mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
 
+    - name: Permission init
+      run: chmod +x ./sql/init.sh
+
     - name: Initializing the database
       run: ./sql/init.sh
 
