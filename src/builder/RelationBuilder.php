@@ -1,31 +1,15 @@
 <?php
 
-require_once __DIR__ . "/NamedEntityBuilderInterface.php";
+require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Relation.php";
 
-class RelationBuilder implements NamedEntityBuilderInterface
+class RelationBuilder extends NamedEntityBuilder
 {
 
-    private Relation $obj;
-
     /**
-     * Constructor to initialize the RelationBuilder and reset the Relation object.
+     * @var Relation
      */
-    public function __construct()
-    {
-        $this->reset();
-    }
-
-    /**
-     * Builds and returns the Relation object.
-     *
-     * @return Relation The built Relation object.
-     */
-    public function build()
-    {
-        // Return the built Relation object
-        return $this->obj;
-    }
+    protected $obj;
 
     /**
      * Resets the Relation object to a new instance.
@@ -34,116 +18,6 @@ class RelationBuilder implements NamedEntityBuilderInterface
     {
         // Initialize a new Relation object
         $this->obj = new Relation();
-    }
-
-    /**
-     * Sets the ID for the Relation object.
-     *
-     * @param int|string $id The ID of the relation, either as an integer or a string.
-     * @return RelationBuilder The current instance of RelationBuilder.
-     */
-    public function withId(int|string $id): RelationBuilder
-    {
-        // Check if the id is an integer
-        if (is_integer($id)) {
-            // Set the id
-            $this->obj->setId($id);
-        }
-        // Check if the id is a string
-        else if (is_string($id)) {
-            // Convert the string to an integer
-            $integer = (int) $id;
-            // Set the id
-            $this->obj->setId($integer);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the creation date for the Relation object.
-     *
-     * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
-     * @return RelationBuilder The current instance of RelationBuilder.
-     */
-    public function withCreationDate(DateTime|string $creationDate): RelationBuilder
-    {
-        // Check if the creation date is a DateTime object
-        if ($creationDate instanceof DateTime) {
-            // Set the creation date
-            $this->obj->setCreationDate($creationDate);
-        }
-        // Check if the creation date is a string
-        else if (is_string($creationDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
-            // Set the creation date
-            $this->obj->setCreationDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the delete date for the Relation object.
-     *
-     * @param DateTime|string $deleteDate The delete date as a DateTime object or a string.
-     * @return RelationBuilder The current instance of RelationBuilder.
-     */
-    public function withDeleteDate(DateTime|string|null $deleteDate): RelationBuilder
-    {
-        // Check if the delete date is a DateTime object
-        if ($deleteDate instanceof DateTime) {
-            // Set the delete date
-            $this->obj->setDeleteDate($deleteDate);
-        }
-        // Check if the delete date is a string
-        else if (is_string($deleteDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
-            // Set the delete date
-            $this->obj->setDeleteDate($date);
-        }
-        // Check if the delete date is null
-        else if ($deleteDate === null) {
-            // Set the delete date to null
-            $this->obj->setDeleteDate(null);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the update date for the Relation object.
-     *
-     * @param DateTime|string $updateDate The update date as a DateTime object or a string.
-     * @return RelationBuilder The current instance of RelationBuilder.
-     */
-    public function withUpdateDate(DateTime|string $updateDate): RelationBuilder
-    {
-        // Check if the update date is a DateTime object
-        if ($updateDate instanceof DateTime) {
-            // Set the update date
-            $this->obj->setUpdateDate($updateDate);
-        }
-        // Check if the update date is a string
-        else if (is_string($updateDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
-            // Set the update date
-            $this->obj->setUpdateDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the name for the Relation object.
-     *
-     * @param string $name The name of the relation.
-     * @return RelationBuilder The current instance of RelationBuilder.
-     */
-    public function withName(string $name): RelationBuilder
-    {
-        // Set the name of the relation
-        $this->obj->setName($name);
-        return $this;
     }
 
     /**

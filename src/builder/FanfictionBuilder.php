@@ -1,30 +1,17 @@
 <?php
 
-require_once __DIR__ . "/NamedEntityBuilderInterface.php";
+require_once __DIR__ . "/NamedEntityBuilder.php";
+require_once __DIR__ . "/EvaluableBuilderTrait.php";
 require_once __DIR__ . "/../entity/Fanfiction.php";
 
-class FanfictionBuilder implements NamedEntityBuilderInterface
+class FanfictionBuilder extends NamedEntityBuilder
 {
-
-    private Fanfiction $obj;
-
-    /**
-     * Constructor to initialize the FanfictionBuilder and reset the Fanfiction object.
-     */
-    public function __construct()
-    {
-        $this->reset();
-    }
+    use EvaluableBuilderTrait;
 
     /**
-     * Builds and returns the Fanfiction object.
-     *
-     * @return Fanfiction The built Fanfiction object.
+     * @var Fanfiction
      */
-    public function build(): Fanfiction
-    {
-        return $this->obj;
-    }
+    protected $obj;
 
     /**
      * Resets the Fanfiction object to a new instance.
@@ -32,101 +19,6 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
     public function reset(): void
     {
         $this->obj = new Fanfiction();
-    }
-
-    /**
-     * Sets the ID for the Author object.
-     *
-     * @param int|string $id The ID of the author, either as an integer or a string.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withId(int|string $id): FanfictionBuilder {
-        // Check if the id is an integer
-        if (is_integer($id)) {
-            // Set the id
-            $this->obj->setId($id);
-        }
-        // Check if the id is a string
-        else if (is_string($id)) {
-            // Convert the string to an integer
-            $integer = (int)$id;
-            // Set the id
-            $this->obj->setId($integer);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the creation date for the Fanfiction object.
-     *
-     * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withCreationDate(DateTime|string|null $creationDate): FanfictionBuilder
-    {
-        if ($creationDate instanceof DateTime) {
-            $this->obj->setCreationDate($creationDate);
-        } else if (is_string($creationDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setCreationDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the delete date for the Fanfiction object.
-     *
-     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withDeleteDate(DateTime|string|null $deleteDate): FanfictionBuilder
-    {
-        // Check if the delete date is a DateTime object, string, or null
-        // and set it accordingly.
-        if ($deleteDate instanceof DateTime) {
-            $this->obj->setDeleteDate($deleteDate);
-        }
-        // Check if the delete date is a string
-        // and convert it to a DateTime object.
-        else if (is_string($deleteDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setDeleteDate($date);
-        }
-        // If the delete date is null, set it to null in the Fanfiction object.
-        else if($deleteDate === null){
-
-            $this->obj->setDeleteDate(null);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the update date for the Fanfiction object.
-     *
-     * @param DateTime|string $updateDate The update date as a DateTime object or a string.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withUpdateDate(DateTime|string $updateDate): FanfictionBuilder
-    {
-        if ($updateDate instanceof DateTime) {
-            $this->obj->setUpdateDate($updateDate);
-        } else if (is_string($updateDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setUpdateDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the name for the Fanfiction object.
-     *
-     * @param string $name The name.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withName(string $name): FanfictionBuilder
-    {
-        $this->obj->setName($name);
-        return $this;
     }
 
     /**
@@ -327,35 +219,4 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         // Return the current instance of FanfictionBuilder.
         return $this;
     }
-
-    /**
-     * Sets the score ID for the Fanfiction object.
-     *
-     * @param int|null $scoreId The score ID.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withScoreId(?int $scoreId): FanfictionBuilder
-    {
-        // Set the score ID for the Fanfiction object.
-        $this->obj->setScoreId($scoreId);
-
-        // Return the current instance of FanfictionBuilder.
-        return $this;
-    }
-
-    /**
-     * Sets the evaluation for the Fanfiction object.
-     *
-     * @param string|null $evaluation The evaluation.
-     * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     */
-    public function withEvaluation(?string $evaluation): FanfictionBuilder
-    {
-        // Set the evaluation for the Fanfiction object.
-        $this->obj->setEvaluation($evaluation);
-
-        // Return the current instance of FanfictionBuilder.
-        return $this;
-    }
-
 }

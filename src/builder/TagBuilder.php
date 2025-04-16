@@ -1,31 +1,15 @@
 <?php
 
-require_once __DIR__ . "/NamedEntityBuilderInterface.php";
+require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Tag.php";
 
-class TagBuilder implements NamedEntityBuilderInterface
+class TagBuilder extends NamedEntityBuilder
 {
 
-    private Tag $obj;
-
     /**
-     * Constructor to initialize the TagBuilder and reset the Tag object.
+     * @var Tag
      */
-    public function __construct()
-    {
-        $this->reset();
-    }
-
-    /**
-     * Builds and returns the Tag object.
-     *
-     * @return Tag The built Tag object.
-     */
-    public function build()
-    {
-        // Return the built Tag object
-        return $this->obj;
-    }
+    protected $obj;
 
     /**
      * Resets the Tag object to a new instance.
@@ -34,127 +18,6 @@ class TagBuilder implements NamedEntityBuilderInterface
     {
         // Initialize a new Tag object
         $this->obj = new Tag();
-    }
-
-    /**
-     * Sets the ID for the Tag object.
-     *
-     * @param int|string $id The ID of the tag, either as an integer or a string.
-     * @return TagBuilder The current instance of TagBuilder.
-     */
-    public function withId(int|string $id): TagBuilder
-    {
-        // Check if the id is an integer
-        if (is_integer($id)) {
-            // Set the id
-            $this->obj->setId($id);
-        }
-        // Check if the id is a string
-        else if (is_string($id)) {
-            // Convert the string to an integer
-            $integer = (int) $id;
-            // Set the id
-            $this->obj->setId($integer);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the creation date for the Tag object.
-     *
-     * @param DateTime|string $creationDate The creation date as a DateTime object or a string.
-     * @return TagBuilder The current instance of TagBuilder.
-     */
-    public function withCreationDate(DateTime|string $creationDate): TagBuilder
-    {
-        // Check if the creation date is a DateTime object
-        if ($creationDate instanceof DateTime) {
-            // Set the creation date
-            $this->obj->setCreationDate($creationDate);
-        }
-        // Check if the creation date is a string
-        else if (is_string($creationDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
-            // Set the creation date
-            $this->obj->setCreationDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the delete date for the Tag object.
-     *
-     * @param DateTime|string|null $deleteDate The delete date as a DateTime object or a string.
-     * @return TagBuilder The current instance of TagBuilder.
-     */
-    public function withDeleteDate(DateTime|string|null $deleteDate): TagBuilder
-    {
-        // Check if the delete date is a DateTime object
-        if ($deleteDate instanceof DateTime) {
-            // Set the delete date
-            $this->obj->setDeleteDate($deleteDate);
-        }
-        // Check if the delete date is a string
-        else if (is_string($deleteDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
-            // Set the delete date
-            $this->obj->setDeleteDate($date);
-        }
-        // Check if the delete date is null
-        else if ($deleteDate === null) {
-            // Set the delete date to null
-            $this->obj->setDeleteDate(null);
-        }
-        // Check if the delete date is not provided
-        else {
-            // Set delete date to null if not provided
-            $this->obj->setDeleteDate(null);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the update date for the Tag object.
-     *
-     * @param DateTime|string $updateDate The update date as a DateTime object or a string.
-     * @return TagBuilder The current instance of TagBuilder.
-     */
-    public function withUpdateDate(DateTime|string $updateDate): TagBuilder
-    {
-        // Check if the update date is a DateTime object
-        if ($updateDate instanceof DateTime) {
-            // Set the update date
-            $this->obj->setUpdateDate($updateDate);
-        }
-        // Check if the update date is a string
-        else if (is_string($updateDate)) {
-            // Convert the string to a DateTime object
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
-            // Set the update date
-            $this->obj->setUpdateDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the name for the Tag object.
-     *
-     * @param string $name The name of the tag.
-     * @return TagBuilder The current instance of TagBuilder.
-     */
-    public function withName(string $name): TagBuilder
-    {
-        // Check if the name is empty
-        if (empty($name)) {
-            // Set the name to an empty string
-            throw new InvalidArgumentException("Name cannot be empty.");
-        }
-
-        // Set the name of the tag
-        $this->obj->setName($name);
-        return $this;
     }
 
     /**

@@ -1,38 +1,19 @@
 <?php
 
-require_once __DIR__ . "/EntityBuilderInterface.php";
+require_once __DIR__ . "/EntityBuilder.php";
 require_once __DIR__ . "/../entity/Link.php";
 
 /**
  * Class LinkBuilder
  * Implements the BuilderInterface to build Link objects.
  */
-class LinkBuilder implements EntityBuilderInterface
+class LinkBuilder extends EntityBuilder
 {
 
     /**
      * @var Link The Link object being built.
      */
-    private Link $obj;
-
-    /**
-     * LinkBuilder constructor.
-     * Initializes the builder by resetting the Link object.
-     */
-    public function __construct()
-    {
-        $this->reset();
-    }
-
-    /**
-     * Returns the built Link object.
-     *
-     * @return Link The built Link object.
-     */
-    public function build(): Link
-    {
-        return $this->obj;
-    }
+    protected $obj;
 
     /**
      * Resets the builder by creating a new Link object.
@@ -40,92 +21,6 @@ class LinkBuilder implements EntityBuilderInterface
     public function reset(): void
     {
         $this->obj = new Link();
-    }
-
-    /**
-     * Sets the ID for the Author object.
-     *
-     * @param int|string $id The ID of the author, either as an integer or a string.
-     * @return LinkBuilder The current instance of LinkBuilder.
-     */
-    public function withId(int|string $id): LinkBuilder
-    {
-        // Check if the id is an integer
-        if (is_integer($id)) {
-            // Set the id
-            $this->obj->setId($id);
-        }
-        // Check if the id is a string
-        else if (is_string($id)) {
-            // Convert the string to an integer
-            $integer = (int) $id;
-            // Set the id
-            $this->obj->setId($integer);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the creation date of the User.
-     *
-     * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
-     * @return LinkBuilder The current instance of LinkBuilder.
-     */
-    public function withCreationDate(DateTime|string $creationDate): LinkBuilder
-    {
-        // Check if the creation date is a DateTime object
-        if ($creationDate instanceof DateTime) {
-            $this->obj->setCreationDate($creationDate);
-        }
-        // Check if the creation date is a string
-        else if (is_string($creationDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setCreationDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the update date of the User.
-     *
-     * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
-     * @return LinkBuilder The current instance of LinkBuilder.
-     */
-    public function withUpdateDate(DateTime|string $updateDate): LinkBuilder
-    {
-        // Check if the update date is a DateTime object
-        if ($updateDate instanceof DateTime) {
-            $this->obj->setUpdateDate($updateDate);
-        }
-        // Check if the update date is a string
-        else if (is_string($updateDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setUpdateDate($date);
-        }
-        return $this;
-    }
-
-    /**
-     * Sets the delete date of the User.
-     *
-     * @param DateTime|string|null $deleteDate The delete date to set. Can be a DateTime object or a string.
-     * @return LinkBuilder The current instance of LinkBuilder.
-     */
-    public function withDeleteDate(DateTime|string|null $deleteDate): LinkBuilder
-    {
-        // Check if the delete date is a DateTime object
-        if ($deleteDate instanceof DateTime) {
-            $this->obj->setDeleteDate($deleteDate);
-        }
-        // Check if the delete date is a string
-        else if (is_string($deleteDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
-            $this->obj->setDeleteDate($date);
-        } else if ($deleteDate === null) {
-            // Set the delete date to null
-            $this->obj->setDeleteDate(null);
-        }
-        return $this;
     }
 
     /**
