@@ -1,24 +1,32 @@
 <phpunit
-        displayDetailsOnTestsThatTriggerNotices="true"
-         displayDetailsOnTestsThatTriggerWarnings="true">
+    displayDetailsOnTestsThatTriggerNotices="true"
+    displayDetailsOnTestsThatTriggerWarnings="true">
     <php>
-        <ini name="error_reporting" value="-1"/>
+        <ini name="error_reporting" value="-1" />
     </php>
+    <groups>
+        <exclude>
+            <group>abstract</group>
+        </exclude>
+    </groups>
     <testsuites>
+        <testsuite name="Builder Test Suite">
+            <directory suffix="Test.php">./tests/builder</directory>
+        </testsuite>
         <testsuite name="Entity Test Suite">
             <directory>./tests/entity</directory>
         </testsuite>
         <testsuite name="Table Test Suite">
             <directory>./tests/table</directory>
         </testsuite>
-        <testsuite name="Exceptions Test Suite">
+        <testsuite name="Exception Test Suite">
             <directory>./tests/exception</directory>
         </testsuite>
-        <testsuite name="Utilities Test Suite">
+        <testsuite name="Utility Test Suite">
             <directory>./tests/utility</directory>
         </testsuite>
     </testsuites>
     <logging>
-        <junit outputFile="test-results.xml"/>
+        <junit outputFile="test-results.xml" />
     </logging>
 </phpunit>

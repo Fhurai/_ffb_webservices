@@ -75,10 +75,18 @@ final class FanfictionBuilder extends NamedEntityBuilder
      * @param array $fandoms The fandoms array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withFandom(string $fandoms): FanfictionBuilder
+    public function withFandom(array $fandoms): FanfictionBuilder
     {
+        foreach($fandoms as $fandom){
+            if(!$fandom instanceof Fandom){
+                throw new \InvalidArgumentException('Expected instance of Fandom');
+            }
+        }
+
         // Sort the fandoms array to maintain order.
-        sort($fandoms);
+        usort($fandoms, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
 
         // Assign the provided fandoms to the Fanfiction object's fandoms property.
         $this->obj->setFandoms($fandoms);
@@ -101,7 +109,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
         }
 
         array_push($fandoms, $fandom);
-        sort($fandoms);
+        usort($fandoms, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setFandoms($fandoms);
 
         // Return the current instance of FanfictionBuilder.
@@ -116,6 +126,12 @@ final class FanfictionBuilder extends NamedEntityBuilder
      */
     public function withCharacters(array $characters): FanfictionBuilder
     {
+        foreach($characters as $character){
+            if(!$character instanceof Character){
+                throw new \InvalidArgumentException('Expected instance of Character');
+            }
+        }
+
         usort($characters, function($a, $b){
             return strcmp($a->getName(), $b->getName());
         });
@@ -141,7 +157,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
         }
 
         array_push($characters, $character);
-        sort($characters);
+        usort($characters, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setCharacters($characters);
 
         // Return the current instance of FanfictionBuilder.
@@ -156,7 +174,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
      */
     public function withRelations(array $relations): FanfictionBuilder
     {
-        sort($relations);
+        usort($relations, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setRelations($relations);
 
         // Return the current instance of FanfictionBuilder.
@@ -177,7 +197,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
         }
 
         array_push($relations, $relation);
-        sort($relations);
+        usort($relations, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setRelations($relations);
 
         // Return the current instance of FanfictionBuilder.
@@ -192,7 +214,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
      */
     public function withTags(array $tags): FanfictionBuilder
     {
-        sort($tags);
+        usort($tags, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setTags($tags);
 
         // Return the current instance of FanfictionBuilder.
@@ -213,7 +237,9 @@ final class FanfictionBuilder extends NamedEntityBuilder
         }
 
         array_push($tags, $tag);
-        sort($tags);
+        usort($tags, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
         $this->obj->setTags($tags);
 
         // Return the current instance of FanfictionBuilder.

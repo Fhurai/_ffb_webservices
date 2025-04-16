@@ -31,6 +31,9 @@ final class LinkBuilder extends EntityBuilder
      */
     public function withUrl(string $url): LinkBuilder
     {
+        if(is_numeric($url)){
+            throw new \InvalidArgumentException("Expected string value");
+        }
         $this->obj->setUrl($url);
         return $this;
     }
@@ -43,6 +46,9 @@ final class LinkBuilder extends EntityBuilder
      */
     public function withFanfictionId(int $fanfictionId): LinkBuilder
     {
+        if(!is_numeric($fanfictionId)){
+            throw new \InvalidArgumentException("Expected numeric value");
+        }
         $this->obj->setFanfictionId($fanfictionId);
         return $this;
     }

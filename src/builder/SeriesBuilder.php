@@ -32,4 +32,53 @@ final class SeriesBuilder extends NamedEntityBuilder
         $this->obj->setDescription($description); // Set the description of the Series object.
         return $this; // Return the builder instance for chaining.
     }
+
+    /**
+     * Sets the fanfiction for the Fanfiction object.
+     *
+     * @param array $fanfictions The fanfictions array.
+     * @return SeriesBuilder The current instance of SeriesBuilder.
+     */
+    public function withFanfictions(array $fanfictions): SeriesBuilder
+    {
+        foreach($fanfictions as $fanfiction){
+            if(!$fanfiction instanceof Fanfiction){
+                throw new \InvalidArgumentException('Expected instance of Fanfiction');
+            }
+        }
+
+        // Sort the fanfictions array to maintain order.
+        usort($fanfictions, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
+
+        // Assign the provided fanfictions to the Fanfiction object's fanfictions property.
+        $this->obj->setFanfictions($fanfictions);
+
+        // Return the current instance of SeriesBuilder.
+        return $this;
+    }
+
+    /**
+     * Adds a fanfiction to the Fanfiction object.
+     *
+     * @param Fanfiction $fanfiction The fanfiction to add.
+     * @return SeriesBuilder The current instance of SeriesBuilder.
+     */
+    public function addFandom(Fanfiction $fanfiction): SeriesBuilder
+    {
+        $fanfictions = [];
+        if ($this->obj->hasFanfictions()) {
+            $fanfictions = $this->obj->getFanfictions();
+        }
+
+        array_push($fanfictions, $fanfiction);
+        usort($fanfictions, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
+        $this->obj->setFanfictions($fanfictions);
+
+        // Return the current instance of SeriesBuilder.
+        return $this;
+    }
 }
