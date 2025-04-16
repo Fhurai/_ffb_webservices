@@ -67,7 +67,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         if ($creationDate instanceof DateTime) {
             $this->obj->setCreationDate($creationDate);
         } else if (is_string($creationDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris')));
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setCreationDate($date);
         }
         return $this;
@@ -89,7 +89,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         // Check if the delete date is a string
         // and convert it to a DateTime object.
         else if (is_string($deleteDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris')));
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setDeleteDate($date);
         }
         // If the delete date is null, set it to null in the Fanfiction object.
@@ -111,7 +111,7 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
         if ($updateDate instanceof DateTime) {
             $this->obj->setUpdateDate($updateDate);
         } else if (is_string($updateDate)) {
-            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris')));
+            $date = DateTime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setUpdateDate($date);
         }
         return $this;
@@ -203,16 +203,14 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function addFandom(Fandom $fandom): FanfictionBuilder
     {
-        // Check if the fandoms property is not set, and initialize it as an empty array if needed.
-        if (!isset($this->obj->getFandoms())) {
-            $this->obj->fandoms = [];
+        $fandoms = [];
+        if ($this->obj->hasFandoms()) {
+            $fandoms = $this->obj->getFandoms();
         }
 
-        // Sort the fandoms array to maintain order.
+        array_push($fandoms, $fandom);
         sort($fandoms);
-
-        // Add the provided fandom to the fandoms array.
-        array_push($this->obj->fandoms, $fandom);
+        $this->obj->setFandoms($fandoms);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -226,11 +224,12 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function withCharacters(array $characters): FanfictionBuilder
     {
-        // Assign the provided characters to the Fanfiction object's characters property.
-        $this->obj->characters = $characters;
+        usort($characters, function($a, $b){
+            return strcmp($a->getName(), $b->getName());
+        });
 
-        // Sort the characters array to maintain order.
-        sort($this->obj->characters);
+        // Assign the provided characters to the Fanfiction object's characters property.
+        $this->obj->setCharacters($characters);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -244,16 +243,14 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function addCharacter(Character $character): FanfictionBuilder
     {
-        // Check if the characters property is not set, and initialize it as an empty array if needed.
-        if (!isset($this->obj->characters)) {
-            $this->obj->characters = [];
+        $characters = [];
+        if ($this->obj->hasCharacters()) {
+            $characters = $this->obj->getCharacters();
         }
 
-        // Add the provided character to the characters array.
-        array_push($this->obj->characters, $character);
-
-        // Sort the characters array to maintain order.
-        sort($this->obj->characters);
+        array_push($characters, $character);
+        sort($characters);
+        $this->obj->setCharacters($characters);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -267,11 +264,8 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function withRelations(array $relations): FanfictionBuilder
     {
-        // Assign the provided relations to the Fanfiction object's relations property.
-        $this->obj->relations = $relations;
-
-        // Sort the relations array to maintain order.
-        sort($this->obj->relations);
+        sort($relations);
+        $this->obj->setRelations($relations);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -285,16 +279,14 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function addRelation(Relation $relation): FanfictionBuilder
     {
-        // Check if the relations property is not set, and initialize it as an empty array if needed.
-        if (!isset($this->obj->relations)) {
-            $this->obj->relations = [];
+        $relations = [];
+        if ($this->obj->hasRelations()) {
+            $relations = $this->obj->getRelations();
         }
 
-        // Add the provided relation to the relations array.
-        array_push($this->obj->relations, $relation);
-
-        // Sort the relations array to maintain order.
-        sort($this->obj->relations);
+        array_push($relations, $relation);
+        sort($relations);
+        $this->obj->setRelations($relations);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -308,11 +300,8 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function withTags(array $tags): FanfictionBuilder
     {
-        // Assign the provided tags to the Fanfiction object's tags property.
-        $this->obj->tags = $tags;
-
-        // Sort the tags array to maintain order.
-        sort($this->obj->tags);
+        sort($tags);
+        $this->obj->setTags($tags);
 
         // Return the current instance of FanfictionBuilder.
         return $this;
@@ -326,16 +315,14 @@ class FanfictionBuilder implements NamedEntityBuilderInterface
      */
     public function addTag(Tag $tag): FanfictionBuilder
     {
-        // Check if the tags property is not set, and initialize it as an empty array if needed.
-        if (!isset($this->obj->tags)) {
-            $this->obj->tags = [];
+        $tags = [];
+        if ($this->obj->hasTags()) {
+            $tags = $this->obj->getTags();
         }
 
-        // Add the provided tag to the tags array.
-        array_push($this->obj->tags, $tag);
-
-        // Sort the tags array to maintain order.
-        sort($this->obj->tags);
+        array_push($tags, $tag);
+        sort($tags);
+        $this->obj->setTags($tags);
 
         // Return the current instance of FanfictionBuilder.
         return $this;

@@ -79,7 +79,7 @@ class LinkBuilder implements EntityBuilderInterface
         }
         // Check if the creation date is a string
         else if (is_string($creationDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris')));
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setCreationDate($date);
         }
         return $this;
@@ -99,7 +99,7 @@ class LinkBuilder implements EntityBuilderInterface
         }
         // Check if the update date is a string
         else if (is_string($updateDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris')));
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setUpdateDate($date);
         }
         return $this;
@@ -119,7 +119,7 @@ class LinkBuilder implements EntityBuilderInterface
         }
         // Check if the delete date is a string
         else if (is_string($deleteDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris')));
+            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
             $this->obj->setDeleteDate($date);
         } else if ($deleteDate === null) {
             // Set the delete date to null
