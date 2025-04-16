@@ -50,41 +50,41 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y expect
         expect -c '
-          mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+          spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
           expect "Enter password:"
           send "root\r"
           expect eof
         '
         mysql_config_editor print --login-path=client
 
-        - name: Create MySQL databases
-        run: |
-          # Create databases
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
+    - name: Create MySQL databases
+      run: |
+        # Create databases
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
 
-          # Create users and grant privileges (passwords match config.php)
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '1Gu3stIsw4yBetter*';"
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY 'MyUs3R5*i5Rich_';"
-          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges';"
+        # Create users and grant privileges (passwords match config.php)
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '1Gu3stIsw4yBetter*';"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY 'MyUs3R5*i5Rich_';"
+        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges';"
 
-          # Grant privileges
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
+        # Grant privileges
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
 
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
 
-          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%';"
+        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%';"
 
-          # Apply changes
-          mysql -h 127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
+        # Apply changes
+        mysql -h 127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
 
-          # Verify
-          mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
-          mysql -h 127.0.0.1 -uroot -proot -e "SELECT user, host FROM mysql.user;"
+        # Verify
+        mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
+        mysql -h 127.0.0.1 -uroot -proot -e "SELECT user, host FROM mysql.user;"
 
     - name: Test MySQL connection
       run: |
