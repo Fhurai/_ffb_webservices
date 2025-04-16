@@ -6,7 +6,7 @@ require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
 /**
  * Series class.
  */
-class Series extends ComplexEntity
+final class Series extends ComplexEntity
 {
     use EntityTrait, EvaluableTrait;
 

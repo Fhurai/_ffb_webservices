@@ -6,7 +6,7 @@ require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
 /**
  * Fanfiction class.
  */
-class Fanfiction extends ComplexEntity
+final class Fanfiction extends ComplexEntity
 {
     use EntityTrait, EvaluableTrait;
 

@@ -7,7 +7,7 @@ require_once __DIR__ . "/ParameterTrait.php";
  * Represents an action with an ID and a name.
  * This class extends the Parameters class and is immutable.
  */
-readonly class Action extends Parameters
+final readonly class Action extends Parameters
 {
     use ParameterTrait;
 

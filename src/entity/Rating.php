@@ -6,7 +6,7 @@ require_once __DIR__ . "/ParameterTrait.php";
 /**
  * Readonly Rating class extending Parameters.
  */
-readonly class Rating extends Parameters
+final readonly class Rating extends Parameters
 {
     use ParameterTrait;
 

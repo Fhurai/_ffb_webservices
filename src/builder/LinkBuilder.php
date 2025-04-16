@@ -7,7 +7,7 @@ require_once __DIR__ . "/../entity/Link.php";
  * Class LinkBuilder
  * Implements the BuilderInterface to build Link objects.
  */
-class LinkBuilder extends EntityBuilder
+final class LinkBuilder extends EntityBuilder
 {
 
     /**

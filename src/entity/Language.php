@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../../src/entity/NamedEntity.php";
 require_once __DIR__ . "/../../src/entity/EntityTrait.php";
 
-class Language extends NamedEntity
+final class Language extends NamedEntity
 {
     use EntityTrait; // Replaces explicit getNewObject()
 

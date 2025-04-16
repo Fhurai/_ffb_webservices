@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../src/entity/ComplexEntity.php';
 /**
  * Tag class.
  */
-class Tag extends ComplexEntity
+final class Tag extends ComplexEntity
 {
     use EntityTrait;
 

@@ -4,7 +4,7 @@ require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/EvaluableBuilderTrait.php";
 require_once __DIR__ . "/../entity/Fanfiction.php";
 
-class FanfictionBuilder extends NamedEntityBuilder
+final class FanfictionBuilder extends NamedEntityBuilder
 {
     use EvaluableBuilderTrait;
 

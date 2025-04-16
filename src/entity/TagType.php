@@ -6,7 +6,7 @@ require_once __DIR__ . "/ParameterTrait.php";
 /**
  * Readonly TagType class extending Parameters
  */
-readonly class TagType extends Parameters
+final readonly class TagType extends Parameters
 {
     use ParameterTrait;
 

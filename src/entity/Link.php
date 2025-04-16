@@ -3,7 +3,7 @@
 require_once __DIR__ . "/Entity.php";
 require_once __DIR__ . "/EntityTrait.php";
 
-class Link extends Entity
+final class Link extends Entity
 {
     use EntityTrait;
 

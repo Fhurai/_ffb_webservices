@@ -5,7 +5,7 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
 /**
  * Character class.
  */
-class Character extends ComplexEntity
+final class Character extends ComplexEntity
 {
     use EntityTrait;
     

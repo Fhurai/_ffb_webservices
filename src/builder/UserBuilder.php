@@ -7,7 +7,7 @@ require_once __DIR__ . "/../entity/User.php";
  * Class UserBuilder
  * Implements the BuilderInterface to build User objects.
  */
-class UserBuilder extends EntityBuilder
+final class UserBuilder extends EntityBuilder
 {
 
     /**

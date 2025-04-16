@@ -3,7 +3,7 @@
 require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Author.php";
 
-class AuthorBuilder extends NamedEntityBuilder
+final class AuthorBuilder extends NamedEntityBuilder
 {
 
     /**
