@@ -11,23 +11,23 @@ return [
             "host" => "localhost",
             "port" => "3306",
             "user" => "guest",
-            "password" => ""
+            "password" => "1Gu3stIsw4yBetter*"
         ],
         "user" => [
             "host" => "localhost",
             "port" => "3306",
             "user" => "ffb_user",
-            "password" => ""
+            "password" => "MyUs3R5*i5Rich_"
         ],
         "admin" => [
             "host" => "localhost",
             "port" => "3306",
             "user" => "ffb_admin",
-            "password" => ""
+            "password" => "Adm1nGrants3*pr1v1leges"
         ]
     ],
     "token" => [
-        "ffb_secret" => "***", // <- Change here
+        "ffb_secret" => "TestPhpSecret", // <- Change here
         "ffb_expiration" => 14400, // 4 hour in seconds
         "ffb_algorithm" => "HS256",
     ]
