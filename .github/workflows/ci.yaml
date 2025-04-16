@@ -42,13 +42,13 @@ jobs:
     - name: PHP Code Sniffer
       run: vendor/bin/phpcs
 
-    # - name: Static analysis (PHPStan)
+    - name: Static analysis (PHPStan)
       run: vendor/bin/phpstan analyse
 
-    # - name: Security check
+    - name: Security check
       run: composer audit
 
-    # - name: Code coverage
+    - name: Code coverage
       run: vendor/bin/phpunit --coverage-clover clover.xml
       env:
         XDEBUG_MODE: coverage
