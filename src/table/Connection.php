@@ -71,7 +71,13 @@ class Connection
 
         try {
             // Creation of Php Database Object with provided data from config.
-            return new PDO("mysql:host=" . $configFile["credentials"][$user]["host"] . ";dbname=" . $configFile["db"][$typeConnection], $configFile["credentials"][$user]["user"], $configFile["credentials"][$user]["password"]);
+            return new PDO(
+                "mysql:host=" . $configFile["credentials"][$user]["host"] .
+                ";port=" . $configFile["credentials"][$user]["port"] .
+                ";dbname=" . $configFile["db"][$typeConnection],
+                $configFile["credentials"][$user]["user"],
+                $configFile["credentials"][$user]["password"]
+            );
         } catch (PDOException $e) {
             // Exception caught, throw new exception with previous exception message.
             throw new FfbTableException($e->getMessage());
