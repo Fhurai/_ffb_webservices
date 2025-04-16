@@ -12,10 +12,10 @@
             <directory>./tests/table</directory>
         </testsuite>
         <testsuite name="Exceptions Test Suite">
-            <directory>./tests/exceptions</directory>
+            <directory>./tests/exception</directory>
         </testsuite>
         <testsuite name="Utilities Test Suite">
-            <directory>./tests/utilities</directory>
+            <directory>./tests/utility</directory>
         </testsuite>
     </testsuites>
     <logging>

@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 require_once __DIR__ . '/../../src/builder/RelationBuilder.php';
 require_once __DIR__ . '/../../src/table/RelationsTable.php';
 require_once __DIR__ . '/../../src/entity/Relation.php';
-require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
+require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
 /**
  * Class RelationsTableTest

@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/table/ScoresTable.php';
 require_once __DIR__ . '/../../src/entity/Score.php';
-require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
+require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
 class ScoresTableTest extends TestCase
 {

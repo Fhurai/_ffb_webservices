@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/table/FandomsTable.php';
 require_once __DIR__ . '/../../src/entity/Fandom.php';
-require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
+require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
 class FandomsTableTest extends TestCase
 {

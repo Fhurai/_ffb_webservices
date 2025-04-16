@@ -2,7 +2,7 @@ use PHPUnit\Framework\TestCase;
 
 <?php
 
-require_once __DIR__ . "/../../src/utilities/SrcUtilities.php";
+require_once __DIR__ . "/../../src/utility/SrcUtilities.php";
 
 use PHPUnit\Framework\TestCase;
 

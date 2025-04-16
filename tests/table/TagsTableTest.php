@@ -5,11 +5,11 @@ use PHPUnit\Framework\TestCase;
 require_once __DIR__ . '/../../src/builder/TagBuilder.php';
 require_once __DIR__ . '/../../src/table/TagsTable.php';
 require_once __DIR__ . '/../../src/entity/Tag.php';
-require_once __DIR__ . '/../../src/exceptions/FfbTableException.php';
+require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
 /**
  * Class TagsTableTest
- * 
+ *
  * This class contains unit tests for the TagsTable class, which handles operations
  * related to the "tags" table in the database. It tests methods for retrieving,
  * searching, ordering, creating, updating, deleting, and restoring tags.

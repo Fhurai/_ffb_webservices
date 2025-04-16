@@ -1,8 +1,8 @@
 <?php
 
 require_once __DIR__ . "/../entity/Entity.php";
-require_once __DIR__ . "/../exceptions/FfbTableException.php";
-require_once __DIR__ . "/../exceptions/SqlExceptionManager.php";
+require_once __DIR__ . "/../exception/FfbTableException.php";
+require_once __DIR__ . "/../exception/SqlExceptionManager.php";
 
 abstract class EntitiesTable
 {

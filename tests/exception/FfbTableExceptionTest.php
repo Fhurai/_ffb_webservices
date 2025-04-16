@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../src/exceptions/FfbTableException.php";
+require_once __DIR__ . "/../../src/exception/FfbTableException.php";
 
 use PHPUnit\Framework\TestCase;
 

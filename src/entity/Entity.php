@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../src/utilities/SrcUtilities.php";
+require_once __DIR__ . "/../../src/utility/SrcUtilities.php";
 
 /**
  * Abstract class Entity
