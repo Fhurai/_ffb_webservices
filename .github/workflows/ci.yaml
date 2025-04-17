@@ -131,14 +131,6 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      
-      - name: Capture SonarCloud Task ID
-        id: capture_task_id
-        run: |
-          # Fetch the task ID from SonarQube API (Assuming the SonarQube project key is 'your_project_key')
-          RESPONSE=$(curl -s -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/ce/task?id=${{ github.sha }}")
-          TASK_ID=$(echo $RESPONSE | jq -r '.task.id')
-          echo "TASK_ID=$TASK_ID" >> $GITHUB_ENV
 
   discord-notification-php-tests:
     name: Discord Notification - PHP Tests
@@ -198,13 +190,12 @@ jobs:
           fi
 
           SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
-          TASK_URL="https://sonarcloud.io/api/ce/task?id=${{ env.TASK_ID }}"
 
           PAYLOAD=$(cat <<EOF
           {
             "embeds": [{
               "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})\n**Task Details**: [View Task](${TASK_URL})",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})",
               "color": ${COLOR},
               "image": {
                 "url": "${IMAGE_URL}"
