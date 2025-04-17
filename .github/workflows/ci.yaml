@@ -127,6 +127,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: php-tests
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         with:
@@ -137,10 +139,10 @@ jobs:
   discord-notification:
     name: Discord Notification
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: [php-tests, sonarqube]
     steps:
       - name: Send Discord notification
-        if: always()
+        if: [failure(), success()]
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
