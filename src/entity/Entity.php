@@ -23,19 +23,19 @@ abstract class Entity implements JsonSerializable
      * Creation date.
      * @var DateTime
      */
-    private DateTime $creation_date;
+    private DateTime $creationDate;
 
     /**
      * Update date.
      * @var DateTime
      */
-    private DateTime $update_date;
+    private DateTime $updateDate;
 
     /**
      * Delete date.
      * @var DateTime|null
      */
-    private ?DateTime $delete_date;
+    private ?DateTime $deleteDate;
 
     /**
      * Implied constructor.
@@ -74,16 +74,16 @@ abstract class Entity implements JsonSerializable
      */
     public function getCreationDate(): DateTime
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
     /**
      * Setter Creation date.
-     * @param DateTime $creation_date New creation date.
+     * @param DateTime $creationDate New creation date.
      */
-    public function setCreationDate(DateTime $creation_date): void
+    public function setCreationDate(DateTime $creationDate): void
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
     }
 
     /**
@@ -92,16 +92,16 @@ abstract class Entity implements JsonSerializable
      */
     public function getUpdateDate(): DateTime
     {
-        return $this->update_date;
+        return $this->updateDate;
     }
 
     /**
      * Setter Update date.
-     * @param DateTime $update_date New update date.
+     * @param DateTime $updateDate New update date.
      */
-    public function setUpdateDate(DateTime $update_date): void
+    public function setUpdateDate(DateTime $updateDate): void
     {
-        $this->update_date = $update_date;
+        $this->updateDate = $updateDate;
     }
 
     /**
@@ -110,16 +110,16 @@ abstract class Entity implements JsonSerializable
      */
     public function getDeleteDate(): ?DateTime
     {
-        return $this->delete_date;
+        return $this->deleteDate;
     }
 
     /**
      * Setter Delete date.
-     * @param DateTime|null $delete_date New delete date or null.
+     * @param DateTime|null $deleteDate New delete date or null.
      */
-    public function setDeleteDate(?DateTime $delete_date = null): void
+    public function setDeleteDate(?DateTime $deleteDate = null): void
     {
-        $this->delete_date = $delete_date;
+        $this->deleteDate = $deleteDate;
     }
 
     /**
@@ -130,9 +130,9 @@ abstract class Entity implements JsonSerializable
     {
         $data = [
             "id" => $this->id,
-            "creation_date" => $this->creation_date->format(self::DATE_FORMAT),
-            "update_date" => $this->update_date->format(self::DATE_FORMAT),
-            "delete_date" => $this->delete_date?->format(self::DATE_FORMAT),
+            "creation_date" => $this->creationDate->format(self::DATE_FORMAT),
+            "update_date" => $this->updateDate->format(self::DATE_FORMAT),
+            "delete_date" => $this->deleteDate?->format(self::DATE_FORMAT),
         ];
 
         if (property_exists($this, "_assoc_data")) {

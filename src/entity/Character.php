@@ -9,12 +9,12 @@ require_once __DIR__ . "/../../src/entity/EntityTrait.php";
 final class Character extends ComplexEntity
 {
     use EntityTrait;
-    
+
     /**
-     * Fandom_id.
+     * Fandom ID.
      * @var int
      */
-    private int $fandom_id;
+    private int $fandomId;
 
     /**
      * Associated Fandom entity (loaded only when needed).
@@ -32,33 +32,32 @@ final class Character extends ComplexEntity
     }
 
     /**
-     * Get Fandom_id.
-     * @return int Fandom_id.
+     * Get Fandom ID.
+     * @return int Fandom ID.
      */
     public function getFandomId(): int
     {
-        return $this->fandom_id;
+        return $this->fandomId;
     }
 
     /**
-     * Set Fandom_id.
-     * @param int $fandom_id New Fandom_id.
+     * Set Fandom ID.
+     * @param int $fandomId New Fandom ID.
      * @return void
      */
-    public function setFandomId(int $fandom_id): void
+    public function setFandomId(int $fandomId): void
     {
-        $this->fandom_id = $fandom_id;
+        $this->fandomId = $fandomId;
     }
 
     /**
      * Get Fandom.
-     * @return Fandom|null Fandom.
-     * @throws \RuntimeException If fandom is not loaded.
+     * @return Fandom Fandom.
      */
-    public function getFandom(): ?Fandom
+    public function getFandom(): Fandom
     {
         if (!$this->hasFandom()) {
-            throw new \RuntimeException("Fandom is not loaded. Use hasFandom() to check first.");
+            throw new \OutOfBoundsException("Fandom is not loaded. Use hasFandom() to check first.");
         }
         return $this->fandom;
     }

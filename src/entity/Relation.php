@@ -8,19 +8,12 @@ require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
 final class Relation extends ComplexEntity
 {
     use EntityTrait;
-    
+
     /**
      * Characters associated with the Relation.
      * @var array
      */
     public ?array $characters = null;
-    /**
-     * Implied constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Getter Characters.
@@ -29,7 +22,7 @@ final class Relation extends ComplexEntity
     public function getCharacters(): array
     {
         if (empty($this->characters)) {
-            throw new \RuntimeException("characters is not loaded. Use hasCharacters() to check first.");
+            throw new \OutOfBoundsException("characters is not loaded. Use hasCharacters() to check first.");
         }
         return $this->characters;
     }
@@ -73,7 +66,7 @@ final class Relation extends ComplexEntity
     {
         if (is_array($character)) {
             return Character::jsonUnserialize(json_encode($character));
-        } else if ($character instanceof Character) {
+        } elseif ($character instanceof Character) {
             return $character;
         }
         throw new \InvalidArgumentException("Invalid character data provided.");

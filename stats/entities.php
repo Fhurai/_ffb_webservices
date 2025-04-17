@@ -18,7 +18,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
     ApiUtilities::HttpOk(null);
-} else if ($method === 'GET') {
+} elseif ($method === 'GET') {
     // Handle GET ALL request to retrieve all actions
     $table = new StatsTable(); // Initialize StatsTable with database and table name
     $actions = $table->getEntitiesStats(); // Fetch all actions from the database

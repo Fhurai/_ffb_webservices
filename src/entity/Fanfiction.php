@@ -433,7 +433,7 @@ final class Fanfiction extends ComplexEntity
             "rating_id" => $this->rating_id,
             "description" => $this->description,
             "language_id" => $this->language_id,
-            "score_id" => $this->score_id,
+            "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
         ], $associations);
     }

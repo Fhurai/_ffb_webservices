@@ -7,37 +7,39 @@ trait EvaluableTrait
 {
     /**
      * Evaluable identifier.
-     * @var int
+     * @var int|null
      */
-    private ?int $score_id;
+    private ?int $scoreId;
+
     /**
      * Evaluable score.
-     * @var Score
+     * @var Score|null
      */
     private ?Score $score;
+
     /**
      * Evaluable evaluation.
-     * @var string
+     * @var string|null
      */
     private ?string $evaluation;
 
     /**
-     * Getter Score_id
-     * @return ?int Score_id
+     * Getter ScoreId
+     * @return ?int ScoreId
      */
     public function getScoreId(): ?int
     {
-        return $this->score_id;
+        return $this->scoreId;
     }
 
     /**
-     * Setter Score_id
-     * @param int $score_id New Score_id
+     * Setter ScoreId
+     * @param int|null $scoreId New ScoreId
      * @return void
      */
-    public function setScoreId(int $score_id = null): void
+    public function setScoreId(int $scoreId = null): void
     {
-        $this->score_id = $score_id;
+        $this->scoreId = $scoreId;
     }
 
     /**
@@ -51,7 +53,7 @@ trait EvaluableTrait
 
     public function hasScore(): bool
     {
-        return $this->score  !== null;
+        return $this->score !== null;
     }
 
     /**
@@ -77,7 +79,7 @@ trait EvaluableTrait
 
     /**
      * Setter Evaluation.
-     * @param string $evaluation New Evaluation.
+     * @param string|null $evaluation New Evaluation.
      * @return void
      */
     public function setEvaluation(string $evaluation = null): void

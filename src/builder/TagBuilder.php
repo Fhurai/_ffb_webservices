@@ -47,7 +47,7 @@ final class TagBuilder extends NamedEntityBuilder
             $this->obj->setTypeId($arg);
         }
         // Check if the argument is a TagType object
-        else if ($arg instanceof TagType) {
+        elseif ($arg instanceof TagType) {
             // Set the type ID from the TagType object
             $this->obj->setTypeId($arg->getId());
         }

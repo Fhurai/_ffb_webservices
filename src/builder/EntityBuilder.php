@@ -44,7 +44,7 @@ abstract class EntityBuilder
             $this->obj->setId($id);
         }
         // Check if the id is a string
-        else if (is_string($id)) {
+        elseif (is_string($id)) {
             // Convert the string to an integer
             $integer = (int) $id;
             // Set the id
@@ -60,7 +60,7 @@ abstract class EntityBuilder
             $this->obj->setCreationDate($creationDate);
         }
         // Check if the creation date is a string
-        else if (is_string($creationDate)) {
+        elseif (is_string($creationDate)) {
             $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $creationDate, new DateTimeZone(timezone: self::TIMEZONE_DATETIME));
             $this->obj->setCreationDate($date);
         }
@@ -74,7 +74,7 @@ abstract class EntityBuilder
             $this->obj->setUpdateDate($updateDate);
         }
         // Check if the update date is a string
-        else if (is_string($updateDate)) {
+        elseif (is_string($updateDate)) {
             $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $updateDate, new DateTimeZone(self::TIMEZONE_DATETIME));
             $this->obj->setUpdateDate($date);
         }
@@ -88,12 +88,12 @@ abstract class EntityBuilder
             $this->obj->setDeleteDate($deleteDate);
         }
         // Check if the delete date is a string
-        else if (is_string($deleteDate)) {
+        elseif (is_string($deleteDate)) {
             $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $deleteDate, new DateTimeZone(self::TIMEZONE_DATETIME));
             $this->obj->setDeleteDate($date);
         }
         // Check if the delete date is null
-        else if ($deleteDate === null) {
+        elseif ($deleteDate === null) {
             // Set the delete date to null
             $this->obj->setDeleteDate(null);
         }

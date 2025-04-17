@@ -14,17 +14,18 @@ final class Tag extends ComplexEntity
      * @var string
      */
     private string $description;
+
     /**
-     * Type_id.
+     * Type ID.
      * @var int
      */
-    private int $type_id;
+    private int $typeId;
 
     /**
      * Associated TagType entity (loaded only when needed).
      * @var TagType|null
      */
-    private ?TagType $tag_type = null;
+    private ?TagType $tagType = null;
 
     /**
      * Implied constructor.
@@ -56,46 +57,46 @@ final class Tag extends ComplexEntity
     }
 
     /**
-     * Getter Type_id.
-     * @return int Type_id.
+     * Getter type ID.
+     * @return int Type ID.
      */
     public function getTypeId(): int
     {
-        return $this->type_id;
+        return $this->typeId;
     }
 
     /**
-     * Setter Type_id.
-     * @param int $type_id New Type_id;
+     * Setter type ID.
+     * @param int $typeId New type ID.
      * @return void
      */
-    public function setTypeId(int $type_id): void
+    public function setTypeId(int $typeId): void
     {
-        $this->type_id = $type_id;
+        $this->typeId = $typeId;
     }
 
     /**
      * Get the associated TagType entity.
      *
      * @return TagType
-     * @throws \RuntimeException If tag_type is not loaded.
+     * @throws \OutOfBoundsException If tagType is not loaded.
      */
     public function getTagType(): TagType
     {
-        if (!$this->tag_type) {
-            throw new \RuntimeException("tag_type is not loaded. Use hasTagType() to check first.");
+        if (!$this->tagType) {
+            throw new \OutOfBoundsException("tagType is not loaded. Use hasTagType() to check first.");
         }
-        return $this->tag_type;
+        return $this->tagType;
     }
 
     /**
-     * Check if tag_type is loaded.
+     * Check if tagType is loaded.
      *
      * @return bool
      */
     public function hasTagType(): bool
     {
-        return $this->tag_type !== null;
+        return $this->tagType !== null;
     }
 
     /**
@@ -106,12 +107,12 @@ final class Tag extends ComplexEntity
     public function setTagType(TagType|array $tagType): void
     {
         if (is_array($tagType)) {
-            $this->tag_type = TagType::jsonUnserialize(json_encode($tagType));
+            $this->tagType = TagType::jsonUnserialize(json_encode($tagType));
             return;
         }
 
         if ($tagType instanceof TagType) {
-            $this->tag_type = $tagType;
+            $this->tagType = $tagType;
             return;
         }
 

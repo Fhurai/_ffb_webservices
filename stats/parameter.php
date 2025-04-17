@@ -18,7 +18,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
     ApiUtilities::HttpOk(null);
-} else if ($method === 'GET') {
+} elseif ($method === 'GET') {
     // Handle GET requests
     if (array_key_exists('parameter', $_GET)) {
         $parameter = $_GET['parameter']; // Retrieve the 'parameter' query parameter

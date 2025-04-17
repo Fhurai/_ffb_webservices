@@ -161,7 +161,7 @@ class CharactersTable extends EntitiesTable
                 } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
                     $val = trim($matches[2]);
                     $values[":$key"] = str_replace("'", "", $val);
-                } else if (str_contains($key, "_id")) {
+                } elseif (str_contains($key, "_id")) {
                     $values[":$key"] = $value;
                 }
             }

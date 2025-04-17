@@ -10,10 +10,10 @@ final class User extends Entity
     private string $username;
     private string $password;
     private string $email;
-    private bool $is_admin;
-    private bool $is_local;
+    private bool $isAdmin;
+    private bool $isLocal;
     private DateTime $birthday;
-    private bool $is_nsfw;
+    private bool $isNsfw;
 
     public function __construct()
     {
@@ -59,22 +59,22 @@ final class User extends Entity
 
     public function isAdmin(): bool
     {
-        return $this->is_admin;
+        return $this->isAdmin;
     }
 
-    public function setIsAdmin(bool $is_admin): void
+    public function setIsAdmin(bool $isAdmin): void
     {
-        $this->is_admin = $is_admin;
+        $this->isAdmin = $isAdmin;
     }
 
     public function isLocal(): bool
     {
-        return $this->is_local;
+        return $this->isLocal;
     }
 
-    public function setIsLocal(bool $is_local): void
+    public function setIsLocal(bool $isLocal): void
     {
-        $this->is_local = $is_local;
+        $this->isLocal = $isLocal;
     }
 
     public function getBirthday(): DateTime
@@ -94,12 +94,12 @@ final class User extends Entity
 
     public function isNsfw(): bool
     {
-        return $this->is_nsfw;
+        return $this->isNsfw;
     }
 
-    public function setIsNsfw(bool $is_nsfw): void
+    public function setIsNsfw(bool $isNsfw): void
     {
-        $this->is_nsfw = $is_nsfw;
+        $this->isNsfw = $isNsfw;
     }
 
     public function jsonSerialize(): array
@@ -107,10 +107,10 @@ final class User extends Entity
         return array_merge(parent::jsonSerialize(), [
             "username" => $this->username,
             "email" => $this->email,
-            "is_admin" => $this->is_admin,
-            "is_local" => $this->is_local,
+            "is_admin" => $this->isAdmin,
+            "is_local" => $this->isLocal,
             "birthday" => $this->birthday->format("Y-m-d H:i:s"),
-            "is_nsfw" => $this->is_nsfw,
+            "is_nsfw" => $this->isNsfw,
         ]);
     }
 

@@ -10,7 +10,6 @@ require_once __DIR__ . "/../builder/AuthorBuilder.php";
  */
 class AuthorsTable extends EntitiesTable
 {
-    private const TABLE_NAME = '`authors`';
     private const DATE_FORMAT = 'Y-m-d H:i:s';
     private const DEFAULT_SELECT_QUERY = 'SELECT * FROM `authors`';
     private const NO_DATA_EXCEPTION = 'No data for arguments provided!';

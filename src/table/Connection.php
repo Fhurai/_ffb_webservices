@@ -13,18 +13,6 @@ class Connection
     private static ?PDO $db = null; // Declare static property
 
     /**
-     * Label of connection type.
-     * @var string
-     */
-    private string $typeConnection;
-
-    /**
-     * User of connection
-     * @var  string
-     */
-    private $user;
-
-    /**
      * Get the database connection.
      * @param string $typeConnection The type of connection (main, stats, tests).
      * @param string $user The user of the connection (guest, user, admin).
@@ -34,7 +22,7 @@ class Connection
     public static function getDatabase(string $typeConnection, string $user): PDO
     {
         // Check if the database connection is already established
-        if (self::$db === NULL) {
+        if (self::$db === null) {
             // Create a new database connection if not already established
             self::$db = self::createDbConnection($typeConnection, $user);
         }

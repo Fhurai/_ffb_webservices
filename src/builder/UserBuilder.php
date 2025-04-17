@@ -101,7 +101,7 @@ final class UserBuilder extends EntityBuilder
             $this->obj->setBirthday($birthday);
         }
         // Check if the birthday is a string
-        else if (is_string($birthday)) {
+        elseif (is_string($birthday)) {
             $date = Datetime::createFromFormat("Y-m-d H:i:s", $birthday, new DateTimeZone('Europe/Paris'));
             $this->obj->setBirthday($date);
         }

@@ -34,7 +34,7 @@ final class CharacterBuilder extends NamedEntityBuilder
             $this->obj->setFandomId($arg);
         }
         // Check if the argument is a Fandom object
-        else if ($arg instanceof Fandom) {
+        elseif ($arg instanceof Fandom) {
             // Set the fandom ID from the Fandom object
             $this->obj->setFandomId($arg->getId());
         }

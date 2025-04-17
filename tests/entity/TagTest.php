@@ -116,7 +116,7 @@ JSON;
             $tag->getCreationDate()->format('Y-m-d H:i:s')
         );
 
-        $this->assertTrue(property_exists($tag, 'tag_type'));
+        $this->assertTrue(property_exists($tag, 'tagType'));
         $this->assertInstanceOf(TagType::class, $tag->getTagType());
         $this->assertEquals(456, $tag->getTagType()->getId());
     }

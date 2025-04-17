@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  * This class contains unit tests for the TagsTable class, which handles operations
  * related to the "tags" table in the database. It tests methods for retrieving,
  * searching, ordering, creating, updating, deleting, and restoring tags.
- * 
+ *
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]

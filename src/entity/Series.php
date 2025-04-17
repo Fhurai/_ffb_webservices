@@ -84,7 +84,7 @@ final class Series extends ComplexEntity
         }
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->description,
-            "score_id" => $this->score_id,
+            "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
         ], $associations);
     }

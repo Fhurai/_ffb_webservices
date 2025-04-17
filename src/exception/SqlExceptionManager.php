@@ -1,6 +1,7 @@
 <?php
 
-class SqlExceptionManager extends Exception {
+class SqlExceptionManager extends Exception
+{
     private $sqlState;
     private $errorCode;
     private $errorMessage;
@@ -9,77 +10,76 @@ class SqlExceptionManager extends Exception {
     private $table;
     private $field;
     private $key;
-    private $duplicateValue;
-private $keyName;
-private $sqlSnippet;
-private $database;
 
-    public static function fromPDOException(PDOException $e): self {
+    public static function fromPDOException(PDOException $e): self
+    {
         $errorInfo = $e->errorInfo;
         $instance = new self(
             $errorInfo[2],  // Error message
-            (int)$errorInfo[1], // Driver-specific error code
+            (int) $errorInfo[1], // Driver-specific error code
             $e
         );
 
         $instance->sqlState = $errorInfo[0] ?? '';
-        $instance->errorCode = (int)$errorInfo[1];
+        $instance->errorCode = (int) $errorInfo[1];
         $instance->errorMessage = $errorInfo[2];
         $instance->parseErrorMessage();
 
         return $instance;
     }
 
-    protected function parseErrorMessage(): void {
-        // Parse command (commande)
+    protected function parseErrorMessage(): void
+    {
         preg_match("/commande '([^']+)'/i", $this->errorMessage, $commandMatches);
         $this->command = $commandMatches[1] ?? null;
 
-        // Parse user (utilisateur)
         preg_match("/utilisateur: '([^']+)'/i", $this->errorMessage, $userMatches);
         $this->user = $userMatches[1] ?? null;
 
-        // Parse table
         preg_match("/table '([^']+)'/i", $this->errorMessage, $tableMatches);
         $this->table = $tableMatches[1] ?? null;
 
-        // Parse field (champ)
         preg_match("/champ '([^']+)'/i", $this->errorMessage, $fieldMatches);
         $this->field = $fieldMatches[1] ?? null;
 
-        // Parse key
         preg_match("/clef '([^']+)'/i", $this->errorMessage, $keyMatches);
         $this->key = $keyMatches[1] ?? null;
     }
 
-    // Getters
-    public function getSqlState(): string {
+    public function getSqlState(): string
+    {
         return $this->sqlState;
     }
 
-    public function getErrorCode(): int {
+    public function getErrorCode(): int
+    {
         return $this->errorCode;
     }
 
-    public function getErrorMessage(): string {
+    public function getErrorMessage(): string
+    {
         return $this->errorMessage;
     }
 
-    public function getCommand(): ?string {
+    public function getCommand(): ?string
+    {
         return $this->command;
     }
 
-    public function getUser(): ?string {
+    public function getUser(): ?string
+    {
         return $this->user;
     }
 
-    public function getTable(): ?string {
+    public function getTable(): ?string
+    {
         return $this->table;
     }
 
-    public function getFormattedMessage(): string {
+    public function getFormattedMessage(): string
+    {
         $message = "SQL Error [{$this->sqlState}][{$this->errorCode}]: ";
-    
+
         $errorMessages = [
             1142 => fn() => sprintf("Permission denied. User cannot create on table '%s'", $this->table),
             1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
@@ -97,10 +97,9 @@ private $database;
             2013 => fn() => "Lost connection to MySQL server.",
             2014 => fn() => "Commands out of sync.",
         ];
-    
+
         $message .= $errorMessages[$this->errorCode] ?? $this->errorMessage;
-    
+
         return $message;
     }
-    
 }

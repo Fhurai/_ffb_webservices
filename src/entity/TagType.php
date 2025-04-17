@@ -9,9 +9,4 @@ require_once __DIR__ . "/ParameterTrait.php";
 final readonly class TagType extends Parameters
 {
     use ParameterTrait;
-
-    public function __construct(int $id, string $name)
-    {
-        parent::__construct($id, $name);
-    }
 }
