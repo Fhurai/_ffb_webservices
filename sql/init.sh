@@ -28,17 +28,6 @@ echo "8 >"
 mysql --login-path=client --default-character-set=utf8  ffb_main < main/8.main_data_series.sql
 echo "-- done"
 echo ""
-echo "procedures :"
-echo "insert >"
-mysql --login-path=client ffb_tests < procedures/1.insert.sql
-echo "-- done"
-echo "delete >"
-mysql --login-path=client ffb_tests < procedures/2.delete.sql
-echo "-- done"
-echo "update >"
-mysql --login-path=client ffb_tests < procedures/3.update.sql
-echo "-- done"
-echo ""
 echo "stats :"
 echo "0 >"
 mysql --login-path=client ffb_stats < stats/0.stats_drop.sql
@@ -54,3 +43,4 @@ echo "-- done"
 echo ""
 echo "user >"
 mysql --login-path=client ffb_main < user.sql
+echo "-- done"

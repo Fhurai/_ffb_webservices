@@ -1,73 +1,367 @@
-DROP USER IF EXISTS 'ffb_guest'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_guest'@'localhost' IDENTIFIED BY '1Gu3stIsw4yBetter*';
-GRANT SELECT ON ffb_main . view_data_users TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, fandom) ON ffb_main . view_data_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main . view_data_crossovers TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main . view_data_fanfictions TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, character_name) ON ffb_main . view_data_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_fandoms TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_links TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_tags TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_authors TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_fandoms TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_fanfictions TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_languages TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_tags TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_stats . * TO 'ffb_guest'@'localhost';
+-- Constants
+SET @guest_user = 'ffb_guest';
+SET @user_user = 'ffb_user';
+SET @admin_user = 'ffb_admin';
+SET @localhost_host = 'localhost';
 
-DROP USER IF EXISTS 'ffb_user'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_user'@'localhost' IDENTIFIED BY 'MyUs3R5*i5Rich_'; -- Change password by instance admin
-GRANT UPDATE (score_id) ON ffb_main . fanfictions TO 'ffb_user'@'localhost';
-GRANT UPDATE (evaluation) ON ffb_main . fanfictions TO 'ffb_user'@'localhost';
-GRANT UPDATE (score_id) ON ffb_main . series TO 'ffb_user'@'localhost';
-GRANT UPDATE (evaluation) ON ffb_main . series TO 'ffb_user'@'localhost';
-GRANT SELECT ON ffb_main . * TO 'ffb_user'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_tests . * TO 'ffb_user'@'localhost';
-GRANT SELECT ON ffb_stats . * TO 'ffb_user'@'localhost';
+-- Guest User Setup
+SET @guest_user_full = CONCAT(@guest_user, '@', @localhost_host);
+SET @guest_password = '1Gu3stIsw4yBetter*';
 
-DROP USER IF EXISTS 'ffb_admin'@'localhost';
-CREATE USER IF NOT EXISTS 'ffb_admin'@'localhost' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges'; -- Change password by instance admin
-GRANT SELECT ON ffb_main . actions TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . authors TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . characters TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fandoms TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fanfictions TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fanfictions_characters TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fanfictions_fandoms TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fanfictions_relations TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . fanfictions_tags TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . languages TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . links TO 'ffb_admin'@'localhost';
-GRANT SELECT ON ffb_main . ratings TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . relations TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . relations_characters TO 'ffb_admin'@'localhost';
-GRANT SELECT ON ffb_main . scores TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . series TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . series_fanfictions TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . tags TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . tag_types TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main . users TO 'ffb_admin'@'localhost';
-GRANT SELECT, INSERT ON ffb_main . users_actions TO 'ffb_admin'@'localhost';
-GRANT SELECT (name, fandom) ON ffb_main . view_data_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main . view_data_crossovers TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main . view_data_fanfictions TO 'ffb_guest'@'localhost';
-GRANT SELECT (name, character_name) ON ffb_main . view_data_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_fandoms TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_links TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_fanfictions_tags TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_authors TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_characters TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_fandoms TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_fanfictions TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_languages TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_relations TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_tags TO 'ffb_guest'@'localhost';
-GRANT SELECT ON ffb_main . view_series_tags TO 'ffb_guest'@'localhost';
-GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_tests . * TO 'ffb_admin'@'localhost';
-GRANT SELECT ON ffb_stats . * TO 'ffb_admin'@'localhost';
+SET @query = CONCAT('DROP USER IF EXISTS ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('CREATE USER IF NOT EXISTS ', @guest_user_full, ' IDENTIFIED BY "', @guest_password, '"');
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_data_users TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, fandom) ON ffb_main.view_data_characters TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main.view_data_crossovers TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main.view_data_fanfictions TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, character_name) ON ffb_main.view_data_relations TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_characters TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_fandoms TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_links TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_relations TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_tags TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_authors TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_characters TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_fandoms TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_fanfictions TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_languages TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_relations TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_tags TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @guest_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+-- Regular User Setup
+SET @user_user_full = CONCAT(@user_user, '@', @localhost_host);
+SET @user_password = 'MyUs3R5*i5Rich_';
+
+SET @query = CONCAT('DROP USER IF EXISTS ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('CREATE USER IF NOT EXISTS ', @user_user_full, ' IDENTIFIED BY "', @user_password, '"');
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT UPDATE (score_id) ON ffb_main.fanfictions TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT UPDATE (evaluation) ON ffb_main.fanfictions TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT UPDATE (score_id) ON ffb_main.series TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT UPDATE (evaluation) ON ffb_main.series TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.* TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_tests.* TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @user_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+-- Admin User Setup
+SET @admin_user_full = CONCAT(@admin_user, '@', @localhost_host);
+SET @admin_password = 'Adm1nGrants3*pr1v1leges';
+
+SET @query = CONCAT('DROP USER IF EXISTS ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('CREATE USER IF NOT EXISTS ', @admin_user_full, ' IDENTIFIED BY "', @admin_password, '"');
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.actions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.authors TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fandoms TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fanfictions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fanfictions_characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fanfictions_fandoms TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fanfictions_relations TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.fanfictions_tags TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.languages TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.links TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.ratings TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.relations TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.relations_characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.scores TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.series TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.series_fanfictions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.tags TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.tag_types TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_main.users TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT ON ffb_main.users_actions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, fandom) ON ffb_main.view_data_characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main.view_data_crossovers TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, author, rating, description, language, score, evaluation) ON ffb_main.view_data_fanfictions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT (name, character_name) ON ffb_main.view_data_relations TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_fandoms TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_links TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_relations TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_fanfictions_tags TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_authors TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_characters TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_fandoms TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_fanfictions TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_languages TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_relations TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_main.view_series_tags TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT, INSERT, UPDATE, DELETE ON ffb_tests.* TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
