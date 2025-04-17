@@ -17,6 +17,9 @@ class LinksTableTest extends TestCase
 {
     private LinksTable $linksTable;
 
+    private const EXAMPLE_URL = "http://example.com";
+    private const UPDATED_EXAMPLE_URL = "http://updated-example.com";
+
     protected function setUp(): void
     {
         $this->linksTable = new LinksTable("tests", "user");
@@ -141,7 +144,7 @@ class LinksTableTest extends TestCase
     public function testCreateValid(): void
     {
         $link = (new LinkBuilder())
-            ->withUrl("http://example.com")
+            ->withUrl(self::EXAMPLE_URL)
             ->withFanfictionId(1)
             ->withCreationDate(new DateTime())
             ->withUpdateDate(new DateTime())
@@ -151,38 +154,38 @@ class LinksTableTest extends TestCase
 
         $this->assertInstanceOf(Link::class, $createdLink);
         $this->assertNotNull($createdLink->getId());
-        $this->assertEquals("http://example.com", $createdLink->getUrl());
+        $this->assertEquals(self::EXAMPLE_URL, $createdLink->getUrl());
     }
 
     public function testUpdateValid(): void
     {
-        $link = $this->linksTable->findSearchedBy(["url" => "http://example.com"])[0];
-        $link->setUrl("http://updated-example.com");
+        $link = $this->linksTable->findSearchedBy(["url" => self::EXAMPLE_URL])[0];
+        $link->setUrl(self::UPDATED_EXAMPLE_URL);
         $link->setUpdateDate(new DateTime());
 
         $updatedLink = $this->linksTable->update($link);
 
         $this->assertInstanceOf(Link::class, $updatedLink);
-        $this->assertEquals("http://updated-example.com", $updatedLink->getUrl());
+        $this->assertEquals(self::UPDATED_EXAMPLE_URL, $updatedLink->getUrl());
     }
 
     public function testDeleteValidId(): void
     {
-        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $link = $this->linksTable->findSearchedBy(["url" => self::UPDATED_EXAMPLE_URL])[0];
         $result = $this->linksTable->delete($link->getId());
         $this->assertTrue($result);
     }
 
     public function testRestoreValidId(): void
     {
-        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $link = $this->linksTable->findSearchedBy(["url" => self::UPDATED_EXAMPLE_URL])[0];
         $result = $this->linksTable->restore($link->getId());
         $this->assertTrue($result);
     }
 
     public function testRemoveValidId(): void
     {
-        $link = $this->linksTable->findSearchedBy(["url" => "http://updated-example.com"])[0];
+        $link = $this->linksTable->findSearchedBy(["url" => self::UPDATED_EXAMPLE_URL])[0];
         $result = $this->linksTable->remove($link->getId());
         $this->assertTrue($result);
     }

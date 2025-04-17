@@ -15,6 +15,8 @@ class TagTypesTableTest extends TestCase
 {
     private TagTypesTable $tagTypesTable;
 
+    private const INVALID_COLUMN_EXCEPTION_MESSAGE = "Invalid column name: 'invalid_column'";
+
     /**
      * Set up the TagTypesTable instance before each test.
      */
@@ -71,7 +73,7 @@ class TagTypesTableTest extends TestCase
     public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
 
         $this->tagTypesTable->findSearchedBy(['invalid_column' => 'value']);
     }
@@ -186,7 +188,7 @@ class TagTypesTableTest extends TestCase
     public function testFindAllInvalidSearchCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
 
         $this->tagTypesTable->findAll([
             'search' => ['invalid_column' => 'value']
@@ -199,7 +201,7 @@ class TagTypesTableTest extends TestCase
     public function testFindAllInvalidOrderCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
 
         $this->tagTypesTable->findAll([
             'order' => ['invalid_column' => 'ASC']

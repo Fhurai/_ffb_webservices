@@ -20,6 +20,10 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 class CharactersTableTest extends TestCase
 {
+    private const INVALID_COLUMN_MESSAGE = "Invalid column name: 'invalid_column'";
+    private const NEW_CHARACTER_NAME     = "New Character";
+    private const UPDATED_CHARACTER_NAME = "Updated Character";
+
     private CharactersTable $charactersTable;
 
     protected function setUp(): void
@@ -63,7 +67,7 @@ class CharactersTableTest extends TestCase
     public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->charactersTable->findSearchedBy(['invalid_column' => 'value']);
     }
@@ -119,8 +123,8 @@ class CharactersTableTest extends TestCase
     {
         $result = $this->charactersTable->findAll([
             'search' => ['name' => 'C%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
+            'order'  => ['name' => 'ASC'],
+            'limit'  => ['limit' => 2, 'offset' => 0]
         ]);
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
@@ -133,8 +137,8 @@ class CharactersTableTest extends TestCase
 
         $this->charactersTable->findAll([
             'search' => ['name' => 'Nonexistent%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
+            'order'  => ['name' => 'ASC'],
+            'limit'  => ['limit' => 2, 'offset' => 0]
         ]);
     }
 
@@ -148,7 +152,7 @@ class CharactersTableTest extends TestCase
     public function testFindAllInvalidSearchCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->charactersTable->findAll([
             'search' => ['invalid_column' => 'value']
@@ -158,7 +162,7 @@ class CharactersTableTest extends TestCase
     public function testFindAllInvalidOrderCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->charactersTable->findAll([
             'order' => ['invalid_column' => 'ASC']
@@ -178,7 +182,7 @@ class CharactersTableTest extends TestCase
     public function testCreateValid(): void
     {
         $character = (new CharacterBuilder())
-            ->withName("New Character")
+            ->withName(self::NEW_CHARACTER_NAME)
             ->withFandomId(1)
             ->withCreationDate(new DateTime())
             ->withUpdateDate(new DateTime())
@@ -188,7 +192,7 @@ class CharactersTableTest extends TestCase
 
         $this->assertInstanceOf(Character::class, $createdCharacter);
         $this->assertNotNull($createdCharacter->getId());
-        $this->assertEquals("New Character", $createdCharacter->getName());
+        $this->assertEquals(self::NEW_CHARACTER_NAME, $createdCharacter->getName());
         $this->assertTrue($createdCharacter->hasFandom());
         $this->assertEquals(1, $createdCharacter->getFandomId());
         $this->assertEquals("Avengers", $createdCharacter->getFandom()->getName());
@@ -202,14 +206,14 @@ class CharactersTableTest extends TestCase
 
     public function testUpdateValid(): void
     {
-        $character = $this->charactersTable->findSearchedBy(["name" => "New Character"])[0];
-        $character->setName("Updated Character");
+        $character = $this->charactersTable->findSearchedBy(["name" => self::NEW_CHARACTER_NAME])[0];
+        $character->setName(self::UPDATED_CHARACTER_NAME);
         $character->setUpdateDate(new DateTime());
 
         $updatedCharacter = $this->charactersTable->update($character);
 
         $this->assertInstanceOf(Character::class, $updatedCharacter);
-        $this->assertEquals("Updated Character", $updatedCharacter->getName());
+        $this->assertEquals(self::UPDATED_CHARACTER_NAME, $updatedCharacter->getName());
         $this->assertTrue($updatedCharacter->hasFandom());
         $this->assertEquals(1, $updatedCharacter->getFandomId());
         $this->assertEquals("Avengers", $updatedCharacter->getFandom()->getName());
@@ -223,7 +227,7 @@ class CharactersTableTest extends TestCase
 
     public function testDeleteValidId(): void
     {
-        $character = $this->charactersTable->findSearchedBy(["name" => "Updated Character"])[0];
+        $character = $this->charactersTable->findSearchedBy(["name" => self::UPDATED_CHARACTER_NAME])[0];
         $result = $this->charactersTable->delete($character->getId());
         $this->assertTrue($result);
     }
@@ -236,7 +240,7 @@ class CharactersTableTest extends TestCase
 
     public function testRestoreValidId(): void
     {
-        $character = $this->charactersTable->findSearchedBy(["name" => "Updated Character"])[0];
+        $character = $this->charactersTable->findSearchedBy(["name" => self::UPDATED_CHARACTER_NAME])[0];
         $result = $this->charactersTable->restore($character->getId());
         $this->assertTrue($result);
     }
@@ -249,7 +253,7 @@ class CharactersTableTest extends TestCase
 
     public function testRemoveValidId(): void
     {
-        $character = $this->charactersTable->findSearchedBy(["name" => "Updated Character"])[0];
+        $character = $this->charactersTable->findSearchedBy(["name" => self::UPDATED_CHARACTER_NAME])[0];
         $result = $this->charactersTable->remove($character->getId());
         $this->assertTrue($result);
     }

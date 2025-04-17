@@ -7,6 +7,8 @@ require_once __DIR__ . '/../../src/entity/User.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
 class UserTest extends TestCase
 {
+    private const DEFAULT_TIMEZONE = 'Europe/Paris';
+
     /**
      * Test that the constructor initializes default values correctly.
      */
@@ -24,7 +26,7 @@ class UserTest extends TestCase
         // Test birthday initialization
         $birthday = $user->getBirthday();
         $this->assertInstanceOf(DateTime::class, $birthday);
-        $this->assertSame('Europe/Paris', $birthday->getTimezone()->getName());
+        $this->assertSame(self::DEFAULT_TIMEZONE, $birthday->getTimezone()->getName());
     }
 
     /**
@@ -53,7 +55,7 @@ class UserTest extends TestCase
         $this->assertTrue($user->isNsfw());
 
         // Test birthday
-        $newBirthday = new DateTime('2000-01-01');
+        $newBirthday = new DateTime('2000-01-01', new DateTimeZone(self::DEFAULT_TIMEZONE));
         $user->setBirthday($newBirthday);
         $this->assertSame($newBirthday, $user->getBirthday());
     }
@@ -85,7 +87,7 @@ class UserTest extends TestCase
         $user->setUsername('test_user');
         $user->setEmail('test@example.com');
         $user->setIsAdmin(true);
-        $fixedDate = new DateTime('1990-05-15 08:00:00', new DateTimeZone('Europe/Paris'));
+        $fixedDate = new DateTime('1990-05-15 08:00:00', new DateTimeZone(self::DEFAULT_TIMEZONE));
         $user->setBirthday($fixedDate);
 
         $serialized = $user->jsonSerialize();
@@ -106,7 +108,7 @@ class UserTest extends TestCase
     public function testGetBirthDateFormat(): void
     {
         $user = new User();
-        $fixedDate = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
+        $fixedDate = new DateTime('2023-01-01 12:34:56', new DateTimeZone(self::DEFAULT_TIMEZONE));
         $user->setBirthday($fixedDate);
 
         $this->assertSame('2023-01-01 12:34:56', $user->getBirthDate());

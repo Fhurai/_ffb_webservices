@@ -26,12 +26,14 @@ class SeriesTableTest extends TestCase
 {
     private SeriesTable $seriesTable;
 
+    private const NEW_SERIES_NAME     = "New Series";
+    private const UPDATED_SERIES_NAME = "Updated Series";
+
     /**
      * Set up the test environment by initializing the SeriesTable instance.
      */
     protected function setUp(): void
     {
-        // Initialize the SeriesTable instance with test parameters.
         $this->seriesTable = new SeriesTable("tests", "user");
     }
 
@@ -40,13 +42,8 @@ class SeriesTableTest extends TestCase
      */
     public function testGetValidId(): void
     {
-        // Retrieve a series by a valid ID.
         $result = $this->seriesTable->get(1);
-
-        // Assert that the result is an instance of Series.
         $this->assertInstanceOf(Series::class, $result);
-
-        // Assert that the ID and name of the retrieved series match the expected values.
         $this->assertEquals(1, $result->getId());
         $this->assertEquals("From Innocent Feelings to Post Crisis", $result->getName());
     }
@@ -56,11 +53,9 @@ class SeriesTableTest extends TestCase
      */
     public function testGetInvalidId(): void
     {
-        // Expect an exception when trying to retrieve a series with an invalid ID.
         $this->expectException(FfbTableException::class);
         $this->expectExceptionMessage("No data for arguments provided!");
 
-        // Attempt to retrieve a series with an invalid ID.
         $this->seriesTable->get(0);
     }
 
@@ -69,16 +64,9 @@ class SeriesTableTest extends TestCase
      */
     public function testFindSearchedByValidCriteria(): void
     {
-        // Search for series using valid criteria.
         $result = $this->seriesTable->findSearchedBy(['name' => '%series%']);
-
-        // Assert that the result is an array.
         $this->assertIsArray($result);
-
-        // Assert that the result contains the expected number of items.
         $this->assertCount(2, $result);
-
-        // Assert that the first item in the result is an instance of Series.
         $this->assertInstanceOf(Series::class, $result[0]);
     }
 
@@ -87,16 +75,9 @@ class SeriesTableTest extends TestCase
      */
     public function testFindOrderedByValidCriteria(): void
     {
-        // Retrieve series ordered by valid criteria.
         $result = $this->seriesTable->findOrderedBy(['name' => 'ASC']);
-
-        // Assert that the result is an array.
         $this->assertIsArray($result);
-
-        // Assert that the result contains the expected number of items.
-        $this->assertCount(38, $result); // Adjust count as needed.
-
-        // Assert that the first item's name matches the expected value.
+        $this->assertCount(38, $result);
         $this->assertEquals("A Bonding", $result[0]->getName());
     }
 
@@ -105,13 +86,8 @@ class SeriesTableTest extends TestCase
      */
     public function testFindLimitedByValidCriteria(): void
     {
-        // Retrieve a limited number of series with valid criteria.
         $result = $this->seriesTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
-
-        // Assert that the result is an array.
         $this->assertIsArray($result);
-
-        // Assert that the result contains the expected number of items.
         $this->assertCount(2, $result);
     }
 
@@ -120,17 +96,12 @@ class SeriesTableTest extends TestCase
      */
     public function testFindAllWithCriteria(): void
     {
-        // Retrieve all series with specific criteria.
         $result = $this->seriesTable->findAll([
             'search' => ['name' => '%Boy%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
+            'order'  => ['name' => 'ASC'],
+            'limit'  => ['limit' => 2, 'offset' => 0],
         ]);
-
-        // Assert that the result is an array.
         $this->assertIsArray($result);
-
-        // Assert that the result contains the expected number of items.
         $this->assertCount(2, $result);
     }
 
@@ -139,23 +110,18 @@ class SeriesTableTest extends TestCase
      */
     public function testCreateValid(): void
     {
-        // Build a new series entity with valid data.
         $series = (new SeriesBuilder())
-            ->withName("New Series")
+            ->withName(self::NEW_SERIES_NAME)
             ->withDescription("Description")
             ->withCreationDate(new DateTime())
             ->withUpdateDate(new DateTime())
             ->build();
 
-        // Create the series in the database.
         $createdSeries = $this->seriesTable->create($series);
 
-        // Assert that the created series is an instance of Series.
         $this->assertInstanceOf(Series::class, $createdSeries);
-
-        // Assert that the created series has a non-null ID and matches the expected name.
         $this->assertNotNull($createdSeries->getId());
-        $this->assertEquals("New Series", $createdSeries->getName());
+        $this->assertEquals(self::NEW_SERIES_NAME, $createdSeries->getName());
     }
 
     /**
@@ -163,21 +129,15 @@ class SeriesTableTest extends TestCase
      */
     public function testUpdateValid(): void
     {
-        // Retrieve a series entity to update.
-        $series = $this->seriesTable->findSearchedBy(["name" => "New Series"])[0];
+        $series = $this->seriesTable->findSearchedBy(['name' => self::NEW_SERIES_NAME])[0];
 
-        // Update the series's name and update date.
-        $series->setName("Updated Series");
+        $series->setName(self::UPDATED_SERIES_NAME);
         $series->setUpdateDate(new DateTime());
 
-        // Update the series in the database.
         $updatedSeries = $this->seriesTable->update($series);
 
-        // Assert that the updated series is an instance of Series.
         $this->assertInstanceOf(Series::class, $updatedSeries);
-
-        // Assert that the updated series's name matches the expected value.
-        $this->assertEquals("Updated Series", $updatedSeries->getName());
+        $this->assertEquals(self::UPDATED_SERIES_NAME, $updatedSeries->getName());
     }
 
     /**
@@ -185,13 +145,8 @@ class SeriesTableTest extends TestCase
      */
     public function testDeleteValidId(): void
     {
-        // Retrieve a series entity to delete.
-        $series = $this->seriesTable->findSearchedBy(["name" => "Updated Series"])[0];
-
-        // Delete the series by its ID.
+        $series = $this->seriesTable->findSearchedBy(['name' => self::UPDATED_SERIES_NAME])[0];
         $result = $this->seriesTable->delete($series->getId());
-
-        // Assert that the deletion was successful.
         $this->assertTrue($result);
     }
 
@@ -200,13 +155,8 @@ class SeriesTableTest extends TestCase
      */
     public function testRestoreValidId(): void
     {
-        // Retrieve a series entity to restore.
-        $series = $this->seriesTable->findSearchedBy(["name" => "Updated Series"])[0];
-
-        // Restore the series by its ID.
+        $series = $this->seriesTable->findSearchedBy(['name' => self::UPDATED_SERIES_NAME])[0];
         $result = $this->seriesTable->restore($series->getId());
-
-        // Assert that the restoration was successful.
         $this->assertTrue($result);
     }
 
@@ -215,13 +165,8 @@ class SeriesTableTest extends TestCase
      */
     public function testRemoveValidId(): void
     {
-        // Retrieve a series entity to remove.
-        $series = $this->seriesTable->findSearchedBy(["name" => "Updated Series"])[0];
-
-        // Permanently remove the series by its ID.
+        $series = $this->seriesTable->findSearchedBy(['name' => self::UPDATED_SERIES_NAME])[0];
         $result = $this->seriesTable->remove($series->getId());
-
-        // Assert that the removal was successful.
         $this->assertTrue($result);
     }
 }

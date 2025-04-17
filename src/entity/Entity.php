@@ -9,6 +9,11 @@ require_once __DIR__ . "/../../src/utility/SrcUtilities.php";
 abstract class Entity implements JsonSerializable
 {
     /**
+     * Date format used for serialization.
+     */
+    private const DATE_FORMAT = "Y-m-d H:i:s";
+
+    /**
      * Identifier.
      * @var int
      */
@@ -38,11 +43,11 @@ abstract class Entity implements JsonSerializable
      */
     public function __construct()
     {
-        $now = new DateTime("now", new DateTimeZone("Europe/Paris")); // Current date and time in Paris timezone.
-        $this->setId(0); // Default ID is 0.
-        $this->setCreationDate($now); // Set creation date to current time.
-        $this->setUpdateDate($now); // Set update date to current time.
-        $this->setDeleteDate(null); // Delete date is null by default.
+        $now = new DateTime("now", new DateTimeZone("Europe/Paris"));
+        $this->setId(0);
+        $this->setCreationDate($now);
+        $this->setUpdateDate($now);
+        $this->setDeleteDate(null);
     }
 
     /**
@@ -55,7 +60,7 @@ abstract class Entity implements JsonSerializable
     }
 
     /**
-     * Setter Identifier
+     * Setter Identifier.
      * @param int $id New identifier.
      */
     public function setId(int $id): void
@@ -74,8 +79,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Creation date.
-     * @param DateTime $creation_date New Creation date.
-     * @return void
+     * @param DateTime $creation_date New creation date.
      */
     public function setCreationDate(DateTime $creation_date): void
     {
@@ -93,8 +97,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Update date.
-     * @param DateTime $update_date New Update date.
-     * @return void
+     * @param DateTime $update_date New update date.
      */
     public function setUpdateDate(DateTime $update_date): void
     {
@@ -102,8 +105,8 @@ abstract class Entity implements JsonSerializable
     }
 
     /**
-     * Setter Delete date.
-     * @return DateTime|null Delete date if date set, or null.
+     * Getter Delete date.
+     * @return DateTime|null Delete date if set, or null.
      */
     public function getDeleteDate(): ?DateTime
     {
@@ -111,9 +114,8 @@ abstract class Entity implements JsonSerializable
     }
 
     /**
-     * Setter Delete date
-     * @param DateTime|null $delete_date New Delete date or null.
-     * @return void
+     * Setter Delete date.
+     * @param DateTime|null $delete_date New delete date or null.
      */
     public function setDeleteDate(?DateTime $delete_date = null): void
     {
@@ -121,49 +123,44 @@ abstract class Entity implements JsonSerializable
     }
 
     /**
-     * Method to parse entity into an array for JSON parsing.
-     * Converts the entity's properties into an associative array.
+     * Method to parse entity into an array for JSON serialization.
      * @return array Array of entity data.
      */
     public function jsonSerialize(): array
-{
-    $data = [
-        "id" => $this->id,
-        "creation_date" => $this->creation_date->format("Y-m-d H:i:s"),
-        "update_date" => $this->update_date->format("Y-m-d H:i:s"),
-        "delete_date" => $this->delete_date?->format("Y-m-d H:i:s"),
-    ];
+    {
+        $data = [
+            "id" => $this->id,
+            "creation_date" => $this->creation_date->format(self::DATE_FORMAT),
+            "update_date" => $this->update_date->format(self::DATE_FORMAT),
+            "delete_date" => $this->delete_date?->format(self::DATE_FORMAT),
+        ];
 
-    if (property_exists($this, "_assoc_data")) {
-        $data["_assoc_data"] = $this->_assoc_data;
+        if (property_exists($this, "_assoc_data")) {
+            $data["_assoc_data"] = $this->_assoc_data;
+        }
+
+        return $data;
     }
-
-    return $data;
-}
 
     /**
      * Method to parse a JSON string into an entity object.
-     * Dynamically sets properties based on JSON data.
      * @param string $json JSON string.
      * @return static Parsed object.
      */
     public static function jsonUnserialize(string $json): static
     {
-        $entity = static::getNewObject(); // Create a new instance of the child class.
-        $data = json_decode($json, true); // Decode JSON into an associative array.
+        $entity = static::getNewObject();
+        $data = json_decode($json, true);
 
         foreach ($data as $key => $value) {
-            $setFunction = SrcUtilities::gsFunction("set", $key); // Generate setter method name.
+            $setFunction = SrcUtilities::gsFunction("set", $key);
 
             if (in_array($key, ["creation_date", "update_date", "delete_date", "birthday"])) {
-                // Parse date values if the key matches specific properties.
                 $date = static::parseDate($value);
                 $entity->$setFunction($date);
             } elseif (is_scalar($value) || is_null($value)) {
-                // Directly set scalar or null values.
                 $entity->$setFunction($value);
             } else {
-                // Assign complex data directly to the property.
                 $entity->$key = $value;
             }
         }

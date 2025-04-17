@@ -11,6 +11,8 @@ class SeriesTest extends TestCase
 {
     private Series $series;
 
+    private const TIMEZONE_PARIS = 'Europe/Paris';
+
     protected function setUp(): void
     {
         $this->series = new Series();
@@ -21,25 +23,21 @@ class SeriesTest extends TestCase
      */
     public function testInheritedProperties(): void
     {
-        // Test Entity properties
         $this->series->setId(123);
         $this->assertEquals(123, $this->series->getId());
 
-        $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
+        $date = new DateTime('now', new DateTimeZone(self::TIMEZONE_PARIS));
         $this->series->setCreationDate($date);
         $this->assertSame($date, $this->series->getCreationDate());
 
-        // Test NamedEntity property
         $this->series->setName('Test Series');
         $this->assertEquals('Test Series', $this->series->getName());
 
-        // Test Evaluable trait properties
         $this->series->setScoreId(5);
         $this->series->setEvaluation('4.5 stars');
         $this->assertEquals(5, $this->series->getScoreId());
         $this->assertEquals('4.5 stars', $this->series->getEvaluation());
 
-        // Test edge cases
         $this->series->setScoreId(0);
         $this->assertEquals(0, $this->series->getScoreId());
 
@@ -55,7 +53,6 @@ class SeriesTest extends TestCase
         $this->series->setDescription('Test description');
         $this->assertEquals('Test description', $this->series->getDescription());
 
-        // Test edge case
         $this->series->setDescription('');
         $this->assertEquals('', $this->series->getDescription());
     }
@@ -65,7 +62,6 @@ class SeriesTest extends TestCase
      */
     public function testJsonSerialization(): void
     {
-        // Set basic properties
         $this->series->setId(1);
         $this->series->setName('Great Series');
         $this->series->setDescription('An amazing series');
@@ -73,21 +69,17 @@ class SeriesTest extends TestCase
         $this->series->setEvaluation('Highly recommended');
         $this->series->setFanfictions([new Fanfiction()]);
 
-        // Set date for consistent testing
-        $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
+        $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone(self::TIMEZONE_PARIS));
         $this->series->setCreationDate($date);
         $this->series->setUpdateDate($date);
 
-        // Test without associations
         $result = $this->series->jsonSerialize();
         $this->assertArrayHasKey('fanfictions', $result);
         $this->assertNotEmpty($result['fanfictions']);
 
-        // Add fanfictions association
         $this->series->setFanfictions([new Fanfiction()]);
         $resultWithAssoc = $this->series->jsonSerialize();
 
-        // Test core fields
         $this->assertEquals(1, $resultWithAssoc['id']);
         $this->assertEquals('Great Series', $resultWithAssoc['name']);
         $this->assertEquals('An amazing series', $resultWithAssoc['description']);
@@ -95,12 +87,10 @@ class SeriesTest extends TestCase
         $this->assertEquals('Highly recommended', $resultWithAssoc['evaluation']);
         $this->assertEquals($date->format("Y-m-d H:i:s"), $resultWithAssoc['creation_date']);
 
-        // Test association
         $this->assertArrayHasKey('fanfictions', $resultWithAssoc);
         $this->assertIsArray($resultWithAssoc['fanfictions']);
         $this->assertInstanceOf(Fanfiction::class, $resultWithAssoc['fanfictions'][0]);
 
-        // Test empty fanfictions
         $this->series->setFanfictions([]);
         $resultEmptyAssoc = $this->series->jsonSerialize();
         $this->assertFalse(array_key_exists('fanfictions', $resultEmptyAssoc));
@@ -126,24 +116,21 @@ class SeriesTest extends TestCase
 
         $series = Series::jsonUnserialize($json);
 
-        // Test basic properties
         $this->assertEquals(456, $series->getId());
         $this->assertEquals('Epic Series', $series->getName());
         $this->assertEquals('Fantastic series journey', $series->getDescription());
         $this->assertEquals(7, $series->getScoreId());
         $this->assertEquals('Must read series!', $series->getEvaluation());
 
-        // Test date handling
         $this->assertEquals(
             '2023-02-01 10:15:30',
             $series->getCreationDate()->format('Y-m-d H:i:s')
         );
         $this->assertEquals(
-            'Europe/Paris',
+            self::TIMEZONE_PARIS,
             $series->getCreationDate()->getTimezone()->getName()
         );
 
-        // Test association
         $this->assertIsArray($series->fanfictions);
         $this->assertCount(2, $series->fanfictions);
         $this->assertInstanceOf(Fanfiction::class, $series->fanfictions[0]);
@@ -165,7 +152,6 @@ class SeriesTest extends TestCase
         $this->assertEquals('', $series->getEvaluation());
         $this->assertInstanceOf(DateTime::class, $series->getCreationDate());
 
-        // Test default values
         $this->assertEquals(-1, $series->getScoreId());
         $this->assertEquals('', $series->getEvaluation());
     }

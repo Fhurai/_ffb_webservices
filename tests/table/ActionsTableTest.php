@@ -13,6 +13,8 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
 class ActionsTableTest extends TestCase
 {
+    private const INVALID_COLUMN_MESSAGE = "Invalid column name: 'invalid_column'";
+
     private ActionsTable $actionsTable;
 
     /**
@@ -71,7 +73,7 @@ class ActionsTableTest extends TestCase
     public function testFindSearchedByInvalidCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->actionsTable->findSearchedBy(['invalid_column' => 'value']);
     }
@@ -186,7 +188,7 @@ class ActionsTableTest extends TestCase
     public function testFindAllInvalidSearchCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->actionsTable->findAll([
             'search' => ['invalid_column' => 'value']
@@ -199,7 +201,7 @@ class ActionsTableTest extends TestCase
     public function testFindAllInvalidOrderCriteria(): void
     {
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid column name: 'invalid_column'");
+        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
 
         $this->actionsTable->findAll([
             'order' => ['invalid_column' => 'ASC']
