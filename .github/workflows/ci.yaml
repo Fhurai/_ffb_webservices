@@ -103,7 +103,7 @@ jobs:
     - name: Initialize database
       run: |
         chmod +x ./sql/init.sh
-        ./sql/init.sh
+        cd sql && ./init.sh
 
     - name: Cache Composer dependencies
       uses: actions/cache@v3
