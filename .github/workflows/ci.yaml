@@ -135,8 +135,9 @@ jobs:
       - name: Capture SonarCloud Task ID
         id: capture_task_id
         run: |
-          # Extract task ID from the SonarQube logs
-          TASK_ID=$(grep -oP '(?<=task\?id=)[A-Za-z0-9]+' < path_to_sonarqube_logs_file>)
+          # Fetch the task ID from SonarQube API (Assuming the SonarQube project key is 'your_project_key')
+          RESPONSE=$(curl -s -u ${{ secrets.SONAR_TOKEN }} "https://sonarcloud.io/api/ce/task?id=${{ github.sha }}")
+          TASK_ID=$(echo $RESPONSE | jq -r '.task.id')
           echo "TASK_ID=$TASK_ID" >> $GITHUB_ENV
 
   discord-notification-php-tests:
