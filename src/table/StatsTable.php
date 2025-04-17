@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/Connection.php";
-require_once __DIR__ . "/../exceptions/FfbTableException.php";
+require_once __DIR__ . "/../exception/FfbTableException.php";
 
 readonly class StatsTable
 {

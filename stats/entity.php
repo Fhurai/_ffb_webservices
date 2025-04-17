@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 // Include necessary configuration and utility files
 require_once __DIR__ . '/../config/config.php'; // Application configuration
-require_once __DIR__ . '/../src/utilities/ApiUtilities.php'; // Utility functions for API responses
+require_once __DIR__ . '/../src/utility/ApiUtilities.php'; // Utility functions for API responses
 require_once __DIR__ . '/../src/table/StatsTable.php'; // Database table abstraction for statistics
 
 // Determine the HTTP request method
