@@ -122,6 +122,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install PHP dependencies
+        run: |
+          sudo apt-get install php-xdebug
+          composer install
+
+      - name: Run PHPUnit with coverage
+        run: ./vendor/bin/phpunit --coverage-clover clover.xml
+
       - name: SonarQube Scan
         id: sonar_scan
         uses: SonarSource/sonarqube-scan-action@v5

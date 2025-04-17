@@ -9,6 +9,11 @@
             <group>abstract</group>
         </exclude>
     </groups>
+    <coverage>
+        <report>
+            <clover outputFile="clover.xml"/>
+        </report>
+    </coverage>
     <testsuites>
         <testsuite name="Builder Test Suite">
             <directory suffix="Test.php">./tests/builder</directory>
