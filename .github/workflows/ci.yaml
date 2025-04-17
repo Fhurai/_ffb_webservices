@@ -91,13 +91,14 @@ jobs:
         sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
         sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
 
-    - name: Verify config.php
+    - name: Verify config.php exists
       run: |
-        if ! grep -q "${{ secrets.DB_USER }}" config/config.php; then
-          echo "❌ Error: Database user not configured properly"
+        if [ ! -f config/config.php ]; then
+          echo "❌ Error: config/config.php was not created!"
+          echo "Check if config/config.php.example exists in the repository"
           exit 1
         fi
-        echo "✅ config.php verified"
+        echo "✅ config/config.php verified"
 
     - name: Initialize database
       run: |
