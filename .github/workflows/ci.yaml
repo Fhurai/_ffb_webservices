@@ -28,96 +28,96 @@ jobs:
           --health-retries 3
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup environment
-      run: |
-        echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
-        echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
-        echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-        echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
+      - name: Setup environment
+        run: |
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
+          echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+          echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
-        extensions: mbstring, dom, fileinfo, curl, pdo_mysql
-        coverage: xdebug
-        tools: composer
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, curl, pdo_mysql
+          coverage: xdebug
+          tools: composer
 
-    - name: Configure MySQL client login path
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y expect
-        expect -c '
-          spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
-          expect "Enter password:"
-          send "${{ secrets.MYSQL_ROOT_PASSWORD }}\r"
-          expect eof
-        '
-        mysql_config_editor print --login-path=client
+      - name: Configure MySQL client login path
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y expect
+          expect -c '
+            spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+            expect "Enter password:"
+            send "${{ secrets.MYSQL_ROOT_PASSWORD }}\r"
+            expect eof
+          '
+          mysql_config_editor print --login-path=client
 
-    - name: Create MySQL databases
-      run: |
-        # Create databases
-        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
+      - name: Create MySQL databases
+        run: |
+          # Create databases
+          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
+          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
+          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
 
-        # Create users and grant privileges using secrets
-        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
-        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
-        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
+          # Create users and grant privileges using secrets
+          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
+          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
+          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
 
-        # Grant privileges
-        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-        mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'ffb_guest'@'%';"
-        mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';"
-        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
-        mysql --login-path=client -e "FLUSH PRIVILEGES;"
+          # Grant privileges
+          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
+          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
+          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
+          mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'ffb_guest'@'%';"
+          mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';"
+          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
+          mysql --login-path=client -e "FLUSH PRIVILEGES;"
 
-    - name: Test MySQL connection
-      run: |
-        mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
+      - name: Test MySQL connection
+        run: |
+          mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
 
-    - name: Configure application
-      run: |
-        cp config/config.php.example config/config.php
-        sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
-        sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-        sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
+      - name: Configure application
+        run: |
+          cp config/config.php.example config/config.php
+          sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
+          sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
+          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
 
-    - name: Verify config.php exists
-      run: |
-        if [ ! -f config/config.php ]; then
-          echo "❌ Error: config/config.php was not created!"
-          echo "Check if config/config.php.example exists in the repository"
-          exit 1
-        fi
-        echo "✅ config/config.php verified"
+      - name: Verify config.php exists
+        run: |
+          if [ ! -f config/config.php ]; then
+            echo "❌ Error: config/config.php was not created!"
+            echo "Check if config/config.php.example exists in the repository"
+            exit 1
+          fi
+          echo "✅ config/config.php verified"
 
-    - name: Initialize database
-      run: |
-        chmod +x ./sql/init.sh
-        cd sql && ./init.sh
+      - name: Initialize database
+        run: |
+          chmod +x ./sql/init.sh
+          cd sql && ./init.sh
 
-    - name: Cache Composer dependencies
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Run tests
-      env:
-        DB_DATABASE: ffb_tests
-      run: vendor/bin/phpunit
+      - name: Run tests
+        env:
+          DB_DATABASE: ffb_tests
+        run: vendor/bin/phpunit
 
   sonarqube:
     name: SonarQube Analysis
@@ -125,10 +125,19 @@ jobs:
     needs: php-tests
     steps:
       - uses: actions/checkout@v4
+
       - name: SonarQube Scan
+        id: sonar_scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      
+      - name: Capture SonarCloud Task ID
+        id: capture_task_id
+        run: |
+          # Extract task ID from the SonarQube logs
+          TASK_ID=$(grep -oP '(?<=task\?id=)[A-Za-z0-9]+' < path_to_sonarqube_logs_file>)
+          echo "TASK_ID=$TASK_ID" >> $GITHUB_ENV
 
   discord-notification-php-tests:
     name: Discord Notification - PHP Tests
@@ -187,11 +196,14 @@ jobs:
             IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
 
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
+          TASK_URL="https://sonarcloud.io/api/ce/task?id=${{ env.TASK_ID }}"
+
           PAYLOAD=$(cat <<EOF
           {
             "embeds": [{
               "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})\n**Task Details**: [View Task](${TASK_URL})",
               "color": ${COLOR},
               "image": {
                 "url": "${IMAGE_URL}"
