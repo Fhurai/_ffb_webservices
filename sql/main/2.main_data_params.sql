@@ -1119,16 +1119,16 @@ INSERT INTO `relations` (`name`)
 VALUES 
 ("Angelise Ikaruga Misurugi / Hilda Schlievogt / Tusk"),
 ("Angelise Ikaruga Misurugi / Tusk"),
-/************************************************************************************************************************************/
+
 ("Aerith Gainsborough / Cloud Strife / Tifa Lockheart"),
 ("Aerith Gainsborough / Zack Fair"),
 ("Cloud Strife / Jessie / Tifa Lockheart"),
 ("Cloud Strife / Tifa Lockheart"),
-/************************************************************************************************************************************/
+
 ("Auron / OC"),
 ("Lulu / Wakka"),
 ("Tidus / Yuna"),
-/************************************************************************************************************************************/
+
 ("Albus Severus Potter / Scorpius Malfoy"),
 ("Alice Longbottom / Harry Potter / Lily Evans Potter"),
 ("Alice Longbottom / Harry Potter"),
@@ -1322,10 +1322,10 @@ VALUES
 ("Sirius Black / OFC"),
 ("Theodore Nott / Tracey Davis"),
 ("Tracy Davis / Ronald 'Ron' Weasley"),
-/************************************************************************************************************************************/
+
 ("Alucard / Seras Victoria"),
 ("Integra Hellsing / Lily Evans Potter / Sirius Black"),
-/************************************************************************************************************************************/
+
 ("Aria T'Loak / Councilor Tevos"),
 ("Ashley Williams / Samantha Traynor"),
 ("Ashley Williams / Sha'ira"),
@@ -1340,9 +1340,9 @@ VALUES
 ("Miranda Lawson / Samantha Traynor"),
 ("Miranda Lawson / Shepard (M)"),
 ("Samantha Traynor / Shepard (F)"),
-/************************************************************************************************************************************/
+
 ("Chigusa Nana / Sugimura Kaoru"),
-/************************************************************************************************************************************/
+
 ("Akimichi Choji / Karui"),
 ("Amaru / Uzumaki Naruto"),
 ("Fuka / Uzumaki Naruto"),
@@ -1414,21 +1414,21 @@ VALUES
 ("Uchiwa Sasuke / Uzumaki Naruto"),
 ("Uzumaki Naruto / Yuuhi Kurenai"),
 ("Uzumaki Naruto / Yamanaka Ino"),
-/************************************************************************************************************************************/
+
 ("Tracer | Lena Oxton / Widowmaker | Amelie Lacroix"),
-/************************************************************************************************************************************/
+
 ("James Raynor / Sarah Kerrigan"),
 ("Magistrate / November 'Nova' Terra"),
-/************************************************************************************************************************************/
+
 ("Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg"),
-/************************************************************************************************************************************/
+
 ("Alvis / Shulk"),
 ("Carna | Sharla / Reyn"),
 ("Dunban / Vanea"),
 ("Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk"),
 ("Fiorung | Fiora / Shulk"),
 ("Melia Ancient | Melia Antiqua / Talco | Tyrea"),
-/************************************************************************************************************************************/
+
 ("Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex"),
 ("Hikari | Mythra / Homura | Pyra / Niyah | Nia"),
 ("Hikari | Mythra / Homura | Pyra / Pneuma / Rex"),
@@ -1443,7 +1443,7 @@ VALUES
 ("Niyah | Nia / Rex"),
 ("Ozychlyrus Brounev Tantal | Zeke von Genbu / Saika | Pandoria"),
 ("Pneuma / Rex"),
-/************************************************************************************************************************************/
+
 ("A / Shulk"),
 ("Ashera / Eunie"),
 ("Eunie / Taion"),
