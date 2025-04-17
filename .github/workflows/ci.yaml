@@ -67,7 +67,7 @@ jobs:
         mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
 
         # Create users and grant privileges using secrets
-        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
+        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
         mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
         mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
 
@@ -75,8 +75,8 @@ jobs:
         mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
         mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
         mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-        mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
-        mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
+        mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'ffb_guest'@'%';"
+        mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';"
         mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
         mysql --login-path=client -e "FLUSH PRIVILEGES;"
 
