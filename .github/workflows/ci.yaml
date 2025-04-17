@@ -169,7 +169,7 @@ jobs:
   teams-notification-php-tests:
     name: Teams Notification - PHP Tests
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: php-tests
     steps:
       - name: Send Microsoft Teams notification
         env:
