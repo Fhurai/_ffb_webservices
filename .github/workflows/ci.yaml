@@ -142,7 +142,7 @@ jobs:
     needs: [php-tests, sonarqube]
     steps:
       - name: Send Discord notification
-        if: [failure(), success()]
+        if: always()
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
