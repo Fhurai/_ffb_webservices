@@ -223,6 +223,10 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.php.coverage.reportPaths=clover.xml
+            -Dsonar.scm.provider=git
 
   discord-notification-php-tests:
     name: Discord Notification - PHP Tests
