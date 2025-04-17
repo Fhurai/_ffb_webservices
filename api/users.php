@@ -9,7 +9,7 @@ ApiUtilities::setCorsHeaders(['GET', 'OPTIONS']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     try {
         $decoded = ApiUtilities::decodeJWT();
@@ -31,11 +31,11 @@ if ($method === 'OPTIONS') {
 
         $users = $table->findAll($finalParams);
 
-        $users ? ApiUtilities::HttpOk($users)
-               : ApiUtilities::HttpNotFound("No users found");
+        $users ? ApiUtilities::httpOk($users)
+               : ApiUtilities::httpNotFound("No users found");
     } catch (FfbTableException $e) {
-        ApiUtilities::HttpInternalServerError($e->getMessage());
+        ApiUtilities::httpInternalServerError($e->getMessage());
     }
 } else {
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

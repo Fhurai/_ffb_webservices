@@ -9,7 +9,7 @@ ApiUtilities::setCorsHeaders(['GET', 'OPTIONS']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     try {
         $decoded = ApiUtilities::decodeJWT();
@@ -31,11 +31,11 @@ if ($method === 'OPTIONS') {
 
         $languages = $table->findAll($finalParams);
 
-        $languages ? ApiUtilities::HttpOk($languages)
-               : ApiUtilities::HttpNotFound("No languages found");
+        $languages ? ApiUtilities::httpOk($languages)
+               : ApiUtilities::httpNotFound("No languages found");
     } catch (FfbTableException $e) {
-        ApiUtilities::HttpInternalServerError($e->getMessage());
+        ApiUtilities::httpInternalServerError($e->getMessage());
     }
 } else {
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

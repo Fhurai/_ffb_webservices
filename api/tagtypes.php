@@ -17,7 +17,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     ApiUtilities::decodeJWT(); // Decode JWT token from the request header
 
@@ -27,12 +27,12 @@ if ($method === 'OPTIONS') {
 
     if ($tagTypes) {
         // Respond with the list of tag types if found
-        ApiUtilities::HttpOk($tagTypes);
+        ApiUtilities::httpOk($tagTypes);
     } else {
         // Respond with a 404 error if no tag types are found
-        ApiUtilities::HttpNotFound("No tag types found");
+        ApiUtilities::httpNotFound("No tag types found");
     }
 } else {
     // Respond with a 405 error for unsupported HTTP methods
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

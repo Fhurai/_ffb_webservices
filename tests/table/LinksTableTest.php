@@ -17,8 +17,8 @@ class LinksTableTest extends TestCase
 {
     private LinksTable $linksTable;
 
-    private const EXAMPLE_URL = "http://example.com";
-    private const UPDATED_EXAMPLE_URL = "http://updated-example.com";
+    private const EXAMPLE_URL = "https://example.com";
+    private const UPDATED_EXAMPLE_URL = "https://updated-example.com";
 
     protected function setUp(): void
     {

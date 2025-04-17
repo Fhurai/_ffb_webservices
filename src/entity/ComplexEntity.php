@@ -139,12 +139,12 @@ abstract class ComplexEntity extends NamedEntity
      * @param array|null $property
      * @param string     $name
      * @return array
-     * @throws \RuntimeException
+     * @throws \OutOfBoundsException
      */
     protected function getNullableArrayProperty(?array $property, string $name): array
     {
         if ($property === null) {
-            throw new \RuntimeException(
+            throw new \OutOfBoundsException(
                 "$name is not loaded. Use has" . ucfirst($name) . "() to check first."
             );
         }

@@ -9,7 +9,7 @@ ApiUtilities::setCorsHeaders(['GET', 'OPTIONS']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     try {
         $decoded = ApiUtilities::decodeJWT();
@@ -31,11 +31,11 @@ if ($method === 'OPTIONS') {
 
         $relations = $table->findAll($finalParams);
 
-        $relations ? ApiUtilities::HttpOk($relations)
-               : ApiUtilities::HttpNotFound("No relations found");
+        $relations ? ApiUtilities::httpOk($relations)
+               : ApiUtilities::httpNotFound("No relations found");
     } catch (FfbTableException $e) {
-        ApiUtilities::HttpInternalServerError($e->getMessage());
+        ApiUtilities::httpInternalServerError($e->getMessage());
     }
 } else {
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

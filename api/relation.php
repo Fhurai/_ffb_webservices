@@ -15,15 +15,15 @@ $phpInput = "php://input";
 try {
     switch ($method) {
         case 'OPTIONS':
-            ApiUtilities::HttpOk(null);
+            ApiUtilities::httpOk(null);
             break;
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $Relation = $table->get(SrcUtilities::getQueryParameter('id'));
-            $Relation ? ApiUtilities::HttpOk($Relation)
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $Relation ? ApiUtilities::httpOk($Relation)
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'POST':
@@ -31,10 +31,10 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $data = json_decode(file_get_contents($phpInput));
             if (!isset($data->characters) || !is_array($data->characters)) {
-                ApiUtilities::HttpBadRequest("Characters must be an array");
+                ApiUtilities::httpBadRequest("Characters must be an array");
             }
             if (empty($data->characters)) {
-                ApiUtilities::HttpBadRequest("Characters array cannot be empty");
+                ApiUtilities::httpBadRequest("Characters array cannot be empty");
             } else {
                 $characters = [];
                 $charactersTable = ApiUtilities::getAuthorizedTable($decoded, CharactersTable::class);
@@ -44,7 +44,7 @@ try {
                     } elseif(is_int($character)) {
                         $characters[] = $charactersTable->get($character);
                     } else {
-                        ApiUtilities::HttpBadRequest("Invalid character ID");
+                        ApiUtilities::httpBadRequest("Invalid character ID");
                     }
                 }
             }
@@ -54,8 +54,8 @@ try {
                 ->build();
 
             $createdRelation = $table->create($Relation);
-            $createdRelation ? ApiUtilities::HttpCreated($createdRelation)
-                           : ApiUtilities::HttpBadRequest("Failed to create Relation");
+            $createdRelation ? ApiUtilities::httpCreated($createdRelation)
+                           : ApiUtilities::httpBadRequest("Failed to create Relation");
             break;
 
         case 'PUT':
@@ -66,14 +66,14 @@ try {
 
             $Relation = $table->get($id);
             if (!$Relation) {
-                ApiUtilities::HttpNotFound($notFoundMessage);
+                ApiUtilities::httpNotFound($notFoundMessage);
             }
 
             if (!isset($data->characters) || !is_array($data->characters)) {
-                ApiUtilities::HttpBadRequest("Characters must be an array");
+                ApiUtilities::httpBadRequest("Characters must be an array");
             }
             if (empty($data->characters)) {
-                ApiUtilities::HttpBadRequest("Characters array cannot be empty");
+                ApiUtilities::httpBadRequest("Characters array cannot be empty");
             } else {
                 $characters = [];
                 $charactersTable = ApiUtilities::getAuthorizedTable($decoded, CharactersTable::class);
@@ -83,22 +83,22 @@ try {
                     } elseif(is_int($character)) {
                         $characters[] = $charactersTable->get($character);
                     } else {
-                        ApiUtilities::HttpBadRequest("Invalid character ID");
+                        ApiUtilities::httpBadRequest("Invalid character ID");
                     }
                 }
                 $Relation->setCharacters($characters);
             }
 
             $updatedRelation = $table->update($Relation);
-            ApiUtilities::HttpOk($updatedRelation);
+            ApiUtilities::httpOk($updatedRelation);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
-            $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $success ? ApiUtilities::httpNoContent()
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
@@ -108,19 +108,19 @@ try {
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
-            $success ? ApiUtilities::HttpOk(["message" => "Operation successful"])
-                    : ApiUtilities::HttpNotFound("Operation failed");
+            $success ? ApiUtilities::httpOk(["message" => "Operation successful"])
+                    : ApiUtilities::httpNotFound("Operation failed");
             break;
 
         default:
-            ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+            ApiUtilities::httpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    ApiUtilities::HttpInternalServerError($e->getMessage());
+    ApiUtilities::httpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    ApiUtilities::HttpUnauthorized("Invalid token");
+    ApiUtilities::httpUnauthorized("Invalid token");
 } catch (Error $e) {
-    ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::httpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }

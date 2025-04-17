@@ -14,15 +14,15 @@ $phpInput = "php://input";
 try {
     switch ($method) {
         case 'OPTIONS':
-            ApiUtilities::HttpOk(null);
+            ApiUtilities::httpOk(null);
             break;
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
             $author = $table->get(SrcUtilities::getQueryParameter('id'));
-            $author ? ApiUtilities::HttpOk($author)
-                   : ApiUtilities::HttpNotFound($notFoundMessage);
+            $author ? ApiUtilities::httpOk($author)
+                   : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'POST':
@@ -34,8 +34,8 @@ try {
                 ->build();
 
             $createdAuthor = $table->create($author);
-            $createdAuthor ? ApiUtilities::HttpCreated($createdAuthor)
-                          : ApiUtilities::HttpBadRequest($notFoundMessage);
+            $createdAuthor ? ApiUtilities::httpCreated($createdAuthor)
+                          : ApiUtilities::httpBadRequest($notFoundMessage);
             break;
 
         case 'PUT':
@@ -46,20 +46,20 @@ try {
 
             $author = $table->get($id);
             if (!$author) {
-                ApiUtilities::HttpNotFound("Author not found");
+                ApiUtilities::httpNotFound("Author not found");
             }
 
             $author->setName($data->name ?? $author->getName());
             $updatedAuthor = $table->update($author);
-            ApiUtilities::HttpOk($updatedAuthor);
+            ApiUtilities::httpOk($updatedAuthor);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, AuthorsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
-            $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $success ? ApiUtilities::httpNoContent()
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
@@ -69,19 +69,19 @@ try {
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
-            $success ? ApiUtilities::HttpOk(["message" => "Operation successful"])
-                    : ApiUtilities::HttpNotFound("Operation failed");
+            $success ? ApiUtilities::httpOk(["message" => "Operation successful"])
+                    : ApiUtilities::httpNotFound("Operation failed");
             break;
 
         default:
-            ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+            ApiUtilities::httpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    ApiUtilities::HttpInternalServerError($e->getMessage());
+    ApiUtilities::httpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    ApiUtilities::HttpUnauthorized("Invalid token");
+    ApiUtilities::httpUnauthorized("Invalid token");
 } catch (Error $e) {
-    ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::httpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }

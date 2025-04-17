@@ -17,7 +17,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     // Handle GET requests
     if (array_key_exists('entity', $_GET)) {
@@ -30,20 +30,20 @@ if ($method === 'OPTIONS') {
 
             if ($stats) {
                 // Respond with the list of stats if found
-                ApiUtilities::HttpOk($stats);
+                ApiUtilities::httpOk($stats);
             } else {
                 // Respond with a 404 error if no stats are found
-                ApiUtilities::HttpNotFound("No stat found");
+                ApiUtilities::httpNotFound("No stat found");
             }
         } else {
             // Respond with a 400 error if the parameter is invalid
-            ApiUtilities::HttpBadRequest("Invalid parameter");
+            ApiUtilities::httpBadRequest("Invalid parameter");
         }
     } else {
         // Respond with a 400 error if the 'parameter' query parameter is missing
-        ApiUtilities::HttpBadRequest("Parameter is missing");
+        ApiUtilities::httpBadRequest("Parameter is missing");
     }
 } else {
     // Respond with a 405 error for unsupported HTTP methods
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

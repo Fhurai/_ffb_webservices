@@ -14,15 +14,15 @@ $phpInput = "php://input";
 try {
     switch ($method) {
         case 'OPTIONS':
-            ApiUtilities::HttpOk(null);
+            ApiUtilities::httpOk(null);
             break;
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $fandom = $table->get(SrcUtilities::getQueryParameter('id'));
-            $fandom ? ApiUtilities::HttpOk($fandom)
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $fandom ? ApiUtilities::httpOk($fandom)
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'POST':
@@ -34,8 +34,8 @@ try {
                 ->build();
 
             $createdFandom = $table->create($fandom);
-            $createdFandom ? ApiUtilities::HttpCreated($createdFandom)
-                           : ApiUtilities::HttpBadRequest("Failed to create fandom");
+            $createdFandom ? ApiUtilities::httpCreated($createdFandom)
+                           : ApiUtilities::httpBadRequest("Failed to create fandom");
             break;
 
         case 'PUT':
@@ -47,21 +47,21 @@ try {
 
             $fandom = $table->get($id);
             if (!$fandom) {
-                ApiUtilities::HttpNotFound($notFoundMessage);
+                ApiUtilities::httpNotFound($notFoundMessage);
             }
 
             $fandom->setName($data->name ?? $fandom->getName());
 
             $updatedFandom = $table->update($fandom);
-            ApiUtilities::HttpOk($updatedFandom);
+            ApiUtilities::httpOk($updatedFandom);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
-            $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $success ? ApiUtilities::httpNoContent()
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
@@ -71,19 +71,19 @@ try {
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
-            $success ? ApiUtilities::HttpOk(["message" => "Operation successful"])
-                    : ApiUtilities::HttpNotFound("Operation failed");
+            $success ? ApiUtilities::httpOk(["message" => "Operation successful"])
+                    : ApiUtilities::httpNotFound("Operation failed");
             break;
 
         default:
-            ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+            ApiUtilities::httpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    ApiUtilities::HttpInternalServerError($e->getMessage());
+    ApiUtilities::httpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    ApiUtilities::HttpUnauthorized("Invalid token");
+    ApiUtilities::httpUnauthorized("Invalid token");
 } catch (Error $e) {
-    ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::httpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }

@@ -24,7 +24,7 @@ class ApiUtilities
      *
      * @param object|string|array|null $values Data to encode as JSON (e.g., an array or object).
      */
-    public static function HttpOk(object|string|array|null $values)
+    public static function httpOk(object|string|array|null $values)
     {
         http_response_code(200);
         if ($values !== "") {
@@ -40,7 +40,7 @@ class ApiUtilities
      *
      * @param Entity $entity The entity to include in the response (e.g., a newly created record).
      */
-    public static function HttpCreated(Entity $entity)
+    public static function httpCreated(Entity $entity)
     {
         http_response_code(201);
         echo json_encode($entity);
@@ -51,7 +51,7 @@ class ApiUtilities
      * Sends a 204 No Content response (successful operation with no return data).
      * Terminates the script immediately.
      */
-    public static function HttpNoContent()
+    public static function httpNoContent()
     {
         http_response_code(204);
         exit;
@@ -63,7 +63,7 @@ class ApiUtilities
      *
      * @param string $message Descriptive error message (e.g., "Invalid input format").
      */
-    public static function HttpBadRequest(string $message)
+    public static function httpBadRequest(string $message)
     {
         http_response_code(400);
         echo json_encode(['error' => $message]);
@@ -75,7 +75,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "Authentication required").
      */
-    public static function HttpUnauthorized(string $message)
+    public static function httpUnauthorized(string $message)
     {
         http_response_code(401);
         echo json_encode(['error' => $message]);
@@ -87,7 +87,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "Access denied").
      */
-    public static function HttpForbidden(string $message)
+    public static function httpForbidden(string $message)
     {
         http_response_code(403);
         echo json_encode(['error' => $message]);
@@ -99,7 +99,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "User not found").
      */
-    public static function HttpNotFound(string $message)
+    public static function httpNotFound(string $message)
     {
         http_response_code(404);
         echo json_encode(['error' => $message]);
@@ -111,7 +111,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "GET method not supported").
      */
-    public static function HttpMethodNotAllowed(string $message)
+    public static function httpMethodNotAllowed(string $message)
     {
         http_response_code(405);
         echo json_encode(['error' => $message]);
@@ -123,7 +123,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "Database connection failed").
      */
-    public static function HttpInternalServerError(string $message)
+    public static function httpInternalServerError(string $message)
     {
         http_response_code(500);
         echo json_encode(['error' => $message]);
@@ -135,7 +135,7 @@ class ApiUtilities
      *
      * @param string $message Error message (e.g., "Service temporarily unavailable").
      */
-    public static function HttpServiceUnavailable(string $message)
+    public static function httpServiceUnavailable(string $message)
     {
         http_response_code(503);
         echo json_encode(['error' => $message]);
@@ -211,14 +211,14 @@ class ApiUtilities
 
         try {
             if (!$token) {
-                self::HttpUnauthorized("Unauthorized: No token provided");
+                self::httpUnauthorized("Unauthorized: No token provided");
             }
             return JWT::decode(
                 $token,
                 new Key($config['token']['ffb_secret'], $config['token']['ffb_algorithm'])
             );
         } catch (Exception $e) {
-            self::HttpUnauthorized("Unauthorized: Invalid token");
+            self::httpUnauthorized("Unauthorized: Invalid token");
         }
         return null;
     }

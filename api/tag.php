@@ -14,15 +14,15 @@ $phpInput = "php://input";
 try {
     switch ($method) {
         case 'OPTIONS':
-            ApiUtilities::HttpOk(null);
+            ApiUtilities::httpOk(null);
             break;
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $tag = $table->get(SrcUtilities::getQueryParameter('id'));
-            $tag ? ApiUtilities::HttpOk($tag)
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $tag ? ApiUtilities::httpOk($tag)
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'POST':
@@ -36,8 +36,8 @@ try {
                 ->build();
 
             $createdTag = $table->create($tag);
-            $createdTag ? ApiUtilities::HttpCreated($createdTag)
-                           : ApiUtilities::HttpBadRequest("Failed to create tag");
+            $createdTag ? ApiUtilities::httpCreated($createdTag)
+                           : ApiUtilities::httpBadRequest("Failed to create tag");
             break;
 
         case 'PUT':
@@ -48,7 +48,7 @@ try {
 
             $tag = $table->get($id);
             if (!$tag){
-                ApiUtilities::HttpNotFound($notFoundMessage);
+                ApiUtilities::httpNotFound($notFoundMessage);
             }
 
             $tag->setName($data->tagname ?? $tag->getName());
@@ -56,15 +56,15 @@ try {
             $tag->setTypeId($data->type_id ?? $tag->getTypeId());
 
             $updatedTag = $table->update($tag);
-            ApiUtilities::HttpOk($updatedTag);
+            ApiUtilities::httpOk($updatedTag);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
-            $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $success ? ApiUtilities::httpNoContent()
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
@@ -74,19 +74,19 @@ try {
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
-            $success ? ApiUtilities::HttpOk(["message" => "Operation successful"])
-                    : ApiUtilities::HttpNotFound("Operation failed");
+            $success ? ApiUtilities::httpOk(["message" => "Operation successful"])
+                    : ApiUtilities::httpNotFound("Operation failed");
             break;
 
         default:
-            ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+            ApiUtilities::httpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    ApiUtilities::HttpInternalServerError($e->getMessage());
+    ApiUtilities::httpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    ApiUtilities::HttpUnauthorized("Invalid token");
+    ApiUtilities::httpUnauthorized("Invalid token");
 } catch (Error $e) {
-    ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::httpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }

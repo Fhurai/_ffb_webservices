@@ -9,7 +9,7 @@ ApiUtilities::setCorsHeaders(['GET', 'OPTIONS']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'OPTIONS') {
-    ApiUtilities::HttpOk(null);
+    ApiUtilities::httpOk(null);
 } elseif ($method === 'GET') {
     try {
         $decoded = ApiUtilities::decodeJWT();
@@ -31,11 +31,11 @@ if ($method === 'OPTIONS') {
 
         $tags = $table->findAll($finalParams);
 
-        $tags ? ApiUtilities::HttpOk($tags)
-               : ApiUtilities::HttpNotFound("No tags found");
+        $tags ? ApiUtilities::httpOk($tags)
+               : ApiUtilities::httpNotFound("No tags found");
     } catch (FfbTableException $e) {
-        ApiUtilities::HttpInternalServerError($e->getMessage());
+        ApiUtilities::httpInternalServerError($e->getMessage());
     }
 } else {
-    ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+    ApiUtilities::httpMethodNotAllowed("Method not allowed");
 }

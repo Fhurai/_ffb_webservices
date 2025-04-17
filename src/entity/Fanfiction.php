@@ -8,420 +8,183 @@ require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
  */
 final class Fanfiction extends ComplexEntity
 {
-    use EntityTrait, EvaluableTrait;
+    use EntityTrait, EvaluableTrait, LazyAssociationTrait;
 
-    /**
-     * Author_id.
-     * @var int
-     */
-    private int $author_id;
-    /**
-     * Associated Author entity (loaded only when needed).
-     * @var Author|null
-     */
+    private int $authorId;
     private ?Author $author = null;
-    /**
-     * Rating_id.
-     * @var int
-     */
-    private int $rating_id;
-    /**
-     * Associated Rating entity (loaded only when needed).
-     * @var Rating|null
-     */
+
+    private int $ratingId;
     private ?Rating $rating = null;
-    /**
-     * Description.
-     * @var string
-     */
+
     private string $description;
-    /**
-     * Language_id.
-     * @var int
-     */
-    private int $language_id;
-    /**
-     * Associated Language entity (loaded only when needed).
-     * @var Language|null
-     */
+
+    private int $languageId;
     private ?Language $language = null;
-    /**
-     * Fandoms associated with the Fanfiction.
-     * @var array|null
-     */
+
     private ?array $fandoms = null;
-    /**
-     * Associated Score entity (loaded only when needed).
-     * @var array|null
-     */
     private ?array $characters = null;
-    /**
-     * Associated Score entity (loaded only when needed).
-     * @var array|null
-     */
     private ?array $relations = null;
-    /**
-     * Associated Score entity (loaded only when needed).
-     * @var array|null
-     */
     private ?array $tags = null;
-    /**
-     * Associated with the Fanfiction (loaded only when needed).
-     * @var array|null
-     */
     private ?array $links = null;
 
-    /**
-     * Implied constructor.
-     */
     public function __construct()
     {
         parent::__construct();
-        $this->setAuthorId(-1);
-        $this->setRatingId(-1);
-        $this->setDescription("");
-        $this->setLanguageId(-1);
-        $this->setScoreId(-1);
-        $this->setEvaluation("");
+        $this->authorId = -1;
+        $this->ratingId = -1;
+        $this->description = "";
+        $this->languageId = -1;
+        $this->scoreId = -1;
+        $this->evaluation = "";
     }
 
-    /**
-     * Getter Author_id.
-     * @return int Author_id.
-     */
     public function getAuthorId(): int
     {
-        return $this->author_id;
+        return $this->authorId;
     }
-
-    /**
-     * Setter Author_id.
-     * @param int $author_id New Author_id.
-     * @return void
-     */
-    public function setAuthorId(int $author_id): void
+    public function setAuthorId(int $id): void
     {
-        $this->author_id = $author_id;
+        $this->authorId = $id;
     }
 
-    /**
-     * Getter Author.
-     * @return Author|null Author.
-     */
-    public function getAuthor(): ?Author
+    public function getAuthor(): Author
     {
-        if (!$this->author) {
-            throw new \RuntimeException("author is not loaded. Use hasAuthor() to check first.");
-        }
-        return $this->author;
+        return $this->getRequiredAssociation($this->author, 'author');
     }
-
-    /**
-     * Check if author is loaded.
-     *
-     * @return bool
-     */
     public function hasAuthor(): bool
     {
         return $this->author !== null;
     }
-
-    /**
-     * Setter Author.
-     * @param Author|array $author New Author.
-     * @return void
-     */
     public function setAuthor(Author|array $author): void
     {
-        if (is_array($author)) {
-            $this->author = Author::jsonUnserialize(json_encode($author));
-        } else {
-            $this->author = $author;
-        }
+        $this->author = $this->setAssociation(Author::class, $author);
     }
 
-    /**
-     * Getter Rating_id.
-     * @return int Rating_id.
-     */
     public function getRatingId(): int
     {
-        return $this->rating_id;
+        return $this->ratingId;
     }
-
-    /**
-     * Setter Rating_id.
-     * @param int $rating_id New Rating_id.
-     * @return void
-     */
-    public function setRatingId(int $rating_id): void
+    public function setRatingId(int $id): void
     {
-        $this->rating_id = $rating_id;
+        $this->ratingId = $id;
     }
 
-    /**
-     * Getter Rating.
-     * @return Rating|null Rating.
-     */
-    public function getRating(): ?Rating
+    public function getRating(): Rating
     {
-        if (!$this->rating) {
-            throw new \RuntimeException("rating is not loaded. Use hasRating() to check first.");
-        }
-        return $this->rating;
+        return $this->getRequiredAssociation($this->rating, 'rating');
     }
-
-    /**
-     * Check if rating is loaded.
-     *
-     * @return bool
-     */
     public function hasRating(): bool
     {
         return $this->rating !== null;
     }
-
-    /**
-     * Setter Rating.
-     * @param Rating|array $rating New Rating.
-     * @return void
-     */
     public function setRating(Rating|array $rating): void
     {
-        if (is_array($rating)) {
-            $this->rating = Rating::jsonUnserialize(json_encode($rating));
-        } else {
-            $this->rating = $rating;
-        }
+        $this->rating = $this->setAssociation(Rating::class, $rating);
     }
 
-    /**
-     * Getter Description.
-     * @return string Description.
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
-
-    /**
-     * Setter Description.
-     * @param string $description New Description.
-     * @return void
-     */
-    public function setDescription(string $description): void
+    public function setDescription(string $desc): void
     {
-        $this->description = $description;
+        $this->description = $desc;
     }
 
-    /**
-     * Getter Language_id.
-     * @return int Language_id.
-     */
     public function getLanguageId(): int
     {
-        return $this->language_id;
+        return $this->languageId;
     }
-
-    /**
-     * Setter Language_id.
-     * @param string $language_id Language_id.
-     * @return void
-     */
-    public function setLanguageId(string $language_id): void
+    public function setLanguageId(int $id): void
     {
-        $this->language_id = $language_id;
+        $this->languageId = $id;
     }
 
-    /**
-     * Getter Language.
-     * @return Language|null Language.
-     */
-    public function getLanguage(): ?Language
+    public function getLanguage(): Language
     {
-        if (!$this->language) {
-            throw new \RuntimeException("language is not loaded. Use hasLanguage() to check first.");
-        }
-        return $this->language;
+        return $this->getRequiredAssociation($this->language, 'language');
     }
-
-    /**
-     * Check if language is loaded.
-     *
-     * @return bool
-     */
     public function hasLanguage(): bool
     {
         return $this->language !== null;
     }
-
-    /**
-     * Setter Language.
-     * @param Language|array $language New Language.
-     * @return void
-     */
     public function setLanguage(Language|array $language): void
     {
-        if (is_array($language)) {
-            $this->language = Language::jsonUnserialize(json_encode($language));
-        } else {
-            $this->language = $language;
-        }
+        $this->language = $this->setAssociation(Language::class, $language);
     }
 
-    /**
-     * Setter Fandoms.
-     * @param array $fandoms New Fandoms.
-     * @return void
-     */
     public function setFandoms(array $fandoms): void
     {
-        $this->fandoms = $this->setArrayProperty($fandoms, Fandom::class);
+        $this->fandoms = $this->setArrayAssociation($fandoms, Fandom::class);
     }
-
-    /**
-     * Getter Fandoms.
-     * @return array|null
-     */
-    public function getFandoms(): ?array
+    public function getFandoms(): array
     {
-        return $this->getNullableArrayProperty($this->fandoms, "fandoms");
+        return $this->getNullableArrayAssociation($this->fandoms, 'fandoms');
     }
-
-    /**
-     * Check if fandoms are loaded.
-     *
-     * @return bool
-     */
     public function hasFandoms(): bool
     {
         return $this->fandoms !== null;
     }
 
-    /**
-     * Setter Characters.
-     * @param array $characters New Characters.
-     * @return void
-     */
     public function setCharacters(array $characters): void
     {
-        $this->characters = $this->setArrayProperty($characters, Character::class);
+        $this->characters = $this->setArrayAssociation($characters, Character::class);
     }
-
-    /**
-     * Getter Characters.
-     * @return array|null
-     */
-    public function getCharacters(): ?array
+    public function getCharacters(): array
     {
-        return $this->getNullableArrayProperty($this->characters, "characters");
+        return $this->getNullableArrayAssociation($this->characters, 'characters');
     }
-
-    /**
-     * Check if characters are loaded.
-     *
-     * @return bool
-     */
     public function hasCharacters(): bool
     {
         return $this->characters !== null;
     }
 
-    /**
-     * Setter Relations.
-     * @param array $relations New Relations.
-     * @return void
-     */
     public function setRelations(array $relations): void
     {
-        $this->relations = $this->setArrayProperty($relations, Relation::class);
+        $this->relations = $this->setArrayAssociation($relations, Relation::class);
     }
-
-    /**
-     * Getter Relations.
-     * @return array|null
-     */
-    public function getRelations(): ?array
+    public function getRelations(): array
     {
-        return $this->getNullableArrayProperty($this->relations, "relations");
+        return $this->getNullableArrayAssociation($this->relations, 'relations');
     }
-
-    /**
-     * Check if relations are loaded.
-     *
-     * @return bool
-     */
     public function hasRelations(): bool
     {
         return $this->relations !== null;
     }
 
-    /**
-     * Setter Tags.
-     * @param array $tags New Tags.
-     * @return void
-     */
     public function setTags(array $tags): void
     {
-        $this->tags = $this->setArrayProperty($tags, Tag::class);
+        $this->tags = $this->setArrayAssociation($tags, Tag::class);
     }
-
-    /**
-     * Getter Tags.
-     * @return array|null
-     */
-    public function getTags(): ?array
+    public function getTags(): array
     {
-        return $this->getNullableArrayProperty($this->tags, "tags");
+        return $this->getNullableArrayAssociation($this->tags, 'tags');
     }
-
-    /**
-     * Check if tags are loaded.
-     *
-     * @return bool
-     */
     public function hasTags(): bool
     {
         return $this->tags !== null;
     }
 
-    /**
-     * Setter Links.
-     * @param array $links New Links.
-     * @return void
-     */
     public function setLinks(array $links): void
     {
-        $this->links = $this->setArrayProperty($links, Link::class);
+        $this->links = $this->setArrayAssociation($links, Link::class);
     }
-
-    /**
-     * Getter Links.
-     * @return array|null
-     */
-    public function getLinks(): ?array
+    public function getLinks(): array
     {
-        return $this->getNullableArrayProperty($this->links, "links");
+        return $this->getNullableArrayAssociation($this->links, 'links');
     }
-
-    /**
-     * Check if links are loaded.
-     *
-     * @return bool
-     */
     public function hasLinks(): bool
     {
         return $this->links !== null;
     }
 
-    /**
-     * List of association properties for JSON serialization.
-     */
-    protected function getAssociationProperties(): array {
+    protected function getAssociationProperties(): array
+    {
         return ["author", "fandoms", "language", "relations", "characters", "tags", "links", "score"];
     }
 
-    public function jsonSerialize(): array {
+    public function jsonSerialize(): array
+    {
         $associations = [];
         foreach ($this->getAssociationProperties() as $prop) {
             if ($this->{"has" . ucfirst($prop)}()) {
@@ -429,10 +192,10 @@ final class Fanfiction extends ComplexEntity
             }
         }
         return array_merge(parent::jsonSerialize(), [
-            "author_id" => $this->author_id,
-            "rating_id" => $this->rating_id,
+            "author_id" => $this->authorId,
+            "rating_id" => $this->ratingId,
             "description" => $this->description,
-            "language_id" => $this->language_id,
+            "language_id" => $this->languageId,
             "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
         ], $associations);

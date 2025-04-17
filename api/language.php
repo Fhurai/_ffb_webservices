@@ -14,15 +14,15 @@ $phpInput = "php://input";
 try {
     switch ($method) {
         case 'OPTIONS':
-            ApiUtilities::HttpOk(null);
+            ApiUtilities::httpOk(null);
             break;
 
         case 'GET':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $language = $table->get(SrcUtilities::getQueryParameter('id'));
-            $language ? ApiUtilities::HttpOk($language)
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $language ? ApiUtilities::httpOk($language)
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'POST':
@@ -35,8 +35,8 @@ try {
                 ->build();
 
             $createdLanguage = $table->create($language);
-            $createdLanguage ? ApiUtilities::HttpCreated($createdLanguage)
-                           : ApiUtilities::HttpBadRequest("Failed to create language");
+            $createdLanguage ? ApiUtilities::httpCreated($createdLanguage)
+                           : ApiUtilities::httpBadRequest("Failed to create language");
             break;
 
         case 'PUT':
@@ -47,21 +47,21 @@ try {
 
             $language = $table->get($id);
             if (!$language) {
-                ApiUtilities::HttpNotFound($notFoundMessage);
+                ApiUtilities::httpNotFound($notFoundMessage);
             }
 
             $language->setName($data->name ?? $language->getName());
             $language->setAbbreviation($data->abbreviation ?? $language->getAbbreviation());
             $updatedLanguage = $table->update($language);
-            ApiUtilities::HttpOk($updatedLanguage);
+            ApiUtilities::httpOk($updatedLanguage);
             break;
 
         case 'DELETE':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
-            $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound($notFoundMessage);
+            $success ? ApiUtilities::httpNoContent()
+                    : ApiUtilities::httpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
@@ -71,19 +71,19 @@ try {
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
-            $success ? ApiUtilities::HttpOk(["message" => "Operation successful"])
-                    : ApiUtilities::HttpNotFound("Operation failed");
+            $success ? ApiUtilities::httpOk(["message" => "Operation successful"])
+                    : ApiUtilities::httpNotFound("Operation failed");
             break;
 
         default:
-            ApiUtilities::HttpMethodNotAllowed("Method not allowed");
+            ApiUtilities::httpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    ApiUtilities::HttpInternalServerError($e->getMessage());
+    ApiUtilities::httpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    ApiUtilities::HttpUnauthorized("Invalid token");
+    ApiUtilities::httpUnauthorized("Invalid token");
 } catch (Error $e) {
-    ApiUtilities::HttpInternalServerError("An error occurred with given data.");
+    ApiUtilities::httpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }
