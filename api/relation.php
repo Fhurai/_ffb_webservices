@@ -9,6 +9,8 @@ require_once __DIR__ . '/../src/builder/RelationBuilder.php';
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$notFoundMessage = "Relation not found";
+$phpInput = "php://input";
 
 try {
     switch ($method) {
@@ -21,13 +23,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $Relation = $table->get(SrcUtilities::getQueryParameter('id'));
             $Relation ? ApiUtilities::HttpOk($Relation)
-                    : ApiUtilities::HttpNotFound("Relation not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             if (!isset($data->characters) || !is_array($data->characters)) {
                 ApiUtilities::HttpBadRequest("Characters must be an array");
             }
@@ -60,10 +62,12 @@ try {
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $id = SrcUtilities::getQueryParameter('id');
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
 
             $Relation = $table->get($id);
-            if (!$Relation) ApiUtilities::HttpNotFound("Relation not found");
+            if (!$Relation) {
+                ApiUtilities::HttpNotFound($notFoundMessage);
+            }
 
             if (!isset($data->characters) || !is_array($data->characters)) {
                 ApiUtilities::HttpBadRequest("Characters must be an array");
@@ -94,13 +98,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Relation not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, RelationsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
@@ -112,15 +116,11 @@ try {
             ApiUtilities::HttpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpUnauthorized("Invalid token");
 } catch (Error $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An error occurred with given data.");
 } catch (Throwable $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }

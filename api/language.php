@@ -8,6 +8,8 @@ require_once __DIR__ . '/../src/builder/LanguageBuilder.php';
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$notFoundMessage = "Language not found";
+$phpInput = "php://input";
 
 try {
     switch ($method) {
@@ -20,13 +22,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $language = $table->get(SrcUtilities::getQueryParameter('id'));
             $language ? ApiUtilities::HttpOk($language)
-                    : ApiUtilities::HttpNotFound("Language not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $language = (new LanguageBuilder())
                 ->withName($data->name ?? null)
                 ->withAbbreviation($data->abbreviation ?? null)
@@ -41,10 +43,12 @@ try {
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $id = SrcUtilities::getQueryParameter('id');
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
 
             $language = $table->get($id);
-            if (!$language) ApiUtilities::HttpNotFound("Language not found");
+            if (!$language) {
+                ApiUtilities::HttpNotFound($notFoundMessage);
+            }
 
             $language->setName($data->name ?? $language->getName());
             $language->setAbbreviation($data->abbreviation ?? $language->getAbbreviation());
@@ -57,13 +61,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Language not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, LanguagesTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);

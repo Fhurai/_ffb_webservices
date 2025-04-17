@@ -8,6 +8,8 @@ require_once __DIR__ . '/../src/builder/FandomBuilder.php';
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$notFoundMessage = "Fandom not found";
+$phpInput = "php://input";
 
 try {
     switch ($method) {
@@ -20,13 +22,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $fandom = $table->get(SrcUtilities::getQueryParameter('id'));
             $fandom ? ApiUtilities::HttpOk($fandom)
-                    : ApiUtilities::HttpNotFound("Fandom not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $fandom = (new FandomBuilder())
                 ->withName($data->name ?? null)
                 ->build();
@@ -40,11 +42,13 @@ try {
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $id = SrcUtilities::getQueryParameter('id');
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
 
 
             $fandom = $table->get($id);
-            if (!$fandom) ApiUtilities::HttpNotFound("Fandom not found");
+            if (!$fandom) {
+                ApiUtilities::HttpNotFound($notFoundMessage);
+            }
 
             $fandom->setName($data->name ?? $fandom->getName());
 
@@ -57,13 +61,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Fandom not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, FandomsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);

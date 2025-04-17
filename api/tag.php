@@ -8,6 +8,8 @@ require_once __DIR__ . '/../src/builder/TagBuilder.php';
 ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$notFoundMessage = "Tag not found";
+$phpInput = "php://input";
 
 try {
     switch ($method) {
@@ -20,13 +22,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $tag = $table->get(SrcUtilities::getQueryParameter('id'));
             $tag ? ApiUtilities::HttpOk($tag)
-                    : ApiUtilities::HttpNotFound("Tag not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'POST':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $tag = (new TagBuilder())
                 ->withName($data->name ?? null)
                 ->withDescription($data->description ?? null)
@@ -42,10 +44,12 @@ try {
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $id = SrcUtilities::getQueryParameter('id');
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
 
             $tag = $table->get($id);
-            if (!$tag) ApiUtilities::HttpNotFound("Tag not found");
+            if (!$tag){
+                ApiUtilities::HttpNotFound($notFoundMessage);
+            }
 
             $tag->setName($data->tagname ?? $tag->getName());
             $tag->setDescription($data->description ?? $tag->getDescription());
@@ -60,13 +64,13 @@ try {
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
             $success = $table->remove(SrcUtilities::getQueryParameter('id'));
             $success ? ApiUtilities::HttpNoContent()
-                    : ApiUtilities::HttpNotFound("Tag not found");
+                    : ApiUtilities::HttpNotFound($notFoundMessage);
             break;
 
         case 'PATCH':
             $decoded = ApiUtilities::decodeJWT();
             $table = ApiUtilities::getAuthorizedTable($decoded, TagsTable::class);
-            $data = json_decode(file_get_contents("php://input"));
+            $data = json_decode(file_get_contents($phpInput));
             $id = SrcUtilities::getQueryParameter('id');
 
             $success = $data->deleted ? $table->delete($id) : $table->restore($id);
@@ -78,16 +82,11 @@ try {
             ApiUtilities::HttpMethodNotAllowed("Method not allowed");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError($e->getMessage());
 } catch (Exception $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpUnauthorized("Invalid token");
 } catch (Error $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An error occurred with given data.");
-    ApiUtilities::HttpBadRequest($e->getMessage());
 } catch (Throwable $e) {
-    error_log("General Exception: " . $e->getMessage() . "\nStack Trace: " . $e->getTraceAsString());
     ApiUtilities::HttpInternalServerError("An unexpected error occurred: " . $e->getMessage());
 }
