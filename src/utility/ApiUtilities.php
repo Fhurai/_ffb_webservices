@@ -207,7 +207,7 @@ class ApiUtilities
     public static function decodeJWT(): mixed
     {
         $token = self::getBearerToken();
-        $config = include __DIR__ . "/../../config/config.php";
+        $config = include_once __DIR__ . "/../../config/config.php";
 
         try {
             if (!$token) {

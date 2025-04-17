@@ -67,7 +67,7 @@ class Connection
         }
 
         // If connection type is known, then use config file.
-        $configFile = include __DIR__ . "/../../config/config.php";
+        $configFile = include_once __DIR__ . "/../../config/config.php";
 
         try {
             // Creation of Php Database Object with provided data from config.

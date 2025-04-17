@@ -35,7 +35,7 @@ try {
 
     // Verify password
     if (password_verify($password, $user->getPassword())) {
-        $configFile = include __DIR__ . "/../config/config.php";
+        $configFile = include_once __DIR__ . "/../config/config.php";
         // JWT Secret Key (store this securely in environment variables)
         $secretKey = $configFile['token']['ffb_secret']; // Use secret key from config
         $issuedAt = time();

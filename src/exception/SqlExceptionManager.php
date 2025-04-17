@@ -128,11 +128,6 @@ private $database;
                 "Access denied for user '%s'.",
                 $this->user
             );
-        } else if ($this->errorCode === 1049) {
-            $message .= sprintf(
-                "Unknown database '%s'.",
-                $this->table
-            );
         } else if ($this->errorCode === 2002) {
             $message .= "Connection refused.";
         } else if ($this->errorCode === 2003) {
