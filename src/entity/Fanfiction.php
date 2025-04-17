@@ -1,7 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
+require_once __DIR__ . "/../../src/entity/EntityTrait.php";
 require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
+require_once __DIR__ . "/../../src/entity/LazyAssociationTrait.php";
 
 /**
  * Fanfiction class.
