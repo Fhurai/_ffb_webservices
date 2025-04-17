@@ -12,17 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.2', '8.3', '8.4']
+        php-version: ['8.2', '8.3']  # Removed 8.4 until officially supported
 
     services:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         ports:
           - 3306:3306
         options: >-
-          --health-cmd "mysqladmin ping -p$$MYSQL_ROOT_PASSWORD"
+          --health-cmd "mysqladmin ping -p$MYSQL_ROOT_PASSWORD"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 3
@@ -34,8 +34,10 @@ jobs:
     - name: Setup environment
       run: |
         echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+        echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
         echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
         echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+        echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -52,7 +54,7 @@ jobs:
         expect -c '
           spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
           expect "Enter password:"
-          send "root\r"
+          send "${{ secrets.MYSQL_ROOT_PASSWORD }}\r"
           expect eof
         '
         mysql_config_editor print --login-path=client
@@ -60,53 +62,47 @@ jobs:
     - name: Create MySQL databases
       run: |
         # Create databases
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
+        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
+        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
+        mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
 
-        # Create users and grant privileges (passwords match config.php)
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '1Gu3stIsw4yBetter*';"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY 'MyUs3R5*i5Rich_';"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges';"
+        # Create users and grant privileges using secrets
+        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
+        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
+        mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
 
         # Grant privileges
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
-
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%';"
-
-        # Apply changes
-        mysql -h 127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
-
-        # Verify
-        mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
-        mysql -h 127.0.0.1 -uroot -proot -e "SELECT user, host FROM mysql.user;"
+        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
+        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
+        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
+        mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
+        mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
+        mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
+        mysql --login-path=client -e "FLUSH PRIVILEGES;"
 
     - name: Test MySQL connection
       run: |
-        mysql -h 127.0.0.1 -uffb_user -pMyUs3R5*i5Rich_ -e "SHOW DATABASES;" || echo "Connection failed"
+        mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
 
-    - name: Config file
-      run: cp config/config.php.example config/config.php
-
-    - name: Verify config.php exists
+    - name: Configure application
       run: |
-        if [ ! -f config/config.php ]; then
-          echo "❌ Error: config/config.php was not created!"
-          echo "Check if config/config.php.example exists in the repository"
+        cp config/config.php.example config/config.php
+        sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
+        sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
+        sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
+
+    - name: Verify config.php
+      run: |
+        if ! grep -q "${{ secrets.DB_USER }}" config/config.php; then
+          echo "❌ Error: Database user not configured properly"
           exit 1
         fi
-        echo "✅ config/config.php verified"
+        echo "✅ config.php verified"
 
-    - name: Permission init
-      run: chmod +x ./sql/init.sh
-
-    - name: Initializing the database
-      run: cd sql && ./init.sh
+    - name: Initialize database
+      run: |
+        chmod +x ./sql/init.sh
+        ./sql/init.sh
 
     - name: Cache Composer dependencies
       uses: actions/cache@v3
@@ -127,33 +123,28 @@ jobs:
     runs-on: ubuntu-latest
     needs: php-tests
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  discord-notification:
-    name: Discord Notification
+    discord-notification-php-tests:
+    name: Discord Notification - PHP Tests
     runs-on: ubuntu-latest
-    needs: [php-tests, sonarqube]
+    needs: php-tests
     steps:
       - name: Send Discord notification
         if: always()
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           STATUS="${{ job.status }}"
           if [ "$STATUS" = "success" ]; then
             COLOR=3066993
-            MESSAGE="✅ PHP CI Pipeline Succeeded"
+            MESSAGE="✅ FFB Webservices - Tests Succeeded"
             IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
           else
             COLOR=15158332
-            MESSAGE="❌ PHP CI Pipeline Failed"
+            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
             IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
 
@@ -173,4 +164,43 @@ jobs:
           )
 
           curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-        continue-on-error: true
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+  discord-notification-sonarqube:
+    name: Discord Notification - SonarQube Analysis
+    runs-on: ubuntu-latest
+    needs: sonarqube
+    steps:
+      - name: Send Discord notification
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR=3066993
+            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR=15158332
+            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "embeds": [{
+              "title": "${MESSAGE}",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+              "color": ${COLOR},
+              "image": {
+                "url": "${IMAGE_URL}"
+              },
+              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            }]
+          }
+          EOF
+          )
+
+          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
