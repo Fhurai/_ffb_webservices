@@ -1,4 +1,4 @@
-name: PHP CI
+name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
@@ -7,13 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
-  php-tests:
-    name: PHP ${{ matrix.php-version }} Tests
+  # Job 1: Checkout code and set up environment variables
+  checkout-setup:
+    name: Checkout and Environment Setup
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: ['8.2', '8.3', '8.4']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Set up environment variables
+        run: |
+          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+
+  # Job 2: MySQL Setup
+  mysql-setup:
+    name: MySQL Setup
+    runs-on: ubuntu-latest
+    needs: checkout-setup
     services:
       mysql:
         image: mysql:8.0
@@ -26,139 +38,140 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 3
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Install expect & Configure MySQL login path
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y expect
+          expect -c '
+            spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+            expect "Enter password:"
+            send "root\r"
+            expect eof
+          '
+          mysql_config_editor print --login-path=client
 
-    - name: Setup environment
-      run: |
-        echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
-        echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+      - name: Create databases and users
+        run: |
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
+          
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '1Gu3stIsw4yBetter*';"
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY 'MyUs3R5*i5Rich_';"
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges';"
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
-        extensions: mbstring, dom, fileinfo, curl, pdo_mysql
-        coverage: xdebug
-        tools: composer
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%';"
+          mysql -h 127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
 
-    - name: Configure MySQL client login path
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y expect
-        expect -c '
-          spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
-          expect "Enter password:"
-          send "root\r"
-          expect eof
-        '
-        mysql_config_editor print --login-path=client
+          mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
+          mysql -h 127.0.0.1 -uroot -proot -e "SELECT user, host FROM mysql.user;"
 
-    - name: Create MySQL databases
-      run: |
-        # Create databases
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
-
-        # Create users and grant privileges (passwords match config.php)
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY '1Gu3stIsw4yBetter*';"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY 'MyUs3R5*i5Rich_';"
-        mysql -h 127.0.0.1 -uroot -proot -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY 'Adm1nGrants3*pr1v1leges';"
-
-        # Grant privileges
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_main.* TO 'guest'@'%';"
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT SELECT ON ffb_stats.* TO 'guest'@'%';"
-
-        mysql -h 127.0.0.1 -uroot -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%';"
-
-        # Apply changes
-        mysql -h 127.0.0.1 -uroot -proot -e "FLUSH PRIVILEGES;"
-
-        # Verify
-        mysql -h 127.0.0.1 -uroot -proot -e "SHOW DATABASES;"
-        mysql -h 127.0.0.1 -uroot -proot -e "SELECT user, host FROM mysql.user;"
-
-    - name: Test MySQL connection
-      run: |
-        mysql -h 127.0.0.1 -uffb_user -pMyUs3R5*i5Rich_ -e "SHOW DATABASES;" || echo "Connection failed"
-
-    - name: Config file
-      run: cp config/config.php.example config/config.php
-
-    - name: Verify config.php exists
-      run: |
-        if [ ! -f config/config.php ]; then
-          echo "❌ Error: config/config.php was not created!"
-          echo "Check if config/config.php.example exists in the repository"
-          exit 1
-        fi
-        echo "✅ config/config.php verified"
-
-    - name: Permission init
-      run: chmod +x ./sql/init.sh
-
-    - name: Initializing the database
-      run: cd sql && ./init.sh
-
-    - name: Cache Composer dependencies
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    - name: Run tests
-      env:
-        DB_DATABASE: ffb_tests
-      run: vendor/bin/phpunit
-
-    - name: Send Discord notification
-      if: always()
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: |
-        STATUS="${{ job.status }}"
-        if [ "$STATUS" = "success" ]; then
-          COLOR=3066993
-          MESSAGE="✅ PHP CI Pipeline Succeeded"
-        else
-          COLOR=15158332
-          MESSAGE="❌ PHP CI Pipeline Failed"
-        fi
-
-        PAYLOAD=$(cat <<EOF
-        {
-          "embeds": [{
-            "title": "${MESSAGE}",
-            "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
-            "color": ${COLOR},
-            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-          }]
-        }
-        EOF
-        )
-
-        curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-      continue-on-error: true
-
-  sonarqube:
-    name: SonarQube
+  # Job 3: Setup PHP and Composer
+  php-setup:
+    name: Setup PHP and Composer
     runs-on: ubuntu-latest
+    needs: mysql-setup
+    strategy:
+      matrix:
+        php-version: ['8.2', '8.3', '8.4']
     steps:
-      - uses: actions/checkout@v4
+      - name: Setup PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          php-version: ${{ matrix.php-version }}
+          extensions: mbstring, dom, fileinfo, curl, pdo_mysql
+          coverage: xdebug
+          tools: composer
+
+  # Job 4: Database Initialization
+  db-init:
+    name: Database Initialization
+    runs-on: ubuntu-latest
+    needs: php-setup
+    steps:
+      - name: Copy config file
+        run: cp config/config.php.example config/config.php
+
+      - name: Verify config.php exists
+        run: |
+          if [ ! -f config/config.php ]; then
+            echo "❌ Error: config/config.php was not created!"
+            exit 1
+          fi
+          echo "✅ config/config.php verified"
+
+      - name: Make init script executable
+        run: chmod +x ./sql/init.sh
+
+      - name: Initialize the database
+        run: cd sql && ./init.sh
+
+  # Job 5: Run PHPUnit Tests
+  run-tests:
+    name: Run PHPUnit Tests
+    runs-on: ubuntu-latest
+    needs: db-init
+    env:
+      DB_DATABASE: ffb_tests
+    steps:
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit
+
+  # Job 6: SonarQube Analysis
+  sonarqube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # Job 7: Discord Notification
+  discord-notification:
+    name: Discord Notification
+    runs-on: ubuntu-latest
+    needs: sonarqube
+    steps:
+      - name: Send Discord notification
+        if: always()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR=3066993
+            MESSAGE="✅ PHP CI Pipeline Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR=15158332
+            MESSAGE="❌ PHP CI Pipeline Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "embeds": [{
+              "title": "${MESSAGE}",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+              "color": ${COLOR},
+              "image": {
+                "url": "${IMAGE_URL}"
+              },
+              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            }]
+          }
+          EOF
+          )
+
+          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
+        continue-on-error: true
