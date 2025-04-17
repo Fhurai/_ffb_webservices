@@ -2,17 +2,17 @@ name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   php-tests:
-    name: PHP ${{ matrix.php-version }} Tests
+    name: Run PHP Tests (PHP ${{ matrix.php-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.2', '8.3']  # Removed 8.4 until officially supported
+        php-version: ["8.2", "8.3"]
 
     services:
       mysql:
@@ -61,17 +61,12 @@ jobs:
 
       - name: Create MySQL databases
         run: |
-          # Create databases
           mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
           mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
           mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
-
-          # Create users and grant privileges using secrets
           mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
           mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
           mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
-
-          # Grant privileges
           mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
           mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
           mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
@@ -95,7 +90,6 @@ jobs:
         run: |
           if [ ! -f config/config.php ]; then
             echo "❌ Error: config/config.php was not created!"
-            echo "Check if config/config.php.example exists in the repository"
             exit 1
           fi
           echo "✅ config/config.php verified"
@@ -110,6 +104,8 @@ jobs:
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
@@ -178,7 +174,8 @@ jobs:
       - name: Send Discord notification
         if: always()
         run: |
-          STATUS="${{ job.status }}"
+          STATUS="${{ needs.sonarqube.result }}"
+          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
           if [ "$STATUS" = "success" ]; then
             COLOR=3066993
             MESSAGE="✅ FFB Webservices - Sonar Succeeded"
@@ -195,7 +192,7 @@ jobs:
           {
             "embeds": [{
               "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})",
               "color": ${COLOR},
               "image": {
                 "url": "${IMAGE_URL}"
@@ -210,24 +207,28 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-  teams:
+  teams-notification-sonarqube:
     name: Teams Notification - SonarQube Analysis
     runs-on: ubuntu-latest
     needs: sonarqube
-    if: always()
     steps:
       - name: Send Microsoft Teams notification
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: |
-          STATUS="${{ needs.build.result }}"
+          STATUS="${{ needs.sonarqube.result }}"
+          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
           if [ "$STATUS" = "success" ]; then
             COLOR="00FF00"
-            MESSAGE="✅ Parc Info API Pipeline Succeeded"
+            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
           else
             COLOR="FF0000"
-            MESSAGE="❌ Parc Info API Pipeline Failed"
+            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
+
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
 
           PAYLOAD=$(cat <<EOF
           {
@@ -237,12 +238,10 @@ jobs:
             "themeColor": "${COLOR}",
             "title": "${MESSAGE}",
             "sections": [{
-              "facts": [
-                {"name": "Workflow", "value": "${{ github.workflow }}"},
-                {"name": "Repository", "value": "${{ github.repository }}"},
-                {"name": "Branch", "value": "${{ github.ref }}"},
-                {"name": "Commit", "value": "[${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)"}
-              ],
+              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)  \n**SonarQube Analysis**: [View Results](${SONAR_URL})",
+              "images": [{
+                "image": "${IMAGE_URL}"
+              }],
               "markdown": true
             }]
           }
