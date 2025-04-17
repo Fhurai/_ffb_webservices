@@ -65,17 +65,14 @@ VALUES
 ("Crime", "Story is about or mentions bits about solving a crime.", "1"),
 ("Supernatural", "Story is about or mentions bits about supernatural events.", "1"),
 ("Fantasy", "Story is about or mentions buts about fantasy.", "1"),
-/************************************************************************************************************************************/
 ("Pre-canon", "Story takes place before the original timeline of the universe.", "2"),
 ("Post-canon", "Story takes place after the original timeline of the universe.", "2"),
 ("Previous Generation", "Story takes place while the parents of canon heroes are at the current age of their children.", "2"),
 ("Next Generation", "Story takes place while the children of canon heroes are at the current age of their parents.", "2"),
-/************************************************************************************************************************************/
 ("Gay | Yaoi", "Story is about or mentions a relationship between two men.", "3"),
 ("Lesbian | Yuri", "Story is about or mentions a relationship between two women.", "3"),
 ("Multi", "Story is about or mentions a relationship between more than two characters.", "3"),
 ("Harem", "Story is about or mentions a relationship between a character and multiple other characters without another relationship.", "3"),
-/************************************************************************************************************************************/
 ("Mecha", "Story is about or mentions mecha / robots.", "4"),
 ("Dragons", "Story is about or mentions dragons.", "4"), 
 ("Vampires", "Story is about or mentions vampires.", "4"), 
@@ -107,7 +104,7 @@ UNION
 SELECT "Momoka Oginome", `id` from `fandoms` WHERE `name` = "クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon"
 UNION 
 SELECT "OC", `id` from `fandoms` WHERE `name` = "クロスアンジュ 天使と竜の輪舞 | CROSS ANGE Rondo of Angel and Dragon"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Cloud Strife", `id` from `fandoms` WHERE `name` = "Final Fantasy VII"
 UNION 
 SELECT "Tifa Lockheart", `id` from `fandoms` WHERE `name` = "Final Fantasy VII"
@@ -137,7 +134,7 @@ UNION
 SELECT "Zack Fair", `id` from `fandoms` WHERE `name` = "Final Fantasy VII"
 UNION
 SELECT "Zangan", `id` from `fandoms` WHERE `name` = "Final Fantasy VII"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Yuna", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
 UNION 
 SELECT "Tidus", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
@@ -153,7 +150,7 @@ UNION
 SELECT "Rikku", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
 UNION 
 SELECT "OC", `id` from `fandoms` WHERE `name` = "Final Fantasy X / X-2"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "OFC", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
 UNION
 SELECT "Minfilia Warde", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
@@ -161,7 +158,7 @@ UNION
 SELECT "Y'shtola Rhul", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
 UNION
 SELECT "Y'mhitra Rhul", `id` from `fandoms` WHERE `name` = "Final Fantasy XIV"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Harry Potter", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Hermione Granger", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
@@ -427,7 +424,7 @@ UNION
 SELECT "Cassiopeia Black", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
 UNION 
 SELECT "Marietta Edgecomb", `id` from `fandoms` WHERE `name` = "Harry Potter - Wizarding World"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Integra Hellsing", `id` from `fandoms` WHERE `name` = "Hellsing"
 UNION 
 SELECT "Alucard", `id` from `fandoms` WHERE `name` = "Hellsing"
@@ -435,7 +432,7 @@ UNION
 SELECT "Seras Victoria", `id` from `fandoms` WHERE `name` = "Hellsing"
 UNION 
 SELECT "Walter C. Dornez", `id` from `fandoms` WHERE `name` = "Hellsing"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Shepard (F)", `id` from `fandoms` WHERE `name` = "Mass Effect"
 UNION 
 SELECT "Shepard (M)", `id` from `fandoms` WHERE `name` = "Mass Effect"
@@ -539,7 +536,7 @@ UNION
 SELECT "Pelessaria 'Peebee' B’Sayle", `id` from `fandoms` WHERE `name` = "Mass Effect"
 UNION 
 SELECT "Jaal Ama Darav", `id` from `fandoms` WHERE `name` = "Mass Effect"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Chigusa Nana", `id` from `fandoms` WHERE `name` = "ナナとカオル | Nana to Kaoru"
 UNION 
 SELECT "Sugimura Kaoru", `id` from `fandoms` WHERE `name` = "ナナとカオル | Nana to Kaoru"
@@ -549,7 +546,7 @@ UNION
 SELECT "Tachi Ryoko", `id` from `fandoms` WHERE `name` = "ナナとカオル | Nana to Kaoru"
 UNION 
 SELECT "Sarashina Shuutarou", `id` from `fandoms` WHERE `name` = "ナナとカオル | Nana to Kaoru"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Uzumaki Naruto", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Umino Iruka", `id` from `fandoms` WHERE `name` = "Naruto"
@@ -789,13 +786,13 @@ UNION
 SELECT "Matsuri", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Akamaru", `id` from `fandoms` WHERE `name` = "Naruto"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Tracer | Lena Oxton", `id` from `fandoms` WHERE `name` = "Overwatch"
 UNION 
 SELECT "Widowmaker | Amelie Lacroix", `id` from `fandoms` WHERE `name` = "Overwatch"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Taylor Hebert", `id` from `fandoms` WHERE `name` = "Parahumans Series - Wildbow"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "James Raynor", `id` from `fandoms` WHERE `name` = "Starcraft"
 UNION 
 SELECT "Sarah Kerrigan", `id` from `fandoms` WHERE `name` = "Starcraft"
@@ -825,7 +822,7 @@ UNION
 SELECT "Samir Duran", `id` from `fandoms` WHERE `name` = "Starcraft"
 UNION 
 SELECT "Magistrate", `id` from `fandoms` WHERE `name` = "Starcraft"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Geralt z Rivii | Geralt of Rivia", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
 UNION 
 SELECT "Yennefer z Vengerbergu | Yennefer of Vengerberg", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
@@ -853,7 +850,7 @@ UNION
 SELECT "Morvran Voorhis", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
 UNION 
 SELECT "Triss Merigold", `id` from `fandoms` WHERE `name` = "Wiedźmin | The Witcher"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Shulk", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "Reyn", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
@@ -901,7 +898,7 @@ UNION
 SELECT "Mir'liez", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
 UNION 
 SELECT "Emmy Leater", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 1"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Rex", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
 SELECT "Metsu | Malos", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
@@ -993,7 +990,7 @@ UNION
 SELECT "Kubira | Dagas", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
 UNION 
 SELECT "Zantetsu | Sever", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 2"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT "Mio", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
 UNION 
 SELECT "Noah", `id` from `fandoms` WHERE `name` = "Xenoblade Chronicles 3"
@@ -1483,7 +1480,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Angelise Ikaruga Misurugi / Hilda Schlievogt / Tusk" AND c.`name` = "Hilda Schlievogt"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Angelise Ikaruga Misurugi / Hilda Schlievogt / Tusk" AND c.`name` = "Tusk"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cloud Strife / Tifa Lockheart" AND c.`name` = "Cloud Strife"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Cloud Strife / Tifa Lockheart" AND c.`name` = "Tifa Lockheart"
@@ -1503,7 +1500,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Aerith Gainsborough / Zack Fair" AND c.`name` = "Aerith Gainsborough"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Aerith Gainsborough / Zack Fair" AND c.`name` = "Zack Fair"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tidus / Yuna" AND c.`name` = "Tidus"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tidus / Yuna" AND c.`name` = "Yuna"
@@ -1515,7 +1512,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Auron / OC" AND c.`name` = "Auron"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c INNER JOIN fandoms f ON f.id = c.fandom_id WHERE r.`name` = "Auron / OC" AND c.`name` = "OC" AND f.`name` = "Final Fantasy X / X-2"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter" AND c.`name` = "Ginevra 'Ginny' Weasley"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter" AND c.`name` = "Harry Potter"
@@ -2449,7 +2446,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Hermione Granger"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Ginevra 'Ginny' Weasley / Harry Potter / Hermione Granger / Susan Bones" AND c.`name` = "Susan Bones"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Alucard"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alucard / Seras Victoria" AND c.`name` = "Seras Victoria"
@@ -2459,7 +2456,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Integra Hellsing / Lily Evans Potter / Sirius Black" AND c.`name` = "Lily Evans Potter"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Integra Hellsing / Lily Evans Potter / Sirius Black" AND c.`name` = "Sirius Black"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Shepard (F)" AND c.`name` = "Liara T'Soni"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Liara T'Soni / Shepard (F)" AND c.`name` = "Shepard (F)"
@@ -2515,11 +2512,11 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Councilor Tevos / Shepard (F)" AND c.`name` = "Councilor Tevos"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Councilor Tevos / Shepard (F)" AND c.`name` = "Shepard (F)"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Chigusa Nana / Sugimura Kaoru" AND c.`name` = "Chigusa Nana"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Chigusa Nana / Sugimura Kaoru" AND c.`name` = "Sugimura Kaoru"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
@@ -2878,11 +2875,11 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sabaku no Temari / Uzumaki Naruto" AND c.`name` = "Sabaku no Temari"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Sabaku no Temari / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Tracer | Lena Oxton"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tracer | Lena Oxton / Widowmaker | Amelie Lacroix" AND c.`name` = "Widowmaker | Amelie Lacroix"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "James Raynor / Sarah Kerrigan" AND c.`name` = "James Raynor"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "James Raynor / Sarah Kerrigan" AND c.`name` = "Sarah Kerrigan"
@@ -2890,11 +2887,11 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Magistrate / November 'Nova' Terra" AND c.`name` = "Magistrate"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Magistrate / November 'Nova' Terra" AND c.`name` = "November 'Nova' Terra"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg" AND c.`name` = "Geralt z Rivii | Geralt of Rivia"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Geralt z Rivii | Geralt of Rivia / Yennefer z Vengerbergu | Yennefer of Vengerberg" AND c.`name` = "Yennefer z Vengerbergu | Yennefer of Vengerberg"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk" AND c.`name` = "Fiorung | Fiora"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk" AND c.`name` = "Melia Ancient | Melia Antiqua"
@@ -2928,7 +2925,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alvis / Shulk" AND c.`name` = "Alvis"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Alvis / Shulk" AND c.`name` = "Shulk"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex" AND c.`name` = "Hikari | Mythra"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hikari | Mythra / Homura | Pyra / Niyah | Nia / Rex" AND c.`name` = "Homura | Pyra"
@@ -2996,7 +2993,7 @@ UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "KOS-MOS / Shiki | Adenine" AND c.`name` = "KOS-MOS"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "KOS-MOS / Shiki | Adenine" AND c.`name` = "Shiki | Adenine"
-UNION /************************************************************************************************************************************/
+UNION
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Noah" AND c.`name` = "Mio"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Mio / Noah" AND c.`name` = "Noah"

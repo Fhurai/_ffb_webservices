@@ -41,7 +41,7 @@ try {
                 foreach ($data->characters as $character) {
                     if (isset($character->id)) {
                         $characters[] = $charactersTable->get($character->id);
-                    } else if(is_int($character)) {
+                    } elseif(is_int($character)) {
                         $characters[] = $charactersTable->get($character);
                     } else {
                         ApiUtilities::HttpBadRequest("Invalid character ID");
@@ -80,7 +80,7 @@ try {
                 foreach ($data->characters as $character) {
                     if (isset($character->id)) {
                         $characters[] = $charactersTable->get($character->id);
-                    } else if(is_int($character)) {
+                    } elseif(is_int($character)) {
                         $characters[] = $charactersTable->get($character);
                     } else {
                         ApiUtilities::HttpBadRequest("Invalid character ID");

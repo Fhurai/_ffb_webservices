@@ -61,7 +61,7 @@ try {
             "token"   => $jwt
         ]);
     } else {
-        throw new Exception("Invalid credentials");
+        throw new InvalidArgumentException("Invalid credentials");
     }
 } catch (FfbTableException | InvalidArgumentException $e) {
     http_response_code(401);
