@@ -9,6 +9,16 @@ require_once __DIR__ . '/../../src/entity/Fanfiction.php';
  *
  * Unit tests for the Fanfiction entity class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Score::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
 class FanfictionTest extends TestCase
 {
     /**

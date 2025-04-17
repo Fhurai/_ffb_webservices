@@ -6,6 +6,11 @@ require_once __DIR__ . '/../../src/table/RatingsTable.php';
 require_once __DIR__ . '/../../src/entity/Rating.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Rating::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\RatingsTable::class)]
 class RatingsTableTest extends TestCase
 {
     private RatingsTable $ratingsTable;

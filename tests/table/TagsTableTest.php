@@ -13,7 +13,22 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  * This class contains unit tests for the TagsTable class, which handles operations
  * related to the "tags" table in the database. It tests methods for retrieving,
  * searching, ordering, creating, updating, deleting, and restoring tags.
+ * 
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ParametersTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagsTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagTypesTable::class)]
 class TagsTableTest extends TestCase
 {
     private TagsTable $tagsTable;

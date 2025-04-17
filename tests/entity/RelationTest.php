@@ -7,6 +7,10 @@ require_once __DIR__ . '/../../src/entity/Relation.php';
 /**
  * Unit tests for the Relation class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
 class RelationTest extends TestCase
 {
     /**

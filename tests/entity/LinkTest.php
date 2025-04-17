@@ -9,6 +9,7 @@ require_once __DIR__ . '/../../src/entity/Link.php';
  *
  * Unit tests for the Link entity class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
 class LinkTest extends TestCase
 {
     /**

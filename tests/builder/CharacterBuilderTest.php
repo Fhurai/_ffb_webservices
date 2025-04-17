@@ -3,6 +3,11 @@
 require_once __DIR__ . "/../../tests/builder/NamedEntityBuilderTestCase.php";
 require_once __DIR__ . "/../../src/entity/Fandom.php";
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\CharacterBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
 class CharacterBuilderTest extends NamedEntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

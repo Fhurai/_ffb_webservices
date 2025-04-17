@@ -1,8 +1,16 @@
 <?php
 
 require_once __DIR__ . "/../../tests/builder/NamedEntityBuilderTestCase.php";
+require_once __DIR__ . "/../../src/builder/TagBuilder.php";
 require_once __DIR__ . "/../../src/entity/TagType.php";
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
 class TagBuilderTest extends NamedEntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

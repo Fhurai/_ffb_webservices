@@ -1,37 +1,25 @@
-<phpunit
-    displayDetailsOnTestsThatTriggerNotices="true"
-    displayDetailsOnTestsThatTriggerWarnings="true">
-    <php>
-        <ini name="error_reporting" value="-1" />
-    </php>
-    <groups>
-        <exclude>
-            <group>abstract</group>
-        </exclude>
-    </groups>
-    <coverage>
-        <report>
-            <clover outputFile="clover.xml"/>
-        </report>
-    </coverage>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         shortenArraysForExportThreshold="10"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         failOnPhpunitDeprecation="true"
+         failOnRisky="true"
+         failOnWarning="true">
     <testsuites>
-        <testsuite name="Builder Test Suite">
-            <directory suffix="Test.php">./tests/builder</directory>
-        </testsuite>
-        <testsuite name="Entity Test Suite">
-            <directory>./tests/entity</directory>
-        </testsuite>
-        <testsuite name="Table Test Suite">
-            <directory>./tests/table</directory>
-        </testsuite>
-        <testsuite name="Exception Test Suite">
-            <directory>./tests/exception</directory>
-        </testsuite>
-        <testsuite name="Utility Test Suite">
-            <directory>./tests/utility</directory>
+        <testsuite name="default">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <logging>
-        <junit outputFile="test-results.xml" />
-    </logging>
+
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
 </phpunit>

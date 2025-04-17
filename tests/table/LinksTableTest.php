@@ -6,6 +6,13 @@ require_once __DIR__ . '/../../src/table/LinksTable.php';
 require_once __DIR__ . '/../../src/entity/Link.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LinkBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LinksTable::class)]
 class LinksTableTest extends TestCase
 {
     private LinksTable $linksTable;

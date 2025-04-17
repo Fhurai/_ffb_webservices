@@ -1,6 +1,13 @@
 <?php require_once __DIR__ . "/../../tests/builder/NamedEntityBuilderTestCase.php";
 require_once __DIR__ . "/../../src/entity/Relation.php";
 require_once __DIR__ . "/../../src/entity/Character.php";
+
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\RelationBuilder::class)]
 class RelationBuilderTest extends NamedEntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

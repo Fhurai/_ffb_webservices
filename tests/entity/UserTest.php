@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/User.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
 class UserTest extends TestCase
 {
     /**

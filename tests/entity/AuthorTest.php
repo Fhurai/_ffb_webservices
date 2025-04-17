@@ -9,6 +9,7 @@ require_once __DIR__ . '/../../src/entity/Author.php';
  * Validates core functionality including object initialization, property access, serialization,
  * and edge case handling for the Author class and its inherited methods from NamedEntity.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
 class AuthorTest extends TestCase
 {
     /**

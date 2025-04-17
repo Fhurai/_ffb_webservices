@@ -4,6 +4,7 @@ require_once __DIR__ . "/../../src/exception/FfbTableException.php";
 
 use PHPUnit\Framework\TestCase;
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
 class FfbTableExceptionTest extends TestCase {
 
     public function testConstructorWithMessage() {

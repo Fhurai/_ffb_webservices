@@ -8,6 +8,8 @@ require_once __DIR__ . '/../../src/entity/Character.php';
  * PHPUnit test suite for the Character entity.
  * Validates core functionality including getters/setters, JSON serialization, and associations.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class CharacterTest extends TestCase
 {
     private Character $character;

@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * This class contains unit tests for the SrcUtilities class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class SrcUtilitiesTest extends TestCase {
 
     /**

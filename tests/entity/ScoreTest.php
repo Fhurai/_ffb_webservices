@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../src/entity/Score.php';
 /**
  * Unit tests for the Score class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Score::class)]
 class ScoreTest extends TestCase
 {
     /**

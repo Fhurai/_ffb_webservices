@@ -6,6 +6,14 @@ require_once __DIR__ . '/../../src/table/AuthorsTable.php';
 require_once __DIR__ . '/../../src/entity/Author.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\AuthorBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\AuthorsTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 class AuthorsTableTest extends TestCase
 {
     private AuthorsTable $authorsTable;

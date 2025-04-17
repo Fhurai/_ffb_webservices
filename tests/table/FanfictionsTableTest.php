@@ -11,6 +11,17 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  *
  * Unit tests for the FanfictionsTable class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionsTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 class FanfictionsTableTest extends TestCase
 {
     private FanfictionsTable $fanfictionsTable;

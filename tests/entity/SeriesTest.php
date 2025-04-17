@@ -4,6 +4,9 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Series.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Series::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class SeriesTest extends TestCase
 {
     private Series $series;

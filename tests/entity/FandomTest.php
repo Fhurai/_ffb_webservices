@@ -9,6 +9,7 @@ require_once __DIR__ . '/../../src/entity/Fandom.php';
  *
  * Unit tests for the Fandom entity class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fandom::class)]
 class FandomTest extends TestCase
 {
     /**

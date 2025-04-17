@@ -9,6 +9,10 @@ require_once __DIR__ . '/../../src/entity/Tag.php';
  *
  * Unit tests for the Tag entity.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
 class TagTest extends TestCase
 {
     /**

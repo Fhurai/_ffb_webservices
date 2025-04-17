@@ -8,4 +8,6 @@ resetTestsNAS.sh
 config/config.php
 /vendor/
 .scannerwork/*
+.phpunit.cache
 sonar.bat
+clover.xml

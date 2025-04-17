@@ -7,6 +7,15 @@ require_once __DIR__ . "/../../src/entity/Character.php";
 require_once __DIR__ . "/../../src/entity/Relation.php";
 require_once __DIR__ . "/../../src/entity/Tag.php";
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
 class FanfictionBuilderTest extends NamedEntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

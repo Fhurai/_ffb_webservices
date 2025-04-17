@@ -6,6 +6,14 @@ require_once __DIR__ . '/../../src/table/FandomsTable.php';
 require_once __DIR__ . '/../../src/entity/Fandom.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FandomBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FandomsTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 class FandomsTableTest extends TestCase
 {
     private FandomsTable $fandomsTable;

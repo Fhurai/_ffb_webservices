@@ -13,6 +13,15 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  * database operations for the `languages` table. Each test method verifies
  * the behavior of a specific method in the LanguagesTable class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LanguageBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LanguagesTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 class LanguagesTableTest extends TestCase
 {
     private LanguagesTable $languagesTable;

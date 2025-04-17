@@ -1,7 +1,11 @@
 <?php
 
 require_once __DIR__ . "/../../tests/builder/EntityBuilderTestCase.php";
+require_once __DIR__ . "/../../src/builder/UserBuilder.php";
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\UserBuilder::class)]
 class UserBuilderTest extends EntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

@@ -14,6 +14,21 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  * related to the "relations" table in the database. It tests methods for retrieving,
  * searching, ordering, creating, updating, deleting, and restoring relations.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\CharacterBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\CharactersTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FandomBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FandomsTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\RelationBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\RelationsTable::class)]
 class RelationsTableTest extends TestCase
 {
     private RelationsTable $relationsTable;

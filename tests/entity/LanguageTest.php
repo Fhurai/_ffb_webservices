@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../src/entity/Language.php'; // Include the Language
 /**
  * Unit tests for the Language class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
 class LanguageTest extends TestCase
 {
     /**

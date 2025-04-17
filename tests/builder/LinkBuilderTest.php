@@ -1,5 +1,9 @@
 <?php require_once __DIR__ . "/../../tests/builder/EntityBuilderTestCase.php";
 require_once __DIR__ . "/../../src/entity/Link.php";
+
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LinkBuilder::class)]
 class LinkBuilderTest extends EntityBuilderTestCase
 {
     protected function getBuilder(): EntityBuilder

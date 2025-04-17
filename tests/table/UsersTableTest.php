@@ -12,6 +12,13 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  * This class contains unit tests for the UsersTable class, which handles database operations
  * for the "users" table. It tests various CRUD operations and query methods.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\UserBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\UsersTable::class)]
 class UsersTableTest extends TestCase
 {
     private UsersTable $usersTable;

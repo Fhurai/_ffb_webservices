@@ -6,6 +6,11 @@ require_once __DIR__ . '/../../src/table/TagTypesTable.php';
 require_once __DIR__ . '/../../src/entity/TagType.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagTypesTable::class)]
 class TagTypesTableTest extends TestCase
 {
     private TagTypesTable $tagTypesTable;

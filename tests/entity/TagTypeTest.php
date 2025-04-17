@@ -7,6 +7,7 @@ require_once __DIR__ . '/../../src/entity/TagType.php';
 /**
  * Unit tests for the TagType class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
 class TagTypeTest extends TestCase
 {
     /**
