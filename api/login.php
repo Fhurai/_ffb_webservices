@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/entity/User.php';
 require_once __DIR__ . '/../src/table/LoginTable.php';
-require_once __DIR__ . '/../src/exceptions/FfbTableException.php';
+require_once __DIR__ . '/../src/exception/FfbTableException.php';
 
 use Firebase\JWT\JWT;
 
@@ -35,7 +35,7 @@ try {
 
     // Verify password
     if (password_verify($password, $user->getPassword())) {
-        $configFile = include_once __DIR__ . "/../config/config.php";
+        $configFile = require __DIR__ . "/../config/config.php";
         // JWT Secret Key (store this securely in environment variables)
         $secretKey = $configFile['token']['ffb_secret']; // Use secret key from config
         $issuedAt = time();

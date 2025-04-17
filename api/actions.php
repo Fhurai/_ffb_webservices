@@ -9,7 +9,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 // Include necessary configuration and utility files
 require_once __DIR__ . '/../config/config.php'; // Application configuration
-require_once __DIR__ . '/../src/utilities/ApiUtilities.php'; // Utility functions for API responses
+require_once __DIR__ . '/../src/utility/ApiUtilities.php'; // Utility functions for API responses
 require_once __DIR__ . '/../src/table/ActionsTable.php'; // Database table abstraction for actions
 
 // Determine the HTTP request method
@@ -18,7 +18,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'OPTIONS') {
     // Handle preflight requests for CORS
     ApiUtilities::HttpOk(null);
-} else if ($method === 'GET') {
+} elseif ($method === 'GET') {
     ApiUtilities::decodeJWT(); // Decode JWT token from the request header
 
     // Handle GET ALL request to retrieve all actions
