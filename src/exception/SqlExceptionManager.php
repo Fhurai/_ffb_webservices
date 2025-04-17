@@ -79,69 +79,28 @@ private $database;
 
     public function getFormattedMessage(): string {
         $message = "SQL Error [{$this->sqlState}][{$this->errorCode}]: ";
-
-        if ($this->errorCode === 1142) {
-            $message .= sprintf(
-                "Permission denied. User cannot create on table '%s'",
-                $this->table
-            );
-        } else if($this->errorCode === 1146) {
-            $message .= sprintf(
-                "Table '%s' doesn't exist.",
-                $this->table
-            );
-        } else if ($this->errorCode === 1451) {
-            $message .= sprintf(
-                "Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.",
-                $this->table
-            );
-        } else if ($this->errorCode === 1452) {
-            $message .= sprintf(
-                "Cannot add or update a child row: a foreign key constraint fails on table '%s'.",
-                $this->table
-            );
-        } else if ($this->errorCode === 1062) {
-            $message .= sprintf(
-                "Duplicate entry '%s' for key '%s'.",
-                $this->field,
-                $this->key
-            );
-        } else if ($this->errorCode === 1044) {
-            $message .= sprintf(
-                "Access denied for user '%s'.",
-                $this->user
-            );
-        } else if ($this->errorCode === 1046) {
-            $message .= "No database selected.";
-        } else if ($this->errorCode === 1049) {
-            $message .= sprintf(
-                "Unknown database '%s'.",
-                $this->table
-            );
-        } else if ($this->errorCode === 1064) {
-            $message .= sprintf(
-                "Syntax error in SQL command: '%s'",
-                $this->command
-            );
-        } else if ($this->errorCode === 1045) {
-            $message .= sprintf(
-                "Access denied for user '%s'.",
-                $this->user
-            );
-        } else if ($this->errorCode === 2002) {
-            $message .= "Connection refused.";
-        } else if ($this->errorCode === 2003) {
-            $message .= "Connection timed out.";
-        } else if ($this->errorCode === 2005) {
-            $message .= "Unknown MySQL server host.";
-        } else if ($this->errorCode === 2013) {
-            $message .= "Lost connection to MySQL server.";
-        } else if ($this->errorCode === 2014) {
-            $message .= "Commands out of sync.";
-        } else {
-            $message .= $this->errorMessage;
-        }
-
+    
+        $errorMessages = [
+            1142 => fn() => sprintf("Permission denied. User cannot create on table '%s'", $this->table),
+            1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
+            1451 => fn() => sprintf("Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.", $this->table),
+            1452 => fn() => sprintf("Cannot add or update a child row: a foreign key constraint fails on table '%s'.", $this->table),
+            1062 => fn() => sprintf("Duplicate entry '%s' for key '%s'.", $this->field, $this->key),
+            1044 => fn() => sprintf("Access denied for user '%s'.", $this->user),
+            1045 => fn() => sprintf("Access denied for user '%s'.", $this->user),
+            1046 => fn() => "No database selected.",
+            1049 => fn() => sprintf("Unknown database '%s'.", $this->table),
+            1064 => fn() => sprintf("Syntax error in SQL command: '%s'", $this->command),
+            2002 => fn() => "Connection refused.",
+            2003 => fn() => "Connection timed out.",
+            2005 => fn() => "Unknown MySQL server host.",
+            2013 => fn() => "Lost connection to MySQL server.",
+            2014 => fn() => "Commands out of sync.",
+        ];
+    
+        $message .= $errorMessages[$this->errorCode] ?? $this->errorMessage;
+    
         return $message;
     }
+    
 }

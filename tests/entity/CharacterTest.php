@@ -14,6 +14,9 @@ class CharacterTest extends TestCase
 {
     private Character $character;
 
+    private const TEST_CHARACTER_NAME = 'Test Character';
+    private const DATE_FORMAT = 'Y-m-d H:i:s';
+
     /**
      * Initialize a fresh Character instance before each test.
      * Ensures test isolation.
@@ -30,17 +33,14 @@ class CharacterTest extends TestCase
      */
     public function testGettersAndSetters(): void
     {
-        // Check initial default value
         $this->assertEquals(-1, $this->character->getFandomId());
 
-        // Inherited properties
         $this->character->setId(123);
         $this->assertEquals(123, $this->character->getId());
 
-        $this->character->setName('Test Character');
-        $this->assertEquals('Test Character', $this->character->getName());
+        $this->character->setName(self::TEST_CHARACTER_NAME);
+        $this->assertEquals(self::TEST_CHARACTER_NAME, $this->character->getName());
 
-        // Character-specific property
         $this->character->setFandomId(5);
         $this->assertEquals(5, $this->character->getFandomId());
     }
@@ -90,19 +90,16 @@ class CharacterTest extends TestCase
      */
     public function testJsonSerialize(): void
     {
-        // Configure test data
         $this->character->setId(1);
-        $this->character->setName('Test Character');
+        $this->character->setName(self::TEST_CHARACTER_NAME);
         $this->character->setFandomId(2);
 
-        // Set fixed dates for consistent assertions
         $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
         $this->character->setCreationDate($date);
         $this->character->setUpdateDate($date);
 
         $result = $this->character->jsonSerialize();
 
-        // Validate structure and values
         $this->assertArrayHasKey('id', $result);
         $this->assertArrayHasKey('name', $result);
         $this->assertArrayHasKey('fandom_id', $result);
@@ -110,9 +107,9 @@ class CharacterTest extends TestCase
         $this->assertArrayHasKey('update_date', $result);
 
         $this->assertEquals(1, $result['id']);
-        $this->assertEquals('Test Character', $result['name']);
+        $this->assertEquals(self::TEST_CHARACTER_NAME, $result['name']);
         $this->assertEquals(2, $result['fandom_id']);
-        $this->assertEquals($date->format("Y-m-d H:i:s"), $result['creation_date']);
+        $this->assertEquals($date->format(self::DATE_FORMAT), $result['creation_date']);
     }
 
     /**
@@ -165,18 +162,14 @@ class CharacterTest extends TestCase
 
         $character = Character::jsonUnserialize($json);
 
-        // Basic properties
         $this->assertEquals(123, $character->getId());
         $this->assertEquals('Unserialized Character', $character->getName());
         $this->assertEquals(5, $character->getFandomId());
-
-        // Date handling
         $this->assertEquals(
             '2023-01-01 12:34:56',
-            $character->getCreationDate()->format('Y-m-d H:i:s')
+            $character->getCreationDate()->format(self::DATE_FORMAT)
         );
 
-        // Fandom association
         $this->assertTrue($character->hasFandom());
         $this->assertEquals(456, $character->getFandom()->getId());
     }
@@ -196,10 +189,10 @@ class CharacterTest extends TestCase
 
         $this->assertEquals(
             '2023-12-31 23:59:59',
-            $character->getCreationDate()->format('Y-m-d H:i:s')
+            $character->getCreationDate()->format(self::DATE_FORMAT)
         );
         $this->assertEquals(
-            'Europe/Paris', // Timezone configured in Character class
+            'Europe/Paris',
             $character->getCreationDate()->getTimezone()->getName()
         );
     }
@@ -212,6 +205,6 @@ class CharacterTest extends TestCase
     {
         $newCharacter = Character::getNewObject();
         $this->assertInstanceOf(Character::class, $newCharacter);
-        $this->assertEquals(-1, $newCharacter->getFandomId()); // Default value check
+        $this->assertEquals(-1, $newCharacter->getFandomId());
     }
 }

@@ -3,9 +3,15 @@
 abstract class EntityBuilder
 {
     /**
-     * @var 
+     * @var mixed
      */
     protected $obj;
+
+    private const FORMAT_DATETIME = "Y-m-d H:i:s";
+    /**
+     * @var string
+     */
+    private const TIMEZONE_DATETIME = "Europe/Paris";
 
     /**
      * Constructor for the builder.
@@ -55,7 +61,7 @@ abstract class EntityBuilder
         }
         // Check if the creation date is a string
         else if (is_string($creationDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $creationDate, new DateTimeZone('Europe/Paris'));
+            $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $creationDate, new DateTimeZone(timezone: self::TIMEZONE_DATETIME));
             $this->obj->setCreationDate($date);
         }
         return $this;
@@ -69,7 +75,7 @@ abstract class EntityBuilder
         }
         // Check if the update date is a string
         else if (is_string($updateDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $updateDate, new DateTimeZone('Europe/Paris'));
+            $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $updateDate, new DateTimeZone(self::TIMEZONE_DATETIME));
             $this->obj->setUpdateDate($date);
         }
         return $this;
@@ -83,7 +89,7 @@ abstract class EntityBuilder
         }
         // Check if the delete date is a string
         else if (is_string($deleteDate)) {
-            $date = Datetime::createFromFormat("Y-m-d H:i:s", $deleteDate, new DateTimeZone('Europe/Paris'));
+            $date = Datetime::createFromFormat(self::FORMAT_DATETIME, $deleteDate, new DateTimeZone(self::TIMEZONE_DATETIME));
             $this->obj->setDeleteDate($date);
         }
         // Check if the delete date is null

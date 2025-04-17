@@ -11,6 +11,11 @@ require_once __DIR__ . "/../entity/TagType.php";
 class TagTypesTable extends ParametersTable
 {
     /**
+     * Base SELECT query used across multiple methods.
+     */
+    private const BASE_SELECT_QUERY = "SELECT * FROM `tag_types`";
+
+    /**
      * Get a tag type by its ID.
      * @param int $id TagType ID.
      * @return TagType The TagType object.
@@ -18,7 +23,7 @@ class TagTypesTable extends ParametersTable
      */
     public function get(int $id): TagType
     {
-        $query = "SELECT * FROM `tag_types` WHERE `id` = :id";
+        $query = self::BASE_SELECT_QUERY . " WHERE `id` = :id";
         $values = [":id" => $id];
         $rows = $this->executeQuery($query, $values);
 
@@ -38,15 +43,13 @@ class TagTypesTable extends ParametersTable
      */
     public function findSearchedBy(array $args, bool $execute = true): mixed
     {
-        // Ensure search arguments are provided.
         if (empty($args)) {
             throw new FfbTableException("No search arguments provided!");
         }
 
         $values = [];
-        $query = $execute ? "SELECT * FROM `tag_types`" : "";
+        $query = $execute ? self::BASE_SELECT_QUERY : "";
 
-        // Validate input fields against the database schema.
         $validColumns = $this->getTableColumns('tag_types');
         foreach ($args as $column => $value) {
             if (!in_array($column, $validColumns)) {
@@ -54,44 +57,35 @@ class TagTypesTable extends ParametersTable
             }
         }
 
-        // Build the WHERE clause dynamically based on search arguments.
         $conditions = [];
         foreach ($args as $key => $value) {
             if (str_contains($value, '%')) {
-                // Handle wildcard searches using LIKE.
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
             } elseif (preg_match('/[<>=!]/', $value)) {
-                // Handle comparison operators like <, >, !=, etc.
                 [$operator, $val] = explode(' ', $value, 2);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
-                // Default equality condition.
                 $conditions[] = "$key = :$key";
                 $values[":$key"] = $value;
             }
         }
 
-        // Append conditions to the query.
         if (!empty($conditions)) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
 
-        // Return the query string if not executing.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query, $values);
 
-        // Throw an exception if no data is found.
         if (empty($rows)) {
             throw new FfbTableException("No tag types found matching the search criteria.");
         }
 
-        // Parse the result into an array of TagType objects and return it.
         return $this->parseEntities($rows);
     }
 
@@ -104,15 +98,13 @@ class TagTypesTable extends ParametersTable
      */
     public function findOrderedBy(array $args, bool $execute = true): mixed
     {
-        // Ensure order arguments are provided.
         if (empty($args)) {
             throw new FfbTableException("No order arguments provided!");
         }
 
-        $query = $execute ? "SELECT * FROM `tag_types`" : "";
+        $query = $execute ? self::BASE_SELECT_QUERY : "";
         $orderClauses = [];
 
-        // Validate and build the ORDER BY clause.
         $validColumns = $this->getTableColumns('tag_types');
         foreach ($args as $column => $direction) {
             if (!in_array($column, $validColumns)) {
@@ -124,25 +116,20 @@ class TagTypesTable extends ParametersTable
             $orderClauses[] = "$column $direction";
         }
 
-        // Append the ORDER BY clause to the query.
         if (!empty($orderClauses)) {
             $query .= " ORDER BY " . implode(", ", $orderClauses);
         }
 
-        // Return the query string if not executing.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query);
 
-        // Throw an exception if no data is found.
         if (empty($rows)) {
             throw new FfbTableException("No tag types found matching the order criteria.");
         }
 
-        // Parse the result into an array of TagType objects and return it.
         return $this->parseEntities($rows);
     }
 
@@ -155,15 +142,12 @@ class TagTypesTable extends ParametersTable
      */
     public function findLimitedBy(array $args, bool $execute = true): mixed
     {
-        // Validate the limit argument.
         if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
             throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        // Build the LIMIT clause.
-        $query = $execute ? "SELECT * FROM `tag_types` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
+        $query = $execute ? self::BASE_SELECT_QUERY . " LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
 
-        // Append the OFFSET clause if provided.
         if (!empty($args['offset'])) {
             if (!is_numeric($args['offset']) || $args['offset'] < 0) {
                 throw new FfbTableException("Invalid offset value!");
@@ -171,20 +155,16 @@ class TagTypesTable extends ParametersTable
             $query .= " OFFSET " . (int) $args['offset'];
         }
 
-        // Return the query string if not executing.
         if (!$execute) {
             return $query;
         }
 
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query);
 
-        // Throw an exception if no data is found.
         if (empty($rows)) {
             throw new FfbTableException("No tag types found within the specified limit and offset.");
         }
 
-        // Parse the result into an array of TagType objects and return it.
         return $this->parseEntities($rows);
     }
 
@@ -196,10 +176,9 @@ class TagTypesTable extends ParametersTable
      */
     public function findAll(array $args): array
     {
-        $query = "SELECT * FROM `tag_types`";
+        $query = self::BASE_SELECT_QUERY;
         $values = [];
 
-        // Append search criteria.
         if (!empty($args['search'])) {
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
@@ -208,27 +187,22 @@ class TagTypesTable extends ParametersTable
             }
         }
 
-        // Append order criteria.
         if (!empty($args['order'])) {
             $orderQuery = $this->findOrderedBy($args['order'], false);
             $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
         }
 
-        // Append limit criteria.
         if (!empty($args['limit'])) {
             $limitQuery = $this->findLimitedBy($args['limit'], false);
             $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
         }
 
-        // Execute the query and fetch the result.
         $rows = $this->executeQuery($query, $values);
 
-        // Throw an exception if no data is found.
         if (empty($rows)) {
             throw new FfbTableException("No tag types found matching the specified criteria.");
         }
 
-        // Parse the result into an array of TagType objects and return it.
         return $this->parseEntities($rows);
     }
 

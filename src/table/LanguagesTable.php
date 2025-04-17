@@ -11,34 +11,23 @@ require_once __DIR__ . "/../builder/LanguageBuilder.php";
  */
 class LanguagesTable extends EntitiesTable
 {
-    /**
-     * Get a Language entity by its ID.
-     *
-     * @param int $id The ID of the language.
-     * @return Language The Language entity.
-     * @throws FfbTableException If no data is found for the given ID.
-     */
+    private const ERROR_NO_DATA = "No data for arguments provided!";
+    private const QUERY_SELECT_ALL = "SELECT * FROM `languages`";
+    private const DATE_FORMAT = "Y-m-d H:i:s";
+
     public function get(int $id): Language
     {
-        $query = "SELECT * FROM `languages` WHERE `id` = :id";
+        $query = self::QUERY_SELECT_ALL . " WHERE `id` = :id";
         $values = [":id" => $id];
         $rows = $this->executeQuery($query, $values);
 
         if (empty($rows)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException(self::ERROR_NO_DATA);
         }
 
         return $this->parseEntity($rows[0]);
     }
 
-    /**
-     * Find languages based on search criteria.
-     *
-     * @param array $args The search criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array|string The search results as an array of Language objects or the query string.
-     * @throws FfbTableException If no search arguments are provided or invalid columns are used.
-     */
     public function findSearchedBy(array $args, $execute = true): array|string
     {
         if (empty($args)) {
@@ -46,7 +35,7 @@ class LanguagesTable extends EntitiesTable
         }
 
         $values = [];
-        $query = $execute ? "SELECT * FROM `languages`" : "";
+        $query = $execute ? self::QUERY_SELECT_ALL : "";
 
         $validColumns = $this->getTableColumns('languages');
         foreach ($args as $column => $value) {
@@ -86,27 +75,19 @@ class LanguagesTable extends EntitiesTable
         $rows = $this->executeQuery($query, $values);
 
         if (empty($rows)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException(self::ERROR_NO_DATA);
         }
 
         return $this->parseEntities($rows);
     }
 
-    /**
-     * Find languages ordered by specific criteria.
-     *
-     * @param array $args The ordering criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array|string The ordered results as an array of Language objects or the query string.
-     * @throws FfbTableException If no order arguments are provided or invalid columns/directions are used.
-     */
     public function findOrderedBy(array $args, $execute = true): array|string
     {
         if (empty($args)) {
             throw new FfbTableException("No order arguments provided!");
         }
 
-        $query = $execute ? "SELECT * FROM `languages`" : "";
+        $query = $execute ? self::QUERY_SELECT_ALL : "";
         $orderClauses = [];
 
         $validColumns = $this->getTableColumns('languages');
@@ -131,27 +112,19 @@ class LanguagesTable extends EntitiesTable
         $rows = $this->executeQuery($query);
 
         if (empty($rows)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException(self::ERROR_NO_DATA);
         }
 
         return $this->parseEntities($rows);
     }
 
-    /**
-     * Find a limited number of languages based on criteria.
-     *
-     * @param array $args The limiting criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array|string The limited results as an array of Language objects or the query string.
-     * @throws FfbTableException If invalid or missing limit/offset values are provided.
-     */
     public function findLimitedBy(array $args, $execute = true): array|string
     {
         if (empty($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
             throw new FfbTableException("Invalid or missing limit value!");
         }
 
-        $query = $execute ? "SELECT * FROM `languages` LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
+        $query = $execute ? self::QUERY_SELECT_ALL . " LIMIT " . (int) $args['limit'] : " LIMIT " . (int) $args['limit'];
 
         if (!empty($args['offset'])) {
             if (!is_numeric($args['offset']) || $args['offset'] < 0) {
@@ -167,22 +140,15 @@ class LanguagesTable extends EntitiesTable
         $rows = $this->executeQuery($query);
 
         if (empty($rows)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException(self::ERROR_NO_DATA);
         }
 
         return $this->parseEntities($rows);
     }
 
-    /**
-     * Find all languages based on criteria.
-     *
-     * @param array $args The criteria as key-value pairs.
-     * @return array The results as an array of Language objects.
-     * @throws FfbTableException If no data is found for the given criteria.
-     */
     public function findAll(array $args): array
     {
-        $query = "SELECT * FROM `languages`";
+        $query = self::QUERY_SELECT_ALL;
         $values = [];
 
         if (!empty($args['search'])) {
@@ -211,19 +177,12 @@ class LanguagesTable extends EntitiesTable
         $rows = $this->executeQuery($query, $values);
 
         if (empty($rows)) {
-            throw new FfbTableException("No data for arguments provided!");
+            throw new FfbTableException(self::ERROR_NO_DATA);
         }
 
         return $this->parseEntities($rows);
     }
 
-    /**
-     * Create a new Language entity.
-     *
-     * @param Entity $entity The Language entity to create.
-     * @return Language The created Language entity.
-     * @throws \InvalidArgumentException If the provided entity is not an instance of Language.
-     */
     public function create(Entity $entity): Language
     {
         if (!$entity instanceof Language) {
@@ -235,8 +194,8 @@ class LanguagesTable extends EntitiesTable
         $values = [
             ":name" => $entity->getName(),
             ":abbreviation" => $entity->getAbbreviation(),
-            ":creation_date" => $entity->getCreationDate()->format("Y-m-d H:i:s"),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s"),
+            ":creation_date" => $entity->getCreationDate()->format(self::DATE_FORMAT),
+            ":update_date" => $entity->getUpdateDate()->format(self::DATE_FORMAT),
             ":delete_date" => null
         ];
 
@@ -246,13 +205,6 @@ class LanguagesTable extends EntitiesTable
         return $entity;
     }
 
-    /**
-     * Update an existing Language entity.
-     *
-     * @param Entity $entity The Language entity to update.
-     * @return Language The updated Language entity.
-     * @throws \InvalidArgumentException If the provided entity is not an instance of Language.
-     */
     public function update(Entity $entity): Language
     {
         if (!$entity instanceof Language) {
@@ -266,7 +218,7 @@ class LanguagesTable extends EntitiesTable
             ":id" => $entity->getId(),
             ":name" => $entity->getName(),
             ":abbreviation" => $entity->getAbbreviation(),
-            ":update_date" => $entity->getUpdateDate()->format("Y-m-d H:i:s")
+            ":update_date" => $entity->getUpdateDate()->format(self::DATE_FORMAT)
         ];
 
         $this->executeQuery($query, $values);
@@ -274,13 +226,6 @@ class LanguagesTable extends EntitiesTable
         return $entity;
     }
 
-    /**
-     * Soft delete a Language entity.
-     * Marks a Language entity as deleted by setting a delete date.
-     *
-     * @param int $id The ID of the Language entity to delete.
-     * @return bool True if the entity was soft deleted, false otherwise.
-     */
     public function delete(int $id): bool
     {
         $query = "UPDATE `languages` SET `delete_date` = NOW() WHERE `id` = :id AND `delete_date` IS NULL";
@@ -291,13 +236,6 @@ class LanguagesTable extends EntitiesTable
         return $result > 0;
     }
 
-    /**
-     * Restore a soft-deleted Language entity.
-     * Removes the delete date from a soft-deleted Language entity.
-     *
-     * @param int $id The ID of the Language entity to restore.
-     * @return bool True if the entity was restored, false otherwise.
-     */
     public function restore(int $id): bool
     {
         $query = "UPDATE `languages` SET `delete_date` = NULL WHERE `id` = :id AND `delete_date` IS NOT NULL";
@@ -308,13 +246,6 @@ class LanguagesTable extends EntitiesTable
         return $result > 0;
     }
 
-    /**
-     * Hard delete a Language entity.
-     * Permanently removes a Language entity from the database.
-     *
-     * @param int $id The ID of the Language entity to remove.
-     * @return bool True if the entity was hard deleted, false otherwise.
-     */
     public function remove(int $id): bool
     {
         $query = "DELETE FROM `languages` WHERE `id` = :id AND `delete_date` IS NOT NULL";
@@ -325,13 +256,6 @@ class LanguagesTable extends EntitiesTable
         return $result > 0;
     }
 
-    /**
-     * Parse a database row into a Language entity.
-     * Converts a database row into a Language object.
-     *
-     * @param array $row The database row to parse.
-     * @return Language The parsed Language entity.
-     */
     protected function parseEntity(array $row): Language
     {
         return (new LanguageBuilder())

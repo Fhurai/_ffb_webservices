@@ -13,6 +13,8 @@ require_once __DIR__ . '/../../src/entity/Relation.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
 class RelationTest extends TestCase
 {
+    private const TIMEZONE = 'Europe/Paris';
+
     /**
      * @var Relation The Relation instance being tested.
      */
@@ -37,7 +39,7 @@ class RelationTest extends TestCase
         $this->assertEquals(123, $this->relation->getId());
 
         // Test setting and getting the creation date (inherited from Entity)
-        $date = new DateTime('now', new DateTimeZone('Europe/Paris'));
+        $date = new DateTime('now', new DateTimeZone(self::TIMEZONE));
         $this->relation->setCreationDate($date);
         $this->assertSame($date, $this->relation->getCreationDate());
 
@@ -56,7 +58,7 @@ class RelationTest extends TestCase
         $this->relation->setName('Test Relationship');
 
         // Set consistent creation and update dates for testing
-        $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone('Europe/Paris'));
+        $date = new DateTime('2023-01-01 12:34:56', new DateTimeZone(self::TIMEZONE));
         $this->relation->setCreationDate($date);
         $this->relation->setUpdateDate($date);
 
@@ -115,7 +117,7 @@ class RelationTest extends TestCase
             $relation->getCreationDate()->format('Y-m-d H:i:s')
         );
         $this->assertEquals(
-            'Europe/Paris',
+            self::TIMEZONE,
             $relation->getCreationDate()->getTimezone()->getName()
         );
 
