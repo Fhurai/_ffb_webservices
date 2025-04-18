@@ -6,7 +6,7 @@ require_once __DIR__ . '/../src/utility/SrcUtilities.php';
 
 // Validate required configuration
 if (!isset($tableClass) || !isset($defaultSearch)) {
-    ApiUtilities::httpError(500, 'Controller configuration error');
+    ApiUtilities::httpInternalServerError( 'Controller configuration error');
     exit;
 }
 

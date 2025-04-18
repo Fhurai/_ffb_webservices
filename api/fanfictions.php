@@ -1,9 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../src/endpoints/EntitiesEndpoint.php';
-require_once __DIR__ . '/../src/table/CharactersTable.php';
+require_once __DIR__ . '/../src/table/FanfictionsTable.php';
 
-$endpoint = new EntitiesEndpoint(CharactersTable::class);
+$endpoint = new EntitiesEndpoint(FanfictionsTable::class);
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {
