@@ -6,6 +6,9 @@ require_once __DIR__ . '/../../src/entity/Action.php';
 require_once __DIR__ . '/../../src/table/ActionsTable.php';
 require_once __DIR__ . '/../../src/table/Connection.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(FfbException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(Parameters::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(ActionsTable::class)]
 class ActionsTableTest extends TestCase
 {

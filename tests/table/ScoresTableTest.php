@@ -6,6 +6,9 @@ require_once __DIR__ . '/../../src/entity/Score.php';
 require_once __DIR__ . '/../../src/table/ScoresTable.php';
 require_once __DIR__ . '/../../src/table/Connection.php';
 
+#[\PHPUnit\Framework\Attributes\CoversClass(Connection::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(FfbException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(Parameters::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(ScoresTable::class)]
 class ScoresTableTest extends TestCase
 {
@@ -84,7 +87,7 @@ class ScoresTableTest extends TestCase
     {
         // Search + Order + Limit
         $result = $this->scoresTable->findAll([
-            'search' => ['name' => '%i%'],
+            'search' => ['name' => '%oo%'],
             'order' => ['name' => 'DESC'],
             'limit' => ['limit' => 2]
         ]);
