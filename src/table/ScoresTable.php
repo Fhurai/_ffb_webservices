@@ -10,7 +10,7 @@ require_once __DIR__ . "/../entity/Score.php";
  */
 class ScoresTable extends ParametersTable
 {
-    protected const TABLE_NAME   = 'scores';
+    protected const TABLE_NAME = 'scores';
     protected const ENTITY_CLASS = Score::class;
 
     protected function parseEntity(array $row): Score

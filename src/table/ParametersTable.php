@@ -39,14 +39,14 @@ abstract class ParametersTable
 
     public function get(int $id): mixed
     {
-        $sql   = $this->getBaseSelect() . ' WHERE `' . static::PRIMARY_KEY . '` = :id';
-        $rows  = $this->executeQuery($sql, [':id' => $id]);
+        $sql = $this->getBaseSelect() . ' WHERE `' . static::PRIMARY_KEY . '` = :id';
+        $rows = $this->executeQuery($sql, [':id' => $id]);
         return $this->parseEntity($rows[0]);
     }
 
     public function findAll(array $args): array
     {
-        $sql    = $this->getBaseSelect();
+        $sql = $this->getBaseSelect();
         $values = [];
 
         if (!empty($args['search'])) {
@@ -81,7 +81,7 @@ abstract class ParametersTable
         if (empty($args)) {
             throw new FfbTableException('No search arguments provided!');
         }
-        $sql    = $execute ? $this->getBaseSelect() : '';
+        $sql = $execute ? $this->getBaseSelect() : '';
         $values = [];
 
         $cols = $this->getTableColumns(static::TABLE_NAME);
@@ -94,14 +94,14 @@ abstract class ParametersTable
         $conds = [];
         foreach ($args as $col => $val) {
             if (str_contains($val, '%')) {
-                $conds[]         = "$col LIKE :$col";
+                $conds[] = "$col LIKE :$col";
                 $values[":$col"] = $val;
             } elseif (preg_match('/[<>=!]/', $val, $m)) {
-                [$op, $v]        = explode(' ', $val, 2);
-                $conds[]         = "$col $op :$col";
+                [$op, $v] = explode(' ', $val, 2);
+                $conds[] = "$col $op :$col";
                 $values[":$col"] = str_replace("'", '', $v);
             } else {
-                $conds[]         = "$col = :$col";
+                $conds[] = "$col = :$col";
                 $values[":$col"] = $val;
             }
         }
@@ -128,9 +128,9 @@ abstract class ParametersTable
         if (empty($args)) {
             throw new FfbTableException('No order arguments provided!');
         }
-        $sql   = $execute ? $this->getBaseSelect() : '';
+        $sql = $execute ? $this->getBaseSelect() : '';
         $clauses = [];
-        $cols    = $this->getTableColumns(static::TABLE_NAME);
+        $cols = $this->getTableColumns(static::TABLE_NAME);
 
         foreach ($args as $col => $dir) {
             if (!in_array($col, $cols, true)) {
@@ -162,16 +162,16 @@ abstract class ParametersTable
         if (!isset($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
             throw new FfbTableException('Invalid or missing limit value!');
         }
-        $limit  = (int)$args['limit'];
-        $sql    = $execute
-                ? $this->getBaseSelect() . " LIMIT $limit"
-                : "LIMIT $limit";
+        $limit = (int) $args['limit'];
+        $sql = $execute
+            ? $this->getBaseSelect() . " LIMIT $limit"
+            : "LIMIT $limit";
 
         if (!empty($args['offset'])) {
             if (!is_numeric($args['offset']) || $args['offset'] < 0) {
                 throw new FfbTableException('Invalid offset value!');
             }
-            $sql .= ' OFFSET ' . (int)$args['offset'];
+            $sql .= ' OFFSET ' . (int) $args['offset'];
         }
 
         if (!$execute) {

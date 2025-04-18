@@ -9,7 +9,7 @@ require_once __DIR__ . "/../entity/Action.php";
  */
 class ActionsTable extends ParametersTable
 {
-    protected const TABLE_NAME   = 'actions';
+    protected const TABLE_NAME = 'actions';
     protected const ENTITY_CLASS = Action::class;
 
     protected function parseEntity(array $row): Action
