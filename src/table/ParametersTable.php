@@ -20,43 +20,172 @@ abstract class ParametersTable
         $this->connection = Connection::getDatabase($typeConnection, $user);
     }
 
-    /**
-     * Get a parameter by its ID.
-     * @param int $id The unique identifier of the parameter.
-     * @return mixed The parameter data as an associative array or object.
-     */
-    abstract public function get(int $id);
+    /** @var string The DB table (without backticks) */
+    protected const TABLE_NAME = '';
+
+    /** @var string The fully‑qualified entity class to hydrate */
+    protected const ENTITY_CLASS = '';
+
+    /** The PK column */
+    protected const PRIMARY_KEY = 'id';
 
     /**
-     * Find parameters based on specific search criteria.
-     * @param array $args An associative array of search criteria.
-     * @param bool $execute Whether to execute the query immediately (default: true).
-     * @return mixed The search results as an array or object.
+     * @return string
      */
-    abstract public function findSearchedBy(array $args, bool $execute = true): mixed;
+    private function getBaseSelect(): string
+    {
+        return 'SELECT * FROM `' . static::TABLE_NAME . '`';
+    }
 
-    /**
-     * Retrieve parameters ordered by specific criteria.
-     * @param array $args An associative array defining the ordering criteria.
-     * @param bool $execute Whether to execute the query immediately (default: true).
-     * @return mixed The ordered results as an array or object.
-     */
-    abstract public function findOrderedBy(array $args, bool $execute = true): mixed;
+    public function get(int $id): mixed
+    {
+        $sql   = $this->getBaseSelect() . ' WHERE `' . static::PRIMARY_KEY . '` = :id';
+        $rows  = $this->executeQuery($sql, [':id' => $id]);
+        return $this->parseEntity($rows[0]);
+    }
 
-    /**
-     * Retrieve a limited number of parameters based on criteria.
-     * @param array $args An associative array defining the limiting criteria.
-     * @param bool $execute Whether to execute the query immediately (default: true).
-     * @return mixed The limited results as an array or object.
-     */
-    abstract public function findLimitedBy(array $args, bool $execute = true): mixed;
+    public function findAll(array $args): array
+    {
+        $sql    = $this->getBaseSelect();
+        $values = [];
 
-    /**
-     * Retrieve all parameters matching the provided criteria.
-     * @param array $args An associative array of filtering criteria.
-     * @return array The results as an array.
-     */
-    abstract public function findAll(array $args): array;
+        if (!empty($args['search'])) {
+            $sub = $this->findSearchedBy($args['search'], false);
+            $sql .= ' WHERE ' . substr($sub, strpos($sub, 'WHERE') + 6);
+            foreach ($args['search'] as $k => $v) {
+                $values[":{$k}"] = str_replace("'", '', explode(' ', $v)[0]);
+            }
+        }
+
+        if (!empty($args['order'])) {
+            $sub = $this->findOrderedBy($args['order'], false);
+            $sql .= ' ' . substr($sub, strpos($sub, 'ORDER BY'));
+        }
+
+        if (!empty($args['limit'])) {
+            $sub = $this->findLimitedBy($args['limit'], false);
+            $sql .= ' ' . substr($sub, strpos($sub, 'LIMIT'));
+        }
+
+        $rows = $this->executeQuery($sql, $values);
+        if (empty($rows)) {
+            throw new FfbTableException(
+                'No ' . static::TABLE_NAME . ' found matching the specified criteria.'
+            );
+        }
+        return $this->parseEntities($rows);
+    }
+
+    public function findSearchedBy(array $args, bool $execute = true): mixed
+    {
+        if (empty($args)) {
+            throw new FfbTableException('No search arguments provided!');
+        }
+        $sql    = $execute ? $this->getBaseSelect() : '';
+        $values = [];
+
+        $cols = $this->getTableColumns(static::TABLE_NAME);
+        foreach ($args as $col => $_) {
+            if (!in_array($col, $cols, true)) {
+                throw new FfbTableException("Invalid column name: '$col'");
+            }
+        }
+
+        $conds = [];
+        foreach ($args as $col => $val) {
+            if (str_contains($val, '%')) {
+                $conds[]         = "$col LIKE :$col";
+                $values[":$col"] = $val;
+            } elseif (preg_match('/[<>=!]/', $val, $m)) {
+                [$op, $v]        = explode(' ', $val, 2);
+                $conds[]         = "$col $op :$col";
+                $values[":$col"] = str_replace("'", '', $v);
+            } else {
+                $conds[]         = "$col = :$col";
+                $values[":$col"] = $val;
+            }
+        }
+
+        if ($conds) {
+            $sql .= ' WHERE ' . implode(' AND ', $conds);
+        }
+
+        if (!$execute) {
+            return $sql;
+        }
+
+        $rows = $this->executeQuery($sql, $values);
+        if (empty($rows)) {
+            throw new FfbTableException(
+                'No ' . static::TABLE_NAME . ' found matching the search criteria.'
+            );
+        }
+        return $this->parseEntities($rows);
+    }
+
+    public function findOrderedBy(array $args, bool $execute = true): mixed
+    {
+        if (empty($args)) {
+            throw new FfbTableException('No order arguments provided!');
+        }
+        $sql   = $execute ? $this->getBaseSelect() : '';
+        $clauses = [];
+        $cols    = $this->getTableColumns(static::TABLE_NAME);
+
+        foreach ($args as $col => $dir) {
+            if (!in_array($col, $cols, true)) {
+                throw new FfbTableException("Invalid column name: '$col'");
+            }
+            if (!in_array(strtoupper($dir), ['ASC', 'DESC'], true)) {
+                throw new FfbTableException("Invalid order direction: '$dir'");
+            }
+            $clauses[] = "$col $dir";
+        }
+
+        $sql .= ' ORDER BY ' . implode(', ', $clauses);
+
+        if (!$execute) {
+            return $sql;
+        }
+
+        $rows = $this->executeQuery($sql);
+        if (empty($rows)) {
+            throw new FfbTableException(
+                'No ' . static::TABLE_NAME . ' found matching the order criteria.'
+            );
+        }
+        return $this->parseEntities($rows);
+    }
+
+    public function findLimitedBy(array $args, bool $execute = true): mixed
+    {
+        if (!isset($args['limit']) || !is_numeric($args['limit']) || $args['limit'] < 0) {
+            throw new FfbTableException('Invalid or missing limit value!');
+        }
+        $limit  = (int)$args['limit'];
+        $sql    = $execute
+                ? $this->getBaseSelect() . " LIMIT $limit"
+                : "LIMIT $limit";
+
+        if (!empty($args['offset'])) {
+            if (!is_numeric($args['offset']) || $args['offset'] < 0) {
+                throw new FfbTableException('Invalid offset value!');
+            }
+            $sql .= ' OFFSET ' . (int)$args['offset'];
+        }
+
+        if (!$execute) {
+            return $sql;
+        }
+
+        $rows = $this->executeQuery($sql);
+        if (empty($rows)) {
+            throw new FfbTableException(
+                'No ' . static::TABLE_NAME . ' found matching the limit criteria.'
+            );
+        }
+        return $this->parseEntities($rows);
+    }
 
     /**
      * Convert a database row into a corresponding entity object.
