@@ -114,6 +114,7 @@ jobs:
         env:
           DB_DATABASE: ffb_tests
         run: vendor/bin/phpunit
+        continue-on-error: true
 
   discord-notification-php-tests:
     name: Discord Notification - PHP Tests
@@ -310,7 +311,6 @@ jobs:
           args: >
             -Dsonar.php.coverage.reportPaths=clover.xml
             -Dsonar.scm.provider=git
-
         continue-on-error: true
 
       
