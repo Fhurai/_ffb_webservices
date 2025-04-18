@@ -29,6 +29,16 @@ abstract class ParametersTable
     /** The PK column */
     protected const PRIMARY_KEY = 'id';
 
+    public function getTableName(): string
+    {
+        return static::TABLE_NAME;
+    }
+
+    public function getEntityClass(): string
+    {
+        return static::ENTITY_CLASS;
+    }
+
     /**
      * @return string
      */
@@ -239,12 +249,7 @@ abstract class ParametersTable
     protected function getTableColumns(string $tableName): array
     {
         try {
-            $stmt = $this->connection->prepare("
-            SELECT COLUMN_NAME
-            FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE TABLE_SCHEMA = DATABASE()
-              AND TABLE_NAME = :table
-        ");
+            $stmt = $this->connection->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :table");
             $stmt->execute([':table' => $tableName]);
             return $stmt->fetchAll(PDO::FETCH_COLUMN);
         } catch (PDOException $e) {

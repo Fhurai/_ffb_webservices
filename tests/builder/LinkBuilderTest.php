@@ -1,5 +1,8 @@
-<?php require_once __DIR__ . "/../../tests/builder/EntityBuilderTestCase.php";
+<?php
+
+require_once __DIR__ . "/../../tests/builder/EntityBuilderTestCase.php";
 require_once __DIR__ . "/../../src/entity/Link.php";
+require_once __DIR__ . "/../../src/builder/LinkBuilder.php";
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]

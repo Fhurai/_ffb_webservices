@@ -1,218 +1,216 @@
 <?php
 
-require_once __DIR__ . "/../entity/Entity.php";
+require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/../exception/FfbTableException.php";
 require_once __DIR__ . "/../exception/SqlExceptionManager.php";
 
 abstract class EntitiesTable
 {
-    /**
-     *
-     * @var PDO
-     */
     protected PDO $connection;
 
-    /**
-     * Type of database connection.
-     * @var string
-     */
-    protected string $typeConnection;
-    /**
-     * Database user.
-     * @var string
-     */
-    protected string $user;
+    // Common date format used in all tables
+    protected const DATE_FORMAT = 'Y-m-d H:i:s';
+
+    // Default exception message when no data is found
+    protected const NO_DATA_EXCEPTION = 'No data for arguments provided!';
 
     /**
-     * EntitiesTable constructor.
-     * Initializes the database connection using the provided type and user.
-     *
-     * @param string $typeConnection Type of database connection.
-     * @param string $user Database user.
+     * Establish DB connection
      */
     public function __construct(string $typeConnection, string $user)
     {
-        // Validate the type of connection and user
         if (empty($typeConnection) || empty($user)) {
             throw new InvalidArgumentException("Invalid connection type or user.");
         }
-        // Set the type of connection and user
-        $this->typeConnection = $typeConnection;
-        $this->user = $user;
-        // Initialize the database connection using the provided type and user
         $this->connection = Connection::getDatabase($typeConnection, $user);
     }
 
     /**
-     * Get an entity by its ID.
-     * Retrieves a single entity object from the database based on its unique identifier.
-     *
-     * @param int $id The ID of the entity.
-     * @return Entity The entity object.
+     * Fetch single entity by ID
      */
-    abstract public function get(int $id): Entity;
-
-    /**
-     * Find entities based on search criteria.
-     * Searches the database for entities matching the provided criteria.
-     *
-     * @param array $args The search criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The search results as an array of Entity objects.
-     */
-    abstract public function findSearchedBy(array $args, $execute = true): array|string;
-
-    /**
-     * Find entities ordered by specific criteria.
-     * Retrieves entities from the database ordered by the specified criteria.
-     *
-     * @param array $args The ordering criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The ordered results as an array of Entity objects.
-     */
-    abstract public function findOrderedBy(array $args, $execute = true): array|string;
-
-    /**
-     * Find a limited number of entities based on criteria.
-     * Retrieves a subset of entities from the database based on the provided criteria.
-     *
-     * @param array $args The limiting criteria as key-value pairs.
-     * @param bool $execute Whether to execute the query immediately.
-     * @return array The limited results as an array of Entity objects.
-     */
-    abstract public function findLimitedBy(array $args, $execute = true): array|string;
-
-    /**
-     * Find all entities based on criteria.
-     * Retrieves all entities from the database that match the given criteria.
-     *
-     * @param array $args The criteria as key-value pairs.
-     * @return array The results as an array of Entity objects.
-     */
-    abstract public function findAll(array $args): array;
-
-    /**
-     * Create a new entity in the database.
-     * Inserts a new entity into the database and returns the created entity with updated properties.
-     *
-     * @param Entity $entity The entity object to be created.
-     * @return Entity The created entity object with updated properties.
-     */
-    abstract public function create(Entity $entity): Entity;
-
-    /**
-     * Update an existing entity in the database.
-     * Modifies the properties of an existing entity in the database.
-     *
-     * @param Entity $entity The entity object with updated properties.
-     * @return Entity The updated entity object.
-     */
-    abstract public function update(Entity $entity): Entity;
-
-    /**
-     * Soft delete an entity.
-     * Marks an entity as deleted without removing it from the database.
-     *
-     * @param int $id The ID of the entity to delete.
-     * @return bool True if the entity was soft deleted, false otherwise.
-     */
-    abstract public function delete(int $id): bool;
-
-    /**
-     * Restore a soft-deleted entity.
-     * Reverts the soft deletion of an entity, making it active again.
-     *
-     * @param int $id The ID of the entity to restore.
-     * @return bool True if the entity was restored, false otherwise.
-     */
-    abstract public function restore(int $id): bool;
-
-    /**
-     * Hard delete an entity.
-     * Permanently removes an entity from the database.
-     *
-     * @param int $id The ID of the entity to remove.
-     * @return bool True if the entity was hard deleted, false otherwise.
-     */
-    abstract public function remove(int $id): bool;
-
-    /**
-     * Execute a query with the provided values.
-     * Prepares and executes an SQL query with bound values, returning the results.
-     *
-     * @param string $query The SQL query to execute.
-     * @param array $values The values to bind to the query.
-     * @return mixed The query results as associative arrays.
-     * @throws FfbTableException If no data is found or a PDOException occurs.
-     */
-    protected function executeQuery(string $query, array $values = []): mixed
+    public function get(int $id): Entity
     {
-        try {
-            $sth = $this->connection->prepare($query);
-            $sth->execute($values);
+        $query = static::DEFAULT_SELECT_QUERY . " WHERE `id` = :id";
+        $rows = $this->executeQuery($query, [':id' => $id]);
+        if (empty($rows)) {
+            throw new FfbTableException(static::NO_DATA_EXCEPTION);
+        }
+        return $this->parseEntity($rows[0]);
+    }
 
-            // Check if the query returns results (e.g., SELECT)
-            if ($sth->columnCount() > 0) {
-                return $sth->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                // Return the number of affected rows for write operations
-                return $sth->rowCount();
+    /**
+     * Search by arbitrary conditions (LIKE, NULL, operators)
+     */
+    public function findSearchedBy(array $args, bool $execute = true): array|string
+    {
+        if (empty($args)) {
+            throw new FfbTableException("No search arguments provided!");
+        }
+        $validColumns = $this->getTableColumns(static::TABLE_NAME);
+        $values = [];
+        $conditions = [];
+        foreach ($args as $column => $value) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
             }
-        } catch (PDOException $e) {
-            $manager = SqlExceptionManager::fromPDOException($e);
-            throw new FfbTableException($manager->getFormattedMessage(), 500, $e);
+            // build condition
+            if (str_contains($value, '%')) {
+                $conditions[] = "`$column` LIKE :$column";
+                $values[":$column"] = $value;
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $m)) {
+                $conditions[] = "`$column` {$m[1]} :$column";
+                $values[":$column"] = $m[2];
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = str_contains(strtolower($value), 'not')
+                    ? "`$column` IS NOT NULL"
+                    : "`$column` IS NULL";
+            }
         }
+        $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
+            . ' WHERE ' . implode(' AND ', $conditions);
+        return $execute ? $this->parseEntities($this->executeQuery($query, $values)) : $query;
     }
 
     /**
-     * Retrieves the ID of the last inserted row in the database.
-     * Fetches the last auto-incremented ID generated by an INSERT operation.
-     *
-     * @return int The ID of the last inserted row as an integer.
-     * @throws FfbTableException If the last inserted ID cannot be retrieved.
+     * Sort results by given columns
      */
-    public function getLastInsertId(): int
+    public function findOrderedBy(array $args, bool $execute = true): array|string
     {
-        $lastInsertId = $this->connection->lastInsertId();
-
-        if ($lastInsertId === false || !is_numeric($lastInsertId)) {
-            throw new FfbTableException("Failed to retrieve the last inserted ID.", 500);
+        if (empty($args)) {
+            throw new FfbTableException("No ordering arguments provided!");
         }
-
-        return (int) $lastInsertId;
+        $validColumns = $this->getTableColumns(static::TABLE_NAME);
+        $orders = [];
+        foreach ($args as $column => $direction) {
+            if (!in_array($column, $validColumns)) {
+                throw new FfbTableException("Invalid column name: '$column'");
+            }
+            $dir = strtoupper($direction) === 'DESC' ? 'DESC' : 'ASC';
+            $orders[] = "`$column` $dir";
+        }
+        $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
+            . ' ORDER BY ' . implode(', ', $orders);
+        return $execute ? $this->parseEntities($this->executeQuery($query, [])) : $query;
     }
 
     /**
-     * Get valid column names for the specified table.
-     * @param string $tableName The table name.
-     * @return array List of valid column names.
-     * @throws FfbTableException If the query fails.
+     * Limit and offset
      */
-    protected function getTableColumns(string $tableName): array
+    public function findLimitedBy(array $args, bool $execute = true): array|string
+    {
+        if (!isset($args['limit'])) {
+            throw new FfbTableException("Limit not provided!");
+        }
+        $limit = (int) $args['limit'];
+        $offset = isset($args['offset']) ? (int) $args['offset'] : 0;
+        $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
+            . " LIMIT $limit OFFSET $offset";
+        return $execute ? $this->parseEntities($this->executeQuery($query, [])) : $query;
+    }
+
+    /**
+     * Fetch all
+     */
+    public function findAll(array $args = []): array
+    {
+        $query = static::DEFAULT_SELECT_QUERY;
+        return $this->parseEntities($this->executeQuery($query, []));
+    }
+
+    /**
+     * Insert a new record
+     */
+    public function create(Entity $entity): Entity
+    {
+        $cols = $entity->toArray(); // assumes entity has toArray mapping columns
+        $fields = array_keys($cols);
+        $place = array_map(fn($col) => ":$col", $fields);
+        $sql = sprintf(
+            'INSERT INTO `%s` (%s) VALUES (%s)',
+            static::TABLE_NAME,
+            implode(', ', array_map(fn($c) => "`$c`", $fields)),
+            implode(', ', $place)
+        );
+        $this->executeQuery($sql, array_combine($place, array_values($cols)));
+        return $entity->withId((int) $this->connection->lastInsertId());
+    }
+
+    /**
+     * Update an existing record
+     */
+    public function update(Entity $entity): Entity
+    {
+        $cols = $entity->toArray();
+        unset($cols['id']);
+        $sets = array_map(fn($c) => "`$c` = :$c", array_keys($cols));
+        $sql = sprintf(
+            'UPDATE `%s` SET %s WHERE `id` = :id',
+            static::TABLE_NAME,
+            implode(', ', $sets)
+        );
+        $params = array_merge(
+            array_combine(array_map(fn($c) => ":$c", array_keys($cols)), array_values($cols)),
+            [':id' => $entity->getId()]
+        );
+        $this->executeQuery($sql, $params);
+        return $entity;
+    }
+
+    /**
+     * Soft-delete a record
+     */
+    public function delete(int $id): bool
+    {
+        $sql = sprintf(
+            'UPDATE `%s` SET `delete_date` = :now WHERE `id` = :id',
+            static::TABLE_NAME
+        );
+        $this->executeQuery($sql, [':now' => date(self::DATE_FORMAT), ':id' => $id]);
+        return (bool) $this->connection->rowCount();
+    }
+
+    /**
+     * Restore a soft-deleted record
+     */
+    public function restore(int $id): bool
+    {
+        $sql = sprintf(
+            'UPDATE `%s` SET `delete_date` = NULL WHERE `id` = :id',
+            static::TABLE_NAME
+        );
+        $this->executeQuery($sql, [':id' => $id]);
+        return (bool) $this->connection->rowCount();
+    }
+
+    /**
+     * Hard remove a record
+     */
+    public function remove(int $id): bool
+    {
+        $sql = sprintf(
+            'DELETE FROM `%s` WHERE `id` = :id',
+            static::TABLE_NAME
+        );
+        $this->executeQuery($sql, [':id' => $id]);
+        return (bool) $this->connection->rowCount();
+    }
+
+    /**
+     * Execute and fetch
+     */
+    protected function executeQuery(string $query, array $values): array
     {
         try {
-            $stmt = $this->connection->prepare("
-                SELECT COLUMN_NAME
-                FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_SCHEMA = DATABASE()
-                  AND TABLE_NAME = :table
-            ");
-            $stmt->execute([':table' => $tableName]);
-            return $stmt->fetchAll(PDO::FETCH_COLUMN);
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute($values);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+            SqlExceptionManager::handle($e, $query, $values);
         }
     }
 
     /**
-     * Parse multiple database rows into an array of entity objects.
-     * Converts database rows into an array of entity objects using the parseEntity method.
-     *
-     * @param array $rows The database rows.
-     * @return array Array of entity objects.
+     * Abstract mapping to entity
      */
-    protected function parseEntities(array $rows): array
-    {
-        return array_map([$this, 'parseEntity'], $rows);
-    }
+    abstract protected function parseEntity(array $row): Entity;
 }

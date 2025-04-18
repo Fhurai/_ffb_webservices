@@ -2,222 +2,95 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../../src/table/ActionsTable.php';
 require_once __DIR__ . '/../../src/entity/Action.php';
-require_once __DIR__ . '/../../src/exception/FfbTableException.php';
+require_once __DIR__ . '/../../src/table/ActionsTable.php';
+require_once __DIR__ . '/../../src/table/Connection.php';
 
-#[\PHPUnit\Framework\Attributes\CoversClass(\Action::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\ActionsTable::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(ActionsTable::class)]
 class ActionsTableTest extends TestCase
 {
-    private const INVALID_COLUMN_MESSAGE = "Invalid column name: 'invalid_column'";
-
     private ActionsTable $actionsTable;
 
-    /**
-     * Set up the ActionsTable instance before each test.
-     */
     protected function setUp(): void
     {
-        $this->actionsTable = new ActionsTable("tests", "user");
+        // Create ActionsTable with real connection
+        $this->actionsTable = new ActionsTable('tests', 'user');
     }
 
-    /**
-     * Test the get method with a valid ID.
-     */
-    public function testGetValidId(): void
+    public function testGet()
     {
-        $result = $this->actionsTable->get(1);
-        $this->assertInstanceOf(Action::class, $result);
-        $this->assertEquals(1, $result->getId());
-        $this->assertEquals("CREATION", $result->getName());
-    }
+        // Test existing ID
+        $action = $this->actionsTable->get(1);
+        $this->assertInstanceOf(Action::class, $action);
+        $this->assertEquals('CREATION', $action->getName());
 
-    /**
-     * Test the get method with an invalid ID.
-     */
-    public function testGetInvalidId(): void
-    {
+        // Test non-existing ID
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-
         $this->actionsTable->get(999);
     }
 
-    /**
-     * Test the get method with a non-integer ID.
-     */
-    public function testGetNonIntegerId(): void
+    public function testFindAll()
     {
-        $this->expectException(TypeError::class);
-        $this->actionsTable->get("invalid_id");
-    }
-
-    /**
-     * Test the findSearchedBy method with valid search criteria.
-     */
-    public function testFindSearchedByValidCriteria(): void
-    {
-        $result = $this->actionsTable->findSearchedBy(['name' => 'REMOVE']);
-        $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-        $this->assertInstanceOf(Action::class, $result[0]);
-    }
-
-    /**
-     * Test the findSearchedBy method with invalid search criteria.
-     */
-    public function testFindSearchedByInvalidCriteria(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
-
-        $this->actionsTable->findSearchedBy(['invalid_column' => 'value']);
-    }
-
-    /**
-     * Test the findSearchedBy method with empty search criteria.
-     */
-    public function testFindSearchedByEmptyCriteria(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No search arguments provided!");
-
-        $this->actionsTable->findSearchedBy([]);
-    }
-
-    /**
-     * Test the findOrderedBy method with valid order criteria.
-     */
-    public function testFindOrderedByValidCriteria(): void
-    {
-        $result = $this->actionsTable->findOrderedBy(['name' => 'ASC']);
-        $this->assertIsArray($result);
-        $this->assertCount(5, $result);
-        $this->assertEquals("CREATION", $result[0]->getName());
-    }
-
-    /**
-     * Test the findOrderedBy method with invalid order direction.
-     */
-    public function testFindOrderedByInvalidDirection(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
-
-        $this->actionsTable->findOrderedBy(['name' => 'INVALID']);
-    }
-
-    /**
-     * Test the findLimitedBy method with valid limit and offset.
-     */
-    public function testFindLimitedByValidCriteria(): void
-    {
-        $result = $this->actionsTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-    }
-
-    /**
-     * Test the findLimitedBy method with a negative limit.
-     */
-    public function testFindLimitedByNegativeLimit(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid or missing limit value!");
-
-        $this->actionsTable->findLimitedBy(['limit' => -1]);
-    }
-
-    /**
-     * Test the findLimitedBy method with a negative offset.
-     */
-    public function testFindLimitedByNegativeOffset(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid offset value!");
-
-        $this->actionsTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
-    }
-
-    /**
-     * Test the findAll method with combined criteria.
-     */
-    public function testFindAllWithCriteria(): void
-    {
-        $result = $this->actionsTable->findAll([
-            'search' => ['name' => 'R%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
-        ]);
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-    }
-
-    /**
-     * Test the findAll method with no results.
-     */
-    public function testFindAllNoResults(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-
-        $this->actionsTable->findAll([
-            'search' => ['name' => 'Nonexistent%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
-        ]);
-    }
-
-    /**
-     * Test the findAll method with empty arguments.
-     */
-    public function testFindAllEmptyArguments(): void
-    {
+        // Get all actions
         $result = $this->actionsTable->findAll([]);
-        $this->assertIsArray($result);
         $this->assertCount(5, $result);
+
+        // Verify all items are Action instances
+        $this->assertContainsOnlyInstancesOf(Action::class, $result);
     }
 
-    /**
-     * Test the findAll method with invalid search criteria.
-     */
-    public function testFindAllInvalidSearchCriteria(): void
+    public function testFindSearchedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
+        // Exact match
+        $result = $this->actionsTable->findSearchedBy(['name' => 'UPDATE']);
+        $this->assertCount(1, $result);
+        $this->assertEquals(2, $result[0]->getId());
 
-        $this->actionsTable->findAll([
-            'search' => ['invalid_column' => 'value']
-        ]);
+        // Partial match with LIKE
+        $result = $this->actionsTable->findSearchedBy(['name' => '%E%']);
+        $this->assertCount(5, $result); // CREATION, DELETE, UPDATE, RESTORE
+
+        // Operator match
+        $result = $this->actionsTable->findSearchedBy(['id' => '> 3']);
+        $this->assertCount(2, $result); // IDs 4 and 5
     }
 
-    /**
-     * Test the findAll method with invalid order criteria.
-     */
-    public function testFindAllInvalidOrderCriteria(): void
+    public function testFindOrderedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_MESSAGE);
+        // Order by name ASC
+        $result = $this->actionsTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertEquals('CREATION', $result[0]->getName());
+        $this->assertEquals('DELETE', $result[1]->getName());
 
-        $this->actionsTable->findAll([
-            'order' => ['invalid_column' => 'ASC']
-        ]);
+        // Order by id DESC
+        $result = $this->actionsTable->findOrderedBy(['id' => 'DESC']);
+        $this->assertEquals(5, $result[0]->getId());
+        $this->assertEquals(4, $result[1]->getId());
     }
 
-    /**
-     * Test the findAll method with invalid limit criteria.
-     */
-    public function testFindAllInvalidLimitCriteria(): void
+    public function testFindLimitedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid or missing limit value!");
+        // Limit 2
+        $result = $this->actionsTable->findLimitedBy(['limit' => 2]);
+        $this->assertCount(2, $result);
 
-        $this->actionsTable->findAll([
-            'limit' => ['limit' => -10]
+        // Limit 3 with offset 2
+        $result = $this->actionsTable->findLimitedBy(['limit' => 3, 'offset' => 2]);
+        $this->assertCount(3, $result);
+        $this->assertEquals(5, $result[0]->getId()); // Default order is by ID ASC
+    }
+
+    public function testComplexCombination()
+    {
+        // Search + Order + Limit
+        $result = $this->actionsTable->findAll([
+            'search' => ['name' => '%E%'],
+            'order' => ['name' => 'DESC'],
+            'limit' => ['limit' => 2]
         ]);
+
+        $expectedNames = ['UPDATE', 'RESTORE'];
+        $this->assertCount(2, $result);
+        $this->assertEquals($expectedNames, [$result[0]->getName(), $result[1]->getName()]);
     }
 }

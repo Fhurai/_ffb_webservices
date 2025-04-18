@@ -1,5 +1,13 @@
 <?php
 
+require_once __DIR__ . "/../../src/builder/AuthorBuilder.php";
+require_once __DIR__ . "/../../src/builder/CharacterBuilder.php";
+require_once __DIR__ . "/../../src/builder/FandomBuilder.php";
+require_once __DIR__ . "/../../src/builder/FanfictionBuilder.php";
+require_once __DIR__ . "/../../src/builder/LanguageBuilder.php";
+require_once __DIR__ . "/../../src/builder/RelationBuilder.php";
+require_once __DIR__ . "/../../src/builder/SeriesBuilder.php";
+require_once __DIR__ . "/../../src/builder/TagBuilder.php";
 require_once __DIR__ . "/../../tests/builder/EntityBuilderTestCase.php";
 
 /**

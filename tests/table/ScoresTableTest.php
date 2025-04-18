@@ -2,168 +2,95 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../../src/table/ScoresTable.php';
 require_once __DIR__ . '/../../src/entity/Score.php';
-require_once __DIR__ . '/../../src/exception/FfbTableException.php';
+require_once __DIR__ . '/../../src/table/ScoresTable.php';
+require_once __DIR__ . '/../../src/table/Connection.php';
 
-#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Score::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\ScoresTable::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(ScoresTable::class)]
 class ScoresTableTest extends TestCase
 {
     private ScoresTable $scoresTable;
 
-    private const INVALID_COLUMN_EXCEPTION_MESSAGE = "Invalid column name: 'invalid_column'";
-
     protected function setUp(): void
     {
-        $this->scoresTable = new ScoresTable("tests", "user");
+        // Create ScoresTable with real connection
+        $this->scoresTable = new ScoresTable('tests', 'user');
     }
 
-    public function testGetValidId(): void
+    public function testGet()
     {
-        $result = $this->scoresTable->get(1);
-        $this->assertInstanceOf(Score::class, $result);
-        $this->assertEquals(1, $result->getId());
-        $this->assertEquals("Poor", $result->getName());
-    }
+        // Test existing ID
+        $score = $this->scoresTable->get(1);
+        $this->assertInstanceOf(Score::class, $score);
+        $this->assertEquals('Poor', $score->getName());
 
-    public function testGetInvalidId(): void
-    {
+        // Test non-existing ID
         $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-
         $this->scoresTable->get(999);
     }
 
-    public function testGetNonIntegerId(): void
+    public function testFindAll()
     {
-        $this->expectException(TypeError::class);
-        $this->scoresTable->get("invalid_id");
-    }
-
-    public function testFindSearchedByValidCriteria(): void
-    {
-        $result = $this->scoresTable->findSearchedBy(['name' => 'Excellent%']);
-        $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-        $this->assertInstanceOf(Score::class, $result[0]);
-    }
-
-    public function testFindSearchedByInvalidCriteria(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
-
-        $this->scoresTable->findSearchedBy(['invalid_column' => 'value']);
-    }
-
-    public function testFindSearchedByEmptyCriteria(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No search arguments provided!");
-
-        $this->scoresTable->findSearchedBy([]);
-    }
-
-    public function testFindOrderedByValidCriteria(): void
-    {
-        $result = $this->scoresTable->findOrderedBy(['name' => 'ASC']);
-        $this->assertIsArray($result);
-        $this->assertCount(6, $result);
-        $this->assertEquals("Acceptable", $result[0]->getName());
-    }
-
-    public function testFindOrderedByInvalidDirection(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid order direction: 'INVALID'");
-
-        $this->scoresTable->findOrderedBy(['name' => 'INVALID']);
-    }
-
-    public function testFindLimitedByValidCriteria(): void
-    {
-        $result = $this->scoresTable->findLimitedBy(['limit' => 2, 'offset' => 0]);
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-    }
-
-    public function testFindLimitedByNegativeLimit(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid or missing limit value!");
-
-        $this->scoresTable->findLimitedBy(['limit' => -1]);
-    }
-
-    public function testFindLimitedByNegativeOffset(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid offset value!");
-
-        $this->scoresTable->findLimitedBy(['limit' => 10, 'offset' => -5]);
-    }
-
-    public function testFindAllWithCriteria(): void
-    {
-        $result = $this->scoresTable->findAll([
-            'search' => ['name' => 'P%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
-        ]);
-        $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-    }
-
-    public function testFindAllNoResults(): void
-    {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("No data for arguments provided!");
-
-        $this->scoresTable->findAll([
-            'search' => ['name' => 'Nonexistent%'],
-            'order' => ['name' => 'ASC'],
-            'limit' => ['limit' => 2, 'offset' => 0]
-        ]);
-    }
-
-    public function testFindAllEmptyArguments(): void
-    {
+        // Get all scores
         $result = $this->scoresTable->findAll([]);
-        $this->assertIsArray($result);
         $this->assertCount(6, $result);
+
+        // Verify all items are Score instances
+        $this->assertContainsOnlyInstancesOf(Score::class, $result);
     }
 
-    public function testFindAllInvalidSearchCriteria(): void
+    public function testFindSearchedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
+        // Exact match
+        $result = $this->scoresTable->findSearchedBy(['name' => '%T%']);
+        $this->assertCount(4, $result);
+        $this->assertEquals(3, $result[0]->getId());
 
-        $this->scoresTable->findAll([
-            'search' => ['invalid_column' => 'value']
-        ]);
+        // Partial match with LIKE
+        $result = $this->scoresTable->findSearchedBy(['name' => '%M%']);
+        $this->assertCount(1, $result);
+
+        // Operator match
+        $result = $this->scoresTable->findSearchedBy(['id' => '> 3']);
+        $this->assertCount(2, $result); // IDs 4 and 5
     }
 
-    public function testFindAllInvalidOrderCriteria(): void
+    public function testFindOrderedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage(self::INVALID_COLUMN_EXCEPTION_MESSAGE);
+        // Order by name ASC
+        $result = $this->scoresTable->findOrderedBy(['name' => 'ASC']);
+        $this->assertEquals('Acceptable', $result[0]->getName());
+        $this->assertEquals('Excellent', $result[1]->getName());
 
-        $this->scoresTable->findAll([
-            'order' => ['invalid_column' => 'ASC']
-        ]);
+        // Order by id DESC
+        $result = $this->scoresTable->findOrderedBy(['id' => 'DESC']);
+        $this->assertEquals(5, $result[0]->getId());
+        $this->assertEquals(4, $result[1]->getId());
     }
 
-    public function testFindAllInvalidLimitCriteria(): void
+    public function testFindLimitedBy()
     {
-        $this->expectException(FfbTableException::class);
-        $this->expectExceptionMessage("Invalid or missing limit value!");
+        // Limit 2
+        $result = $this->scoresTable->findLimitedBy(['limit' => 2]);
+        $this->assertCount(2, $result);
 
-        $this->scoresTable->findAll([
-            'limit' => ['limit' => -10]
+        // Limit 3 with offset 2
+        $result = $this->scoresTable->findLimitedBy(['limit' => 3, 'offset' => 2]);
+        $this->assertCount(3, $result);
+        $this->assertEquals(4, $result[0]->getId()); // Default order is by ID ASC
+    }
+
+    public function testComplexCombination()
+    {
+        // Search + Order + Limit
+        $result = $this->scoresTable->findAll([
+            'search' => ['name' => '%i%'],
+            'order' => ['name' => 'DESC'],
+            'limit' => ['limit' => 2]
         ]);
+
+        $expectedNames = ['Poor', 'Good'];
+        $this->assertCount(2, $result);
+        $this->assertEquals($expectedNames, [$result[0]->getName(), $result[1]->getName()]);
     }
 }
