@@ -85,61 +85,96 @@ final class Series extends ComplexEntity
 
     public function jsonSerialize(): array
     {
-        $associations = [];
-        $derived = [];
 
-        foreach ($this->getAssociationProperties() as $prop) {
-            if ($this->{"has" . ucfirst($prop)}()) {
-                $associations[$prop] = $this->$prop;
-            }
-        }
-
-        if ($this->hasFanfictions()) {
-            $derived = [
-                'authors' => [],
-                'ratings' => [],
-                'languages' => [],
-                'fandoms' => [],
-                'relations' => [],
-                'characters' => [],
-                'tags' => []
-            ];
-
-            foreach ($this->getFanfictions() as $fanfiction) {
-                $derived['authors'][] = $fanfiction->hasAuthor() ? $fanfiction->getAuthor() : null;
-                $derived['ratings'][] = $fanfiction->hasRating() ? $fanfiction->getRating() : null;
-                $derived['languages'][] = $fanfiction->hasLanguage() ? $fanfiction->getLanguage() : null;
-
-                // Merge array-type properties
-                if ($fanfiction->hasFandoms()) {
-                    $derived['fandoms'] = array_merge($derived['fandoms'], $fanfiction->getFandoms());
-                }
-                if ($fanfiction->hasRelations()) {
-                    $derived['relations'] = array_merge($derived['relations'], $fanfiction->getRelations());
-                }
-                if ($fanfiction->hasCharacters()) {
-                    $derived['characters'] = array_merge($derived['characters'], $fanfiction->getCharacters());
-                }
-                if ($fanfiction->hasTags()) {
-                    $derived['tags'] = array_merge($derived['tags'], $fanfiction->getTags());
-                }
-            }
-
-            // Apply array_unique to all derived arrays
-            foreach ($derived as $key => $values) {
-                $derived[$key] = array_unique($values, SORT_REGULAR);
-            }
-
-            if(!empty($derived['rating'])){
-                $derived['rating'] = max($derived['ratings']);
-                unset($derived['ratings']);
-            }
-        }
+        $associations = $this->serializeAssociations();
+        $derived = $this->hasFanfictions() ? $this->serializeDerivedData() : [];
 
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->description,
             "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
         ], $associations, $derived);
+    }
+
+    private function serializeAssociations(): array
+    {
+        $result = [];
+        foreach ($this->getAssociationProperties() as $prop) {
+            if ($this->methodExistsAndTrue('has' . ucfirst($prop))) {
+                $result[$prop] = $this->$prop;
+            }
+        }
+        return $result;
+    }
+
+    private function serializeDerivedData(): array
+    {
+        $derived = $this->initializeDerived();
+
+        foreach ($this->getFanfictions() as $fanfiction) {
+            $this->accumulateDerived($derived, $fanfiction);
+        }
+
+        $this->deduplicateDerived($derived);
+        $this->mergeRating($derived);
+
+        return $derived;
+    }
+
+    private function initializeDerived(): array
+    {
+        return [
+            'authors'   => [],
+            'ratings'   => [],
+            'languages' => [],
+            'fandoms'   => [],
+            'relations' => [],
+            'characters'=> [],
+            'tags'      => [],
+        ];
+    }
+
+    private function accumulateDerived(array &$derived, $fanfiction): void
+    {
+        $this->addValue($derived['authors'],   $fanfiction->hasAuthor(),   fn() => $fanfiction->getAuthor());
+        $this->addValue($derived['ratings'],   $fanfiction->hasRating(),   fn() => $fanfiction->getRating());
+        $this->addValue($derived['languages'], $fanfiction->hasLanguage(), fn() => $fanfiction->getLanguage());
+
+        $this->mergeValues($derived['fandoms'],   $fanfiction->hasFandoms(),   fn() => $fanfiction->getFandoms());
+        $this->mergeValues($derived['relations'], $fanfiction->hasRelations(), fn() => $fanfiction->getRelations());
+        $this->mergeValues($derived['characters'],$fanfiction->hasCharacters(),fn() => $fanfiction->getCharacters());
+        $this->mergeValues($derived['tags'],      $fanfiction->hasTags(),      fn() => $fanfiction->getTags());
+    }
+
+    private function addValue(array &$target, bool $condition, callable $getter): void
+    {
+        $target[] = $condition ? $getter() : null;
+    }
+
+    private function mergeValues(array &$target, bool $condition, callable $getter): void
+    {
+        if ($condition) {
+            $target = array_merge($target, $getter());
+        }
+    }
+
+    private function deduplicateDerived(array &$derived): void
+    {
+        foreach ($derived as $key => $values) {
+            $derived[$key] = array_unique($values, SORT_REGULAR);
+        }
+    }
+
+    private function mergeRating(array &$derived): void
+    {
+        if (!empty($derived['ratings'])) {
+            $derived['rating'] = max($derived['ratings']);
+            unset($derived['ratings']);
+        }
+    }
+
+    private function methodExistsAndTrue(string $method): bool
+    {
+        return method_exists($this, $method) && $this->{$method}();
     }
 }

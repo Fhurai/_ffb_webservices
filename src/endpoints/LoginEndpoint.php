@@ -18,7 +18,7 @@ class LoginEndpoint extends DefaultEndpoint
 
         if (in_array($origin, $allowedOrigins)) {
             // CORS and response headers
-            header("Access-Control-Allow-Origin: *");
+            header("Access-Control-Allow-Origin: $origin");
             header("Content-Type: application/json; charset=UTF-8");
             header("Access-Control-Allow-Methods: POST");
             header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
