@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../src/entity/ComplexEntity.php';
+require_once __DIR__ . '/ComplexEntity.php';
+require_once __DIR__ . "/EntityTrait.php";
 
 /**
  * Tag class.

@@ -33,6 +33,12 @@ final class FanfictionBuilder extends NamedEntityBuilder
         return $this;
     }
 
+    public function withAuthor(Author $author): FanfictionBuilder
+    {
+        $this->obj->setAuthor($author);
+        return $this;
+    }
+
     /**
      * Sets the rating ID for the Fanfiction object.
      *
@@ -42,6 +48,12 @@ final class FanfictionBuilder extends NamedEntityBuilder
     public function withRatingId(int $ratingId): FanfictionBuilder
     {
         $this->obj->setRatingId($ratingId);
+        return $this;
+    }
+
+    public function withRating(Rating $rating): FanfictionBuilder
+    {
+        $this->obj->setRating($rating);
         return $this;
     }
 
@@ -66,6 +78,12 @@ final class FanfictionBuilder extends NamedEntityBuilder
     public function withLanguageId(int $languageId): FanfictionBuilder
     {
         $this->obj->setLanguageId($languageId);
+        return $this;
+    }
+
+    public function withLanguage(Language $language): FanfictionBuilder
+    {
+        $this->obj->setLanguage($language);
         return $this;
     }
 

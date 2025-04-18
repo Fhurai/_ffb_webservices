@@ -53,7 +53,7 @@ trait EvaluableTrait
 
     public function hasScore(): bool
     {
-        return $this->score !== null;
+        return isset($this->score);
     }
 
     /**

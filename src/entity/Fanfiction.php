@@ -182,7 +182,7 @@ final class Fanfiction extends ComplexEntity
 
     protected function getAssociationProperties(): array
     {
-        return ["author", "fandoms", "language", "relations", "characters", "tags", "links", "score"];
+        return ["author", "rating", "language", "fandoms", "relations", "characters", "tags", "links", "score"];
     }
 
     public function jsonSerialize(): array

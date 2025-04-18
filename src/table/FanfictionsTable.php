@@ -3,7 +3,15 @@
 require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Fanfiction.php";
+require_once __DIR__ . "/../entity/Rating.php";
+require_once __DIR__ . "/../entity/Score.php";
 require_once __DIR__ . "/../builder/FanfictionBuilder.php";
+require_once __DIR__ . "/../builder/AuthorBuilder.php";
+require_once __DIR__ . "/../builder/LanguageBuilder.php";
+require_once __DIR__ . "/../builder/FandomBuilder.php";
+require_once __DIR__ . "/../builder/RelationBuilder.php";
+require_once __DIR__ . "/../builder/CharacterBuilder.php";
+require_once __DIR__ . "/../builder/TagBuilder.php";
 
 /**
  * FanfictionsTable class.
@@ -50,8 +58,13 @@ class FanfictionsTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
@@ -152,9 +165,15 @@ class FanfictionsTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }
             }
         }
+
 
         if (!empty($args['order'])) {
             $orderQuery = $this->findOrderedBy($args['order'], false);
@@ -283,16 +302,131 @@ class FanfictionsTable extends EntitiesTable
 
     protected function parseEntity(array $row): Fanfiction
     {
-        return (new FanfictionBuilder())
+        $fanfictionBuilder = (new FanfictionBuilder())
             ->withId($row["id"])
             ->withName($row["name"])
             ->withAuthorId($row["author_id"])
             ->withRatingId($row["rating_id"])
+            ->withScoreId($row["score_id"])
             ->withDescription($row["description"])
             ->withLanguageId($row["language_id"])
             ->withCreationDate($row["creation_date"])
             ->withUpdateDate($row["update_date"])
-            ->withDeleteDate($row["delete_date"])
-            ->build();
+            ->withDeleteDate($row["delete_date"]);
+
+        $this->parseMonoAssociation('author', $fanfictionBuilder, $row['author_id']);
+        $this->parseMonoAssociation('rating', $fanfictionBuilder, $row['rating_id']);
+        $this->parseMonoAssociation('language', $fanfictionBuilder, $row['language_id']);
+        if ($row['score_id'] !== null) {
+            $this->parseMonoAssociation('score', $fanfictionBuilder, $row['score_id']);
+        }
+
+        $this->parseMultiAssociation('fandoms', $fanfictionBuilder, $row['id']);
+        $this->parseMultiAssociation('relations', $fanfictionBuilder, $row['id']);
+        $this->parseMultiAssociation('characters', $fanfictionBuilder, $row['id']);
+        $this->parseMultiAssociation('tags', $fanfictionBuilder, $row['id']);
+
+        return $fanfictionBuilder->build();
+    }
+
+    protected function parseMonoAssociation(string $association, FanfictionBuilder $builder, int $id): void
+    {
+        $associationbuilder = $association . 'Builder';
+        $withMethod = 'with' . ucfirst($association);
+
+        $query = "SELECT `{$association}s`.* FROM `{$association}s`
+        WHERE `id` = :id";
+        $entities = $this->executeQuery($query, [":id" => $id]);
+
+        if (!empty($entities)) {
+            switch ($association) {
+                case 'author':
+                    $builder->$withMethod((new $associationbuilder())
+                        ->withId($entities[0]["id"])
+                        ->withName($entities[0]["name"])
+                        ->withCreationDate($entities[0]["creation_date"])
+                        ->withUpdateDate($entities[0]["update_date"])
+                        ->withDeleteDate($entities[0]["delete_date"])
+                        ->build());
+                    break;
+                case 'language':
+                    $builder->$withMethod((new $associationbuilder())
+                        ->withId($entities[0]["id"])
+                        ->withName($entities[0]["name"])
+                        ->withAbbreviation($entities[0]["abbreviation"])
+                        ->withCreationDate($entities[0]["creation_date"])
+                        ->withUpdateDate($entities[0]["update_date"])
+                        ->withDeleteDate($entities[0]["delete_date"])
+                        ->build());
+                    break;
+                case 'rating':
+                    $builder->$withMethod(new Rating($entities[0]["id"], $entities[0]["name"]));
+                    break;
+                case 'score':
+                    $builder->$withMethod(new Score($entities[0]["id"], $entities[0]["name"]));
+                    break;
+                default:
+                    null;
+            }
+        }
+    }
+
+    protected function parseMultiAssociation(string $association, FanfictionBuilder $builder, int $id): void
+    {
+        $mono = substr($association, 0, -1);
+        $associationbuilder = $mono . 'Builder';
+        $addMethod = 'add' . ucfirst($mono);
+
+        $query = "SELECT `$association`.* FROM `fanfictions_{$association}`
+        INNER JOIN `{$association}` ON `fanfictions_{$association}`.`{$mono}_id` = `{$association}`.`id`
+        WHERE `fanfiction_id` = :id";
+        $entities = $this->executeQuery($query, [":id" => $id]);
+
+        if (!empty($entities)) {
+            foreach ($entities as $entity) {
+                switch ($mono) {
+                    case 'fandom':
+                        $builder->$addMethod((new $associationbuilder())
+                            ->withId($entity["id"])
+                            ->withName($entity["name"])
+                            ->withCreationDate($entity["creation_date"])
+                            ->withUpdateDate($entity["update_date"])
+                            ->withDeleteDate($entity["delete_date"])
+                            ->build());
+                        break;
+                    case 'relation':
+                        $builder->$addMethod((new $associationbuilder())
+                            ->withId($entity["id"])
+                            ->withName($entity["name"])
+                            ->withCreationDate($entity["creation_date"])
+                            ->withUpdateDate($entity["update_date"])
+                            ->withDeleteDate($entity["delete_date"])
+                            ->build());
+                        break;
+                    case 'character':
+                        $builder->$addMethod((new $associationbuilder())
+                            ->withId($entity["id"])
+                            ->withName($entity["name"])
+                            ->withFandomId($entity["fandom_id"])
+                            ->withCreationDate($entity["creation_date"])
+                            ->withUpdateDate($entity["update_date"])
+                            ->withDeleteDate($entity["delete_date"])
+                            ->build());
+                        break;
+                    case 'tag':
+                        $builder->$addMethod((new $associationbuilder())
+                            ->withId($entity["id"])
+                            ->withName($entity["name"])
+                            ->withDescription($entity["description"])
+                            ->withCreationDate($entity["creation_date"])
+                            ->withUpdateDate($entity["update_date"])
+                            ->withDeleteDate($entity["delete_date"])
+                            ->build());
+                        break;
+                    default:
+                        null;
+                }
+            }
+        }
     }
 }
