@@ -113,7 +113,7 @@ jobs:
       - name: Run tests
         env:
           DB_DATABASE: ffb_tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit || exit 1
         continue-on-error: true
 
   discord-notification-php-tests:
@@ -124,7 +124,7 @@ jobs:
       - name: Send Discord notification
         if: always()
         run: |
-          STATUS="${{ job.status }}"
+          STATUS="${{ needs.php-tests.result }}"
           if [ "$STATUS" = "success" ]; then
             COLOR=3066993
             MESSAGE="✅ FFB Webservices - Tests Succeeded"
@@ -163,7 +163,7 @@ jobs:
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: |
-          STATUS="${{ job.status }}"
+          STATUS="${{ needs.php-tests.result }}"
           if [ "$STATUS" = "success" ]; then
             COLOR=3066993
             MESSAGE="✅ FFB Webservices - Tests Succeeded"
@@ -313,7 +313,7 @@ jobs:
             -Dsonar.scm.provider=git
         continue-on-error: true
 
-      
+
 
   discord-notification-sonarqube:
     name: Discord Notification - SonarQube Analysis
