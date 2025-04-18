@@ -11,6 +11,7 @@ require_once __DIR__ . "/../builder/LanguageBuilder.php";
 require_once __DIR__ . "/../builder/FandomBuilder.php";
 require_once __DIR__ . "/../builder/RelationBuilder.php";
 require_once __DIR__ . "/../builder/CharacterBuilder.php";
+require_once __DIR__ . "/../builder/LinkBuilder.php";
 require_once __DIR__ . "/../builder/TagBuilder.php";
 
 /**
@@ -325,6 +326,7 @@ class FanfictionsTable extends EntitiesTable
         $this->parseMultiAssociation('relations', $fanfictionBuilder, $row['id']);
         $this->parseMultiAssociation('characters', $fanfictionBuilder, $row['id']);
         $this->parseMultiAssociation('tags', $fanfictionBuilder, $row['id']);
+        $this->parseMultiAssociation('links', $fanfictionBuilder, $row['id']);
 
         return $fanfictionBuilder->build();
     }
@@ -377,23 +379,21 @@ class FanfictionsTable extends EntitiesTable
         $associationbuilder = $mono . 'Builder';
         $addMethod = 'add' . ucfirst($mono);
 
-        $query = "SELECT `$association`.* FROM `fanfictions_{$association}`
+        if ($mono === 'link') {
+            $query = "SELECT * FROM `links`
+        WHERE `fanfiction_id` = :id";
+            $entities = $this->executeQuery($query, [":id" => $id]);
+        } else {
+            $query = "SELECT `$association`.* FROM `fanfictions_{$association}`
         INNER JOIN `{$association}` ON `fanfictions_{$association}`.`{$mono}_id` = `{$association}`.`id`
         WHERE `fanfiction_id` = :id";
-        $entities = $this->executeQuery($query, [":id" => $id]);
+            $entities = $this->executeQuery($query, [":id" => $id]);
+        }
 
         if (!empty($entities)) {
             foreach ($entities as $entity) {
                 switch ($mono) {
                     case 'fandom':
-                        $builder->$addMethod((new $associationbuilder())
-                            ->withId($entity["id"])
-                            ->withName($entity["name"])
-                            ->withCreationDate($entity["creation_date"])
-                            ->withUpdateDate($entity["update_date"])
-                            ->withDeleteDate($entity["delete_date"])
-                            ->build());
-                        break;
                     case 'relation':
                         $builder->$addMethod((new $associationbuilder())
                             ->withId($entity["id"])
@@ -418,6 +418,16 @@ class FanfictionsTable extends EntitiesTable
                             ->withId($entity["id"])
                             ->withName($entity["name"])
                             ->withDescription($entity["description"])
+                            ->withCreationDate($entity["creation_date"])
+                            ->withUpdateDate($entity["update_date"])
+                            ->withDeleteDate($entity["delete_date"])
+                            ->build());
+                        break;
+                    case 'link':
+                        $builder->$addMethod((new $associationbuilder())
+                            ->withId($entity["id"])
+                            ->withUrl($entity['url'])
+                            ->withFanfictionId($entity['fanfiction_id'])
                             ->withCreationDate($entity["creation_date"])
                             ->withUpdateDate($entity["update_date"])
                             ->withDeleteDate($entity["delete_date"])

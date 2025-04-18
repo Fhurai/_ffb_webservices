@@ -263,4 +263,29 @@ final class FanfictionBuilder extends NamedEntityBuilder
         // Return the current instance of FanfictionBuilder.
         return $this;
     }
+
+    public function withLinks(array $links): FanfictionBuilder
+    {
+        usort($links, function($a, $b){
+            return strcmp($a->getUrl(), $b->getUrl());
+        });
+        $this->obj->setLinks($links);
+        return $this;
+    }
+
+    public function addLink(Link $link): FanfictionBuilder
+    {
+        $links = [];
+        if($this->obj->hasLinks()){
+            $links = $this->obj->getLinks();
+        }
+
+        array_push($links, $link);
+        usort($links, function($a, $b){
+            return strcmp($a->getUrl(), $b->getUrl());
+        });
+        $this->obj->setLinks($links);
+
+        return $this;
+    }
 }
