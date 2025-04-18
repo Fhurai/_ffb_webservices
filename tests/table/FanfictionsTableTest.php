@@ -11,17 +11,27 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
  *
  * Unit tests for the FanfictionsTable class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\AuthorBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\CharacterBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ComplexEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\EntityBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FandomBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionsTable::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LanguageBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\RelationBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\TagBuilder::class)]
 class FanfictionsTableTest extends TestCase
 {
     private const NEW_FANFICTION_NAME = 'New Fanfiction';
