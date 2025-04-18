@@ -26,6 +26,8 @@ require_once __DIR__ . '/../../src/exception/FfbTableException.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(\FfbTableException::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\LanguageBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\LinkBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntityBuilder::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]

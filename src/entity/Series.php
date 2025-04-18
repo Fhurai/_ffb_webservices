@@ -106,9 +106,9 @@ final class Series extends ComplexEntity
             ];
 
             foreach ($this->getFanfictions() as $fanfiction) {
-                $derived['authors'][] = $fanfiction->getAuthor();
-                $derived['ratings'][] = $fanfiction->getRating();
-                $derived['languages'][] = $fanfiction->getLanguage();
+                $derived['authors'][] = $fanfiction->hasAuthor() ? $fanfiction->getAuthor() : null;
+                $derived['ratings'][] = $fanfiction->hasRating() ? $fanfiction->getRating() : null;
+                $derived['languages'][] = $fanfiction->hasLanguage() ? $fanfiction->getLanguage() : null;
 
                 // Merge array-type properties
                 if ($fanfiction->hasFandoms()) {

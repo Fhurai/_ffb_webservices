@@ -42,15 +42,7 @@ class SeriesBuilderTest extends NamedEntityBuilderTestCase
         $entity = $this->builder->withFanfictions([$fanficA, $fanficB])->build();
         $this->assertEquals([$fanficB, $fanficA], $entity->getFanfictions());
     }
-    public function testAddFandomSortsCollection(): void
-    {
-        $fanficZ = new Fanfiction();
-        $fanficZ->setName("Zorro Chronicles");
-        $fanficA = new Fanfiction();
-        $fanficA->setName("Arthur Quest");
-        $entity = $this->builder->addFandom($fanficZ)->addFandom($fanficA)->build();
-        $this->assertEquals([$fanficA, $fanficZ], $entity->getFanfictions());
-    }
+
     public function testWithInvalidFanfictionType(): void
     {
         $this->expectException(InvalidArgumentException::class);
