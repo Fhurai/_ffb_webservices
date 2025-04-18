@@ -115,6 +115,89 @@ jobs:
           DB_DATABASE: ffb_tests
         run: vendor/bin/phpunit
 
+  discord-notification-php-tests:
+    name: Discord Notification - PHP Tests
+    runs-on: ubuntu-latest
+    needs: php-tests
+    steps:
+      - name: Send Discord notification
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR=3066993
+            MESSAGE="✅ FFB Webservices - Tests Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR=15158332
+            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "embeds": [{
+              "title": "${MESSAGE}",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+              "color": ${COLOR},
+              "image": {
+                "url": "${IMAGE_URL}"
+              },
+              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            }]
+          }
+          EOF
+          )
+
+          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+  teams-notification-php-tests:
+    name: Teams Notification - PHP Tests
+    runs-on: ubuntu-latest
+    needs: php-tests
+    steps:
+      - name: Send Microsoft Teams notification
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: |
+          STATUS="${{ job.status }}"
+          if [ "$STATUS" = "success" ]; then
+            COLOR=3066993
+            MESSAGE="✅ FFB Webservices - Tests Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR=15158332
+            MESSAGE="❌ FFB Webservices - Tests Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
+
+          PAYLOAD=$(cat <<EOF
+          {
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "summary": "${MESSAGE}",
+            "themeColor": "${COLOR}",
+            "title": "${MESSAGE}",
+            "sections": [{
+              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
+              "images": [{
+                "image": "${IMAGE_URL}"
+              }],
+              "markdown": true
+            }]
+          }
+          EOF
+          )
+
+          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
+        continue-on-error: true
+
+
+
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
@@ -227,87 +310,6 @@ jobs:
           args: >
             -Dsonar.php.coverage.reportPaths=clover.xml
             -Dsonar.scm.provider=git
-
-  discord-notification-php-tests:
-    name: Discord Notification - PHP Tests
-    runs-on: ubuntu-latest
-    needs: php-tests
-    steps:
-      - name: Send Discord notification
-        if: always()
-        run: |
-          STATUS="${{ job.status }}"
-          if [ "$STATUS" = "success" ]; then
-            COLOR=3066993
-            MESSAGE="✅ FFB Webservices - Tests Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
-          else
-            COLOR=15158332
-            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
-          fi
-
-          PAYLOAD=$(cat <<EOF
-          {
-            "embeds": [{
-              "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
-              "color": ${COLOR},
-              "image": {
-                "url": "${IMAGE_URL}"
-              },
-              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            }]
-          }
-          EOF
-          )
-
-          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-  teams-notification-php-tests:
-    name: Teams Notification - PHP Tests
-    runs-on: ubuntu-latest
-    needs: php-tests
-    steps:
-      - name: Send Microsoft Teams notification
-        env:
-          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-        run: |
-          STATUS="${{ job.status }}"
-          if [ "$STATUS" = "success" ]; then
-            COLOR=3066993
-            MESSAGE="✅ FFB Webservices - Tests Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
-          else
-            COLOR=15158332
-            MESSAGE="❌ FFB Webservices - Tests Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
-          fi
-
-          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
-
-          PAYLOAD=$(cat <<EOF
-          {
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "summary": "${MESSAGE}",
-            "themeColor": "${COLOR}",
-            "title": "${MESSAGE}",
-            "sections": [{
-              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)  \n**SonarQube Analysis**: [View Results](${SONAR_URL})",
-              "images": [{
-                "image": "${IMAGE_URL}"
-              }],
-              "markdown": true
-            }]
-          }
-          EOF
-          )
-
-          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
-        continue-on-error: true
 
   discord-notification-sonarqube:
     name: Discord Notification - SonarQube Analysis
