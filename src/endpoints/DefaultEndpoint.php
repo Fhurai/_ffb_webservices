@@ -4,14 +4,37 @@ require_once __DIR__ . "/../exception/FfbEndpointException.php";
 
 abstract class DefaultEndpoint
 {
-    public function get($request, ...$args)
+    protected $tableClass;
+
+    protected $builderClass;
+
+    public function __construct($tableClass)
     {
-        $this->methodNotAllowed('GET');
+        $config = require __DIR__ . '/../../config/config.php';
+        $allowedOrigins = $config['allowed_origins'];
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+        if (in_array($origin, $allowedOrigins)) {
+            header("Access-Control-Allow-Origin: $origin");
+            header("Access-Control-Allow-Headers: Content-Type");
+            header("Access-Control-Allow-Methods: GET, OPTIONS");
+            header("Content-Type: application/json; charset=utf-8");
+        }
+
+        $this->tableClass = $tableClass;
+        $this->builderClass = substr($tableClass, 0, -6) . 'Builder';
     }
+
+    abstract public function get($request, ...$args);
 
     public function post($request, ...$args)
     {
         $this->methodNotAllowed('POST');
+    }
+
+    protected function build($data): mixed
+    {
+        return null;
     }
 
     public function put($request, ...$args)
@@ -36,7 +59,7 @@ abstract class DefaultEndpoint
 
     public function options($request, ...$args)
     {
-        $this->methodNotAllowed('OPTIONS');
+        ApiUtilities::httpOk(null);
     }
 
     public function trace($request, ...$args)
@@ -47,5 +70,13 @@ abstract class DefaultEndpoint
     public function methodNotAllowed($method)
     {
         throw new FfbEndpointException("HTTP method {$method} not allowed on this endpoint.");
+    }
+
+    protected function validateRequest($args)
+    {
+        if (!isset($this->tableClass) || !isset($args[0])) {
+            ApiUtilities::httpInternalServerError('Controller configuration error');
+            exit;
+        }
     }
 }
