@@ -1,36 +1,24 @@
 <?php
 
-// CORS headers must be at the TOP
-// These headers enable cross-origin requests and define allowed methods and headers.
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header('Content-Type: application/json; charset=utf-8');
+require_once __DIR__ . '/../src/endpoints/StatsEndpoint.php';
+require_once __DIR__ . '/../src/table/StatsTable.php';
 
-// Include necessary configuration and utility files
-require_once __DIR__ . '/../config/config.php'; // Application configuration
-require_once __DIR__ . '/../src/utility/ApiUtilities.php'; // Utility functions for API responses
-require_once __DIR__ . '/../src/table/StatsTable.php'; // Database table abstraction for statistics
-
-// Determine the HTTP request method
+$endpoint = new StatsEndpoint(StatsTable::class);
 $method = $_SERVER['REQUEST_METHOD'];
 
-if ($method === 'OPTIONS') {
-    // Handle preflight requests for CORS
-    ApiUtilities::httpOk(null);
-} elseif ($method === 'GET') {
-    // Handle GET ALL request to retrieve all actions
-    $table = new StatsTable(); // Initialize StatsTable with database and table name
-    $actions = $table->getEntitiesStats(); // Fetch all actions from the database
+try {
+    switch ($method) {
+        case 'OPTIONS':
+            $endpoint->options($_REQUEST);
+            break;
 
-    if ($actions) {
-        // Respond with the list of actions if found
-        ApiUtilities::httpOk($actions);
-    } else {
-        // Respond with a 404 error if no actions are found
-        ApiUtilities::httpNotFound("No actions found");
+        case 'GET':
+            $endpoint->get($_REQUEST, 'entities');
+            break;
+
+        default:
+            $endpoint->methodNotAllowed($method);
     }
-} else {
-    // Respond with a 405 error for unsupported HTTP methods
-    ApiUtilities::httpMethodNotAllowed("Method not allowed");
+} catch (Exception $e) {
+    ApiUtilities::httpInternalServerError( "Server error: " . $e->getMessage());
 }
