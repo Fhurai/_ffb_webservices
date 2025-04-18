@@ -15,6 +15,12 @@ abstract class EntitiesTable
     protected const NO_DATA_EXCEPTION = 'No data for arguments provided!';
 
     /**
+     *
+     * @var array string[]
+     */
+    protected array $columns = [];
+
+    /**
      * Establish DB connection
      */
     public function __construct(string $typeConnection, string $user)
@@ -23,6 +29,23 @@ abstract class EntitiesTable
             throw new InvalidArgumentException("Invalid connection type or user.");
         }
         $this->connection = Connection::getDatabase($typeConnection, $user);
+    }
+
+    /**
+     * Get valid column names for the specified table.
+     * @param string $tableName The table name.
+     * @return array List of valid column names.
+     * @throws FfbTableException If the query fails.
+     */
+    protected function getTableColumns(string $tableName): array
+    {
+        try {
+            $stmt = $this->connection->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = :table");
+            $stmt->execute([':table' => $tableName]);
+            return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            throw new FfbTableException("Failed to fetch table columns: " . $e->getMessage());
+        }
     }
 
     /**
@@ -53,17 +76,22 @@ abstract class EntitiesTable
             if (!in_array($column, $validColumns)) {
                 throw new FfbTableException("Invalid column name: '$column'");
             }
-            // build condition
+
             if (str_contains($value, '%')) {
-                $conditions[] = "`$column` LIKE :$column";
+                $conditions[] = "$column LIKE :$column";
                 $values[":$column"] = $value;
-            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $m)) {
-                $conditions[] = "`$column` {$m[1]} :$column";
-                $values[":$column"] = $m[2];
             } elseif (str_contains(strtolower($value), 'null')) {
-                $conditions[] = str_contains(strtolower($value), 'not')
-                    ? "`$column` IS NOT NULL"
-                    : "`$column` IS NULL";
+                $conditions[] = "$column IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$column IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
+                $conditions[] = "$column $operator :$column";
+                $values[":$column"] = str_replace("'", "", $val);
+            } else {
+                $conditions[] = "$column = :$column";
+                $values[":$column"] = $value;
             }
         }
         $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
@@ -114,15 +142,48 @@ abstract class EntitiesTable
     public function findAll(array $args = []): array
     {
         $query = static::DEFAULT_SELECT_QUERY;
-        return $this->parseEntities($this->executeQuery($query, []));
+        $values = [];
+
+        if (!empty($args['search'])) {
+            $searchQuery = $this->findSearchedBy($args['search'], false);
+            $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
+            foreach ($args['search'] as $key => $value) {
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }elseif(str_contains($key, "_id") || str_contains($key, "is_")){
+                    $values[":$key"] = $value;
+                }
+            }
+        }
+
+        if (!empty($args['order'])) {
+            $orderQuery = $this->findOrderedBy($args['order'], false);
+            $query .= " " . substr($orderQuery, strpos($orderQuery, "ORDER BY"));
+        }
+
+        if (!empty($args['limit'])) {
+            $limitQuery = $this->findLimitedBy($args['limit'], false);
+            $query .= " " . substr($limitQuery, strpos($limitQuery, "LIMIT"));
+        }
+
+        $rows = $this->executeQuery($query, $values);
+
+        if (empty($rows)) {
+            throw new FfbTableException("No data for arguments provided!");
+        }
+
+        return $this->parseEntities($rows);
     }
 
     /**
      * Insert a new record
      */
-    public function create(Entity $entity): Entity
+    public function post(Entity $entity): Entity
     {
-        $cols = $entity->toArray(); // assumes entity has toArray mapping columns
+        $cols = json_decode(json_encode($entity), true);
         $fields = array_keys($cols);
         $place = array_map(fn($col) => ":$col", $fields);
         $sql = sprintf(
@@ -131,8 +192,10 @@ abstract class EntitiesTable
             implode(', ', array_map(fn($c) => "`$c`", $fields)),
             implode(', ', $place)
         );
+
         $this->executeQuery($sql, array_combine($place, array_values($cols)));
-        return $entity->withId((int) $this->connection->lastInsertId());
+        $entity->setId((int) $this->connection->lastInsertId());
+        return $entity;
     }
 
     /**
@@ -205,7 +268,8 @@ abstract class EntitiesTable
             $stmt->execute($values);
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            SqlExceptionManager::handle($e, $query, $values);
+            $manager = SqlExceptionManager::fromPDOException($e);
+            throw new FfbTableException($manager->getFormattedMessage());
         }
     }
 
@@ -213,4 +277,9 @@ abstract class EntitiesTable
      * Abstract mapping to entity
      */
     abstract protected function parseEntity(array $row): Entity;
+
+    protected function parseEntities(array $rows): array
+    {
+        return array_map([$this, 'parseEntity'], $rows);
+    }
 }

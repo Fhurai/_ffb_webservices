@@ -26,7 +26,7 @@ class CharactersTable extends EntitiesTable
 
         $fandomId = $character->getFandomId();
         if ($fandomId > 0) {
-            $fandomTable = new FandomsTable($this->typeConnection, $this->user);
+            $fandomTable = new FandomsTable(Connection::getTypeConnect(), Connection::getUser());
             try {
                 $fandom = $fandomTable->get($fandomId);
                 $character->setFandom($fandom);

@@ -12,6 +12,10 @@ class Connection
      */
     private static ?PDO $db = null; // Declare static property
 
+    protected static string $typeConnection = "";
+
+    protected static string $user = "";
+
     /**
      * Get the database connection.
      * @param string $typeConnection The type of connection (main, stats, tests).
@@ -25,6 +29,8 @@ class Connection
         if (self::$db === null) {
             // Create a new database connection if not already established
             self::$db = self::createDbConnection($typeConnection, $user);
+            self::$typeConnection = $typeConnection;
+            self::$user = $user;
         }
         // Return the database connection
         return self::$db;
@@ -88,7 +94,7 @@ class Connection
      * Debug and die method to print data and stop execution.
      * @param mixed $data The data to be printed.
      */
-    public static function dd(mixed $data)
+    public static function dd(mixed $data): void
     {
         // Print a newline for better readability
         echo "\n";
@@ -96,5 +102,15 @@ class Connection
         var_dump($data);
         // Stop the script execution
         die();
+    }
+
+    public static function getTypeConnect(): string
+    {
+        return self::$typeConnection;
+    }
+
+    public static function getUser(): string
+    {
+        return self::$user;
     }
 }

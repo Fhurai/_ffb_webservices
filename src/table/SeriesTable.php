@@ -41,7 +41,7 @@ class SeriesTable extends EntitiesTable
         $entities = $this->executeQuery($query, [":id" => $id]);
 
         if (!empty($entities)) {
-            $assocTable = new $table($this->typeConnection, $this->user);
+            $assocTable = new $table(Connection::getTypeConnect(), Connection::getUser());
             foreach ($entities as $entity) {
                 $builder->$addMethod($assocTable->get($entity[$mono . '_id']));
             }

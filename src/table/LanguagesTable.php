@@ -13,6 +13,7 @@ class LanguagesTable extends EntitiesTable
         return (new LanguageBuilder())
             ->withId($row['id'])
             ->withName($row['name'])
+            ->withAbbreviation($row['abbreviation'])
             ->withCreationDate($row['creation_date'])
             ->withUpdateDate($row['update_date'])
             ->withDeleteDate($row['delete_date'])

@@ -27,7 +27,7 @@ class TagsTable extends EntitiesTable
 
         $typeId = $tag->getTypeId();
         if ($typeId > 0) {
-            $tagTypeTable = new TagTypesTable($this->typeConnection, $this->user);
+            $tagTypeTable = new TagTypesTable(Connection::getTypeConnect(), Connection::getUser());
             try {
                 $tagType = $tagTypeTable->get($typeId);
                 $tag->setTagType($tagType);
