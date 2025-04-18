@@ -1,3 +1,20 @@
 RewriteEngine On
+
+# Existing authorization rules
 RewriteCond %{HTTP:Authorization} ^(.*)
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+
+# Serve API files without .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^api/(.+)$ api/$1.php [L]
+
+# Serve Stats files without .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^stats/(.+)$ stats/$1.php [L]
+
+# Block all requests except for api/ and stats/ folders
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/stats/
+RewriteRule ^.* - [F]
