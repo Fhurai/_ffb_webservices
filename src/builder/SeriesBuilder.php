@@ -65,7 +65,7 @@ final class SeriesBuilder extends NamedEntityBuilder
      * @param Fanfiction $fanfiction The fanfiction to add.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
-    public function addFandom(Fanfiction $fanfiction): SeriesBuilder
+    public function addFanfiction(Fanfiction $fanfiction): SeriesBuilder
     {
         $fanfictions = [];
         if ($this->obj->hasFanfictions()) {

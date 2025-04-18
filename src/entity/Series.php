@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../../src/entity/ComplexEntity.php";
-require_once __DIR__ . "/../../src/entity/EvaluableTrait.php";
+require_once __DIR__ . "/ComplexEntity.php";
+require_once __DIR__ . "/EntityTrait.php";
+require_once __DIR__ . "/EvaluableTrait.php";
 
 /**
  * Series class.
@@ -60,32 +61,85 @@ final class Series extends ComplexEntity
         return !empty($this->fanfictions);
     }
 
-    public function getFanfictions(): array {
+    /**
+     *
+     * @return Fanfiction[]
+     */
+    public function getFanfictions(): array
+    {
         return $this->getNullableArrayProperty($this->fanfictions, "fanfictions");
     }
 
-    public function setFanfictions(array $fanfictions): void {
+    public function setFanfictions(array $fanfictions): void
+    {
         $this->fanfictions = $this->setArrayProperty($fanfictions, Fanfiction::class);
     }
 
     /**
      * List of association properties for JSON serialization.
      */
-    protected function getAssociationProperties(): array {
+    protected function getAssociationProperties(): array
+    {
         return ["fanfictions"];
     }
 
-    public function jsonSerialize(): array {
+    public function jsonSerialize(): array
+    {
         $associations = [];
+        $derived = [];
+
         foreach ($this->getAssociationProperties() as $prop) {
             if ($this->{"has" . ucfirst($prop)}()) {
                 $associations[$prop] = $this->$prop;
             }
         }
+
+        if ($this->hasFanfictions()) {
+            $derived = [
+                'authors' => [],
+                'ratings' => [],
+                'languages' => [],
+                'fandoms' => [],
+                'relations' => [],
+                'characters' => [],
+                'tags' => []
+            ];
+
+            foreach ($this->getFanfictions() as $fanfiction) {
+                $derived['authors'][] = $fanfiction->getAuthor();
+                $derived['ratings'][] = $fanfiction->getRating();
+                $derived['languages'][] = $fanfiction->getLanguage();
+
+                // Merge array-type properties
+                if ($fanfiction->hasFandoms()) {
+                    $derived['fandoms'] = array_merge($derived['fandoms'], $fanfiction->getFandoms());
+                }
+                if ($fanfiction->hasRelations()) {
+                    $derived['relations'] = array_merge($derived['relations'], $fanfiction->getRelations());
+                }
+                if ($fanfiction->hasCharacters()) {
+                    $derived['characters'] = array_merge($derived['characters'], $fanfiction->getCharacters());
+                }
+                if ($fanfiction->hasTags()) {
+                    $derived['tags'] = array_merge($derived['tags'], $fanfiction->getTags());
+                }
+            }
+
+            // Apply array_unique to all derived arrays
+            foreach ($derived as $key => $values) {
+                $derived[$key] = array_unique($values, SORT_REGULAR);
+            }
+
+            if(!empty($derived['rating'])){
+                $derived['rating'] = max($derived['ratings']);
+                unset($derived['ratings']);
+            }
+        }
+
         return array_merge(parent::jsonSerialize(), [
             "description" => $this->description,
             "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
-        ], $associations);
+        ], $associations, $derived);
     }
 }

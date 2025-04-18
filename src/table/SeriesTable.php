@@ -4,6 +4,7 @@ require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/EntitiesTable.php";
 require_once __DIR__ . "/../entity/Series.php";
 require_once __DIR__ . "/../builder/SeriesBuilder.php";
+require_once __DIR__ . '/FanfictionsTable.php';
 
 /**
  * SeriesTable class.
@@ -51,8 +52,13 @@ class SeriesTable extends EntitiesTable
             if (str_contains($value, '%')) {
                 $conditions[] = "$key LIKE :$key";
                 $values[":$key"] = $value;
-            } elseif (preg_match('/[<>=!]/', $value)) {
-                [$operator, $val] = explode(' ', $value, 2);
+            } elseif (str_contains(strtolower($value), 'null')) {
+                $conditions[] = "$key IS NULL";
+            } elseif (str_contains(strtolower($value), 'not null')) {
+                $conditions[] = "$key IS NOT NULL";
+            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                $operator = trim($matches[1]);
+                $val = trim($matches[2]);
                 $conditions[] = "$key $operator :$key";
                 $values[":$key"] = str_replace("'", "", $val);
             } else {
@@ -152,7 +158,12 @@ class SeriesTable extends EntitiesTable
             $searchQuery = $this->findSearchedBy($args['search'], false);
             $query .= " WHERE " . substr($searchQuery, strpos($searchQuery, "WHERE") + 6);
             foreach ($args['search'] as $key => $value) {
-                $values[":$key"] = str_replace("'", "", explode(' ', $value)[0]);
+                if (str_contains($value, '%')) {
+                    $values[":$key"] = $value;
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $val = trim($matches[2]);
+                    $values[":$key"] = str_replace("'", "", $val);
+                }
             }
         }
 
@@ -275,13 +286,35 @@ class SeriesTable extends EntitiesTable
 
     protected function parseEntity(array $row): Series
     {
-        return (new SeriesBuilder())
+        $builder = (new SeriesBuilder())
             ->withId($row["id"])
             ->withName($row["name"])
             ->withDescription($row["description"])
             ->withCreationDate($row["creation_date"])
             ->withUpdateDate($row["update_date"])
-            ->withDeleteDate($row["delete_date"])
-            ->build();
+            ->withDeleteDate($row["delete_date"]);
+
+        $this->parseMultiAssociation('fanfictions', $builder, $row['id']);
+
+        return $builder->build();
+    }
+
+    protected function parseMultiAssociation(string $association, SeriesBuilder $builder, int $id): void
+    {
+        $mono = substr($association, 0, -1);
+        $table = $association . 'Table';
+        $addMethod = 'add' . ucfirst($mono);
+
+        $query = "SELECT `{$mono}_id` FROM `series_{$association}`
+        WHERE `series_id` = :id
+        ORDER BY ranking ASC";
+        $entities = $this->executeQuery($query, [":id" => $id]);
+
+        if (!empty($entities)) {
+            $assocTable = new $table($this->typeConnection, $this->user);
+            foreach ($entities as $entity) {
+                $builder->$addMethod($assocTable->get($entity[$mono . '_id']));
+            }
+        }
     }
 }
