@@ -1,48 +1,46 @@
-SET @co_count = 'count';
-
 CREATE OR REPLACE VIEW stats_data_parameters AS (
-    SELECT 'Actions' as `label`, COUNT(*) as @co_count
+    SELECT 'Actions' as `label`, COUNT(*) as count
     FROM ffb_main.actions
     UNION
-    SELECT 'Ratings' as `label`, COUNT(*) as @co_count
+    SELECT 'Ratings' as `label`, COUNT(*) as count
     FROM ffb_main.ratings
     UNION
-    SELECT 'Scores' as `label`, COUNT(*) as @co_count
+    SELECT 'Scores' as `label`, COUNT(*) as count
     FROM ffb_main.scores
     UNION
-    SELECT 'Tagtypes' as `label`, COUNT(*) as @co_count
+    SELECT 'Tagtypes' as `label`, COUNT(*) as count
     FROM ffb_main.tag_types
 );
 
 CREATE OR REPLACE VIEW stats_data_entities AS (
-    SELECT 'Authors' as `label`, COUNT(*) as @co_count
+    SELECT 'Authors' as `label`, COUNT(*) as count
     FROM ffb_main.authors
     UNION
-    SELECT 'Characters' as `label`, COUNT(*) as @co_count
+    SELECT 'Characters' as `label`, COUNT(*) as count
     FROM ffb_main.characters
     UNION
-    SELECT 'Fandoms' as `label`, COUNT(*) as @co_count
+    SELECT 'Fandoms' as `label`, COUNT(*) as count
     FROM ffb_main.fandoms
     UNION
-    SELECT 'Fanfictions' as `label`, COUNT(*) as @co_count
+    SELECT 'Fanfictions' as `label`, COUNT(*) as count
     FROM ffb_main.fanfictions
     UNION
-    SELECT 'Languages' as `label`, COUNT(*) as @co_count
+    SELECT 'Languages' as `label`, COUNT(*) as count
     FROM ffb_main.languages
     UNION
-    SELECT 'Links' as `label`, COUNT(*) as @co_count
+    SELECT 'Links' as `label`, COUNT(*) as count
     FROM ffb_main.links
     UNION
-    SELECT 'Relations' as `label`, COUNT(*) as @co_count
+    SELECT 'Relations' as `label`, COUNT(*) as count
     FROM ffb_main.relations
     UNION
-    SELECT 'Series' as `label`, COUNT(*) as @co_count
+    SELECT 'Series' as `label`, COUNT(*) as count
     FROM ffb_main.series
     UNION
-    SELECT 'Tags' as `label`, COUNT(*) as @co_count
+    SELECT 'Tags' as `label`, COUNT(*) as count
     FROM ffb_main.tags
     UNION
-    SELECT 'Users' as `label`, COUNT(*) as @co_count
+    SELECT 'Users' as `label`, COUNT(*) as count
     FROM ffb_main.users
 );
 

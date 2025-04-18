@@ -10,8 +10,6 @@ if (!isset($tableClass) || !isset($defaultSearch)) {
     exit;
 }
 
-ApiUtilities::setCorsHeaders(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']);
-
 $method = $_SERVER['REQUEST_METHOD'];
 $notFoundMessage = "";
 $phpInput = "php://input";

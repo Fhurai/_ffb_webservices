@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/../exception/FfbEndpointException.php";
+require_once __DIR__ . "/../exception/FfbEndpointException.php";
 
 abstract class DefaultEndpoint
 {

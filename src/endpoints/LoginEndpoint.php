@@ -12,11 +12,19 @@ class LoginEndpoint extends DefaultEndpoint
 {
     public function __construct()
     {
-        // CORS and response headers
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: POST");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        $config = require __DIR__ . '/../../config/config.php';
+        $allowedOrigins = $config['allowed_origins'];
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+        if (in_array($origin, $allowedOrigins)) {
+            // CORS and response headers
+            header("Access-Control-Allow-Origin: *");
+            header("Content-Type: application/json; charset=UTF-8");
+            header("Access-Control-Allow-Methods: POST");
+            header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        }
+
+
     }
 
     public function post($request, ...$args)
@@ -25,7 +33,7 @@ class LoginEndpoint extends DefaultEndpoint
 
         $username = $input->username ?? '';
         $password = $input->password ?? '';
-        $db       = $input->db ?? '';
+        $db = $input->db ?? '';
 
         if (empty($username) || empty($password) || empty($db)) {
             http_response_code(400);
@@ -59,12 +67,12 @@ class LoginEndpoint extends DefaultEndpoint
             $expirationTime = $issuedAt + $expiration;
 
             $payload = [
-                'iat'  => $issuedAt,
-                'exp'  => $expirationTime,
+                'iat' => $issuedAt,
+                'exp' => $expirationTime,
                 'data' => [
                     'username' => $user->getUsername(),
-                    'isAdmin'  => $user->isAdmin(),
-                    'db'       => $db,
+                    'isAdmin' => $user->isAdmin(),
+                    'db' => $db,
                 ]
             ];
 
@@ -73,20 +81,20 @@ class LoginEndpoint extends DefaultEndpoint
             http_response_code(200);
             echo json_encode([
                 "message" => "Login successful",
-                "token"   => $jwt
+                "token" => $jwt
             ]);
 
         } catch (FfbTableException | InvalidArgumentException $e) {
             http_response_code(401);
             echo json_encode([
                 "message" => "Login failed",
-                "error"   => $e->getMessage()
+                "error" => $e->getMessage()
             ]);
         } catch (Exception $e) {
             http_response_code(500);
             echo json_encode([
                 "message" => "Server error",
-                "error"   => $e->getMessage()
+                "error" => $e->getMessage()
             ]);
         }
     }

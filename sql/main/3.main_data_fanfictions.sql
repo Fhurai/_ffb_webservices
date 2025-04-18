@@ -4101,7 +4101,7 @@ SELECT "https://archiveofourown.org/works/3153056", ff.id FROM fanfictions ff IN
 UNION
 SELECT "https://archiveofourown.org/works/1140315", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "This Christmas" AND a.name = "Tryslora"
 UNION
-SELECT "http://archiveofourown.org/works/133672", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Stockings Were Hung by the Chimney With Care" AND a.name = "Star54kar"
+SELECT "https://archiveofourown.org/works/133672", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "The Stockings Were Hung by the Chimney With Care" AND a.name = "Star54kar"
 UNION
 SELECT "https://archiveofourown.org/works/1494676", ff.id FROM fanfictions ff INNER JOIN authors a ON a.id=ff.author_id WHERE ff.name = "Stress Relief" AND a.name = "Megamatt09"
 UNION

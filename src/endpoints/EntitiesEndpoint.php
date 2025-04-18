@@ -1,8 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../endpoints/DefaultEndpoint.php';
-require_once __DIR__ . "/../../config/config.php";
+require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../utility/ApiUtilities.php';
+require_once __DIR__ . '/../utility/SrcUtilities.php';
 
 class EntitiesEndpoint extends DefaultEndpoint
 {
@@ -10,12 +11,18 @@ class EntitiesEndpoint extends DefaultEndpoint
 
     public function __construct($tableClass)
     {
-        // Set CORS headers on every instantiation
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Access-Control-Allow-Methods: GET, OPTIONS");
-        header("Content-Type: application/json; charset=utf-8");
-        $this->tableClass = $tableClass;
+        $config = require __DIR__ . '/../../config/config.php';
+        $allowedOrigins = $config['allowed_origins'];
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+
+        if(in_array($origin, $allowedOrigins)){
+            // Set CORS headers on every instantiation
+            header("Access-Control-Allow-Origin: $origin");
+            header("Access-Control-Allow-Headers: Content-Type");
+            header("Access-Control-Allow-Methods: GET, OPTIONS");
+            header("Content-Type: application/json; charset=utf-8");
+            $this->tableClass = $tableClass;
+        }
     }
 
     public function options($request, ...$args)

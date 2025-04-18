@@ -143,20 +143,6 @@ class ApiUtilities
     }
 
     /**
-     * Sets Cross-Origin Resource Sharing (CORS) headers dynamically.
-     * - Allows all origins (*) and specifies permitted methods/headers.
-     *
-     * @param array $allowedMethods Array of allowed HTTP methods (e.g., ["GET", "POST"]).
-     */
-    public static function setCorsHeaders(array $allowedMethods)
-    {
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Headers: Content-Type");
-        header("Access-Control-Allow-Methods: " . implode(', ', $allowedMethods));
-        header('Content-Type: application/json; charset=utf-8');
-    }
-
-    /**
      * Extracts the database name from a decoded JWT claim.
      * - If the database name starts with "ffb_", returns the substring after the prefix.
      * - Example: "ffb_customers" → "customers".

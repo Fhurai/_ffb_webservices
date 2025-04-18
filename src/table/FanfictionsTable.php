@@ -368,7 +368,7 @@ class FanfictionsTable extends EntitiesTable
                     $builder->$withMethod(new Score($entities[0]["id"], $entities[0]["name"]));
                     break;
                 default:
-                    null;
+                    throw new InvalidArgumentException("Unknown association");
             }
         }
     }
@@ -434,7 +434,7 @@ class FanfictionsTable extends EntitiesTable
                             ->build());
                         break;
                     default:
-                        null;
+                        throw new InvalidArgumentException("Unknown association");
                 }
             }
         }

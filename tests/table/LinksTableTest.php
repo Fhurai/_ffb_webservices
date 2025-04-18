@@ -77,7 +77,7 @@ class LinksTableTest extends TestCase
         $result = $this->linksTable->findOrderedBy(['url' => 'ASC']);
         $this->assertIsArray($result);
         $this->assertCount(1069, $result); // Adjust count based on test data
-        $this->assertEquals("http://archiveofourown.org/works/133672", $result[0]->getUrl());
+        $this->assertEquals("https://archiveofourown.org/works/1029121/chapters/2049512", $result[0]->getUrl());
     }
 
     public function testFindOrderedByInvalidDirection(): void
