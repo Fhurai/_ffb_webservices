@@ -20,6 +20,46 @@ class EntityEndpoint extends DefaultEndpoint
         $author ? ApiUtilities::HttpOk($author) : ApiUtilities::HttpNotFound('Entity not found');
     }
 
+    protected function beforeBuild($args, $dbName, $userRole): array
+    {
+        $entity = $args[0];
+
+        $mapRelatedEntities = function (object $entity, string $property, string $tableClass, callable $mapper) use ($dbName, $userRole) {
+            if (property_exists($entity, $property) && is_iterable($entity->$property)) {
+                $table = new $tableClass($dbName, $userRole);
+                $entity->$property = array_map(fn($item) => $mapper($table, $item), $entity->$property);
+            }
+        };
+
+        if ($this->tableClass === 'RelationsTable') {
+            $mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id));
+        } elseif ($this->tableClass === 'FanfictionsTable') {
+            $mapRelatedEntities($entity, 'fandoms', FandomsTable::class, fn($table, $id) => $table->get($id));
+            $mapRelatedEntities($entity, 'relations', RelationsTable::class, fn($table, $id) => $table->get($id));
+            $mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id));
+            $mapRelatedEntities($entity, 'tags', TagsTable::class, fn($table, $id) => $table->get($id));
+
+            $mapRelatedEntities($entity, 'links', LinksTable::class, function ($table, $data) {
+                /** @var Link $link */
+                $link = null;
+                if (is_numeric($data)) {
+                    $link = $table->get($data);
+                } elseif (is_string($data)) {
+                    $link = $table->findSearchedBy(['url' => "{$data}%"]);
+                }
+
+                if($link == null || empty($link)){
+                    $link = (new LinkBuilder())->withUrl($data)->build();
+                }
+                return $link;
+            });
+        } elseif($this->tableClass === 'SeriesTable'){
+            $mapRelatedEntities($entity, 'fanfictions', FanfictionsTable::class, fn($table, $id) => $table->get($id));
+        }
+        return $args;
+    }
+
+
     protected function build($data): mixed
     {
         $builder = new $this->builderClass();
@@ -39,7 +79,17 @@ class EntityEndpoint extends DefaultEndpoint
                 $builder->withName($data->name ?? null)
                     ->withDescription($data->description ?? null)
                     ->withTypeId($data->type_id);
-                    break;
+                break;
+            case 'CharacterBuilder':
+                /** @var CharacterBuilder $builder */
+                $builder->withName($data->name ?? null)
+                    ->withFandomId($data->fandom_id ?? null);
+                break;
+            case 'RelationBuilder':
+                /** @var RelationBuilder $builder */
+                $builder->withName($data->name ?? null)
+                    ->withCharacters($data->characters ?? null);
+                break;
             case 'UserBuilder':
                 /** @var UserBuilder $builder */
                 $builder->withUsername($data->username ?? null)
@@ -49,6 +99,26 @@ class EntityEndpoint extends DefaultEndpoint
                     ->withIsAdmin(boolval($data->isAdmin) ?? null)
                     ->withIsLocal(boolval($data->isLocal) ?? null)
                     ->withIsNsfw(boolval($data->isNsfw) ?? null);
+                break;
+            case 'FanfictionBuilder':
+                /** @var FanfictionBuilder $builder */
+                $builder->withName($data->name ?? null)
+                    ->withAuthorId($data->author_id ?? null)
+                    ->withRatingId($data->rating_id ?? null)
+                    ->withLanguageId($data->language_id ?? null)
+                    ->withDescription($data->description ?? null)
+                    ->withFandoms($data->fandoms ?? null)
+                    ->withRelations($data->relations ?? null)
+                    ->withCharacters($data->characters ?? null)
+                    ->withTags($data->tags ?? null)
+                    ->withLinks($data->links ?? null)
+                    ->withScoreId($data->score_id ?? null);
+                break;
+            case 'SeriesBuilder':
+                /** @var SeriesBuilder $builder */
+                $builder->withName($data->name ?? null)
+                    ->withDescription($data->description ?? null)
+                    ->withFanfictions($data->fanfictions ?? null);
                 break;
             default:
                 throw new InvalidArgumentException('Unknown builder');
@@ -63,17 +133,20 @@ class EntityEndpoint extends DefaultEndpoint
         $this->validateRequest($args);
 
         $decoded = ApiUtilities::decodeJWT();
+        $dbName = ApiUtilities::getDatabaseName($decoded);
+        $userRole = ApiUtilities::getUserRole($decoded);
 
-        $table = new $this->tableClass(
-            ApiUtilities::getDatabaseName($decoded),
-            ApiUtilities::getUserRole($decoded)
-        );
+        $table = new $this->tableClass($dbName, $userRole);
 
+        $args = $this->beforeBuild($args, $dbName, $userRole);
         $entity = $this->build($args[0]);
 
         $created = $table->post($entity);
-        $created ? ApiUtilities::httpCreated($created) : ApiUtilities::httpBadRequest('Failed to create entity');
+        $created
+            ? ApiUtilities::httpCreated($created)
+            : ApiUtilities::httpBadRequest('Failed to create entity');
     }
+
 
     public function put($request, ...$args)
     {

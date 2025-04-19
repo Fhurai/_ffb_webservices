@@ -160,4 +160,71 @@ class FanfictionsTable extends EntitiesTable
             }
         }
     }
+
+    public function updateAssociations(Fanfiction $entity): void
+    {
+        $associations = [
+            'fandoms' => ['has' => 'hasFandoms', 'get' => 'getFandoms'],
+            'relations' => ['has' => 'hasRelations', 'get' => 'getRelations'],
+            'characters' => ['has' => 'hasCharacters', 'get' => 'getCharacters'],
+            'tags' => ['has' => 'hasTags', 'get' => 'getTags'],
+        ];
+
+        $id = $entity->getId();
+
+        foreach ($associations as $type => $methods) {
+            if ($entity->{$methods['has']}()) {
+                $this->updateAssociationTable($type, $id, $entity->{$methods['get']}());
+            }
+        }
+
+        if ($entity->hasLinks()) {
+            $links = $entity->getLinks();
+            $this->updateAssociationsLinks($id, $links);
+            foreach ($links as $link) {
+                /** @var Link $link */
+                $link->setFanfictionId($id);
+            }
+        }
+    }
+
+
+    private function updateAssociationTable(string $association, int $id, array $items): void
+    {
+        $mono = substr($association, 0, -1);
+        $queryDelete = "DELETE FROM `fanfictions_{$association}` WHERE `fanfiction_id` = :fanfiction_id";
+        $this->executeQuery($queryDelete, [":fanfiction_id" => $id]);
+
+        if ($items) {
+            $queryInsert = "INSERT INTO `fanfictions_{$association}` (`fanfiction_id`, `{$mono}_id`) VALUES (:fanfiction_id, :item_id)";
+            foreach ($items as $item) {
+                $this->executeQuery($queryInsert, [
+                    ":fanfiction_id" => $id,
+                    ":item_id" => $item->getId(),
+                ]);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param int $id
+     * @param Link[] $items
+     * @return void
+     */
+    private function updateAssociationsLinks(int $id, array $items): void
+    {
+        $queryDelete = "DELETE FROM `links` WHERE `fanfiction_id` = :fanfiction_id";
+        $this->executeQuery($queryDelete, [":fanfiction_id" => $id]);
+
+        if ($items) {
+            $queryInsert = "INSERT INTO `links`(`url`, `fanfiction_id`) VALUES (:url, :fanfiction_id)";
+            foreach ($items as $item) {
+                $this->executeQuery($queryInsert, [
+                    ":url" => $item->getUrl(),
+                    ":fanfiction_id" => $id
+                ]);
+            }
+        }
+    }
 }

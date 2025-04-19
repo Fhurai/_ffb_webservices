@@ -178,16 +178,44 @@ abstract class EntitiesTable
         return $this->parseEntities($rows);
     }
 
+    protected function beforePost(Entity $entity){
+
+        $cols = json_decode(json_encode($entity), true);
+
+        if ($entity::class === 'User') {
+            /** @var User $entity */
+            $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
+        } elseif($entity::class === 'Relation'){
+            /** @var Relation $entity */
+            unset($cols['characters']);
+        } elseif($entity::class === 'Fanfiction'){
+            /** @var Fanfiction $entity */
+            unset($cols['fandoms']);
+            unset($cols['relations']);
+            unset($cols['characters']);
+            unset($cols['tags']);
+            unset($cols['links']);
+        } elseif($entity::class === 'Series'){
+            /** @var Series $entity */
+            unset($cols['fanfictions']);
+            unset($cols['authors']);
+            unset($cols['languages']);
+            unset($cols['fandoms']);
+            unset($cols['relations']);
+            unset($cols['characters']);
+            unset($cols['tags']);
+            unset($cols['rating']);
+        }
+
+        return $cols;
+    }
+
     /**
      * Insert a new record
      */
     public function post(Entity $entity, bool $doLog = false): Entity
     {
-        $cols = json_decode(json_encode($entity), true);
-        if ($entity::class === 'User') {
-            /** @var User $entity */
-            $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
-        }
+        $cols = $this->beforePost($entity);
 
         $fields = array_keys($cols);
         $place = array_map(fn($col) => ":$col", $fields);
@@ -204,7 +232,16 @@ abstract class EntitiesTable
 
         $this->executeQuery($sql, array_combine($place, array_values($cols)));
         $entity->setId((int) $this->connection->lastInsertId());
+
+        $this->afterPost($entity);
+
         return $entity;
+    }
+
+    protected function afterPost($entity){
+        if($entity::class === 'Relation' || $entity::class === 'Fanfiction' || $entity::class === 'Series'){
+            $this->updateAssociations($entity);
+        }
     }
 
     /**

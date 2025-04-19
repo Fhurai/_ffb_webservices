@@ -93,7 +93,7 @@ final class FanfictionBuilder extends NamedEntityBuilder
      * @param array $fandoms The fandoms array.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withFandom(array $fandoms): FanfictionBuilder
+    public function withFandoms(array $fandoms): FanfictionBuilder
     {
         foreach($fandoms as $fandom){
             if(!$fandom instanceof Fandom){

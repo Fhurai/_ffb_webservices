@@ -47,4 +47,28 @@ class SeriesTable extends EntitiesTable
             }
         }
     }
+
+    public function updateAssociations(Series $entity): void
+    {
+        if ($entity->hasFanfictions()) {
+            $this->updateAssociationTable('fanfictions', $entity->getId(), $entity->getFanfictions());
+        }
+    }
+
+    private function updateAssociationTable(string $association, int $id, array $items): void
+    {
+        $mono = substr($association, 0, -1);
+        $queryDelete = "DELETE FROM `series_{$association}` WHERE `series_id` = :series_id";
+        $this->executeQuery($queryDelete, [":series_id" => $id]);
+
+        if ($items) {
+            $queryInsert = "INSERT INTO `series_{$association}` (`series_id`, `{$mono}_id`) VALUES (:series_id, :item_id)";
+            foreach ($items as $item) {
+                $this->executeQuery($queryInsert, [
+                    ":series_id" => $id,
+                    ":item_id" => $item->getId(),
+                ]);
+            }
+        }
+    }
 }

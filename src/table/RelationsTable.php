@@ -43,23 +43,24 @@ class RelationsTable extends EntitiesTable
         return $relationBuilder->build();
     }
 
-    private function updateAssociations(Relation $entity): void
+    public function updateAssociations(Relation $entity): void
     {
         if ($entity->hasCharacters()) {
-            $this->updateAssociationTable('relations_characters', 'character_id', $entity->getId(), $entity->getCharacters());
+            $this->updateAssociationTable('characters', $entity->getId(), $entity->getCharacters());
         }
     }
 
-    private function updateAssociationTable(string $table, string $column, int $relationId, ?array $items): void
+    private function updateAssociationTable(string $association, int $id, array $items): void
     {
-        $queryDelete = "DELETE FROM `$table` WHERE `relation_id` = :relation_id";
-        $this->executeQuery($queryDelete, [":relation_id" => $relationId]);
+        $mono = substr($association, 0, -1);
+        $queryDelete = "DELETE FROM `relations_{$association}` WHERE `relation_id` = :relation_id";
+        $this->executeQuery($queryDelete, [":relation_id" => $id]);
 
         if ($items) {
-            $queryInsert = "INSERT INTO `$table` (`relation_id`, `$column`) VALUES (:relation_id, :item_id)";
+            $queryInsert = "INSERT INTO `relations_{$association}` (`relation_id`, `{$mono}_id`) VALUES (:relation_id, :item_id)";
             foreach ($items as $item) {
                 $this->executeQuery($queryInsert, [
-                    ":relation_id" => $relationId,
+                    ":relation_id" => $id,
                     ":item_id" => $item->getId(),
                 ]);
             }

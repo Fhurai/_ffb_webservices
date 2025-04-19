@@ -22,7 +22,8 @@ abstract class DefaultEndpoint
         }
 
         $this->tableClass = $tableClass;
-        $this->builderClass = substr($tableClass, 0, -6) . 'Builder';
+        $length = $tableClass !== 'SeriesTable' ? -6 : -5;
+        $this->builderClass = substr($tableClass, 0, $length) . 'Builder';
     }
 
     abstract public function get($request, ...$args);
