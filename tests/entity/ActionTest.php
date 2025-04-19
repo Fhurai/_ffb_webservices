@@ -7,6 +7,8 @@ require_once __DIR__ . '/../../src/entity/Action.php';
 /**
  * Unit tests for the Action class.
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\ParameterTrait::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Action::class)]
 class ActionTest extends TestCase
 {
