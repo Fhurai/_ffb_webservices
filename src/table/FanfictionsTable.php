@@ -190,21 +190,14 @@ class FanfictionsTable extends EntitiesTable
     }
 
 
-    private function updateAssociationTable(string $association, int $id, array $items): void
-    {
-        $mono = substr($association, 0, -1);
-        $queryDelete = "DELETE FROM `fanfictions_{$association}` WHERE `fanfiction_id` = :fanfiction_id";
-        $this->executeQuery($queryDelete, [$this->primary_key => $id]);
-
-        if ($items) {
-            $queryInsert = "INSERT INTO `fanfictions_{$association}` (`fanfiction_id`, `{$mono}_id`) VALUES (:fanfiction_id, :item_id)";
-            foreach ($items as $item) {
-                $this->executeQuery($queryInsert, [
-                    $this->primary_key => $id,
-                    ":item_id" => $item->getId(),
-                ]);
-            }
-        }
+    private function updateAssociationTable(string $association, int $id, array $items): void {
+        $this->updateAssociation(
+            self::TABLE_NAME . '_' . $association,
+            'fanfiction_id',
+            ':fanfiction_id',
+            $id,
+            $items
+        );
     }
 
     /**

@@ -762,7 +762,7 @@ collection:
                 const jsonBody = insomnia.response.json();
 
                 if (jsonBody.id) {
-                	const folder = insomnia.parentFolders.get('tags');
+                	const folder = insomnia.parentFolders.get('languages');
                 	folder.environment.set("id", jsonBody.id);
                 }
             settings:

@@ -249,19 +249,6 @@ abstract class EntitiesTable
      */
     public function update(Entity $entity): Entity
     {
-        $cols = $entity->toArray();
-        unset($cols['id']);
-        $sets = array_map(fn($c) => "`$c` = :$c", array_keys($cols));
-        $sql = sprintf(
-            'UPDATE `%s` SET %s WHERE `id` = :id',
-            static::TABLE_NAME,
-            implode(', ', $sets)
-        );
-        $params = array_merge(
-            array_combine(array_map(fn($c) => ":$c", array_keys($cols)), array_values($cols)),
-            [':id' => $entity->getId()]
-        );
-        $this->executeQuery($sql, $params);
         return $entity;
     }
 
@@ -270,12 +257,7 @@ abstract class EntitiesTable
      */
     public function delete(int $id): bool
     {
-        $sql = sprintf(
-            'UPDATE `%s` SET `delete_date` = :now WHERE `id` = :id',
-            static::TABLE_NAME
-        );
-        $this->executeQuery($sql, [':now' => date(self::DATE_FORMAT), ':id' => $id]);
-        return (bool) $this->connection->rowCount();
+        return false;
     }
 
     /**
@@ -283,12 +265,7 @@ abstract class EntitiesTable
      */
     public function restore(int $id): bool
     {
-        $sql = sprintf(
-            'UPDATE `%s` SET `delete_date` = NULL WHERE `id` = :id',
-            static::TABLE_NAME
-        );
-        $this->executeQuery($sql, [':id' => $id]);
-        return (bool) $this->connection->rowCount();
+        return false;
     }
 
     /**
@@ -296,12 +273,7 @@ abstract class EntitiesTable
      */
     public function remove(int $id): bool
     {
-        $sql = sprintf(
-            'DELETE FROM `%s` WHERE `id` = :id',
-            static::TABLE_NAME
-        );
-        $this->executeQuery($sql, [':id' => $id]);
-        return (bool) $this->connection->rowCount();
+        return false;
     }
 
     /**
@@ -328,4 +300,23 @@ abstract class EntitiesTable
     {
         return array_map([$this, 'parseEntity'], $rows);
     }
+
+    // Inside EntitiesTable.php
+protected function updateAssociation(string $junctionTable, string $primaryKeyColumn, string $primaryKeyParam, int $id, array $items): void {
+    $queryDelete = "DELETE FROM `$junctionTable` WHERE `$primaryKeyColumn` = $primaryKeyParam";
+    $this->executeQuery($queryDelete, [$primaryKeyParam => $id]);
+
+    if (!empty($items)) {
+        $mono = substr($junctionTable, strpos($junctionTable, '_') + 1);
+        $mono = rtrim($mono, 's'); // Convert plural to singular
+
+        $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
+        foreach ($items as $item) {
+            $this->executeQuery($queryInsert, [
+                $primaryKeyParam => $id,
+                ":item_id" => $item->getId(),
+            ]);
+        }
+    }
+}
 }

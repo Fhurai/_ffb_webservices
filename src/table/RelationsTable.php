@@ -50,20 +50,13 @@ class RelationsTable extends EntitiesTable
         }
     }
 
-    private function updateAssociationTable(string $association, int $id, array $items): void
-    {
-        $mono = substr($association, 0, -1);
-        $queryDelete = "DELETE FROM `relations_{$association}` WHERE `relation_id` = :relation_id";
-        $this->executeQuery($queryDelete, [":relation_id" => $id]);
-
-        if ($items) {
-            $queryInsert = "INSERT INTO `relations_{$association}` (`relation_id`, `{$mono}_id`) VALUES (:relation_id, :item_id)";
-            foreach ($items as $item) {
-                $this->executeQuery($queryInsert, [
-                    ":relation_id" => $id,
-                    ":item_id" => $item->getId(),
-                ]);
-            }
-        }
+    private function updateAssociationTable(string $association, int $id, array $items): void {
+        $this->updateAssociation(
+            self::TABLE_NAME . '_' . $association,
+            'relation_id',
+            ':relation_id',
+            $id,
+            $items
+        );
     }
 }
