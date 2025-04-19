@@ -19,6 +19,7 @@ require_once __DIR__ . "/../builder/TagBuilder.php";
  */
 class FanfictionsTable extends EntitiesTable
 {
+    private string $primary_key = 'fanfiction_id';
     protected const TABLE_NAME = 'fanfictions';
     protected const DEFAULT_SELECT_QUERY = 'SELECT * FROM `fanfictions`';
 
@@ -193,13 +194,13 @@ class FanfictionsTable extends EntitiesTable
     {
         $mono = substr($association, 0, -1);
         $queryDelete = "DELETE FROM `fanfictions_{$association}` WHERE `fanfiction_id` = :fanfiction_id";
-        $this->executeQuery($queryDelete, [":fanfiction_id" => $id]);
+        $this->executeQuery($queryDelete, [$this->primary_key => $id]);
 
         if ($items) {
             $queryInsert = "INSERT INTO `fanfictions_{$association}` (`fanfiction_id`, `{$mono}_id`) VALUES (:fanfiction_id, :item_id)";
             foreach ($items as $item) {
                 $this->executeQuery($queryInsert, [
-                    ":fanfiction_id" => $id,
+                    $this->primary_key => $id,
                     ":item_id" => $item->getId(),
                 ]);
             }
@@ -215,14 +216,14 @@ class FanfictionsTable extends EntitiesTable
     private function updateAssociationsLinks(int $id, array $items): void
     {
         $queryDelete = "DELETE FROM `links` WHERE `fanfiction_id` = :fanfiction_id";
-        $this->executeQuery($queryDelete, [":fanfiction_id" => $id]);
+        $this->executeQuery($queryDelete, [$this->primary_key => $id]);
 
         if ($items) {
             $queryInsert = "INSERT INTO `links`(`url`, `fanfiction_id`) VALUES (:url, :fanfiction_id)";
             foreach ($items as $item) {
                 $this->executeQuery($queryInsert, [
                     ":url" => $item->getUrl(),
-                    ":fanfiction_id" => $id
+                    $this->primary_key => $id
                 ]);
             }
         }
