@@ -181,7 +181,7 @@ abstract class EntitiesTable
     /**
      * Insert a new record
      */
-    public function post(Entity $entity): Entity
+    public function post(Entity $entity, bool $doLog = false): Entity
     {
         $cols = json_decode(json_encode($entity), true);
         if ($entity::class === 'User') {
@@ -198,7 +198,9 @@ abstract class EntitiesTable
             implode(', ', $place)
         );
 
-        // echo json_encode([$sql, array_combine($place, array_values($cols))]);die();
+        if($doLog){
+            Connection::dd([$sql, array_combine($place, array_values($cols))]);
+        }
 
         $this->executeQuery($sql, array_combine($place, array_values($cols)));
         $entity->setId((int) $this->connection->lastInsertId());

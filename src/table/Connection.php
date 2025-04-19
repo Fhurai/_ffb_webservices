@@ -87,7 +87,7 @@ class Connection
         // Print a newline for better readability
         echo "\n";
         // Dump the data
-        var_dump($data);
+        echo json_encode($data);
     }
 
     /**
@@ -99,7 +99,7 @@ class Connection
         // Print a newline for better readability
         echo "\n";
         // Dump the data
-        var_dump($data);
+        echo json_encode($data);
         // Stop the script execution
         die();
     }

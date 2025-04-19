@@ -52,13 +52,24 @@ class SqlExceptionManager extends Exception
 
     protected function getTranslateConstraint(): string
     {
-        switch($this->constraint){
-            case 'CHK_languages_abbreviation':
-                return 'Language abbreviation is not exactly 2 characters.';
-            default:
-                return '';
-        }
+        $messages = [
+            'CHK_fandoms_name' => 'Fandom name is empty.',
+            'CHK_languages_name' => 'Language name is empty.',
+            'CHK_languages_abbreviation' => 'Language abbreviation is not exactly 2 characters.',
+            'CHK_tags_name' => 'Tag name is empty.',
+            'CHK_characters_name' => 'Character name is empty.',
+            'CHK_relations_name' => 'Relation name is empty.',
+            'CHK_fanfictions_name' => 'Fanfiction name is empty.',
+            'CHK_links_url' => 'Link url is empty.',
+            'CHK_series_name' => 'Series name is empty.',
+            'CHK_users_username' => 'User username is empty.',
+            'CHK_users_email' => 'User email is empty.',
+            'CHK_actions_name' => 'Action name is empty.',
+        ];
+
+        return $messages[$this->constraint] ?? 'Unknown constraint.';
     }
+
 
     public function getSqlState(): string
     {
