@@ -1,9 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../src/endpoints/EntityEndpoint.php';
-require_once __DIR__ . '/../src/table/LanguagesTable.php';
+require_once __DIR__ . '/../src/table/SeriesTable.php';
 
-$endpoint = new EntityEndpoint(LanguagesTable::class);
+$endpoint = new EntityEndpoint(SeriesTable::class);
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {

@@ -10,6 +10,7 @@ class SqlExceptionManager extends Exception
     private $table;
     private $field;
     private $key;
+    private $constraint;
 
     public static function fromPDOException(PDOException $e): self
     {
@@ -44,6 +45,19 @@ class SqlExceptionManager extends Exception
 
         preg_match("/clef '([^']+)'/i", $this->errorMessage, $keyMatches);
         $this->key = $keyMatches[1] ?? null;
+
+        preg_match("/constraint '([^']+)'/i", $this->errorMessage, $constraintMatches);
+        $this->constraint = $constraintMatches[1] ?? null;
+    }
+
+    protected function getTranslateConstraint(): string
+    {
+        switch($this->constraint){
+            case 'CHK_languages_abbreviation':
+                return 'Language abbreviation is not exactly 2 characters.';
+            default:
+                return '';
+        }
     }
 
     public function getSqlState(): string
@@ -96,9 +110,15 @@ class SqlExceptionManager extends Exception
             2005 => fn() => "Unknown MySQL server host.",
             2013 => fn() => "Lost connection to MySQL server.",
             2014 => fn() => "Commands out of sync.",
+            3819 => fn() => sprintf("Constraint not respected: %s", $this->getTranslateConstraint()),
         ];
 
-        $message .= $errorMessages[$this->errorCode] ?? $this->errorMessage;
+        // Safely invoke the closure if the error code is in the array
+        if (isset($errorMessages[$this->errorCode])) {
+            $message .= $errorMessages[$this->errorCode]();
+        } else {
+            $message .= $this->errorMessage;
+        }
 
         return $message;
     }

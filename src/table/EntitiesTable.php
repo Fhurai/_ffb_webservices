@@ -153,7 +153,7 @@ abstract class EntitiesTable
                 } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
                     $val = trim($matches[2]);
                     $values[":$key"] = str_replace("'", "", $val);
-                }elseif(str_contains($key, "_id") || str_contains($key, "is_")){
+                } elseif (str_contains($key, "_id") || str_contains($key, "is_")) {
                     $values[":$key"] = $value;
                 }
             }
@@ -184,6 +184,11 @@ abstract class EntitiesTable
     public function post(Entity $entity): Entity
     {
         $cols = json_decode(json_encode($entity), true);
+        if ($entity::class === 'User') {
+            /** @var User $entity */
+            $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
+        }
+
         $fields = array_keys($cols);
         $place = array_map(fn($col) => ":$col", $fields);
         $sql = sprintf(
@@ -192,6 +197,8 @@ abstract class EntitiesTable
             implode(', ', array_map(fn($c) => "`$c`", $fields)),
             implode(', ', $place)
         );
+
+        // echo json_encode([$sql, array_combine($place, array_values($cols))]);die();
 
         $this->executeQuery($sql, array_combine($place, array_values($cols)));
         $entity->setId((int) $this->connection->lastInsertId());
