@@ -11,6 +11,11 @@ abstract class EntitiesTable
     // Common date format used in all tables
     protected const DATE_FORMAT = 'Y-m-d H:i:s';
 
+    /**
+     * @var string
+     */
+    protected const TIMEZONE_DATETIME = "Europe/Paris";
+
     // Default exception message when no data is found
     protected const NO_DATA_EXCEPTION = 'No data for arguments provided!';
 
@@ -178,24 +183,25 @@ abstract class EntitiesTable
         return $this->parseEntities($rows);
     }
 
-    protected function beforePost(Entity $entity){
+    protected function beforePost(Entity $entity)
+    {
 
         $cols = json_decode(json_encode($entity), true);
 
         if ($entity::class === 'User') {
             /** @var User $entity */
             $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
-        } elseif($entity::class === 'Relation'){
+        } elseif ($entity::class === 'Relation') {
             /** @var Relation $entity */
             unset($cols['characters']);
-        } elseif($entity::class === 'Fanfiction'){
+        } elseif ($entity::class === 'Fanfiction') {
             /** @var Fanfiction $entity */
             unset($cols['fandoms']);
             unset($cols['relations']);
             unset($cols['characters']);
             unset($cols['tags']);
             unset($cols['links']);
-        } elseif($entity::class === 'Series'){
+        } elseif ($entity::class === 'Series') {
             /** @var Series $entity */
             unset($cols['fanfictions']);
             unset($cols['authors']);
@@ -226,7 +232,7 @@ abstract class EntitiesTable
             implode(', ', $place)
         );
 
-        if($doLog){
+        if ($doLog) {
             Connection::dd([$sql, array_combine($place, array_values($cols))]);
         }
 
@@ -238,18 +244,54 @@ abstract class EntitiesTable
         return $entity;
     }
 
-    protected function afterPost($entity){
-        if($entity::class === 'Relation' || $entity::class === 'Fanfiction' || $entity::class === 'Series'){
+    protected function afterPost($entity)
+    {
+        if ($entity::class === 'Relation' || $entity::class === 'Fanfiction' || $entity::class === 'Series') {
             $this->updateAssociations($entity);
         }
+    }
+
+    protected function beforePut(stdClass $entity)
+    {
+        $cols = json_decode(json_encode($entity), true);
+        $cols['update_date'] = (new DateTime("now", new DateTimeZone(self::TIMEZONE_DATETIME)))->format(self::DATE_FORMAT);
+
+        return $cols;
     }
 
     /**
      * Update an existing record
      */
-    public function update(Entity $entity): Entity
+    public function put(Entity $entity, stdClass $data, bool $doLog = false): bool
     {
-        return $entity;
+        $arrayData = $this->beforePut($data);
+        $fields = array_keys($arrayData);
+        $place = array_map(fn($col) => "`$col` = :$col", $fields);
+        $sql = sprintf(
+            'UPDATE `%s` SET %s WHERE `id` = :id',
+            static::TABLE_NAME,
+            implode(', ', $place)
+        );
+
+        $params = array_combine(
+            array_map(fn($col) => ":$col", $fields),
+            array_values($arrayData)
+        );
+        $params[':id'] = $entity->getId();
+
+        if ($doLog) {
+            Connection::dd([$sql, $params]);
+        }
+
+        $result = $this->executeQuery($sql, $params);
+
+        if ($result === 0) {
+            throw new FfbTableException("Update failed for the entity", 500);
+        } elseif ($result > 1) {
+            throw new FfbTableException("Update affected multiple rows", 500);
+        }
+
+        return $result === 1;
     }
 
     /**
@@ -279,12 +321,19 @@ abstract class EntitiesTable
     /**
      * Execute and fetch
      */
-    protected function executeQuery(string $query, array $values): array
+    protected function executeQuery(string $query, array $values): mixed
     {
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->execute($values);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+             // Check if the query returns results (e.g., SELECT)
+             if ($stmt->columnCount() > 0) {
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                // Return the number of affected rows for write operations
+                return $stmt->rowCount();
+            }
         } catch (PDOException $e) {
             $manager = SqlExceptionManager::fromPDOException($e);
             throw new FfbTableException($manager->getFormattedMessage());
@@ -302,21 +351,22 @@ abstract class EntitiesTable
     }
 
     // Inside EntitiesTable.php
-protected function updateAssociation(string $junctionTable, string $primaryKeyColumn, string $primaryKeyParam, int $id, array $items): void {
-    $queryDelete = "DELETE FROM `$junctionTable` WHERE `$primaryKeyColumn` = $primaryKeyParam";
-    $this->executeQuery($queryDelete, [$primaryKeyParam => $id]);
+    protected function updateAssociation(string $junctionTable, string $primaryKeyColumn, string $primaryKeyParam, int $id, array $items): void
+    {
+        $queryDelete = "DELETE FROM `$junctionTable` WHERE `$primaryKeyColumn` = $primaryKeyParam";
+        $this->executeQuery($queryDelete, [$primaryKeyParam => $id]);
 
-    if (!empty($items)) {
-        $mono = substr($junctionTable, strpos($junctionTable, '_') + 1);
-        $mono = rtrim($mono, 's'); // Convert plural to singular
+        if (!empty($items)) {
+            $mono = substr($junctionTable, strpos($junctionTable, '_') + 1);
+            $mono = rtrim($mono, 's'); // Convert plural to singular
 
-        $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
-        foreach ($items as $item) {
-            $this->executeQuery($queryInsert, [
-                $primaryKeyParam => $id,
-                ":item_id" => $item->getId(),
-            ]);
+            $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
+            foreach ($items as $item) {
+                $this->executeQuery($queryInsert, [
+                    $primaryKeyParam => $id,
+                    ":item_id" => $item->getId(),
+                ]);
+            }
         }
     }
-}
 }

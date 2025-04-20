@@ -150,7 +150,21 @@ class EntityEndpoint extends DefaultEndpoint
 
     public function put($request, ...$args)
     {
-        return "Replacing article";
+        $this->validateRequest($args);
+
+        $decoded = ApiUtilities::decodeJWT();
+        $dbName = ApiUtilities::getDatabaseName($decoded);
+        $userRole = ApiUtilities::getUserRole($decoded);
+
+        $table = new $this->tableClass($dbName, $userRole);
+
+        $entity = $table->get($request['id']);
+
+        $updated = $table->put($entity, $args[0]);
+        $updated
+            ? ApiUtilities::httpOk(['message' => 'Entity updated'])
+            : ApiUtilities::httpBadRequest('Failed to update entity');
+
     }
 
     public function patch($request, ...$args)
