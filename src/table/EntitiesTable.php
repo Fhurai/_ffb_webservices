@@ -82,21 +82,28 @@ abstract class EntitiesTable
                 throw new FfbTableException("Invalid column name: '$column'");
             }
 
-            if (str_contains($value, '%')) {
-                $conditions[] = "$column LIKE :$column";
-                $values[":$column"] = $value;
-            } elseif (str_contains(strtolower($value), 'null')) {
-                $conditions[] = "$column IS NULL";
-            } elseif (str_contains(strtolower($value), 'not null')) {
-                $conditions[] = "$column IS NOT NULL";
-            } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
-                $operator = trim($matches[1]);
-                $val = trim($matches[2]);
-                $conditions[] = "$column $operator :$column";
-                $values[":$column"] = str_replace("'", "", $val);
-            } else {
-                $conditions[] = "$column = :$column";
-                $values[":$column"] = $value;
+            if (is_array($value)) {
+                $conditions[] = "$column IN (:" . implode(", :", array_keys($value)) . ")";
+                foreach ($value as $key => $val) {
+                    $values[":$key"] = $val;
+                }
+            } elseif (is_string($value)) {
+                if (str_contains($value, '%')) {
+                    $conditions[] = "$column LIKE :$column";
+                    $values[":$column"] = $value;
+                } elseif (str_contains(strtolower($value), 'null')) {
+                    $conditions[] = "$column IS NULL";
+                } elseif (str_contains(strtolower($value), 'not null')) {
+                    $conditions[] = "$column IS NOT NULL";
+                } elseif (preg_match('/^([<>=!]+)\s*(.*)/', $value, $matches)) {
+                    $operator = trim($matches[1]);
+                    $val = trim($matches[2]);
+                    $conditions[] = "$column $operator :$column";
+                    $values[":$column"] = str_replace("'", "", $val);
+                } else {
+                    $conditions[] = "$column = :$column";
+                    $values[":$column"] = $value;
+                }
             }
         }
         $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
@@ -251,11 +258,33 @@ abstract class EntitiesTable
         }
     }
 
-    protected function beforePut(stdClass $entity)
+    protected function beforePut(stdClass $entity, string $entityClass)
     {
         $cols = json_decode(json_encode($entity), true);
         $cols['update_date'] = (new DateTime("now", new DateTimeZone(self::TIMEZONE_DATETIME)))->format(self::DATE_FORMAT);
 
+        if ($entityClass === 'User') {
+            /** @var User $entity */
+            if (isset($cols['password'])) {
+                unset($cols['password']);
+            } elseif (isset($cols['currentPassword'])) {
+                if ($cols['newPassword'] !== $cols['confirmNewPassword']) {
+                    throw new FfbTableException("New password and confirmation do not match!", 400);
+                } else {
+                    $cols['password'] = password_hash($cols['newPassword'], PASSWORD_DEFAULT);
+                    unset($cols['newPassword']);
+                    unset($cols['confirmNewPassword']);
+                }
+            }
+        } elseif ($entityClass === 'Relation') {
+            /** @var Relation $entity */
+            $charactersTable = new CharactersTable(Connection::getTypeConnect(), Connection::getUser());
+            $characters = $charactersTable->findSearchedBy(['id' => $cols['characters']]);
+            $cols['characters'] = $characters;
+            $cols['name'] = implode(' / ', array_map(function ($character) {
+                    return $character->getName();
+                }, $characters));
+        }
         return $cols;
     }
 
@@ -264,7 +293,22 @@ abstract class EntitiesTable
      */
     public function put(Entity $entity, stdClass $data, bool $doLog = false): bool
     {
-        $arrayData = $this->beforePut($data);
+        $arrayData = $this->beforePut($data, $entity::class);
+
+
+        if (isset($arrayData['password'])) {
+            /** @var User $entity */
+            if (!password_verify($data->currentPassword, $entity->getPassword())) {
+                throw new FfbTableException("Current password is incorrect!", 400);
+            } else {
+                unset($arrayData['currentPassword']);
+            }
+        } elseif (isset($arrayData['characters'])){
+            /** @var Relation $entity */
+            $entity->setCharacters($arrayData['characters']);
+            unset($arrayData['characters']);
+        }
+
         $fields = array_keys($arrayData);
         $place = array_map(fn($col) => "`$col` = :$col", $fields);
         $sql = sprintf(
@@ -290,6 +334,8 @@ abstract class EntitiesTable
         } elseif ($result > 1) {
             throw new FfbTableException("Update affected multiple rows", 500);
         }
+
+        $this->afterPost($entity);
 
         return $result === 1;
     }
@@ -327,8 +373,8 @@ abstract class EntitiesTable
             $stmt = $this->connection->prepare($query);
             $stmt->execute($values);
 
-             // Check if the query returns results (e.g., SELECT)
-             if ($stmt->columnCount() > 0) {
+            // Check if the query returns results (e.g., SELECT)
+            if ($stmt->columnCount() > 0) {
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
                 // Return the number of affected rows for write operations
@@ -358,7 +404,7 @@ abstract class EntitiesTable
 
         if (!empty($items)) {
             $mono = substr($junctionTable, strpos($junctionTable, '_') + 1);
-            $mono = rtrim($mono, 's'); // Convert plural to singular
+            $mono = rtrim($mono, 's');
 
             $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
             foreach ($items as $item) {

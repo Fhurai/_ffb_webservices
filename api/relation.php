@@ -21,6 +21,9 @@ try {
             $endpoint->post($_REQUEST, json_decode(file_get_contents('php://input')));
             break;
 
+        case 'PUT':
+            $endpoint->put($_REQUEST, json_decode(file_get_contents('php://input')));
+            break;
 
         default:
             $endpoint->methodNotAllowed($method);
