@@ -10,7 +10,7 @@ return [
         "guest" => [
             "host" => getenv('DB_HOST') ?: "127.0.0.1",
             "port" => "3306",
-            "user" => "guest",
+            "user" => "ffb_guest",
             "password" => "1Gu3stIsw4yBetter*"
         ],
         "user" => [

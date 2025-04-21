@@ -35,7 +35,7 @@ class ActionsTest extends TestCase
         $client = new ApiClient();
         $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
         $data = json_decode($response);
-        var_dump(self::$apiBaseUrl . '/login.php');
+
         var_dump($response);
         var_dump($data);
 
