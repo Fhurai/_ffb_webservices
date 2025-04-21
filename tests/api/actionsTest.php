@@ -36,9 +36,6 @@ class ActionsTest extends TestCase
         $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
         $data = json_decode($response);
 
-        var_dump($response);
-        var_dump($data);
-
         if (empty($data?->token) || !is_string($data->token)) {
             throw new FfbEndpointException('Failed to obtain authentication token');
         }
