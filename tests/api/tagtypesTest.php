@@ -10,26 +10,26 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 #[\PHPUnit\Framework\Attributes\CoversClass(className: \TagType::class)]
 class TagTypesTest extends ApiTestCase
 {
-    #[DataProvider('actionNamesProvider')]
-    public function testActionNames(string $expectedName, int $index): void
+    #[DataProvider('tagtypeNamesProvider')]
+    public function testTagsTypesNames(string $expectedName, int $index): void
     {
-        $actions = $this->fetchData('/tagtypes.php');
+        $tagtypes = $this->fetchData('/tagtypes.php');
 
-        $this->assertArrayHasKey($index, $actions, "Action at index {$index} is missing");
-        $this->assertEquals($expectedName, $actions[$index]->name, "Action name at index {$index} does not match");
+        $this->assertArrayHasKey($index, $tagtypes, "Tag type at index {$index} is missing");
+        $this->assertEquals($expectedName, $tagtypes[$index]->name, "Tag type name at index {$index} does not match");
     }
 
-    public function testActionsCount(): void
+    public function testTagTypeCount(): void
     {
-        $actions = $this->fetchData('/tagtypes.php');
+        $tagtypes = $this->fetchData('/tagtypes.php');
         $this->assertCount(
-            count(self::actionNamesProvider()),
-            $actions,
-            'The number of actions returned does not match the expected count'
+            count(self::tagtypeNamesProvider()),
+            $tagtypes,
+            'The number of tagtypes returned does not match the expected count'
         );
     }
 
-    public static function actionNamesProvider(): array
+    public static function tagtypeNamesProvider(): array
     {
         return [
             ['Genre', 0],
