@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../src/exception/FfbEndpointException.php';
 
 #[CoversClass(ApiClient::class)]
 #[CoversClass(FfbEndpointException::class)]
-class ScoresFTest extends TestCase
+class ScoresTest extends TestCase
 {
     private static string $apiBaseUrl;
     private static string $token;

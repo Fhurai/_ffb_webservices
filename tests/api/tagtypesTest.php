@@ -72,10 +72,10 @@ class TagTypesTest extends TestCase
     public static function actionNamesProvider(): array
     {
         return [
-            ['Genre', 1],
-            ['Other', 2],
-            ['Relationships', 3],
-            ['Timeline', 4],
+            ['Genre', 0],
+            ['Timeline', 1],
+            ['Relationships', 2],
+            ['Other', 3],
         ];
     }
 
