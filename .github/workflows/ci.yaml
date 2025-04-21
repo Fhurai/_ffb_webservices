@@ -304,7 +304,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Start built-in PHP server
-        run: php -S 127.0.0.1:80 -t public > /dev/null 2>&1 &
+        run: php -S 127.0.0.1:80 -t . > /dev/null 2>&1 &
 
       - name: Wait for PHP built-in server to be ready
         run: |
