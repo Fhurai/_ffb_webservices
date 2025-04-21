@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../entity/Parameters.php";
+require_once __DIR__ . "/../table/Connection.php";
 
 abstract class ParametersTable
 {
