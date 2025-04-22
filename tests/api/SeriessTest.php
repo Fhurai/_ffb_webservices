@@ -72,4 +72,33 @@ class SeriessTest extends ApiTestCase
             ["Story of the Sword Demon",37]
         ];
     }
+
+    #[DataProvider('seriessOptionalNamesProvider')]
+    public function testSeriessOptionalNames(string $expectedName, int $index): void
+    {
+        $seriess = $this->fetchData('/series.php?search_description=%25Harry%20Potter%25');
+
+        $this->assertArrayHasKey($index, $seriess, "Series at index {$index} is missing");
+        $this->assertEquals($expectedName, $seriess[$index]->name, "Series name at index {$index} does not match");
+    }
+
+    public function testSeriessOptionalCount(): void
+    {
+        $seriess = $this->fetchData('/series.php?search_description=%25Harry%20Potter%25');
+
+        $this->assertCount(
+            count(self::seriessOptionalNamesProvider()),
+            $seriess,
+            'The number of seriess returned does not match the expected count'
+        );
+    }
+
+    public static function seriessOptionalNamesProvider(): array
+    {
+        return [
+            ["The Domination Series",0],
+            ["Contrast in Love",1],
+            ["The Boy Who Lived and The Girl Who Topped",2]
+        ];
+    }
 }

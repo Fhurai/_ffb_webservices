@@ -1095,4 +1095,56 @@ class FanfictionsTest extends ApiTestCase
             ["Bluebird",1060]
         ];
     }
+
+    #[DataProvider('fanfictionsOptionalNamesProvider')]
+    public function testFanfictionsOptionalNames(string $expectedName, int $index): void
+    {
+        $fanfictions = $this->fetchData('/fanfictions.php?search_name=Harry%20Potter%25');
+
+        $this->assertArrayHasKey($index, $fanfictions, "Fanfiction at index {$index} is missing");
+        $this->assertEquals($expectedName, $fanfictions[$index]->name, "Fanfiction name at index {$index} does not match");
+    }
+
+    public function testFanfictionsOptionalCount(): void
+    {
+        $fanfictions = $this->fetchData('/fanfictions.php?search_name=Harry%20Potter%25');
+
+        $this->assertCount(
+            count(self::fanfictionsOptionalNamesProvider()),
+            $fanfictions,
+            'The number of fanfictions returned does not match the expected count'
+        );
+    }
+
+    public static function fanfictionsOptionalNamesProvider(): array
+    {
+        return [
+            ["Harry Potter After the War",0],
+            ["Harry Potter and his luscious Butt",1],
+            ["Harry Potter and the 11th Commandment",2],
+            ["Harry Potter and the Best Man's Job",3],
+            ["Harry Potter and the Betrothal Contract",4],
+            ["Harry Potter and the Four Heirs",5],
+            ["Harry Potter and The Heir of House Greengrass",6],
+            ["Harry Potter and the Last Chance",7],
+            ["Harry Potter and the Marriage Contracts",8],
+            ["Harry Potter and the Nameless Man",9],
+            ["Harry Potter and The Old Friend",10],
+            ["Harry Potter and the Prefects Bath",11],
+            ["Harry Potter and The Revival of The Phoenix",12],
+            ["Harry Potter and the Ritual of Love's Memory",13],
+            ["Harry Potter and the Rune Stone Path",14],
+            ["Harry Potter and the Stress Relieving Breakfast",15],
+            ["Harry Potter and The Truth or Dare?",16],
+            ["Harry Potter and the Two Flowers",17],
+            ["Harry Potter and the Veela Sisters",18],
+            ["Harry Potter, Rise From Dust",19],
+            ["Harry Potter: After the Battle",20],
+            ["Harry Potter: Air Elemental",21],
+            ["Harry Potter: Life With A Single Futa Mother",22],
+            ["Harry Potter: The Big Bukkake Bang",23],
+            ["Harry Potter: The True Wizards Way",24],
+            ["Harry Potter: Thinking like a Thief",25]
+        ];
+    }
 }
