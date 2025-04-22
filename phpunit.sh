@@ -1,3 +1,5 @@
+#!/bin/bash
+
 clear
 cd sql
 ./resetTests.sh
