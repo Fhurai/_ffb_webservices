@@ -233,28 +233,28 @@ jobs:
         continue-on-error: true
 
   phpcs:
-  name: PHP Code Style Check
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    name: PHP Code Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.3'
-        tools: phpcs
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: phpcs
 
-    - name: Run PHP CodeSniffer
-      run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --report=summary --report-file=phpcs-report.txt
-      continue-on-error: true
+      - name: Run PHP CodeSniffer
+        run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --report=summary --report-file=phpcs-report.txt
+        continue-on-error: true
 
-    - name: Upload PHPCS report
-      uses: actions/upload-artifact@v4
-      with:
-        name: phpcs-report
-        path: phpcs-report.txt
-      continue-on-error: true
+      - name: Upload PHPCS report
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpcs-report
+          path: phpcs-report.txt
+        continue-on-error: true
 
   docs:
     name: Generate PHPDoc
