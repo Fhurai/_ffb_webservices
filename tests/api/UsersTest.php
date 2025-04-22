@@ -43,4 +43,32 @@ class UsersTest extends ApiTestCase
             ["Fhurai", "kulu57@gmail.com", 0, 1, "1992-12-21 23:30:00", 1, 2],
         ];
     }
+
+    #[DataProvider('usersOptionalNamesProvider')]
+    public function testUsersOptionalNames(string $expectedName, int $index): void
+    {
+        $users = $this->fetchData('/users.php?search_is_admin=0');
+
+        $this->assertArrayHasKey($index, $users, "User at index {$index} is missing");
+        $this->assertEquals($expectedName, $users[$index]->username, "User name at index {$index} does not match");
+    }
+
+    public function testUsersOptionalCount(): void
+    {
+        $users = $this->fetchData('/users.php?search_is_admin=0');
+
+        $this->assertCount(
+            count(self::usersOptionalNamesProvider()),
+            $users,
+            'The number of users returned does not match the expected count'
+        );
+    }
+
+    public static function usersOptionalNamesProvider(): array
+    {
+        return [
+            ["Guest",0],
+            ["Fhurai",1],
+        ];
+    }
 }

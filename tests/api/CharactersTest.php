@@ -542,4 +542,34 @@ class CharactersTest extends ApiTestCase
             ["S(hania)",507]
         ];
     }
+
+    #[DataProvider('charactersOptionalNamesProvider')]
+    public function testCharactersOptionalNames(string $expectedName, int $index): void
+    {
+        $characters = $this->fetchData('/characters.php?search_fandom_id=6');
+
+        $this->assertArrayHasKey($index, $characters, "Character at index {$index} is missing");
+        $this->assertEquals($expectedName, $characters[$index]->name, "Character name at index {$index} does not match");
+    }
+
+    public function testCharactersOptionalCount(): void
+    {
+        $characters = $this->fetchData('/characters.php?search_fandom_id=6');
+
+        $this->assertCount(
+            count(self::charactersOptionalNamesProvider()),
+            $characters,
+            'The number of characters returned does not match the expected count'
+        );
+    }
+
+    public static function charactersOptionalNamesProvider(): array
+    {
+        return [
+            ["OFC",0],
+            ["Minfilia Warde",1],
+            ["Y'shtola Rhul",2],
+            ["Y'mhitra Rhul",3]
+        ];
+    }
 }

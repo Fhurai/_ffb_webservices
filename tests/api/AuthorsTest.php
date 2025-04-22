@@ -752,4 +752,50 @@ class AuthorsTest extends ApiTestCase
             ["Zoelily",716]
         ];
     }
+
+    #[DataProvider('authorsOptionalNamesProvider')]
+    public function testAuthorsOptionalNames(string $expectedName, int $index): void
+    {
+        $authors = $this->fetchData('/authors.php?search_id=%3E30&search_name=A%25&order_id=DESC&limit_limit=20&limit_offset=0');
+
+        $this->assertArrayHasKey($index, $authors, "Author at index {$index} is missing");
+        $this->assertEquals($expectedName, $authors[$index]->name, "Author name at index {$index} does not match");
+    }
+
+    public function testAuthorsOptionalCount(): void
+    {
+        $authors = $this->fetchData('/authors.php?search_id=%3E30&search_name=A%25&order_id=DESC&limit_limit=20&limit_offset=0');
+
+        $this->assertCount(
+            count(self::authorsOptionalNamesProvider()),
+            $authors,
+            'The number of authors returned does not match the expected count'
+        );
+    }
+
+    public static function authorsOptionalNamesProvider(): array
+    {
+        return [
+            ["Azaron",0],
+            ["Aya8",1],
+            ["AxleBoost",2],
+            ["Averlovi",3],
+            ["Avain1991",4],
+            ["AuntieL",5],
+            ["Atsuzi Tano",6],
+            ["Atrxx93",7],
+            ["AstroLatte",8],
+            ["AStrangeHopefulDreamer",9],
+            ["Assbele",10],
+            ["Asriah",11],
+            ["Aspionage",12],
+            ["AshleyTrecartin",13],
+            ["Articcat621",14],
+            ["Armageddon Angel",15],
+            ["Ariaojou",16],
+            ["Argo0",17],
+            ["Argenterie",18],
+            ["Archsage",19]
+        ];
+    }
 }

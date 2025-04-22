@@ -68,4 +68,44 @@ class TagsTest extends ApiTestCase
             ["One-shot",33]
         ];
     }
+
+    #[DataProvider('tagsOptionalNamesProvider')]
+    public function testTagsOptionalNames(string $expectedName, int $index): void
+    {
+        $tags = $this->fetchData('/tags.php?search_type_id=1');
+
+        $this->assertArrayHasKey($index, $tags, "Tag at index {$index} is missing");
+        $this->assertEquals($expectedName, $tags[$index]->name, "Tag name at index {$index} does not match");
+    }
+
+    public function testTagsOptionalCount(): void
+    {
+        $tags = $this->fetchData('/tags.php?search_type_id=1');
+
+        $this->assertCount(
+            count(self::tagsOptionalNamesProvider()),
+            $tags,
+            'The number of tags returned does not match the expected count'
+        );
+    }
+
+    public static function tagsOptionalNamesProvider(): array
+    {
+        return [
+            ["Romance",0],
+            ["Adventure",1],
+            ["Friendship",2],
+            ["Fluff",3],
+            ["Family",4],
+            ["Angst",5],
+            ["Drama",6],
+            ["Hurt | Comfort",7],
+            ["Humor",8],
+            ["Slices of life",9],
+            ["Mystery",10],
+            ["Crime",11],
+            ["Supernatural",12],
+            ["Fantasy",13]
+        ];
+    }
 }

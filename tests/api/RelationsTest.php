@@ -369,4 +369,49 @@ class RelationsTest extends ApiTestCase
             ["Rex / Shulk",334]
         ];
     }
+
+    #[DataProvider('relationsOptionalNamesProvider')]
+    public function testRelationsOptionalNames(string $expectedName, int $index): void
+    {
+        $relations = $this->fetchData('/relations.php?search_name=F%25');
+
+        $this->assertArrayHasKey($index, $relations, "Relation at index {$index} is missing");
+        $this->assertEquals($expectedName, $relations[$index]->name, "Relation name at index {$index} does not match");
+    }
+
+    public function testRelationsOptionalCount(): void
+    {
+        $relations = $this->fetchData('/relations.php?search_name=F%25');
+
+        $this->assertCount(
+            count(self::relationsOptionalNamesProvider()),
+            $relations,
+            'The number of relations returned does not match the expected count'
+        );
+    }
+
+    public static function relationsOptionalNamesProvider(): array
+    {
+        return [
+            ["Fiorung | Fiora / Melia Ancient | Melia Antiqua / Shulk",0],
+            ["Fiorung | Fiora / Shulk",1],
+            ["Fleur Delacour / Gabrielle Delacour",2],
+            ["Fleur Delacour / Gabrielle Delacour / Harry Potter",3],
+            ["Fleur Delacour / Harry Potter",4],
+            ["Fleur Delacour / Harry Potter / Hermione Granger / Nymphadora Tonks",5],
+            ["Fleur Delacour / Harry Potter / Nymphadora Tonks",6],
+            ["Fleur Delacour / Harry Potter / William 'Bill' Weasley",7],
+            ["Fleur Delacour / Hermione Granger",8],
+            ["Fleur Delacour / Hermione Granger / Ronald 'Ron' Weasley",9],
+            ["Fleur Delacour / Hermione Granger / William 'Bill' Weasley",10],
+            ["Fleur Delacour / Viktor Krum",11],
+            ["Fleur Delacour / William 'Bill' Weasley",12],
+            ["Flora Carrow / Harry Potter / Hestia Carrow",13],
+            ["Fuka / Uzumaki Naruto",14],
+            ["Fuu / Hyuuga Hinata / Tayuya / Uzumaki Naruto",15],
+            ["Fuu / Hyuuga Hinata / Uzumaki Naruto",16],
+            ["Fuu / Tayuya",17],
+            ["Fuu / Uzumaki Naruto",18]
+        ];
+    }
 }
