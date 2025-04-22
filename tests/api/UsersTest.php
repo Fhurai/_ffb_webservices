@@ -11,12 +11,17 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 class UsersTest extends ApiTestCase
 {
     #[DataProvider('userNamesProvider')]
-    public function testUserNames(string $expectedName, int $index): void
+    public function testUserNames(string $expectedName, string $expectedEmail, $expectedAdmin, $expectedLocal, $expectedBirthday, $expectedNsfw, int $index): void
     {
         $users = $this->fetchData('/users.php');
 
         $this->assertArrayHasKey($index, $users, "User at index {$index} is missing");
         $this->assertEquals($expectedName, $users[$index]->username, "User name at index {$index} does not match");
+        $this->assertEquals($expectedEmail, $users[$index]->email, "User email at index {$index} does not match");
+        $this->assertEquals($expectedAdmin, $users[$index]->is_admin, "User admin at index {$index} does not match");
+        $this->assertEquals($expectedLocal, $users[$index]->is_local, "User local at index {$index} does not match");
+        $this->assertEquals($expectedBirthday, $users[$index]->birthday, "User birthday at index {$index} does not match");
+        $this->assertEquals($expectedNsfw, $users[$index]->is_nsfw, "User nsfw at index {$index} does not match");
     }
 
     public function testUsersCount(): void
@@ -33,9 +38,9 @@ class UsersTest extends ApiTestCase
     public static function userNamesProvider(): array
     {
         return [
-            ["Admin",0],
-            ["Guest",1],
-            ["Fhurai",2],
+            ["Admin", "kulu57@live.com", 1, 1, "1970-01-01 00:00:01", 1, 0],
+            ["Guest", "luku@free.fr", 0, 1, "1970-01-01 00:00:01", 0, 1],
+            ["Fhurai", "kulu57@gmail.com", 0, 1, "1992-12-21 23:30:00", 1, 2],
         ];
     }
 }
