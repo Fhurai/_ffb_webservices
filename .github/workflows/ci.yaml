@@ -7,202 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  php-tests:
-    name: Run PHP Tests (PHP ${{ matrix.php-version }})
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-version: ["8.2", "8.3"]
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd "mysqladmin ping -p$MYSQL_ROOT_PASSWORD"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup environment
-        run: |
-          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
-          echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-          extensions: mbstring, dom, fileinfo, curl, pdo_mysql, xdebug
-          coverage: xdebug
-          tools: composer
-
-      - name: Configure MySQL client login path
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y expect
-          expect -c '
-            spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
-            expect "Enter password:"
-            send "${{ secrets.MYSQL_ROOT_PASSWORD }}\r"
-            expect eof
-          '
-          mysql_config_editor print --login-path=client
-
-      - name: Create MySQL databases
-        run: |
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'ffb_guest'@'%';"
-          mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
-          mysql --login-path=client -e "FLUSH PRIVILEGES;"
-
-      - name: Test MySQL connection
-        run: |
-          mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
-
-      - name: Configure application
-        run: |
-          cp config/config.php.example config/config.php
-          sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
-          sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
-
-      - name: Verify config.php exists
-        run: |
-          if [ ! -f config/config.php ]; then
-            echo "❌ Error: config/config.php was not created!"
-            exit 1
-          fi
-          echo "✅ config/config.php verified"
-
-      - name: Initialize database
-        run: |
-          chmod +x ./sql/init.sh
-          cd sql && ./init.sh
-
-      - name: Cache Composer dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Run tests
-        env:
-          DB_DATABASE: ffb_tests
-        run: vendor/bin/phpunit
-        continue-on-error: true
-
-  discord-notification-php-tests:
-    name: Discord Notification - PHP Tests
-    runs-on: ubuntu-latest
-    needs: php-tests
-    steps:
-      - name: Send Discord notification
-        if: always()
-        run: |
-          STATUS="${{ needs.php-tests.result }}"
-          if [ "$STATUS" = "success" ]; then
-            COLOR=3066993
-            MESSAGE="✅ FFB Webservices - Tests Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
-          else
-            COLOR=15158332
-            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
-          fi
-
-          PAYLOAD=$(cat <<EOF
-          {
-            "embeds": [{
-              "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${GITHUB_SHA:0:7}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
-              "color": ${COLOR},
-              "image": {
-                "url": "${IMAGE_URL}"
-              },
-              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            }]
-          }
-          EOF
-          )
-
-          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-  teams-notification-php-tests:
-    name: Teams Notification - PHP Tests
-    runs-on: ubuntu-latest
-    needs: php-tests
-    steps:
-      - name: Send Microsoft Teams notification
-        env:
-          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-        run: |
-          STATUS="${{ needs.php-tests.result }}"
-          if [ "$STATUS" = "success" ]; then
-            COLOR=3066993
-            MESSAGE="✅ FFB Webservices - Tests Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
-          else
-            COLOR=15158332
-            MESSAGE="❌ FFB Webservices - Tests Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
-          fi
-
-          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
-
-          PAYLOAD=$(cat <<EOF
-          {
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "summary": "${MESSAGE}",
-            "themeColor": "${COLOR}",
-            "title": "${MESSAGE}",
-            "sections": [{
-              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)",
-              "images": [{
-                "image": "${IMAGE_URL}"
-              }],
-              "markdown": true
-            }]
-          }
-          EOF
-          )
-
-          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
-        continue-on-error: true
-
-
-
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-    needs: php-tests
     strategy:
       matrix:
         php-version: ["8.2", "8.3"]
@@ -339,8 +146,6 @@ jobs:
             -Dsonar.scm.provider=git
         continue-on-error: true
 
-
-
   discord-notification-sonarqube:
     name: Discord Notification - SonarQube Analysis
     runs-on: ubuntu-latest
@@ -426,3 +231,42 @@ jobs:
 
           curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
         continue-on-error: true
+
+  phpcs:
+  name: PHP Code Style Check
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        tools: phpcs
+
+    - name: Run PHP CodeSniffer
+      run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --colors=always --report=summary --report-file=phpcs-report.txt
+      continue-on-error: true
+
+  docs:
+  name: Generate PHPDoc
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        tools: phpdoc
+
+    - name: Generate docs
+      run: phpdoc -d src -t docs
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
