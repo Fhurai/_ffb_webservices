@@ -233,40 +233,40 @@ jobs:
         continue-on-error: true
 
   phpcs:
-  name: PHP Code Style Check
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    name: PHP Code Style Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.3'
-        tools: phpcs
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: phpcs
 
-    - name: Run PHP CodeSniffer
-      run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --colors=always --report=summary --report-file=phpcs-report.txt
-      continue-on-error: true
+      - name: Run PHP CodeSniffer
+        run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --colors=always --report=summary --report-file=phpcs-report.txt
+        continue-on-error: true
 
   docs:
-  name: Generate PHPDoc
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    name: Generate PHPDoc
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.3'
-        tools: phpdoc
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: phpdoc
 
-    - name: Generate docs
-      run: phpdoc -d src -t docs
+      - name: Generate docs
+        run: phpdoc -d src -t docs
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
