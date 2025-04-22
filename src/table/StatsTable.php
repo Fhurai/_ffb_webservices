@@ -36,7 +36,7 @@ readonly class StatsTable
     /**
      * Fetches statistics for a specific parameter.
      *
-     * @param string $parameter The parameter to filter statistics by.
+     * @param  string $parameter The parameter to filter statistics by.
      * @return array An array of statistics for the given parameter.
      * @throws FfbTableException If an error occurs during the query execution.
      */
@@ -69,7 +69,7 @@ readonly class StatsTable
     /**
      * Fetches statistics for a specific entity.
      *
-     * @param string $entity The entity to filter statistics by.
+     * @param  string $entity The entity to filter statistics by.
      * @return array An array of statistics for the given entity.
      * @throws FfbTableException If an error occurs during the query execution.
      */
@@ -89,8 +89,8 @@ readonly class StatsTable
     /**
      * Executes a query with the provided values and returns the results.
      *
-     * @param string $query The SQL query to execute.
-     * @param array $values The values to bind to the query (optional).
+     * @param  string $query  The SQL query to execute.
+     * @param  array  $values The values to bind to the query (optional).
      * @return array The query results as an associative array.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */

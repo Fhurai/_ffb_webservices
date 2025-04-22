@@ -23,7 +23,7 @@ final class LanguageBuilder extends NamedEntityBuilder
     /**
      * Sets the abbreviation for the Language object.
      *
-     * @param string $abbreviation The abbreviation of the language.
+     * @param  string $abbreviation The abbreviation of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      */
     public function withAbbreviation(string $abbreviation): LanguageBuilder

@@ -1,11 +1,12 @@
 <?php
 
-trait EvaluableBuilderTrait{
+trait EvaluableBuilderTrait
+{
 
     /**
      * Sets the score ID for the Series object.
      *
-     * @param int|null $scoreId The score ID.
+     * @param  int|null $scoreId The score ID.
      * @return mixed The current instance.
      */
     public function withScoreId(?int $scoreId): mixed
@@ -23,7 +24,7 @@ trait EvaluableBuilderTrait{
     /**
      * Sets the evaluation for the Series object.
      *
-     * @param string|null $evaluation The evaluation.
+     * @param  string|null $evaluation The evaluation.
      * @return mixed The current instance.
      */
     public function withEvaluation(?string $evaluation): mixed

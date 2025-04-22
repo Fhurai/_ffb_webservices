@@ -104,18 +104,21 @@ final class User extends Entity
 
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "username" => $this->username,
             "email" => $this->email,
             "is_admin" => $this->isAdmin,
             "is_local" => $this->isLocal,
             "birthday" => $this->birthday->format("Y-m-d H:i:s"),
             "is_nsfw" => $this->isNsfw,
-        ]);
+            ]
+        );
     }
 
     /**
      * Method to create a new User.
+     *
      * @return mixed New User.
      */
     public static function getNewObject(): mixed

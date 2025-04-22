@@ -12,12 +12,14 @@ use PHPUnit\Framework\TestCase;
  * This class contains unit tests for the SrcUtilities class.
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
-class SrcUtilitiesTest extends TestCase {
+class SrcUtilitiesTest extends TestCase
+{
 
     /**
      * Test for gsFunction method.
      */
-    public function testGsFunction() {
+    public function testGsFunction()
+    {
         $this->assertEquals('getProperty', SrcUtilities::gsFunction('get', 'property'));
         $this->assertEquals('isProperty', SrcUtilities::gsFunction('is', 'property'));
         $this->assertEquals('IsProperty', SrcUtilities::gsFunction('get', 'is_property'));
@@ -28,7 +30,8 @@ class SrcUtilitiesTest extends TestCase {
     /**
      * Test for getTableName method.
      */
-    public function testGetTableName() {
+    public function testGetTableName()
+    {
         $this->assertEquals('ClassNamesTable', SrcUtilities::getTableName('ClassName'));
         $this->assertEquals('ClassNamesTable', SrcUtilities::getTableName('Class_Name'));
         $this->assertEquals('ClassNamesTable', SrcUtilities::getTableName('ClassName', true));

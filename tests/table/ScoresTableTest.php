@@ -86,11 +86,13 @@ class ScoresTableTest extends TestCase
     public function testComplexCombination()
     {
         // Search + Order + Limit
-        $result = $this->scoresTable->findAll([
+        $result = $this->scoresTable->findAll(
+            [
             'search' => ['name' => '%oo%'],
             'order' => ['name' => 'DESC'],
             'limit' => ['limit' => 2]
-        ]);
+            ]
+        );
 
         $expectedNames = ['Poor', 'Good'];
         $this->assertCount(2, $result);

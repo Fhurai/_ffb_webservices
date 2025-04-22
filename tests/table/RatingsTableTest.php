@@ -86,11 +86,13 @@ class RatingsTableTest extends TestCase
     public function testComplexCombination()
     {
         // Search + Order + Limit
-        $result = $this->ratingsTable->findAll([
+        $result = $this->ratingsTable->findAll(
+            [
             'search' => ['name' => '%M%'],
             'order' => ['name' => 'DESC'],
             'limit' => ['limit' => 2]
-        ]);
+            ]
+        );
 
         $expectedNames = ['MA / 18', 'M / 16'];
         $this->assertCount(2, $result);

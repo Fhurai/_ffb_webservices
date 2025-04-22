@@ -23,7 +23,7 @@ final class CharacterBuilder extends NamedEntityBuilder
     /**
      * Sets the fandom ID for the Character object.
      *
-     * @param int|Fandom $arg The fandom ID as an integer or a Fandom object.
+     * @param  int|Fandom $arg The fandom ID as an integer or a Fandom object.
      * @return CharacterBuilder The current instance of CharacterBuilder.
      */
     public function withFandomId(int|Fandom $arg): CharacterBuilder
@@ -44,7 +44,7 @@ final class CharacterBuilder extends NamedEntityBuilder
     /**
      * Sets the fandom for the Character object.
      *
-     * @param Fandom $fandom The Fandom object.
+     * @param  Fandom $fandom The Fandom object.
      * @return CharacterBuilder The current instance of CharacterBuilder.
      */
     public function withFandom(Fandom $fandom): CharacterBuilder

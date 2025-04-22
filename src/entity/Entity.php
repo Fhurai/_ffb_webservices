@@ -15,24 +15,28 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Identifier.
+     *
      * @var int
      */
     private int $id;
 
     /**
      * Creation date.
+     *
      * @var DateTime
      */
     private DateTime $creationDate;
 
     /**
      * Update date.
+     *
      * @var DateTime
      */
     private DateTime $updateDate;
 
     /**
      * Delete date.
+     *
      * @var DateTime|null
      */
     private ?DateTime $deleteDate;
@@ -52,6 +56,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Getter Identifier.
+     *
      * @return int Identifier.
      */
     public function getId(): int
@@ -61,6 +66,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Identifier.
+     *
      * @param int $id New identifier.
      */
     public function setId(int $id): void
@@ -70,6 +76,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Getter Creation date.
+     *
      * @return DateTime Creation date.
      */
     public function getCreationDate(): DateTime
@@ -79,6 +86,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Creation date.
+     *
      * @param DateTime $creationDate New creation date.
      */
     public function setCreationDate(DateTime $creationDate): void
@@ -88,6 +96,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Getter Update date.
+     *
      * @return DateTime Update date.
      */
     public function getUpdateDate(): DateTime
@@ -97,6 +106,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Update date.
+     *
      * @param DateTime $updateDate New update date.
      */
     public function setUpdateDate(DateTime $updateDate): void
@@ -106,6 +116,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Getter Delete date.
+     *
      * @return DateTime|null Delete date if set, or null.
      */
     public function getDeleteDate(): ?DateTime
@@ -115,6 +126,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Setter Delete date.
+     *
      * @param DateTime|null $deleteDate New delete date or null.
      */
     public function setDeleteDate(?DateTime $deleteDate = null): void
@@ -124,6 +136,7 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Method to parse entity into an array for JSON serialization.
+     *
      * @return array Array of entity data.
      */
     public function jsonSerialize(): array
@@ -144,7 +157,8 @@ abstract class Entity implements JsonSerializable
 
     /**
      * Method to parse a JSON string into an entity object.
-     * @param string $json JSON string.
+     *
+     * @param  string $json JSON string.
      * @return static Parsed object.
      */
     public static function jsonUnserialize(string $json): static
@@ -171,7 +185,8 @@ abstract class Entity implements JsonSerializable
     /**
      * Helper method to parse date values.
      * Converts various date formats into a DateTime object.
-     * @param mixed $value Date value to parse.
+     *
+     * @param  mixed $value Date value to parse.
      * @return DateTime|null Parsed DateTime or null.
      */
     abstract protected static function parseDate(mixed $value): ?DateTime;
@@ -179,6 +194,7 @@ abstract class Entity implements JsonSerializable
     /**
      * Abstract method to create a new child object.
      * Must be implemented by child classes.
+     *
      * @return mixed The child object.
      */
     abstract public static function getNewObject(): mixed;

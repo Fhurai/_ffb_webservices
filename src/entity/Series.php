@@ -13,11 +13,13 @@ final class Series extends ComplexEntity
 
     /**
      * Description.
+     *
      * @var string
      */
     private string $description;
     /**
      * Fanfictions associated with the Series.
+     *
      * @var array
      */
     public ?array $fanfictions = null;
@@ -35,6 +37,7 @@ final class Series extends ComplexEntity
 
     /**
      * Getter Description.
+     *
      * @return string Description.
      */
     public function getDescription(): string
@@ -44,7 +47,8 @@ final class Series extends ComplexEntity
 
     /**
      * Setter Description.
-     * @param string $description New Description.
+     *
+     * @param  string $description New Description.
      * @return void
      */
     public function setDescription(string $description): void
@@ -54,6 +58,7 @@ final class Series extends ComplexEntity
 
     /**
      * Method to check if fanfictions are loaded.
+     *
      * @return bool True if fanfictions are loaded, false otherwise.
      */
     public function hasFanfictions(): bool
@@ -89,11 +94,13 @@ final class Series extends ComplexEntity
         $associations = $this->serializeAssociations();
         $derived = $this->hasFanfictions() ? $this->serializeDerivedData() : [];
 
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "description" => $this->description,
             "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
-        ], $associations, $derived);
+            ], $associations, $derived
+        );
     }
 
     private function serializeAssociations(): array
@@ -142,7 +149,7 @@ final class Series extends ComplexEntity
 
         $this->mergeValues($derived['fandoms'],   $fanfiction->hasFandoms(),   fn() => $fanfiction->getFandoms());
         $this->mergeValues($derived['relations'], $fanfiction->hasRelations(), fn() => $fanfiction->getRelations());
-        $this->mergeValues($derived['characters'],$fanfiction->hasCharacters(),fn() => $fanfiction->getCharacters());
+        $this->mergeValues($derived['characters'], $fanfiction->hasCharacters(), fn() => $fanfiction->getCharacters());
         $this->mergeValues($derived['tags'],      $fanfiction->hasTags(),      fn() => $fanfiction->getTags());
     }
 

@@ -86,11 +86,13 @@ class TagTypesTableTest extends TestCase
     public function testComplexCombination()
     {
         // Search + Order + Limit
-        $result = $this->tagTypesTable->findAll([
+        $result = $this->tagTypesTable->findAll(
+            [
             'search' => ['name' => '%i%'],
             'order' => ['name' => 'DESC'],
             'limit' => ['limit' => 2]
-        ]);
+            ]
+        );
 
         $expectedNames = ['Timeline', 'Relationships'];
         $this->assertCount(2, $result);

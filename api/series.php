@@ -8,17 +8,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 try {
     switch ($method) {
-        case 'OPTIONS':
-            $endpoint->options($_REQUEST);
-            break;
+    case 'OPTIONS':
+        $endpoint->options($_REQUEST);
+        break;
 
-        case 'GET':
-            $endpoint->get($_REQUEST, ['delete_date' => 'IS NULL'], true);
-            break;
+    case 'GET':
+        $endpoint->get($_REQUEST, ['delete_date' => 'IS NULL'], true);
+        break;
 
-        default:
-            $endpoint->methodNotAllowed($method);
+    default:
+        $endpoint->methodNotAllowed($method);
     }
 } catch (Exception $e) {
-    ApiUtilities::httpInternalServerError( "Server error: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("Server error: " . $e->getMessage());
 }

@@ -7,11 +7,11 @@ $endpoint = new LoginEndpoint();
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {
-    if($method === 'POST'){
+    if($method === 'POST') {
         $endpoint->post($method);
     } else {
         $endpoint->methodNotAllowed($method);
     }
 } catch (Exception $e) {
-    ApiUtilities::httpInternalServerError( "Server error: " . $e->getMessage());
+    ApiUtilities::httpInternalServerError("Server error: " . $e->getMessage());
 }

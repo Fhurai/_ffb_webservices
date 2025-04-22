@@ -17,17 +17,31 @@ final class Link extends Entity
         $this->setFanfictionId(-1);
     }
 
-    public function getUrl(): string { return $this->url; }
-    public function setUrl(string $url): void { $this->url = $url; }
+    public function getUrl(): string
+    {
+        return $this->url; 
+    }
+    public function setUrl(string $url): void
+    {
+        $this->url = $url; 
+    }
 
-    public function getFanfictionId(): int { return $this->fanfictionId; }
-    public function setFanfictionId(int $fanfictionId): void { $this->fanfictionId = $fanfictionId; }
+    public function getFanfictionId(): int
+    {
+        return $this->fanfictionId; 
+    }
+    public function setFanfictionId(int $fanfictionId): void
+    {
+        $this->fanfictionId = $fanfictionId; 
+    }
 
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "url" => $this->url,
             "fanfiction_id" => $this->fanfictionId
-        ]);
+            ]
+        );
     }
 }

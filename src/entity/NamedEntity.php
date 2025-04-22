@@ -9,6 +9,7 @@ abstract class NamedEntity extends Entity
 {
     /**
      * Name.
+     *
      * @var string
      */
     private string $name;
@@ -24,6 +25,7 @@ abstract class NamedEntity extends Entity
 
     /**
      * Getter Name.
+     *
      * @return string Name.
      */
     public function getName(): string
@@ -33,7 +35,8 @@ abstract class NamedEntity extends Entity
 
     /**
      * Setter Name.
-     * @param string $name New Name.
+     *
+     * @param  string $name New Name.
      * @return void
      */
     public function setName(string $name): void
@@ -43,12 +46,15 @@ abstract class NamedEntity extends Entity
 
     /**
      * Method to parse NamedEntity into an array for JSON parsing.
+     *
      * @return array Array of NamedEntity data.
      */
     public function jsonSerialize(): array
     {
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "name" => $this->getName(),
-        ]);
+            ]
+        );
     }
 }

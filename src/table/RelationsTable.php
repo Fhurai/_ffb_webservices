@@ -29,14 +29,16 @@ class RelationsTable extends EntitiesTable
 
         if (!empty($characters)) {
             foreach ($characters as $character) {
-                $relationBuilder->addCharacter((new CharacterBuilder())
-                    ->withId($character["id"])
-                    ->withName($character["name"])
-                    ->withFandomId($character["fandom_id"])
-                    ->withCreationDate($character["creation_date"])
-                    ->withUpdateDate($character["update_date"])
-                    ->withDeleteDate($character["delete_date"])
-                    ->build());
+                $relationBuilder->addCharacter(
+                    (new CharacterBuilder())
+                        ->withId($character["id"])
+                        ->withName($character["name"])
+                        ->withFandomId($character["fandom_id"])
+                        ->withCreationDate($character["creation_date"])
+                        ->withUpdateDate($character["update_date"])
+                        ->withDeleteDate($character["delete_date"])
+                        ->build()
+                );
             }
         }
 
@@ -50,7 +52,8 @@ class RelationsTable extends EntitiesTable
         }
     }
 
-    private function updateAssociationTable(string $association, int $id, array $items): void {
+    private function updateAssociationTable(string $association, int $id, array $items): void
+    {
         $this->updateAssociation(
             self::TABLE_NAME . '_' . $association,
             'relation_id',

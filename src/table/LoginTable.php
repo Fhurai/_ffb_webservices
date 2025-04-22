@@ -24,7 +24,7 @@ readonly class LoginTable
      * Get user statistics by username.
      * Fetches user statistics from the database based on the provided username.
      *
-     * @param string $username The username to search for.
+     * @param  string $username The username to search for.
      * @return array The user statistics as an associative array.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
@@ -40,8 +40,8 @@ readonly class LoginTable
      * Execute a query with the provided values.
      * Prepares and executes an SQL query with bound values, returning the results.
      *
-     * @param string $query The SQL query to execute.
-     * @param array $values The values to bind to the query.
+     * @param  string $query  The SQL query to execute.
+     * @param  array  $values The values to bind to the query.
      * @return mixed The query results as associative arrays.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */

@@ -11,8 +11,8 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Helper: convert an array of data into an array of objects of the specified class.
      *
-     * @param array  $data
-     * @param string $className
+     * @param  array  $data
+     * @param  string $className
      * @return array
      */
     private static function parseMultipleAssociations(array $data, string $className): array
@@ -27,8 +27,8 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Map a property name to its appropriate parsing logic.
      *
-     * @param string $property_name
-     * @param array  $data
+     * @param  string $property_name
+     * @param  array  $data
      * @return mixed
      */
     protected static function parseDataProperty(string $property_name, array $data): mixed
@@ -68,7 +68,7 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Helper: parse datetime properties.
      *
-     * @param mixed $data
+     * @param  mixed $data
      * @return DateTime|null
      */
     private static function parseDateTimeProperty(mixed $data): ?DateTime
@@ -95,7 +95,7 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Parse a JSON string into an instance of the child class.
      *
-     * @param string $json
+     * @param  string $json
      * @return static
      */
     public static function jsonUnserialize(string $json): static
@@ -118,8 +118,8 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Generic setter for array properties.
      *
-     * @param array  $items
-     * @param string $class
+     * @param  array  $items
+     * @param  string $class
      * @return array
      */
     protected function setArrayProperty(array $items, string $class): array
@@ -136,8 +136,8 @@ abstract class ComplexEntity extends NamedEntity
     /**
      * Generic getter for nullable array properties.
      *
-     * @param array|null $property
-     * @param string     $name
+     * @param  array|null $property
+     * @param  string     $name
      * @return array
      * @throws \OutOfBoundsException
      */

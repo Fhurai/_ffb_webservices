@@ -24,7 +24,7 @@ final class SeriesBuilder extends NamedEntityBuilder
     /**
      * Sets the description for the Series object.
      *
-     * @param string $description The description.
+     * @param  string $description The description.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
     public function withDescription(string $description): SeriesBuilder
@@ -36,21 +36,23 @@ final class SeriesBuilder extends NamedEntityBuilder
     /**
      * Sets the fanfiction for the Fanfiction object.
      *
-     * @param array $fanfictions The fanfictions array.
+     * @param  array $fanfictions The fanfictions array.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
     public function withFanfictions(array $fanfictions): SeriesBuilder
     {
         foreach($fanfictions as $fanfiction){
-            if(!$fanfiction instanceof Fanfiction){
+            if(!$fanfiction instanceof Fanfiction) {
                 throw new \InvalidArgumentException('Expected instance of Fanfiction');
             }
         }
 
         // Sort the fanfictions array to maintain order.
-        usort($fanfictions, function($a, $b){
-            return strcmp($a->getName(), $b->getName());
-        });
+        usort(
+            $fanfictions, function ($a, $b) {
+                return strcmp($a->getName(), $b->getName());
+            }
+        );
 
         // Assign the provided fanfictions to the Fanfiction object's fanfictions property.
         $this->obj->setFanfictions($fanfictions);
@@ -62,7 +64,7 @@ final class SeriesBuilder extends NamedEntityBuilder
     /**
      * Adds a fanfiction to the Fanfiction object.
      *
-     * @param Fanfiction $fanfiction The fanfiction to add.
+     * @param  Fanfiction $fanfiction The fanfiction to add.
      * @return SeriesBuilder The current instance of SeriesBuilder.
      */
     public function addFanfiction(Fanfiction $fanfiction): SeriesBuilder
@@ -73,9 +75,11 @@ final class SeriesBuilder extends NamedEntityBuilder
         }
 
         array_push($fanfictions, $fanfiction);
-        usort($fanfictions, function($a, $b){
-            return strcmp($a->getName(), $b->getName());
-        });
+        usort(
+            $fanfictions, function ($a, $b) {
+                return strcmp($a->getName(), $b->getName());
+            }
+        );
         $this->obj->setFanfictions($fanfictions);
 
         // Return the current instance of SeriesBuilder.

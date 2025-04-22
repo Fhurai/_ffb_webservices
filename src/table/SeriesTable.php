@@ -55,7 +55,8 @@ class SeriesTable extends EntitiesTable
         }
     }
 
-    private function updateAssociationTable(string $association, int $id, array $items): void {
+    private function updateAssociationTable(string $association, int $id, array $items): void
+    {
         $this->updateAssociation(
             self::TABLE_NAME . '_' . $association,
             'series_id',

@@ -38,7 +38,8 @@ abstract class EntitiesTable
 
     /**
      * Get valid column names for the specified table.
-     * @param string $tableName The table name.
+     *
+     * @param  string $tableName The table name.
      * @return array List of valid column names.
      * @throws FfbTableException If the query fails.
      */
@@ -196,20 +197,28 @@ abstract class EntitiesTable
         $cols = json_decode(json_encode($entity), true);
 
         if ($entity::class === 'User') {
-            /** @var User $entity */
+            /**
+ * @var User $entity 
+*/
             $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
         } elseif ($entity::class === 'Relation') {
-            /** @var Relation $entity */
+            /**
+ * @var Relation $entity 
+*/
             unset($cols['characters']);
         } elseif ($entity::class === 'Fanfiction') {
-            /** @var Fanfiction $entity */
+            /**
+ * @var Fanfiction $entity 
+*/
             unset($cols['fandoms']);
             unset($cols['relations']);
             unset($cols['characters']);
             unset($cols['tags']);
             unset($cols['links']);
         } elseif ($entity::class === 'Series') {
-            /** @var Series $entity */
+            /**
+ * @var Series $entity 
+*/
             unset($cols['fanfictions']);
             unset($cols['authors']);
             unset($cols['languages']);
@@ -264,7 +273,9 @@ abstract class EntitiesTable
         $cols['update_date'] = (new DateTime("now", new DateTimeZone(self::TIMEZONE_DATETIME)))->format(self::DATE_FORMAT);
 
         if ($entityClass === 'User') {
-            /** @var User $entity */
+            /**
+ * @var User $entity 
+*/
             if (isset($cols['password'])) {
                 unset($cols['password']);
             } elseif (isset($cols['currentPassword'])) {
@@ -277,13 +288,19 @@ abstract class EntitiesTable
                 }
             }
         } elseif ($entityClass === 'Relation') {
-            /** @var Relation $entity */
+            /**
+ * @var Relation $entity 
+*/
             $charactersTable = new CharactersTable(Connection::getTypeConnect(), Connection::getUser());
             $characters = $charactersTable->findSearchedBy(['id' => $cols['characters']]);
             $cols['characters'] = $characters;
-            $cols['name'] = implode(' / ', array_map(function ($character) {
-                    return $character->getName();
-                }, $characters));
+            $cols['name'] = implode(
+                ' / ', array_map(
+                    function ($character) {
+                        return $character->getName();
+                    }, $characters
+                )
+            );
         }
         return $cols;
     }
@@ -297,14 +314,18 @@ abstract class EntitiesTable
 
 
         if (isset($arrayData['password'])) {
-            /** @var User $entity */
+            /**
+ * @var User $entity 
+*/
             if (!password_verify($data->currentPassword, $entity->getPassword())) {
                 throw new FfbTableException("Current password is incorrect!", 400);
             } else {
                 unset($arrayData['currentPassword']);
             }
-        } elseif (isset($arrayData['characters'])){
-            /** @var Relation $entity */
+        } elseif (isset($arrayData['characters'])) {
+            /**
+ * @var Relation $entity 
+*/
             $entity->setCharacters($arrayData['characters']);
             unset($arrayData['characters']);
         }
@@ -408,10 +429,12 @@ abstract class EntitiesTable
 
             $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
             foreach ($items as $item) {
-                $this->executeQuery($queryInsert, [
+                $this->executeQuery(
+                    $queryInsert, [
                     $primaryKeyParam => $id,
                     ":item_id" => $item->getId(),
-                ]);
+                    ]
+                );
             }
         }
     }

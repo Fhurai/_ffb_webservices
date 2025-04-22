@@ -26,7 +26,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the username of the User.
      *
-     * @param string $username The username to set.
+     * @param  string $username The username to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withUsername(string $username): UserBuilder
@@ -39,7 +39,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the password of the User.
      *
-     * @param string $password The password to set.
+     * @param  string $password The password to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withPassword(string $password): UserBuilder
@@ -52,7 +52,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the email of the User.
      *
-     * @param string $email The email to set.
+     * @param  string $email The email to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withEmail(string $email): UserBuilder
@@ -65,7 +65,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the admin status of the User.
      *
-     * @param bool $isAdmin The admin status to set.
+     * @param  bool $isAdmin The admin status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withIsAdmin(bool $isAdmin): UserBuilder
@@ -78,7 +78,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the local status of the User.
      *
-     * @param bool $isLocal The local status to set.
+     * @param  bool $isLocal The local status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withIsLocal(bool $isLocal): UserBuilder
@@ -91,7 +91,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the birthday of the User.
      *
-     * @param DateTime|string $birthday The birthday to set. Can be a DateTime object or a string.
+     * @param  DateTime|string $birthday The birthday to set. Can be a DateTime object or a string.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withBirthday(DateTime|string $birthday): UserBuilder
@@ -111,7 +111,7 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the NSFW status of the User.
      *
-     * @param bool $isNsfw The NSFW status to set.
+     * @param  bool $isNsfw The NSFW status to set.
      * @return UserBuilder The current instance of UserBuilder.
      */
     public function withIsNsfw(bool $isNsfw): UserBuilder

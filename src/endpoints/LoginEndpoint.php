@@ -12,7 +12,7 @@ class LoginEndpoint extends DefaultEndpoint
 {
     public function __construct()
     {
-        $config = require __DIR__ . '/../../config/config.php';
+        $config = include __DIR__ . '/../../config/config.php';
         $allowedOrigins = $config['allowed_origins'];
         $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
@@ -61,7 +61,7 @@ class LoginEndpoint extends DefaultEndpoint
             }
 
             // Load JWT config
-            $config = require __DIR__ . '/../../config/config.php';
+            $config = include __DIR__ . '/../../config/config.php';
             $secretKey = $config['token']['ffb_secret'];
             $algorithm = $config['token']['ffb_algorithm'];
             $expiration = $config['token']['ffb_expiration'];
@@ -82,23 +82,29 @@ class LoginEndpoint extends DefaultEndpoint
             $jwt = JWT::encode($payload, $secretKey, $algorithm);
 
             http_response_code(200);
-            echo json_encode([
+            echo json_encode(
+                [
                 "message" => "Login successful",
                 "token" => $jwt
-            ]);
+                ]
+            );
 
         } catch (FfbTableException | InvalidArgumentException $e) {
             http_response_code(401);
-            echo json_encode([
+            echo json_encode(
+                [
                 "message" => "Login failed",
                 "error" => $e->getMessage()
-            ]);
+                ]
+            );
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode([
+            echo json_encode(
+                [
                 "message" => "Server error",
                 "error" => $e->getMessage()
-            ]);
+                ]
+            );
         }
     }
 }

@@ -12,18 +12,21 @@ final class Tag extends ComplexEntity
 
     /**
      * Description.
+     *
      * @var string
      */
     private string $description;
 
     /**
      * Type ID.
+     *
      * @var int
      */
     private int $typeId;
 
     /**
      * Associated TagType entity (loaded only when needed).
+     *
      * @var TagType|null
      */
     private ?TagType $tagType = null;
@@ -40,6 +43,7 @@ final class Tag extends ComplexEntity
 
     /**
      * Getter description.
+     *
      * @return string Description.
      */
     public function getDescription(): string
@@ -49,7 +53,8 @@ final class Tag extends ComplexEntity
 
     /**
      * Setter description.
-     * @param string $description New Description.
+     *
+     * @param  string $description New Description.
      * @return void
      */
     public function setDescription(string $description): void
@@ -59,6 +64,7 @@ final class Tag extends ComplexEntity
 
     /**
      * Getter type ID.
+     *
      * @return int Type ID.
      */
     public function getTypeId(): int
@@ -68,7 +74,8 @@ final class Tag extends ComplexEntity
 
     /**
      * Setter type ID.
-     * @param int $typeId New type ID.
+     *
+     * @param  int $typeId New type ID.
      * @return void
      */
     public function setTypeId(int $typeId): void
@@ -122,6 +129,7 @@ final class Tag extends ComplexEntity
 
     /**
      * Method to parse Tag into an array for JSON parsing.
+     *
      * @return array Array of Tag data.
      */
     public function jsonSerialize(): array
@@ -132,14 +140,17 @@ final class Tag extends ComplexEntity
             $assoc["tag_type"] = $this->getTagType()->jsonSerialize();
         }
 
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "description" => $this->getDescription(),
             "type_id" => $this->getTypeId()
-        ], $assoc);
+            ], $assoc
+        );
     }
 
     /**
      * Method to create a new Tag.
+     *
      * @return mixed new Tag.
      */
     public static function getNewObject(): mixed

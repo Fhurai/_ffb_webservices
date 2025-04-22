@@ -193,13 +193,15 @@ final class Fanfiction extends ComplexEntity
                 $associations[$prop] = $this->$prop;
             }
         }
-        return array_merge(parent::jsonSerialize(), [
+        return array_merge(
+            parent::jsonSerialize(), [
             "author_id" => $this->authorId,
             "rating_id" => $this->ratingId,
             "description" => $this->description,
             "language_id" => $this->languageId,
             "score_id" => $this->scoreId,
             "evaluation" => $this->evaluation
-        ], $associations);
+            ], $associations
+        );
     }
 }

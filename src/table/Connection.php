@@ -8,6 +8,7 @@ class Connection
 {
     /**
      * Php Database Object.
+     *
      * @var PDO
      */
     private static ?PDO $db = null; // Declare static property
@@ -18,8 +19,9 @@ class Connection
 
     /**
      * Get the database connection.
-     * @param string $typeConnection The type of connection (main, stats, tests).
-     * @param string $user The user of the connection (guest, user, admin).
+     *
+     * @param  string $typeConnection The type of connection (main, stats, tests).
+     * @param  string $user           The user of the connection (guest, user, admin).
      * @return PDO The PDO instance representing the database connection.
      * @throws FfbTableException If the connection type or user is invalid.
      */
@@ -38,8 +40,9 @@ class Connection
 
     /**
      * Create the database connection.
-     * @param string $typeConnection The type of connection (main, stats, tests).
-     * @param string $user The user of the connection (guest, user, admin).
+     *
+     * @param  string $typeConnection The type of connection (main, stats, tests).
+     * @param  string $user           The user of the connection (guest, user, admin).
      * @return PDO The PDO instance representing the database connection.
      * @throws FfbTableException If the connection type or user is invalid, or if the connection fails.
      */
@@ -61,7 +64,7 @@ class Connection
         }
 
         // If connection type is known, then use config file.
-        $configFile = require __DIR__ . "/../../config/config.php";
+        $configFile = include __DIR__ . "/../../config/config.php";
 
         try {
             // Creation of Php Database Object with provided data from config.
@@ -80,6 +83,7 @@ class Connection
 
     /**
      * Debug method to print data.
+     *
      * @param mixed $data The data to be printed.
      */
     public static function debug(mixed $data)
@@ -92,6 +96,7 @@ class Connection
 
     /**
      * Debug and die method to print data and stop execution.
+     *
      * @param mixed $data The data to be printed.
      */
     public static function dd(mixed $data): void

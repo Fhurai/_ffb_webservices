@@ -161,10 +161,12 @@ class SeriesTest extends TestCase
      */
     public function testFanfictionsAssociation(): void
     {
-        $this->series->setFanfictions([
+        $this->series->setFanfictions(
+            [
             ['id' => 1, 'name' => 'Fanfiction 1'],
             ['id' => 2, 'name' => 'Fanfiction 2']
-        ]);
+            ]
+        );
 
         $fanfictions = $this->series->getFanfictions();
         $this->assertCount(2, $fanfictions);

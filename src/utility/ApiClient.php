@@ -21,12 +21,14 @@ class ApiClient
         }
 
         $ch = curl_init($url);
-        curl_setopt_array($ch, [
+        curl_setopt_array(
+            $ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTPHEADER => $headers,
-        ]);
+            ]
+        );
 
         $response = curl_exec($ch);
         if (curl_errno($ch)) {
@@ -54,14 +56,16 @@ class ApiClient
             $headers[] = "Authorization: {$this->authHeader}";
         }
 
-        curl_setopt_array($ch, [
+        curl_setopt_array(
+            $ch, [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_CUSTOMREQUEST => strtoupper($method),
             CURLOPT_POSTFIELDS => $payload,
             CURLOPT_HTTPHEADER => $headers,
-        ]);
+            ]
+        );
 
         $response = curl_exec($ch);
         if (curl_errno($ch)) {

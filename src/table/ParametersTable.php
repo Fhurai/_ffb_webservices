@@ -13,21 +13,28 @@ abstract class ParametersTable
 
     /**
      * RatingsTable constructor.
+     *
      * @param string $typeConnection Type of database connection.
-     * @param string $user Database user.
+     * @param string $user           Database user.
      */
     public function __construct(string $typeConnection, string $user)
     {
         $this->connection = Connection::getDatabase($typeConnection, $user);
     }
 
-    /** @var string The DB table (without backticks) */
+    /**
+     * @var string The DB table (without backticks) 
+     */
     protected const TABLE_NAME = '';
 
-    /** @var string The fully‑qualified entity class to hydrate */
+    /**
+     * @var string The fully‑qualified entity class to hydrate 
+     */
     protected const ENTITY_CLASS = '';
 
-    /** The PK column */
+    /**
+     * The PK column 
+     */
     protected const PRIMARY_KEY = 'id';
 
     public function getTableName(): string
@@ -200,15 +207,17 @@ abstract class ParametersTable
 
     /**
      * Convert a database row into a corresponding entity object.
-     * @param array $row An associative array representing a database row.
+     *
+     * @param  array $row An associative array representing a database row.
      * @return mixed The entity object corresponding to the row.
      */
     abstract protected function parseEntity(array $row);
 
     /**
      * Execute a query with the provided values.
-     * @param string $query The SQL query to execute.
-     * @param array $values The values to bind to the query.
+     *
+     * @param  string $query  The SQL query to execute.
+     * @param  array  $values The values to bind to the query.
      * @return array The query results.
      * @throws FfbTableException If no data is found or a PDOException occurs.
      */
@@ -233,7 +242,8 @@ abstract class ParametersTable
 
     /**
      * Parse multiple database rows into an array of entity objects.
-     * @param array $rows The database rows.
+     *
+     * @param  array $rows The database rows.
      * @return array Array of entity objects.
      */
     protected function parseEntities(array $rows): array
@@ -243,7 +253,8 @@ abstract class ParametersTable
 
     /**
      * Get valid column names for the specified table.
-     * @param string $tableName The table name.
+     *
+     * @param  string $tableName The table name.
      * @return array List of valid column names.
      * @throws FfbTableException If the query fails.
      */

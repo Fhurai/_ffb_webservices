@@ -147,7 +147,7 @@ class ApiUtilities
      * - If the database name starts with "ffb_", returns the substring after the prefix.
      * - Example: "ffb_customers" → "customers".
      *
-     * @param object $decodedJwt Decoded JWT payload (from decodeJWT()).
+     * @param  object $decodedJwt Decoded JWT payload (from decodeJWT()).
      * @return string Database name.
      */
     public static function getDatabaseName(object $decodedJwt): string
@@ -160,7 +160,7 @@ class ApiUtilities
      * Determines the user's role from a decoded JWT claim.
      * - Checks the `isAdmin` boolean flag in the JWT.
      *
-     * @param object $decodedJwt Decoded JWT payload.
+     * @param  object $decodedJwt Decoded JWT payload.
      * @return string "admin" or "user".
      */
     public static function getUserRole(object $decodedJwt): string
@@ -172,8 +172,8 @@ class ApiUtilities
      * Creates an authorized database handler instance based on JWT claims.
      * - Combines the database name and user role to instantiate a table class.
      *
-     * @param object $decodedJwt Decoded JWT payload.
-     * @param string $tableClass Name of the table class to instantiate (e.g., UserTable::class).
+     * @param  object $decodedJwt Decoded JWT payload.
+     * @param  string $tableClass Name of the table class to instantiate (e.g., UserTable::class).
      * @return object Instance of the specified table class.
      */
     public static function getAuthorizedTable(object $decodedJwt, string $tableClass)
@@ -193,7 +193,7 @@ class ApiUtilities
     public static function decodeJWT(): mixed
     {
         $token = self::getBearerToken();
-        $config = require __DIR__ . "/../../config/config.php";
+        $config = include __DIR__ . "/../../config/config.php";
 
         try {
             if (!$token) {

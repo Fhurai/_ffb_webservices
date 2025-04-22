@@ -26,12 +26,12 @@ final class LinkBuilder extends EntityBuilder
     /**
      * Sets the URL of the Link.
      *
-     * @param string $url The URL to set.
+     * @param  string $url The URL to set.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
     public function withUrl(string $url): LinkBuilder
     {
-        if(is_numeric($url)){
+        if(is_numeric($url)) {
             throw new \InvalidArgumentException("Expected string value");
         }
         $this->obj->setUrl($url);
@@ -41,12 +41,12 @@ final class LinkBuilder extends EntityBuilder
     /**
      * Sets the fanfiction ID of the Link.
      *
-     * @param int $fanfictionId The fanfiction ID to set.
+     * @param  int $fanfictionId The fanfiction ID to set.
      * @return LinkBuilder The current instance of LinkBuilder.
      */
     public function withFanfictionId(int $fanfictionId): LinkBuilder
     {
-        if(!is_numeric($fanfictionId)){
+        if(!is_numeric($fanfictionId)) {
             throw new \InvalidArgumentException("Expected numeric value");
         }
         $this->obj->setFanfictionId($fanfictionId);

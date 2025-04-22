@@ -10,7 +10,7 @@ abstract class DefaultEndpoint
 
     public function __construct($tableClass)
     {
-        $config = require __DIR__ . '/../../config/config.php';
+        $config = include __DIR__ . '/../../config/config.php';
         $allowedOrigins = $config['allowed_origins'];
         $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 

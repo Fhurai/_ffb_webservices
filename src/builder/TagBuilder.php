@@ -23,7 +23,7 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the description for the Tag object.
      *
-     * @param string $description The description of the tag.
+     * @param  string $description The description of the tag.
      * @return TagBuilder The current instance of TagBuilder.
      */
     public function withDescription(string $description): TagBuilder
@@ -36,7 +36,7 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the type ID for the Tag object.
      *
-     * @param int|TagType $arg The type ID as an integer or a TagType object.
+     * @param  int|TagType $arg The type ID as an integer or a TagType object.
      * @return TagBuilder The current instance of TagBuilder.
      */
     public function withTypeId(int|TagType $arg): TagBuilder
@@ -57,7 +57,7 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the type for the Tag object.
      *
-     * @param TagType $type The TagType object.
+     * @param  TagType $type The TagType object.
      * @return TagBuilder The current instance of TagBuilder.
      */
     public function withType(TagType $type): TagBuilder

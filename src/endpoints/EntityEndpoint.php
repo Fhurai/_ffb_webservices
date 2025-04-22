@@ -39,21 +39,25 @@ class EntityEndpoint extends DefaultEndpoint
             $mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id));
             $mapRelatedEntities($entity, 'tags', TagsTable::class, fn($table, $id) => $table->get($id));
 
-            $mapRelatedEntities($entity, 'links', LinksTable::class, function ($table, $data) {
-                /** @var Link $link */
-                $link = null;
-                if (is_numeric($data)) {
-                    $link = $table->get($data);
-                } elseif (is_string($data)) {
-                    $link = $table->findSearchedBy(['url' => "{$data}%"]);
-                }
+            $mapRelatedEntities(
+                $entity, 'links', LinksTable::class, function ($table, $data) {
+                    /**
+                * @var Link $link 
+                */
+                    $link = null;
+                    if (is_numeric($data)) {
+                        $link = $table->get($data);
+                    } elseif (is_string($data)) {
+                        $link = $table->findSearchedBy(['url' => "{$data}%"]);
+                    }
 
-                if($link == null || empty($link)){
-                    $link = (new LinkBuilder())->withUrl($data)->build();
+                    if($link == null || empty($link)) {
+                        $link = (new LinkBuilder())->withUrl($data)->build();
+                    }
+                    return $link;
                 }
-                return $link;
-            });
-        } elseif($this->tableClass === 'SeriesTable'){
+            );
+        } elseif($this->tableClass === 'SeriesTable') {
             $mapRelatedEntities($entity, 'fanfictions', FanfictionsTable::class, fn($table, $id) => $table->get($id));
         }
         return $args;
@@ -65,63 +69,77 @@ class EntityEndpoint extends DefaultEndpoint
         $builder = new $this->builderClass();
 
         switch ($this->builderClass) {
-            case 'AuthorBuilder':
-            case 'FandomBuilder':
-                $builder->withName($data->name ?? null);
-                break;
-            case 'LanguageBuilder':
-                /** @var LanguageBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withAbbreviation($data->abbreviation ?? null);
-                break;
-            case 'TagBuilder':
-                /** @var TagBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withDescription($data->description ?? null)
-                    ->withTypeId($data->type_id);
-                break;
-            case 'CharacterBuilder':
-                /** @var CharacterBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withFandomId($data->fandom_id ?? null);
-                break;
-            case 'RelationBuilder':
-                /** @var RelationBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withCharacters($data->characters ?? null);
-                break;
-            case 'UserBuilder':
-                /** @var UserBuilder $builder */
-                $builder->withUsername($data->username ?? null)
-                    ->withPassword($data->password ?? null)
-                    ->withEmail($data->email ?? null)
-                    ->withBirthday($data->birthday ?? null)
-                    ->withIsAdmin(boolval($data->isAdmin) ?? null)
-                    ->withIsLocal(boolval($data->isLocal) ?? null)
-                    ->withIsNsfw(boolval($data->isNsfw) ?? null);
-                break;
-            case 'FanfictionBuilder':
-                /** @var FanfictionBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withAuthorId($data->author_id ?? null)
-                    ->withRatingId($data->rating_id ?? null)
-                    ->withLanguageId($data->language_id ?? null)
-                    ->withDescription($data->description ?? null)
-                    ->withFandoms($data->fandoms ?? null)
-                    ->withRelations($data->relations ?? null)
-                    ->withCharacters($data->characters ?? null)
-                    ->withTags($data->tags ?? null)
-                    ->withLinks($data->links ?? null)
-                    ->withScoreId($data->score_id ?? null);
-                break;
-            case 'SeriesBuilder':
-                /** @var SeriesBuilder $builder */
-                $builder->withName($data->name ?? null)
-                    ->withDescription($data->description ?? null)
-                    ->withFanfictions($data->fanfictions ?? null);
-                break;
-            default:
-                throw new InvalidArgumentException('Unknown builder');
+        case 'AuthorBuilder':
+        case 'FandomBuilder':
+            $builder->withName($data->name ?? null);
+            break;
+        case 'LanguageBuilder':
+            /**
+ * @var LanguageBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withAbbreviation($data->abbreviation ?? null);
+            break;
+        case 'TagBuilder':
+            /**
+ * @var TagBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withDescription($data->description ?? null)
+                ->withTypeId($data->type_id);
+            break;
+        case 'CharacterBuilder':
+            /**
+ * @var CharacterBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withFandomId($data->fandom_id ?? null);
+            break;
+        case 'RelationBuilder':
+            /**
+ * @var RelationBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withCharacters($data->characters ?? null);
+            break;
+        case 'UserBuilder':
+            /**
+ * @var UserBuilder $builder 
+*/
+            $builder->withUsername($data->username ?? null)
+                ->withPassword($data->password ?? null)
+                ->withEmail($data->email ?? null)
+                ->withBirthday($data->birthday ?? null)
+                ->withIsAdmin(boolval($data->isAdmin) ?? null)
+                ->withIsLocal(boolval($data->isLocal) ?? null)
+                ->withIsNsfw(boolval($data->isNsfw) ?? null);
+            break;
+        case 'FanfictionBuilder':
+            /**
+ * @var FanfictionBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withAuthorId($data->author_id ?? null)
+                ->withRatingId($data->rating_id ?? null)
+                ->withLanguageId($data->language_id ?? null)
+                ->withDescription($data->description ?? null)
+                ->withFandoms($data->fandoms ?? null)
+                ->withRelations($data->relations ?? null)
+                ->withCharacters($data->characters ?? null)
+                ->withTags($data->tags ?? null)
+                ->withLinks($data->links ?? null)
+                ->withScoreId($data->score_id ?? null);
+            break;
+        case 'SeriesBuilder':
+            /**
+ * @var SeriesBuilder $builder 
+*/
+            $builder->withName($data->name ?? null)
+                ->withDescription($data->description ?? null)
+                ->withFanfictions($data->fanfictions ?? null);
+            break;
+        default:
+            throw new InvalidArgumentException('Unknown builder');
         }
 
         return $builder

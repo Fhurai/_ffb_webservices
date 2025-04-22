@@ -86,11 +86,13 @@ class ActionsTableTest extends TestCase
     public function testComplexCombination()
     {
         // Search + Order + Limit
-        $result = $this->actionsTable->findAll([
+        $result = $this->actionsTable->findAll(
+            [
             'search' => ['name' => '%E%'],
             'order' => ['name' => 'DESC'],
             'limit' => ['limit' => 2]
-        ]);
+            ]
+        );
 
         $expectedNames = ['UPDATE', 'RESTORE'];
         $this->assertCount(2, $result);

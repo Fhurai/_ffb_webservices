@@ -23,7 +23,7 @@ final class RelationBuilder extends NamedEntityBuilder
     /**
      * Sets the characters for the Relation object.
      *
-     * @param array $characters The characters array.
+     * @param  array $characters The characters array.
      * @return RelationBuilder The current instance of RelationBuilder.
      */
     public function withCharacters(array $characters): RelationBuilder
@@ -46,7 +46,7 @@ final class RelationBuilder extends NamedEntityBuilder
     /**
      * Adds a character to the Relation object.
      *
-     * @param Character $character The character to add.
+     * @param  Character $character The character to add.
      * @return RelationBuilder The current instance of RelationBuilder.
      */
     public function addCharacter(Character $character): RelationBuilder
@@ -59,9 +59,11 @@ final class RelationBuilder extends NamedEntityBuilder
         // Add the character to the characters array
         array_push($this->obj->characters, $character);
         // Sort the characters array by name
-        usort($this->obj->characters, function ($a, $b) {
-            return strcmp($a->getName(), $b->getName());
-        });
+        usort(
+            $this->obj->characters, function ($a, $b) {
+                return strcmp($a->getName(), $b->getName());
+            }
+        );
         // Set the name of the relation based on the characters names array
         $this->obj->setName(implode(" / ", array_map(fn($c) => $c->getName(), $this->obj->characters)));
         return $this;

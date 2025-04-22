@@ -12,12 +12,14 @@ final class Relation extends ComplexEntity
 
     /**
      * Characters associated with the Relation.
+     *
      * @var array
      */
     public ?array $characters = null;
 
     /**
      * Getter Characters.
+     *
      * @return array Characters.
      */
     public function getCharacters(): array
@@ -30,6 +32,7 @@ final class Relation extends ComplexEntity
 
     /**
      * Method to check if characters are loaded.
+     *
      * @return bool True if characters are loaded, false otherwise.
      */
     public function hasCharacters(): bool
@@ -39,7 +42,8 @@ final class Relation extends ComplexEntity
 
     /**
      * Setter Characters.
-     * @param array $characters New Characters.
+     *
+     * @param  array $characters New Characters.
      * @return void
      */
     public function setCharacters(array $characters): void
@@ -60,7 +64,8 @@ final class Relation extends ComplexEntity
 
     /**
      * Helper method to create a Character instance.
-     * @param mixed $character Character data.
+     *
+     * @param  mixed $character Character data.
      * @return Character
      */
     private function createCharacter(mixed $character): Character
@@ -75,6 +80,7 @@ final class Relation extends ComplexEntity
 
     /**
      * Method to parse Relation into an array for JSON parsing.
+     *
      * @return array Array of Relation data.
      */
     public function jsonSerialize(): array
@@ -90,6 +96,7 @@ final class Relation extends ComplexEntity
 
     /**
      * Method to create a new Relation.
+     *
      * @return mixed new Relation.
      */
     public static function getNewObject(): mixed
