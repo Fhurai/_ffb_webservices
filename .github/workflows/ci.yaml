@@ -311,4 +311,4 @@ jobs:
 
       # Display the GitHub Pages URL for the documentation
       - name: Show GitHub Pages URL (Need public repo)
-        run: echo "🔗 PHPDocs deployed: https://fhurai.github.io/_ffb_webservices/"
+        run: "echo \"🔗 PHPDocs deployed: https://fhurai.github.io/_ffb_webservices/\""
