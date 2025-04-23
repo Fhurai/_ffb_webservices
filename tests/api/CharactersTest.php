@@ -8,6 +8,8 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(className: \Character::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbException::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class CharactersTest extends ApiTestCase
 {
     #[DataProvider('characterNamesProvider')]
@@ -570,6 +572,31 @@ class CharactersTest extends ApiTestCase
             ["Minfilia Warde",1],
             ["Y'shtola Rhul",2],
             ["Y'mhitra Rhul",3]
+        ];
+    }
+
+    #[DataProvider('charactersCreationProvider')]
+    public function testCreateCharacter($expectedName, $expectedFandom, $index): void
+    {
+        $characterData = new stdClass();
+        $characterData->name = $expectedName;
+        $characterData->fandom_id = $expectedFandom;
+
+        $entity = $this->postData('/character.php', $characterData);
+        $this->assertInstanceOf(Character::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The character ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getName(), 'The character name does not match the expected value');
+        $this->assertNotEquals(0, $entity->getFandomId(), 'The character fandom does not match the expected value');
+        $this->assertEquals($characterData->name, $entity->getName(), 'The character name does not match the expected value');
+        $this->assertEquals($expectedFandom, $entity->getFandomId(), 'The character fandom does not match the expected value');
+    }
+
+    public static function charactersCreationProvider(): array
+    {
+        return [
+            ['Original Male Character', 6, 0],
+            ['Thancred Waters', 6, 1],
+            ['Alphinaud Leveilleur', 6, 2]
         ];
     }
 }

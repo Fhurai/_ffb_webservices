@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\Language::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class LanguagesTest extends ApiTestCase
 {
     #[DataProvider('languageNamesProvider')]
@@ -35,6 +36,31 @@ class LanguagesTest extends ApiTestCase
         return [
             ['Français', 0],
             ['English', 1]
+        ];
+    }
+
+    #[DataProvider('languagesCreationProvider')]
+    public function testCreateLanguage($expectedName, $abbreviation, $index): void
+    {
+        $languageData = new stdClass();
+        $languageData->name = $expectedName;
+        $languageData->abbreviation = $abbreviation;
+
+        $entity = $this->postData('/language.php', $languageData);
+        $this->assertInstanceOf(Language::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The language ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getName(), 'The language name does not match the expected value');
+        $this->assertNotEquals('', $entity->getAbbreviation(), 'The language abbreviation does not match the expected value');
+        $this->assertEquals($languageData->name, $entity->getName(), 'The language name does not match the expected value');
+        $this->assertEquals($languageData->abbreviation, $entity->getAbbreviation(), 'The language abbreviation does not match the expected value');
+    }
+
+    public static function languagesCreationProvider(): array
+    {
+        return [
+            ['Español', 'ES', 0],
+            ['Deutsch', 'DE', 1],
+            ['日本語', 'JA', 2]
         ];
     }
 }

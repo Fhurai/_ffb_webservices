@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\Fandom::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class FandomsTest extends ApiTestCase
 {
     #[DataProvider('fandomNamesProvider')]
@@ -82,6 +83,28 @@ class FandomsTest extends ApiTestCase
             ["Final Fantasy XIV",0],
             ["Final Fantasy X / X-2",1],
             ["Final Fantasy VII",2]
+        ];
+    }
+
+    #[DataProvider('fandomsCreationProvider')]
+    public function testCreateFandom($expectedName, $index): void
+    {
+        $fandomData = new stdClass();
+        $fandomData->name = $expectedName;
+
+        $entity = $this->postData('/fandom.php', $fandomData);
+        $this->assertInstanceOf(Fandom::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The fandom ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getName(), 'The fandom name does not match the expected value');
+        $this->assertEquals($fandomData->name, $entity->getName(), 'The fandom name does not match the expected value');
+    }
+
+    public static function fandomsCreationProvider(): array
+    {
+        return [
+            ['Devil May Cry', 0],
+            ['Legend of Heroes', 1],
+            ['Resident Evil', 2]
         ];
     }
 }

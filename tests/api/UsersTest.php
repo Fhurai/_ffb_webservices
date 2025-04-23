@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class UsersTest extends ApiTestCase
 {
     #[DataProvider('userNamesProvider')]
@@ -69,6 +70,38 @@ class UsersTest extends ApiTestCase
         return [
             ["Guest",0],
             ["Fhurai",1],
+        ];
+    }
+
+    #[DataProvider('usersCreationProvider')]
+    public function testCreateUser($expectedName, $expectedPassword, $expectedEmail, $expectedBirthday, $expectedAdmin, $expectedLocal, $expectedNsfw, $index): void
+    {
+        $userData = new stdClass();
+        $userData->username = $expectedName;
+        $userData->password = $expectedPassword;
+        $userData->email = $expectedEmail;
+        $userData->birthday = $expectedBirthday;
+        $userData->isAdmin = $expectedAdmin;
+        $userData->isLocal = $expectedLocal;
+        $userData->isNsfw = $expectedNsfw;
+
+        $entity = $this->postData('/user.php', $userData);
+        $this->assertInstanceOf(User::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The user ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getUserName(), 'The user name does not match the expected value');
+        $this->assertNotEquals('', $entity->getEmail(), 'The user email does not match the expected value');
+        $this->assertNotEquals('', $entity->getBirthday(), 'The user birthday does not match the expected value');
+        $this->assertNotNull($entity->isAdmin(), 'The user admin does not match the expected value');
+        $this->assertNotNull($entity->isLocal(), 'The user local does not match the expected value');
+        $this->assertNotNull($entity->isNsfw(), 'The user nsfw does not match the expected value');
+    }
+
+    public static function usersCreationProvider(): array
+    {
+        return [
+            ['Reader1', '1password', 'contact@read1.com', '2005-10-02 08:00:00', 0, 1, 1, 0],
+            ['Score2', '2password', 'contact@score2.com', '2004-11-03 08:00:00', 0, 1, 1, 1],
+            ['Admin3', '3password', 'contact@admin3.com', '2003-12-04 08:00:00', 0, 1, 1, 2]
         ];
     }
 }

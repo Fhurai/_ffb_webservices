@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class AuthorsTest extends ApiTestCase
 {
     #[DataProvider('authorNamesProvider')]
@@ -796,6 +797,28 @@ class AuthorsTest extends ApiTestCase
             ["Argo0",17],
             ["Argenterie",18],
             ["Archsage",19]
+        ];
+    }
+
+    #[DataProvider('authorsCreationProvider')]
+    public function testCreateAuthor($expectedName, $index): void
+    {
+        $authorData = new stdClass();
+        $authorData->name = $expectedName;
+
+        $entity = $this->postData('/author.php', $authorData);
+        $this->assertInstanceOf(Author::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The author ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getName(), 'The author name does not match the expected value');
+        $this->assertEquals($authorData->name, $entity->getName(), 'The author name does not match the expected value');
+    }
+
+    public static function authorsCreationProvider(): array
+    {
+        return [
+            ['Fhurai', 0],
+            ['Raïlath', 1],
+            ['Tyjann', 2]
         ];
     }
 }

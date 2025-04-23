@@ -36,7 +36,7 @@ abstract class ApiTestCase extends TestCase
         $payload = (object) [
             'username' => $username,
             'password' => $password,
-            'db'       => $db
+            'db' => $db
         ];
 
         $client = new ApiClient();
@@ -61,7 +61,11 @@ abstract class ApiTestCase extends TestCase
         }
 
         $response = self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint, 'GET');
-        $data = json_decode($response);
+        $data = json_decode($response, false);
+
+        if(is_a($data, 'stdClass')) {
+            throw new FfbEndpointException($data->error);
+        }
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new FfbEndpointException("Failed to decode JSON for {$endpoint}: " . json_last_error_msg());
@@ -69,5 +73,19 @@ abstract class ApiTestCase extends TestCase
 
         self::$cache[$endpoint] = $data;
         return $data;
+    }
+
+    protected function postData(string $endpoint, stdClass $data): mixed
+    {
+        $response = self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint, 'POST', $data);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new FfbEndpointException("Failed to decode JSON for {$endpoint}: " . json_last_error_msg());
+        }
+
+        $class = ucfirst(substr($endpoint, 1, -4));
+
+        return $class::jsonUnserialize($response);
+        ;
     }
 }

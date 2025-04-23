@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(className: \Tag::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class TagsTest extends ApiTestCase
 {
     #[DataProvider('tagNamesProvider')]
@@ -106,6 +107,34 @@ class TagsTest extends ApiTestCase
             ["Crime",11],
             ["Supernatural",12],
             ["Fantasy",13]
+        ];
+    }
+
+    #[DataProvider('tagsCreationProvider')]
+    public function testCreateTag($expectedName, $expectedDescription, $expectedTagType, $index): void
+    {
+        $tagData = new stdClass();
+        $tagData->name = $expectedName;
+        $tagData->description = $expectedDescription;
+        $tagData->type_id = $expectedTagType;
+
+        $entity = $this->postData('/tag.php', $tagData);
+        $this->assertInstanceOf(Tag::class, $entity, 'The entity is not an instance of Author class');
+        $this->assertNotEquals(0, $entity->getId(), 'The tag ID does not match the expected value');
+        $this->assertNotEquals('', $entity->getName(), 'The tag name does not match the expected value');
+        $this->assertNotEquals('', $entity->getDescription(), 'The tag description does not match the expected value');
+        $this->assertNotEquals(0, $entity->getTypeId(), 'The tag type does not match the expected value');
+        $this->assertEquals($tagData->name, $entity->getName(), 'The tag name does not match the expected value');
+        $this->assertEquals($expectedDescription, $entity->getDescription(), 'The tag description does not match the expected value');
+        $this->assertEquals($expectedTagType, $entity->getTypeId(), 'The tag type does not match the expected value');
+    }
+
+    public static function tagsCreationProvider(): array
+    {
+        return [
+            ['Tag1', 'Description tag1', 2, 0],
+            ['Tag2', 'Description tag2', 3, 1],
+            ['Tag3', 'Description tag3', 1, 2]
         ];
     }
 }
