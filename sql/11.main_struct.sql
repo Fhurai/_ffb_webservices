@@ -1,3 +1,4 @@
+USE ffb_main;
 /*
  * PARAMETERS TABLES (no dates)
  */

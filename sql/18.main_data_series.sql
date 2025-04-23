@@ -1,4 +1,4 @@
--- USE ffb_main;
+USE ffb_main;
 
 /*
  * Series

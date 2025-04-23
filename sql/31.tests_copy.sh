@@ -1,0 +1,1 @@
+mysqldump -uroot -proot ffb_main | mysql -uroot -proot ffb_tests

@@ -1,0 +1,4 @@
+-- Create databases
+CREATE DATABASE IF NOT EXISTS ffb_main;
+CREATE DATABASE IF NOT EXISTS ffb_stats;
+CREATE DATABASE IF NOT EXISTS ffb_tests;

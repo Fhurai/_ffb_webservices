@@ -1,3 +1,4 @@
+USE ffb_main;
 /*
  * Fanfictions characters
  * NOTE Characters in fanfictions

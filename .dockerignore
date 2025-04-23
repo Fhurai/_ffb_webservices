@@ -1,3 +1,7 @@
+Conception/
+tests/
 vendor/
+.github/
 .git/
 .env
+.vscode/

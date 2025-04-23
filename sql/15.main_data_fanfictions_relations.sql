@@ -1,3 +1,4 @@
+USE ffb_main;
 /*
  * Fanfictions relations
  * NOTE Relationships in fanfictions

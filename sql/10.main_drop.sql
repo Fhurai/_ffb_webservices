@@ -1,6 +1,8 @@
+USE ffb_main;
 /*
  * VIEWS DATA
  */
+
 DROP VIEW IF EXISTS view_series_tags;
 DROP VIEW IF EXISTS view_series_characters;
 DROP VIEW IF EXISTS view_series_relations;

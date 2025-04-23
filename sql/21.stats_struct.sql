@@ -1,3 +1,4 @@
+USE ffb_stats;
 CREATE OR REPLACE VIEW stats_data_parameters AS (
     SELECT 'Actions' as `label`, COUNT(*) as count
     FROM ffb_main.actions

@@ -1,3 +1,4 @@
+USE ffb_main;
 /*
  * Fanfictions tags
  * NOTE Tags in fanfictions

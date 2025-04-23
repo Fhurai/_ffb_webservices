@@ -1,3 +1,4 @@
+USE ffb_stats;
 DROP VIEW IF EXISTS stats_fandoms_characters;
 DROP VIEW IF EXISTS stats_fandoms_relations;
 DROP VIEW IF EXISTS stats_relations_characters;

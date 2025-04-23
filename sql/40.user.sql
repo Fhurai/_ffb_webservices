@@ -3,6 +3,7 @@ SET @guest_user = 'ffb_guest';
 SET @user_user = 'ffb_user';
 SET @admin_user = 'ffb_admin';
 SET @localhost_host = 'localhost';
+SET @owner_user = 'fhurai';
 
 -- Guest User Setup
 SET @guest_user_full = CONCAT(@guest_user, '@', @localhost_host);
@@ -362,6 +363,15 @@ EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
 SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @admin_user_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+
+SET @owner_full = CONCAT(@owner_user, '@', '%');
+SET @admin_password = '77/ffb*Usager';
+
+SET @query = CONCAT('GRANT ALL PRIVILEGES ON *.* TO ', @owner_full);
 PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
