@@ -6,6 +6,7 @@ require_once __DIR__ . "/../entity/User.php";
 /**
  * Class UserBuilder
  * Implements the BuilderInterface to build User objects.
+ * This class provides a fluent interface for setting various properties of a User object.
  */
 final class UserBuilder extends EntityBuilder
 {
@@ -17,6 +18,7 @@ final class UserBuilder extends EntityBuilder
 
     /**
      * Resets the builder by creating a new User object.
+     * This method is typically called before starting to build a new User.
      */
     public function reset(): void
     {
@@ -27,7 +29,7 @@ final class UserBuilder extends EntityBuilder
      * Sets the username of the User.
      *
      * @param  string $username The username to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withUsername(string $username): UserBuilder
     {
@@ -40,7 +42,7 @@ final class UserBuilder extends EntityBuilder
      * Sets the password of the User.
      *
      * @param  string $password The password to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withPassword(string $password): UserBuilder
     {
@@ -53,7 +55,7 @@ final class UserBuilder extends EntityBuilder
      * Sets the email of the User.
      *
      * @param  string $email The email to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withEmail(string $email): UserBuilder
     {
@@ -65,8 +67,8 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the admin status of the User.
      *
-     * @param  bool $isAdmin The admin status to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @param  bool $isAdmin The admin status to set (true for admin, false otherwise).
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withIsAdmin(bool $isAdmin): UserBuilder
     {
@@ -78,8 +80,8 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the local status of the User.
      *
-     * @param  bool $isLocal The local status to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @param  bool $isLocal The local status to set (true for local, false otherwise).
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withIsLocal(bool $isLocal): UserBuilder
     {
@@ -91,8 +93,8 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the birthday of the User.
      *
-     * @param  DateTime|string $birthday The birthday to set. Can be a DateTime object or a string.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @param  DateTime|string $birthday The birthday to set. Can be a DateTime object or a string in "Y-m-d H:i:s" format.
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withBirthday(DateTime|string $birthday): UserBuilder
     {
@@ -109,10 +111,10 @@ final class UserBuilder extends EntityBuilder
     }
 
     /**
-     * Sets the NSFW status of the User.
+     * Sets the NSFW (Not Safe For Work) status of the User.
      *
-     * @param  bool $isNsfw The NSFW status to set.
-     * @return UserBuilder The current instance of UserBuilder.
+     * @param  bool $isNsfw The NSFW status to set (true for NSFW, false otherwise).
+     * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
     public function withIsNsfw(bool $isNsfw): UserBuilder
     {

@@ -2,17 +2,21 @@
 
 require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Relation.php";
-
+/**
+ * RelationBuilder is responsible for constructing and resetting instances of the Relation entity.
+ * It extends the NamedEntityBuilder to inherit common functionality for named entities.
+ */
 final class RelationBuilder extends NamedEntityBuilder
 {
 
     /**
-     * @var Relation
+     * @var Relation The Relation object being built.
      */
     protected $obj;
 
     /**
      * Resets the Relation object to a new instance.
+     * This ensures the builder starts with a fresh Relation object.
      */
     public function reset(): void
     {
@@ -23,8 +27,9 @@ final class RelationBuilder extends NamedEntityBuilder
     /**
      * Sets the characters for the Relation object.
      *
-     * @param  array $characters The characters array.
-     * @return RelationBuilder The current instance of RelationBuilder.
+     * @param  array $characters The characters array, where each element must be an instance of Character.
+     * @return RelationBuilder The current instance of RelationBuilder for method chaining.
+     * @throws InvalidArgumentException If any element in the array is not an instance of Character.
      */
     public function withCharacters(array $characters): RelationBuilder
     {
@@ -36,7 +41,7 @@ final class RelationBuilder extends NamedEntityBuilder
         }
         // Set the characters array
         $this->obj->characters = $characters;
-        // Sort the characters array
+        // Sort the characters array alphabetically
         sort($characters);
         // Set the name of the relation based on the characters array
         $this->obj->setName(implode(" / ", array_map(fn($c) => $c->getName(), $this->obj->characters)));
@@ -46,8 +51,8 @@ final class RelationBuilder extends NamedEntityBuilder
     /**
      * Adds a character to the Relation object.
      *
-     * @param  Character $character The character to add.
-     * @return RelationBuilder The current instance of RelationBuilder.
+     * @param  Character $character The character to add to the relation.
+     * @return RelationBuilder The current instance of RelationBuilder for method chaining.
      */
     public function addCharacter(Character $character): RelationBuilder
     {
@@ -58,13 +63,13 @@ final class RelationBuilder extends NamedEntityBuilder
         }
         // Add the character to the characters array
         array_push($this->obj->characters, $character);
-        // Sort the characters array by name
+        // Sort the characters array alphabetically by name
         usort(
             $this->obj->characters, function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
-        // Set the name of the relation based on the characters names array
+        // Set the name of the relation based on the characters' names
         $this->obj->setName(implode(" / ", array_map(fn($c) => $c->getName(), $this->obj->characters)));
         return $this;
     }

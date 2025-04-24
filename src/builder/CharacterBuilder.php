@@ -3,16 +3,21 @@
 require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Character.php";
 
+/**
+ * CharacterBuilder is responsible for constructing and configuring Character objects.
+ * It extends the NamedEntityBuilder to inherit common builder functionalities.
+ */
 final class CharacterBuilder extends NamedEntityBuilder
 {
 
     /**
-     * @var Character
+     * @var Character The Character object being built.
      */
     protected $obj;
 
     /**
      * Resets the Character object to a new instance.
+     * This method is typically called to start building a new Character object.
      */
     public function reset(): void
     {
@@ -22,9 +27,10 @@ final class CharacterBuilder extends NamedEntityBuilder
 
     /**
      * Sets the fandom ID for the Character object.
+     * Accepts either an integer representing the fandom ID or a Fandom object.
      *
      * @param  int|Fandom $arg The fandom ID as an integer or a Fandom object.
-     * @return CharacterBuilder The current instance of CharacterBuilder.
+     * @return CharacterBuilder The current instance of CharacterBuilder for method chaining.
      */
     public function withFandomId(int|Fandom $arg): CharacterBuilder
     {
@@ -43,9 +49,10 @@ final class CharacterBuilder extends NamedEntityBuilder
 
     /**
      * Sets the fandom for the Character object.
+     * This method also sets the fandom ID by calling withFandomId().
      *
-     * @param  Fandom $fandom The Fandom object.
-     * @return CharacterBuilder The current instance of CharacterBuilder.
+     * @param  Fandom $fandom The Fandom object to associate with the Character.
+     * @return CharacterBuilder The current instance of CharacterBuilder for method chaining.
      */
     public function withFandom(Fandom $fandom): CharacterBuilder
     {

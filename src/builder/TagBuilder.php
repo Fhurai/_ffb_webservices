@@ -3,16 +3,21 @@
 require_once __DIR__ . "/NamedEntityBuilder.php";
 require_once __DIR__ . "/../entity/Tag.php";
 
+/**
+ * TagBuilder is responsible for constructing and resetting instances of the Tag entity.
+ * It extends the NamedEntityBuilder to inherit common functionality for named entities.
+ */
 final class TagBuilder extends NamedEntityBuilder
 {
 
     /**
-     * @var Tag
+     * @var Tag The Tag object being built.
      */
     protected $obj;
 
     /**
      * Resets the Tag object to a new instance.
+     * This method is typically called at the start of the building process.
      */
     public function reset(): void
     {
@@ -24,7 +29,7 @@ final class TagBuilder extends NamedEntityBuilder
      * Sets the description for the Tag object.
      *
      * @param  string $description The description of the tag.
-     * @return TagBuilder The current instance of TagBuilder.
+     * @return TagBuilder The current instance of TagBuilder for method chaining.
      */
     public function withDescription(string $description): TagBuilder
     {
@@ -37,7 +42,8 @@ final class TagBuilder extends NamedEntityBuilder
      * Sets the type ID for the Tag object.
      *
      * @param  int|TagType $arg The type ID as an integer or a TagType object.
-     * @return TagBuilder The current instance of TagBuilder.
+     *                          If a TagType object is provided, its ID will be used.
+     * @return TagBuilder The current instance of TagBuilder for method chaining.
      */
     public function withTypeId(int|TagType $arg): TagBuilder
     {
@@ -57,8 +63,8 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the type for the Tag object.
      *
-     * @param  TagType $type The TagType object.
-     * @return TagBuilder The current instance of TagBuilder.
+     * @param  TagType $type The TagType object representing the type of the tag.
+     * @return TagBuilder The current instance of TagBuilder for method chaining.
      */
     public function withType(TagType $type): TagBuilder
     {

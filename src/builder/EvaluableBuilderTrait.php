@@ -15,10 +15,16 @@ trait EvaluableBuilderTrait
         return $this; // Return the builder instance for chaining.
     }
 
+    /**
+     * Sets the Score object for the Series object.
+     *
+     * @param  Score $score The Score object.
+     * @return mixed The current instance.
+     */
     public function withScore(Score $score): mixed
     {
-        $this->obj->setScore($score);
-        return $this;
+        $this->obj->setScore($score); // Set the Score object of the Series object.
+        return $this; // Return the builder instance for chaining.
     }
 
     /**

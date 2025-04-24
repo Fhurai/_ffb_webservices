@@ -3,18 +3,23 @@
 abstract class EntityBuilder
 {
     /**
-     * @var mixed
+     * @var mixed The object being built by the builder.
      */
     protected $obj;
 
-    private const FORMAT_DATETIME = "Y-m-d H:i:s";
     /**
-     * @var string
+     * DateTime format used for parsing date strings.
+     */
+    private const FORMAT_DATETIME = "Y-m-d H:i:s";
+
+    /**
+     * Timezone used for DateTime operations.
      */
     private const TIMEZONE_DATETIME = "Europe/Paris";
 
     /**
      * Constructor for the builder.
+     * Initializes the builder by resetting its state.
      */
     public function __construct()
     {
@@ -23,19 +28,28 @@ abstract class EntityBuilder
 
     /**
      * Resets the builder to its initial state.
+     * This method must be implemented by subclasses to define the reset logic.
      *
      * @return void
      */
     abstract public function reset(): void;
 
     /**
-     * @return mixed
+     * Builds and returns the constructed object.
+     *
+     * @return mixed The constructed object.
      */
     public function build(): mixed
     {
         return $this->obj;
     }
 
+    /**
+     * Sets the ID of the object being built.
+     *
+     * @param int|string $id The ID to set. Can be an integer or a string.
+     * @return static The current builder instance for method chaining.
+     */
     public function withId(int|string $id): static
     {
         // Check if the id is an integer
@@ -53,6 +67,12 @@ abstract class EntityBuilder
         return $this;
     }
 
+    /**
+     * Sets the creation date of the object being built.
+     *
+     * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
+     * @return static The current builder instance for method chaining.
+     */
     public function withCreationDate(DateTime|string $creationDate): static
     {
         // Check if the creation date is a DateTime object
@@ -67,6 +87,12 @@ abstract class EntityBuilder
         return $this;
     }
 
+    /**
+     * Sets the update date of the object being built.
+     *
+     * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
+     * @return static The current builder instance for method chaining.
+     */
     public function withUpdateDate(DateTime|string $updateDate): static
     {
         // Check if the update date is a DateTime object
@@ -81,6 +107,12 @@ abstract class EntityBuilder
         return $this;
     }
 
+    /**
+     * Sets the delete date of the object being built.
+     *
+     * @param DateTime|string|null $deleteDate The delete date to set. Can be a DateTime object, a string, or null.
+     * @return static The current builder instance for method chaining.
+     */
     public function withDeleteDate(DateTime|string|null $deleteDate): static
     {
         // Check if the delete date is a DateTime object
