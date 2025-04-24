@@ -31,13 +31,13 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: ffb_nginx
+    container_name: nginx-ffb
     ports:
       - "7780:80"
     volumes:
       - .:/var/www/html
       - ./nginx:/etc/nginx/conf.d
-      - ./nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh
+      - ./scripts/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh
     depends_on:
       - php
 
@@ -45,7 +45,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ffb_php
+    container_name: php-ffb
     volumes:
       - .:/var/www/html
 
