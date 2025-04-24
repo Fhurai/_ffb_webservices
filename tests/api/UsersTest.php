@@ -100,9 +100,9 @@ class UsersTest extends ApiTestCase
     public static function usersCreationProvider(): array
     {
         return [
-            ['Reader1', '1password', 'contact@read1.com', '2005-10-02 08:00:00', 0, 1, 1, 0],
-            ['Score2', '2password', 'contact@score2.com', '2004-11-03 08:00:00', 0, 1, 1, 1],
-            ['Admin3', '3password', 'contact@admin3.com', '2003-12-04 08:00:00', 0, 1, 1, 2]
+            ['Reader1', '1password', 'contact@read1.com', '2005-10-02 08:00:00', false, true, true, 0],
+            ['Score2', '2password', 'contact@score2.com', '2004-11-03 08:00:00', false, true, true, 1],
+            ['Admin3', '3password', 'contact@admin3.com', '2003-12-04 08:00:00', false, true, true, 2]
         ];
     }
 }
