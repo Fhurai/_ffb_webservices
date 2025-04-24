@@ -16,5 +16,19 @@
         <li><a href="./entities.php">Entities</a></li>
         <li><a href="./entity.php">Entity</a></li>
     </ul>
+    <div>
+        <?php  
+        $configFile = include __DIR__ . "/../config/config.php";
+        $user = 'guest';
+        $typeConnection = 'stats';
+        new PDO(
+            "mysql:host=" . $configFile["credentials"][$user]["host"] .
+            ";port=" . $configFile["credentials"][$user]["port"] .
+            ";dbname=" . $configFile["db"][$typeConnection],
+            $configFile["credentials"][$user]["user"],
+            $configFile["credentials"][$user]["password"]
+        );
+        ?>
+    </div>
 </body>
 </html>

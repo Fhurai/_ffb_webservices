@@ -3,7 +3,7 @@ name: 'fanfictionsbookmarks'
 services:
   mysql:
     image: mysql:latest 
-    container_name: mysql-ffb
+    container_name: mysql_ffb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -19,10 +19,10 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin-ffb
+    container_name: phpmyadmin_ffb
     restart: always
     environment:
-      PMA_HOST: mysql-ffb
+      PMA_HOST: mysql_ffb
       PMA_PASSWORD: root
     ports:
       - '7703:80'
@@ -31,7 +31,7 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: nginx-ffb
+    container_name: nginx_ffb
     ports:
       - "7780:80"
     volumes:
@@ -40,14 +40,18 @@ services:
       - ./scripts/nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh
     depends_on:
       - php
+    networks:
+      - ffb_network
 
   php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php-ffb
-    volumes:
-      - .:/var/www/html
+    container_name: php_ffb
+    environment:
+      - DB_HOST=mysql_ffb
+    networks:
+      - ffb_network
 
 volumes:
   mysql_data:

@@ -2,7 +2,7 @@
 SET @guest_user = 'ffb_guest';
 SET @user_user = 'ffb_user';
 SET @admin_user = 'ffb_admin';
-SET @localhost_host = 'localhost';
+SET @localhost_host = '172.19.0.2';
 SET @owner_user = 'fhurai';
 
 -- Guest User Setup
