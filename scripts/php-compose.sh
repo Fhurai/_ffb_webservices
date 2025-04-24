@@ -4,4 +4,6 @@
 cd "$(dirname "$0")/.." || exit 1
 
 # Run Composer commands from project root
-composer validate && composer dump-autoload
+composer validate && \
+composer install && \
+composer dump-autoload
