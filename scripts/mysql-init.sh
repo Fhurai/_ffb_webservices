@@ -3,7 +3,7 @@
 # MySQL connection parameters
 MYSQL_USER="${MYSQL_USER:-root}"
 MYSQL_PASSWORD="${MYSQL_PASSWORD:-root}"
-MYSQL_HOST="${MYSQL_HOST:-localhost}"
+MYSQL_HOST="${MYSQL_HOST:-127.0.0.1}"
 
 mysql_cmd="mysql -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD"
 mysqldump_cmd="mysqldump -h $MYSQL_HOST -u $MYSQL_USER -p$MYSQL_PASSWORD"
