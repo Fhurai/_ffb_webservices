@@ -123,7 +123,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -131,6 +131,8 @@
 Implements the BuilderInterface to build User objects.</p>
 
 
+    <section class="phpdocumentor-description"><p>This class provides a fluent interface for setting various properties of a User object.</p>
+</section>
 
 
 
@@ -161,12 +163,14 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
         &nbsp;= &quot;Y-m-d H:i:s&quot;                            </span>
 </dt>
+<dd>DateTime format used for parsing date strings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/EntityBuilder.html#constant_TIMEZONE_DATETIME">TIMEZONE_DATETIME</a>
     <span>
         &nbsp;= &quot;Europe/Paris&quot;                            </span>
 </dt>
+<dd>Timezone used for DateTime operations.</dd>
 
     </dl>
 
@@ -203,6 +207,7 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Builds and returns the constructed object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/UserBuilder.html#method_reset">reset()</a>
@@ -223,12 +228,14 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the creation date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntityBuilder.html#method_withDeleteDate">withDeleteDate()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the delete date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/UserBuilder.html#method_withEmail">withEmail()</a>
@@ -242,6 +249,7 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the ID of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/UserBuilder.html#method_withIsAdmin">withIsAdmin()</a>
@@ -262,7 +270,7 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
                                 &nbsp;: <a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a>    </span>
 </dt>
-<dd>Sets the NSFW status of the User.</dd>
+<dd>Sets the NSFW (Not Safe For Work) status of the User.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/UserBuilder.html#method_withPassword">withPassword()</a>
@@ -276,6 +284,7 @@ Implements the BuilderInterface to build User objects.</p>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the update date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/UserBuilder.html#method_withUsername">withUsername()</a>
@@ -305,11 +314,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">DateTime format used for parsing date strings.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -336,15 +346,16 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Timezone used for DateTime operations.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">TIMEZONE_DATETIME</span>
     = <span class="phpdocumentor-signature__default-value">&quot;Europe/Paris&quot;</span>
 </code>
@@ -383,7 +394,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -426,7 +437,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -439,7 +450,9 @@ Implements the BuilderInterface to build User objects.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Initializes the builder by resetting its state.</p>
+</section>
+
     
     
 
@@ -461,11 +474,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Builds and returns the constructed object.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">build</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -479,7 +493,15 @@ Implements the BuilderInterface to build User objects.</p>
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The constructed object.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -495,7 +517,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -508,7 +530,9 @@ Implements the BuilderInterface to build User objects.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This method is typically called before starting to build a new User.</p>
+</section>
+
     
     
 
@@ -530,7 +554,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -551,7 +575,7 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The birthday to set. Can be a DateTime object or a string.</p>
+                    <section class="phpdocumentor-description"><p>The birthday to set. Can be a DateTime object or a string in &quot;Y-m-d H:i:s&quot; format.</p>
 </section>
 
             </dd>
@@ -565,7 +589,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -585,11 +609,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the creation date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withCreationDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$creationDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -605,7 +630,9 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The creation date to set. Can be a DateTime object or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -616,6 +643,10 @@ Implements the BuilderInterface to build User objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -633,11 +664,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the delete date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withDeleteDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$deleteDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -653,7 +685,9 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The delete date to set. Can be a DateTime object, a string, or null.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -664,6 +698,10 @@ Implements the BuilderInterface to build User objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -681,7 +719,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
@@ -716,7 +754,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -736,11 +774,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the ID of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withId</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -756,7 +795,9 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The ID to set. Can be an integer or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -767,6 +808,10 @@ Implements the BuilderInterface to build User objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -784,7 +829,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -805,7 +850,7 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The admin status to set.</p>
+                    <section class="phpdocumentor-description"><p>The admin status to set (true for admin, false otherwise).</p>
 </section>
 
             </dd>
@@ -819,7 +864,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -839,7 +884,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -860,7 +905,7 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The local status to set.</p>
+                    <section class="phpdocumentor-description"><p>The local status to set (true for local, false otherwise).</p>
 </section>
 
             </dd>
@@ -874,7 +919,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -894,11 +939,11 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">119</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Sets the NSFW status of the User.</p>
+        <p class="phpdocumentor-summary">Sets the NSFW (Not Safe For Work) status of the User.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -915,7 +960,7 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">bool</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The NSFW status to set.</p>
+                    <section class="phpdocumentor-description"><p>The NSFW status to set (true for NSFW, false otherwise).</p>
 </section>
 
             </dd>
@@ -929,7 +974,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -949,7 +994,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">47</span>
 
     </aside>
 
@@ -984,7 +1029,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -1004,11 +1049,12 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the update date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withUpdateDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$updateDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -1024,7 +1070,9 @@ Implements the BuilderInterface to build User objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The update date to set. Can be a DateTime object or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1035,6 +1083,10 @@ Implements the BuilderInterface to build User objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -1052,7 +1104,7 @@ Implements the BuilderInterface to build User objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/UserBuilder.php"><a href="files/src-builder-userbuilder.html"><abbr title="src/builder/UserBuilder.php">UserBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -1087,7 +1139,7 @@ Implements the BuilderInterface to build User objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/UserBuilder.html"><abbr title="\UserBuilder">UserBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of UserBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of UserBuilder for method chaining.</p>
 </section>
 
             </section>

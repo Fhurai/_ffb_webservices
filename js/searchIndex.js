@@ -3,7 +3,7 @@ Search.appendIndex(
                 {
             "fqsen": "\\AuthorBuilder",
             "name": "AuthorBuilder",
-            "summary": "",
+            "summary": "AuthorBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020Author\u0020objects.",
             "url": "classes/AuthorBuilder.html"
         },                {
             "fqsen": "\\AuthorBuilder\u003A\u003Areset\u0028\u0029",
@@ -18,7 +18,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\CharacterBuilder",
             "name": "CharacterBuilder",
-            "summary": "",
+            "summary": "CharacterBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020configuring\u0020Character\u0020objects.",
             "url": "classes/CharacterBuilder.html"
         },                {
             "fqsen": "\\CharacterBuilder\u003A\u003Areset\u0028\u0029",
@@ -58,37 +58,37 @@ Search.appendIndex(
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "",
+            "summary": "Builds\u0020and\u0020returns\u0020the\u0020constructed\u0020object.",
             "url": "classes/EntityBuilder.html#method_build"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003AwithId\u0028\u0029",
             "name": "withId",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020ID\u0020of\u0020the\u0020object\u0020being\u0020built.",
             "url": "classes/EntityBuilder.html#method_withId"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003AwithCreationDate\u0028\u0029",
             "name": "withCreationDate",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020creation\u0020date\u0020of\u0020the\u0020object\u0020being\u0020built.",
             "url": "classes/EntityBuilder.html#method_withCreationDate"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003AwithUpdateDate\u0028\u0029",
             "name": "withUpdateDate",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020update\u0020date\u0020of\u0020the\u0020object\u0020being\u0020built.",
             "url": "classes/EntityBuilder.html#method_withUpdateDate"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003AwithDeleteDate\u0028\u0029",
             "name": "withDeleteDate",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020delete\u0020date\u0020of\u0020the\u0020object\u0020being\u0020built.",
             "url": "classes/EntityBuilder.html#method_withDeleteDate"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003AFORMAT_DATETIME",
             "name": "FORMAT_DATETIME",
-            "summary": "",
+            "summary": "DateTime\u0020format\u0020used\u0020for\u0020parsing\u0020date\u0020strings.",
             "url": "classes/EntityBuilder.html#constant_FORMAT_DATETIME"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003ATIMEZONE_DATETIME",
             "name": "TIMEZONE_DATETIME",
-            "summary": "",
+            "summary": "Timezone\u0020used\u0020for\u0020DateTime\u0020operations.",
             "url": "classes/EntityBuilder.html#constant_TIMEZONE_DATETIME"
         },                {
             "fqsen": "\\EntityBuilder\u003A\u003A\u0024obj",
@@ -108,7 +108,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\EvaluableBuilderTrait\u003A\u003AwithScore\u0028\u0029",
             "name": "withScore",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020Score\u0020object\u0020for\u0020the\u0020Series\u0020object.",
             "url": "classes/EvaluableBuilderTrait.html#method_withScore"
         },                {
             "fqsen": "\\EvaluableBuilderTrait\u003A\u003AwithEvaluation\u0028\u0029",
@@ -118,7 +118,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FandomBuilder",
             "name": "FandomBuilder",
-            "summary": "",
+            "summary": "FandomBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020instances\u0020of\u0020the\u0020Fandom\u0020entity.",
             "url": "classes/FandomBuilder.html"
         },                {
             "fqsen": "\\FandomBuilder\u003A\u003Areset\u0028\u0029",
@@ -133,7 +133,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder",
             "name": "FanfictionBuilder",
-            "summary": "",
+            "summary": "FanfictionBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020instances\u0020of\u0020the\u0020Fanfiction\u0020entity.",
             "url": "classes/FanfictionBuilder.html"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003Areset\u0028\u0029",
@@ -148,7 +148,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithAuthor\u0028\u0029",
             "name": "withAuthor",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020author\u0020object\u0020for\u0020the\u0020Fanfiction.",
             "url": "classes/FanfictionBuilder.html#method_withAuthor"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithRatingId\u0028\u0029",
@@ -158,7 +158,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithRating\u0028\u0029",
             "name": "withRating",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020rating\u0020object\u0020for\u0020the\u0020Fanfiction.",
             "url": "classes/FanfictionBuilder.html#method_withRating"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithDescription\u0028\u0029",
@@ -173,17 +173,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithLanguage\u0028\u0029",
             "name": "withLanguage",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020language\u0020object\u0020for\u0020the\u0020Fanfiction.",
             "url": "classes/FanfictionBuilder.html#method_withLanguage"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithFandoms\u0028\u0029",
             "name": "withFandoms",
-            "summary": "Sets\u0020the\u0020fandom\u0020for\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Sets\u0020the\u0020fandoms\u0020for\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_withFandoms"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AaddFandom\u0028\u0029",
             "name": "addFandom",
-            "summary": "Adds\u0020a\u0020fandom\u0020to\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Adds\u0020a\u0020single\u0020fandom\u0020to\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_addFandom"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithCharacters\u0028\u0029",
@@ -193,7 +193,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AaddCharacter\u0028\u0029",
             "name": "addCharacter",
-            "summary": "Adds\u0020a\u0020character\u0020to\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Adds\u0020a\u0020single\u0020character\u0020to\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_addCharacter"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithRelations\u0028\u0029",
@@ -203,7 +203,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AaddRelation\u0028\u0029",
             "name": "addRelation",
-            "summary": "Adds\u0020a\u0020relation\u0020to\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Adds\u0020a\u0020single\u0020relation\u0020to\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_addRelation"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithTags\u0028\u0029",
@@ -213,17 +213,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AaddTag\u0028\u0029",
             "name": "addTag",
-            "summary": "Adds\u0020a\u0020tag\u0020to\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Adds\u0020a\u0020single\u0020tag\u0020to\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_addTag"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AwithLinks\u0028\u0029",
             "name": "withLinks",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020links\u0020for\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_withLinks"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003AaddLink\u0028\u0029",
             "name": "addLink",
-            "summary": "",
+            "summary": "Adds\u0020a\u0020single\u0020link\u0020to\u0020the\u0020Fanfiction\u0020object.",
             "url": "classes/FanfictionBuilder.html#method_addLink"
         },                {
             "fqsen": "\\FanfictionBuilder\u003A\u003A\u0024obj",
@@ -233,7 +233,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\LanguageBuilder",
             "name": "LanguageBuilder",
-            "summary": "",
+            "summary": "LanguageBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020configuring\ninstances\u0020of\u0020the\u0020Language\u0020entity.\u0020It\u0020extends\u0020the\u0020NamedEntityBuilder\nto\u0020inherit\u0020common\u0020functionality\u0020for\u0020named\u0020entities.",
             "url": "classes/LanguageBuilder.html"
         },                {
             "fqsen": "\\LanguageBuilder\u003A\u003Areset\u0028\u0029",
@@ -283,12 +283,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\NamedEntityBuilder\u003A\u003AwithName\u0028\u0029",
             "name": "withName",
-            "summary": "",
+            "summary": "Sets\u0020the\u0020name\u0020of\u0020the\u0020entity\u0020being\u0020built.",
             "url": "classes/NamedEntityBuilder.html#method_withName"
         },                {
             "fqsen": "\\RelationBuilder",
             "name": "RelationBuilder",
-            "summary": "",
+            "summary": "RelationBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020instances\u0020of\u0020the\u0020Relation\u0020entity.",
             "url": "classes/RelationBuilder.html"
         },                {
             "fqsen": "\\RelationBuilder\u003A\u003Areset\u0028\u0029",
@@ -313,7 +313,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\SeriesBuilder",
             "name": "SeriesBuilder",
-            "summary": "",
+            "summary": "SeriesBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020instances\u0020of\u0020the\u0020Series\u0020entity.",
             "url": "classes/SeriesBuilder.html"
         },                {
             "fqsen": "\\SeriesBuilder\u003A\u003Areset\u0028\u0029",
@@ -328,12 +328,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\SeriesBuilder\u003A\u003AwithFanfictions\u0028\u0029",
             "name": "withFanfictions",
-            "summary": "Sets\u0020the\u0020fanfiction\u0020for\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Sets\u0020the\u0020fanfictions\u0020for\u0020the\u0020Series\u0020object.",
             "url": "classes/SeriesBuilder.html#method_withFanfictions"
         },                {
             "fqsen": "\\SeriesBuilder\u003A\u003AaddFanfiction\u0028\u0029",
             "name": "addFanfiction",
-            "summary": "Adds\u0020a\u0020fanfiction\u0020to\u0020the\u0020Fanfiction\u0020object.",
+            "summary": "Adds\u0020a\u0020single\u0020fanfiction\u0020to\u0020the\u0020Series\u0020object.",
             "url": "classes/SeriesBuilder.html#method_addFanfiction"
         },                {
             "fqsen": "\\SeriesBuilder\u003A\u003A\u0024obj",
@@ -343,7 +343,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\TagBuilder",
             "name": "TagBuilder",
-            "summary": "",
+            "summary": "TagBuilder\u0020is\u0020responsible\u0020for\u0020constructing\u0020and\u0020resetting\u0020instances\u0020of\u0020the\u0020Tag\u0020entity.",
             "url": "classes/TagBuilder.html"
         },                {
             "fqsen": "\\TagBuilder\u003A\u003Areset\u0028\u0029",
@@ -413,7 +413,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\UserBuilder\u003A\u003AwithIsNsfw\u0028\u0029",
             "name": "withIsNsfw",
-            "summary": "Sets\u0020the\u0020NSFW\u0020status\u0020of\u0020the\u0020User.",
+            "summary": "Sets\u0020the\u0020NSFW\u0020\u0028Not\u0020Safe\u0020For\u0020Work\u0029\u0020status\u0020of\u0020the\u0020User.",
             "url": "classes/UserBuilder.html#method_withIsNsfw"
         },                {
             "fqsen": "\\UserBuilder\u003A\u003A\u0024obj",

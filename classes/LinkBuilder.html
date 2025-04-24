@@ -123,7 +123,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/LinkBuilder.php"><a href="files/src-builder-linkbuilder.html"><abbr title="src/builder/LinkBuilder.php">LinkBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -131,6 +131,8 @@
 Implements the BuilderInterface to build Link objects.</p>
 
 
+    <section class="phpdocumentor-description"><p>Provides methods to set properties of a Link object in a fluent interface style.</p>
+</section>
 
 
 
@@ -161,12 +163,14 @@ Implements the BuilderInterface to build Link objects.</p>
     <span>
         &nbsp;= &quot;Y-m-d H:i:s&quot;                            </span>
 </dt>
+<dd>DateTime format used for parsing date strings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -private">
     <a class="" href="classes/EntityBuilder.html#constant_TIMEZONE_DATETIME">TIMEZONE_DATETIME</a>
     <span>
         &nbsp;= &quot;Europe/Paris&quot;                            </span>
 </dt>
+<dd>Timezone used for DateTime operations.</dd>
 
     </dl>
 
@@ -203,6 +207,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Builds and returns the constructed object.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LinkBuilder.html#method_reset">reset()</a>
@@ -216,12 +221,14 @@ Implements the BuilderInterface to build Link objects.</p>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the creation date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntityBuilder.html#method_withDeleteDate">withDeleteDate()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the delete date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LinkBuilder.html#method_withFanfictionId">withFanfictionId()</a>
@@ -235,12 +242,14 @@ Implements the BuilderInterface to build Link objects.</p>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the ID of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntityBuilder.html#method_withUpdateDate">withUpdateDate()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
+<dd>Sets the update date of the object being built.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LinkBuilder.html#method_withUrl">withUrl()</a>
@@ -270,11 +279,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">DateTime format used for parsing date strings.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
@@ -301,15 +311,16 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Timezone used for DateTime operations.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">TIMEZONE_DATETIME</span>
     = <span class="phpdocumentor-signature__default-value">&quot;Europe/Paris&quot;</span>
 </code>
@@ -348,7 +359,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/LinkBuilder.php"><a href="files/src-builder-linkbuilder.html"><abbr title="src/builder/LinkBuilder.php">LinkBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -361,7 +372,8 @@ Implements the BuilderInterface to build Link objects.</p>
     </code>
 
     
-        <section class="phpdocumentor-description"><p>The Link object being built.</p>
+        <section class="phpdocumentor-description"><p>The Link object being built.
+This property holds the instance of the Link entity being constructed.</p>
 </section>
 
     
@@ -391,7 +403,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -404,7 +416,9 @@ Implements the BuilderInterface to build Link objects.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Initializes the builder by resetting its state.</p>
+</section>
+
     
     
 
@@ -426,11 +440,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Builds and returns the constructed object.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">build</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -444,7 +459,15 @@ Implements the BuilderInterface to build Link objects.</p>
 
     
 
-    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The constructed object.</p>
+</section>
+
+            </section>
+
 </article>
                     <article
         class="phpdocumentor-element
@@ -460,7 +483,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/LinkBuilder.php"><a href="files/src-builder-linkbuilder.html"><abbr title="src/builder/LinkBuilder.php">LinkBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -473,7 +496,9 @@ Implements the BuilderInterface to build Link objects.</p>
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>This method is typically called at the start of the building process.</p>
+</section>
+
     
     
 
@@ -495,11 +520,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the creation date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withCreationDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$creationDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -515,7 +541,9 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The creation date to set. Can be a DateTime object or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -526,6 +554,10 @@ Implements the BuilderInterface to build Link objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -543,11 +575,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the delete date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withDeleteDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$deleteDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -563,7 +596,9 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The delete date to set. Can be a DateTime object, a string, or null.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -574,6 +609,10 @@ Implements the BuilderInterface to build Link objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -591,7 +630,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/LinkBuilder.php"><a href="files/src-builder-linkbuilder.html"><abbr title="src/builder/LinkBuilder.php">LinkBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -612,13 +651,30 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The fanfiction ID to set.</p>
+                    <section class="phpdocumentor-description"><p>The fanfiction ID to set. Must be a numeric value.</p>
 </section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/LinkBuilder.html#method_withFanfictionId#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If the provided fanfiction ID is not numeric.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 
@@ -626,7 +682,7 @@ Implements the BuilderInterface to build Link objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/LinkBuilder.html"><abbr title="\LinkBuilder">LinkBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of LinkBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of LinkBuilder for method chaining.</p>
 </section>
 
             </section>
@@ -646,11 +702,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the ID of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withId</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -666,7 +723,9 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">int|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The ID to set. Can be an integer or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -677,6 +736,10 @@ Implements the BuilderInterface to build Link objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -694,11 +757,12 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/EntityBuilder.php"><a href="files/src-builder-entitybuilder.html"><abbr title="src/builder/EntityBuilder.php">EntityBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">96</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Sets the update date of the object being built.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">withUpdateDate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$updateDate</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
@@ -714,7 +778,9 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\DateTime">DateTime</abbr>|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The update date to set. Can be a DateTime object or a string.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -725,6 +791,10 @@ Implements the BuilderInterface to build Link objects.</p>
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">static</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The current builder instance for method chaining.</p>
+</section>
+
             </section>
 
 </article>
@@ -742,7 +812,7 @@ Implements the BuilderInterface to build Link objects.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/builder/LinkBuilder.php"><a href="files/src-builder-linkbuilder.html"><abbr title="src/builder/LinkBuilder.php">LinkBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -763,13 +833,30 @@ Implements the BuilderInterface to build Link objects.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The URL to set.</p>
+                    <section class="phpdocumentor-description"><p>The URL to set. Must be a valid string.</p>
 </section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/LinkBuilder.html#method_withUrl#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If the provided URL is not a string.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
 
     
 
@@ -777,7 +864,7 @@ Implements the BuilderInterface to build Link objects.</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/LinkBuilder.html"><abbr title="\LinkBuilder">LinkBuilder</abbr></a></span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The current instance of LinkBuilder.</p>
+                <section class="phpdocumentor-description"><p>The current instance of LinkBuilder for method chaining.</p>
 </section>
 
             </section>
