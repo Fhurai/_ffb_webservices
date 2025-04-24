@@ -198,18 +198,21 @@ abstract class EntitiesTable
 
         if ($entity::class === 'User') {
             /**
- * @var User $entity 
-*/
+             * @var User $entity 
+             */
             $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
+            $cols['is_admin'] = $entity->isAdmin() ? 1 : 0;
+            $cols['is_local'] = $entity->isLocal() ? 1 : 0;
+            $cols['is_nsfw'] = $entity->isNsfw() ? 1 : 0;
         } elseif ($entity::class === 'Relation') {
             /**
- * @var Relation $entity 
-*/
+             * @var Relation $entity 
+             */
             unset($cols['characters']);
         } elseif ($entity::class === 'Fanfiction') {
             /**
- * @var Fanfiction $entity 
-*/
+             * @var Fanfiction $entity 
+             */
             unset($cols['fandoms']);
             unset($cols['relations']);
             unset($cols['characters']);
@@ -217,8 +220,8 @@ abstract class EntitiesTable
             unset($cols['links']);
         } elseif ($entity::class === 'Series') {
             /**
- * @var Series $entity 
-*/
+             * @var Series $entity 
+             */
             unset($cols['fanfictions']);
             unset($cols['authors']);
             unset($cols['languages']);
@@ -274,8 +277,8 @@ abstract class EntitiesTable
 
         if ($entityClass === 'User') {
             /**
- * @var User $entity 
-*/
+             * @var User $entity 
+             */
             if (isset($cols['password'])) {
                 unset($cols['password']);
             } elseif (isset($cols['currentPassword'])) {
@@ -289,16 +292,18 @@ abstract class EntitiesTable
             }
         } elseif ($entityClass === 'Relation') {
             /**
- * @var Relation $entity 
-*/
+             * @var Relation $entity 
+             */
             $charactersTable = new CharactersTable(Connection::getTypeConnect(), Connection::getUser());
             $characters = $charactersTable->findSearchedBy(['id' => $cols['characters']]);
             $cols['characters'] = $characters;
             $cols['name'] = implode(
-                ' / ', array_map(
+                ' / ',
+                array_map(
                     function ($character) {
                         return $character->getName();
-                    }, $characters
+                    },
+                    $characters
                 )
             );
         }
@@ -315,8 +320,8 @@ abstract class EntitiesTable
 
         if (isset($arrayData['password'])) {
             /**
- * @var User $entity 
-*/
+             * @var User $entity 
+             */
             if (!password_verify($data->currentPassword, $entity->getPassword())) {
                 throw new FfbTableException("Current password is incorrect!", 400);
             } else {
@@ -324,8 +329,8 @@ abstract class EntitiesTable
             }
         } elseif (isset($arrayData['characters'])) {
             /**
- * @var Relation $entity 
-*/
+             * @var Relation $entity 
+             */
             $entity->setCharacters($arrayData['characters']);
             unset($arrayData['characters']);
         }
@@ -430,9 +435,10 @@ abstract class EntitiesTable
             $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`) VALUES ($primaryKeyParam, :item_id)";
             foreach ($items as $item) {
                 $this->executeQuery(
-                    $queryInsert, [
-                    $primaryKeyParam => $id,
-                    ":item_id" => $item->getId(),
+                    $queryInsert,
+                    [
+                        $primaryKeyParam => $id,
+                        ":item_id" => $item->getId(),
                     ]
                 );
             }
