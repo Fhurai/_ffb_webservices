@@ -8,6 +8,7 @@ require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
 
 #[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbException::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
 class UsersTest extends ApiTestCase
 {
