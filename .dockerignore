@@ -1,4 +1,5 @@
 Conception/
+config/config.php
 tests/
 vendor/
 .github/

@@ -10,7 +10,7 @@ services:
       MYSQL_USER: fhurai
       MYSQL_PASSWORD: 77/ffb*Usager
     ports:
-      - '7701:3306'
+      - '7706:3306'
     volumes:
       - mysql_data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
@@ -25,9 +25,29 @@ services:
       PMA_HOST: mysql-ffb
       PMA_PASSWORD: root
     ports:
-      - '7780:80'
+      - '7703:80'
     networks:
       - ffb_network
+
+  nginx:
+    image: nginx:latest
+    container_name: ffb_nginx
+    ports:
+      - "7780:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - ./nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh
+    depends_on:
+      - php
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ffb_php
+    volumes:
+      - .:/var/www/html
 
 volumes:
   mysql_data:

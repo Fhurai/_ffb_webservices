@@ -8,20 +8,20 @@ return [
     ],
     "credentials" => [
         "guest" => [
-            "host" => getenv('DB_HOST') ?: "127.0.0.1",
-            "port" => "3306",
+            "host" => getenv('DB_HOST') ?: "localhost",
+            "port" => "7706",
             "user" => "ffb_guest",
             "password" => "1Gu3stIsw4yBetter*"
         ],
         "user" => [
-            "host" => getenv('DB_HOST') ?: "127.0.0.1",
-            "port" => "3306",
+            "host" => getenv('DB_HOST') ?: "localhost",
+            "port" => "7706",
             "user" => "ffb_user",
             "password" => "MyUs3R5*i5Rich_"
         ],
         "admin" => [
-            "host" => getenv('DB_HOST') ?: "127.0.0.1",
-            "port" => "3306",
+            "host" => getenv('DB_HOST') ?: "localhost",
+            "port" => "7706",
             "user" => "ffb_admin",
             "password" => "Adm1nGrants3*pr1v1leges"
         ]
