@@ -78,6 +78,11 @@ abstract class ApiTestCase extends TestCase
     protected function postData(string $endpoint, stdClass $data): mixed
     {
         $response = self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint, 'POST', $data);
+        $responseData = json_decode($response, false);
+
+        if(is_a($responseData, 'stdClass') && property_exists($responseData, 'error')) {
+            throw new FfbEndpointException($responseData->error);
+        }
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new FfbEndpointException("Failed to decode JSON for {$endpoint}: " . json_last_error_msg());
