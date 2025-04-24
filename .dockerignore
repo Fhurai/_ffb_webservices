@@ -6,3 +6,12 @@ vendor/
 .git/
 .env
 .vscode/
+.editorconfig
+.gitignore
+.phpunit.resultcache
+clover.xml
+README.md
+sonar-project.properties
+sonar.bat
+test-results.xml
+phpunit.xml
