@@ -105,8 +105,8 @@ jobs:
       # Initialize the database using the provided initialization script
       - name: Initialize database
         run: |
-          chmod +x ./scripts/php-init.sh
-          ./scripts/php-init.sh
+          chmod +x ./scripts/mysql-init.sh
+          ./scripts/mysql-init.sh
 
       # Cache Composer dependencies to speed up subsequent runs
       - name: Cache Composer dependencies
