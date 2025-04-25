@@ -6,9 +6,9 @@ name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [main]  # Trigger on push to the main branch
+    branches: [main] # Trigger on push to the main branch
   pull_request:
-    branches: [main]  # Trigger on PRs targeting the main branch
+    branches: [main] # Trigger on PRs targeting the main branch
 
 jobs:
   # 1. SonarQube Analysis Job
@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ["8.2", "8.3"]  # Test on multiple PHP versions
+        php-version: ["8.2", "8.3"] # Test on multiple PHP versions
 
     services:
       mysql:
-        image: mysql:8.0  # MySQL service for integration tests
+        image: mysql:8.0 # MySQL service for integration tests
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         ports:
@@ -153,12 +153,6 @@ jobs:
       - name: Run PHPUnit with coverage
         run: ./vendor/bin/phpunit --coverage-clover clover.xml
 
-      - name: Upload PHPUnit coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: phpunit-coverage
-          path: clover.xml
-
       # Step 15: Run SonarQube scan
       - name: SonarQube Scan
         id: sonar_scan
@@ -183,7 +177,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: "8.3"
           tools: phpdoc
 
       - name: Generate docs
@@ -211,7 +205,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: "8.3"
           tools: phpcs
 
       - name: Run PHP CodeSniffer
