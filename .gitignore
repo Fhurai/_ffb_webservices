@@ -11,3 +11,4 @@ config/config.php
 .phpunit.cache
 sonar.bat
 clover.xml
+phpcs-report.txt
