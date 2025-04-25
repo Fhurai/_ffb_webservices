@@ -279,7 +279,7 @@ jobs:
     steps:
       - name: Send Discord notification
         run: |
-          STATUS="${{ needs.sonarqube.result }}"
+          STATUS="${{ needs.docker-build-image-api.result }}"
           COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
           if [ "$STATUS" = "success" ]; then
             COLOR=3066993
@@ -323,7 +323,7 @@ jobs:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: |
           # Determine the status of the SonarQube analysis
-          STATUS="${{ needs.sonarqube.result }}"
+          STATUS="${{ needs.docker-build-image-api.result }}"
           COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7) # Shorten the commit hash for display
 
           # Set message details based on the status
