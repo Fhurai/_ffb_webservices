@@ -195,8 +195,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      - name: Show GitHub Pages URL (Need public repo)
-        run: echo "🔗 PHPDocs deployed: https://fhurai.github.io/_ffb_webservices/"
+      - name: Status
+        if: always()
+        run: 'echo "This job status is ${{ job.status }}"'
 
   # 3. PHP Code Style Check
   phpcs:
