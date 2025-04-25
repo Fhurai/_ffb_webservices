@@ -1,22 +1,27 @@
+# Workflow Name: Fanfictions Bookmark Webservices (API)
+# Description: CI/CD pipeline for API service of Fanfictions Bookmark.
+# Includes testing, linting, documentation, SonarQube analysis, Docker build, and team notifications.
+
 name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [main]
+    branches: [main]  # Trigger on push to the main branch
   pull_request:
-    branches: [main]
+    branches: [main]  # Trigger on PRs targeting the main branch
 
 jobs:
+  # 1. SonarQube Analysis Job
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ["8.2", "8.3"]
+        php-version: ["8.2", "8.3"]  # Test on multiple PHP versions
 
     services:
       mysql:
-        image: mysql:8.0
+        image: mysql:8.0  # MySQL service for integration tests
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         ports:
@@ -28,11 +33,11 @@ jobs:
           --health-retries 3
 
     steps:
-      # Checkout the repository code
+      # Step 1: Clone the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Set up environment variables for database configuration
+      # Step 2: Set environment variables
       - name: Setup environment
         run: |
           echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
@@ -41,7 +46,7 @@ jobs:
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
           echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
 
-      # Install and configure PHP with required extensions and tools
+      # Step 3: Setup PHP and extensions
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -50,7 +55,7 @@ jobs:
           coverage: xdebug
           tools: composer
 
-      # Configure MySQL client login path for secure access
+      # Step 4: Configure MySQL client securely
       - name: Configure MySQL client login path
         run: |
           sudo apt-get update
@@ -63,7 +68,7 @@ jobs:
           '
           mysql_config_editor print --login-path=client
 
-      # Create required MySQL databases and users
+      # Step 5: Create databases and users for tests
       - name: Create MySQL databases
         run: |
           mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
@@ -80,12 +85,12 @@ jobs:
           mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
           mysql --login-path=client -e "FLUSH PRIVILEGES;"
 
-      # Test the MySQL connection to ensure databases and users are configured correctly
+      # Step 6: Verify DB connection
       - name: Test MySQL connection
         run: |
           mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
 
-      # Configure the application by copying and modifying the config file
+      # Step 7: Setup config file for the app
       - name: Configure application
         run: |
           cp config/config.php.example config/config.php
@@ -93,7 +98,6 @@ jobs:
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
           sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
 
-      # Verify that the config.php file was created successfully
       - name: Verify config.php exists
         run: |
           if [ ! -f config/config.php ]; then
@@ -102,13 +106,13 @@ jobs:
           fi
           echo "✅ config/config.php verified"
 
-      # Initialize the database using the provided initialization script
+      # Step 8: Initialize database with custom script
       - name: Initialize database
         run: |
           chmod +x ./scripts/mysql-init.sh
           ./scripts/mysql-init.sh
 
-      # Cache Composer dependencies to speed up subsequent runs
+      # Step 9: Composer cache for faster builds
       - name: Cache Composer dependencies
         uses: actions/cache@v3
         with:
@@ -117,19 +121,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      # Install PHP dependencies using Composer
+      # Step 10: Install PHP dependencies
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      # List the contents of the current folder for debugging purposes
+      # Step 11: Debug - List directory contents
       - name: Check folder
         run: ls -ll
 
-      # Start the built-in PHP server for testing
+      # Step 12: Start PHP development server
       - name: Start built-in PHP server
         run: php -S 127.0.0.1:8080 -t . > /dev/null 2>&1 &
 
-      # Wait for the PHP server to be ready before proceeding
+      # Step 13: Wait until PHP server is ready
       - name: Wait for PHP built-in server to be ready
         run: |
           for i in {1..10}; do
@@ -140,17 +144,22 @@ jobs:
             echo "⏳ Waiting for PHP server..."
             sleep 1
           done
-
           if ! curl --fail http://127.0.0.1:8080 > /dev/null 2>&1; then
             echo "❌ PHP server did not start in time"
             exit 1
           fi
 
-      # Run PHPUnit tests and generate a coverage report
+      # Step 14: Run PHPUnit tests with code coverage
       - name: Run PHPUnit with coverage
         run: ./vendor/bin/phpunit --coverage-clover clover.xml
 
-      # Perform a SonarQube scan for code quality analysis
+      - name: Upload PHPUnit coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpunit-coverage
+          path: clover.xml
+
+      # Step 15: Run SonarQube scan
       - name: SonarQube Scan
         id: sonar_scan
         uses: SonarSource/sonarqube-scan-action@v5
@@ -162,61 +171,52 @@ jobs:
             -Dsonar.scm.provider=git
         continue-on-error: true
 
-  # Generate PHP documentation using phpDocumentor
+  # 2. PHPDoc Generation
   docs:
     name: Generate PHPDoc
     runs-on: ubuntu-latest
     needs: sonarqube
     steps:
-      # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Install PHP and phpDocumentor
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           tools: phpdoc
 
-      # Generate PHP documentation
       - name: Generate docs
         run: phpdoc -d src -t docs
 
-      # Deploy the generated documentation to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      # Display the GitHub Pages URL for the documentation
       - name: Show GitHub Pages URL (Need public repo)
-        run: "echo \"🔗 PHPDocs deployed: https://fhurai.github.io/_ffb_webservices/\""
+        run: echo "🔗 PHPDocs deployed: https://fhurai.github.io/_ffb_webservices/"
 
-  # Check PHP code style using PHP CodeSniffer
+  # 3. PHP Code Style Check
   phpcs:
     name: PHP Code Style Check
     runs-on: ubuntu-latest
     needs: sonarqube
     steps:
-      # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Install PHP and PHP CodeSniffer
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           tools: phpcs
 
-      # Run PHP CodeSniffer to check code style
       - name: Run PHP CodeSniffer
         run: phpcs --standard=PSR12 src/ api/ tests/ --extensions=php --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php --report=summary --report-file=phpcs-report.txt
         continue-on-error: true
 
-      # Upload the PHP CodeSniffer report as an artifact
       - name: Upload PHPCS report
         uses: actions/upload-artifact@v4
         with:
@@ -224,6 +224,7 @@ jobs:
           path: phpcs-report.txt
         continue-on-error: true
 
+  # 4. Docker Image Build for API
   docker-build-image-api:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
@@ -252,15 +253,15 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USER}}/parcinfo_api:latest
+          tags: ${{secrets.DOCKERHUB_USER}}/api_ffb:latest
 
       - name: Status
         if: always()
         run: echo "This job status is ${{ job.status }}"
 
-  # Notify Discord about the SonarQube analysis results using a reusable action
-  discord-notification-sonarqube:
-    name: Discord Notification - SonarQube Analysis
+  # 5. Discord Notification
+  discord-notification-docker:
+    name: Discord Notification - Docker Image Build
     runs-on: ubuntu-latest
     needs: docker-build-image-api
     if: always()
@@ -268,14 +269,14 @@ jobs:
       - name: Send Discord notification
         uses: ./github-actions/discord-notification
         with:
-          status: ${{ needs.sonarqube.result }}
+          status: ${{ needs.docker-build-image-api.result }}
           commit_sha: ${{ github.sha }}
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-  # Notify Microsoft Teams about the SonarQube analysis results using a reusable action
-  teams-notification-sonarqube:
-    name: Teams Notification - SonarQube Analysis
+  # 6. Teams Notification
+  teams-notification-docker:
+    name: Teams Notification - Docker Image Build
     runs-on: ubuntu-latest
     needs: docker-build-image-api
     if: always()
@@ -283,7 +284,7 @@ jobs:
       - name: Send Microsoft Teams notification
         uses: ./github-actions/teams-notification
         with:
-          status: ${{ needs.sonarqube.result }}
+          status: ${{ needs.docker-build-image-api.result }}
           commit_sha: ${{ github.sha }}
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
