@@ -23,11 +23,12 @@ COPY . .
 # Set appropriate permissions
 RUN chown -R www-data:www-data /var/www/html
 
-RUN cd /var/www/html && \
+RUN sed -i 's/\r$//' scripts/php-compose.sh
+
+RUN ls -l ./scripts && \
     ./scripts/php-compose.sh
 
-RUN cd /var/www/html && \
-    cp ./config/config.php.example ./config/config.php
+RUN cp ./config/config.php.example ./config/config.php
 
 # Expose port used by PHP-FPM
 EXPOSE 9000
