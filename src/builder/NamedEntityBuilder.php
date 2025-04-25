@@ -7,7 +7,7 @@ abstract class NamedEntityBuilder extends EntityBuilder
     /**
      * Sets the name of the entity being built.
      *
-     * @param string $name The name to set for the entity.
+     * @param  string $name The name to set for the entity.
      * @return static Returns the current builder instance for method chaining.
      */
     public function withName(string $name): static

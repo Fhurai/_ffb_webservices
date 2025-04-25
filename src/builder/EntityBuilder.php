@@ -47,7 +47,7 @@ abstract class EntityBuilder
     /**
      * Sets the ID of the object being built.
      *
-     * @param int|string $id The ID to set. Can be an integer or a string.
+     * @param  int|string $id The ID to set. Can be an integer or a string.
      * @return static The current builder instance for method chaining.
      */
     public function withId(int|string $id): static
@@ -70,7 +70,7 @@ abstract class EntityBuilder
     /**
      * Sets the creation date of the object being built.
      *
-     * @param DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
+     * @param  DateTime|string $creationDate The creation date to set. Can be a DateTime object or a string.
      * @return static The current builder instance for method chaining.
      */
     public function withCreationDate(DateTime|string $creationDate): static
@@ -90,7 +90,7 @@ abstract class EntityBuilder
     /**
      * Sets the update date of the object being built.
      *
-     * @param DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
+     * @param  DateTime|string $updateDate The update date to set. Can be a DateTime object or a string.
      * @return static The current builder instance for method chaining.
      */
     public function withUpdateDate(DateTime|string $updateDate): static
@@ -110,7 +110,7 @@ abstract class EntityBuilder
     /**
      * Sets the delete date of the object being built.
      *
-     * @param DateTime|string|null $deleteDate The delete date to set. Can be a DateTime object, a string, or null.
+     * @param  DateTime|string|null $deleteDate The delete date to set. Can be a DateTime object, a string, or null.
      * @return static The current builder instance for method chaining.
      */
     public function withDeleteDate(DateTime|string|null $deleteDate): static
