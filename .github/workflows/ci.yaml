@@ -215,17 +215,6 @@ jobs:
                 --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php \
                 --report=summary --report-file=phpcs-report.txt
           EXIT_CODE=$?
-
-          # If PHPCS found unfixable issues, exit with code 2
-          if [ $EXIT_CODE -eq 2 ]; then
-            echo "Unfixable code style issues found!"
-            exit 2
-          fi
-
-          # For fixable issues (exit code 1), still allow the step to succeed
-          if [ $EXIT_CODE -eq 1 ]; then
-            echo "Fixable code style issues found. Please review the report."
-          fi
         continue-on-error: false
 
       - name: Upload PHPCS report
