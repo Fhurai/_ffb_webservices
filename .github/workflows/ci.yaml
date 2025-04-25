@@ -199,22 +199,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: sonarqube
     steps:
+      # Step 1: Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Setup PHP environment with required tools
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
           tools: phpcs
 
-      # Ensure PHPCS is installed
+      # Step 3: Install PHP CodeSniffer (PHPCS) for code style checks
       - name: Install PHPCS
         run: composer require --dev squizlabs/php_codesniffer
 
+      # Step 4: Automatically fix code style issues using PHPCBF
       - name: correct with phpcbf
         run: ./vendor/bin/phpcbf
 
+      # Step 5: Run PHPCS to check code style compliance and generate a report
       - name: Run PHP CodeSniffer
         run: |
           # Run PHPCS and capture the exit code
@@ -223,12 +227,14 @@ jobs:
           EXIT_CODE=$?
         continue-on-error: true
 
+      # Step 6: List files in the repository after running PHPCS
       - name: List files post CodeSniffer
         run: |
-          #Find all files in folder
+          # Find all files in folder
           ls -l
         continue-on-error: true
 
+      # Step 7: Upload the PHPCS report as an artifact for review
       - name: Upload PHPCS report
         uses: actions/upload-artifact@v4
         with:
