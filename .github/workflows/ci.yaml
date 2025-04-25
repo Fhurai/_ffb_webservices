@@ -262,10 +262,34 @@ jobs:
     if: always()
     steps:
       - name: Send Discord notification
-        uses: ./github-actions/discord-notification
-        with:
-          status: ${{ needs.docker-build-image-api.result }}
-          commit_sha: ${{ github.sha }}
+        run: |
+          STATUS="${{ needs.sonarqube.result }}"
+          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
+          if [ "$STATUS" = "success" ]; then
+            COLOR=3066993
+            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR=15158332
+            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
+          PAYLOAD=$(cat <<EOF
+          {
+            "embeds": [{
+              "title": "${MESSAGE}",
+              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})",
+              "color": ${COLOR},
+              "image": {
+                "url": "${IMAGE_URL}"
+              },
+              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            }]
+          }
+          EOF
+          )
+          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
@@ -276,10 +300,49 @@ jobs:
     needs: docker-build-image-api
     if: always()
     steps:
+      # Step 1: Send Microsoft Teams notification
+      # This step sends a notification to a Microsoft Teams channel with the status of the Docker image build.
       - name: Send Microsoft Teams notification
-        uses: ./github-actions/teams-notification
-        with:
-          status: ${{ needs.docker-build-image-api.result }}
-          commit_sha: ${{ github.sha }}
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: |
+          # Determine the status of the SonarQube analysis
+          STATUS="${{ needs.sonarqube.result }}"
+          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7) # Shorten the commit hash for display
+
+          # Set message details based on the status
+          if [ "$STATUS" = "success" ]; then
+            COLOR="00FF00" # Green for success
+            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR="FF0000" # Red for failure
+            MESSAGE="❌ FFB Webservices - Sonar Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+
+          # Define the SonarQube analysis URL
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
+
+          # Construct the payload for the Teams message
+          PAYLOAD=$(cat <<EOF
+          {
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "summary": "${MESSAGE}",
+            "themeColor": "${COLOR}",
+            "title": "${MESSAGE}",
+            "sections": [{
+              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)  \n**SonarQube Analysis**: [View Results](${SONAR_URL})",
+              "images": [{
+                "image": "${IMAGE_URL}"
+              }],
+              "markdown": true
+            }]
+          }
+          EOF
+          )
+
+          # Send the payload to the Teams webhook URL
+          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
+        continue-on-error: true # Allow the workflow to continue even if this step fails
