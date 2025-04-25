@@ -2,7 +2,7 @@ name: 'fanfictionsbookmarks'
 
 services:
   mysql:
-    image: mysql:latest 
+    image: mysql:latest
     container_name: mysql_ffb
     restart: always
     environment:
@@ -44,9 +44,7 @@ services:
       - ffb_network
 
   php:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: api_ffb:latest
     container_name: php_ffb
     environment:
       - DB_HOST=mysql_ffb
@@ -58,3 +56,4 @@ volumes:
 
 networks:
   ffb_network:
+    driver: bridge

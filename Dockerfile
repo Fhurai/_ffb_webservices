@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     iputils-ping \
+    nano \
     && docker-php-ext-install pdo pdo_mysql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -24,6 +25,8 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html
 
 RUN sed -i 's/\r$//' scripts/php-compose.sh
+
+RUN chmod +x -R scripts/
 
 RUN ls -l ./scripts && \
     ./scripts/php-compose.sh

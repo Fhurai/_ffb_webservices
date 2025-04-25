@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build --no-cache -t ffb-api:latest .
+docker build --no-cache -t api_ffb:latest .
