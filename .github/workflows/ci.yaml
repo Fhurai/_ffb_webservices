@@ -208,6 +208,10 @@ jobs:
           php-version: "8.3"
           tools: phpcs
 
+      # Ensure PHPCS is installed
+      - name: Install PHPCS
+        run: composer require --dev squizlabs/php_codesniffer
+
       - name: Run PHP CodeSniffer
         run: |
           # Run PHPCS and capture the exit code
