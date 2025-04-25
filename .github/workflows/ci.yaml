@@ -212,6 +212,9 @@ jobs:
       - name: Install PHPCS
         run: composer require --dev squizlabs/php_codesniffer
 
+      - name: correct with phpcbf
+        run: ./vendor/bin/phpcbf
+
       - name: Run PHP CodeSniffer
         run: |
           # Run PHPCS and capture the exit code
