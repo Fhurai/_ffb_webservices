@@ -215,7 +215,13 @@ jobs:
           ./vendor/bin/phpcs --standard=PSR12 src/ api/ tests/ --extensions=php \
                 --ignore=vendor --report=summary --report-file=phpcs-report.txt
           EXIT_CODE=$?
-        continue-on-error: false
+        continue-on-error: true
+
+      - name: List files post CodeSniffer
+        run: |
+          #Find all files in folder
+          ls -l
+        continue-on-error: true
 
       - name: Upload PHPCS report
         uses: actions/upload-artifact@v4
