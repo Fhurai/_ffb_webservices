@@ -211,9 +211,9 @@ jobs:
       - name: Run PHP CodeSniffer
         run: |
           # Run PHPCS and capture the exit code
-          phpcs --standard=PSR12 src/ api/ tests/ --extensions=php \
-                --ignore=vendor,tests/Fixtures,tests/Fixtures/Tests.php \
-                --report=summary --report-file=phpcs-report.txt
+          ./vendor/bin/phpcbf && \
+          ./vendor/bin/phpcs --standard=PSR12 src/ api/ tests/ --extensions=php \
+                --ignore=vendor --report=summary --report-file=phpcs-report.txt
           EXIT_CODE=$?
         continue-on-error: false
 
