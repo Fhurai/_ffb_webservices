@@ -216,7 +216,7 @@ jobs:
 
       # Step 4: Automatically fix code style issues using PHPCBF
       - name: correct with phpcbf
-        run: ./vendor/bin/phpcbf src/ api/ tests/
+        run: ./vendor/bin/phpcbf . --ignore=vendor
 
       # Step 5: Run PHPCS to check code style compliance and generate a report
       - name: Run PHP CodeSniffer
@@ -225,13 +225,6 @@ jobs:
           ./vendor/bin/phpcs --standard=PSR12 src/ api/ tests/ --extensions=php \
                 --ignore=vendor --report=summary --report-file=phpcs-report.txt
           EXIT_CODE=$?
-        continue-on-error: true
-
-      # Step 6: List files in the repository after running PHPCS
-      - name: List files post CodeSniffer
-        run: |
-          # Find all files in folder
-          ls -l
         continue-on-error: true
 
       # Step 7: Upload the PHPCS report as an artifact for review
