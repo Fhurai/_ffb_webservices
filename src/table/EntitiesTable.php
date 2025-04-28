@@ -240,6 +240,11 @@ abstract class EntitiesTable
      */
     public function post(Entity $entity, bool $doLog = false): Entity
     {
+        try {
+            $this->connection->beginTransaction();
+        } catch (PDOException $e) {
+            throw new FfbTableException("Failed to begin transaction: " . $e->getMessage());
+        }
         $cols = $this->beforePost($entity);
 
         $fields = array_keys($cols);
@@ -255,10 +260,17 @@ abstract class EntitiesTable
             Connection::dd([$sql, array_combine($place, array_values($cols))]);
         }
 
-        $this->executeQuery($sql, array_combine($place, array_values($cols)));
-        $entity->setId((int) $this->connection->lastInsertId());
+        try {
+            $this->executeQuery($sql, array_combine($place, array_values($cols)));
+            $entity->setId((int) $this->connection->lastInsertId());
 
-        $this->afterPost($entity);
+            $this->afterPost($entity);
+
+            $this->connection->commit();
+        } catch (FfbTableException $e) {
+            $this->connection->rollBack();
+            throw $e;
+        }
 
         return $entity;
     }
@@ -306,6 +318,42 @@ abstract class EntitiesTable
                     $characters
                 )
             );
+        } elseif ($entityClass === 'Fanfiction') {
+            /**
+             * @var Fanfiction $entity 
+             */
+            if (array_key_exists('fandoms', $cols)) {
+                $fandomsTable = new FandomsTable(Connection::getTypeConnect(), Connection::getUser());
+                $fandoms = $fandomsTable->findSearchedBy(['id' => $cols['fandoms']]);
+                $cols['fandoms'] = $fandoms;
+            }
+
+            if (array_key_exists('characters', $cols)) {
+                $charactersTable = new CharactersTable(Connection::getTypeConnect(), Connection::getUser());
+                $characters = $charactersTable->findSearchedBy(['id' => $cols['characters']]);
+                $cols['characters'] = $characters;
+            }
+
+            if (array_key_exists('relations', $cols)) {
+                $relationsTable = new RelationsTable(Connection::getTypeConnect(), Connection::getUser());
+                $relations = $relationsTable->findSearchedBy(['id' => $cols['relations']]);
+                $cols['relations'] = $relations;
+            }
+
+            if (array_key_exists('tags', $cols)) {
+                $tagsTable = new TagsTable(Connection::getTypeConnect(), Connection::getUser());
+                $tags = $tagsTable->findSearchedBy(['id' => $cols['tags']]);
+                $cols['tags'] = $tags;
+            }
+        } elseif ($entityClass === 'Series') {
+            /**
+             * @var Series $entity 
+             */
+            if (array_key_exists('fanfictions', $cols)) {
+                $fanfictionsTable = new FanfictionsTable(Connection::getTypeConnect(), Connection::getUser());
+                $fanfictions = $fanfictionsTable->findSearchedBy(['id' => $cols['fanfictions']]);
+                $cols['fanfictions'] = $fanfictions;
+            }
         }
         return $cols;
     }
@@ -315,8 +363,13 @@ abstract class EntitiesTable
      */
     public function put(Entity $entity, stdClass $data, bool $doLog = false): bool
     {
-        $arrayData = $this->beforePut($data, $entity::class);
+        try {
+            $this->connection->beginTransaction();
+        } catch (PDOException $e) {
+            throw new FfbTableException("Failed to begin transaction: " . $e->getMessage());
+        }
 
+        $arrayData = $this->beforePut($data, $entity::class);
 
         if (isset($arrayData['password'])) {
             /**
@@ -327,12 +380,41 @@ abstract class EntitiesTable
             } else {
                 unset($arrayData['currentPassword']);
             }
-        } elseif (isset($arrayData['characters'])) {
+        } 
+        if (isset($arrayData['characters'])) {
             /**
              * @var Relation $entity 
              */
             $entity->setCharacters($arrayData['characters']);
             unset($arrayData['characters']);
+        }
+        if (isset($arrayData['fandoms'])) {
+            /**
+             * @var Fanfiction $entity 
+             */
+            $entity->setFandoms($arrayData['fandoms']);
+            unset($arrayData['fandoms']);
+        } 
+        if (isset($arrayData['tags'])) {
+            /**
+             * @var Fanfiction $entity 
+             */
+            $entity->setTags($arrayData['tags']);
+            unset($arrayData['tags']);
+        } 
+        if (isset($arrayData['relations'])) {
+            /**
+             * @var Fanfiction $entity 
+             */
+            $entity->setRelations($arrayData['relations']);
+            unset($arrayData['relations']);
+        }
+        if (isset($arrayData['fanfictions'])) {
+            /**
+             * @var Series $entity 
+             */
+            $entity->setFanfictions($arrayData['fanfictions']);
+            unset($arrayData['fanfictions']);
         }
 
         $fields = array_keys($arrayData);
@@ -353,15 +435,22 @@ abstract class EntitiesTable
             Connection::dd([$sql, $params]);
         }
 
-        $result = $this->executeQuery($sql, $params);
+        $result = 0;
+        try {
+            $result = $this->executeQuery($sql, $params);
 
-        if ($result === 0) {
-            throw new FfbTableException("Update failed for the entity", 500);
-        } elseif ($result > 1) {
-            throw new FfbTableException("Update affected multiple rows", 500);
+            if ($result === 0) {
+                throw new FfbTableException("Update failed for the entity", 500);
+            } elseif ($result > 1) {
+                throw new FfbTableException("Update affected multiple rows", 500);
+            }
+
+            $this->afterPost($entity);
+            $this->connection->commit();
+        } catch (FfbTableException $e) {
+            $this->connection->rollBack();
+            throw $e;
         }
-
-        $this->afterPost($entity);
 
         return $result === 1;
     }

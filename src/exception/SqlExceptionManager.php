@@ -48,6 +48,11 @@ class SqlExceptionManager extends Exception
 
         preg_match("/constraint '([^']+)'/i", $this->errorMessage, $constraintMatches);
         $this->constraint = $constraintMatches[1] ?? null;
+
+        if ($this->constraint === null) {
+            preg_match("/REFERENCES `([^`]+)`/i", $this->errorMessage, $tableMatches);
+            $this->table = $tableMatches[1] ?? null;
+        }
     }
 
     protected function getTranslateConstraint(): string
@@ -109,7 +114,7 @@ class SqlExceptionManager extends Exception
             1142 => fn() => sprintf("Permission denied. User cannot create on table '%s'", $this->table),
             1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
             1451 => fn() => sprintf("Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.", $this->table),
-            1452 => fn() => sprintf("Cannot add or update a child row: a foreign key constraint fails on table '%s'.", $this->table),
+            1452 => fn() => sprintf("Cannot add or update a child row: missing identifier for `%s`.", $this->table),
             1062 => fn() => sprintf("Duplicate entry '%s' for key '%s'.", $this->field, $this->key),
             1044 => fn() => sprintf("Access denied for user '%s'.", $this->user),
             1045 => fn() => sprintf("Access denied for user '%s'.", $this->user),

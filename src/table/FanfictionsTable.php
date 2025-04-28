@@ -202,8 +202,6 @@ class FanfictionsTable extends EntitiesTable
             }
         }
     }
-
-
     private function updateAssociationTable(string $association, int $id, array $items): void
     {
         $this->updateAssociation(
