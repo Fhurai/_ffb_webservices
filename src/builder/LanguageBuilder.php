@@ -28,13 +28,16 @@ final class LanguageBuilder extends NamedEntityBuilder
     /**
      * Sets the abbreviation for the Language object.
      *
-     * @param  string $abbreviation The abbreviation of the language.
+     * @param  ?string $abbreviation The abbreviation of the language.
      * @return LanguageBuilder The current instance of LanguageBuilder.
      *                         This allows method chaining.
      */
-    public function withAbbreviation(string $abbreviation): LanguageBuilder
+    public function withAbbreviation(?string $abbreviation): LanguageBuilder
     {
         // Set the abbreviation of the language
+        if ($abbreviation === null) {
+            throw new FfbException("Abbreviation cannot be null.");
+        }
         $this->obj->setAbbreviation($abbreviation);
         return $this;
     }
