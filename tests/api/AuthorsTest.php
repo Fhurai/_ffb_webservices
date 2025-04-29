@@ -2,6 +2,8 @@
 
 use PHPUnit\Framework\Attributes\Test;
 
+require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
+
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
