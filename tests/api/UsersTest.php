@@ -39,10 +39,10 @@ class UsersTest extends ApiTestCase
     public function it_can_create_a_user(): void
     {
         $data = [
-            'username' => 'newuser', 
-            'password' => 'password123', 
-            'email' => 'newuser@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'newuser',
+            'password' => 'password123',
+            'email' => 'newuser@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -69,10 +69,10 @@ class UsersTest extends ApiTestCase
     public function it_can_get_a_user_by_id(): void
     {
         $user = $this->createUser([
-            'username' => 'testuser', 
-            'password' => 'password123', 
-            'email' => 'testuser@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'testuser',
+            'password' => 'password123',
+            'email' => 'testuser@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -95,10 +95,10 @@ class UsersTest extends ApiTestCase
     public function it_can_update_a_user(): void
     {
         $user = $this->createUser([
-            'username' => 'olduser', 
-            'password' => 'password123', 
-            'email' => 'olduser@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'olduser',
+            'password' => 'password123',
+            'email' => 'olduser@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -122,10 +122,10 @@ class UsersTest extends ApiTestCase
     public function it_can_soft_delete_a_user(): void
     {
         $user = $this->createUser([
-            'username' => 'softdeleteuser', 
-            'password' => 'password123', 
-            'email' => 'softdelete@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'softdeleteuser',
+            'password' => 'password123',
+            'email' => 'softdelete@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -149,10 +149,10 @@ class UsersTest extends ApiTestCase
     {
         // Create a new user for testing
         $user = $this->createUser([
-            'username' => 'softnotdeleteuser', 
-            'password' => 'password123', 
-            'email' => 'softnotdelete@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'softnotdeleteuser',
+            'password' => 'password123',
+            'email' => 'softnotdelete@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -186,10 +186,10 @@ class UsersTest extends ApiTestCase
     public function it_can_restore_a_soft_deleted_user(): void
     {
         $user = $this->createUser([
-            'username' => 'restoreuser', 
-            'password' => 'password123', 
-            'email' => 'restore@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'restoreuser',
+            'password' => 'password123',
+            'email' => 'restore@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -214,10 +214,10 @@ class UsersTest extends ApiTestCase
     {
         // Create a new user for testing
         $user = $this->createUser([
-            'username' => 'notrestoreuser', 
-            'password' => 'password123', 
-            'email' => 'notrestore@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'notrestoreuser',
+            'password' => 'password123',
+            'email' => 'notrestore@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -248,10 +248,10 @@ class UsersTest extends ApiTestCase
     public function it_can_remove_a_user_permanently(): void
     {
         $user = $this->createUser([
-            'username' => 'removeuser', 
-            'password' => 'password123', 
-            'email' => 'removeuser@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'removeuser',
+            'password' => 'password123',
+            'email' => 'removeuser@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -270,10 +270,10 @@ class UsersTest extends ApiTestCase
     {
         // Create a new user for testing
         $user = $this->createUser([
-            'username' => 'notremoveuser', 
-            'password' => 'password123', 
-            'email' => 'notremove@example.com', 
-            'birthday' => '1990-01-01 00:00:00', 
+            'username' => 'notremoveuser',
+            'password' => 'password123',
+            'email' => 'notremove@example.com',
+            'birthday' => '1990-01-01 00:00:00',
             'isAdmin' => false,
             'isLocal' => true,
             'isNsfw' => false,
@@ -307,6 +307,9 @@ class UsersTest extends ApiTestCase
     private function createUser(array $data): array
     {
         $response = $this->post('/user', $data);
+        if($response['code'] !== 201) {
+            throw new FfbEndpointException(json_decode($response['body'])->message);
+        }
         $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
         return json_decode($response['body'], true);
     }

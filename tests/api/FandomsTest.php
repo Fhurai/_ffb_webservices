@@ -306,6 +306,9 @@ class FandomsTest extends ApiTestCase
     private function createFandom(array $data): array
     {
         $response = $this->post('/fandom', $data);
+        if($response['code'] !== 201) {
+            throw new FfbEndpointException(json_decode($response['body'])->message);
+        }
         $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
         return json_decode($response['body'], true);
     }

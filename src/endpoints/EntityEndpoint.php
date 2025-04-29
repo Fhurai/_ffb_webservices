@@ -45,7 +45,7 @@ class EntityEndpoint extends DefaultEndpoint
                 LinksTable::class,
                 function ($table, $data) {
                     /**
-                     * @var Link $link 
+                     * @var Link $link
                      */
                     $link = null;
                     if (is_numeric($data)) {
@@ -78,36 +78,36 @@ class EntityEndpoint extends DefaultEndpoint
                 break;
             case 'LanguageBuilder':
                 /**
-                 * @var LanguageBuilder $builder 
+                 * @var LanguageBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withAbbreviation($data->abbreviation ?? null);
                 break;
             case 'TagBuilder':
                 /**
-                 * @var TagBuilder $builder 
+                 * @var TagBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withDescription($data->description ?? null)
-                    ->withTypeId($data->type_id);
+                    ->withTypeId($data->type_id ?? null);
                 break;
             case 'CharacterBuilder':
                 /**
-                 * @var CharacterBuilder $builder 
+                 * @var CharacterBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withFandomId($data->fandom_id ?? null);
                 break;
             case 'RelationBuilder':
                 /**
-                 * @var RelationBuilder $builder 
+                 * @var RelationBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withCharacters($data->characters ?? null);
                 break;
             case 'UserBuilder':
                 /**
-                 * @var UserBuilder $builder 
+                 * @var UserBuilder $builder
                  */
                 if(!property_exists($data, 'isAdmin')) {
                     throw new FfbException('isAdmin property is required for UserBuilder');
@@ -128,7 +128,7 @@ class EntityEndpoint extends DefaultEndpoint
                 break;
             case 'FanfictionBuilder':
                 /**
-                 * @var FanfictionBuilder $builder 
+                 * @var FanfictionBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withAuthorId($data->author_id ?? null)
@@ -144,7 +144,7 @@ class EntityEndpoint extends DefaultEndpoint
                 break;
             case 'SeriesBuilder':
                 /**
-                 * @var SeriesBuilder $builder 
+                 * @var SeriesBuilder $builder
                  */
                 $builder->withName($data->name ?? null)
                     ->withDescription($data->description ?? null)
