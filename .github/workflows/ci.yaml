@@ -131,7 +131,7 @@ jobs:
 
       # Step 12: Start PHP development server
       - name: Start built-in PHP server
-        run: php -S 127.0.0.1 -t . > /dev/null 2>&1 &
+        run: php -S 127.0.0.1:8080 -t . > /dev/null 2>&1 &
 
       # Step 13: Wait until PHP server is ready
       - name: Wait for PHP built-in server to be ready
@@ -144,7 +144,7 @@ jobs:
             echo "⏳ Waiting for PHP server..."
             sleep 1
           done
-          if ! curl --fail http://127.0.0.1 > /dev/null 2>&1; then
+          if ! curl --fail http://127.0.0.1:8080 > /dev/null 2>&1; then
             echo "❌ PHP server did not start in time"
             exit 1
           fi
