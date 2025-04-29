@@ -21,7 +21,7 @@ abstract class ApiTestCase extends TestCase
     public static function setUpBeforeClass(): void
     {
         $config = include __DIR__ . '/../../config/config.php';
-        self::$apiBaseUrl = $config['api']['base'];
+        self::$apiBaseUrl = 'http://' . $config['api']['base'];
         self::$token = self::authenticate('Fhurai', 'Sen5652466*', 'ffb_tests');
         self::$sharedClient = new ApiClient('Bearer', self::$token);
     }
@@ -41,7 +41,7 @@ abstract class ApiTestCase extends TestCase
 
         $client = new ApiClient();
         $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
-        $data = json_decode($response);
+        $data = json_decode($response['body']);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new FfbEndpointException('Failed to decode authentication response: ' . json_last_error_msg());
@@ -61,7 +61,7 @@ abstract class ApiTestCase extends TestCase
         }
 
         $response = self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint, 'GET');
-        $data = json_decode($response, false);
+        $data = json_decode($response['body'], false);
 
         if(is_a($data, 'stdClass')) {
             throw new FfbEndpointException($data->error);
@@ -75,22 +75,74 @@ abstract class ApiTestCase extends TestCase
         return $data;
     }
 
-    protected function postData(string $endpoint, stdClass $data): mixed
+    protected function get(string $endpoint, array $params = []): string
     {
-        $response = self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint, 'POST', $data);
-        $responseData = json_decode($response, false);
+        $paramsObject = new stdClass();
+        foreach ($params as $key => $value) {
+            $paramsObject->$key = $value;
+        }
+        
+        return self::$sharedClient->fetchData(self::$apiBaseUrl . $endpoint . '.php' . ( !empty($params) ? '?' . http_build_query($params) : ''));
+    }
 
-        if(is_a($responseData, 'stdClass') && property_exists($responseData, 'error')) {
-            throw new FfbEndpointException($responseData->error);
+    protected function post(string $endpoint, array $data): array
+    {
+        $dataObject = new stdClass();
+        foreach ($data as $key => $value) {
+            $dataObject->$key = $value;
         }
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new FfbEndpointException("Failed to decode JSON for {$endpoint}: " . json_last_error_msg());
+        return self::$sharedClient->fetchDataWithContent(self::$apiBaseUrl . $endpoint . '.php', 'POST', $dataObject);
+    }
+
+    protected function put(string $endpoint, array $data): array
+    {
+        $dataObject = new stdClass();
+        foreach ($data as $key => $value) {
+            $dataObject->$key = $value;
         }
 
-        $class = ucfirst(substr($endpoint, 1, -4));
 
-        return $class::jsonUnserialize($response);
-        ;
+        if(array_key_exists('id', $data)) {
+            $url = self::$apiBaseUrl . $endpoint . '.php?id=' . $data['id'];
+
+            return self::$sharedClient->fetchDataWithContent($url, 'PUT', $dataObject);
+        }
+
+        throw new FfbEndpointException('ID not found in data array for PUT request');
+    }
+
+    protected function patch(string $endpoint, array $data): array
+    {
+        $dataObject = new stdClass();
+        foreach ($data as $key => $value) {
+            $dataObject->$key = $value;
+        }
+
+
+        if(array_key_exists('id', $data)) {
+            $url = self::$apiBaseUrl . $endpoint . '.php?id=' . $data['id'];
+
+            return self::$sharedClient->fetchDataWithContent($url, 'PATCH', $dataObject);
+        }
+
+        throw new FfbEndpointException('ID not found in data array for PATCH request');
+    } 
+
+    protected function delete(string $endpoint, array $data): array
+    {
+        $dataObject = new stdClass();
+        foreach ($data as $key => $value) {
+            $dataObject->$key = $value;
+        }
+
+
+        if(array_key_exists('id', $data)) {
+            $url = self::$apiBaseUrl . $endpoint . '.php?id=' . $data['id'];
+
+            return self::$sharedClient->fetchDataWithContent($url, 'DELETE', $dataObject);
+        }
+
+        throw new FfbEndpointException('ID not found in data array for PATCH request');
     }
 }

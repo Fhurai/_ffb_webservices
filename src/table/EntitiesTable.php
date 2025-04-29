@@ -56,13 +56,15 @@ abstract class EntitiesTable
 
     /**
      * Fetch single entity by ID
+     * @param int $id
+     * @return bool|Entity
      */
-    public function get(int $id): Entity
+    public function get(int $id): mixed
     {
         $query = static::DEFAULT_SELECT_QUERY . " WHERE `id` = :id";
         $rows = $this->executeQuery($query, [':id' => $id]);
         if (empty($rows)) {
-            throw new FfbTableException(static::NO_DATA_EXCEPTION);
+            return false;
         }
         return $this->parseEntity($rows[0]);
     }
@@ -441,27 +443,81 @@ abstract class EntitiesTable
     }
 
     /**
-     * Soft-delete a record
+     * Soft delete or restore an entity by updating its `delete_date` field.
+     *
+     * @param int $id The ID of the entity to update.
+     * @param bool $deleted True to soft delete the entity, false to restore it.
+     * @return bool True if the update was successful, false otherwise.
+     * @throws FfbTableException If invalid input is provided or the operation fails.
+     */
+    public function patch(int $id, bool $deleted): bool
+    {
+        // Validate the `deleted` parameter to ensure it's a boolean.
+        if (!is_bool($deleted)) {
+            throw new FfbTableException("Invalid value for deleted: " . $deleted, 400);
+        }
+
+        // Validate the `id` parameter to ensure it's a positive integer.
+        if ($id <= 0) {
+            throw new FfbTableException("Invalid ID: " . $id, 400);
+        }
+
+        // Fetch the entity by its ID to check its current state.
+        $entity = $this->get($id);
+
+        // Check if the entity's current `delete_date` state matches the requested state.
+        if (!is_null($entity->getDeleteDate()) === $deleted) {
+            throw new FfbTableException(
+                "Entity is already " . ($deleted ? 'deleted' : 'restored') . "!",
+                400
+            );
+        }
+
+        // Prepare the SQL query to update the `delete_date` field.
+        $query = sprintf(
+            'UPDATE `%s` SET `delete_date` = :delete_date WHERE `id` = :id',
+            static::TABLE_NAME
+        );
+
+        // Set the `delete_date` value based on the `deleted` parameter.
+        $params = [
+            ':delete_date' => $deleted
+                ? (new DateTime('now', new DateTimeZone(self::TIMEZONE_DATETIME)))->format(self::DATE_FORMAT)
+                : null,
+            ':id' => $id,
+        ];
+
+        // Execute the query and return whether any rows were affected.
+        return $this->executeQuery($query, $params) > 0;
+    }
+
+    /**
+     * Hard delete a record
      */
     public function delete(int $id): bool
     {
-        return false;
-    }
+         // Validate the `id` parameter to ensure it's a positive integer.
+         if ($id <= 0) {
+            throw new FfbTableException("Invalid ID: " . $id, 400);
+        }
 
-    /**
-     * Restore a soft-deleted record
-     */
-    public function restore(int $id): bool
-    {
-        return false;
-    }
+        $entity = $this->get($id);
+        if($entity->getDeleteDate() === null) {
+            throw new FfbTableException("Entity is not deleted!", 400);
+        }
+        $query = sprintf(
+            'DELETE FROM `%s` WHERE `id` = :id',
+            static::TABLE_NAME
+        );
 
-    /**
-     * Hard remove a record
-     */
-    public function remove(int $id): bool
-    {
-        return false;
+        $params = [':id' => $id];
+        $result = $this->executeQuery($query, $params);
+        if ($result === 0) {
+            throw new FfbTableException("Delete failed for the entity", 500);
+        } elseif ($result > 1) {
+            throw new FfbTableException("Delete affected multiple rows", 500);
+        }
+        return $result === 1;
     }
 
     /**

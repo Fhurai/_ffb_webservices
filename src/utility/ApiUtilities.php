@@ -66,7 +66,7 @@ class ApiUtilities
     public static function httpBadRequest(string $message)
     {
         http_response_code(400);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -78,7 +78,7 @@ class ApiUtilities
     public static function httpUnauthorized(string $message)
     {
         http_response_code(401);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -90,7 +90,7 @@ class ApiUtilities
     public static function httpForbidden(string $message)
     {
         http_response_code(403);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -102,7 +102,7 @@ class ApiUtilities
     public static function httpNotFound(string $message)
     {
         http_response_code(404);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -114,7 +114,7 @@ class ApiUtilities
     public static function httpMethodNotAllowed(string $message)
     {
         http_response_code(405);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -126,7 +126,7 @@ class ApiUtilities
     public static function httpInternalServerError(string $message)
     {
         http_response_code(500);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 
@@ -138,7 +138,7 @@ class ApiUtilities
     public static function httpServiceUnavailable(string $message)
     {
         http_response_code(503);
-        echo json_encode(['error' => $message]);
+        echo json_encode(['message' => $message]);
         exit;
     }
 

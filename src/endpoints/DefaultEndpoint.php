@@ -8,6 +8,8 @@ abstract class DefaultEndpoint
 
     protected $builderClass;
 
+    protected $entityClass;
+
     public function __construct($tableClass)
     {
         $config = include __DIR__ . '/../../config/config.php';
@@ -24,6 +26,7 @@ abstract class DefaultEndpoint
         $this->tableClass = $tableClass;
         $length = $tableClass !== 'SeriesTable' ? -6 : -5;
         $this->builderClass = substr($tableClass, 0, $length) . 'Builder';
+        $this->entityClass = substr($tableClass, 0, $length) . '';
     }
 
     abstract public function get($request, ...$args);

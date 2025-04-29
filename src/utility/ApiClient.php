@@ -22,11 +22,12 @@ class ApiClient
 
         $ch = curl_init($url);
         curl_setopt_array(
-            $ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTPHEADER => $headers,
+            $ch,
+            [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTPHEADER => $headers,
             ]
         );
 
@@ -41,7 +42,7 @@ class ApiClient
         return $response;
     }
 
-    public function fetchDataWithContent(string $url, string $method, stdClass $data = new stdClass()): string
+    public function fetchDataWithContent(string $url, string $method, stdClass $data = new stdClass()): array
     {
         $ch = curl_init($url);
         $payload = json_encode($data);
@@ -57,13 +58,14 @@ class ApiClient
         }
 
         curl_setopt_array(
-            $ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_CUSTOMREQUEST => strtoupper($method),
-            CURLOPT_POSTFIELDS => $payload,
-            CURLOPT_HTTPHEADER => $headers,
+            $ch,
+            [
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_CUSTOMREQUEST => strtoupper($method),
+                CURLOPT_POSTFIELDS => $payload,
+                CURLOPT_HTTPHEADER => $headers,
             ]
         );
 
@@ -74,7 +76,12 @@ class ApiClient
             throw new FfbEndpointException('Curl error: ' . $error);
         }
 
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
-        return $response;
+
+        return [
+            'code' => $httpCode,
+            'body' => $response,
+        ];
     }
 }

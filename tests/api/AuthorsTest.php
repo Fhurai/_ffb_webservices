@@ -1,824 +1,244 @@
 <?php
 
-declare(strict_types=1);
+use PHPUnit\Framework\Attributes\Test;
 
-use PHPUnit\Framework\Attributes\DataProvider;
-
-require_once __DIR__ . '/../../tests/api/ApiTestCase.php';
-
-#[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\ApiClient::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\Connection::class)]
 class AuthorsTest extends ApiTestCase
 {
-    #[DataProvider('authorNamesProvider')]
-    public function testAuthorNames(string $expectedName, int $index): void
+    #[Test]
+    public function it_can_list_authors(): void
     {
-        $authors = $this->fetchData('/authors.php');
+        $response = $this->get('/authors');
 
-        $this->assertArrayHasKey($index, $authors, "Author at index {$index} is missing");
-        $this->assertEquals($expectedName, $authors[$index]->name, "Author name at index {$index} does not match");
+        $dataArray = json_decode($response);
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsArray($dataArray, 'Response should be an array');
+
+        foreach($dataArray as $item) {
+            $this->assertIsObject($item, 'Each item should be an object');
+            $this->assertObjectHasProperty('id', $item, 'Item should have an id property');
+            $this->assertNotEmpty($item->id, 'Item id should not be empty');
+            $this->assertObjectHasProperty('name', $item, 'Item should have a name property');
+            if($item->id !== 1) {
+                $this->assertNotEmpty($item->name, 'Item name should not be empty');
+            }
+            $this->assertObjectHasProperty('creation_date', $item, 'Item should have a creation_date property');
+            $this->assertNotEmpty($item->creation_date, 'Item creation_date should not be empty');
+            $this->assertObjectHasProperty('update_date', $item, 'Item should have an update_date property');
+            $this->assertNotEmpty($item->update_date, 'Item update_date should not be empty');
+            $this->assertObjectHasProperty('delete_date', $item, 'Item should have a delete_date property');
+        }
     }
 
-    public function testAuthorsCount(): void
+    #[Test]
+    public function it_can_filter_authors_by_name(): void
     {
-        $authors = $this->fetchData('/authors.php');
+        $response = $this->get('/authors', ['search_name' => 'Dar%']);
 
-        $this->assertCount(
-            count(self::authorNamesProvider()),
-            $authors,
-            'The number of authors returned does not match the expected count'
-        );
+        $dataArray = json_decode($response);
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsArray($dataArray, 'Response should be an array');
+
+        $this->assertCount(5, $dataArray, 'Response should contain exactly five authors');
+        $this->assertNotEquals(0, $dataArray[0]->id, 'First author id should not be zero');
+        $this->assertNotEmpty($dataArray[0]->name, 'First author name should not be empty');
+
+        foreach($dataArray as $item) {
+            $this->assertIsObject($item, 'Each item should be an object');
+            $this->assertEquals('Dar', substr($item->name, 0, 3), 'Author name should start with "Dar"');
+        }
     }
 
-    public static function authorNamesProvider(): array
+    #[Test]
+    public function it_can_create_an_author(): void
     {
-        return [
-            ["",0],
-            ["123irish",1],
-            ["1Sakura-Haruno1",2],
-            ["521-DREAM",3],
-            ["5th Legion",4],
-            ["6th_Street",5],
-            ["716799",6],
-            ["9876grpc",7],
-            ["A Love So Strong",8],
-            ["A. LaRosa",9],
-            ["Abigail Belle",10],
-            ["Abigail89",11],
-            ["AbyssalAriel",12],
-            ["AceAxolotl",13],
-            ["Aceofdiamonds",14],
-            ["AceStarChaser",15],
-            ["ACI100",16],
-            ["Aegishammer13",17],
-            ["Aeyliana",18],
-            ["Aionian_Lucario",19],
-            ["AioniosHigh",20],
-            ["Airam06",21],
-            ["Aisha12894",22],
-            ["Akamoroti",23],
-            ["Alex Moss",24],
-            ["Alexandri",25],
-            ["AlexMurray11235",26],
-            ["AliceYouWereHere",27],
-            ["Allyrion",28],
-            ["Alpha-The-Omega",29],
-            ["AlphaDelta1001",30],
-            ["Alucard45",31],
-            ["Alwaysendwithakiss",32],
-            ["Alyndra",33],
-            ["AManAdrift",34],
-            ["Amber Penglass",35],
-            ["Anamatics",36],
-            ["Andromeda",37],
-            ["Animekitty2",38],
-            ["AnimeLover4Life",39],
-            ["Anjie",40],
-            ["Ansvel_Ashe",41],
-            ["Antjex3",42],
-            ["Ap_aelfwine",43],
-            ["AppoApples",44],
-            ["ArcaneMadman",45],
-            ["Archangelgf",46],
-            ["ArchivalBerethNocta",47],
-            ["Archsage",48],
-            ["Argenterie",49],
-            ["Argo0",50],
-            ["Ariaojou",51],
-            ["Armageddon Angel",52],
-            ["Articcat621",53],
-            ["AshleyTrecartin",54],
-            ["Aspionage",55],
-            ["Asriah",56],
-            ["Assbele",57],
-            ["AStrangeHopefulDreamer",58],
-            ["AstroLatte",59],
-            ["Atrxx93",60],
-            ["Atsuzi Tano",61],
-            ["AuntieL",62],
-            ["Avain1991",63],
-            ["Averlovi",64],
-            ["AxleBoost",65],
-            ["Aya8",66],
-            ["Azaron",67],
-            ["BagofChips",68],
-            ["Balddog4",69],
-            ["BananasPyjamas",70],
-            ["Barelyeverthere",71],
-            ["Bcd_Xc",72],
-            ["BeaumontRulz",73],
-            ["BelgianPallasCat",74],
-            ["BEWD4133",75],
-            ["BHErotica",76],
-            ["BigE2955",77],
-            ["Birdwoman95",78],
-            ["Bl4ckC0bra",79],
-            ["Blackkitten23",80],
-            ["BlazingSoul500",81],
-            ["Blossom-M",82],
-            ["Blossomdreams",83],
-            ["BlueRaith",84],
-            ["Bluezz-17",85],
-            ["Blumbrr",86],
-            ["Bobmin356",87],
-            ["Bom_Bidi_Bom",88],
-            ["Bor902",89],
-            ["BountifullyBeautifullyBlessed",90],
-            ["Boxparade",91],
-            ["Brennus",92],
-            ["Brigrove",93],
-            ["Broomstick flyer",94],
-            ["Browser13",95],
-            ["Brujx (FallingForKonoha)",96],
-            ["BtrSwt",97],
-            ["Bucket of Holding",98],
-            ["Bunji the wolf",99],
-            ["BunnyHoodlum",100],
-            ["Butterfly Kisses 22",101],
-            ["CampDBow",102],
-            ["Captwaddledoo",103],
-            ["Catstaff",104],
-            ["Caydus",105],
-            ["CelesteMagnolia",106],
-            ["CesareBorgiaWrites",107],
-            ["Ch4",108],
-            ["ChampionOfKratos",109],
-            ["Charlennette",110],
-            ["Charleybradburies",111],
-            ["CharmHazel",112],
-            ["Chazpure",113],
-            ["Chris400ad",114],
-            ["Cj Spencer",115],
-            ["Clell65619",116],
-            ["Clio_jlh",117],
-            ["Cloud Zen",118],
-            ["Cold_Jolteon",119],
-            ["ColdLuigi",120],
-            ["Colormonk",121],
-            ["CompassOpposites",122],
-            ["Coolant",123],
-            ["Corwalch",124],
-            ["CountlessUntruths (KaliCephirot)",125],
-            ["Crazelegs12",126],
-            ["Crimson Darkness8",127],
-            ["Crimson Red Ghost",128],
-            ["Crimson_Coin",129],
-            ["Cszimm",130],
-            ["Cyan93",131],
-            ["CyberXIII",132],
-            ["Cythieus",133],
-            ["Daeneryske",134],
-            ["DandelionDreaming",135],
-            ["Dante 2K-25",136],
-            ["Darandus548",137],
-            ["DarkEagle69",138],
-            ["DarknessEnthroned",139],
-            ["Darkw01fie",140],
-            ["DarkWolfy",141],
-            ["Datbenik513",142],
-            ["Defectzero",143],
-            ["Deliver.me",144],
-            ["DemonOfTheFridge",145],
-            ["DepravedDevil",146],
-            ["DerLaCroix",147],
-            ["DevilHeart435",148],
-            ["DewitLater",149],
-            ["Dime",150],
-            ["DimiComi",151],
-            ["DingyLilith",152],
-            ["Dirtyuncle",153],
-            ["Disappearing Boy",154],
-            ["Discar",155],
-            ["Divagonzo",156],
-            ["Dizzy - in - the - izzy",157],
-            ["Dorothea_Greengrass",158],
-            ["Draco38",159],
-            ["Dragon_Falls",160],
-            ["Dragonbutts (Wayward_Dragon)",161],
-            ["Dragonfly117",162],
-            ["DragonKingDragneel25",163],
-            ["DredgenSoul",164],
-            ["Dreetje",165],
-            ["Dsw78",166],
-            ["Ducksonparade",167],
-            ["EcoBlade",168],
-            ["Egildidnothingwrong (Lavider)",169],
-            ["Elliehigginbottom",170],
-            ["Elven Sorcerer",171],
-            ["Elvenkendra",172],
-            ["Ely-Baby",173],
-            ["Emmagrant01",174],
-            ["Emp. Elesar II",175],
-            ["Enchantra35",176],
-            ["Ensou",177],
-            ["Epeefencer",178],
-            ["Epsilonics",179],
-            ["Eravalefantasy",180],
-            ["Eric Michael Kline",181],
-            ["Erokage37",182],
-            ["EroPrincess",183],
-            ["Eryth_sea",184],
-            ["Esama",185],
-            ["Essaysforbreakfast",186],
-            ["Eternal Yujin",187],
-            ["EuphoricMother",188],
-            ["EvilFuzzy9",189],
-            ["FamousNoOne",190],
-            ["FanFictionBard2",191],
-            ["FanfictionWriter101",192],
-            ["Fantasy1290",193],
-            ["Farbautidottir",194],
-            ["Fearful Porpentine",195],
-            ["Femmeslyth",196],
-            ["Fen_Assan",197],
-            ["Ferry5067",198],
-            ["FetishFiend69",199],
-            ["Feymist",200],
-            ["FieldDranzer",201],
-            ["Fight-sister-fight",202],
-            ["Fightfortherightsofhouseelves",203],
-            ["FiliaSnowe",204],
-            ["FlashingFire",205],
-            ["Flipflop_diva",206],
-            ["Floaw",207],
-            ["Flowerchild33",208],
-            ["Fluffybookfaerie",209],
-            ["Free Drinks",210],
-            ["Frenchhornbook",211],
-            ["Frozenbear09",212],
-            ["Froznx",213],
-            ["FuFapper",214],
-            ["Fyreheart",215],
-            ["GalacticSaz",216],
-            ["GayFlyFish",217],
-            ["Gayzed",218],
-            ["GenkaiFan",219],
-            ["Ghostoflinny",220],
-            ["GirlsAndTwirls",221],
-            ["GleeGeneration23",222],
-            ["Gogos14",223],
-            ["Golasgil Sindar",224],
-            ["Gouline971",225],
-            ["Grace Kay (Drummerchick7)",226],
-            ["Gracerene",227],
-            ["GraeFoxx",228],
-            ["GreenEvans",229],
-            ["GreenhouseThree",230],
-            ["Greentea815",231],
-            ["Gryffinsdoor",232],
-            ["Hallows Seeker",233],
-            ["Halteclare",234],
-            ["HannahFranziska",235],
-            ["Harby",236],
-            ["Harmonyromionedramione",237],
-            ["Harry50",238],
-            ["HarryGinnyTonks",239],
-            ["Hatebelow",240],
-            ["HeartsIgnite",241],
-            ["HeavenHeaven",242],
-            ["HermiHugs",243],
-            ["Heronsong",244],
-            ["HersByHisByHers",245],
-            ["Heyitsamorette (AmoretteHD)",246],
-            ["Hobgoblin",247],
-            ["Hollidayparty",248],
-            ["Hollywoodland",249],
-            ["Holyfant",250],
-            ["Hopefulled",251],
-            ["HPfanfictioner66",252],
-            ["Hpfangal",253],
-            ["Hphglover",254],
-            ["HPTrio",255],
-            ["IAltoSax",256],
-            ["Icicle",257],
-            ["Idleside",258],
-            ["Illjwamh",259],
-            ["Ilvidis",260],
-            ["ImAgInAtE_404",261],
-            ["Imperial-samaB",262],
-            ["Inell",263],
-            ["Insert Valid Author Name",264],
-            ["InsideA14YearOldGirl",265],
-            ["Insynchlikeharmony",266],
-            ["InTheMist032000",267],
-            ["Inwardtransience",268],
-            ["IridescentLugia",269],
-            ["Irislafey",270],
-            ["Itakethewords",271],
-            ["Its-Levioooosaa",272],
-            ["Iwant2baweasley (becboobear)",273],
-            ["IWillGoWithYouHarry",274],
-            ["James Spookie",275],
-            ["Jayf",276],
-            ["Jedi Buttercup",277],
-            ["Jellijeans",278],
-            ["Jesrod82",279],
-            ["JLvE",280],
-            ["Jm1681",281],
-            ["Johnprewett",282],
-            ["Jojor99",283],
-            ["Jumper712",284],
-            ["JusticeRings",285],
-            ["Justicetom",286],
-            ["Kabal42",287],
-            ["Kagami1228",288],
-            ["Kairauchiha",289],
-            ["Kanaelunmoon",290],
-            ["Kapiushon",291],
-            ["KarlMower2003 (Entertainmensch)",292],
-            ["Karmealion",293],
-            ["KatonRyu",294],
-            ["Kb0",295],
-            ["KeumbangGoela",296],
-            ["Kiben007",297],
-            ["Kingcrustnip",298],
-            ["KittykatOwO",299],
-            ["KiyoFaye",300],
-            ["KowaiCharacter",301],
-            ["Kratos1989",302],
-            ["KuriQuinn",303],
-            ["KwIl",304],
-            ["Kyuubi's Angel of Darkness",305],
-            ["Kyuubi16",306],
-            ["La baguette",307],
-            ["LadiePhoenix007",308],
-            ["Ladyfun",309],
-            ["Lagseeing1123",310],
-            ["Lamp23",311],
-            ["Lana.HP",312],
-            ["Lancecomwar",313],
-            ["LarkGarbedInPurpose",314],
-            ["LC Namikaze",315],
-            ["LeadVonE",316],
-            ["LegendDairy",317],
-            ["Leggo My Lego Harry Potter (Runic_Purple_Panda)",318],
-            ["LemonJuicer",319],
-            ["Leonidskies",320],
-            ["LeQuin",321],
-            ["Leviathan0999",322],
-            ["Lightofdaye",323],
-            ["Liiilyevans",324],
-            ["Likebunnies",325],
-            ["Lily_pearl (lilyandjoey)",326],
-            ["LilyevansJan30",327],
-            ["Lioninjawarloc",328],
-            ["LiquidPhazon",329],
-            ["Listen-to",330],
-            ["Litfreak89",331],
-            ["Little_Anxiety_Plant",332],
-            ["Littlepuff04",333],
-            ["LJlashlarue",334],
-            ["Lokifan",335],
-            ["LolaTheSa",336],
-            ["Lomonaaeren",337],
-            ["Looking4Amuro",338],
-            ["Lord Akiyama",339],
-            ["Lord Silvere",340],
-            ["Lord Winterman",341],
-            ["Lord_Reinhardt",342],
-            ["LordVishnu",343],
-            ["Lorixjake",344],
-            ["Lostonplatform934",345],
-            ["LotusRootsAndBambooShoots",346],
-            ["LovelyLori",347],
-            ["LRThunder",348],
-            ["LuanMao",349],
-            ["Luddleston",350],
-            ["Lumailia",351],
-            ["Luna_Weasley03",352],
-            ["Lunalustgood",353],
-            ["LunarMelodia",354],
-            ["Luthor",355],
-            ["Luvsanime02",356],
-            ["Luvscharlie",357],
-            ["Lyaksandra",358],
-            ["Lyre (Lyrecho)",359],
-            ["Lyrecho",360],
-            ["M'jai",361],
-            ["MachineryField",362],
-            ["Madrosewriting",363],
-            ["Magical_Worlds",364],
-            ["Maia.maiestas",365],
-            ["Major Mike Powell III",366],
-            ["Mantis137",367],
-            ["Maraudersaffair",368],
-            ["MargaretSexyMum",369],
-            ["Masseffect-TxS",370],
-            ["Masserect",371],
-            ["Massfreak",372],
-            ["Math'L",373],
-            ["MaybeMayba",374],
-            ["MayorHaggar",375],
-            ["McCrazy23",376],
-            ["Me413",377],
-            ["Medotcomslashme",378],
-            ["Megamatt09",379],
-            ["Melodramatic_Pretzel",380],
-            ["MelodySincerelySong",381],
-            ["Meme_Engine",382],
-            ["Mememan64",383],
-            ["MementoVive",384],
-            ["Messr. Wolfethorn",385],
-            ["Methos (Methos2523)",386],
-            ["Meyers1020",387],
-            ["Michelle Moonshine",388],
-            ["Midnight Rain19",389],
-            ["Midnight17516",390],
-            ["MimiAliceYorke",391],
-            ["Minmei",392],
-            ["Miscard",393],
-            ["MissMiccy",394],
-            ["Missmusicluver",395],
-            ["Mister_Phoenix",396],
-            ["Mitternachtwuten",397],
-            ["MobBob",398],
-            ["MongolKahn",399],
-            ["Moonglow21",400],
-            ["MPRose",401],
-            ["Mr Norrell",402],
-            ["MrFanFictionFreak",403],
-            ["Murkatroyd",404],
-            ["Musyc",405],
-            ["My Dear Professor McGonagall",406],
-            ["MyUsedRomance",407],
-            ["Nacholant",408],
-            ["Naratu",409],
-            ["NarHina",410],
-            ["Nashtalon",411],
-            ["Nataku's Wrath",412],
-            ["Nauro",413],
-            ["Nellark",414],
-            ["NHlemonfan",415],
-            ["NickieButterfly",416],
-            ["NidoranDuran",417],
-            ["Night_Being",418],
-            ["NightOwl27",419],
-            ["Nixrocket",420],
-            ["Noctus Noxia",421],
-            ["Nopeisok",422],
-            ["NotAWriter1981",423],
-            ["Nothinginreturn",424],
-            ["Nth111",425],
-            ["NutPea16",426],
-            ["Nynayve",427],
-            ["Oakel",428],
-            ["OathkeeperAlexis",429],
-            ["Oceanaway",430],
-            ["OfficeSloth",431],
-            ["Offsides",432],
-            ["OldAsHeck",433],
-            ["Olivieblake",434],
-            ["Onaliiim",435],
-            ["Onecelestialbeing",436],
-            ["Onyx Obsidian",437],
-            ["Opkisofg",438],
-            ["Optional_adventure",439],
-            ["Ordinarily Prudent",440],
-            ["OrionB15",441],
-            ["Orlandraopal29",442],
-            ["Orpheus_under_starlight",443],
-            ["Pachipower",444],
-            ["PackerDragon",445],
-            ["Paladeus",446],
-            ["PassnPlay",447],
-            ["Pebblysand",448],
-            ["Pelespen",449],
-            ["Perciatelli",450],
-            ["Petran",451],
-            ["PetrificusSomewhatus",452],
-            ["Pettybureaucrat",453],
-            ["PhantomKeeperQazs",454],
-            ["Phoenixgal",455],
-            ["Pocketcucco",456],
-            ["Pommedeplume",457],
-            ["Postmeat",458],
-            ["Potterfamilysecret1",459],
-            ["PotterFanSteve",460],
-            ["Potterlad81",461],
-            ["Pottermum",462],
-            ["PotterSexStories",463],
-            ["PotterSmut12",464],
-            ["Prefect Potter",465],
-            ["Previouslysane (altar_boy)",466],
-            ["Prime_Blue",467],
-            ["Primordial Vortex",468],
-            ["Prince_Asmo",469],
-            ["PringlesTheWriter",470],
-            ["ProfessorQuill",471],
-            ["Proton6",472],
-            ["Psychotic_cat17",473],
-            ["Punkguy82",474],
-            ["Pyrgus",475],
-            ["QuarantineClean",476],
-            ["QuidditchMom (eibbil_one)",477],
-            ["R_Collins",478],
-            ["R-dude",479],
-            ["RaeDMagdon",480],
-            ["Raelhorn",481],
-            ["RAfan2421",482],
-            ["Ragdoll",483],
-            ["RagingCassowary",484],
-            ["Rainbowwing251",485],
-            ["RandReborn",486],
-            ["Raptor4d4",487],
-            ["Raptorcloak",488],
-            ["Ratly",489],
-            ["RavioxHilda",490],
-            ["Reading-Bennie",491],
-            ["Red_jacobson",492],
-            ["Relena Mishima",493],
-            ["Revan's Mask",494],
-            ["Ricejames",495],
-            ["Rickey",496],
-            ["Rikuren",497],
-            ["RileyOR",498],
-            ["RinOfTheStars",499],
-            ["River of the sand",500],
-            ["Rivia",501],
-            ["RMWB",502],
-            ["Robertz",503],
-            ["Robin.exe",504],
-            ["RobSt",505],
-            ["RockIll",506],
-            ["Romaine",507],
-            ["Romantic Silence",508],
-            ["Ronslady23",509],
-            ["RosaCalavera",510],
-            ["Rosifly",511],
-            ["RosyPalms",512],
-            ["Rouven Singer",513],
-            ["Rozteka",514],
-            ["Rtnwriter",515],
-            ["RubySaintClaire",516],
-            ["Rusty Weasley",517],
-            ["RyoshiMorino",518],
-            ["RZZMG",519],
-            ["Sabersoul13",520],
-            ["Sakiku",521],
-            ["Saliient91",522],
-            ["Sapphiria",523],
-            ["Sarah1281",524],
-            ["Sarcastrow",525],
-            ["SarthakBikramPanta",526],
-            ["Satoorihoya",527],
-            ["SaveTheHero",528],
-            ["SazzyLJ",529],
-            ["Scarlet-Angel-Blonde-Devil",530],
-            ["Scarletladyy",531],
-            ["Scott the Wanderer",532],
-            ["ScribblingSteve",533],
-            ["Scruffy1",534],
-            ["SeaFeudJagger",535],
-            ["Secret_Artistry",536],
-            ["Seeker38",537],
-            ["SeerKing",538],
-            ["SehunsBae37",539],
-            ["Selphie800",540],
-            ["Senigata",541],
-            ["SeriouslySam",542],
-            ["SeriousScribble",543],
-            ["ShadowBlazer",544],
-            ["ShadowsEmbrace13",545],
-            ["Sharp Angles",546],
-            ["Shdwqueen",547],
-            ["Sheltie1987",548],
-            ["Shivam Jha",549],
-            ["Shredjeep777",550],
-            ["SilberFelx",551],
-            ["Silent Songbird",552],
-            ["Sillimaure",553],
-            ["Simon Flower",554],
-            ["Sinyk",555],
-            ["SirTeateiMoonlight",556],
-            ["Skanmp",557],
-            ["SkyHigh17",558],
-            ["SleepyMatt",559],
-            ["Slimah",560],
-            ["Slytherinenigma",561],
-            ["Smilelaughread",562],
-            ["Smutty_claus",563],
-            ["SmutWizard",564],
-            ["Snapers",565],
-            ["SniperJoe",566],
-            ["Snowblind12",567],
-            ["Sobakiin",568],
-            ["Solvdrage",569],
-            ["Somebody's Nightmare",570],
-            ["SomeDatsunGuy",571],
-            ["SometimeWriter1",572],
-            ["Songquake",573],
-            ["Spazzgirl",574],
-            ["Spectre-058",575],
-            ["Sprinter1988",576],
-            ["Sqwiz",577],
-            ["Star54kar",578],
-            ["Starcrossedsky",579],
-            ["Stardust_Warrior",580],
-            ["Stargon1",581],
-            ["Starsoarer",582],
-            ["Starstruck1986",583],
-            ["SteamedZing",584],
-            ["Steamy Naruto Writer",585],
-            ["Stick97",586],
-            ["Stormwolf3710",587],
-            ["StorytellerSpW",588],
-            ["StrayedPath",589],
-            ["StrongHermione",590],
-            ["Sugarbubbleslove",591],
-            ["Sulphur99",592],
-            ["Super-Pervert Toad Sage",593],
-            ["SuperMegaAwesomeNinja",594],
-            ["SuperNerd92",595],
-            ["Swat303810",596],
-            ["Swordlegion",597],
-            ["Sylvalum",598],
-            ["TableForThree_Archivist",599],
-            ["Takao1160",600],
-            ["Takearisk",601],
-            ["TakumaAngel",602],
-            ["TarnishedArmour",603],
-            ["Tayg",604],
-            ["Team Dragon Star",605],
-            ["Temporal Knight",606],
-            ["Tentendeservedbetter",607],
-            ["Th3Alchemist",608],
-            ["Thatsarockfact55",609],
-            ["ThatsRealMagic",610],
-            ["ThatWindingPath",611],
-            ["The Assassin's Pen",612],
-            ["The Dark Dragon Emperor",613],
-            ["The Four Crosses",614],
-            ["The Metal Sage",615],
-            ["The Phantom Keeper",616],
-            ["The Purple Critic",617],
-            ["The_Lost_Nyctophiliac",618],
-            ["The_Warrior_And_The_Scholar",619],
-            ["The-void of Emotions",620],
-            ["The-writer1988",621],
-            ["TheBeardedOne",622],
-            ["TheBlack'sResurgence",623],
-            ["Thedirtymind",624],
-            ["TheDogSage",625],
-            ["TheEndless7",626],
-            ["TheGreatHibiki",627],
-            ["TheHallowsInMe31",628],
-            ["TheInspector",629],
-            ["Thekatthatbarks",630],
-            ["TheKingofAnimeandManga",631],
-            ["TheLastZion",632],
-            ["Thelow",633],
-            ["Theoneandonly99",634],
-            ["Thesaiyanjedi",635],
-            ["Thessian Shadow",636],
-            ["Thewaywedo33",637],
-            ["Thundos",638],
-            ["TigerGirl14",639],
-            ["Timberwolfe",640],
-            ["TimeTraveller-1900",641],
-            ["TimeWillNowResume",642],
-            ["Timunderwood9",643],
-            ["Tinyraver",644],
-            ["Tismy 101",645],
-            ["Tjs_whatnot",646],
-            ["Tkepner",647],
-            ["TMark260",648],
-            ["Tomcat171",649],
-            ["Tommigoesfroging",650],
-            ["Tonlor",651],
-            ["Tony Samuels",652],
-            ["Torino10154",653],
-            ["TotoroX92",654],
-            ["Triage",655],
-            ["Trumai",656],
-            ["Tryslora",657],
-            ["Tsukarine",658],
-            ["TsukikoUchu",659],
-            ["TsyberRhaegal",660],
-            ["Tweety-src-clt9",661],
-            ["Twisted_Mind",662],
-            ["Ufohnoparty (why_didnt_i_get_any_soup)",663],
-            ["UltraPop",664],
-            ["Unicornball",665],
-            ["Uniquely Named",666],
-            ["UpTheHill",667],
-            ["ValorFennekin34",668],
-            ["VampbaitInfinity",669],
-            ["Vanderlustwords",670],
-            ["VanessaWolfie",671],
-            ["Vargras",672],
-            ["Vedros",673],
-            ["VelvetInferno",674],
-            ["VeryBerry96",675],
-            ["Viralmysteries",676],
-            ["Vogelimkafig120",677],
-            ["Vox ad umbram sum",678],
-            ["Voxangelus",679],
-            ["VulgarAssassin",680],
-            ["Walgesang",681],
-            ["Walkingonempty",682],
-            ["WandaXmaximoff",683],
-            ["Wandering Wonderer",684],
-            ["Wanker - King of Wank Peasants",685],
-            ["Warchief",686],
-            ["Wendings",687],
-            ["WerewolfWarriro",688],
-            ["WhereTheBerriesBloom",689],
-            ["Whip9063",690],
-            ["White Angel of Auralon",691],
-            ["WhiteWhiskey",692],
-            ["WhitherWinds",693],
-            ["WisteriaJD (JD2357)",694],
-            ["WokFriedIce",695],
-            ["Woldy",696],
-            ["WolfgangNH",697],
-            ["Wonderfuloz",698],
-            ["Worswor",699],
-            ["Writerfreakssss",700],
-            ["WriterRenEllis",701],
-            ["Writing Sins Not Tragedies",702],
-            ["Wyles77",703],
-            ["Wyrdeen",704],
-            ["XDreamlessx",705],
-            ["XSparklingRavenx",706],
-            ["YootisPoshil",707],
-            ["Yoshi 2.1",708],
-            ["Za_Waruldo_is_MINE",709],
-            ["ZAD_GX",710],
-            ["Zakhro",711],
-            ["Zaphi Nashii",712],
-            ["ZebJeb",713],
-            ["Zephyr_Fauchelevent",714],
-            ["ZilchNil",715],
-            ["Zoelily",716]
-        ];
+        $data = ['name' => 'Fhurai'];
+        $response = $this->post('/author', $data);
+        
+        $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
+        $dataArray = json_decode($response['body']);
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+
+        $this->assertObjectHasProperty('id', $dataArray, 'Response should have an id property');
+        $this->assertNotEmpty($dataArray->id, 'Response id should not be empty');
+        $this->assertObjectHasProperty('name', $dataArray, 'Response should have a name property');
+        $this->assertEquals($data['name'], $dataArray->name, 'Response name should match the input name');
+        $this->assertObjectHasProperty('creation_date', $dataArray, 'Response should have a creation_date property');
+        $this->assertNotEmpty($dataArray->creation_date, 'Response creation_date should not be empty');
+        $this->assertObjectHasProperty('update_date', $dataArray, 'Response should have an update_date property');
+        $this->assertNotEmpty($dataArray->update_date, 'Response update_date should not be empty');
+        $this->assertObjectHasProperty('delete_date', $dataArray, 'Response should have an delete_date property');
+        $this->assertEmpty($dataArray->delete_date, 'Response delete_date should be empty');
     }
 
-    #[DataProvider('authorsOptionalNamesProvider')]
-    public function testAuthorsOptionalNames(string $expectedName, int $index): void
+    #[Test]
+    public function it_can_get_an_author_by_id(): void
     {
-        $authors = $this->fetchData('/authors.php?search_id=%3E30&search_name=A%25&order_id=DESC&limit_limit=20&limit_offset=0');
+        $author = $this->createAuthor(['name' => 'Test']);
+        $response = $this->get('/author', ['id' => $author['id']]);
+        
+        $dataArray = json_decode($response);
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
 
-        $this->assertArrayHasKey($index, $authors, "Author at index {$index} is missing");
-        $this->assertEquals($expectedName, $authors[$index]->name, "Author name at index {$index} does not match");
+        $this->assertObjectHasProperty('id', $dataArray, 'Response should have an id property');
+        $this->assertEquals($author['id'], $dataArray->id, 'Response id should match the created author id');
+        $this->assertObjectHasProperty('name', $dataArray, 'Response should have a name property');
+        $this->assertEquals($author['name'], $dataArray->name, 'Response name should match the created author name');
     }
 
-    public function testAuthorsOptionalCount(): void
+    #[Test]
+    public function it_can_update_an_author(): void
     {
-        $authors = $this->fetchData('/authors.php?search_id=%3E30&search_name=A%25&order_id=DESC&limit_limit=20&limit_offset=0');
+        $author = $this->createAuthor(['name' => 'Old Name']);
+        $updated = ['id' => $author['id'], 'name' => 'NX'];
 
-        $this->assertCount(
-            count(self::authorsOptionalNamesProvider()),
-            $authors,
-            'The number of authors returned does not match the expected count'
-        );
+        $response = $this->put('/author', $updated);
+        $this->assertEquals(200, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author updated', $dataArray->message, 'Response message should indicate success');
     }
 
-    public static function authorsOptionalNamesProvider(): array
+    #[Test]
+    public function it_can_soft_delete_an_author(): void
     {
-        return [
-            ["Azaron",0],
-            ["Aya8",1],
-            ["AxleBoost",2],
-            ["Averlovi",3],
-            ["Avain1991",4],
-            ["AuntieL",5],
-            ["Atsuzi Tano",6],
-            ["Atrxx93",7],
-            ["AstroLatte",8],
-            ["AStrangeHopefulDreamer",9],
-            ["Assbele",10],
-            ["Asriah",11],
-            ["Aspionage",12],
-            ["AshleyTrecartin",13],
-            ["Articcat621",14],
-            ["Armageddon Angel",15],
-            ["Ariaojou",16],
-            ["Argo0",17],
-            ["Argenterie",18],
-            ["Archsage",19]
-        ];
+        $author = $this->createAuthor(['name' => 'SoftDelete']);
+
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => true]);
+        $this->assertEquals(200, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author deleted', $dataArray->message, 'Response message should indicate success');
+
+        // Optional: Fetch and check deleted flag
+        $getResponse = $this->get('/author', ['id' => $author['id']]);
+        $getDataArray = json_decode($getResponse);
+        $this->assertNotEmpty($getDataArray, 'Response should not be empty');
+        $this->assertIsObject($getDataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('delete_date', $getDataArray, 'Response should have a delete_date property');
+        $this->assertNotEmpty($getDataArray->delete_date, 'Response delete_date should not be empty');
     }
 
-    #[DataProvider('authorsCreationProvider')]
-    public function testCreateAuthor($expectedName, $index): void
+    #[Test]
+    public function it_cannot_soft_delete_a_deleted_author(): void
     {
-        $authorData = new stdClass();
-        $authorData->name = $expectedName;
+        $author = $this->createAuthor(['name' => 'SoftNoDelete']);
 
-        $entity = $this->postData('/author.php', $authorData);
-        $this->assertInstanceOf(Author::class, $entity, 'The entity is not an instance of Author class');
-        $this->assertNotEquals(0, $entity->getId(), 'The author ID does not match the expected value');
-        $this->assertNotEquals('', $entity->getName(), 'The author name does not match the expected value');
-        $this->assertEquals($authorData->name, $entity->getName(), 'The author name does not match the expected value');
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => true]);
+        $this->assertEquals(200, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author deleted', $dataArray->message, 'Response message should indicate success');
+
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => true]);
+        $this->assertEquals(500, $response['code'], 'Response status should be 500 Internal Server Error');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Server error: Entity is already deleted!', $dataArray->message, 'Response message should indicate success');
     }
 
-    public static function authorsCreationProvider(): array
+    #[Test]
+    public function it_can_restore_a_soft_deleted_author(): void
     {
-        return [
-            ['Fhurai', 0],
-            ['Raïlath', 1],
-            ['Tyjann', 2]
-        ];
+        $author = $this->createAuthor(['name' => 'Restore']);
+
+        $this->patch('/author', ['id' => $author['id'], 'deleted' => true]);
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => false]);
+        $this->assertEquals(200, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author restored', $dataArray->message, 'Response message should indicate success');
+
+        // Optional: Fetch and check deleted flag
+        $getResponse = $this->get('/author', ['id' => $author['id']]);
+        $getDataArray = json_decode($getResponse);
+        $this->assertNotEmpty($getDataArray, 'Response should not be empty');
+        $this->assertIsObject($getDataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('delete_date', $getDataArray, 'Response should have a delete_date property');
+        $this->assertEmpty($getDataArray->delete_date, 'Response delete_date should not be empty');
+    }
+
+    #[Test]
+    public function it_cannot_restore_a_non_deleted_author(): void
+    {
+        $author = $this->createAuthor(['name' => 'NotRestored']);
+
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => false]);
+        $this->assertEquals(500, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Server error: Entity is already restored!', $dataArray->message, 'Response message should indicate success');
+    }
+
+    #[Test]
+    public function it_can_remove_an_author_permanently(): void
+    {
+        $author = $this->createAuthor(['name' => 'ToRemove']);
+
+        $response = $this->patch('/author', ['id' => $author['id'], 'deleted' => true]);
+        $this->assertEquals(200, $response['code'], 'Response status should be 200 OK');
+        $dataArray = json_decode($response['body']);
+        
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author deleted', $dataArray->message, 'Response message should indicate success');
+
+        $response = $this->delete('/author', ['id' => $author['id']]);
+        $this->assertEquals(204, $response['code'], 'Response status should be 204 OK');
+        $dataArray = json_decode($response['body']);
+
+        $this->assertEmpty($dataArray, 'Response should be empty');
+        
+        $response = $this->get('/author', ['id' => $author['id']]);
+        $dataArray = json_decode($response);
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Author not found', $dataArray->message, 'Response message should indicate success');
+    }
+
+    #[Test]
+    public function it_cannot_remove_a_not_deleted_author_permanently(): void
+    {
+        $author = $this->createAuthor(['name' => 'ToRemove']);
+
+        $response = $this->delete('/author', ['id' => $author['id']]);
+        $this->assertEquals(500, $response['code'], 'Response status should be 204 OK');
+        $dataArray = json_decode($response['body']);
+
+        $this->assertNotEmpty($dataArray, 'Response should not be empty');
+        $this->assertIsObject($dataArray, 'Response should be an object');
+        $this->assertObjectHasProperty('message', $dataArray, 'Response should have a message property');
+        $this->assertEquals('Server error: Entity is not deleted!', $dataArray->message, 'Response message should indicate success');
+    }
+
+    private function createAuthor(array $data): array
+    {
+        $response = $this->post('/author', $data);
+        $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
+        return json_decode($response['body'], true);
     }
 }
