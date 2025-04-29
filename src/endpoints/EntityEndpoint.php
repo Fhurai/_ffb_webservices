@@ -109,6 +109,15 @@ class EntityEndpoint extends DefaultEndpoint
                 /**
                  * @var UserBuilder $builder 
                  */
+                if(!property_exists($data, 'isAdmin')) {
+                    throw new FfbException('isAdmin property is required for UserBuilder');
+                }
+                if(!property_exists($data, 'isLocal')) {
+                    throw new FfbException('isLocal property is required for UserBuilder');
+                }
+                if(!property_exists($data, 'isNsfw')) {
+                    throw new FfbException('isNsfw property is required for UserBuilder');
+                }
                 $builder->withUsername($data->username ?? null)
                     ->withPassword($data->password ?? null)
                     ->withEmail($data->email ?? null)

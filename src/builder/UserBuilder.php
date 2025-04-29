@@ -28,11 +28,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the username of the User.
      *
-     * @param  string $username The username to set.
+     * @param  ?string $username The username to set.
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withUsername(string $username): UserBuilder
+    public function withUsername(?string $username): UserBuilder
     {
+        if($username === null) {
+            throw new FfbException("Username cannot be null.");
+        }
         // Set the username of the User object
         $this->obj->setUsername($username);
         return $this;
@@ -41,11 +44,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the password of the User.
      *
-     * @param  string $password The password to set.
+     * @param  ?string $password The password to set.
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withPassword(string $password): UserBuilder
+    public function withPassword(?string $password): UserBuilder
     {
+        if($password === null) {
+            throw new FfbException("Password cannot be null.");
+        }
         // Set the password of the User object
         $this->obj->setPassword($password);
         return $this;
@@ -54,11 +60,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the email of the User.
      *
-     * @param  string $email The email to set.
+     * @param  ?string $email The email to set.
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withEmail(string $email): UserBuilder
+    public function withEmail(?string $email): UserBuilder
     {
+        if($email === null) {
+            throw new FfbException("Email cannot be null.");
+        }
         // Set the email of the User object
         $this->obj->setEmail($email);
         return $this;
@@ -67,11 +76,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the admin status of the User.
      *
-     * @param  bool $isAdmin The admin status to set (true for admin, false otherwise).
+     * @param  ?bool $isAdmin The admin status to set (true for admin, false otherwise).
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withIsAdmin(bool $isAdmin): UserBuilder
+    public function withIsAdmin(?bool $isAdmin): UserBuilder
     {
+        if($isAdmin === null) {
+            throw new FfbException("isAdmin cannot be null.");
+        }
         // Set the admin status of the User object
         $this->obj->setIsAdmin($isAdmin);
         return $this;
@@ -80,11 +92,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the local status of the User.
      *
-     * @param  bool $isLocal The local status to set (true for local, false otherwise).
+     * @param  ?bool $isLocal The local status to set (true for local, false otherwise).
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withIsLocal(bool $isLocal): UserBuilder
+    public function withIsLocal(?bool $isLocal): UserBuilder
     {
+        if($isLocal === null) {
+            throw new FfbException("isLocal cannot be null.");
+        }
         // Set the local status of the User object
         $this->obj->setIsLocal($isLocal);
         return $this;
@@ -93,11 +108,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the birthday of the User.
      *
-     * @param  DateTime|string $birthday The birthday to set. Can be a DateTime object or a string in "Y-m-d H:i:s" format.
+     * @param  DateTime|string|null $birthday The birthday to set. Can be a DateTime object or a string in "Y-m-d H:i:s" format.
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withBirthday(DateTime|string $birthday): UserBuilder
+    public function withBirthday(DateTime|string|null $birthday): UserBuilder
     {
+        if($birthday === null && !($birthday instanceof DateTime) && !is_string($birthday)) {
+            throw new FfbException("Birthday cannot be null.");
+        }
         // Check if the birthday is a DateTime object
         if ($birthday instanceof DateTime) {
             $this->obj->setBirthday($birthday);
@@ -113,11 +131,14 @@ final class UserBuilder extends EntityBuilder
     /**
      * Sets the NSFW (Not Safe For Work) status of the User.
      *
-     * @param  bool $isNsfw The NSFW status to set (true for NSFW, false otherwise).
+     * @param  ?bool $isNsfw The NSFW status to set (true for NSFW, false otherwise).
      * @return UserBuilder The current instance of UserBuilder for method chaining.
      */
-    public function withIsNsfw(bool $isNsfw): UserBuilder
+    public function withIsNsfw(?bool $isNsfw): UserBuilder
     {
+        if($isNsfw === null) {
+            throw new FfbException("isNsfw cannot be null.");
+        }
         // Set the NSFW status of the User object
         $this->obj->setIsNsfw($isNsfw);
         return $this;
