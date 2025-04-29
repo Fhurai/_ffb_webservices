@@ -193,49 +193,7 @@ jobs:
         if: always()
         run: 'echo "This job status is ${{ job.status }}"'
 
-  # 3. PHP Code Style Check
-  phpcs:
-    name: PHP Code Style Check
-    runs-on: ubuntu-latest
-    needs: sonarqube
-    steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Step 2: Setup PHP environment with required tools
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.3"
-          tools: phpcs
-
-      # Step 3: Install PHP CodeSniffer (PHPCS) for code style checks
-      - name: Install PHPCS
-        run: composer require --dev squizlabs/php_codesniffer
-
-      # Step 4: Automatically fix code style issues using PHPCBF
-      - name: correct with phpcbf
-        run: ./vendor/bin/phpcbf . --ignore=vendor
-
-      # Step 5: Run PHPCS to check code style compliance and generate a report
-      - name: Run PHP CodeSniffer
-        run: |
-          # Run PHPCS and capture the exit code
-          ./vendor/bin/phpcs --standard=PSR12 src/ api/ tests/ --extensions=php \
-                --ignore=vendor --report=summary --report-file=phpcs-report.txt
-          EXIT_CODE=$?
-        continue-on-error: true
-
-      # Step 7: Upload the PHPCS report as an artifact for review
-      - name: Upload PHPCS report
-        uses: actions/upload-artifact@v4
-        with:
-          name: phpcs-report
-          path: phpcs-report.txt
-        continue-on-error: true
-
-  # 4. Docker Image Build for API
+  # 3. Docker Image Build for API
   docker-build-image-api:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
@@ -270,7 +228,7 @@ jobs:
         if: always()
         run: echo "This job status is ${{ job.status }}"
 
-  # 5. Discord Notification
+  # 4. Discord Notification
   discord-notification-docker:
     name: Discord Notification - Docker Image Build
     runs-on: ubuntu-latest
@@ -309,7 +267,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-  # 6. Teams Notification
+  # 5. Teams Notification
   teams-notification-docker:
     name: Teams Notification - Docker Image Build
     runs-on: ubuntu-latest
