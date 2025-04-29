@@ -36,6 +36,6 @@ return [
     ],
     "api" => [
         // Variable d'environnement pour le host de l'API
-        "base" => getenv('DB_HOST') . ':8080/api' ?: "127.0.0.1:8080/api",
+        "base" => getenv('DB_HOST') . '/api' ?: "127.0.0.1/api",
     ]
 ];
