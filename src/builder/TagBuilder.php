@@ -28,11 +28,14 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the description for the Tag object.
      *
-     * @param  string $description The description of the tag.
+     * @param  ?string $description The description of the tag.
      * @return TagBuilder The current instance of TagBuilder for method chaining.
      */
-    public function withDescription(string $description): TagBuilder
+    public function withDescription(?string $description): TagBuilder
     {
+        if($description === null) {
+            throw new FfbException("Description cannot be null.");
+        }
         // Set the description of the tag
         $this->obj->setDescription($description);
         return $this;
@@ -41,12 +44,16 @@ final class TagBuilder extends NamedEntityBuilder
     /**
      * Sets the type ID for the Tag object.
      *
-     * @param  int|TagType $arg The type ID as an integer or a TagType object.
+     * @param  int|TagType|null $arg The type ID as an integer or a TagType object.
      *                          If a TagType object is provided, its ID will be used.
      * @return TagBuilder The current instance of TagBuilder for method chaining.
      */
-    public function withTypeId(int|TagType $arg): TagBuilder
+    public function withTypeId(int|TagType|null $arg): TagBuilder
     {
+
+        if ($arg === null) {
+            throw new FfbException("Type ID cannot be null.");
+        }
         // Check if the argument is an integer
         if (is_int($arg)) {
             // Set the type ID

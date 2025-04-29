@@ -135,7 +135,7 @@ class TagsTest extends ApiTestCase
     public function it_cannot_soft_delete_a_deleted_tag(): void
     {
         // Create a new tag for testing
-        $tag = $this->createTag(['name' => 'SoftNoDelete', 'abbreviation' => 'ND']);
+        $tag = $this->createTag(['name' => 'SoftNoDelete', 'description' => 'ND', 'type_id' => 1]);
 
         // Send a PATCH request to soft delete the tag
         $this->patch('/tag', ['id' => $tag['id'], 'deleted' => true]);
@@ -164,7 +164,7 @@ class TagsTest extends ApiTestCase
     #[Test]
     public function it_can_restore_a_soft_deleted_tag(): void
     {
-        $tag = $this->createTag(['name' => 'Restore', 'abbreviation' => 'RE']);
+        $tag = $this->createTag(['name' => 'Restore', 'description' => 'RE', 'type_id' => 1]);
 
         $this->patch('/tag', ['id' => $tag['id'], 'deleted' => true]);
         $response = $this->patch('/tag', ['id' => $tag['id'], 'deleted' => false]);
@@ -184,7 +184,7 @@ class TagsTest extends ApiTestCase
     public function it_cannot_restore_a_non_deleted_tag(): void
     {
         // Create a new tag for testing
-        $tag = $this->createTag(['name' => 'NotRestored', 'abbreviation' => 'NR']);
+        $tag = $this->createTag(['name' => 'NotRestored', 'description' => 'NR', 'type_id' => 1]);
 
         // Attempt to restore the tag without deleting it first
         $response = $this->patch('/tag', ['id' => $tag['id'], 'deleted' => false]);
@@ -210,7 +210,7 @@ class TagsTest extends ApiTestCase
     #[Test]
     public function it_can_remove_a_tag_permanently(): void
     {
-        $tag = $this->createTag(['name' => 'ToRemove', 'abbreviation' => 'TR']);
+        $tag = $this->createTag(['name' => 'ToRemove', 'description' => 'TR', 'type_id' => 1]);
 
         $this->patch('/tag', ['id' => $tag['id'], 'deleted' => true]);
         $response = $this->delete('/tag', ['id' => $tag['id']]);
@@ -224,7 +224,7 @@ class TagsTest extends ApiTestCase
     public function it_cannot_remove_a_not_deleted_tag_permanently(): void
     {
         // Create a new tag for testing
-        $tag = $this->createTag(['name' => 'ToRemove', 'abbreviation' => 'NP']);
+        $tag = $this->createTag(['name' => 'ToRemove', 'description' => 'NP', 'type_id' => 1]);
 
         // Attempt to permanently delete the tag without soft deleting it first
         $response = $this->delete('/tag', ['id' => $tag['id']]);
@@ -254,6 +254,9 @@ class TagsTest extends ApiTestCase
     private function createTag(array $data): array
     {
         $response = $this->post('/tag', $data);
+        if($response['code'] !== 201) {
+            throw new FfbEndpointException(json_decode($response['body'])->message);
+        }
         $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
         return json_decode($response['body'], true);
     }
