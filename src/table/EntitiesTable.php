@@ -371,50 +371,35 @@ abstract class EntitiesTable
 
         $arrayData = $this->beforePut($data, $entity::class);
 
+        // Special handling for password update
         if (isset($arrayData['password'])) {
-            /**
-             * @var User $entity 
-             */
+            if (!($entity instanceof User)) {
+                throw new FfbException('Entity must be a User to verify password.');
+            }
             if (!password_verify($data->currentPassword, $entity->getPassword())) {
                 throw new FfbTableException("Current password is incorrect!", 400);
-            } else {
-                unset($arrayData['currentPassword']);
             }
-        } 
-        if (isset($arrayData['characters'])) {
-            /**
-             * @var Relation $entity 
-             */
-            $entity->setCharacters($arrayData['characters']);
-            unset($arrayData['characters']);
+            unset($arrayData['currentPassword']);
         }
-        if (isset($arrayData['fandoms'])) {
-            /**
-             * @var Fanfiction $entity 
-             */
-            $entity->setFandoms($arrayData['fandoms']);
-            unset($arrayData['fandoms']);
-        } 
-        if (isset($arrayData['tags'])) {
-            /**
-             * @var Fanfiction $entity 
-             */
-            $entity->setTags($arrayData['tags']);
-            unset($arrayData['tags']);
-        } 
-        if (isset($arrayData['relations'])) {
-            /**
-             * @var Fanfiction $entity 
-             */
-            $entity->setRelations($arrayData['relations']);
-            unset($arrayData['relations']);
-        }
-        if (isset($arrayData['fanfictions'])) {
-            /**
-             * @var Series $entity 
-             */
-            $entity->setFanfictions($arrayData['fanfictions']);
-            unset($arrayData['fanfictions']);
+
+        // Mapping of special fields to setter methods
+        $specialFields = [
+            'characters' => ['method' => 'setCharacters', 'class' => Relation::class],
+            'fandoms' => ['method' => 'setFandoms', 'class' => Fanfiction::class],
+            'tags' => ['method' => 'setTags', 'class' => Fanfiction::class],
+            'relations' => ['method' => 'setRelations', 'class' => Fanfiction::class],
+            'fanfictions' => ['method' => 'setFanfictions', 'class' => Series::class],
+        ];
+
+        // Process special fields dynamically
+        foreach ($specialFields as $field => $options) {
+            if (isset($arrayData[$field])) {
+                if (!($entity instanceof $options['class'])) {
+                    throw new FfbException(sprintf('Entity must be an instance of %s to set %s.', $options['class'], $field));
+                }
+                $entity->{$options['method']}($arrayData[$field]);
+                unset($arrayData[$field]);
+            }
         }
 
         $fields = array_keys($arrayData);

@@ -1,13 +1,13 @@
 type: collection.insomnia.rest/5.0
 name: Ffb local
 meta:
-  id: wrk_8f0603dda57d4df2b59dcc932e0257b4
-  created: 1744734421024
-  modified: 1744927310288
+  id: wrk_252e6ba7ac9f408cabcfb924302e8d8b
+  created: 1745837643340
+  modified: 1745837643340
 collection:
   - name: Parameters / Auth
     meta:
-      id: fld_eac6796a95fa4434975454306d0e4afe
+      id: fld_4eca924e680c4ae38495ac615cd0ccae
       created: 1744304275259
       modified: 1744398878921
       sortKey: -1744366401553.25
@@ -15,7 +15,7 @@ collection:
       - url: "{{ _.pathAPI }}/ratings.php"
         name: Ratings
         meta:
-          id: req_7300115b4e0348cabd774f2f61ffaac9
+          id: req_4ad950c54df74a53a1305bf57858eed7
           created: 1744306072208
           modified: 1744411524476
           isPrivate: false
@@ -39,7 +39,7 @@ collection:
       - url: "{{ _.pathAPI }}/scores.php"
         name: Scores
         meta:
-          id: req_d4c82fb769d7480cb2694ef919e221f6
+          id: req_5ac089392b4c4aada0ffa08f5363ac28
           created: 1744306088103
           modified: 1744411529519
           isPrivate: false
@@ -63,7 +63,7 @@ collection:
       - url: "{{ _.pathAPI }}/tagtypes.php"
         name: TagTypes
         meta:
-          id: req_1d1086427af6437b929834bb381e2ea6
+          id: req_8248470ec5c640ba81635f3985eb1876
           created: 1744306161014
           modified: 1744411535305
           isPrivate: false
@@ -87,7 +87,7 @@ collection:
       - url: "{{ _.pathAPI }}/actions.php"
         name: Actions
         meta:
-          id: req_d472ccb6ea3348dca0402df9da15bd7a
+          id: req_39dc700fc1e2403896dca88e076fa4e3
           created: 1744388428950
           modified: 1744411516328
           isPrivate: false
@@ -111,14 +111,14 @@ collection:
           rebuildPath: true
   - name: Stats / No Auth
     meta:
-      id: fld_318cd0160bd44130897eda93d97b94cf
+      id: fld_caee98ef644f4aee9646985641eeb133
       created: 1744312020293
       modified: 1744398881079
       sortKey: -1744375465096.625
     children:
       - name: entities
         meta:
-          id: fld_bf40d22b2d3b4d3d8ebd80f99cac2be8
+          id: fld_f0d3eccec52b4f50b4464437b39b0876
           created: 1744399023386
           modified: 1744399030789
           sortKey: -1744399023586
@@ -126,7 +126,7 @@ collection:
           - url: "{{ _.pathStats }}/entities"
             name: entities
             meta:
-              id: req_9b3a5d485333423398ab0d2a2983aca1
+              id: req_9532fdd8c1954cccb0a7dcc3b1b5f0eb
               created: 1744312294834
               modified: 1744399078100
               isPrivate: false
@@ -146,7 +146,7 @@ collection:
           - url: "{{ _.pathStats }}/entity"
             name: entity
             meta:
-              id: req_56d9a6a7312d41c7bd47a9f3c0965ac3
+              id: req_138d1293214a4a4dbb289d1ba478a9b5
               created: 1744312641457
               modified: 1744451995628
               isPrivate: false
@@ -170,7 +170,7 @@ collection:
               rebuildPath: true
       - name: parameters
         meta:
-          id: fld_9834c6788a2c4669b2c7a2a04715ec25
+          id: fld_fc9125e18b7c4aff8cad9f52e328fa42
           created: 1744399049821
           modified: 1744399068045
           sortKey: -1744399049821
@@ -178,7 +178,7 @@ collection:
           - url: "{{ _.pathStats }}/parameters"
             name: parameters
             meta:
-              id: req_a8e5c95b2b2c4a5ca3149b403da00d38
+              id: req_d7d2d2fcf05b4bc79f998a1d860e087c
               created: 1744312029966
               modified: 1744399073357
               isPrivate: false
@@ -201,7 +201,7 @@ collection:
           - url: "{{ _.pathStats }}/parameter"
             name: parameter
             meta:
-              id: req_6d9401c7d4d9493e99a876c0b37fad81
+              id: req_bc167f5b679746fc937559f880ded981
               created: 1744312534119
               modified: 1744399081831
               isPrivate: false
@@ -225,22 +225,22 @@ collection:
               rebuildPath: true
   - name: Entities / Auth
     meta:
-      id: fld_6e1faa376af8421eacea90af09ec116a
+      id: fld_68676e4162db4a8d930be686ae076db3
       created: 1744398836587
-      modified: 1745093886721
+      modified: 1745851235652
       sortKey: -1744348274466.5
     children:
       - name: fandoms
         meta:
-          id: fld_ef4e8dea5b594c07bf256abd71c29a5c
+          id: fld_0472015ac02d41aea1d5e959321a42e1
           created: 1744399219292
-          modified: 1745018035508
+          modified: 1745838348112
           sortKey: -1744400492766
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_442f9958241c41dcb85745517b3a11d5
+              id: req_640837467a09491ea6a2f6336ce15525
               created: 1744456438265
               modified: 1744725042307
               isPrivate: false
@@ -260,7 +260,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_859be23cc00a4778858bcaca0b942489
+              id: req_07c48a913d7c42ff8468e367286673d8
               created: 1744533671300
               modified: 1744725052362
               isPrivate: false
@@ -289,7 +289,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_925b36317b6b4827aa27dae44a325518
+              id: req_110845db76874e38b97bb1c1bbe26ac9
               created: 1744536923875
               modified: 1744725917453
               isPrivate: false
@@ -316,9 +316,9 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_7f7a54969d4044e0acf43c1cd5024136
+              id: req_d825c2a2915a4afa976d863ec4266747
               created: 1745017889865
-              modified: 1745017949207
+              modified: 1745838362398
               isPrivate: false
               sortKey: -1744536923975
             method: POST
@@ -326,7 +326,7 @@ collection:
               mimeType: application/json
               text: |-
                 {
-                	"name": "Final Fantasy XIII / XIII-2 / LR : XIII"
+                	"name": "Final Fantasy XIII"
                 }
             headers:
               - name: Content-Type
@@ -353,7 +353,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_e30f579c23bd4c52a8dc5bda4b1c5816
+              id: req_e6c4458ccf1a49058c9d4ddc44310185
               created: 1745018223440
               modified: 1745018223440
               isPrivate: false
@@ -375,6 +375,39 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_564db310bb8646399054c3e586630bf4
+              created: 1745838343250
+              modified: 1745839850508
+              isPrivate: false
+              sortKey: -1744536924125
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Final Fantasy XIII / XIII-2 / LR : XIII"
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: fandom
           stereo: fandoms
@@ -386,15 +419,15 @@ collection:
             - id
       - name: authors
         meta:
-          id: fld_5db7ccd301aa440784d3078d0c219bb7
+          id: fld_9ba71c2e9a294b7f8bf2dfb24e3c85ce
           created: 1744399907690
-          modified: 1745079255451
+          modified: 1745838311413
           sortKey: -1744400492716
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_421f99577743432ca6d1d654ae07f45e
+              id: req_63930f4d364f4414b3433aaeedc53773
               created: 1744405968212
               modified: 1745079200277
               isPrivate: false
@@ -419,7 +452,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_c2806746fe18426e82f07399621062d4
+              id: req_2d598e9f7fa84aa4a2ca9466952ed314
               created: 1744406641087
               modified: 1745010813525
               isPrivate: false
@@ -444,7 +477,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: delete
             meta:
-              id: req_e025c7b7dd3041b397253ee61ba86c6e
+              id: req_5368e2a72e404562be19f10bed11ab07
               created: 1744438652025
               modified: 1745010093351
               isPrivate: false
@@ -477,7 +510,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_4fbe126a552b441aa8806f4b7ff9ad4f
+              id: req_8356f4680d5b43b59be3409a9e82fe1f
               created: 1744444297732
               modified: 1744724662793
               isPrivate: false
@@ -497,7 +530,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: restore
             meta:
-              id: req_c6048e593b9c4b76a67b572447560e73
+              id: req_7d2c84e444004ebaafdc54df1686544e
               created: 1744538499267
               modified: 1745010100770
               isPrivate: false
@@ -530,7 +563,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: remove
             meta:
-              id: req_8f9791c4e8cd4124870ca2f9f11b307e
+              id: req_6a778300aa0746f6a490a372c277e2e9
               created: 1744538531942
               modified: 1745010207269
               isPrivate: false
@@ -555,7 +588,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_197bff1317d8498da2c02995253f0b41
+              id: req_c83e0f22e32946da95705469967ef9fc
               created: 1744640233861
               modified: 1745079236574
               isPrivate: false
@@ -592,7 +625,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: update
             meta:
-              id: req_853d4a18753f41ee8a5a07394c5096e8
+              id: req_6242f0ce6c7944f5ba3f1cb3b06a546e
               created: 1744642216077
               modified: 1745010035516
               isPrivate: false
@@ -625,7 +658,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_8243fe44ea6c4732a3bb4bae3d5c75ea
+              id: req_9905240a2e4b410cb5ffb60a15d70aae
               created: 1744725879606
               modified: 1745007510066
               isPrivate: false
@@ -650,7 +683,7 @@ collection:
         environment:
           mono: author
           stereo: authors
-          id: 725
+          id: 718
         environmentPropertyOrder:
           "&":
             - mono
@@ -658,15 +691,15 @@ collection:
             - id
       - name: languages
         meta:
-          id: fld_ca96518d2e8d434cbfc6ace372d1070e
+          id: fld_4a9748dc5a1743579229ed7739b1f8e5
           created: 1744399919475
-          modified: 1745019423201
+          modified: 1745839860783
           sortKey: -1744400492791
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_1fa427ad5cd64bf5bd0969966131670d
+              id: req_f3c26ae602f7472a99c86410bff714bc
               created: 1744564848888
               modified: 1744725188974
               isPrivate: false
@@ -686,7 +719,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_d27b792a999c41e5bb271d8d987b1470
+              id: req_3efa9760bd314f1b9c1b6022f9883854
               created: 1744725935345
               modified: 1744725935345
               isPrivate: false
@@ -713,7 +746,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_af3912f0e736404bab294b62a6c3d688
+              id: req_6370c38bbcd244e9b8346a29bbebb52a
               created: 1745017912905
               modified: 1745018226103
               isPrivate: false
@@ -738,7 +771,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_872325cdd82142cfa0aa76be61fec18b
+              id: req_4e3663608643499f8efdd0efab594829
               created: 1745018216781
               modified: 1745021284926
               isPrivate: false
@@ -773,6 +806,40 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_e9625f3e84cb4065bbf012a2b900b937
+              created: 1745839832242
+              modified: 1745839891120
+              isPrivate: false
+              sortKey: -1744564853307
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "German",
+                	"abbreviation": "GE"
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: language
           stereo: languages
@@ -784,15 +851,15 @@ collection:
             - id
       - name: users
         meta:
-          id: fld_a53b9988948c4d1898ec1b3cbefbd7ba
+          id: fld_9aaee6088e544c46a2e53c370846fe2f
           created: 1744636435520
-          modified: 1745021144474
+          modified: 1745840196953
           sortKey: -1744400492816
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_9302f9e007ae4ce5b1c68de781058944
+              id: req_0dfb3468a10e45fe890b031e330882d0
               created: 1744636566024
               modified: 1744725402639
               isPrivate: false
@@ -817,7 +884,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_52b153296a744134b9f05e7136c3230e
+              id: req_f3f061e97dd94dbfaa7beae20282e7fa
               created: 1744637043215
               modified: 1744725391547
               isPrivate: false
@@ -837,7 +904,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_714aa8fc79ac4d1f887716a39c27d0f4
+              id: req_78de8606ee6e486f8268bcde8f529df8
               created: 1744639872604
               modified: 1744725988733
               isPrivate: false
@@ -862,7 +929,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_184af8f5366144c38c9d446bfe488c98
+              id: req_8cb4f86171a543ac9a3cb490c9d9340e
               created: 1745019374484
               modified: 1745021135940
               isPrivate: false
@@ -905,7 +972,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_c8f57184d6d542faa14ad5f64c27b2b0
+              id: req_0b1d158142224a2883d72f55231e24ce
               created: 1745021114231
               modified: 1745021116910
               isPrivate: false
@@ -927,10 +994,44 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_4067354e56b2493db0039fcf230e6ff9
+              created: 1745839923476
+              modified: 1745840232203
+              isPrivate: false
+              sortKey: -1744636569462
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"username": "K57",
+                	"email": "k57@free.fr"
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: user
           stereo: users
-          id: 7
+          id: 4
         environmentPropertyOrder:
           "&":
             - mono
@@ -938,15 +1039,15 @@ collection:
             - id
       - name: tags
         meta:
-          id: fld_77484744a51343dda0c02b2d3fe5e348
+          id: fld_d119118121ec45e6912aca2017d34c7e
           created: 1744651944408
-          modified: 1745021616009
+          modified: 1745840262544
           sortKey: -1744651944408
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_9bff2d899f3a4d7e9c4284659eac627c
+              id: req_fa0f3cf246f5467fb641830740643d16
               created: 1744652785251
               modified: 1744725514491
               isPrivate: false
@@ -966,7 +1067,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_0f661e75230f4418988c0a72d0fc8200
+              id: req_c429dc005acb4618b9ae82645bdfdff5
               created: 1744662034132
               modified: 1744725524871
               isPrivate: false
@@ -991,7 +1092,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_4a34a04d6b6545af84d5abcb82a8dab6
+              id: req_2b178b4d9b564f6bb9fa3d75fb4bcc4d
               created: 1744726027515
               modified: 1744726094682
               isPrivate: false
@@ -1016,7 +1117,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_7a606ae8f6614561b5e846775094bec3
+              id: req_6e9674cc521f45759d6354a9e2f1dcdb
               created: 1745021196320
               modified: 1745021307077
               isPrivate: false
@@ -1055,7 +1156,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_06d90200c4bf410dbaf1a1a58e1b9055
+              id: req_8d6fd6b270a24022a9cf18c5c84428fc
               created: 1745021319829
               modified: 1745021324399
               isPrivate: false
@@ -1077,10 +1178,44 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_68b5ea325f74455789b14ee96695405e
+              created: 1745840249018
+              modified: 1745840371248
+              isPrivate: false
+              sortKey: -1744652788427
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Futuristic",
+                	"Description": "Story takes place far in the future"
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: tag
           stereo: tags
-          id: 36
+          id: 35
         environmentPropertyOrder:
           "&":
             - mono
@@ -1088,15 +1223,15 @@ collection:
             - id
       - name: characters
         meta:
-          id: fld_84950436610a4470bfdec75a02eb35bb
+          id: fld_08d24b386d514742ab76bcc60afbce22
           created: 1744719441092
-          modified: 1745083218894
+          modified: 1745840458383
           sortKey: -1744719441092
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_ec107c07c65e4f97b760ee58cef116f5
+              id: req_0193b46180c6428283a3a13db9a308ac
               created: 1744719568939
               modified: 1744725627438
               isPrivate: false
@@ -1116,9 +1251,9 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_ddb2a4869d9c4630a875499447acb077
+              id: req_68b3176d0a7d430e9b2f0245770c14c6
               created: 1744721761815
-              modified: 1745079975111
+              modified: 1745844792869
               isPrivate: false
               sortKey: -1744719571691
             method: GET
@@ -1127,10 +1262,6 @@ collection:
                 value: "8"
                 disabled: false
                 id: pair_4044433ce36d491f9092d621442611e0
-              - id: pair_91d9cbd8add944e39a47e8d3d09b67d9
-                name: search_name
-                value: Luna%
-                disabled: false
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
@@ -1145,7 +1276,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_7e4844aa1681440295850039d85b5bf8
+              id: req_50a85e75e80e4e4dae040646953862b2
               created: 1744726922633
               modified: 1744726922633
               isPrivate: false
@@ -1170,7 +1301,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_6478c8cd0ece4e78a39dd3bd47d930fb
+              id: req_a65019a61acf475d94c1aef209e7205b
               created: 1745069201986
               modified: 1745083214669
               isPrivate: false
@@ -1208,7 +1339,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_8ae45100f66f43099bfb6025ca31d560
+              id: req_5f2adf31f69a44198d907b8fd08401bb
               created: 1745069209707
               modified: 1745069212890
               isPrivate: false
@@ -1230,10 +1361,44 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_0531d5056ae44f73a97bc2e2e76336d7
+              created: 1745840394341
+              modified: 1745840479765
+              isPrivate: false
+              sortKey: -1744719572016
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "OMC",
+                	"fandom_id": 6
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: character
           stereo: characters
-          id: 512
+          id: 509
         environmentPropertyOrder:
           "&":
             - mono
@@ -1241,15 +1406,15 @@ collection:
             - id
       - name: relations
         meta:
-          id: fld_4b43e1d88acf4dff86ccbfa0163fe873
+          id: fld_6b9e173c7e3346df914f8b4556a6f224
           created: 1744726215207
-          modified: 1745076800599
+          modified: 1745849111269
           sortKey: -1744726215207
         children:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_75d826b31c814379850e95e1df01e5bc
+              id: req_ed23f483b4ff4397bb15121d456dfdbe
               created: 1744726069701
               modified: 1744726927673
               isPrivate: false
@@ -1274,7 +1439,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_8b970a61c5114835a3fb67a749f52b9c
+              id: req_00cb848365fd44af8d6a922e4c966361
               created: 1744726246272
               modified: 1744726255256
               isPrivate: false
@@ -1294,15 +1459,15 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_5baf0ff3ad484ab9b90d0382c1b95097
+              id: req_d3900a321eea4246b02fe43221023a30
               created: 1744726847387
-              modified: 1745079649924
+              modified: 1745845068603
               isPrivate: false
               sortKey: -1744726255303
             method: GET
             parameters:
               - name: search_name
-                value: Harry Potter / Luna Lovegood%
+                value: "%Greengrass / Harry Potter"
                 disabled: false
                 id: pair_a299996b856c44f6b5f5e69af10b1d70
             headers:
@@ -1319,7 +1484,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_94fdbda422294680aa15a14461f192d1
+              id: req_15748091013d48d7b718df6e59993bea
               created: 1745071157745
               modified: 1745076785900
               isPrivate: false
@@ -1357,7 +1522,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_93426d158d8a4c808cb2e58bcc76ac1d
+              id: req_3c84ad43a31f4303af5a36b7e441b260
               created: 1745071168390
               modified: 1745071178123
               isPrivate: false
@@ -1379,10 +1544,44 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_5dda3e2d2975405dac37064fb4e61ae9
+              created: 1745840531492
+              modified: 1745840562924
+              isPrivate: false
+              sortKey: -1744726255703
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "",
+                	"characters": [1, 2, 3, 4, 5]
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: relation
           stereo: relations
-          id: 337
+          id: 336
         environmentPropertyOrder:
           "&":
             - mono
@@ -1390,15 +1589,15 @@ collection:
             - id
       - name: fanfictions
         meta:
-          id: fld_3821e312f3cd49a6933f41e5382b279e
+          id: fld_cdf95fd706674198817a0d1560560d92
           created: 1744751398464
-          modified: 1745090640010
+          modified: 1745844342171
           sortKey: -1744751398464
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_6e981ce57003443eba0a59e416a36d30
+              id: req_d5ff1e55ea5b4f2e9f082b76608044f9
               created: 1744751445845
               modified: 1744751453176
               isPrivate: false
@@ -1418,7 +1617,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_016df0a42b314193b5a3f39c0d243375
+              id: req_aef2cda20e8c4136a7b651fe23c38f1e
               created: 1745008397792
               modified: 1745008397792
               isPrivate: false
@@ -1441,7 +1640,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_3f9a577b9b4344a0a6e524fe362bd720
+              id: req_546c22890c53411a9890019d8d98e95c
               created: 1745008556214
               modified: 1745008559131
               isPrivate: false
@@ -1466,9 +1665,9 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_c52cab268a0b42e39163fb5c8f1f98e1
+              id: req_f4614717a5d44ccd9847d4a3ab11305a
               created: 1745077455309
-              modified: 1745090638185
+              modified: 1745844327142
               isPrivate: false
               sortKey: -1744751453365
             method: POST
@@ -1477,7 +1676,7 @@ collection:
               text: >-
                 {
                 	"name": "Firebird's Son: Book I of the Firebird Trilogy",
-                	"author_id": 726,
+                	"author_id": 1,
                 	"rating_id": 3,
                 	"description": "He stepped into a world he didn't understand, following footprints he could not see, toward a destiny he could never imagine. How can one boy make a world brighter when it is so very dark to begin with?",
                 	"language_id": 2,
@@ -1523,7 +1722,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_865940df04c84dd1971926e7cca44123
+              id: req_b0f0d73a1ff14b64838559ca717fb6dc
               created: 1745077468910
               modified: 1745077471436
               isPrivate: false
@@ -1545,10 +1744,45 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_c18d37ee02f6454688ea7560e155b671
+              created: 1745844735937
+              modified: 1745845081128
+              isPrivate: false
+              sortKey: -1744751453565
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "1ere story",
+                	"characters": [35, 43, 36, 38, 103], 
+                	"relations": [146, 142, 123, 32]
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: fanfiction
           stereo: fanfictions
-          id: 2057
+          id: 1110
         environmentPropertyOrder:
           "&":
             - mono
@@ -1556,15 +1790,15 @@ collection:
             - id
       - name: series
         meta:
-          id: fld_90819e1785a54993b5d73b08f7bd4da3
+          id: fld_4d942195137f4cb5bba25ea1f0a2f559
           created: 1744976580282
-          modified: 1745093886721
+          modified: 1745851235652
           sortKey: -1744976580282
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll
             meta:
-              id: req_5f277395154f406fade101856039a34e
+              id: req_ae2da757ec4642dda4b3491bc94b43c1
               created: 1744976593809
               modified: 1744976600035
               isPrivate: false
@@ -1584,7 +1818,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
             name: getAll options
             meta:
-              id: req_d809271c4df74a728b000e1af0ce0ece
+              id: req_3bcc110d2e0f4756aab2370c91fbd2fb
               created: 1745008308699
               modified: 1745008493833
               isPrivate: false
@@ -1608,7 +1842,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get
             meta:
-              id: req_1cc4924e49d04c22a72a99868f549857
+              id: req_691596cb046340278b561521f1ee8120
               created: 1745008570212
               modified: 1745008572625
               isPrivate: false
@@ -1633,20 +1867,20 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: create
             meta:
-              id: req_95240b27c98a4dd495e37b492be4ec3b
+              id: req_42fc32a2151842fc9ec7713f770c36a3
               created: 1745091806768
-              modified: 1745093515081
+              modified: 1745851233744
               isPrivate: false
               sortKey: -1744976600175
             method: POST
             body:
               mimeType: application/json
-              text: >-
+              text: |-
                 {
-                	"name": "Firebird Trilogy",
-                	"description": "The story of a boy in an AU where women decided everything in the Wizarding World.",
+                	"name": "Test series",
+                	"description": "Series is tested",
                 	"fanfictions": [
-                		2057
+                		1, 2, 3
                 	]
                 }
             headers:
@@ -1674,7 +1908,7 @@ collection:
           - url: "{{ _.pathAPI }}/{{ _.mono }}"
             name: get created
             meta:
-              id: req_3cfa529ec1b342c5b7318bc4dde05d28
+              id: req_8828fdc44a5a489dbed6dec371a0fe40
               created: 1745091838558
               modified: 1745091842173
               isPrivate: false
@@ -1696,10 +1930,47 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: update
+            meta:
+              id: req_6e95478ee55146d2b910910f4b0cd33d
+              created: 1745851194083
+              modified: 1745851397054
+              isPrivate: false
+              sortKey: -1744976600375
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Test series with update",
+                	"description": "Series is tested with an update",
+                	"fanfictions": [
+                		2, 3, 4
+                	]
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_decc097d20e649bab66ca514115cbab5
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: serie
           stereo: series
-          id: 40
+          id: 39
         environmentPropertyOrder:
           "&":
             - mono
@@ -1712,7 +1983,7 @@ collection:
   - url: "{{ _.pathAPI }}/login.php"
     name: Login Test / No Auth
     meta:
-      id: req_578e4ff05eba4b7fb053133c4571513d
+      id: req_8e229155483d45b49f67039d8e003321
       created: 1744384528640
       modified: 1745014381931
       isPrivate: false
@@ -1750,7 +2021,7 @@ collection:
   - url: "{{ _.pathAPI }}/login"
     name: Login Main / No Auth
     meta:
-      id: req_d4c9a51ce5bc40e09f73d6cb28bde4c9
+      id: req_b5e43a1578654a21ad9cdd1fec90009e
       created: 1744449255152
       modified: 1744449723792
       isPrivate: false
@@ -1788,18 +2059,18 @@ collection:
 cookieJar:
   name: Default Jar
   meta:
-    id: jar_6f3c01bd699c4720b250008efa971cfd
+    id: jar_96817bb7e4384d0eb6f26e21da9b913d
     created: 1744304261692
-    modified: 1745093886719
+    modified: 1745851235649
 environments:
   name: Base Environment
   meta:
-    id: env_d2b832ef83a74b0399f1c0476eb322ad
+    id: env_018758e82f7549d993864e49307516a4
     created: 1744304261690
-    modified: 1745093886720
+    modified: 1745851235651
     isPrivate: false
   data:
     pathAPI: http://127.0.1.77/api
     pathStats: http://127.0.1.77/stats
-    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDUwODQzNDQsImV4cCI6MTc0NTA5ODc0NCwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.JlwsHB20N5D_lDHo__yHwvZK9onb6EpFSLZ1bmq9ZCk
+    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDU4Mzc2NTIsImV4cCI6MTc0NTg1MjA1MiwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.1Hh_XNcI4eacoBequivmuv0fPG31CPJkjKYKOYC2tEA
     ffb_main_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ0NDkyNzAsImV4cCI6MTc0NDQ2MzY3MCwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl9tYWluIn19._iUjOFNNEFp6sko4SejxPv8Dk5HRBDfgI7jjuZ4HA1k
