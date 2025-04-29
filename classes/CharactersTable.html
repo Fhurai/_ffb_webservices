@@ -226,7 +226,7 @@
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd>Soft-delete a record</dd>
+<dd>Hard delete a record</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntitiesTable.html#method_findAll">findAll()</a>
@@ -259,9 +259,16 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntitiesTable.html#method_get">get()</a>
     <span>
-                                &nbsp;: <a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a>    </span>
+                                &nbsp;: bool|<a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a>    </span>
 </dt>
 <dd>Fetch single entity by ID</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/EntitiesTable.html#method_patch">patch()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Soft delete or restore an entity by updating its `delete_date` field.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/EntitiesTable.html#method_post">post()</a>
@@ -276,20 +283,6 @@
                                 &nbsp;: bool    </span>
 </dt>
 <dd>Update an existing record</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/EntitiesTable.html#method_remove">remove()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Hard remove a record</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/EntitiesTable.html#method_restore">restore()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Restore a soft-deleted record</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a class="" href="classes/EntitiesTable.html#method_afterPost">afterPost()</a>
@@ -665,11 +658,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">446</span>
+    <span class="phpdocumentor-element-found-in__line">497</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Soft-delete a record</p>
+        <p class="phpdocumentor-summary">Hard delete a record</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -714,7 +707,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">155</span>
+    <span class="phpdocumentor-element-found-in__line">157</span>
 
     </aside>
 
@@ -763,7 +756,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
@@ -819,7 +812,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">118</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
@@ -875,7 +868,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">75</span>
 
     </aside>
 
@@ -931,7 +924,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
@@ -939,7 +932,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool|<a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -962,7 +955,88 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">bool|<a href="classes/Entity.html"><abbr title="\Entity">Entity</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_patch">
+        patch()
+        <a href="classes/EntitiesTable.html#method_patch" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">453</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Soft delete or restore an entity by updating its `delete_date` field.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">patch</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$deleted</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The ID of the entity to update.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$deleted</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>True to soft delete the entity, false to restore it.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/EntitiesTable.html#method_patch#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/FfbTableException.html"><abbr title="\FfbTableException">FfbTableException</abbr></a></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If invalid input is provided or the operation fails.</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if the update was successful, false otherwise.</p>
+</section>
+
             </section>
 
 </article>
@@ -980,7 +1054,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">241</span>
+    <span class="phpdocumentor-element-found-in__line">243</span>
 
     </aside>
 
@@ -1036,7 +1110,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">364</span>
+    <span class="phpdocumentor-element-found-in__line">366</span>
 
     </aside>
 
@@ -1088,104 +1162,6 @@
                     <article
         class="phpdocumentor-element
             -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_remove">
-        remove()
-        <a href="classes/EntitiesTable.html#method_remove" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">462</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Hard remove a record</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">remove</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_restore">
-        restore()
-        <a href="classes/EntitiesTable.html#method_restore" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">454</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Restore a soft-deleted record</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">restore</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$id</span>
-                : <span class="phpdocumentor-signature__argument__return-type">int</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">bool</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
             -protected
                                                         "
 >
@@ -1197,7 +1173,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">278</span>
+    <span class="phpdocumentor-element-found-in__line">280</span>
 
     </aside>
 
@@ -1241,7 +1217,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">194</span>
+    <span class="phpdocumentor-element-found-in__line">196</span>
 
     </aside>
 
@@ -1285,7 +1261,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">285</span>
+    <span class="phpdocumentor-element-found-in__line">287</span>
 
     </aside>
 
@@ -1336,7 +1312,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">470</span>
+    <span class="phpdocumentor-element-found-in__line">526</span>
 
     </aside>
 
@@ -1460,7 +1436,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">494</span>
+    <span class="phpdocumentor-element-found-in__line">550</span>
 
     </aside>
 
@@ -1557,7 +1533,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/table/EntitiesTable.php"><a href="files/src-table-entitiestable.html"><abbr title="src/table/EntitiesTable.php">EntitiesTable.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">500</span>
+    <span class="phpdocumentor-element-found-in__line">556</span>
 
     </aside>
 
@@ -1754,10 +1730,9 @@
                                             <li class=""><a href="classes/EntitiesTable.html#method_findOrderedBy">findOrderedBy()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_findSearchedBy">findSearchedBy()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_get">get()</a></li>
+                                            <li class=""><a href="classes/EntitiesTable.html#method_patch">patch()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_post">post()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_put">put()</a></li>
-                                            <li class=""><a href="classes/EntitiesTable.html#method_remove">remove()</a></li>
-                                            <li class=""><a href="classes/EntitiesTable.html#method_restore">restore()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_afterPost">afterPost()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_beforePost">beforePost()</a></li>
                                             <li class=""><a href="classes/EntitiesTable.html#method_beforePut">beforePut()</a></li>

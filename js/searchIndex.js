@@ -496,6 +496,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/DefaultEndpoint.html#property_builderClass"
         },                {
+            "fqsen": "\\DefaultEndpoint\u003A\u003A\u0024entityClass",
+            "name": "entityClass",
+            "summary": "",
+            "url": "classes/DefaultEndpoint.html#property_entityClass"
+        },                {
             "fqsen": "\\EntitiesEndpoint",
             "name": "EntitiesEndpoint",
             "summary": "",
@@ -545,11 +550,6 @@ Search.appendIndex(
             "name": "delete",
             "summary": "",
             "url": "classes/EntityEndpoint.html#method_delete"
-        },                {
-            "fqsen": "\\EntityEndpoint\u003A\u003Aoptions\u0028\u0029",
-            "name": "options",
-            "summary": "",
-            "url": "classes/EntityEndpoint.html#method_options"
         },                {
             "fqsen": "\\LoginEndpoint",
             "name": "LoginEndpoint",
@@ -1926,20 +1926,15 @@ Search.appendIndex(
             "summary": "Update\u0020an\u0020existing\u0020record",
             "url": "classes/EntitiesTable.html#method_put"
         },                {
+            "fqsen": "\\EntitiesTable\u003A\u003Apatch\u0028\u0029",
+            "name": "patch",
+            "summary": "Soft\u0020delete\u0020or\u0020restore\u0020an\u0020entity\u0020by\u0020updating\u0020its\u0020\u0060delete_date\u0060\u0020field.",
+            "url": "classes/EntitiesTable.html#method_patch"
+        },                {
             "fqsen": "\\EntitiesTable\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "Soft\u002Ddelete\u0020a\u0020record",
+            "summary": "Hard\u0020delete\u0020a\u0020record",
             "url": "classes/EntitiesTable.html#method_delete"
-        },                {
-            "fqsen": "\\EntitiesTable\u003A\u003Arestore\u0028\u0029",
-            "name": "restore",
-            "summary": "Restore\u0020a\u0020soft\u002Ddeleted\u0020record",
-            "url": "classes/EntitiesTable.html#method_restore"
-        },                {
-            "fqsen": "\\EntitiesTable\u003A\u003Aremove\u0028\u0029",
-            "name": "remove",
-            "summary": "Hard\u0020remove\u0020a\u0020record",
-            "url": "classes/EntitiesTable.html#method_remove"
         },                {
             "fqsen": "\\EntitiesTable\u003A\u003AexecuteQuery\u0028\u0029",
             "name": "executeQuery",
