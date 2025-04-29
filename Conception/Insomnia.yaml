@@ -227,7 +227,7 @@ collection:
     meta:
       id: fld_68676e4162db4a8d930be686ae076db3
       created: 1744398836587
-      modified: 1745851235652
+      modified: 1745924971948
       sortKey: -1744348274466.5
     children:
       - name: fandoms
@@ -291,7 +291,7 @@ collection:
             meta:
               id: req_110845db76874e38b97bb1c1bbe26ac9
               created: 1744536923875
-              modified: 1744725917453
+              modified: 1745926212276
               isPrivate: false
               sortKey: -1744536923875
             method: GET
@@ -300,8 +300,6 @@ collection:
                 value: "1"
                 disabled: false
                 id: pair_dbb46d8c15ee4ee8b3f319b15959dc60
-              - disabled: false
-                id: pair_57ca5c6493fc4c46b0dc33ed8383287c
             headers:
               - name: User-Agent
                 value: insomnia/11.0.2
@@ -408,6 +406,97 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_21a0c367e68348ecb5f0eab689c49e14
+              created: 1745931532451
+              modified: 1745931534820
+              isPrivate: false
+              sortKey: -1744536924225
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_4d93abccb8b147c19518d0dafeb2215e
+              created: 1745931539435
+              modified: 1745931542633
+              isPrivate: false
+              sortKey: -1744536924325
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_0773de05fe324dca85a37a5c56b314de
+              created: 1745931546658
+              modified: 1745931549566
+              isPrivate: false
+              sortKey: -1744536924425
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: fandom
           stereo: fandoms
@@ -421,7 +510,7 @@ collection:
         meta:
           id: fld_9ba71c2e9a294b7f8bf2dfb24e3c85ce
           created: 1744399907690
-          modified: 1745838311413
+          modified: 1745924971948
           sortKey: -1744400492716
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
@@ -660,7 +749,7 @@ collection:
             meta:
               id: req_9905240a2e4b410cb5ffb60a15d70aae
               created: 1744725879606
-              modified: 1745007510066
+              modified: 1745926195963
               isPrivate: false
               sortKey: -1744406304649.5
             method: GET
@@ -830,6 +919,97 @@ collection:
             headers:
               - name: Content-Type
                 value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_52280fb8405a4a3199c06f183b9da5a8
+              created: 1745933748082
+              modified: 1745933753049
+              isPrivate: false
+              sortKey: -1744564853407
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_253794b105d6447bab7acc64281aa3e1
+              created: 1745933757019
+              modified: 1745933759313
+              isPrivate: false
+              sortKey: -1744564853507
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_4a1523382a224f6dae2361b440a0175a
+              created: 1745933762969
+              modified: 1745933765106
+              isPrivate: false
+              sortKey: -1744564853607
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
               - name: User-Agent
                 value: insomnia/11.0.2
             settings:
@@ -2061,16 +2241,16 @@ cookieJar:
   meta:
     id: jar_96817bb7e4384d0eb6f26e21da9b913d
     created: 1744304261692
-    modified: 1745851235649
+    modified: 1745924971944
 environments:
   name: Base Environment
   meta:
     id: env_018758e82f7549d993864e49307516a4
     created: 1744304261690
-    modified: 1745851235651
+    modified: 1745924971946
     isPrivate: false
   data:
     pathAPI: http://127.0.1.77/api
     pathStats: http://127.0.1.77/stats
-    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDU4Mzc2NTIsImV4cCI6MTc0NTg1MjA1MiwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.1Hh_XNcI4eacoBequivmuv0fPG31CPJkjKYKOYC2tEA
+    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDU5MjQ5NDYsImV4cCI6MTc0NTkzOTM0NiwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.kam6W8dEB23R7aWRttyJDs8e_DaY8io4X5S0k-CeUtI
     ffb_main_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ0NDkyNzAsImV4cCI6MTc0NDQ2MzY3MCwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl9tYWluIn19._iUjOFNNEFp6sko4SejxPv8Dk5HRBDfgI7jjuZ4HA1k
