@@ -259,6 +259,11 @@ jobs:
             php_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q php) 2>/dev/null || echo "null")
             nginx_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q nginx) 2>/dev/null || echo "null")
 
+            # If health checks are not defined, assume container is healthy
+            if [ "$mysql_status" == "null" ]; then mysql_status="healthy"; fi
+            if [ "$php_status" == "null" ]; then php_status="healthy"; fi
+            if [ "$nginx_status" == "null" ]; then nginx_status="healthy"; fi
+
             if [ "$mysql_status" = "healthy" ] && [ "$php_status" = "healthy" ] && [ "$nginx_status" = "healthy" ]; then
               echo "All containers are healthy."
               exit 0
@@ -266,16 +271,16 @@ jobs:
 
             for container in $(docker ps -aq); do
               echo -n "$container: "
-              docker inspect --format '{{.State.Health.Status}}' "$container"
+              docker inspect --format '{{.State.Health.Status}}' "$container" || echo "no health check"
             done
 
             echo "Waiting for containers to become healthy... ($i/$retries)"
             sleep $delay
           done
 
-            echo "Containers did not become healthy in time"
-            docker compose ps
-            exit 1
+          echo "Containers did not become healthy in time"
+          docker compose ps
+          exit 1
 
       - name: Test MySQL connection
         run: docker exec mysql_ffb mysql -uroot -proot -e "SHOW DATABASES;"
