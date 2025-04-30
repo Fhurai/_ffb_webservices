@@ -437,7 +437,6 @@ class FanfictionsTest extends ApiTestCase
             if (json_last_error() !== JSON_ERROR_NONE) {
                 Connection::dd($response['body']);
             }
-            Connection::dd(json_decode($response['body']));
             throw new FfbEndpointException(json_decode($response['body'])->message);
         }
         $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
