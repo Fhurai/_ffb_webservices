@@ -283,7 +283,11 @@ class RelationsTest extends ApiTestCase
     private function createRelation(array $data): array
     {
         $response = $this->post('/relation', $data);
-        if($response['code'] !== 201) {
+        if ($response['code'] !== 201) {
+            json_decode($response['body']);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                Connection::dd($response['body']);
+            }
             throw new FfbEndpointException(json_decode($response['body'])->message);
         }
         $this->assertEquals(201, $response['code'], 'Response status should be 201 Created');
