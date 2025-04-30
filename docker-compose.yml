@@ -1,16 +1,21 @@
-name: 'fanfictionsbookmarks'
+name: "fanfictionsbookmarks"
 
 services:
   mysql:
     image: mysql:latest
     container_name: mysql_ffb
     restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: fhurai
       MYSQL_PASSWORD: 77/ffb*Usager
     ports:
-      - '7706:3306'
+      - "7706:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
@@ -25,7 +30,7 @@ services:
       PMA_HOST: mysql_ffb
       PMA_PASSWORD: root
     ports:
-      - '7703:80'
+      - "7703:80"
     networks:
       - ffb_network
 
@@ -34,6 +39,11 @@ services:
     container_name: nginx_ffb
     ports:
       - "7780:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - .:/var/www/html
       - ./nginx:/etc/nginx/conf.d
@@ -46,6 +56,11 @@ services:
   php:
     image: fhurai/api_ffb:latest
     container_name: php_ffb
+    healthcheck:
+      test: ["CMD", "php", "-v"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     environment:
       - DB_HOST=mysql_ffb
     networks:
