@@ -31,7 +31,7 @@ final class Series extends ComplexEntity
     {
         parent::__construct();
         $this->setDescription("");
-        $this->setScoreId(-1);
+        $this->setScoreId(null);
         $this->setEvaluation("");
     }
 

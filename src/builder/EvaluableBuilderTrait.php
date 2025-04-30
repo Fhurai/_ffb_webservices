@@ -11,6 +11,9 @@ trait EvaluableBuilderTrait
      */
     public function withScoreId(?int $scoreId): mixed
     {
+        if($scoreId < 0){
+            throw new FfbException("Score_id must be positive");
+        }
         $this->obj->setScoreId($scoreId); // Set the score ID of the Series object.
         return $this; // Return the builder instance for chaining.
     }

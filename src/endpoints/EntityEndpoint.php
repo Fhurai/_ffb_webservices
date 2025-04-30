@@ -148,7 +148,8 @@ class EntityEndpoint extends DefaultEndpoint
                  */
                 $builder->withName($data->name ?? null)
                     ->withDescription($data->description ?? null)
-                    ->withFanfictions($data->fanfictions ?? null);
+                    ->withFanfictions($data->fanfictions ?? null)
+                    ->withScoreId($data->score_id ?? null);
                 break;
             default:
                 throw new InvalidArgumentException('Unknown builder');

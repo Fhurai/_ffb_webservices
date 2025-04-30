@@ -79,8 +79,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ];
 
         // Send a POST request to create the series
@@ -121,8 +120,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Send a GET request to fetch the series by ID
@@ -156,8 +154,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Prepare the updated data for the series
@@ -195,8 +192,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Send a PATCH request to soft delete the series
@@ -231,8 +227,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Send a PATCH request to soft delete the series
@@ -269,8 +264,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         $this->patch('/serie', ['id' => $series['id'], 'deleted' => true]);
@@ -298,8 +292,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Attempt to restore the series without deleting it first
@@ -333,8 +326,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         $this->patch('/serie', ['id' => $series['id'], 'deleted' => true]);
@@ -356,8 +348,7 @@ class SeriessTest extends ApiTestCase
                 1,
                 2,
                 3
-            ],
-            'score_id' => null
+            ]
         ]);
 
         // Attempt to permanently delete the series without soft deleting it first
