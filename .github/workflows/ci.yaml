@@ -244,11 +244,11 @@ jobs:
         with:
           version: latest
 
-      - name: Run docker-compose
-        run: docker-compose up -d --build --force-recreate --remove-orphans
+      - name: Run docker compose
+        run: docker compose up -d --build --force-recreate --remove-orphans
 
       - name: List containters
-        run: docker-compose ps
+        run: docker compose ps
 
       - name: Wait for services to be healthy
         run: |
