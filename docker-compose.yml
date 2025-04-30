@@ -44,7 +44,7 @@ services:
       - ffb_network
 
   php:
-    image: api_ffb:latest
+    image: fhurai/api_ffb:latest
     container_name: php_ffb
     environment:
       - DB_HOST=mysql_ffb

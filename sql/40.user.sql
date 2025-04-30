@@ -362,15 +362,17 @@ PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
-SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @admin_user_full);
+-- Owner User Setup
+SET @owner_password = 'StrongOwnerPassword123!'; -- Define a password
+
+-- Create owner user
+SET @query = CONCAT('CREATE USER IF NOT EXISTS ', @owner_full, ' IDENTIFIED BY "', @owner_password, '"');
 PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
-SET @owner_full = CONCAT(@owner_user, '@', "'%'");
-SET @admin_password = '77/ffb*Usager';
-
-SET @query = CONCAT('GRANT ALL PRIVILEGES ON *.* TO ', @owner_full);
+-- Grant all privileges (fix the GRANT statement)
+SET @query = CONCAT('GRANT ALL PRIVILEGES ON *.* TO ', @owner_full, ' WITH GRANT OPTION');
 PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;

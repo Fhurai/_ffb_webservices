@@ -60,15 +60,15 @@ for step in \
   echo "-- done"
 done
 
-echo ""
-echo "tests :"
-echo "30.tests_drop.sql >"
-$mysql_cmd ffb_tests < "30.tests_drop.sql"
-echo "-- done"
+# echo ""
+# echo "tests :"
+# echo "30.tests_drop.sql >"
+# $mysql_cmd ffb_tests < "30.tests_drop.sql"
+# echo "-- done"
 
-echo "Copying ffb_main to ffb_tests >"
-$mysqldump_cmd ffb_main | $mysql_cmd ffb_tests
-echo "-- done"
+# echo "Copying ffb_main to ffb_tests >"
+# $mysqldump_cmd ffb_main | $mysql_cmd ffb_tests
+# echo "-- done"
 
 echo ""
 echo "user :"

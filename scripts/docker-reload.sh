@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./scripts/docker-down.sh
-./scripts/docker-build.sh
+docker system --all -f
 ./scripts/docker-up.sh
