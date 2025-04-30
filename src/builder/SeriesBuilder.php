@@ -60,14 +60,6 @@ final class SeriesBuilder extends NamedEntityBuilder
             }
         }
 
-        // Sort the fanfictions array alphabetically by their name.
-        usort(
-            $fanfictions,
-            function ($a, $b) {
-                return strcmp($a->getName(), $b->getName());
-            }
-        );
-
         // Assign the sorted fanfictions to the Series object.
         $this->obj->setFanfictions($fanfictions);
 
@@ -90,14 +82,6 @@ final class SeriesBuilder extends NamedEntityBuilder
 
         // Add the new fanfiction to the array.
         array_push($fanfictions, $fanfiction);
-
-        // Sort the fanfictions array alphabetically by their name.
-        usort(
-            $fanfictions,
-            function ($a, $b) {
-                return strcmp($a->getName(), $b->getName());
-            }
-        );
 
         // Update the Series object with the new list of fanfictions.
         $this->obj->setFanfictions($fanfictions);
