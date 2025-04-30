@@ -16,8 +16,8 @@ class EntityEndpoint extends DefaultEndpoint
             ApiUtilities::getUserRole($decoded)
         );
 
-        $author = $table->get($args[0]);
-        $author ? ApiUtilities::HttpOk($author) : ApiUtilities::HttpNotFound($this->entityClass . ' not found');
+        $entity = $table->get($args[0]);
+        $entity ? ApiUtilities::HttpOk($entity) : ApiUtilities::HttpNotFound($this->entityClass . ' not found');
     }
 
     protected function beforeBuild($args, $dbName, $userRole): array
@@ -61,7 +61,17 @@ class EntityEndpoint extends DefaultEndpoint
                 }
             );
         } elseif ($this->tableClass === 'SeriesTable') {
-            $mapRelatedEntities($entity, 'fanfictions', FanfictionsTable::class, fn($table, $id) => $table->get($id));
+            $mapRelatedEntities($entity, 'fanfictions', FanfictionsTable::class, function ($table, $item) {
+                $id = is_object($item) ? $item->fanfiction_id : $item;
+                $fanfiction = $table->get($id);
+                if(is_object($item)){
+                    $fanfiction->ranking = $item->ranking;
+                }
+                return $fanfiction;
+            });
+            foreach($entity->fanfictions as $key => $fanfiction){
+                $fanfiction->ranking = $key + 1;
+            }
         }
         return $args;
     }
@@ -154,7 +164,6 @@ class EntityEndpoint extends DefaultEndpoint
             default:
                 throw new InvalidArgumentException('Unknown builder');
         }
-
         return $builder
             ->build();
     }
