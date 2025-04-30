@@ -423,67 +423,67 @@ Search.appendIndex(
         },                {
             "fqsen": "\\DefaultEndpoint",
             "name": "DefaultEndpoint",
-            "summary": "",
+            "summary": "Abstract\u0020Class\u0020DefaultEndpoint\nServes\u0020as\u0020the\u0020base\u0020class\u0020for\u0020all\u0020API\u0020endpoint\u0020classes.",
             "url": "classes/DefaultEndpoint.html"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\nInitializes\u0020the\u0020endpoint\u0020with\u0020the\u0020provided\u0020table\u0020class\u0020and\u0020sets\u0020up\u0020CORS\u0020headers.",
             "url": "classes/DefaultEndpoint.html#method___construct"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Abstract\u0020method\u0020for\u0020handling\u0020GET\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_get"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Apost\u0028\u0029",
             "name": "post",
-            "summary": "",
+            "summary": "Handles\u0020POST\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_post"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "",
+            "summary": "Builds\u0020an\u0020object\u0020from\u0020the\u0020provided\u0020data.",
             "url": "classes/DefaultEndpoint.html#method_build"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Aput\u0028\u0029",
             "name": "put",
-            "summary": "",
+            "summary": "Handles\u0020PUT\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_put"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Apatch\u0028\u0029",
             "name": "patch",
-            "summary": "",
+            "summary": "Handles\u0020PATCH\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_patch"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "",
+            "summary": "Handles\u0020DELETE\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_delete"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Ahead\u0028\u0029",
             "name": "head",
-            "summary": "",
+            "summary": "Handles\u0020HEAD\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_head"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Aoptions\u0028\u0029",
             "name": "options",
-            "summary": "",
+            "summary": "Handles\u0020OPTIONS\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_options"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003Atrace\u0028\u0029",
             "name": "trace",
-            "summary": "",
+            "summary": "Handles\u0020TRACE\u0020requests.",
             "url": "classes/DefaultEndpoint.html#method_trace"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003AmethodNotAllowed\u0028\u0029",
             "name": "methodNotAllowed",
-            "summary": "",
+            "summary": "Throws\u0020an\u0020exception\u0020for\u0020unsupported\u0020HTTP\u0020methods.",
             "url": "classes/DefaultEndpoint.html#method_methodNotAllowed"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003AvalidateRequest\u0028\u0029",
             "name": "validateRequest",
-            "summary": "",
+            "summary": "Validates\u0020the\u0020request\u0020arguments\u0020and\u0020ensures\u0020the\u0020endpoint\u0020is\u0020properly\u0020configured.",
             "url": "classes/DefaultEndpoint.html#method_validateRequest"
         },                {
             "fqsen": "\\DefaultEndpoint\u003A\u003A\u0024tableClass",
@@ -503,92 +503,92 @@ Search.appendIndex(
         },                {
             "fqsen": "\\EntitiesEndpoint",
             "name": "EntitiesEndpoint",
-            "summary": "",
+            "summary": "Class\u0020EntitiesEndpoint\nExtends\u0020the\u0020DefaultEndpoint\u0020class\u0020to\u0020handle\u0020requests\u0020for\u0020entity\u002Drelated\u0020operations.",
             "url": "classes/EntitiesEndpoint.html"
         },                {
             "fqsen": "\\EntitiesEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Handles\u0020GET\u0020requests\u0020for\u0020the\u0020EntitiesEndpoint.",
             "url": "classes/EntitiesEndpoint.html#method_get"
         },                {
             "fqsen": "\\EntityEndpoint",
             "name": "EntityEndpoint",
-            "summary": "",
+            "summary": "Class\u0020EntityEndpoint\nHandles\u0020CRUD\u0020operations\u0020for\u0020a\u0020single\u0020entity.",
             "url": "classes/EntityEndpoint.html"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Handles\u0020GET\u0020requests\u0020to\u0020retrieve\u0020a\u0020single\u0020entity\u0020by\u0020its\u0020identifier.",
             "url": "classes/EntityEndpoint.html#method_get"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003AbeforeBuild\u0028\u0029",
             "name": "beforeBuild",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020entity\u0020data\u0020before\u0020building\u0020it.",
             "url": "classes/EntityEndpoint.html#method_beforeBuild"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Abuild\u0028\u0029",
             "name": "build",
-            "summary": "",
+            "summary": "Builds\u0020an\u0020entity\u0020using\u0020the\u0020appropriate\u0020builder\u0020class.",
             "url": "classes/EntityEndpoint.html#method_build"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Apost\u0028\u0029",
             "name": "post",
-            "summary": "",
+            "summary": "Handles\u0020POST\u0020requests.",
             "url": "classes/EntityEndpoint.html#method_post"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Aput\u0028\u0029",
             "name": "put",
-            "summary": "",
+            "summary": "Handles\u0020PUT\u0020requests.",
             "url": "classes/EntityEndpoint.html#method_put"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Apatch\u0028\u0029",
             "name": "patch",
-            "summary": "",
+            "summary": "Handles\u0020PATCH\u0020requests.",
             "url": "classes/EntityEndpoint.html#method_patch"
         },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Adelete\u0028\u0029",
             "name": "delete",
-            "summary": "",
+            "summary": "Handles\u0020DELETE\u0020requests.",
             "url": "classes/EntityEndpoint.html#method_delete"
         },                {
             "fqsen": "\\LoginEndpoint",
             "name": "LoginEndpoint",
-            "summary": "",
+            "summary": "Class\u0020LoginEndpoint\nHandles\u0020API\u0020requests\u0020related\u0020to\u0020user\u0020login.",
             "url": "classes/LoginEndpoint.html"
         },                {
             "fqsen": "\\LoginEndpoint\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Constructor\nSets\u0020up\u0020CORS\u0020headers\u0020for\u0020allowed\u0020origins\u0020based\u0020on\u0020configuration.",
             "url": "classes/LoginEndpoint.html#method___construct"
         },                {
             "fqsen": "\\LoginEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Handles\u0020GET\u0020requests.",
             "url": "classes/LoginEndpoint.html#method_get"
         },                {
             "fqsen": "\\LoginEndpoint\u003A\u003Apost\u0028\u0029",
             "name": "post",
-            "summary": "",
+            "summary": "Handles\u0020POST\u0020requests\u0020for\u0020user\u0020login.",
             "url": "classes/LoginEndpoint.html#method_post"
         },                {
             "fqsen": "\\ParameterEndpoint",
             "name": "ParameterEndpoint",
-            "summary": "",
+            "summary": "ParameterEndpoint\u0020Class",
             "url": "classes/ParameterEndpoint.html"
         },                {
             "fqsen": "\\ParameterEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Handle\u0020GET\u0020requests.",
             "url": "classes/ParameterEndpoint.html#method_get"
         },                {
             "fqsen": "\\StatsEndpoint",
             "name": "StatsEndpoint",
-            "summary": "",
+            "summary": "Class\u0020StatsEndpoint\nHandles\u0020API\u0020requests\u0020related\u0020to\u0020statistics.",
             "url": "classes/StatsEndpoint.html"
         },                {
             "fqsen": "\\StatsEndpoint\u003A\u003Aget\u0028\u0029",
             "name": "get",
-            "summary": "",
+            "summary": "Handles\u0020GET\u0020requests\u0020for\u0020various\u0020stats\u002Drelated\u0020resources.",
             "url": "classes/StatsEndpoint.html#method_get"
         },                {
             "fqsen": "\\Action",
