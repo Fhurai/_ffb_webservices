@@ -365,6 +365,7 @@ DEALLOCATE PREPARE stmt;
 -- Owner User Setup
 SET @owner_password = 'StrongOwnerPassword123!'; -- Define a password
 
+SET @owner_full = CONCAT(@owner_user, '@', @localhost_host);
 -- Create owner user
 SET @query = CONCAT('CREATE USER IF NOT EXISTS ', @owner_full, ' IDENTIFIED BY "', @owner_password, '"');
 PREPARE stmt FROM @query;
