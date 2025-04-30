@@ -228,7 +228,45 @@ jobs:
         if: always()
         run: echo "This job status is ${{ job.status }}"
 
-  # 4. Discord Notification
+  compose-docker:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v1
+        with:
+          version: latest
+
+      - name: Run docker-compose
+        run: ./scripts/docker-up.sh
+
+      - name: List containters
+        run: docker-compose ps
+
+      - name: Wait for services to be healthy
+        run: |
+          timeout=60
+          while ! docker-compose ps | grep "(healthy)"; do
+            echo "Waiting for containers to be healthy..."
+            sleep 5
+            timeout=$((timeout - 5))
+            if [ $timeout -le 0 ]; then
+              echo "Containers did not become healthy in time"
+              docker-compose ps
+              exit 1
+            fi
+          done
+
+          - name: Test MySQL connection
+          run: docker exec mysql_ffb mysql -uroot -proot -e "SHOW DATABASES;"
+
+      - name: Test Nginx responds
+        run: curl -f http://localhost:7780
+
+      - name: Test PHP service
+        run: docker exec php_ffb php -v
+
+  # 5. Discord Notification
   discord-notification-docker:
     name: Discord Notification - Docker Image Build
     runs-on: ubuntu-latest
@@ -267,7 +305,7 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-  # 5. Teams Notification
+  # 6. Teams Notification
   teams-notification-docker:
     name: Teams Notification - Docker Image Build
     runs-on: ubuntu-latest
