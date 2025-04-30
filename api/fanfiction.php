@@ -29,6 +29,14 @@ try {
             $endpoint->put($_REQUEST, json_decode(file_get_contents('php://input')));
             break;
 
+        case 'PATCH':
+            $endpoint->patch($_REQUEST, json_decode(file_get_contents('php://input')));
+            break;
+
+        case 'DELETE':
+            $endpoint->delete($_REQUEST, SrcUtilities::getQueryParameter('id'));
+            break;
+
         default:
             $endpoint->methodNotAllowed($method);
     }

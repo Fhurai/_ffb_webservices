@@ -29,11 +29,14 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the author ID for the Fanfiction object.
      *
-     * @param  int $authorId The author ID.
+     * @param  ?int $authorId The author ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withAuthorId(int $authorId): FanfictionBuilder
+    public function withAuthorId(?int $authorId): FanfictionBuilder
     {
+        if ($authorId === null) {
+            throw new FfbException('Author ID cannot be null');
+        }
         $this->obj->setAuthorId($authorId);
         return $this;
     }
@@ -53,11 +56,14 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the rating ID for the Fanfiction object.
      *
-     * @param  int $ratingId The rating ID.
+     * @param  ?int $ratingId The rating ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withRatingId(int $ratingId): FanfictionBuilder
+    public function withRatingId(?int $ratingId): FanfictionBuilder
     {
+        if ($ratingId === null) {
+            throw new FfbException('Rating ID cannot be null');
+        }
         $this->obj->setRatingId($ratingId);
         return $this;
     }
@@ -77,11 +83,14 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the description for the Fanfiction object.
      *
-     * @param  string $description The description.
+     * @param  ?string $description The description.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withDescription(string $description): FanfictionBuilder
+    public function withDescription(?string $description): FanfictionBuilder
     {
+        if ($description === null) {
+            throw new FfbException('Description cannot be null');
+        }
         $this->obj->setDescription($description);
         return $this;
     }
@@ -89,11 +98,14 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the language ID for the Fanfiction object.
      *
-     * @param  int $languageId The language ID.
+     * @param  ?int $languageId The language ID.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withLanguageId(int $languageId): FanfictionBuilder
+    public function withLanguageId(?int $languageId): FanfictionBuilder
     {
+        if ($languageId === null) {
+            throw new FfbException('Language ID cannot be null');
+        }
         $this->obj->setLanguageId($languageId);
         return $this;
     }
@@ -113,21 +125,25 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the fandoms for the Fanfiction object.
      *
-     * @param  array $fandoms An array of Fandom objects.
+     * @param  ?array $fandoms An array of Fandom objects.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     * @throws \InvalidArgumentException If any element in the array is not a Fandom instance.
+     * @throws \FfbException If any element in the array is not a Fandom instance.
      */
-    public function withFandoms(array $fandoms): FanfictionBuilder
+    public function withFandoms(?array $fandoms): FanfictionBuilder
     {
+        if ($fandoms === null) {
+            throw new FfbException('Fandoms cannot be null');
+        }
         foreach ($fandoms as $fandom) {
             if (!$fandom instanceof Fandom) {
-                throw new \InvalidArgumentException('Expected instance of Fandom');
+                throw new \FfbException('Expected instance of Fandom');
             }
         }
 
         // Sort the fandoms array alphabetically by name.
         usort(
-            $fandoms, function ($a, $b) {
+            $fandoms,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -149,7 +165,8 @@ final class FanfictionBuilder extends NamedEntityBuilder
 
         // Sort the fandoms array alphabetically by name.
         usort(
-            $fandoms, function ($a, $b) {
+            $fandoms,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -161,21 +178,25 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the characters for the Fanfiction object.
      *
-     * @param  array $characters An array of Character objects.
+     * @param  ?array $characters An array of Character objects.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
-     * @throws \InvalidArgumentException If any element in the array is not a Character instance.
+     * @throws \FfbException If any element in the array is not a Character instance.
      */
-    public function withCharacters(array $characters): FanfictionBuilder
+    public function withCharacters(?array $characters): FanfictionBuilder
     {
+        if ($characters === null) {
+            throw new FfbException('Characters cannot be null');
+        }
         foreach ($characters as $character) {
             if (!$character instanceof Character) {
-                throw new \InvalidArgumentException('Expected instance of Character');
+                throw new \FfbException('Expected instance of Character');
             }
         }
 
         // Sort the characters array alphabetically by name.
         usort(
-            $characters, function ($a, $b) {
+            $characters,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -197,7 +218,8 @@ final class FanfictionBuilder extends NamedEntityBuilder
 
         // Sort the characters array alphabetically by name.
         usort(
-            $characters, function ($a, $b) {
+            $characters,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -209,13 +231,17 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the relations for the Fanfiction object.
      *
-     * @param  array $relations An array of Relation objects.
+     * @param  ?array $relations An array of Relation objects.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withRelations(array $relations): FanfictionBuilder
+    public function withRelations(?array $relations): FanfictionBuilder
     {
+        if ($relations === null) {
+            throw new FfbException('Relations cannot be null');
+        }
         usort(
-            $relations, function ($a, $b) {
+            $relations,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -237,7 +263,8 @@ final class FanfictionBuilder extends NamedEntityBuilder
 
         // Sort the relations array alphabetically by name.
         usort(
-            $relations, function ($a, $b) {
+            $relations,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -249,13 +276,17 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the tags for the Fanfiction object.
      *
-     * @param  array $tags An array of Tag objects.
+     * @param  ?array $tags An array of Tag objects.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withTags(array $tags): FanfictionBuilder
+    public function withTags(?array $tags): FanfictionBuilder
     {
+        if ($tags === null) {
+            throw new FfbException('Tags cannot be null');
+        }
         usort(
-            $tags, function ($a, $b) {
+            $tags,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -277,7 +308,8 @@ final class FanfictionBuilder extends NamedEntityBuilder
 
         // Sort the tags array alphabetically by name.
         usort(
-            $tags, function ($a, $b) {
+            $tags,
+            function ($a, $b) {
                 return strcmp($a->getName(), $b->getName());
             }
         );
@@ -289,13 +321,26 @@ final class FanfictionBuilder extends NamedEntityBuilder
     /**
      * Sets the links for the Fanfiction object.
      *
-     * @param  array $links An array of Link objects.
+     * @param  ?array $links An array of Link objects.
      * @return FanfictionBuilder The current instance of FanfictionBuilder.
      */
-    public function withLinks(array $links): FanfictionBuilder
+    public function withLinks(?array $links): FanfictionBuilder
     {
+        if ($links === null) {
+            throw new FfbException('Links cannot be null');
+        }
+        if(!$links[0] instanceof Link){
+            $newLinks = [];
+            foreach ($links as $link) {
+                $newLinks[] = $link[0];
+            }
+            $links = $newLinks;
+        }
+
+
         usort(
-            $links, function ($a, $b) {
+            $links,
+            function ($a, $b) {
                 return strcmp($a->getUrl(), $b->getUrl());
             }
         );
@@ -315,7 +360,8 @@ final class FanfictionBuilder extends NamedEntityBuilder
 
         array_push($links, $link);
         usort(
-            $links, function ($a, $b) {
+            $links,
+            function ($a, $b) {
                 return strcmp($a->getUrl(), $b->getUrl());
             }
         );

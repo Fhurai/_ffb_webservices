@@ -13,6 +13,7 @@ require_once __DIR__ . "/../../src/entity/Tag.php";
 #[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\FanfictionBuilder::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbException::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
@@ -126,9 +127,10 @@ class FanfictionBuilderTest extends NamedEntityBuilderTestCase
         $this->expectException(TypeError::class);
         $this->builder->addFandom(new Character());
     }
+    
     public function testWithInvalidCharacterType(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(FfbException::class);
         $this->builder->withCharacters([new Fandom()]);
     }
 }
