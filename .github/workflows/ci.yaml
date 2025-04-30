@@ -264,6 +264,10 @@ jobs:
               exit 0
             fi
 
+            echo "$mysql_status" = "\"true\""
+            echo "$php_status" = "\"true\""
+            echo "$nginx_status" = "\"true\""
+
             echo "Waiting for containers to be running... ($i/$retries)"
             sleep $delay
           done
