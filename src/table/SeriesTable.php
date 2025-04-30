@@ -57,12 +57,28 @@ class SeriesTable extends EntitiesTable
 
     private function updateAssociationTable(string $association, int $id, array $items): void
     {
-        $this->updateAssociation(
-            self::TABLE_NAME . '_' . $association,
-            'series_id',
-            ':series_id',
-            $id,
-            $items
-        );
+        $junctionTable = self::TABLE_NAME . '_' . $association;
+        $primaryKeyColumn = 'series_id';
+        $primaryKeyParam = ':series_id';
+
+        $queryDelete = "DELETE FROM `$junctionTable` WHERE `$primaryKeyColumn` = $primaryKeyParam";
+        $this->executeQuery($queryDelete, [$primaryKeyParam => $id]);
+
+        if (!empty($items)) {
+            $mono = substr($junctionTable, strpos($junctionTable, '_') + 1);
+            $mono = rtrim($mono, 's');
+
+            $queryInsert = "INSERT INTO `$junctionTable` (`$primaryKeyColumn`, `{$mono}_id`, `ranking`) VALUES ($primaryKeyParam, :item_id, :ranking)";
+            foreach ($items as $key => $item) {
+                $this->executeQuery(
+                    $queryInsert,
+                    [
+                        $primaryKeyParam => $id,
+                        ":item_id" => $item->getId(),
+                        ":ranking" => $key + 1
+                    ]
+                );
+            }
+        }
     }
 }
