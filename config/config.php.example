@@ -36,7 +36,8 @@ return [
     ],
     "api" => [
         /**
-         * @TODO: Enlever le port pour le dévelopment local
+         * @TODO: To remove port from config.php
+         * Verify after each docker-up/docker-reload script as it will copy back config.php.example into config.php
          */
         "base" => getenv('DB_HOST') . ':8080/api' ?: "127.0.0.1:8080/api",
     ]
