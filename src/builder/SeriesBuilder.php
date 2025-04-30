@@ -29,11 +29,14 @@ final class SeriesBuilder extends NamedEntityBuilder
     /**
      * Sets the description for the Series object.
      *
-     * @param  string $description The description to set.
+     * @param  ?string $description The description to set.
      * @return SeriesBuilder The current instance of SeriesBuilder for method chaining.
      */
-    public function withDescription(string $description): SeriesBuilder
+    public function withDescription(?string $description): SeriesBuilder
     {
+        if($description === null){
+            throw new FfbEndpointException('Description cannot be null');
+        }
         $this->obj->setDescription($description); // Set the description of the Series object.
         return $this; // Return the builder instance for chaining.
     }
@@ -41,16 +44,19 @@ final class SeriesBuilder extends NamedEntityBuilder
     /**
      * Sets the fanfictions for the Series object.
      *
-     * @param  array $fanfictions An array of Fanfiction objects to associate with the Series.
+     * @param  ?array $fanfictions An array of Fanfiction objects to associate with the Series.
      * @return SeriesBuilder The current instance of SeriesBuilder for method chaining.
-     * @throws \InvalidArgumentException If any element in the array is not an instance of Fanfiction.
+     * @throws \FfbException If any element in the array is not an instance of Fanfiction.
      */
-    public function withFanfictions(array $fanfictions): SeriesBuilder
+    public function withFanfictions(?array $fanfictions): SeriesBuilder
     {
+        if($fanfictions === null){
+            throw new FfbException('Fanfictions cannot be null');
+        }
         foreach ($fanfictions as $fanfiction) {
             // Validate that each element is an instance of Fanfiction.
             if (!$fanfiction instanceof Fanfiction) {
-                throw new \InvalidArgumentException('Expected instance of Fanfiction');
+                throw new \FfbException('Expected instance of Fanfiction');
             }
         }
 

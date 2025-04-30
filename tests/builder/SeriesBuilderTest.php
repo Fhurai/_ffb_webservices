@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../src/entity/Fanfiction.php";
 #[\PHPUnit\Framework\Attributes\CoversClass(\Entity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\EvaluableTrait::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
+#[\PHPUnit\Framework\Attributes\CoversClass(\FfbException::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\NamedEntity::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\Series::class)]
 #[\PHPUnit\Framework\Attributes\CoversClass(\SeriesBuilder::class)]
@@ -45,7 +46,7 @@ class SeriesBuilderTest extends NamedEntityBuilderTestCase
 
     public function testWithInvalidFanfictionType(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(FfbException::class);
         $this->builder->withFanfictions([new Fandom()]);
     }
 }
