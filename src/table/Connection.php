@@ -91,7 +91,7 @@ class Connection
         // Print a newline for better readability
         echo "\n";
         // Dump the data
-        echo json_encode($data);
+        echo json_encode($data) . PHP_EOL;
     }
 
     /**
@@ -104,7 +104,7 @@ class Connection
         // Print a newline for better readability
         echo "\n";
         // Dump the data
-        echo json_encode($data);
+        echo json_encode($data) . PHP_EOL;
         // Stop the script execution
         die();
     }
