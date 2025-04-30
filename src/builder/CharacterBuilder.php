@@ -29,11 +29,14 @@ final class CharacterBuilder extends NamedEntityBuilder
      * Sets the fandom ID for the Character object.
      * Accepts either an integer representing the fandom ID or a Fandom object.
      *
-     * @param  int|Fandom $arg The fandom ID as an integer or a Fandom object.
+     * @param  int|Fandom|null $arg The fandom ID as an integer or a Fandom object.
      * @return CharacterBuilder The current instance of CharacterBuilder for method chaining.
      */
-    public function withFandomId(int|Fandom $arg): CharacterBuilder
+    public function withFandomId(int|Fandom|null $arg): CharacterBuilder
     {
+        if($arg === null) {
+            throw new FfbException('Fandom ID cannot be null');
+        }
         // Check if the argument is an integer
         if (is_int($arg)) {
             // Set the fandom ID
