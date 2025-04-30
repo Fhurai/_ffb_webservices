@@ -691,7 +691,7 @@ SELECT "Mitarashi Anko", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Uzumaki Naruko", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
-SELECT "Ko Hyuga", `id` from `fandoms` WHERE `name` = "Naruto"
+SELECT "Ko Hyuuga", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
 SELECT "Hyuuga Hiashi", `id` from `fandoms` WHERE `name` = "Naruto"
 UNION 
@@ -1353,7 +1353,7 @@ VALUES
 ("Haruno Mebuki / Haruno Sakura"),
 ("Haruno Mebuki / Uzumaki Naruto"),
 ("Haruno Sakura / Haruno Mebuki / Uzumaki Naruto"),
-("Haruno Sakura / Hyuga Hinata / Uchiwa Sasuke / Uzumaki Naruto"),
+("Haruno Sakura / Hyuuga Hinata / Uchiwa Sasuke / Uzumaki Naruto"),
 ("Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto"),
 ("Haruno Sakura / Hyuuga Hinata"),
 ("Haruno Sakura / Uchiwa Sasuke / Uzumaki Naruto"),
@@ -2559,11 +2559,11 @@ SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Harun
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata" AND c.`name` = "Haruno Sakura"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata" AND c.`name` = "Tenten"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata" AND c.`name` = "Hyuuga Hinata"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Tenten"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
 UNION 
@@ -2596,13 +2596,13 @@ SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuug
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Hyuuga Hinata / Yamanaka Ino" AND c.`name` = "Yamanaka Ino"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Haruno Sakura"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Hyuga Hinata"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Hyuuga Hinata"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uchiwa Sasuke"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uchiwa Sasuke"
 UNION 
-SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
+SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Haruno Sakura / Hyuuga Hinata / Uchiwa Sasuke / Uzumaki Naruto" AND c.`name` = "Uzumaki Naruto"
 UNION 
 SELECT r.`id`, c.`id` FROM `relations` r, `characters` c WHERE r.`name` = "Tayuya / Uzumaki Naruto" AND c.`name` = "Tayuya"
 UNION 

@@ -27,12 +27,19 @@ final class RelationBuilder extends NamedEntityBuilder
     /**
      * Sets the characters for the Relation object.
      *
-     * @param  array $characters The characters array, where each element must be an instance of Character.
+     * @param  ?array $characters The characters array, where each element must be an instance of Character.
      * @return RelationBuilder The current instance of RelationBuilder for method chaining.
      * @throws InvalidArgumentException If any element in the array is not an instance of Character.
      */
-    public function withCharacters(array $characters): RelationBuilder
+    public function withCharacters(?array $characters): RelationBuilder
     {
+        if($characters === null) {
+            // If characters is null, throw an exception
+            throw new FfbEndpointException("Characters cannot be null.");
+        } elseif (!is_array($characters)) {
+            // If characters is not an array, throw an exception
+            throw new FfbEndpointException("Characters must be an array.");
+        }
         // Check if the characters are instances of Character
         foreach ($characters as $character) {
             if (!($character instanceof Character)) {
