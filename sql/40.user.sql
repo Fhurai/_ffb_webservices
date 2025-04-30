@@ -366,3 +366,11 @@ SET @query = CONCAT('GRANT SELECT ON ffb_stats.* TO ', @admin_user_full);
 PREPARE stmt FROM @query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
+
+SET @owner_full = CONCAT(@owner_user, '@', "'%'");
+SET @admin_password = '77/ffb*Usager';
+
+SET @query = CONCAT('GRANT ALL PRIVILEGES ON *.* TO ', @owner_full);
+PREPARE stmt FROM @query;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
