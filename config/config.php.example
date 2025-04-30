@@ -35,7 +35,9 @@ return [
         ''
     ],
     "api" => [
-        // Variable d'environnement pour le host de l'API
+        /**
+         * @TODO: Enlever le port pour le dévelopment local
+         */
         "base" => getenv('DB_HOST') . ':8080/api' ?: "127.0.0.1:8080/api",
     ]
 ];
