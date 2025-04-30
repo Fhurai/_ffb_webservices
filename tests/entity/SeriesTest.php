@@ -148,12 +148,9 @@ class SeriesTest extends TestCase
         $this->assertEquals(0, $series->getId());
         $this->assertEquals('', $series->getName());
         $this->assertEquals('', $series->getDescription());
-        $this->assertEquals(-1, $series->getScoreId());
+        $this->assertNull($series->getScoreId());
         $this->assertEquals('', $series->getEvaluation());
         $this->assertInstanceOf(DateTime::class, $series->getCreationDate());
-
-        $this->assertEquals(-1, $series->getScoreId());
-        $this->assertEquals('', $series->getEvaluation());
     }
 
     /**

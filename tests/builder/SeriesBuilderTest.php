@@ -41,7 +41,7 @@ class SeriesBuilderTest extends NamedEntityBuilderTestCase
         $fanficB = new Fanfiction();
         $fanficB->setName("Alpha Tale");
         $entity = $this->builder->withFanfictions([$fanficA, $fanficB])->build();
-        $this->assertEquals([$fanficB, $fanficA], $entity->getFanfictions());
+        $this->assertEquals([$fanficA, $fanficB], $entity->getFanfictions());
     }
 
     public function testWithInvalidFanfictionType(): void
