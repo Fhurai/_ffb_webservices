@@ -227,7 +227,7 @@ collection:
     meta:
       id: fld_68676e4162db4a8d930be686ae076db3
       created: 1744398836587
-      modified: 1745924971948
+      modified: 1746015017912
       sortKey: -1744348274466.5
     children:
       - name: fandoms
@@ -1111,7 +1111,7 @@ collection:
             meta:
               id: req_8cb4f86171a543ac9a3cb490c9d9340e
               created: 1745019374484
-              modified: 1745021135940
+              modified: 1745936612090
               isPrivate: false
               sortKey: -1744636569262
             method: POST
@@ -1119,28 +1119,18 @@ collection:
               mimeType: application/json
               text: |-
                 {
-                	"username": "Kaiser57",
-                	"password": "ReTest67bRue",
-                	"email": "kuntz.lucas@gmail.com",
-                	"birthday": "1992-12-21 00:00:00",
-                	"isAdmin": 0,
-                	"isLocal": 1,
-                	"isNsfw": 1
+                	"username": "newuser", 
+                	"password": "password123", 
+                	"email": "newuser@example.com", 
+                	"birthday": "1990-01-01 00:00:00", 
+                	"isAdmin": false,
+                	"isLocal": true
                 }
             headers:
               - name: Content-Type
                 value: application/json
               - name: User-Agent
                 value: insomnia/11.0.2
-            scripts:
-              afterResponse: |-
-                // This sets the variable in the currently active environment
-                const jsonBody = insomnia.response.json();
-
-                if (jsonBody.id) {
-                	const folder = insomnia.parentFolders.get('users');
-                	folder.environment.set("id", jsonBody.id);
-                }
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -1198,6 +1188,97 @@ collection:
             headers:
               - name: Content-Type
                 value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_f3dbfc703f324dc0a78c0f6a48b0808c
+              created: 1745993431553
+              modified: 1745993434459
+              isPrivate: false
+              sortKey: -1744636569562
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_1f89c3cbc4fb4686bed11c7041ec019a
+              created: 1745993440501
+              modified: 1745993442789
+              isPrivate: false
+              sortKey: -1744636569662
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_d4469f206c9e4d70b59221d29a197acc
+              created: 1745993446937
+              modified: 1745993449888
+              isPrivate: false
+              sortKey: -1744636569762
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
               - name: User-Agent
                 value: insomnia/11.0.2
             settings:
@@ -1392,6 +1473,97 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_09cf97838d794f6fa84699a2c04d1601
+              created: 1745993457483
+              modified: 1745993459721
+              isPrivate: false
+              sortKey: -1744652788527
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_f1cb58c2ee9d4cda8c1635bcc0a2b4a8
+              created: 1745993465269
+              modified: 1745993468306
+              isPrivate: false
+              sortKey: -1744652788627
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_1a26f8c5ab44463cbb7ea82bc27d9c95
+              created: 1745993472170
+              modified: 1745993474739
+              isPrivate: false
+              sortKey: -1744652788727
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: tag
           stereo: tags
@@ -1575,6 +1747,97 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_852f83b5908d4fae982d7183d98d48e3
+              created: 1745995888695
+              modified: 1745995891267
+              isPrivate: false
+              sortKey: -1744719572116
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_40f804e7e2e44562836e80d2b700cf46
+              created: 1745995895428
+              modified: 1745995897826
+              isPrivate: false
+              sortKey: -1744719572216
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_26f6a6d5c7de4f8cae6fc22662b3fc72
+              created: 1745995901505
+              modified: 1745995903493
+              isPrivate: false
+              sortKey: -1744719572316
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: character
           stereo: characters
@@ -1641,13 +1904,13 @@ collection:
             meta:
               id: req_d3900a321eea4246b02fe43221023a30
               created: 1744726847387
-              modified: 1745845068603
+              modified: 1745998019380
               isPrivate: false
               sortKey: -1744726255303
             method: GET
             parameters:
               - name: search_name
-                value: "%Greengrass / Harry Potter"
+                value: "%Hina%"
                 disabled: false
                 id: pair_a299996b856c44f6b5f5e69af10b1d70
             headers:
@@ -1758,6 +2021,97 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_e511e5aa739c404d86fdb5d1114de1cf
+              created: 1745999674892
+              modified: 1745999677634
+              isPrivate: false
+              sortKey: -1744726255803
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_d60e5ccf8d90440f80edd323b9a1e480
+              created: 1745999681359
+              modified: 1745999683636
+              isPrivate: false
+              sortKey: -1744726255903
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_6665be6735ab40f587ab5c008440fd10
+              created: 1745999687051
+              modified: 1745999689233
+              isPrivate: false
+              sortKey: -1744726256003
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: relation
           stereo: relations
@@ -1771,7 +2125,7 @@ collection:
         meta:
           id: fld_cdf95fd706674198817a0d1560560d92
           created: 1744751398464
-          modified: 1745844342171
+          modified: 1746015017912
           sortKey: -1744751398464
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
@@ -1959,6 +2313,97 @@ collection:
                 send: true
                 store: true
               rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_5edc73c465fc4c4ebb95961c51e8e548
+              created: 1746004318092
+              modified: 1746004321025
+              isPrivate: false
+              sortKey: -1744751453665
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_7a308502bed44b38a68ff500486c5ded
+              created: 1746004326179
+              modified: 1746004328526
+              isPrivate: false
+              sortKey: -1744751453765
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_987f82ea34964343bca7d2cbcf648887
+              created: 1746004332168
+              modified: 1746004334527
+              isPrivate: false
+              sortKey: -1744751453865
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
         environment:
           mono: fanfiction
           stereo: fanfictions
@@ -1972,7 +2417,7 @@ collection:
         meta:
           id: fld_4d942195137f4cb5bba25ea1f0a2f559
           created: 1744976580282
-          modified: 1745851235652
+          modified: 1746014087840
           sortKey: -1744976580282
         children:
           - url: "{{ _.pathAPI }}/{{ _.stereo }}"
@@ -2049,7 +2494,7 @@ collection:
             meta:
               id: req_42fc32a2151842fc9ec7713f770c36a3
               created: 1745091806768
-              modified: 1745851233744
+              modified: 1746014077891
               isPrivate: false
               sortKey: -1744976600175
             method: POST
@@ -2060,7 +2505,22 @@ collection:
                 	"name": "Test series",
                 	"description": "Series is tested",
                 	"fanfictions": [
-                		1, 2, 3
+                		{
+                			"fanfiction_id": 2,
+                			"ranking": 1
+                		},
+                		{
+                			"fanfiction_id": 1,
+                			"ranking": 2
+                		},
+                		{
+                			"fanfiction_id": 4,
+                			"ranking": 3
+                		},
+                		{
+                			"fanfiction_id": 3,
+                			"ranking": 4
+                		}
                 	]
                 }
             headers:
@@ -2137,6 +2597,97 @@ collection:
             headers:
               - name: Content-Type
                 value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: delete
+            meta:
+              id: req_775906bc34724a368fb453a747016155
+              created: 1746015588377
+              modified: 1746015591101
+              isPrivate: false
+              sortKey: -1744976600475
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": true
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: restore
+            meta:
+              id: req_993fba42f3814a8eb93103150afdf2a1
+              created: 1746015595058
+              modified: 1746015597510
+              isPrivate: false
+              sortKey: -1744976600575
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"deleted": false
+                }
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_0da284eae88341a3931834b8c7b5274d
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: User-Agent
+                value: insomnia/11.0.2
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.pathAPI }}/{{ _.mono }}"
+            name: remove
+            meta:
+              id: req_68c8f177f79049148b30ab0e997e5ff6
+              created: 1746015601356
+              modified: 1746015603729
+              isPrivate: false
+              sortKey: -1744976600675
+            method: DELETE
+            parameters:
+              - name: id
+                value: "{{ _.id }}"
+                disabled: false
+                id: pair_39dd8fadce7148e8b198e658a2610276
+            headers:
               - name: User-Agent
                 value: insomnia/11.0.2
             settings:
@@ -2241,16 +2792,16 @@ cookieJar:
   meta:
     id: jar_96817bb7e4384d0eb6f26e21da9b913d
     created: 1744304261692
-    modified: 1745924971944
+    modified: 1746015017910
 environments:
   name: Base Environment
   meta:
     id: env_018758e82f7549d993864e49307516a4
     created: 1744304261690
-    modified: 1745924971946
+    modified: 1746015017911
     isPrivate: false
   data:
     pathAPI: http://127.0.1.77/api
     pathStats: http://127.0.1.77/stats
-    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDU5MjQ5NDYsImV4cCI6MTc0NTkzOTM0NiwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.kam6W8dEB23R7aWRttyJDs8e_DaY8io4X5S0k-CeUtI
+    ffb_tests_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDYwMTI2MjIsImV4cCI6MTc0NjAyNzAyMiwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl90ZXN0cyJ9fQ.RSNOil1cMPhTaG1XQiWz2OY_-0zbh2jflEnEY_yv-Rk
     ffb_main_secret: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDQ0NDkyNzAsImV4cCI6MTc0NDQ2MzY3MCwiZGF0YSI6eyJ1c2VybmFtZSI6IkZodXJhaSIsImlzQWRtaW4iOmZhbHNlLCJkYiI6ImZmYl9tYWluIn19._iUjOFNNEFp6sko4SejxPv8Dk5HRBDfgI7jjuZ4HA1k
