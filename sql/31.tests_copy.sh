@@ -1,1 +1,1 @@
-mysqldump -uroot -proot ffb_main | mysql -uroot -proot ffb_tests
+mysqldump -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" ffb_main | mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" ffb_tests
