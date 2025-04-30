@@ -228,10 +228,14 @@ jobs:
         if: always()
         run: echo "This job status is ${{ job.status }}"
 
+  # 4. Check docker-compose
   compose-docker:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    needs: docker-build-image-api
     steps:
+      - uses: actions/checkout@v4
+
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v1
         with:
@@ -270,7 +274,7 @@ jobs:
   discord-notification-docker:
     name: Discord Notification - Docker Image Build
     runs-on: ubuntu-latest
-    needs: docker-build-image-api
+    needs: compose-docker
     if: always()
     steps:
       - name: Send Discord notification
@@ -309,7 +313,7 @@ jobs:
   teams-notification-docker:
     name: Teams Notification - Docker Image Build
     runs-on: ubuntu-latest
-    needs: docker-build-image-api
+    needs: compose-docker
     if: always()
     steps:
       # Step 1: Send Microsoft Teams notification
