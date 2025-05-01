@@ -10,4 +10,4 @@ cd "$(dirname "$0")/.." || exit 1
 ./scripts/mysql-reset-tests.sh
 
 # Run PHPUnit with code coverage and exclusions
-./vendor/bin/phpunit --exclude-group abstract
+./vendor/bin/phpunit --coverage-clover clover.xml --exclude-group abstract

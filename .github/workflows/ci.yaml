@@ -108,11 +108,6 @@ jobs:
           fi
           echo "✅ config/config.php verified"
 
-      - name: Read config files
-        id: read_configs
-        run: |
-          echo $PHP_HOST && cat config/config.php
-
       # Step 8: Initialize database with custom script
       - name: Initialize database
         run: |
@@ -158,7 +153,7 @@ jobs:
 
       # Step 14: Run PHPUnit tests with code coverage
       - name: Run PHPUnit with coverage
-        run: ./vendor/bin/phpunit --coverage-clover clover.xml
+        run: ./scripts/php-coverage.sh
 
       # Step 15: Run SonarQube scan
       - name: SonarQube Scan
