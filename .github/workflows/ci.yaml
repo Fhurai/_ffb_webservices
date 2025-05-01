@@ -148,7 +148,7 @@ jobs:
           fi
 
       - name: Script permissions
-        run: chmod +x scripts/
+        run: chmod +x scripts/php-coverage.sh
 
       # Step 14: Run PHPUnit tests with code coverage
       - name: Run PHPUnit with coverage
