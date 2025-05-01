@@ -107,14 +107,12 @@ jobs:
           fi
           echo "✅ config/config.php verified"
 
-      - name: Raad content config.php
-        id: read_content
-        uses: komorebitech/read-files-action@v1.5
-        with:
-          files: '["/config/config.php", "/config/config.php.ci", "/config/config.php.example"]'
-
-      - name: Echo content config.php
-        run: echo "${{ steps.read_content.outputs.content }}"
+      - name: Read config files
+        id: read_configs
+        run: |
+          echo "CONFIG_PHP=$(cat /config/config.php)" >> $GITHUB_OUTPUT
+          echo "CONFIG_PHP_CI=$(cat /config/config.php.ci)" >> $GITHUB_OUTPUT
+          echo "CONFIG_PHP_EXAMPLE=$(cat /config/config.php.example)" >> $GITHUB_OUTPUT
 
       # Step 8: Initialize database with custom script
       - name: Initialize database
