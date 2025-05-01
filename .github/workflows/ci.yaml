@@ -110,9 +110,7 @@ jobs:
       - name: Read config files
         id: read_configs
         run: |
-          echo "CONFIG_PHP=$(cat config/config.php)" >> $GITHUB_OUTPUT
-          echo "CONFIG_PHP_CI=$(cat config/config.php.ci)" >> $GITHUB_OUTPUT
-          echo "CONFIG_PHP_EXAMPLE=$(cat config/config.php.example)" >> $GITHUB_OUTPUT
+          cat config/config.php
 
       # Step 8: Initialize database with custom script
       - name: Initialize database
