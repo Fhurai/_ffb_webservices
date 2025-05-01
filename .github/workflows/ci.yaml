@@ -148,7 +148,7 @@ jobs:
           fi
 
       - name: Script permissions
-        run: chmod + ./scripts/
+        run: chmod + scripts/
 
       # Step 14: Run PHPUnit tests with code coverage
       - name: Run PHPUnit with coverage
