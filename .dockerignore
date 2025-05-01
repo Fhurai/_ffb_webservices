@@ -1,6 +1,5 @@
 Conception/
 config/config.php
-tests/
 vendor/
 .github/
 .git/
@@ -14,4 +13,3 @@ README.md
 sonar-project.properties
 sonar.bat
 test-results.xml
-phpunit.xml

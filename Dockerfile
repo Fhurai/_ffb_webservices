@@ -28,6 +28,8 @@ RUN sed -i 's/\r$//' scripts/php-compose.sh
 
 RUN chmod +x -R scripts/
 
+RUN sed -i 's/\r$//' scripts/*.sh
+
 RUN ls -l ./scripts && \
     ./scripts/php-compose.sh
 
