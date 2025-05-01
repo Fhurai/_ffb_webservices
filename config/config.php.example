@@ -35,10 +35,6 @@ return [
         ''
     ],
     "api" => [
-        /**
-         * @TODO: To remove port from config.php
-         * Verify after each docker-up/docker-reload script as it will copy back config.php.example into config.php
-         */
         "base" => getenv('PHP_HOST') . '/api' ?: "127.0.0.1/api",
     ]
 ];

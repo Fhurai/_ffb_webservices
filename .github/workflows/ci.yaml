@@ -41,6 +41,7 @@ jobs:
       - name: Setup environment
         run: |
           echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
+          echo "PHP_HOST=127.0.0.1" >> $GITHUB_ENV
           echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
           echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
           echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
@@ -110,7 +111,7 @@ jobs:
       - name: Read config files
         id: read_configs
         run: |
-          cat config/config.php
+          echo $PHP_HOST && cat config/config.php
 
       # Step 8: Initialize database with custom script
       - name: Initialize database
