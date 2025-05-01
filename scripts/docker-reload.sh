@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./scripts/docker-down.sh
-docker system --all -f
+docker system prune --all -f
 ./scripts/docker-up.sh

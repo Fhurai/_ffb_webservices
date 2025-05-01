@@ -96,7 +96,7 @@ jobs:
           cp config/config.php.ci config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
+          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '127.0.0.1'/g" config/config.php
 
       - name: Verify config.php exists
         run: |
@@ -293,7 +293,6 @@ jobs:
 
       - name: Run tests
         run: docker exec php_ffb ./scripts/php-unit.sh
-
 
   # 5. Discord Notification
   discord-notification-docker:
