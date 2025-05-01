@@ -107,6 +107,9 @@ jobs:
           fi
           echo "✅ config/config.php verified"
 
+      - name: Check content config.php
+        run: nano config/config.php
+
       # Step 8: Initialize database with custom script
       - name: Initialize database
         run: |
