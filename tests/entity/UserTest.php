@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/User.php';
 
-#[\PHPUnit\Framework\Attributes\CoversClass(\User::class)]
+#[CoversClass(\User::class)]
 class UserTest extends TestCase
 {
     private const DEFAULT_TIMEZONE = 'Europe/Paris';

@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Character.php';
@@ -8,8 +9,8 @@ require_once __DIR__ . '/../../src/entity/Character.php';
  * PHPUnit test suite for the Character entity.
  * Validates core functionality including getters/setters, JSON serialization, and associations.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
+#[CoversClass(\Character::class)]
+#[CoversClass(\SrcUtilities::class)]
 class CharacterTest extends TestCase
 {
     private Character $character;

@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Fandom.php';
@@ -9,7 +10,7 @@ require_once __DIR__ . '/../../src/entity/Fandom.php';
  *
  * Unit tests for the Fandom entity class.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Fandom::class)]
+#[CoversClass(\Fandom::class)]
 class FandomTest extends TestCase
 {
     /**

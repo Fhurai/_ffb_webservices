@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Tag.php';
@@ -9,10 +10,10 @@ require_once __DIR__ . '/../../src/entity/Tag.php';
  *
  * Unit tests for the Tag entity.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Parameters::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Tag::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\TagType::class)]
+#[CoversClass(\Parameters::class)]
+#[CoversClass(\SrcUtilities::class)]
+#[CoversClass(\Tag::class)]
+#[CoversClass(\TagType::class)]
 class TagTest extends TestCase
 {
     private const TEST_DESCRIPTION = 'Test Description';

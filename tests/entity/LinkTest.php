@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Link.php';
@@ -9,7 +10,7 @@ require_once __DIR__ . '/../../src/entity/Link.php';
  *
  * Unit tests for the Link entity class.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Link::class)]
+#[CoversClass(\Link::class)]
 class LinkTest extends TestCase
 {
     /**

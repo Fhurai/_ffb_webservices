@@ -21,5 +21,14 @@
         <include>
             <directory>src</directory>
         </include>
+        <exclude>
+            <file>src/entity/Action.php</file>
+            <file>src/entity/Author.php</file>
+            <file>src/entity/Fandom.php</file>
+            <file>src/entity/Language.php</file>
+            <file>src/entity/Rating.php</file>
+            <file>src/entity/Score.php</file>
+            <file>src/entity/TagType.php</file>
+        </exclude>
     </source>
 </phpunit>

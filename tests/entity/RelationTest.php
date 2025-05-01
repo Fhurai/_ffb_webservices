@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Relation.php';
@@ -7,10 +8,10 @@ require_once __DIR__ . '/../../src/entity/Relation.php';
 /**
  * Unit tests for the Relation class.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Character::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Fanfiction::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\SrcUtilities::class)]
-#[\PHPUnit\Framework\Attributes\CoversClass(\Relation::class)]
+#[CoversClass(\Character::class)]
+#[CoversClass(\Fanfiction::class)]
+#[CoversClass(\SrcUtilities::class)]
+#[CoversClass(\Relation::class)]
 class RelationTest extends TestCase
 {
     private const TIMEZONE = 'Europe/Paris';

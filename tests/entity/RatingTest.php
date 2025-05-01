@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Rating.php';
@@ -7,7 +8,7 @@ require_once __DIR__ . '/../../src/entity/Rating.php';
 /**
  * Unit tests for the Rating class.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Rating::class)]
+#[CoversClass(\Rating::class)]
 class RatingTest extends TestCase
 {
     /**

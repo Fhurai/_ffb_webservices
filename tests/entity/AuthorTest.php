@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../../src/entity/Author.php';
@@ -9,7 +10,10 @@ require_once __DIR__ . '/../../src/entity/Author.php';
  * Validates core functionality including object initialization, property access, serialization,
  * and edge case handling for the Author class and its inherited methods from NamedEntity.
  */
-#[\PHPUnit\Framework\Attributes\CoversClass(\Author::class)]
+#[CoversClass(Author::class)]
+#[CoversClass(NamedEntity::class)]
+#[CoversClass(EntityTrait::class)]
+#[CoversClass(Entity::class)]
 class AuthorTest extends TestCase
 {
     /**
