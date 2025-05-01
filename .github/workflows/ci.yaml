@@ -107,8 +107,14 @@ jobs:
           fi
           echo "✅ config/config.php verified"
 
-      - name: Check content config.php
-        run: nano config/config.php
+      - name: Raad content config.php
+        id: read_content
+        uses: komorebitech/read-files-action@v1.5
+        with:
+          files: '["/config/config.php", "/config/config.php.ci", "/config/config.php.example"]'
+
+      - name: Echo content config.php
+        run: echo "${{ steps.read_content.outputs.content }}"
 
       # Step 8: Initialize database with custom script
       - name: Initialize database
