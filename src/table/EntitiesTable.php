@@ -31,7 +31,7 @@ abstract class EntitiesTable
     public function __construct(string $typeConnection, string $user)
     {
         if (empty($typeConnection) || empty($user)) {
-            throw new InvalidArgumentException("Invalid connection type or user.");
+            throw new FfbTableException("Invalid connection type or user.");
         }
         $this->connection = Connection::getDatabase($typeConnection, $user);
     }
@@ -200,7 +200,7 @@ abstract class EntitiesTable
 
         if ($entity::class === 'User') {
             /**
-             * @var User $entity 
+             * @var User $entity
              */
             $cols['password'] = password_hash($entity->getPassword(), PASSWORD_DEFAULT);
             $cols['is_admin'] = $entity->isAdmin() ? 1 : 0;
@@ -208,12 +208,12 @@ abstract class EntitiesTable
             $cols['is_nsfw'] = $entity->isNsfw() ? 1 : 0;
         } elseif ($entity::class === 'Relation') {
             /**
-             * @var Relation $entity 
+             * @var Relation $entity
              */
             unset($cols['characters']);
         } elseif ($entity::class === 'Fanfiction') {
             /**
-             * @var Fanfiction $entity 
+             * @var Fanfiction $entity
              */
             unset($cols['fandoms']);
             unset($cols['relations']);
@@ -222,7 +222,7 @@ abstract class EntitiesTable
             unset($cols['links']);
         } elseif ($entity::class === 'Series') {
             /**
-             * @var Series $entity 
+             * @var Series $entity
              */
             unset($cols['fanfictions']);
             unset($cols['authors']);
@@ -291,7 +291,7 @@ abstract class EntitiesTable
 
         if ($entityClass === 'User') {
             /**
-             * @var User $entity 
+             * @var User $entity
              */
             if (isset($cols['password'])) {
                 unset($cols['password']);
@@ -306,7 +306,7 @@ abstract class EntitiesTable
             }
         } elseif ($entityClass === 'Relation') {
             /**
-             * @var Relation $entity 
+             * @var Relation $entity
              */
             $charactersTable = new CharactersTable(Connection::getTypeConnect(), Connection::getUser());
             $characters = $charactersTable->findSearchedBy(['id' => $cols['characters']]);
@@ -322,7 +322,7 @@ abstract class EntitiesTable
             );
         } elseif ($entityClass === 'Fanfiction') {
             /**
-             * @var Fanfiction $entity 
+             * @var Fanfiction $entity
              */
             if (array_key_exists('fandoms', $cols)) {
                 $fandomsTable = new FandomsTable(Connection::getTypeConnect(), Connection::getUser());
@@ -349,7 +349,7 @@ abstract class EntitiesTable
             }
         } elseif ($entityClass === 'Series') {
             /**
-             * @var Series $entity 
+             * @var Series $entity
              */
             if (array_key_exists('fanfictions', $cols)) {
                 $fanfictionsTable = new FanfictionsTable(Connection::getTypeConnect(), Connection::getUser());
