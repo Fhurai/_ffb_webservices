@@ -93,7 +93,7 @@ jobs:
       # Step 7: Setup config file for the app
       - name: Configure application
         run: |
-          cp config/config.php.example config/config.php
+          cp config/config.php.ci config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
           sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
@@ -290,6 +290,9 @@ jobs:
 
       - name: Test PHP service
         run: docker exec php_ffb php -v
+
+      - name: Run tests
+        run: docker exec php_ffb vendor/bin/phpunit
 
 
   # 5. Discord Notification
