@@ -63,6 +63,7 @@ services:
       retries: 5
     environment:
       - DB_HOST=mysql_ffb
+      - PHP_HOST=nginx_ffb
     networks:
       - ffb_network
 
