@@ -21,7 +21,7 @@ abstract class ApiTestCase extends TestCase
     public static function setUpBeforeClass(): void
     {
         $config = include __DIR__ . '/../../config/config.php';
-        self::$apiBaseUrl = 'http://' . $config['api']['base'];
+        self::$apiBaseUrl = 'https://' . $config['api']['base'];
         self::$token = self::authenticate('Fhurai', 'Sen5652466*', 'ffb_tests');
         self::$sharedClient = new ApiClient('Bearer', self::$token);
     }
