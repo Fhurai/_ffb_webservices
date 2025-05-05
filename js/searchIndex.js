@@ -526,6 +526,36 @@ Search.appendIndex(
             "summary": "Prepares\u0020the\u0020entity\u0020data\u0020before\u0020building\u0020it.",
             "url": "classes/EntityEndpoint.html#method_beforeBuild"
         },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AhandleRelationsTable\u0028\u0029",
+            "name": "handleRelationsTable",
+            "summary": "Handle\u0020mapping\u0020for\u0020RelationsTable\u0020entities.",
+            "url": "classes/EntityEndpoint.html#method_handleRelationsTable"
+        },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AhandleFanfictionsTable\u0028\u0029",
+            "name": "handleFanfictionsTable",
+            "summary": "Handle\u0020mapping\u0020for\u0020FanfictionsTable\u0020entities.",
+            "url": "classes/EntityEndpoint.html#method_handleFanfictionsTable"
+        },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AhandleLinksMapping\u0028\u0029",
+            "name": "handleLinksMapping",
+            "summary": "Handle\u0020special\u0020case\u0020for\u0020links\u0020mapping.",
+            "url": "classes/EntityEndpoint.html#method_handleLinksMapping"
+        },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AhandleSeriesTable\u0028\u0029",
+            "name": "handleSeriesTable",
+            "summary": "Handle\u0020mapping\u0020for\u0020SeriesTable\u0020entities.",
+            "url": "classes/EntityEndpoint.html#method_handleSeriesTable"
+        },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AassignFanfictionRankings\u0028\u0029",
+            "name": "assignFanfictionRankings",
+            "summary": "Assign\u0020rankings\u0020to\u0020fanfictions.",
+            "url": "classes/EntityEndpoint.html#method_assignFanfictionRankings"
+        },                {
+            "fqsen": "\\EntityEndpoint\u003A\u003AmapRelatedEntities\u0028\u0029",
+            "name": "mapRelatedEntities",
+            "summary": "Helper\u0020method\u0020to\u0020map\u0020related\u0020entities.",
+            "url": "classes/EntityEndpoint.html#method_mapRelatedEntities"
+        },                {
             "fqsen": "\\EntityEndpoint\u003A\u003Abuild\u0028\u0029",
             "name": "build",
             "summary": "Builds\u0020an\u0020entity\u0020using\u0020the\u0020appropriate\u0020builder\u0020class.",
