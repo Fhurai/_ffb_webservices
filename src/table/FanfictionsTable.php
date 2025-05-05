@@ -64,37 +64,37 @@ class FanfictionsTable extends EntitiesTable
 
         if (!empty($entities)) {
             switch ($association) {
-            case 'author':
-                $builder->$withMethod(
-                    (new $associationbuilder())
-                        ->withId($entities[0]["id"])
-                        ->withName($entities[0]["name"])
-                        ->withCreationDate($entities[0]["creation_date"])
-                        ->withUpdateDate($entities[0]["update_date"])
-                        ->withDeleteDate($entities[0]["delete_date"])
-                        ->build()
-                );
-                break;
-            case 'language':
-                $builder->$withMethod(
-                    (new $associationbuilder())
-                        ->withId($entities[0]["id"])
-                        ->withName($entities[0]["name"])
-                        ->withAbbreviation($entities[0]["abbreviation"])
-                        ->withCreationDate($entities[0]["creation_date"])
-                        ->withUpdateDate($entities[0]["update_date"])
-                        ->withDeleteDate($entities[0]["delete_date"])
-                        ->build()
-                );
-                break;
-            case 'rating':
-                $builder->$withMethod(new Rating($entities[0]["id"], $entities[0]["name"]));
-                break;
-            case 'score':
-                $builder->$withMethod(new Score($entities[0]["id"], $entities[0]["name"]));
-                break;
-            default:
-                throw new InvalidArgumentException("Unknown association");
+                case 'author':
+                    $builder->$withMethod(
+                        (new $associationbuilder())
+                            ->withId($entities[0]["id"])
+                            ->withName($entities[0]["name"])
+                            ->withCreationDate($entities[0]["creation_date"])
+                            ->withUpdateDate($entities[0]["update_date"])
+                            ->withDeleteDate($entities[0]["delete_date"])
+                            ->build()
+                    );
+                    break;
+                case 'language':
+                    $builder->$withMethod(
+                        (new $associationbuilder())
+                            ->withId($entities[0]["id"])
+                            ->withName($entities[0]["name"])
+                            ->withAbbreviation($entities[0]["abbreviation"])
+                            ->withCreationDate($entities[0]["creation_date"])
+                            ->withUpdateDate($entities[0]["update_date"])
+                            ->withDeleteDate($entities[0]["delete_date"])
+                            ->build()
+                    );
+                    break;
+                case 'rating':
+                    $builder->$withMethod(new Rating($entities[0]["id"], $entities[0]["name"]));
+                    break;
+                case 'score':
+                    $builder->$withMethod(new Score($entities[0]["id"], $entities[0]["name"]));
+                    break;
+                default:
+                    throw new InvalidArgumentException("Unknown association");
             }
         }
     }
@@ -119,56 +119,56 @@ class FanfictionsTable extends EntitiesTable
         if (!empty($entities)) {
             foreach ($entities as $entity) {
                 switch ($mono) {
-                case 'fandom':
-                case 'relation':
-                    $builder->$addMethod(
-                        (new $associationbuilder())
-                            ->withId($entity["id"])
-                            ->withName($entity["name"])
-                            ->withCreationDate($entity["creation_date"])
-                            ->withUpdateDate($entity["update_date"])
-                            ->withDeleteDate($entity["delete_date"])
-                            ->build()
-                    );
-                    break;
-                case 'character':
-                    $builder->$addMethod(
-                        (new $associationbuilder())
-                            ->withId($entity["id"])
-                            ->withName($entity["name"])
-                            ->withFandomId($entity["fandom_id"])
-                            ->withCreationDate($entity["creation_date"])
-                            ->withUpdateDate($entity["update_date"])
-                            ->withDeleteDate($entity["delete_date"])
-                            ->build()
-                    );
-                    break;
-                case 'tag':
-                    $builder->$addMethod(
-                        (new $associationbuilder())
-                            ->withId($entity["id"])
-                            ->withName($entity["name"])
-                            ->withDescription($entity["description"])
-                            ->withCreationDate($entity["creation_date"])
-                            ->withUpdateDate($entity["update_date"])
-                            ->withDeleteDate($entity["delete_date"])
-                            ->build()
-                    );
-                    break;
-                case 'link':
-                    $builder->$addMethod(
-                        (new $associationbuilder())
-                            ->withId($entity["id"])
-                            ->withUrl($entity['url'])
-                            ->withFanfictionId($entity['fanfiction_id'])
-                            ->withCreationDate($entity["creation_date"])
-                            ->withUpdateDate($entity["update_date"])
-                            ->withDeleteDate($entity["delete_date"])
-                            ->build()
-                    );
-                    break;
-                default:
-                    throw new InvalidArgumentException("Unknown association");
+                    case 'fandom':
+                    case 'relation':
+                        $builder->$addMethod(
+                            (new $associationbuilder())
+                                ->withId($entity["id"])
+                                ->withName($entity["name"])
+                                ->withCreationDate($entity["creation_date"])
+                                ->withUpdateDate($entity["update_date"])
+                                ->withDeleteDate($entity["delete_date"])
+                                ->build()
+                        );
+                        break;
+                    case 'character':
+                        $builder->$addMethod(
+                            (new $associationbuilder())
+                                ->withId($entity["id"])
+                                ->withName($entity["name"])
+                                ->withFandomId($entity["fandom_id"])
+                                ->withCreationDate($entity["creation_date"])
+                                ->withUpdateDate($entity["update_date"])
+                                ->withDeleteDate($entity["delete_date"])
+                                ->build()
+                        );
+                        break;
+                    case 'tag':
+                        $builder->$addMethod(
+                            (new $associationbuilder())
+                                ->withId($entity["id"])
+                                ->withName($entity["name"])
+                                ->withDescription($entity["description"])
+                                ->withCreationDate($entity["creation_date"])
+                                ->withUpdateDate($entity["update_date"])
+                                ->withDeleteDate($entity["delete_date"])
+                                ->build()
+                        );
+                        break;
+                    case 'link':
+                        $builder->$addMethod(
+                            (new $associationbuilder())
+                                ->withId($entity["id"])
+                                ->withUrl($entity['url'])
+                                ->withFanfictionId($entity['fanfiction_id'])
+                                ->withCreationDate($entity["creation_date"])
+                                ->withUpdateDate($entity["update_date"])
+                                ->withDeleteDate($entity["delete_date"])
+                                ->build()
+                        );
+                        break;
+                    default:
+                        throw new InvalidArgumentException("Unknown association");
                 }
             }
         }
@@ -196,8 +196,8 @@ class FanfictionsTable extends EntitiesTable
             $this->updateAssociationsLinks($id, $links);
             foreach ($links as $link) {
                 /**
- * @var Link $link 
-*/
+                 * @var Link $link 
+                 */
                 $link->setFanfictionId($id);
             }
         }
@@ -228,9 +228,10 @@ class FanfictionsTable extends EntitiesTable
             $queryInsert = "INSERT INTO `links`(`url`, `fanfiction_id`) VALUES (:url, :fanfiction_id)";
             foreach ($items as $item) {
                 $this->executeQuery(
-                    $queryInsert, [
-                    ":url" => $item->getUrl(),
-                    $this->primaryKey => $id
+                    $queryInsert,
+                    [
+                        ":url" => $item->getUrl(),
+                        $this->primaryKey => $id
                     ]
                 );
             }

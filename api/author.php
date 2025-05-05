@@ -5,6 +5,7 @@ require_once __DIR__ . '/../src/table/AuthorsTable.php';
 
 $endpoint = new EntityEndpoint(AuthorsTable::class);
 $method = $_SERVER['REQUEST_METHOD'];
+$phpInput = 'php://input';
 
 try {
     switch ($method) {
@@ -17,15 +18,15 @@ try {
         break;
 
     case 'POST':
-        $endpoint->post($_REQUEST, json_decode(file_get_contents('php://input')));
+        $endpoint->post($_REQUEST, json_decode(file_get_contents($phpInput)));
         break;
 
     case 'PUT':
-        $endpoint->put($_REQUEST, json_decode(file_get_contents('php://input')));
+        $endpoint->put($_REQUEST, json_decode(file_get_contents($phpInput)));
         break;
 
     case 'PATCH':
-        $endpoint->patch($_REQUEST, json_decode(file_get_contents('php://input')));
+        $endpoint->patch($_REQUEST, json_decode(file_get_contents($phpInput)));
         break;
 
     case 'DELETE':

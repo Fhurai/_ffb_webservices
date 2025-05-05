@@ -17,18 +17,19 @@ final class Language extends NamedEntity
 
     public function getAbbreviation(): string
     {
-        return $this->abbreviation; 
+        return $this->abbreviation;
     }
     public function setAbbreviation(string $abbreviation): void
     {
-        $this->abbreviation = $abbreviation; 
+        $this->abbreviation = $abbreviation;
     }
 
     public function jsonSerialize(): array
     {
         return array_merge(
-            parent::jsonSerialize(), [
-            "abbreviation" => $this->abbreviation,
+            parent::jsonSerialize(),
+            [
+                "abbreviation" => $this->abbreviation,
             ]
         );
     }
