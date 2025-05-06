@@ -196,6 +196,13 @@ Provides methods to:</p>
 <dd>Extracts the database name from a decoded JWT claim.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/ApiUtilities.html#method_getUserName">getUserName()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Determines the user&#039;s name from a decoded JWT claim.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/ApiUtilities.html#method_getUserRole">getUserRole()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -300,7 +307,7 @@ Provides methods to:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/utility/ApiUtilities.php"><a href="files/src-utility-apiutilities.html"><abbr title="src/utility/ApiUtilities.php">ApiUtilities.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">193</span>
+    <span class="phpdocumentor-element-found-in__line">204</span>
 
     </aside>
 
@@ -348,7 +355,7 @@ Provides methods to:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/utility/ApiUtilities.php"><a href="files/src-utility-apiutilities.html"><abbr title="src/utility/ApiUtilities.php">ApiUtilities.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">179</span>
+    <span class="phpdocumentor-element-found-in__line">190</span>
 
     </aside>
 
@@ -416,7 +423,7 @@ Provides methods to:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/utility/ApiUtilities.php"><a href="files/src-utility-apiutilities.html"><abbr title="src/utility/ApiUtilities.php">ApiUtilities.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">218</span>
+    <span class="phpdocumentor-element-found-in__line">229</span>
 
     </aside>
 
@@ -504,6 +511,61 @@ Provides methods to:</p>
         <span class="phpdocumentor-signature__response_type">string</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Database name.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getUserName">
+        getUserName()
+        <a href="classes/ApiUtilities.html#method_getUserName" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/utility/ApiUtilities.php"><a href="files/src-utility-apiutilities.html"><abbr title="src/utility/ApiUtilities.php">ApiUtilities.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">177</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determines the user&#039;s name from a decoded JWT claim.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">getUserName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$decodedJwt</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$decodedJwt</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Decoded JWT payload.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>user name.</p>
 </section>
 
             </section>
@@ -1153,6 +1215,7 @@ Provides methods to:</p>
                                             <li class=""><a href="classes/ApiUtilities.html#method_getAuthorizedTable">getAuthorizedTable()</a></li>
                                             <li class=""><a href="classes/ApiUtilities.html#method_getBearerToken">getBearerToken()</a></li>
                                             <li class=""><a href="classes/ApiUtilities.html#method_getDatabaseName">getDatabaseName()</a></li>
+                                            <li class=""><a href="classes/ApiUtilities.html#method_getUserName">getUserName()</a></li>
                                             <li class=""><a href="classes/ApiUtilities.html#method_getUserRole">getUserRole()</a></li>
                                             <li class=""><a href="classes/ApiUtilities.html#method_httpBadRequest">httpBadRequest()</a></li>
                                             <li class=""><a href="classes/ApiUtilities.html#method_httpCreated">httpCreated()</a></li>
