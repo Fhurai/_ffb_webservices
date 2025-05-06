@@ -29,6 +29,8 @@ services:
     environment:
       PMA_HOST: mysql_ffb
       PMA_PASSWORD: root
+    depends_on:
+      - mysql
     ports:
       - "7703:80"
     healthcheck:
@@ -61,14 +63,18 @@ services:
   php:
     image: fhurai/api_ffb:latest
     container_name: php_ffb
+    depends_on:
+      - mysql
     healthcheck:
       test: ["CMD", "php", "-v"]
       interval: 5s
       timeout: 5s
       retries: 5
     environment:
-      - DB_HOST=mysql_ffb
-      - PHP_HOST=nginx_ffb
+      - DB_USER=fhurai
+      - DB_PASSWORD=77/ffb*Usager
+      - DB_HOST=mysql
+      - PHP_HOST=nginx
     networks:
       - ffb_network
 
