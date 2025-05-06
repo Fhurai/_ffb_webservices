@@ -296,7 +296,7 @@ jobs:
 
       - name: Test Nginx responds
         run: |
-          RESPONSE=$(curl -s -w "%{http_code}" -o response_body.txt http://localhost:7780/stats/parameters.php)
+          RESPONSE=$(curl -s -w "%{http_code}" -o response_body.txt http://mysql_ffb:7780/stats/parameters.php)
           if grep -q 'SQLSTATE\[HY000\] \[2002\] Connection refused' response_body.txt; then
             echo "Curl call failed: Database connection refused"
             exit 1
