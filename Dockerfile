@@ -25,8 +25,8 @@ COPY ./scripts ./scripts
 COPY ./src ./src
 COPY ./stats ./stats
 COPY ./tests ./tests
-COPY ./compose.json ./compose.json
-COPY ./compose.lock ./compose.lock
+COPY ./composer.json ./composer.json
+COPY ./composer.lock ./composer.lock
 
 # Set appropriate permissions and prepare scripts
 RUN chown -R www-data:www-data /var/www/html && \
