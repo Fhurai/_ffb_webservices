@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e  # Exit immediately if a command exits with a non-zero status
 
 # MySQL connection parameters
 MYSQL_USER="${MYSQL_USER:-root}"
@@ -32,7 +33,7 @@ for step in \
   "17.main_data_fanfictions_tags.sql" \
   "18.main_data_series.sql"; do
   echo "$step >"
-  $mysql_cmd --default-character-set=utf8 ffb_main < "$step"
+  $mysql_cmd --default-character-set=utf8 ffb_main < "$step" || { echo "Error in $step" >&2; exit 1; }
   echo "-- done"
 done
 
@@ -42,7 +43,7 @@ for step in \
   "20.stats_drop.sql" \
   "21.stats_struct.sql"; do
   echo "$step >"
-  $mysql_cmd ffb_stats < "$step"
+  $mysql_cmd ffb_stats < "$step" || { echo "Error in $step" >&2; exit 1; }
   echo "-- done"
 done
 
@@ -54,22 +55,22 @@ for step in \
   "32.triggers_delete.sql" \
   "33.triggers_update.sql"; do
   echo "$step >"
-  $mysql_cmd --default-character-set=utf8 ffb_main < "$step"
+  $mysql_cmd --default-character-set=utf8 ffb_main < "$step" || { echo "Error in $step" >&2; exit 1; }
   echo "-- done"
 done
 
 echo ""
 echo "user :"
 echo "40.user.sql >"
-$mysql_cmd ffb_main < "40.user.sql"
+$mysql_cmd ffb_main < "40.user.sql" || { echo "Error in 40.user.sql" >&2; exit 1; }
 echo "-- done"
 
 echo ""
 echo "tests :"
 echo "50.tests_drop.sql >"
-$mysql_cmd ffb_tests < "50.tests_drop.sql"
+$mysql_cmd ffb_tests < "50.tests_drop.sql" || { echo "Error in 50.tests_drop.sql" >&2; exit 1; }
 echo "-- done"
 
 echo "Copying ffb_main to ffb_tests >"
-$mysqldump_cmd ffb_main | $mysql_cmd ffb_tests
+$mysqldump_cmd --routines --triggers ffb_main | $mysql_cmd ffb_tests || { echo "Error copying database" >&2; exit 1; }
 echo "-- done"
