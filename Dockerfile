@@ -3,11 +3,11 @@ FROM php:8.3.21RC1-fpm-bullseye
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    curl=7.74.0-1.3+deb11u7 \
-    git=1:2.30.2-1+deb11u2 \
-    iputils-ping=3:20210202-1 \
-    nano=5.4-2+deb11u1 \ 
-    unzip=6.0-26+deb11u1 \ 
+    curl \
+    git \
+    iputils-ping \
+    nano \ 
+    unzip \ 
     && docker-php-ext-install pdo pdo_mysql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
