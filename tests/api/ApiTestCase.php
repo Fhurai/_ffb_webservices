@@ -41,6 +41,7 @@ abstract class ApiTestCase extends TestCase
 
         $client = new ApiClient();
         $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
+        Connection::dd($response);
         $data = json_decode($response['body']);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -81,7 +82,7 @@ abstract class ApiTestCase extends TestCase
         foreach ($params as $key => $value) {
             $paramsObject->$key = $value;
         }
-        
+
         return self::$sharedClient->fetchData(self::$apiBaseUrl . $endpoint . '.php' . ( !empty($params) ? '?' . http_build_query($params) : ''));
     }
 
@@ -127,7 +128,7 @@ abstract class ApiTestCase extends TestCase
         }
 
         throw new FfbEndpointException('ID not found in data array for PATCH request');
-    } 
+    }
 
     protected function delete(string $endpoint, array $data): array
     {
