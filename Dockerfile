@@ -1,5 +1,5 @@
 # Use FPM variant of PHP
-FROM php:8.3-fpm-slim
+FROM php:8.3.21RC1-fpm-bullseye
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
