@@ -1971,11 +1971,6 @@ Search.appendIndex(
             "summary": "Execute\u0020and\u0020fetch",
             "url": "classes/EntitiesTable.html#method_executeQuery"
         },                {
-            "fqsen": "\\EntitiesTable\u003A\u003AsetTriggerUser\u0028\u0029",
-            "name": "setTriggerUser",
-            "summary": "",
-            "url": "classes/EntitiesTable.html#method_setTriggerUser"
-        },                {
             "fqsen": "\\EntitiesTable\u003A\u003AparseEntity\u0028\u0029",
             "name": "parseEntity",
             "summary": "Abstract\u0020mapping\u0020to\u0020entity",
@@ -2535,11 +2530,6 @@ Search.appendIndex(
             "name": "getUserRole",
             "summary": "Determines\u0020the\u0020user\u0027s\u0020role\u0020from\u0020a\u0020decoded\u0020JWT\u0020claim.",
             "url": "classes/ApiUtilities.html#method_getUserRole"
-        },                {
-            "fqsen": "\\ApiUtilities\u003A\u003AgetUserName\u0028\u0029",
-            "name": "getUserName",
-            "summary": "Determines\u0020the\u0020user\u0027s\u0020name\u0020from\u0020a\u0020decoded\u0020JWT\u0020claim.",
-            "url": "classes/ApiUtilities.html#method_getUserName"
         },                {
             "fqsen": "\\ApiUtilities\u003A\u003AgetAuthorizedTable\u0028\u0029",
             "name": "getAuthorizedTable",
