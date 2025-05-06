@@ -41,7 +41,6 @@ abstract class ApiTestCase extends TestCase
 
         $client = new ApiClient();
         $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
-        Connection::dd($response);
         $data = json_decode($response['body']);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
