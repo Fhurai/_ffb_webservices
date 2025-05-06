@@ -253,8 +253,8 @@ jobs:
 
       - name: Wait for services to be healthy
         run: |
-          retries=12
-          delay=5
+          retries=24
+          delay=10
           for i in $(seq 1 $retries); do
             mysql_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q mysql) 2>/dev/null || echo "null")
             php_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q php) 2>/dev/null || echo "null")

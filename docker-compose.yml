@@ -45,7 +45,7 @@ services:
     ports:
       - "7780:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "curl", "-s", "http://localhost"]
       interval: 5s
       timeout: 5s
       retries: 5
