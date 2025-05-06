@@ -279,7 +279,7 @@ class LanguagesTest extends ApiTestCase
     public function it_cannot_remove_a_not_deleted_language_permanently(): void
     {
         // Create a new language for testing
-        $language = $this->createLanguage(['name' => 'ToRemove', 'abbreviation' => 'NP']);
+        $language = $this->createLanguage(['name' => 'ToNotRemove', 'abbreviation' => 'NP']);
 
         // Attempt to permanently delete the language without soft deleting it first
         $response = $this->delete('/language', ['id' => $language['id']]);

@@ -50,75 +50,122 @@ class EntityEndpoint extends DefaultEndpoint
     {
         $entity = $args[0];
 
-        // Helper function to map related entities
-        $mapRelatedEntities = function (object $entity, string $property, string $tableClass, callable $mapper) use ($dbName, $userRole) {
-            if (property_exists($entity, $property) && is_iterable($entity->$property)) {
-                $table = new $tableClass($dbName, $userRole);
-                $entity->$property = array_map(fn($item) => $mapper($table, $item), $entity->$property);
-            }
-        };
-
-         // Map related entities based on the table class
-         if ($this->tableClass === 'RelationsTable') {
-            // Map 'characters' property for RelationsTable
-            $mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id));
+        if ($this->tableClass === 'RelationsTable') {
+            $this->handleRelationsTable($entity, $dbName, $userRole);
         } elseif ($this->tableClass === 'FanfictionsTable') {
-            // Map 'fandoms' property for FanfictionsTable
-            $mapRelatedEntities($entity, 'fandoms', FandomsTable::class, fn($table, $id) => $table->get($id));
-            // Map 'relations' property for FanfictionsTable
-            $mapRelatedEntities($entity, 'relations', RelationsTable::class, fn($table, $id) => $table->get($id));
-            // Map 'characters' property for FanfictionsTable
-            $mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id));
-            // Map 'tags' property for FanfictionsTable
-            $mapRelatedEntities($entity, 'tags', TagsTable::class, fn($table, $id) => $table->get($id));
-
-            // Handle 'links' property with custom logic
-            $mapRelatedEntities(
-                $entity,
-                'links',
-                LinksTable::class,
-                function ($table, $data) {
-                    /**
-                     * @var Link $link
-                     */
-                    $link = null;
-
-                    // If the data is numeric, retrieve the link by ID
-                    if (is_numeric($data)) {
-                        $link = $table->get($data);
-                    } 
-                    // If the data is a string, search for a link by URL
-                    elseif (is_string($data)) {
-                        $link = $table->findSearchedBy(['url' => "{$data}%"]);
-                    }
-
-                    // If no link is found, create a new one using LinkBuilder
-                    if ($link == null || empty($link)) {
-                        $link = (new LinkBuilder())->withUrl($data)->build();
-                    }
-                    return $link;
-                }
-            );
+            $this->handleFanfictionsTable($entity, $dbName, $userRole);
         } elseif ($this->tableClass === 'SeriesTable') {
-            // Map 'fanfictions' property for SeriesTable
-            $mapRelatedEntities($entity, 'fanfictions', FanfictionsTable::class, function ($table, $item) {
-                // Determine the fanfiction ID based on the item type
+            $this->handleSeriesTable($entity, $dbName, $userRole);
+        }
+
+        return $args;
+    }
+
+    /**
+     * Handle mapping for RelationsTable entities.
+     */
+    protected function handleRelationsTable(object $entity, string $dbName, string $userRole): void
+    {
+        $this->mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id), $dbName, $userRole);
+    }
+
+    /**
+     * Handle mapping for FanfictionsTable entities.
+     */
+    protected function handleFanfictionsTable(object $entity, string $dbName, string $userRole): void
+    {
+        $this->mapRelatedEntities($entity, 'fandoms', FandomsTable::class, fn($table, $id) => $table->get($id), $dbName, $userRole);
+        $this->mapRelatedEntities($entity, 'relations', RelationsTable::class, fn($table, $id) => $table->get($id), $dbName, $userRole);
+        $this->mapRelatedEntities($entity, 'characters', CharactersTable::class, fn($table, $id) => $table->get($id), $dbName, $userRole);
+        $this->mapRelatedEntities($entity, 'tags', TagsTable::class, fn($table, $id) => $table->get($id), $dbName, $userRole);
+        $this->handleLinksMapping($entity, $dbName, $userRole);
+    }
+
+    /**
+     * Handle special case for links mapping.
+     */
+    protected function handleLinksMapping(object $entity, string $dbName, string $userRole): void
+    {
+        $this->mapRelatedEntities(
+            $entity,
+            'links',
+            LinksTable::class,
+            function ($table, $data) {
+                if (is_numeric($data)) {
+                    return $table->get($data);
+                }
+
+                if (is_string($data)) {
+                    $link = $table->findSearchedBy(['url' => "{$data}%"]);
+                    if (!empty($link)) {
+                        return $link;
+                    }
+                }
+
+                return (new LinkBuilder())->withUrl($data)->build();
+            },
+            $dbName,
+            $userRole
+        );
+    }
+
+    /**
+     * Handle mapping for SeriesTable entities.
+     */
+    protected function handleSeriesTable(object $entity, string $dbName, string $userRole): void
+    {
+        $this->mapRelatedEntities(
+            $entity,
+            'fanfictions',
+            FanfictionsTable::class,
+            function ($table, $item) {
                 $id = is_object($item) ? $item->fanfiction_id : $item;
                 $fanfiction = $table->get($id);
 
-                // If the item is an object, assign its ranking to the fanfiction
                 if (is_object($item)) {
                     $fanfiction->ranking = $item->ranking;
                 }
-                return $fanfiction;
-            });
 
-            // Assign rankings to fanfictions in the 'fanfictions' property
-            foreach ($entity->fanfictions as $key => $fanfiction) {
-                $fanfiction->ranking = $key + 1; // Rankings start from 1
-            }
+                return $fanfiction;
+            },
+            $dbName,
+            $userRole
+        );
+
+        $this->assignFanfictionRankings($entity);
+    }
+
+    /**
+     * Assign rankings to fanfictions.
+     */
+    protected function assignFanfictionRankings(object $entity): void
+    {
+        if (!property_exists($entity, 'fanfictions') || !is_iterable($entity->fanfictions)) {
+            return;
         }
-        return $args;
+
+        foreach ($entity->fanfictions as $key => $fanfiction) {
+            $fanfiction->ranking = $key + 1;
+        }
+    }
+
+    /**
+     * Helper method to map related entities.
+     */
+    protected function mapRelatedEntities(
+        object $entity,
+        string $property,
+        string $tableClass,
+        callable $mapper,
+        string $dbName,
+        string $userRole
+    ): void {
+        if (!property_exists($entity, $property) || !is_iterable($entity->$property)) {
+            return;
+        }
+
+        $table = new $tableClass($dbName, $userRole);
+        $entity->$property = array_map(fn($item) => $mapper($table, $item), $entity->$property);
     }
 
     /**
@@ -204,8 +251,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $args = $this->beforeBuild($args, $dbName, $userRole);
         $entity = $this->build($args[0]);
@@ -224,8 +274,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $entity = $table->get($request['id']);
 
@@ -243,13 +296,17 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
+        $status = $args[0]->deleted ? 'deleted' : 'restored';
 
         $table = new $this->tableClass($dbName, $userRole);
 
-        $updated = $table->patch(is_string($request['id']) ? (int)$request['id'] : $request['id'], $args[0]->deleted);
+        $table->setTriggerUser($username);
+
+        $updated = $table->patch(is_string($request['id']) ? (int) $request['id'] : $request['id'], $args[0]->deleted);
         $updated
-            ? ApiUtilities::httpOk(['message' => $this->entityClass . ' ' . ($args[0]->deleted ? 'deleted' : 'restored')])
-            : ApiUtilities::httpBadRequest('Failed to ' . ($args[0]->deleted ? 'deleted' : 'restored') . ' ' . strtolower($this->entityClass));
+            ? ApiUtilities::httpOk(['message' => $this->entityClass . ' ' . $status])
+            : ApiUtilities::httpBadRequest('Failed to ' . $status . ' ' . strtolower($this->entityClass));
     }
 
     public function delete($request, ...$args)
@@ -259,8 +316,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $deleted = $table->delete($request['id']);
         $deleted

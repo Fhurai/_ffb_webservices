@@ -277,7 +277,7 @@ class FandomsTest extends ApiTestCase
     public function it_cannot_remove_a_not_deleted_fandom_permanently(): void
     {
         // Create a new fandom for testing
-        $fandom = $this->createFandom(['name' => 'ToRemove']);
+        $fandom = $this->createFandom(['name' => 'ToNotRemove']);
 
         // Attempt to permanently delete the fandom without soft deleting it first
         $response = $this->delete('/fandom', ['id' => $fandom['id']]);

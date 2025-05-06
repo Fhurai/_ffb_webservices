@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS actions (
 ) ENGINE=InnoDB;
 
 INSERT INTO `actions`(`id`, `name`)
-VALUES ("1", "CREATION"),
+VALUES ("1", "INSERT"),
 ("2", "UPDATE"),
 ("3", "DELETE"),
 ("4", "RESTORE"),

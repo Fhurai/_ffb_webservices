@@ -334,7 +334,7 @@ class AuthorsTest extends ApiTestCase
     public function it_cannot_remove_a_not_deleted_author_permanently(): void
     {
         // Create a new author for testing
-        $author = $this->createAuthor(['name' => 'ToRemove']);
+        $author = $this->createAuthor(['name' => 'ToNotRemove']);
 
         // Attempt to permanently delete the author without soft deleting it first
         $response = $this->delete('/author', ['id' => $author['id']]);

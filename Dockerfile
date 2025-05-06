@@ -1,13 +1,13 @@
 # Use FPM variant of PHP
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    unzip \
-    git \
     curl \
+    git \
     iputils-ping \
     nano \
+    unzip \
     && docker-php-ext-install pdo pdo_mysql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -21,19 +21,15 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
-# Set appropriate permissions
-RUN chown -R www-data:www-data /var/www/html
-
-RUN sed -i 's/\r$//' scripts/php-compose.sh
-
-RUN chmod +x -R scripts/
-
-RUN sed -i 's/\r$//' scripts/*.sh
-
-RUN ls -l ./scripts && \
-    ./scripts/php-compose.sh
-
-RUN cp ./config/config.php.example ./config/config.php
+# Set appropriate permissions and prepare scripts
+RUN chown -R www-data:www-data /var/www/html && \
+    sed -i 's/\r$//' scripts/php-compose.sh && \
+    chmod +x -R scripts/ && \
+    sed -i 's/\r$//' scripts/*.sh && \
+    chmod +x -R scripts/ && \
+    ls -l ./scripts && \
+    ./scripts/php-compose.sh && \
+    cp ./config/config.php.example ./config/config.php
 
 # Expose port used by PHP-FPM
 EXPOSE 9000

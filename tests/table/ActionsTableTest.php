@@ -25,7 +25,7 @@ class ActionsTableTest extends TestCase
         // Test existing ID
         $action = $this->actionsTable->get(1);
         $this->assertInstanceOf(Action::class, $action);
-        $this->assertEquals('CREATION', $action->getName());
+        $this->assertEquals('INSERT', $action->getName());
 
         // Test non-existing ID
         $this->expectException(FfbTableException::class);
@@ -51,7 +51,7 @@ class ActionsTableTest extends TestCase
 
         // Partial match with LIKE
         $result = $this->actionsTable->findSearchedBy(['name' => '%E%']);
-        $this->assertCount(5, $result); // CREATION, DELETE, UPDATE, RESTORE
+        $this->assertCount(5, $result); // INSERT, DELETE, UPDATE, RESTORE
 
         // Operator match
         $result = $this->actionsTable->findSearchedBy(['id' => '> 3']);
@@ -62,8 +62,8 @@ class ActionsTableTest extends TestCase
     {
         // Order by name ASC
         $result = $this->actionsTable->findOrderedBy(['name' => 'ASC']);
-        $this->assertEquals('CREATION', $result[0]->getName());
-        $this->assertEquals('DELETE', $result[1]->getName());
+        $this->assertEquals('DELETE', $result[0]->getName());
+        $this->assertEquals('INSERT', $result[1]->getName());
 
         // Order by id DESC
         $result = $this->actionsTable->findOrderedBy(['id' => 'DESC']);

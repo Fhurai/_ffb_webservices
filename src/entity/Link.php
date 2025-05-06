@@ -19,28 +19,29 @@ final class Link extends Entity
 
     public function getUrl(): string
     {
-        return $this->url; 
+        return $this->url;
     }
     public function setUrl(string $url): void
     {
-        $this->url = $url; 
+        $this->url = $url;
     }
 
     public function getFanfictionId(): int
     {
-        return $this->fanfictionId; 
+        return $this->fanfictionId;
     }
     public function setFanfictionId(int $fanfictionId): void
     {
-        $this->fanfictionId = $fanfictionId; 
+        $this->fanfictionId = $fanfictionId;
     }
 
     public function jsonSerialize(): array
     {
         return array_merge(
-            parent::jsonSerialize(), [
-            "url" => $this->url,
-            "fanfiction_id" => $this->fanfictionId
+            parent::jsonSerialize(),
+            [
+                "url" => $this->url,
+                "fanfiction_id" => $this->fanfictionId
             ]
         );
     }

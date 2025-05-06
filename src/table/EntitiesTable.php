@@ -496,13 +496,13 @@ abstract class EntitiesTable
      */
     public function delete(int $id): bool
     {
-         // Validate the `id` parameter to ensure it's a positive integer.
-         if ($id <= 0) {
+        // Validate the `id` parameter to ensure it's a positive integer.
+        if ($id <= 0) {
             throw new FfbTableException("Invalid ID: " . $id, 400);
         }
 
         $entity = $this->get($id);
-        if($entity->getDeleteDate() === null) {
+        if ($entity->getDeleteDate() === null) {
             throw new FfbTableException("Entity is not deleted!", 400);
         }
         $query = sprintf(
@@ -536,6 +536,17 @@ abstract class EntitiesTable
                 // Return the number of affected rows for write operations
                 return $stmt->rowCount();
             }
+        } catch (PDOException $e) {
+            $manager = SqlExceptionManager::fromPDOException($e);
+            throw new FfbTableException($manager->getFormattedMessage());
+        }
+    }
+
+    public function setTriggerUser(string $username)
+    {
+        try {
+            $stmt = $this->connection->prepare("SET @current_user_id = (SELECT id FROM users WHERE username = :username LIMIT 1)");
+            $stmt->execute(['username' => $username ?? 'guest']);
         } catch (PDOException $e) {
             $manager = SqlExceptionManager::fromPDOException($e);
             throw new FfbTableException($manager->getFormattedMessage());

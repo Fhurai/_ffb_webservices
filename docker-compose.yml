@@ -7,7 +7,7 @@ services:
     restart: always
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
       retries: 5
     environment:
@@ -31,6 +31,11 @@ services:
       PMA_PASSWORD: root
     ports:
       - "7703:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - ffb_network
 
@@ -40,8 +45,8 @@ services:
     ports:
       - "7780:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 10s
+      test: ["CMD", "curl", "-s", "http://localhost"]
+      interval: 5s
       timeout: 5s
       retries: 5
     volumes:
@@ -58,7 +63,7 @@ services:
     container_name: php_ffb
     healthcheck:
       test: ["CMD", "php", "-v"]
-      interval: 10s
+      interval: 5s
       timeout: 5s
       retries: 5
     environment:
