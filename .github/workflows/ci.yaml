@@ -6,9 +6,13 @@ name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [main] # Trigger on push to the main branch
+    branches:
+      - develop
+      - main
   pull_request:
-    branches: [main] # Trigger on PRs targeting the main branch
+    branches:
+      - develop
+      - main
 
 jobs:
   # 1. SonarQube Analysis Job

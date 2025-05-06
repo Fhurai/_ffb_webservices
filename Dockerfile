@@ -23,6 +23,7 @@ COPY ./api ./api
 COPY ./config ./config
 COPY ./scripts ./scripts
 COPY ./src ./src
+COPY ./sql ./sql
 COPY ./stats ./stats
 COPY ./tests ./tests
 COPY ./composer.json ./composer.json
