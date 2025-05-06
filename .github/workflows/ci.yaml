@@ -237,8 +237,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configure application
+        run: |
+          cp config/config.php.example config/config.php
+          sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
+          sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
+          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
+          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '127.0.0.1'/g" config/config.php
+
       - name: Check folder contents
-        run: ls -ll
+        run: ls -ll -R
 
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v1
