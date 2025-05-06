@@ -32,7 +32,7 @@ class ActionsTest extends ApiTestCase
     public static function actionNamesProvider(): array
     {
         return [
-            ['CREATION', 0],
+            ['INSERT', 0],
             ['UPDATE', 1],
             ['DELETE', 2],
             ['RESTORE', 3],

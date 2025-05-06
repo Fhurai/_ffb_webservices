@@ -251,8 +251,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $args = $this->beforeBuild($args, $dbName, $userRole);
         $entity = $this->build($args[0]);
@@ -271,8 +274,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $entity = $table->get($request['id']);
 
@@ -290,9 +296,12 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
         $status = $args[0]->deleted ? 'deleted' : 'restored';
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $updated = $table->patch(is_string($request['id']) ? (int) $request['id'] : $request['id'], $args[0]->deleted);
         $updated
@@ -307,8 +316,11 @@ class EntityEndpoint extends DefaultEndpoint
         $decoded = ApiUtilities::decodeJWT();
         $dbName = ApiUtilities::getDatabaseName($decoded);
         $userRole = ApiUtilities::getUserRole($decoded);
+        $username = ApiUtilities::getUsername($decoded);
 
         $table = new $this->tableClass($dbName, $userRole);
+
+        $table->setTriggerUser($username);
 
         $deleted = $table->delete($request['id']);
         $deleted

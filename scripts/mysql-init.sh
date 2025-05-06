@@ -47,6 +47,18 @@ for step in \
 done
 
 echo ""
+echo "procedures :"
+for step in \
+  "30.triggers_drop.sql" \
+  "31.triggers_insert.sql" \
+  "32.triggers_delete.sql" \
+  "33.triggers_update.sql"; do
+  echo "$step >"
+  $mysql_cmd --default-character-set=utf8 ffb_main < "$step"
+  echo "-- done"
+done
+
+echo ""
 echo "user :"
 echo "40.user.sql >"
 $mysql_cmd ffb_main < "40.user.sql"

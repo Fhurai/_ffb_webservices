@@ -169,6 +169,17 @@ class ApiUtilities
     }
 
     /**
+     * Determines the user's name from a decoded JWT claim.
+     *
+     * @param  object $decodedJwt Decoded JWT payload.
+     * @return string user name.
+     */
+    public static function getUserName(object $decodedJwt): string
+    {
+        return $decodedJwt->data->username;
+    }
+
+    /**
      * Creates an authorized database handler instance based on JWT claims.
      * - Combines the database name and user role to instantiate a table class.
      *

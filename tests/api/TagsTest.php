@@ -224,7 +224,7 @@ class TagsTest extends ApiTestCase
     public function it_cannot_remove_a_not_deleted_tag_permanently(): void
     {
         // Create a new tag for testing
-        $tag = $this->createTag(['name' => 'ToRemove', 'description' => 'NP', 'type_id' => 1]);
+        $tag = $this->createTag(['name' => 'ToNotRemove', 'description' => 'NP', 'type_id' => 1]);
 
         // Attempt to permanently delete the tag without soft deleting it first
         $response = $this->delete('/tag', ['id' => $tag['id']]);
