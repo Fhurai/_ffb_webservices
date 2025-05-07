@@ -22,6 +22,8 @@
             <directory>src</directory>
         </include>
         <exclude>
+            <directory>.github</directory>
+            <directory>sql</directory>
             <file>src/entity/Action.php</file>
             <file>src/entity/Author.php</file>
             <file>src/entity/Fandom.php</file>
