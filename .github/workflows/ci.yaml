@@ -1,14 +1,10 @@
-# Workflow Name: Fanfictions Bookmark Webservices (API)
-# Description: CI/CD pipeline for API service of Fanfictions Bookmark.
-# Includes testing, linting, documentation, SonarQube analysis, Docker build, and team notifications.
-
 name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [main] # Trigger on push to the main branch
+    branches: [main, develop]
   pull_request:
-    branches: [main] # Trigger on PRs targeting the main branch
+    branches: [main, develop]
 
 jobs:
   # 1. SonarQube Analysis Job
