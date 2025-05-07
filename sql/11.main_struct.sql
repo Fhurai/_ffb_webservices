@@ -242,6 +242,7 @@ CREATE TABLE IF NOT EXISTS users_actions (
 CREATE OR REPLACE VIEW view_data_users AS (
     SELECT u.username, u.password
     FROM users u
+    WHERE delete_date IS NULL
 );
 
 CREATE OR REPLACE VIEW view_data_characters AS (
