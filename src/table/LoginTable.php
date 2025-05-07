@@ -14,10 +14,14 @@ readonly class LoginTable
      * LoginTable constructor.
      * Initializes the database connection for the login table.
      */
-    public function __construct()
+    public function __construct(bool $testMode)
     {
-        // Establish a database connection using the "main" database and "guest" user.
-        $this->connection = Connection::getDatabase("main", "guest");
+        if (!$testMode) {
+            // Establish a database connection using the "main" database and "guest" user.
+            $this->connection = Connection::getDatabase("main", "guest");
+        } else {
+            $this->connection = Connection::getDatabase("tests", "user");
+        }
     }
 
     /**

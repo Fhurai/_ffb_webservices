@@ -16,12 +16,14 @@ use Firebase\JWT\JWT;
  */
 class LoginEndpoint extends DefaultEndpoint
 {
+    private $testMode = false;
     /**
      * Constructor
      * Sets up CORS headers for allowed origins based on configuration.
      */
-    public function __construct()
+    public function __construct(bool $testMode = false)
     {
+        $this->testMode = $testMode;
         $config = include __DIR__ . '/../../config/config.php';
         $allowedOrigins = $config['allowed_origins'];
         $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
@@ -53,7 +55,7 @@ class LoginEndpoint extends DefaultEndpoint
      * Handles POST requests for user login.
      * Validates the input, checks user credentials, and generates a JWT token upon successful login.
      *
-     * @param array $request The HTTP request data.
+     * @param string $request The HTTP request data.
      * @param mixed ...$args Additional arguments.
      * 
      * @return void
@@ -77,11 +79,11 @@ class LoginEndpoint extends DefaultEndpoint
 
         try {
             // Fetch user data from the database
-            $loginTable = new LoginTable();
+            $loginTable = new LoginTable($this->testMode);
             $usersRow = $loginTable->getUser($username)[0] ?? null;
 
             if (!$usersRow) {
-                throw new InvalidArgumentException("User not found");
+                throw new InvalidArgumentException("User '{$username}' not found");
             }
 
             // Create a User object and set its properties

@@ -3,7 +3,9 @@
 require_once __DIR__ . '/../src/endpoints/LoginEndpoint.php';
 require_once __DIR__ . '/../src/table/ActionsTable.php';
 
-$endpoint = new LoginEndpoint();
+$test = array_key_exists("test", $_GET);
+
+$endpoint = new LoginEndpoint($test);
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {
