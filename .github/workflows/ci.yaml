@@ -236,6 +236,10 @@ jobs:
             mysql -uroot -proot -e "SHOW DATABASES;" \
             | grep -E 'ffb_main|ffb_stats|ffb_tests'
 
+      - name: echo docker ps
+        run: |
+          docker ps
+
       - name: echo url
         run: |
           echo "http://localhost:${{ env.HTTP_PORT }}/stats/parameters.php"
