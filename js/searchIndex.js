@@ -601,6 +601,11 @@ Search.appendIndex(
             "summary": "Handles\u0020POST\u0020requests\u0020for\u0020user\u0020login.",
             "url": "classes/LoginEndpoint.html#method_post"
         },                {
+            "fqsen": "\\LoginEndpoint\u003A\u003A\u0024testMode",
+            "name": "testMode",
+            "summary": "",
+            "url": "classes/LoginEndpoint.html#property_testMode"
+        },                {
             "fqsen": "\\ParameterEndpoint",
             "name": "ParameterEndpoint",
             "summary": "ParameterEndpoint\u0020Class",
