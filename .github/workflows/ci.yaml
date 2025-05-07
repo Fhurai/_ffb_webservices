@@ -3,8 +3,6 @@ name: Fanfictions Bookmark Webservices (API)
 on:
   push:
     branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
 
 jobs:
   # 1. SonarQube Analysis Job
