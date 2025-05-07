@@ -49,3 +49,4 @@ runs:
           )
           # Send the payload to the Teams webhook URL
           curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
+      shell: bash

@@ -36,3 +36,4 @@ runs:
         EOF
         )
         curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "${{ inputs.discord_webhook }}"
+      shell: bash
