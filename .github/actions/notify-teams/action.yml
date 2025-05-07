@@ -1,0 +1,51 @@
+# .github/actions/notify-discord/action.yml
+name: "Notify Teams"
+description: "Send Microsoft Teams notification with status"
+inputs:
+  status:
+    required: true
+  commit:
+    required: true
+  sonar_url:
+    required: true
+  discord_webhook:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        # Determine the status of the SonarQube analysis
+          STATUS="${{ needs.Compose-docker.result }}"
+          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7) # Shorten the commit hash for display
+          # Set message details based on the status
+          if [ "$STATUS" = "success" ]; then
+            COLOR="00FF00" # Green for success
+            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
+            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          else
+            COLOR="FF0000" # Red for failure
+            MESSAGE="❌ FFB Webservices - Sonar Failed"
+            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+          fi
+          # Define the SonarQube analysis URL
+          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
+          # Construct the payload for the Teams message
+          PAYLOAD=$(cat <<EOF
+          {
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "summary": "${MESSAGE}",
+            "themeColor": "${COLOR}",
+            "title": "${MESSAGE}",
+            "sections": [{
+              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)  \n**SonarQube Analysis**: [View Results](${SONAR_URL})",
+              "images": [{
+                "image": "${IMAGE_URL}"
+              }],
+              "markdown": true
+            }]
+          }
+          EOF
+          )
+          # Send the payload to the Teams webhook URL
+          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
