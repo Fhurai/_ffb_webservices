@@ -1,120 +1,106 @@
-# Workflow Name: Fanfictions Bookmark Webservices (API)
-# Description: CI/CD pipeline for API service of Fanfictions Bookmark.
-# Includes testing, linting, documentation, SonarQube analysis, Docker build, and team notifications.
-
 name: Fanfictions Bookmark Webservices (API)
 
 on:
   push:
-    branches: [main] # Trigger on push to the main branch
+    branches: [main]
   pull_request:
-    branches: [main] # Trigger on PRs targeting the main branch
+    branches: [main]
+
+env:
+  DB_HOST: 127.0.0.1
+  PHP_HOST: 127.0.0.1
+  MYSQL_PORT: 3306
+  HTTP_PORT: 7780
 
 jobs:
-  # 1. SonarQube Analysis Job
-  sonarqube:
+  # 1) SonarQube analysis & tests across PHP versions
+  sonar:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ["8.2", "8.3", "8.4"] # Test on multiple PHP versions
-
+        php-version: ["8.2", "8.3", "8.4"]
     services:
       mysql:
-        image: mysql:8.0 # MySQL service for integration tests
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
         ports:
-          - 3306:3306
+          - "${{ env.MYSQL_PORT }}:3306"
         options: >-
-          --health-cmd "mysqladmin ping -p$MYSQL_ROOT_PASSWORD"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 3
-
+          --health-cmd="mysqladmin ping -p$MYSQL_ROOT_PASSWORD"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     steps:
-      # Step 1: Clone the repository
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set environment variables
-      - name: Setup environment
+      - name: Export DB credentials
         run: |
-          echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
-          echo "PHP_HOST=127.0.0.1" >> $GITHUB_ENV
           echo "DB_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_USERNAME=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+          echo "DB_USERNAME=${{ secrets.DB_USER }}"        >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"    >> $GITHUB_ENV
           echo "DB_GUEST_PASSWORD=${{ secrets.DB_GUEST_PASSWORD }}" >> $GITHUB_ENV
 
-      # Step 3: Setup PHP and extensions
-      - name: Setup PHP
+      - name: Setup PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: mbstring, dom, fileinfo, curl, pdo_mysql, xdebug
+          extensions: mbstring,dom,fileinfo,curl,pdo_mysql,xdebug
           coverage: xdebug
           tools: composer
 
-      # Step 4: Configure MySQL client securely
-      - name: Configure MySQL client login path
+      - name: Secure MySQL client login
         run: |
-          sudo apt-get update
-          sudo apt-get install -y expect
+          sudo apt-get update && sudo apt-get install -y expect
           expect -c '
-            spawn mysql_config_editor set --login-path=client --host=127.0.0.1 --user=root --port=3306 --password
+            spawn mysql_config_editor set --login-path=client \
+              --host=127.0.0.1 --user=root --port=3306 --password
             expect "Enter password:"
             send "${{ secrets.MYSQL_ROOT_PASSWORD }}\r"
             expect eof
           '
           mysql_config_editor print --login-path=client
 
-      # Step 5: Create databases and users for tests
-      - name: Create MySQL databases
+      - name: Prepare test databases & users
         run: |
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_main;"
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_stats;"
-          mysql --login-path=client -e "CREATE DATABASE IF NOT EXISTS ffb_tests;"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_user'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';"
-          mysql --login-path=client -e "CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_main.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_stats.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON ffb_tests.* TO 'ffb_user'@'%';"
-          mysql --login-path=client -e "GRANT SELECT ON ffb_main.* TO 'ffb_guest'@'%';"
-          mysql --login-path=client -e "GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';"
-          mysql --login-path=client -e "GRANT ALL PRIVILEGES ON *.* TO 'ffb_admin'@'%' WITH GRANT OPTION;"
-          mysql --login-path=client -e "FLUSH PRIVILEGES;"
+          mysql --login-path=client <<SQL
+            CREATE DATABASE IF NOT EXISTS ffb_main;
+            CREATE DATABASE IF NOT EXISTS ffb_stats;
+            CREATE DATABASE IF NOT EXISTS ffb_tests;
+            CREATE USER IF NOT EXISTS 'ffb_guest'@'%' IDENTIFIED BY '${{ secrets.DB_GUEST_PASSWORD }}';
+            CREATE USER IF NOT EXISTS 'ffb_user'@'%'  IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';
+            CREATE USER IF NOT EXISTS 'ffb_admin'@'%' IDENTIFIED BY '${{ secrets.DB_ADMIN_PASSWORD }}';
+            GRANT ALL PRIVILEGES ON ffb_main.*   TO 'ffb_user'@'%';
+            GRANT ALL PRIVILEGES ON ffb_stats.*  TO 'ffb_user'@'%';
+            GRANT ALL PRIVILEGES ON ffb_tests.*  TO 'ffb_user'@'%';
+            GRANT SELECT ON ffb_main.*  TO 'ffb_guest'@'%';
+            GRANT SELECT ON ffb_stats.* TO 'ffb_guest'@'%';
+            GRANT ALL PRIVILEGES ON *.*   TO 'ffb_admin'@'%' WITH GRANT OPTION;
+            FLUSH PRIVILEGES;
+          SQL
 
-      # Step 6: Verify DB connection
-      - name: Test MySQL connection
+      - name: Verify DB connection
         run: |
-          mysql -h 127.0.0.1 -uffb_user -p${{ secrets.DB_PASSWORD }} -e "SHOW DATABASES;" || echo "Connection failed"
+          mysql -h "${{ env.DB_HOST }}" \
+                -u ffb_user \
+                -p"${{ secrets.DB_PASSWORD }}" \
+                -e "SHOW DATABASES;" || exit 1
 
-      # Step 7: Setup config file for the app
       - name: Configure application
         run: |
           cp config/config.php.ci config/config.php
+          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '${{ env.DB_HOST }}'/g"     config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
-          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '127.0.0.1'/g" config/config.php
+          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '${{ env.PHP_HOST }}'/g"  config/config.php
 
-      - name: Verify config.php exists
-        run: |
-          if [ ! -f config/config.php ]; then
-            echo "❌ Error: config/config.php was not created!"
-            exit 1
-          fi
-          echo "✅ config/config.php verified"
-
-      # Step 8: Initialize database with custom script
-      - name: Initialize database
+      - name: Initialize database schema & seed data
         run: |
           chmod +x ./scripts/mysql-init.sh
           ./scripts/mysql-init.sh
 
-      # Step 9: Composer cache for faster builds
       - name: Cache Composer dependencies
         uses: actions/cache@v3
         with:
@@ -123,285 +109,198 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-
 
-      # Step 10: Install PHP dependencies
-      - name: Install dependencies
+      - name: Install PHP dependencies
         run: composer install --prefer-dist --no-progress
 
-      # Step 12: Start PHP development server
-      - name: Start built-in PHP server
-        run: php -S 127.0.0.1:8080 -t . > /dev/null 2>&1 &
+      - name: Start PHP built-in server
+        run: php -S "${{ env.PHP_HOST }}:8080" -t . > /dev/null 2>&1 &
 
-      # Step 13: Wait until PHP server is ready
-      - name: Wait for PHP built-in server to be ready
+      - name: Wait for PHP server
         run: |
           for i in {1..10}; do
-            if curl --fail http://127.0.0.1 > /dev/null 2>&1; then
-              echo "✅ PHP server is up"
-              break
+            if curl --fail http://"${{ env.PHP_HOST }}:8080"/health.php > /dev/null 2>&1; then
+              echo "PHP server is ready"; break
             fi
-            echo "⏳ Waiting for PHP server..."
             sleep 1
           done
-          if ! curl --fail http://127.0.0.1:8080 > /dev/null 2>&1; then
-            echo "❌ PHP server did not start in time"
-            exit 1
-          fi
 
-      - name: Script permissions
-        run: chmod +x scripts/php-coverage.sh
-
-      # Step 14: Run PHPUnit tests with code coverage
       - name: Run PHPUnit with coverage
-        run: ./scripts/php-coverage.sh
+        run: chmod +x ./scripts/php-coverage.sh && ./scripts/php-coverage.sh
 
-      # Step 15: Run SonarQube scan
-      - name: SonarQube Scan
-        id: sonar_scan
+      - name: SonarQube scan
+        id: sonar
         uses: SonarSource/sonarqube-scan-action@v5
+        continue-on-error: true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.php.coverage.reportPaths=clover.xml
             -Dsonar.scm.provider=git
-        continue-on-error: true
 
-  # 2. PHPDoc Generation
+  # 2) Generate and publish PHPDoc
   docs:
     name: Generate PHPDoc
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: sonar
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: Setup PHPDoc
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.3"
           tools: phpdoc
 
-      - name: Generate docs
+      - name: Run PHPDoc
         run: phpdoc -d src -t docs
 
-      - name: Deploy to GitHub Pages
+      - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
 
-      - name: Status
-        if: always()
-        run: 'echo "This job status is ${{ job.status }}"'
-
-  # 3. Docker Image Build for API
-  Docker-build-image-api:
+  # 3) Build & push Docker image
+  docker-build:
+    name: Build & Push Docker Image
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: sonarqube
+    needs: sonar
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set Up QEMU
+      - name: Setup QEMU & Buildx
         uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
-      - name: Set Up Docker Build
-        uses: docker/setup-buildx-action@v3
-
-      - name: Connect to Docker Hub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: List files in the repository
-        run: ls ${{ github.workspace }}
-
-      - name: Build and push
+      - name: Build and Push
         uses: docker/build-push-action@v5
         with:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{secrets.DOCKERHUB_USER}}/api_ffb:latest
+          tags: ${{ secrets.DOCKERHUB_USER }}/api_ffb:latest
 
-      - name: Status
-        if: always()
-        run: echo "This job status is ${{ job.status }}"
-
-  # 4. Check docker-compose
-  Compose-docker:
+  # 4) Run Docker Compose integration tests
+  compose-test:
+    name: Docker Compose Integration
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: Docker-build-image-api
+    needs: docker-build
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Configure application
+      - name: Configure application for Compose
         run: |
           cp config/config.php.example config/config.php
+          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '${{ env.DB_HOST }}'/g"     config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '127.0.0.1'/g" config/config.php
-          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '127.0.0.1'/g" config/config.php
+          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '${{ env.PHP_HOST }}'/g"  config/config.php
 
-      - name: Check folder contents
-        run: ls -ll -R
-
-      - name: Set up Docker Compose
+      - name: Start services with Docker Compose
         uses: docker/setup-compose-action@v1
         with:
           version: latest
+      - run: docker compose up -d --build --force-recreate --remove-orphans
 
-      - name: Run Docker Compose
-        run: docker compose up -d --build --force-recreate --remove-orphans
-
-      - name: List containers
-        run: docker compose ps
-
-      - name: Wait for services to be healthy
+      - name: Wait for service health
         run: |
-          retries=12
-          delay=5
-          for i in $(seq 1 $retries); do
-            mysql_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q mysql) 2>/dev/null || echo "null")
-            php_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q php) 2>/dev/null || echo "null")
-            nginx_status=$(docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q nginx) 2>/dev/null || echo "null")
-
-            # If health checks are not defined, assume container is healthy
-            if [ "$mysql_status" == "null" ]; then mysql_status="healthy"; fi
-            if [ "$php_status" == "null" ]; then php_status="healthy"; fi
-            if [ "$nginx_status" == "null" ]; then nginx_status="healthy"; fi
-
-            if [ "$mysql_status" = "healthy" ] && [ "$php_status" = "healthy" ] && [ "$nginx_status" = "healthy" ]; then
-              echo "All containers are healthy."
-              exit 0
+          for i in {1..12}; do
+            statuses=(
+              "$(docker inspect -f '{{.State.Health.Status}}' $(docker compose ps -q mysql)   2>/dev/null||echo healthy)"
+              "$(docker inspect -f '{{.State.Health.Status}}' $(docker compose ps -q php)     2>/dev/null||echo healthy)"
+              "$(docker inspect -f '{{.State.Health.Status}}' $(docker compose ps -q nginx)   2>/dev/null||echo healthy)"
+            )
+            if [[ "${statuses[*]}" =~ healthy ]]; then
+              echo "All services healthy"; exit 0
             fi
-
-            for container in $(docker ps -aq); do
-              echo -n "$container: "
-              docker inspect --format '{{.State.Health.Status}}' "$container" || echo "no health check"
-            done
-
-            echo "Waiting for containers to become healthy... ($i/$retries)"
-            sleep $delay
+            sleep 5
           done
+          docker compose ps && exit 1
 
-          echo "Containers did not become healthy in time"
-          docker compose ps
-          exit 1
-
-      - name: Test MySQL connection
-        run: docker exec mysql_ffb mysql -uroot -proot -e "SHOW DATABASES;" | grep -E 'ffb_main|ffb_stats|ffb_tests' || echo "One or more databases do not exist"
-
-      - name: Test Nginx responds
+      - name: Verify MySQL databases
         run: |
-          RESPONSE=$(curl -s -w "%{http_code}" -o response_body.txt http://localhost:7780/stats/parameters.php)
-          if grep -q 'SQLSTATE\[HY000\] \[2002\] Connection refused' response_body.txt; then
-            echo "Curl call failed: Database connection refused"
-            exit 1
-          elif [ "$RESPONSE" -ge 200 ] && [ "$RESPONSE" -lt 400 ]; then
-            echo "Curl call was successful"
-          else
-            echo "Curl call failed with HTTP status $RESPONSE"
-            exit 1
-          fi
+          docker exec mysql_ffb \
+            mysql -uroot -proot -e "SHOW DATABASES;" \
+            | grep -E 'ffb_main|ffb_stats|ffb_tests'
 
-      - name: Test PHP service
-        run: docker exec php_ffb php -v
+      - name: Smoke-test API endpoint
+        run: |
+          HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/resp.txt http://localhost:${{ env.HTTP_PORT }}/stats/parameters.php)
+          grep -q 'label' /tmp/resp.txt || exit 1
+          (( HTTP_CODE >= 200 && HTTP_CODE < 400 )) || exit 1
 
-      - name: Run tests
+      - name: Run unit tests inside PHP container
         run: docker exec php_ffb ./scripts/php-unit.sh
 
-  # 5. Discord Notification
-  discord-notification-docker:
-    name: Discord Notification - Docker Image Build
+  # 5) Notifications (Discord + Teams)
+  notify:
+    name: Notify (Discord & Teams)
     runs-on: ubuntu-latest
-    needs: Compose-docker
+    needs: compose-test
     if: always()
     steps:
+      - name: Set status & commit vars
+        run: |
+          echo "STATUS=${{ needs.compose-test.result }}" >> $GITHUB_ENV
+          echo "COMMIT=${GITHUB_SHA::7}"                   >> $GITHUB_ENV
+
       - name: Send Discord notification
         run: |
-          STATUS="${{ needs.Compose-docker.result }}"
-          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
-          if [ "$STATUS" = "success" ]; then
+          if [[ "$STATUS" == "success" ]]; then
             COLOR=3066993
-            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+            MSG="✅ Compose tests succeeded"
+            IMG="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
           else
             COLOR=15158332
-            MESSAGE="❌ Fanfictions Bookmark Webservices (API) Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+            MSG="❌ Compose tests failed"
+            IMG="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
-          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
-          PAYLOAD=$(cat <<EOF
-          {
-            "embeds": [{
-              "title": "${MESSAGE}",
-              "description": "**Workflow**: ${{ github.workflow }}\n**Repository**: ${{ github.repository }}\n**Branch**: ${{ github.ref }}\n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)\n**SonarQube Analysis**: [View Results](${SONAR_URL})",
-              "color": ${COLOR},
-              "image": {
-                "url": "${IMAGE_URL}"
-              },
-              "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            }]
-          }
-          EOF
+          PAYLOAD=$(
+            cat <<EOF
+            {
+              "embeds":[{ 
+                "title":"$MSG",
+                "description":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})",
+                "color":$COLOR,
+                "image":{ "url":"$IMG" },
+                "timestamp":"$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+              }]
+            }
+            EOF
           )
-          curl -X POST -H "Content-Type: application/json" -d "$PAYLOAD" "$DISCORD_WEBHOOK_URL"
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          curl -X POST -H "Content-Type: application/json" \
+               -d "$PAYLOAD" ${{ secrets.DISCORD_WEBHOOK_URL }}
 
-  # 6. Teams Notification
-  teams-notification-docker:
-    name: Teams Notification - Docker Image Build
-    runs-on: ubuntu-latest
-    needs: Compose-docker
-    if: always()
-    steps:
-      # Step 1: Send Microsoft Teams notification
-      # This step sends a notification to a Microsoft Teams channel with the status of the Docker image build.
-      - name: Send Microsoft Teams notification
-        env:
-          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+      - name: Send Teams notification
         run: |
-          # Determine the status of the SonarQube analysis
-          STATUS="${{ needs.Compose-docker.result }}"
-          COMMIT_SHORT=$(echo $GITHUB_SHA | cut -c1-7) # Shorten the commit hash for display
-
-          # Set message details based on the status
-          if [ "$STATUS" = "success" ]; then
-            COLOR="00FF00" # Green for success
-            MESSAGE="✅ FFB Webservices - Sonar Succeeded"
-            IMAGE_URL="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
+          if [[ "$STATUS" == "success" ]]; then
+            THEME="00FF00"; TITLE="✅ Compose tests succeeded"; IMG="https://c.tenor.com/Ud36Rrav628AAAAC/tenor.gif"
           else
-            COLOR="FF0000" # Red for failure
-            MESSAGE="❌ FFB Webservices - Sonar Failed"
-            IMAGE_URL="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
+            THEME="FF0000"; TITLE="❌ Compose tests failed"; IMG="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
-
-          # Define the SonarQube analysis URL
-          SONAR_URL="https://sonarcloud.io/dashboard?id=Fhurai__ffb_webservices&branch=main"
-
-          # Construct the payload for the Teams message
-          PAYLOAD=$(cat <<EOF
-          {
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "summary": "${MESSAGE}",
-            "themeColor": "${COLOR}",
-            "title": "${MESSAGE}",
-            "sections": [{
-              "text": "**Workflow**: ${{ github.workflow }}  \n**Repository**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [${COMMIT_SHORT}](${{ github.server_url }}/${{ github.repository }}/commit/$GITHUB_SHA)  \n**SonarQube Analysis**: [View Results](${SONAR_URL})",
-              "images": [{
-                "image": "${IMAGE_URL}"
-              }],
-              "markdown": true
-            }]
-          }
-          EOF
+          CARD=$(
+            cat <<EOF
+            {
+              "@type":"MessageCard",
+              "@context":"http://schema.org/extensions",
+              "themeColor":"$THEME",
+              "title":"$TITLE",
+              "sections":[{"text":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})","images":[{"image":"$IMG"}],"markdown":true}]
+            }
+            EOF
           )
-
-          # Send the payload to the Teams webhook URL
-          curl -H "Content-Type: application/json" -d "$PAYLOAD" "$TEAMS_WEBHOOK_URL"
-        continue-on-error: true # Allow the workflow to continue even if this step fails
+          curl -H "Content-Type: application/json" \
+               -d "$CARD" ${{ secrets.TEAMS_WEBHOOK_URL }}
+        continue-on-error: true
