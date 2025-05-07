@@ -203,7 +203,7 @@ jobs:
 
       - name: Configure application for Compose
         run: |
-          cp config/config.php.example config/config.php
+          cp config/config.php.ci config/config.php
           sed -i "s/'DB_HOST', '.*'/'DB_HOST', '${{ env.DB_HOST }}'/g" config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
