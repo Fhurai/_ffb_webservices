@@ -47,7 +47,7 @@ abstract class ApiTestCase extends TestCase
             throw new FfbEndpointException('Failed to decode authentication response: ' . json_last_error_msg());
         }
 
-        if (empty($data?->token) || !is_string($data->token)) {
+        if (empty($data->token) || !is_string($data->token)) {
             throw new FfbEndpointException('Failed to obtain authentication token');
         }
 

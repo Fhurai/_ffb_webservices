@@ -278,7 +278,7 @@ jobs:
         run: docker exec mysql_ffb mysql -uroot -proot -e "SHOW DATABASES;" | grep -E 'ffb_main|ffb_stats|ffb_tests' || echo "One or more databases do not exist"
 
       - name: Test Nginx responds
-        run: curl -f http://localhost:7780/stats/parameters.php && echo "Curl call was successful" || echo "Curl call failed"
+        run: sleep 12 && curl -f http://localhost:7780/stats/parameters.php && echo "Curl call was successful" || echo "Curl call failed"
 
       - name: Test PHP service
         run: docker exec php_ffb php -v
