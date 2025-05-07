@@ -157,6 +157,7 @@ jobs:
     name: Generate PHPDoc
     runs-on: ubuntu-latest
     needs: sonarqube
+    if: github.ref == 'refs/heads/develop'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
