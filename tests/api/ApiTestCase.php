@@ -22,7 +22,7 @@ abstract class ApiTestCase extends TestCase
     {
         $config = include __DIR__ . '/../../config/config.php';
         self::$apiBaseUrl = 'http://' . $config['api']['base'];
-        self::$token = self::authenticate('Fhurai', 'Sen5652466*', 'ffb_tests');
+        self::$token = self::authenticate('Test', 'test', 'ffb_tests');
         self::$sharedClient = new ApiClient('Bearer', self::$token);
     }
 
@@ -40,7 +40,7 @@ abstract class ApiTestCase extends TestCase
         ];
 
         $client = new ApiClient();
-        $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php', 'POST', $payload);
+        $response = $client->fetchDataWithContent(self::$apiBaseUrl . '/login.php?test', 'POST', $payload);
         $data = json_decode($response['body']);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
