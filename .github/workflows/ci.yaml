@@ -236,6 +236,10 @@ jobs:
             mysql -uroot -proot -e "SHOW DATABASES;" \
             | grep -E 'ffb_main|ffb_stats|ffb_tests'
 
+      - name: echo url
+        run: |
+          echo "http://localhost:${{ env.HTTP_PORT }}/stats/parameters.php"
+
       - name: Smoke-test API endpoint
         run: |
           HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/resp.txt http://localhost:${{ env.HTTP_PORT }}/stats/parameters.php)
