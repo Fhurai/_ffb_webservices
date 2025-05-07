@@ -67,6 +67,11 @@ class Connection
         $configFile = include __DIR__ . "/../../config/config.php";
 
         try {
+            Connection::dd("mysql:host=" . $configFile["credentials"][$user]["host"] .
+                ";port=" . $configFile["credentials"][$user]["port"] .
+                ";dbname=" . $configFile["db"][$typeConnection].' | '.
+                $configFile["credentials"][$user]["user"].' | '.
+                $configFile["credentials"][$user]["password"]);
             // Creation of Php Database Object with provided data from config.
             return new PDO(
                 "mysql:host=" . $configFile["credentials"][$user]["host"] .
