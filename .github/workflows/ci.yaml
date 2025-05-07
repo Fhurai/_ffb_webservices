@@ -9,7 +9,6 @@ on:
 env:
   DB_HOST: 127.0.0.1
   PHP_HOST: 127.0.0.1
-  MYSQL_PORT: 3306
   HTTP_PORT: 7780
 
 jobs:
@@ -25,13 +24,15 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        # Fixed static port mapping, cannot use env here
         ports:
-          - "${{ env.MYSQL_PORT }}:3306"
+          - "3306:3306"
         options: >-
           --health-cmd="mysqladmin ping -p$MYSQL_ROOT_PASSWORD"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -203,10 +204,10 @@ jobs:
       - name: Configure application for Compose
         run: |
           cp config/config.php.example config/config.php
-          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '${{ env.DB_HOST }}'/g"     config/config.php
+          sed -i "s/'DB_HOST', '.*'/'DB_HOST', '${{ env.DB_HOST }}'/g" config/config.php
           sed -i "s/'DB_USER', '.*'/'DB_USER', '${{ secrets.DB_USER }}'/g" config/config.php
           sed -i "s/'DB_PASSWORD', '.*'/'DB_PASSWORD', '${{ secrets.DB_PASSWORD }}'/g" config/config.php
-          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '${{ env.PHP_HOST }}'/g"  config/config.php
+          sed -i "s/'PHP_HOST', '.*'/'PHP_HOST', '${{ env.PHP_HOST }}'/g" config/config.php
 
       - name: Start services with Docker Compose
         uses: docker/setup-compose-action@v1
@@ -244,7 +245,7 @@ jobs:
       - name: Run unit tests inside PHP container
         run: docker exec php_ffb ./scripts/php-unit.sh
 
-  # 5) Notifications (Discord + Teams)
+  # 5) Notifications (Discord & Teams)
   notify:
     name: Notify (Discord & Teams)
     runs-on: ubuntu-latest
@@ -267,18 +268,17 @@ jobs:
             MSG="❌ Compose tests failed"
             IMG="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
-          PAYLOAD=$(
-            cat <<EOF
-            {
-              "embeds":[{ 
-                "title":"$MSG",
-                "description":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})",
-                "color":$COLOR,
-                "image":{ "url":"$IMG" },
-                "timestamp":"$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-              }]
-            }
-            EOF
+          PAYLOAD=$(cat <<EOF
+          {
+            "embeds":[{ 
+              "title":"$MSG",
+              "description":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})",
+              "color":$COLOR,
+              "image":{ "url":"$IMG" },
+              "timestamp":"$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            }]
+          }
+          EOF
           )
           curl -X POST -H "Content-Type: application/json" \
                -d "$PAYLOAD" ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -290,16 +290,15 @@ jobs:
           else
             THEME="FF0000"; TITLE="❌ Compose tests failed"; IMG="https://c.tenor.com/nsEfkzN30TIAAAAC/tenor.gif"
           fi
-          CARD=$(
-            cat <<EOF
-            {
-              "@type":"MessageCard",
-              "@context":"http://schema.org/extensions",
-              "themeColor":"$THEME",
-              "title":"$TITLE",
-              "sections":[{"text":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})","images":[{"image":"$IMG"}],"markdown":true}]
-            }
-            EOF
+          CARD=$(cat <<EOF
+          {
+            "@type":"MessageCard",
+            "@context":"http://schema.org/extensions",
+            "themeColor":"$THEME",
+            "title":"$TITLE",
+            "sections":[{"text":"**Workflow**: ${{ github.workflow }}  \n**Repo**: ${{ github.repository }}  \n**Branch**: ${{ github.ref }}  \n**Commit**: [$COMMIT](${{ github.server_url }}/${{ github.repository }}/commit/${GITHUB_SHA})","images":[{"image":"$IMG"}],"markdown":true}]
+          }
+          EOF
           )
           curl -H "Content-Type: application/json" \
                -d "$CARD" ${{ secrets.TEAMS_WEBHOOK_URL }}
