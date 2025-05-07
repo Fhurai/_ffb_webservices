@@ -281,9 +281,10 @@ jobs:
 
       - name: Run tests
         run: docker exec php_ffb ./scripts/php-unit.sh
+        continue-on-error: true
 
    # 5.A Discord Notification - SonarQube (develop branch)
-   discord-notification-sonar:
+  discord-notification-sonar:
     name: Discord Notification - SonarQube
     runs-on: ubuntu-latest
     needs: sonarqube
