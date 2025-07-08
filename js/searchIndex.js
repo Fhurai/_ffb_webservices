@@ -2561,6 +2561,11 @@ Search.appendIndex(
             "summary": "Extracts\u0020the\u0020Bearer\u0020token\u0020from\u0020the\u0020HTTP\u0020Authorization\u0020header.",
             "url": "classes/ApiUtilities.html#method_getBearerToken"
         },                {
+            "fqsen": "\\ApiUtilities\u003A\u003ADEBUG",
+            "name": "DEBUG",
+            "summary": "",
+            "url": "classes/ApiUtilities.html#constant_DEBUG"
+        },                {
             "fqsen": "\\SrcUtilities",
             "name": "SrcUtilities",
             "summary": "Class\u0020SrcUtilities",
