@@ -115,7 +115,7 @@ class SqlExceptionManager extends Exception
             1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
             1451 => fn() => sprintf("Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.", $this->table),
             1452 => fn() => sprintf("Cannot add or update a child row: missing identifier for `%s`.", $this->table),
-            1062 => fn() => sprintf("Duplicate entry '%s' for key '%s'.", $this->field, $this->key),
+            1062 => fn() => sprintf($this->errorMessage),
             1044 => fn() => sprintf("Access denied for user '%s'.", $this->user),
             1045 => fn() => sprintf("Access denied for user '%s'.", $this->user),
             1046 => fn() => "No database selected.",
