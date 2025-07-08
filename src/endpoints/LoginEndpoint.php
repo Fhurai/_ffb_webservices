@@ -6,6 +6,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../src/entity/User.php';
 require_once __DIR__ . '/../../src/table/LoginTable.php';
 require_once __DIR__ . '/../../src/exception/FfbTableException.php';
+require_once __DIR__ . '/../../src/utility/ApiUtilities.php';
 
 use Firebase\JWT\JWT;
 
@@ -43,7 +44,7 @@ class LoginEndpoint extends DefaultEndpoint
      *
      * @param array $request The HTTP request data.
      * @param mixed ...$args Additional arguments.
-     * 
+     *
      * @return void
      */
     public function get($request, ...$args)
@@ -57,7 +58,7 @@ class LoginEndpoint extends DefaultEndpoint
      *
      * @param string $request The HTTP request data.
      * @param mixed ...$args Additional arguments.
-     * 
+     *
      * @return void
      */
     public function post($request, ...$args)
@@ -72,8 +73,7 @@ class LoginEndpoint extends DefaultEndpoint
 
         // Validate required fields
         if (empty($username) || empty($password) || empty($db)) {
-            http_response_code(400);
-            echo json_encode(["message" => "Username, password, and database are required"]);
+            ApiUtilities::httpBadRequest("Username, password, and database are required");
             return;
         }
 
@@ -129,22 +129,10 @@ class LoginEndpoint extends DefaultEndpoint
 
         } catch (FfbTableException | InvalidArgumentException $e) {
             // Handle login-related errors
-            http_response_code(401);
-            echo json_encode(
-                [
-                    "message" => "Login failed",
-                    "error" => $e->getMessage()
-                ]
-            );
+            ApiUtilities::httpUnauthorized($e->getMessage());
         } catch (Exception $e) {
             // Handle server errors
-            http_response_code(500);
-            echo json_encode(
-                [
-                    "message" => "Server error",
-                    "error" => $e->getMessage()
-                ]
-            );
+            ApiUtilities::httpInternalServerError($e->getMessage());
         }
     }
 }

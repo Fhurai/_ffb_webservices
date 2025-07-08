@@ -18,6 +18,8 @@ use Firebase\JWT\Key;
  */
 class ApiUtilities
 {
+    private const DEBUG = false;
+
     /**
      * Sends a 200 OK response with optional JSON data.
      * - If $values is empty, terminates the script without output.
@@ -65,7 +67,7 @@ class ApiUtilities
      */
     public static function httpBadRequest(string $message)
     {
-        http_response_code(400);
+        http_response_code(static::DEBUG ? 200 : 400);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -77,7 +79,7 @@ class ApiUtilities
      */
     public static function httpUnauthorized(string $message)
     {
-        http_response_code(401);
+        http_response_code(static::DEBUG ? 200 : 401);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -89,7 +91,7 @@ class ApiUtilities
      */
     public static function httpForbidden(string $message)
     {
-        http_response_code(403);
+        http_response_code(static::DEBUG ? 200 : 403);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -101,7 +103,7 @@ class ApiUtilities
      */
     public static function httpNotFound(string $message)
     {
-        http_response_code(404);
+        http_response_code(static::DEBUG ? 200 : 404);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -113,7 +115,7 @@ class ApiUtilities
      */
     public static function httpMethodNotAllowed(string $message)
     {
-        http_response_code(405);
+        http_response_code(static::DEBUG ? 200 : 405);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -125,7 +127,7 @@ class ApiUtilities
      */
     public static function httpInternalServerError(string $message)
     {
-        http_response_code(500);
+        http_response_code(static::DEBUG ? 200 : 500);
         echo json_encode(['message' => $message]);
         exit;
     }
@@ -137,7 +139,7 @@ class ApiUtilities
      */
     public static function httpServiceUnavailable(string $message)
     {
-        http_response_code(503);
+        http_response_code(static::DEBUG ? 200 : 503);
         echo json_encode(['message' => $message]);
         exit;
     }
