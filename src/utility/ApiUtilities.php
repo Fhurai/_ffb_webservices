@@ -18,7 +18,7 @@ use Firebase\JWT\Key;
  */
 class ApiUtilities
 {
-    private const DEBUG = true;
+    private const DEBUG = false;
 
     /**
      * Sends a 200 OK response with optional JSON data.
