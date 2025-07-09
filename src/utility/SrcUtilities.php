@@ -118,7 +118,11 @@ class SrcUtilities
 
         foreach ($input as $key => $value) {
             if (str_starts_with($key, 'search_')) {
-                $searchParams[substr($key, 7)] = $value;
+                if($value === "true" || $value === "false"){
+                    $searchParams[substr($key, 7)] = $value === "true";
+                }else{
+                    $searchParams[substr($key, 7)] = $value;
+                }
             } elseif (str_starts_with($key, 'order_')) {
                 $orderParams[substr($key, 6)] = $value;
             } elseif (str_starts_with($key, 'limit_')) {

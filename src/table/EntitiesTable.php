@@ -107,6 +107,9 @@ abstract class EntitiesTable
                     $conditions[] = "$column = :$column";
                     $values[":$column"] = $value;
                 }
+            } elseif (is_bool($value)) {
+                $conditions[] = "$column = :$column";
+                $values[":$column"] = $value;
             }
         }
         $query = ($execute ? static::DEFAULT_SELECT_QUERY : '')
