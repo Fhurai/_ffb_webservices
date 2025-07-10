@@ -111,16 +111,15 @@ class SqlExceptionManager extends Exception
         $message = "SQL Error [{$this->sqlState}][{$this->errorCode}]: ";
 
         $errorMessages = [
-            1142 => fn() => sprintf("Permission denied. User cannot create on table '%s'", $this->table),
-            1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
-            1451 => fn() => sprintf("Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.", $this->table),
-            1452 => fn() => sprintf("Cannot add or update a child row: missing identifier for `%s`.", $this->table),
-            1062 => fn() => sprintf($this->errorMessage),
             1044 => fn() => sprintf("Access denied for user '%s'.", $this->user),
             1045 => fn() => sprintf("Access denied for user '%s'.", $this->user),
             1046 => fn() => "No database selected.",
             1049 => fn() => sprintf("Unknown database '%s'.", $this->table),
             1064 => fn() => sprintf("Syntax error in SQL command: '%s'", $this->command),
+            1142 => fn() => sprintf("Permission denied. User cannot create on table '%s'", $this->table),
+            1146 => fn() => sprintf("Table '%s' doesn't exist.", $this->table),
+            1451 => fn() => sprintf("Cannot delete or update a parent row: a foreign key constraint fails on table '%s'.", $this->table),
+            1452 => fn() => sprintf("Cannot add or update a child row: missing identifier for `%s`.", $this->table),
             2002 => fn() => "Connection refused.",
             2003 => fn() => "Connection timed out.",
             2005 => fn() => "Unknown MySQL server host.",

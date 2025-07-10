@@ -293,6 +293,20 @@ abstract class EntitiesTable
         $cols['update_date'] = (new DateTime("now", new DateTimeZone(self::TIMEZONE_DATETIME)))->format(self::DATE_FORMAT);
 
         if ($entityClass === 'User') {
+            if (property_exists($entity, "isAdmin")) {
+                unset($cols['isAdmin']);
+                $cols['is_admin'] = $entity->isAdmin ? 1 : 0;
+            }
+            if (property_exists($entity, "isLocal"))
+            {
+                unset($cols['isLocal']);
+                $cols['is_local'] = $entity->isLocal ? 1 : 0;
+            }
+            if (property_exists($entity, "isNsfw"))
+            {
+                unset($cols['isNsfw']);
+                $cols['is_nsfw'] = $entity->isNsfw ? 1 : 0;
+            }
             /**
              * @var User $entity
              */
@@ -408,7 +422,13 @@ abstract class EntitiesTable
         }
 
         $fields = array_keys($arrayData);
-        $place = array_map(fn($col) => "`$col` = :$col", $fields);
+        $place = array_map(function ($col) {
+            if (str_starts_with($col, "is")) {
+                return "`is" . (strtolower(substr($col, 2))) . "` = :$col";
+            } else {
+                return "`$col` = :$col";
+            }
+        }, $fields);
         $sql = sprintf(
             'UPDATE `%s` SET %s WHERE `id` = :id',
             static::TABLE_NAME,
